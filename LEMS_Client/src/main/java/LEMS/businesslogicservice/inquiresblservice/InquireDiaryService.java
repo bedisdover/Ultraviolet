@@ -1,4 +1,4 @@
-package LEMS.businesslogicservice.inquireBlService;
+package LEMS.businesslogicservice.inquiresblservice;
 
 import LEMS.vo.DiaryVO;
 

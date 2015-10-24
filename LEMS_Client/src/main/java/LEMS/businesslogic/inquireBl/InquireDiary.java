@@ -1,7 +1,7 @@
-package LEMS.businesslogic.inquireBl;
+package LEMS.businesslogic.inquirebl;
 
 import LEMS.vo.DiaryVO;
-import LEMS.businesslogicservice.inquireBlService.InquireDiaryService;
+import LEMS.businesslogicservice.inquiresblservice.InquireDiaryService;
 
 public class InquireDiary implements InquireDiaryService {
 	public DiaryVO getDiary(){

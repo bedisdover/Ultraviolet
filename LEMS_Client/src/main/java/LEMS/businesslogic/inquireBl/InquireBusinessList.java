@@ -1,6 +1,6 @@
-package LEMS.businesslogic.inquireBl;
+package LEMS.businesslogic.inquirebl;
 
-import LEMS.businesslogicservice.inquireBlService.InquireBusinessListService;
+import LEMS.businesslogicservice.inquiresblservice.InquireBusinessListService;
 
 public class InquireBusinessList implements InquireBusinessListService {
 
