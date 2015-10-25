@@ -5,11 +5,10 @@ import java.io.Serializable;
 /**
  * @author 宋益明
  *
- * 收款信息持久化对象
+ * 收款单持久化对象
  */
+@SuppressWarnings("serial")
 public class IncomeBillPO implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
 	/**
 	 * 收款日期
 	 */

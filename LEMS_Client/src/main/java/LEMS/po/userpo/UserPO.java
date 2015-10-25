@@ -2,6 +2,11 @@ package LEMS.po.userpo;
 
 import java.io.Serializable;
 
+/**
+ * @author 宋益明
+ * 
+ * 用户持久化对象
+ */
 @SuppressWarnings("serial")
 public class UserPO implements Serializable {
     /**
