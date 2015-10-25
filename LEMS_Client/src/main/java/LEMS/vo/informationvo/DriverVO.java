@@ -37,8 +37,38 @@ public class DriverVO implements Serializable{
 	 * 司机性别
 	 */
 	private Gender gender;
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public void setIDcardNumber(String iDcardNumber) {
+		IDcardNumber = iDcardNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public void setDrivingPeriod(String drivingPeriod) {
+		this.drivingPeriod = drivingPeriod;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
 	
-	DriverVO(String name,String dateOfBirth,String IDcardNumber,String phoneNumber,String drivingPeriod,Gender gender){
+	
+	DriverVO(long id,String name,String dateOfBirth,String IDcardNumber,String phoneNumber,String drivingPeriod,Gender gender){
+		this.id = id;
 		this.name = name;
 		this.dateOfBirth = dateOfBirth;
 		this.IDcardNumber = IDcardNumber;
