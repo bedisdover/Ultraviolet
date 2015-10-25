@@ -3,11 +3,21 @@ package LEMS.po.storepo;
 public class InboundOrderPO {
 	long id;
 	String inDate;
-	String destination;
+	Destination destination;
 	Area area;
 	int row;		//排
 	int stand;		//架
 	int position;	//位
+	
+	public InboundOrderPO(long identity,String d,Destination des,Area ar,int r,int s,int pos){
+		id=identity;
+		inDate=d;
+		destination=des;
+		area=ar;
+		row=r;
+		stand=s;
+		position=pos;
+	}
 	
 	public long getId() {
 		return id;
@@ -21,10 +31,10 @@ public class InboundOrderPO {
 	public void setInDate(String inDate) {
 		this.inDate = inDate;
 	}
-	public String getDestination() {
+	public Destination getDestination() {
 		return destination;
 	}
-	public void setDestination(String destination) {
+	public void setDestination(Destination destination) {
 		this.destination = destination;
 	}
 	public Area getArea() {

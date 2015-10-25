@@ -3,14 +3,15 @@ package LEMS.businesslogic.storebl;
 import java.util.ArrayList;
 
 import LEMS.po.storepo.GoodsPO;
+import LEMS.vo.ordervo.GoodsVO;
 
 public class StoreManagement {
-	public ArrayList<GoodsPO> inquire(String startTime,String endTime){
-		return new  ArrayList<GoodsPO>();
+	public ArrayList<GoodsVO> inquire(String startTime,String endTime){
+		return new  ArrayList<GoodsVO>();
 	}
 	
-	public ArrayList<GoodsPO> check(){
-		return new ArrayList<GoodsPO>();
+	public ArrayList<GoodsVO> check(){
+		return new ArrayList<GoodsVO>();
 	}
 	
 	public void warning(){
