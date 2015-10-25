@@ -27,7 +27,7 @@ public class VehicleVO implements Serializable{
 	 */
 	Image i;
 	
-	VehicleVO(long id,String plateNumber,String workTime,Image i){
+	public VehicleVO(long id,String plateNumber,String workTime,Image i){
 		this.id = id;
 		this.plateNumber = plateNumber;
 		this.workTime = workTime;

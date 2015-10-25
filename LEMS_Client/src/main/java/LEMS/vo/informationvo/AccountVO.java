@@ -10,7 +10,7 @@ public class AccountVO {
 	 */
 	private double balance;
 	
-	AccountVO(String name,double balance){
+	public AccountVO(String name,double balance){
 		this.name =  name;
 		this.balance = balance;
 	}

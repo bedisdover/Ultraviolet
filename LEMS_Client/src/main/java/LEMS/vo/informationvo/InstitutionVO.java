@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class InstitutionVO implements Serializable{
 	String id;
 	String location;
-	InstitutionVO(String id,String location){
+	public InstitutionVO(String id,String location){
 		/*
 		 * 机构编号
 		 */

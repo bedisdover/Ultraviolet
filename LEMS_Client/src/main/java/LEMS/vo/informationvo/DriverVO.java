@@ -67,7 +67,7 @@ public class DriverVO implements Serializable{
 
 	
 	
-	DriverVO(long id,String name,String dateOfBirth,String IDcardNumber,String phoneNumber,String drivingPeriod,Gender gender){
+	public DriverVO(long id,String name,String dateOfBirth,String IDcardNumber,String phoneNumber,String drivingPeriod,Gender gender){
 		this.id = id;
 		this.name = name;
 		this.dateOfBirth = dateOfBirth;

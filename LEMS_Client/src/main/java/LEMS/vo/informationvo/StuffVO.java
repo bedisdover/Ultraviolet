@@ -19,9 +19,9 @@ public class StuffVO implements Serializable{
 	/*
 	 * 人员所在的机构信息
 	 */
-	ArrayList<InstitutionPO> institution;
+	InstitutionPO institution;
 	
-	StuffVO(String id,ArrayList<InstitutionPO> institution){
+	public StuffVO(String id,InstitutionPO institution){
 		this.id = id;
 		this.institution = institution;
 	}
@@ -30,7 +30,7 @@ public class StuffVO implements Serializable{
 		return id;
 	}
 	
-	public ArrayList<InstitutionPO> getInstitution(){
+	public InstitutionPO getInstitution(){
 		return institution;
 	}
 }
