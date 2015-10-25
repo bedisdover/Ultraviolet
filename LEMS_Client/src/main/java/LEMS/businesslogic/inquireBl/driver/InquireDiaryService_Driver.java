@@ -15,7 +15,6 @@ public class InquireDiaryService_Driver {
 		System.out.println(dv.getIncomeBillOperation());
 		System.out.println(dv.getDocumentApproval());
 		System.out.println(dv.getAccountManagement());
-		System.out.println("gg");
 	}
 }
 

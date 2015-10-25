@@ -10,8 +10,16 @@ public abstract class DocumentVO {
 	 * 单据生成日期
 	 */
 	private String date;
+	/**
+	 * 单据编号
+	 */
+	private long id;
 
 	public String getDate() {
 		return date;
+	}
+
+	public long getId() {
+		return id;
 	}
 }
