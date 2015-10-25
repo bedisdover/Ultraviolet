@@ -1,6 +1,6 @@
 package LEMS.businesslogic.inquirebl;
 
-import LEMS.businesslogicservice.inquiresblservice.InquireLogisticsInfoService;
+import LEMS.businesslogicservice.inquireblservice.InquireLogisticsInfoService;
 
 public class InquireLogisticsInfo implements InquireLogisticsInfoService{
 
