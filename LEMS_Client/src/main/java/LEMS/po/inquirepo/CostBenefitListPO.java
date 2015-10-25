@@ -8,10 +8,25 @@ import java.io.Serializable;
  */
 @SuppressWarnings("serial")
 public class CostBenefitListPO implements Serializable {
+	/**
+	 * 开始日期
+	 */
 	String startTime;
+	/**
+	 * 结束日期
+	 */
 	String endTime;
+	/**
+	 * 期间内总收入
+	 */
 	long totalIncome;
+	/**
+	 * 期间内总支出
+	 */
 	long totalExpense;
+	/**
+	 * 期间内总收益
+	 */
 	long totalBenefit;
 	
 	public CostBenefitListPO(String st,String et,long ti,long te,long tb){

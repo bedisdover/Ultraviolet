@@ -12,9 +12,22 @@ import LEMS.po.financepo.PayBillPO;
  */
 @SuppressWarnings("serial")
 public class BusinessListPO implements Serializable{
+	
+	/**
+	 * 开始日期
+	 */
 	String startTime;
+	/**
+	 * 结束日期
+	 */
 	String endTime;
+	/**
+	 * 付款单信息
+	 */
 	ArrayList<PayBillPO> pay;
+	/**
+	 * 收款单信息
+	 */
 	ArrayList<IncomeBillPO> income;
 	
 	public BusinessListPO(String s,String e,ArrayList<PayBillPO> ap,ArrayList<IncomeBillPO> ai){

@@ -9,7 +9,13 @@ import java.util.ArrayList;
  */
 @SuppressWarnings("serial")
 public class LogisticsInfoPO implements Serializable{
+	/**
+	 * 订单编号
+	 */
 	long id;
+	/**
+	 * 快递物流轨迹
+	 */
 	ArrayList<String> trace;
 	
 	public LogisticsInfoPO(long i,ArrayList<String> t){
