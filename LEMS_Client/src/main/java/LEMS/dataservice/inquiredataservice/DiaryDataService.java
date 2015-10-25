@@ -1,5 +1,11 @@
 package LEMS.dataservice.inquiredataservice;
 
-public interface DiaryDataService {
+import LEMS.po.inquirepo.DiaryPO;
 
+/**
+ * @author 章承尧
+ * 日志数据层接口
+ */
+public interface DiaryDataService {
+	public DiaryPO findDiary(String date);
 }
