@@ -2,6 +2,10 @@ package LEMS.po.inquirepo;
 
 import java.io.Serializable;
 
+/**
+ * @author 章承尧
+ * 日志持久化对象
+ */
 @SuppressWarnings("serial")
 public class DiaryPO implements Serializable{
 	String date;
