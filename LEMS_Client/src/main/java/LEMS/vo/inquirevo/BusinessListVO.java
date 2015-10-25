@@ -2,8 +2,8 @@ package LEMS.vo.inquirevo;
 
 import java.util.ArrayList;
 
-import LEMS.vo.ordervo.IncomeBillVO;
 import LEMS.vo.financevo.PayBillVO;
+import LEMS.vo.ordervo.IncomeBillVO;
 
 /**
  * @author 章承尧
