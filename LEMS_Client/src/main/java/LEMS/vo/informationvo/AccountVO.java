@@ -1,11 +1,6 @@
-package LEMS.po.informationpo;
+package LEMS.vo.informationvo;
 
-/**
- * @author 苏琰梓
- * 账户信息持久化对象
- * 2015年10月25日
- */
-public class AccountPO {
+public class AccountVO {
 	/*
 	 * 账户名称
 	 */
@@ -15,7 +10,7 @@ public class AccountPO {
 	 */
 	private double balance;
 	
-	AccountPO(String name,double balance){
+	AccountVO(String name,double balance){
 		this.name =  name;
 		this.balance = balance;
 	}

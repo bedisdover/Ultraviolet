@@ -1,4 +1,4 @@
-package LEMS.po.informationpo;
+package LEMS.vo.informationvo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -7,11 +7,11 @@ import LEMS.po.informationpo.InstitutionPO;
 
 /**
  * @author 苏琰梓
- * 人员信息持久化对象
+ * 人员信息值对象
  * 2015年10月25日
  */
 @SuppressWarnings("serial")
-public class StuffPO implements Serializable{
+public class StuffVO implements Serializable{
 	/*
 	 * 人员编号
 	 */
@@ -21,7 +21,7 @@ public class StuffPO implements Serializable{
 	 */
 	ArrayList<InstitutionPO> institution;
 	
-	StuffPO(String id,ArrayList<InstitutionPO> institution){
+	StuffVO(String id,ArrayList<InstitutionPO> institution){
 		this.id = id;
 		this.institution = institution;
 	}

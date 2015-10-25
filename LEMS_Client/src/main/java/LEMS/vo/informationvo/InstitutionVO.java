@@ -1,17 +1,17 @@
-package LEMS.po.informationpo;
+package LEMS.vo.informationvo;
 
 import java.io.Serializable;
 
 /**
  * @author 苏琰梓
- *	机构信息持久化对象
+ *	机构信息值对象
  * 2015年10月25日
  */
 @SuppressWarnings("serial")
-public class InstitutionPO implements Serializable{
+public class InstitutionVO implements Serializable{
 	String id;
 	String location;
-	InstitutionPO(String id,String location){
+	InstitutionVO(String id,String location){
 		/*
 		 * 机构编号
 		 */
@@ -30,3 +30,4 @@ public class InstitutionPO implements Serializable{
 		return location;
 	}
 }
+
