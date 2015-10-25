@@ -7,7 +7,7 @@ import java.util.ArrayList;
  *
  * 收款单值对象
  */
-public class IncomeVO {
+public class IncomeBillVO {
 	/**
 	 * 收款日期
 	 */
@@ -25,7 +25,7 @@ public class IncomeVO {
 	 */
 	private double sum;
 	
-	public IncomeVO(String date, long id, ArrayList<Long> orders, double sum) {
+	public IncomeBillVO(String date, long id, ArrayList<Long> orders, double sum) {
 		this.date = date;
 		this.id = id;
 		this.orders = orders;
