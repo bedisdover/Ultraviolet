@@ -3,6 +3,9 @@ package LEMS.po.inquirepo;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import LEMS.po.financepo.IncomeBillPO;
+import LEMS.po.financepo.PayBillPO;
+
 /**
  * @author 章承尧
  * 经营情况表持久化对象
