@@ -2,6 +2,11 @@ package LEMS.vo.ordervo;
 
 import java.util.ArrayList;
 
+/**
+ * @author 宋益明
+ * 
+ * 装运管理值对象
+ */
 public class LoadVO {
 	/**
 	 * 装运日期
@@ -19,5 +24,46 @@ public class LoadVO {
 	 * 目的地
 	 */
 	private String destination;
-	//TODO 添加车辆代号、运输方式
+	/**
+	 * 运输方式
+	 */
+	private TransportType type;
+	/**
+	 * 运费
+	 */
+	private double carriage;
+	
+	public LoadVO(String date, long id, ArrayList<Long> orders, String destination, TransportType type,
+			double carriage) {
+		this.date = date;
+		this.id = id;
+		this.orders = orders;
+		this.destination = destination;
+		this.type = type;
+		this.carriage = carriage;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public ArrayList<Long> getOrders() {
+		return orders;
+	}
+
+	public String getDestination() {
+		return destination;
+	}
+
+	public TransportType getType() {
+		return type;
+	}
+
+	public double getCarriage() {
+		return carriage;
+	}
 }

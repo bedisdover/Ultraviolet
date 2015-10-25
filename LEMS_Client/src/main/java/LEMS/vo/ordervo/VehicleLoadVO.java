@@ -2,6 +2,8 @@ package LEMS.vo.ordervo;
 
 import java.util.ArrayList;
 
+import LEMS.vo.informationvo.VehicleVO;
+
 /**
  * @author 宋益明
  * 
@@ -24,13 +26,17 @@ public class VehicleLoadVO {
 	 * 目的地
 	 */
 	private String destination;
-	//TODO 添加车辆代号
+	/**
+	 * 货运车辆
+	 */
+	private VehicleVO vehicle;
 	
-	public VehicleLoadVO(String date, long id, ArrayList<Long> orders, String destination) {
+	public VehicleLoadVO(String date, long id, ArrayList<Long> orders, String destination, VehicleVO vehicle) {
 		this.date = date;
 		this.id = id;
 		this.orders = orders;
 		this.destination = destination;
+		this.vehicle = vehicle;
 	}
 
 	public String getDate() {
@@ -47,5 +53,9 @@ public class VehicleLoadVO {
 
 	public String getDestination() {
 		return destination;
+	}
+
+	public VehicleVO getVehicle() {
+		return vehicle;
 	}
 }
