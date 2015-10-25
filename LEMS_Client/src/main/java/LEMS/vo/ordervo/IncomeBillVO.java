@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * @author 宋益明
  *
- * 收款单值对象
+ * 收款单值对象（记录收款单）
  */
 public class IncomeBillVO {
 	/**

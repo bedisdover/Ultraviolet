@@ -3,7 +3,7 @@ package LEMS.vo.financevo;
 /**
  * @author 宋益明
  * 
- * 收款单值对象
+ * 收款单值对象（结算管理、成本管理）
  */
 public class IncomeBillVO {
 	/**
