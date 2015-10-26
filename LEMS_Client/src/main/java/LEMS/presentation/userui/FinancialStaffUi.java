@@ -7,6 +7,7 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 
 import javax.swing.JButton;
+import java.awt.Rectangle;
 
 @SuppressWarnings("serial")
 public class FinancialStaffUi extends JPanel {
@@ -27,6 +28,7 @@ public class FinancialStaffUi extends JPanel {
 		add(button_1);
 		
 		JButton button_2 = new JButton("账户管理");
+		button_2.setBounds(new Rectangle(0, 0, 1024, 768));
 		button_2.setBounds(49, 218, 139, 47);
 		add(button_2);
 		

@@ -6,6 +6,7 @@ import java.awt.Color;
 
 import javax.swing.border.LineBorder;
 import javax.swing.JButton;
+import java.awt.Rectangle;
 
 @SuppressWarnings("serial")
 public class StoreManagerUi extends JPanel {
@@ -14,6 +15,7 @@ public class StoreManagerUi extends JPanel {
 	 * Create the panel.
 	 */
 	public StoreManagerUi() {
+		setBounds(new Rectangle(0, 0, 1024, 768));
 		setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 1, true), "\u4ED3\u5E93\u7BA1\u7406\u4EBA\u5458\u754C\u9762", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		setLayout(null);
 		
