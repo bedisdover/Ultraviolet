@@ -12,7 +12,7 @@ import LEMS.po.storepo.GoodsPO;
 public class GoodsData implements GoodsDataService {
 
 	public GoodsPO find(long id){
-		return new GoodsPO();
+		return new GoodsPO(id,Area.航运区,1,1,1);
 	}
 	
 	public void insert(GoodsPO goodsPO){
