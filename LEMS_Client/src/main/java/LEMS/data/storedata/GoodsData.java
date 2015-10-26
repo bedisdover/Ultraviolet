@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.omg.Messaging.SyncScopeHelper;
 
 import LEMS.dataservice.storedataservice.GoodsDataService;
+import LEMS.po.storepo.Area;
 import LEMS.po.storepo.GoodsPO;
 
 

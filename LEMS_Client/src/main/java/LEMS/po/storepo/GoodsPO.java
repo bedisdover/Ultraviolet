@@ -6,6 +6,15 @@ public class GoodsPO {
 	int row;		//排
 	int stand;		//架
 	int position;	//位
+	
+	public GoodsPO(long i,Area ar,int r,int s,int p){
+		id=i;
+		area=ar;
+		row=r;
+		stand=s;
+		position=p;
+	}
+	
 	public long getId() {
 		return id;
 	}
