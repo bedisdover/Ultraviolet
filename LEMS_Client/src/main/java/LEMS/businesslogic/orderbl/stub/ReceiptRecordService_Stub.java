@@ -11,13 +11,11 @@ import LEMS.vo.ordervo.IncomeBillVO;
 public class ReceiptRecordService_Stub implements ReceiptRecordService{
 
 	public void addOrder(long id) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("添加订单成功！");
 	}
 
 	public void createIncomeBill(IncomeBillVO income) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("创建收款单成功！");
 	}
 
 }

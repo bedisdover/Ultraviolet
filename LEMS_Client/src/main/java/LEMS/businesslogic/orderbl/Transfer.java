@@ -15,4 +15,9 @@ public class Transfer implements TransferService {
 		
 	}
 
+	public void addOrder(long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

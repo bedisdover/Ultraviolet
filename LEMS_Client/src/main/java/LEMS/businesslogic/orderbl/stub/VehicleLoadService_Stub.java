@@ -11,13 +11,11 @@ import LEMS.vo.ordervo.VehicleLoadVO;
 public class VehicleLoadService_Stub implements VehicleLoadService {
 
 	public void addOrder(long id) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("添加订单成功！");
 	}
 
 	public void createVehicleLoadNote(VehicleLoadVO vehicleLoadVO) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("创建车辆装车单成功！");
 	}
 
 }

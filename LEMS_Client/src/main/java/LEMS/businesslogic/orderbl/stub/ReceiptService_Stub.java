@@ -11,13 +11,11 @@ import LEMS.vo.ordervo.ArrivalVO;
 public class ReceiptService_Stub implements ReceiptService{
 
 	public void addOrder(long id) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("添加订单成功！");
 	}
 
 	public void createArrivalNote(ArrivalVO arrivalInfo) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("创建接收单成功！");		
 	}
 
 }

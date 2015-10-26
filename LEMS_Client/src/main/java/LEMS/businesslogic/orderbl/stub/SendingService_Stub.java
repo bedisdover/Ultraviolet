@@ -11,13 +11,11 @@ import LEMS.vo.ordervo.DeliveryVO;
 public class SendingService_Stub implements SendingService {
 
 	public void addOrder(long id) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("添加订单成功！");
 	}
 
 	public void createDeliveryNote(DeliveryVO deliveryInfo) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("创建派件单成功！");		
 	}
 
 }

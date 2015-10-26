@@ -13,33 +13,28 @@ import LEMS.po.financepo.FinancePO;
 public class FinanceDataService_Stub implements FinanceDataService {
 
 	public FinancePO find(long id) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("查找成功！\n");
+		return new FinancePO();
 	}
 
 	public void insert(FinancePO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		System.out.println("插入成功！\n");
 	}
 
 	public void delete(FinancePO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		System.out.println("删除成功！\n");
 	}
 
 	public void update(FinancePO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		System.out.println("更新成功！\n");
 	}
 
 	public void init() throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		System.out.println("初始化数据库成功！\n");
 	}
 
 	public void finish() throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		System.out.println("操作完成，关闭数据库\n");
 	}
 
 }

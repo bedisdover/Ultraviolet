@@ -7,7 +7,7 @@ import LEMS.vo.ordervo.TransferVO;
  * 
  * 中转接收任务接口
  */
-public interface TransferService {
+public interface TransferService extends AddOrderService {
 	/**
 	 * 生成中转接收单
 	 * 

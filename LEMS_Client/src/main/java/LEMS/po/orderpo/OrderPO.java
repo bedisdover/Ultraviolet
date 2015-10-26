@@ -39,6 +39,10 @@ public class OrderPO implements Serializable {
 	 */
 	private String time;
 	
+	public OrderPO() {
+		super();
+	}
+	
 	public OrderPO(SenderVO sender, ReceiverVO receiver, GoodsVO goodsInfo, Express expressType, long amount,
 			String time) {
 		this.sender = sender;

@@ -11,18 +11,15 @@ import LEMS.vo.financevo.IncomeBillVO;
 public class SettlementService_Stub implements SettlementService {
 
 	public IncomeBillVO getIncomeInfo(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return new IncomeBillVO("2015/10/4", "南京市栖霞区营业厅", 1032); 
 	}
 
 	public void addIncomeInfo(IncomeBillVO income) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("收款信息添加成功！\n");
 	}
 
 	public void incomeBill() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("新建收款单成功！\n");
 	}
 
 }

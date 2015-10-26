@@ -11,13 +11,11 @@ import LEMS.vo.ordervo.LoadVO;
 public class LoadService_Stub implements LoadService {
 
 	public void addOrder(long id) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("添加成功！");
 	}
 
 	public void createLoadNote(LoadVO loadInfo) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("创建装运单成功！");
 	}
 
 }

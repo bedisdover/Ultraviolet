@@ -13,33 +13,27 @@ import LEMS.po.orderpo.OrderPO;
 public class OrderDataService_Stub implements OrderDataService {
 
 	public OrderPO find(long id) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("查找成功！\n");
+		return new OrderPO();
 	}
 
 	public void insert(OrderPO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		System.out.println("插入成功！\n");
 	}
 
 	public void delete(OrderPO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		System.out.println("删除成功！\n");
 	}
 
 	public void update(OrderPO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		System.out.println("更新成功！\n");
 	}
 
 	public void init() throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		System.out.println("初始化数据库成功！\n");
 	}
 
 	public void finish() throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		System.out.println("完成操作，关闭数据库\n");
 	}
-
 }

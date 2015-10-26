@@ -6,5 +6,5 @@ package LEMS.po.financepo;
  * Finance包中PO类的基类
  */
 public class FinancePO {
-
+	
 }

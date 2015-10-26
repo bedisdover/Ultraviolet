@@ -10,7 +10,7 @@ import LEMS.businesslogicservice.financeblservice.NumericalStatementService;
 public class NumericalStatementService_Stub implements NumericalStatementService {
 
 	public void export(long id) {
-		System.out.println("导出成功！");
+		System.out.println("统计报表导出成功！\n");
 	}
 
 }

@@ -11,8 +11,11 @@ import LEMS.vo.ordervo.TransferVO;
 public class TransferService_Stub implements TransferService{
 
 	public void createTransferNote(TransferVO transferInfo) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("创建中转接收单成功！");
+	}
+
+	public void addOrder(long id) {
+		System.out.println("添加订单成功");
 	}
 
 }
