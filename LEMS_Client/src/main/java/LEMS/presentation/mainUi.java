@@ -69,11 +69,11 @@ public class mainUi extends JFrame {
 		contentPane.add(textField_1);
 		
 		JButton button = new JButton("登录");
-		button.setBounds(340, 305, 102, 67);
+		button.setBounds(327, 305, 116, 64);
 		contentPane.add(button);
 		
 		JButton button_2 = new JButton("查询物流信息");
-		button_2.setBounds(277, 447, 245, 27);
+		button_2.setBounds(277, 418, 245, 56);
 		contentPane.add(button_2);
 		
 		JComboBox comboBox = new JComboBox();
