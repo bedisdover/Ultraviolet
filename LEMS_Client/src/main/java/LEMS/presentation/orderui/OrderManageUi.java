@@ -1,4 +1,4 @@
-package LEMS.presentation.storeui;
+package LEMS.presentation.orderui;
 
 import javax.swing.JPanel;
 
@@ -6,23 +6,20 @@ import java.awt.Rectangle;
 
 import javax.swing.JButton;
 
-import LEMS.presentation.mainUi;
-import LEMS.presentation.userui.StoreManagerUi;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
  * @author 章承尧
- * 仓库管理主界面
+ * 订单管理界面
  */
 @SuppressWarnings("serial")
-public class StoreUi extends JPanel {
+public class OrderManageUi extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public StoreUi() {
+	public OrderManageUi() {
 		setBounds(new Rectangle(0, 0, 1024, 768));
 		setLayout(null);
 		
@@ -30,11 +27,9 @@ public class StoreUi extends JPanel {
 		button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				StoreManagerUi store=new StoreManagerUi();
-				mainUi.frame.setContentPane(store);
 			}
 		});
-		button.setBounds(884, 691, 125, 62);
+		button.setBounds(874, 684, 135, 69);
 		add(button);
 
 	}

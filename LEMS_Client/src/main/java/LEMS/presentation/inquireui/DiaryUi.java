@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import LEMS.businesslogic.inquirebl.InquireDiary;
 import LEMS.businesslogicservice.inquireblservice.InquireDiaryService;
 import LEMS.presentation.mainUi;
+import LEMS.presentation.userui.GeneralManagerUi;
 import LEMS.vo.inquirevo.DiaryVO;
 
 import javax.swing.JLabel;
@@ -25,18 +26,27 @@ import java.awt.event.MouseEvent;
  * @author 章承尧
  * 查询日志界面
  */
+@SuppressWarnings("serial")
 public class DiaryUi extends JPanel{
+
 	private JTextField textField;
 	private JTextArea textArea;
+	GeneralManagerUi gm=new GeneralManagerUi();
 	/**
 	 * Create the panel.
 	 */
 	public DiaryUi() {
-		setBounds(new Rectangle(0, 0, mainUi.WIDTH, mainUi.HEIGHT));
+		setBounds(new Rectangle(0, 0, 1024, 768));
 		setLayout(null);
 		
 		JButton button = new JButton("退出");
-		button.setBounds(866, 30, 132, 63);
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				mainUi.frame.setContentPane(gm);
+			}
+		});
+		button.setBounds(861, 647, 132, 63);
 		add(button);
 		
 		JLabel label = new JLabel("请输入日期：");

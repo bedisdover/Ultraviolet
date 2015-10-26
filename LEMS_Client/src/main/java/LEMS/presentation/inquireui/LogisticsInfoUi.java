@@ -20,7 +20,7 @@ public class LogisticsInfoUi extends JPanel {
 	 * Create the panel.
 	 */
 	public LogisticsInfoUi() {
-		setBounds(new Rectangle(0, 0, 1024, 768));
+		setBounds(new Rectangle(0, 0, mainUi.WIDTH, mainUi.HEIGHT));
 		setLayout(null);
 		
 		JButton button = new JButton("退出");
