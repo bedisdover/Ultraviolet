@@ -3,6 +3,7 @@ package LEMS.businesslogic.informationbl.stub;
 import java.awt.Image;
 import java.util.ArrayList;
 
+import LEMS.businesslogicservice.informationblservice.InformationAddService;
 import LEMS.po.informationpo.InstitutionPO;
 import LEMS.vo.informationvo.AccountVO;
 import LEMS.vo.informationvo.DriverVO;
@@ -16,27 +17,33 @@ import LEMS.vo.informationvo.VehicleVO;
  * InformationAddService的桩程序
  * 2015年10月26日
  */
-public class InformationAddService_Stub {
+public class InformationAddService_Stub implements InformationAddService{
 	public void addDriverVO(DriverVO drivervo){
-		DriverVO vo = new DriverVO(025011007,"狗头","1994年3月23日","622421199403246430"
-				,"17752748532","2016年7月4日",Gender.MAN);
+		System.out.println("司机姓名："+drivervo.getName());
+		System.out.println("司机编号："+drivervo.getId());
+		System.out.println("司机身份证号："+drivervo.getIDcardNumber());
+		System.out.println("司机性别："+drivervo.getGender());
+		System.out.println("司机出生年月："+drivervo.getDateOfBirth());
+		System.out.println("司机电话号码："+drivervo.getPhoneNumber());
 	}
 	
 	public void addVehicleVO(VehicleVO vehiclevo){
-		Image i = null;
-		VehicleVO vo = new VehicleVO(025011007,"苏A3022","1994年3月23日",i);
+		System.out.println("车辆编号："+vehiclevo.getId());
+		System.out.println("车辆服役时间："+vehiclevo.getWorkTime());
 	}
 	
 	public void addInstitutionVO(InstitutionVO institutionvo){
-		InstitutionVO vo = new InstitutionVO("NJ077385","南京市");
+		
+		System.out.println("添加机构信息成功");
 	}
 	
 	public void addStuffVO(StuffVO stuffvo){
-		InstitutionPO po = new InstitutionPO("NJ077385","南京市");
-		StuffVO vo = new StuffVO("NJ077385123",po);
+		
+		System.out.println("添加人员信息成功");
 	}
 	
-	public void addAccountVO(AccountVO accountvo){
-		AccountVO vo = new AccountVO("账户1",12300.45);
+	public void addAccoutVO(AccountVO accoutvo) {
+		
+		System.out.println("添加账户信息成功");
 	}
 }

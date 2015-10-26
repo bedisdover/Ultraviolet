@@ -1,6 +1,6 @@
 package LEMS.businesslogicservice.informationblservice;
 
-import LEMS.po.informationpo.AccountPO;
+import LEMS.vo.informationvo.AccountVO;
 import LEMS.vo.informationvo.DriverVO;
 import LEMS.vo.informationvo.Gender;
 import LEMS.vo.informationvo.InstitutionVO;
@@ -32,6 +32,6 @@ public interface InformationAddService {
 	/**
 	 * 增加账户信息
 	 */
-	public void addAccoutVO(AccountPO accoutvo);
+	public void addAccoutVO(AccountVO accoutvo);
 	
 }

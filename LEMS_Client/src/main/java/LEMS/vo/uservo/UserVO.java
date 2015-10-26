@@ -1,15 +1,14 @@
-package LEMS.po.userpo;
+package LEMS.vo.uservo;
 
-import java.io.Serializable;
+import LEMS.po.userpo.UserRole;
 
 /**
- * @author 宋益明
- * 
- * 用户持久化对象
+ * @author 苏琰梓
+ * 用户信息值对象
+ * 2015年10月26日
  */
-@SuppressWarnings("serial")
-public class UserPO implements Serializable {
-    /**
+public class UserVO {
+	/**
      * 用户ID
      */
     private long id;
@@ -26,7 +25,7 @@ public class UserPO implements Serializable {
      */
     private UserRole role;
 
-    public UserPO(long id, String name, String password, UserRole role) {
+    public UserVO(long id, String name, String password, UserRole role) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -49,4 +48,3 @@ public class UserPO implements Serializable {
         return role;
     }
 }
-

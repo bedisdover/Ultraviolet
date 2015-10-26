@@ -14,10 +14,15 @@ public class AccountPO {
 	 * 账户余额
 	 */
 	private double balance;
+	/*
+	 * 账户密码
+	 */
+	private String password;
 	
-	AccountPO(String name,double balance){
+	AccountPO(String name,String password,double balance){
 		this.name =  name;
 		this.balance = balance;
+		this.password = password;
 	}
 	
 	public String getName(){
@@ -25,5 +30,8 @@ public class AccountPO {
 	}
 	public double getBalance(){
 		return balance;
+	}
+	public String getPassword(){
+		return password;
 	}
 }
