@@ -14,10 +14,10 @@ import LEMS.po.informationpo.VehiclePO;
  * 2015年10月26日
  */
 public interface InformationDeleteDataService {
-	public void delete(DriverPO po) throws RemoteException;
-	public void delete(VehiclePO po) throws RemoteException;
-	public void delete(InstitutionPO po) throws RemoteException;
-	public void delete(StuffPO po) throws RemoteException;
-	public void delete(AccountPO po) throws RemoteException;
+	public void deleteDriverPO(long id) throws RemoteException;
+	public void deleteVehiclePO(long id) throws RemoteException;
+	public void deleteInstitutionPO(String id) throws RemoteException;
+	public void deleteStuffPO(String id) throws RemoteException;
+	public void deleteAccountPO(String name) throws RemoteException;
 
 }

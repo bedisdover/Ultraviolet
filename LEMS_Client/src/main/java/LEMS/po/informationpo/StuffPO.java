@@ -21,7 +21,7 @@ public class StuffPO implements Serializable{
 	 */
 	InstitutionPO institution;
 	
-	StuffPO(String id,InstitutionPO institution){
+	public StuffPO(String id,InstitutionPO institution){
 		this.id = id;
 		this.institution = institution;
 	}

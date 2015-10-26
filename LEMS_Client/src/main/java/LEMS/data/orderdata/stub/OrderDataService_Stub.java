@@ -14,7 +14,7 @@ public class OrderDataService_Stub implements OrderDataService {
 
 	public OrderPO find(long id) throws RemoteException {
 		System.out.println("查找成功！\n");
-		return new OrderPO();
+		return new OrderPO(null, null, null, null, id, null);
 	}
 
 	public void insert(OrderPO po) throws RemoteException {

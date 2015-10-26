@@ -13,16 +13,16 @@ import LEMS.po.informationpo.VehiclePO;
  * 2015年10月26日
  */
 public class InformationUpdateData {
-	public void update(DriverPO po) throws RemoteException{
+	public void updateDriverPO(long id) throws RemoteException{
 		
 	}
-	public void update(VehiclePO po) throws RemoteException{
+	public void updateVehiclePO(long id) throws RemoteException{
 		
 	}
-	public void update(InstitutionPO po) throws RemoteException{
+	public void updateInstitutionPO(String id) throws RemoteException{
 		
 	}
-	public void update(StuffPO po) throws RemoteException{
+	public void updateStuffPO(String id) throws RemoteException{
 		
 	}
 }

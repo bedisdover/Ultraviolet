@@ -13,8 +13,8 @@ import LEMS.po.informationpo.VehiclePO;
  * 2015年10月26日
  */
 public interface InformationFindDataService {
-	public void find(DriverPO po) throws RemoteException;
-	public void find(VehiclePO po) throws RemoteException;
-	public void find(InstitutionPO po) throws RemoteException;
-	public void find(StuffPO po) throws RemoteException;
+	public void findDriverPO(long id) throws RemoteException;
+	public void findVehiclePO(long id) throws RemoteException;
+	public void findInstitutionPO(String id) throws RemoteException;
+	public void findStuffPO(String id) throws RemoteException;
 }

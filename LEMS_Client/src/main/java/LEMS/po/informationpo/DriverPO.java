@@ -38,7 +38,7 @@ public class DriverPO implements Serializable{
 	 */
 	private Gender gender;
 	
-	DriverPO(long id,String name,String dateOfBirth,String IDcardNumber,String phoneNumber,String drivingPeriod,Gender gender){
+	public DriverPO(long id,String name,String dateOfBirth,String IDcardNumber,String phoneNumber,String drivingPeriod,Gender gender){
 		this.id = id;
 		this.name = name;
 		this.dateOfBirth = dateOfBirth;
