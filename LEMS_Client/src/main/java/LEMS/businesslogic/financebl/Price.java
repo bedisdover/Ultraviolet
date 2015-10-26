@@ -15,7 +15,7 @@ public class Price implements PriceService {
 		return 0;
 	}
 
-	public void pricing(double price) {
+	public void pricing(Express type, double price) {
 		// TODO Auto-generated method stub
 		
 	}

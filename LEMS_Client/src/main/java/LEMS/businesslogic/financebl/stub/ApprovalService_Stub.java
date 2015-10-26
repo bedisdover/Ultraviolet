@@ -1,6 +1,7 @@
 package LEMS.businesslogic.financebl.stub;
 
 import LEMS.businesslogicservice.financeblservice.ApprovalService;
+import LEMS.vo.financevo.DocumentState;
 import LEMS.vo.financevo.DocumentVO;
 
 /**
@@ -10,9 +11,16 @@ import LEMS.vo.financevo.DocumentVO;
  */
 public class ApprovalService_Stub implements ApprovalService {
 
-	public boolean approval(DocumentVO document) {
+	public void accepted(DocumentVO document) {
 		// TODO Auto-generated method stub
-		return false;
+		document.setState(DocumentState.accepted);
+		System.out.println("订单状态更改为通过！");
+	}
+
+	public void unaccepted(DocumentVO document) {
+		// TODO Auto-generated method stub
+		document.setState(DocumentState.unaccepted);
+		System.out.println("订单状态更改为不通过！");
 	}
 
 }

@@ -11,13 +11,27 @@ import LEMS.vo.ordervo.Express;
 public class PriceService_Stub implements PriceService {
 
 	public double getPrice(Express type) {
-		// TODO Auto-generated method stub
-		return 0;
+		double price = 0.0;
+		
+		switch (type) {
+		case economy:
+			price = 10;
+			break;
+		case standard:
+			price = 15;
+			break;
+		case special:
+			price = 25;
+			break;
+		default:
+			break;	
+		}
+		
+		return price;
 	}
 
-	public void pricing(double price) {
-		// TODO Auto-generated method stub
-		
+	public void pricing(Express type, double price) {
+		System.out.println("类型："+ type + "\t价格：" + price +"\n更改成功！");
 	}
 
 }

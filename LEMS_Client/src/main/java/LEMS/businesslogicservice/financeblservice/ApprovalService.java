@@ -9,10 +9,15 @@ import LEMS.vo.financevo.DocumentVO;
  */
 public interface ApprovalService {
 	/**
-	 * 审批单据
+	 * 审批单据通过
 	 * 
 	 * @param document 待审核单据
-	 * @return 若通过返回true，否则返回false
 	 */
-	public boolean approval(DocumentVO document);
+	public void accepted(DocumentVO document);
+	/**
+	 * 审批单据不通过
+	 * 
+	 * @param document 待审核单据
+	 */
+	public void unaccepted(DocumentVO document);
 }

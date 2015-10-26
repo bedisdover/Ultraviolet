@@ -10,9 +10,14 @@ import LEMS.vo.financevo.DocumentVO;
  */
 public class Approval implements ApprovalService {
 
-	public boolean approval(DocumentVO document) {
+	public void accepted(DocumentVO document) {
 		// TODO Auto-generated method stub
-		return false;
+		
+	}
+
+	public void unaccepted(DocumentVO document) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

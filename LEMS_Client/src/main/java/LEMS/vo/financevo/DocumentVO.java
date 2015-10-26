@@ -5,7 +5,7 @@ package LEMS.vo.financevo;
  * 
  * 所有单据的基类
  */
-public abstract class DocumentVO {
+public class DocumentVO {
 	/**
 	 * 单据生成日期
 	 */
@@ -14,6 +14,10 @@ public abstract class DocumentVO {
 	 * 单据编号
 	 */
 	private long id;
+	/**
+	 * 单据状态
+	 */
+	private DocumentState state;
 
 	public String getDate() {
 		return date;
@@ -21,5 +25,13 @@ public abstract class DocumentVO {
 
 	public long getId() {
 		return id;
+	}
+
+	public DocumentState getState() {
+		return state;
+	}
+
+	public void setState(DocumentState state) {
+		this.state = state;
 	}
 }

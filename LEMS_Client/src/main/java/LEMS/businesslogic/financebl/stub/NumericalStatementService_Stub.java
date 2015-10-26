@@ -10,8 +10,7 @@ import LEMS.businesslogicservice.financeblservice.NumericalStatementService;
 public class NumericalStatementService_Stub implements NumericalStatementService {
 
 	public void export(long id) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("导出成功！");
 	}
 
 }

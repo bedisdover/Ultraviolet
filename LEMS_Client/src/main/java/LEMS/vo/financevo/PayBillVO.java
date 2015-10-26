@@ -13,6 +13,10 @@ public class PayBillVO {
 	 */
 	private String date;
 	/**
+	 * 付款单编号
+	 */
+	private long id;
+	/**
 	 * 付款单位
 	 */
 	private String institution;
@@ -21,7 +25,6 @@ public class PayBillVO {
 	 */
 	private double amount;
 	//TODO 付款人
-	private String fukuanren;
 	/**
 	 * 付款账号
 	 */
@@ -34,4 +37,47 @@ public class PayBillVO {
 	 * 备注
 	 */
 	private String remark;
+	
+	public PayBillVO() {
+		// TODO 默认构造函数
+	}
+	
+	public PayBillVO(String date, long id, String institution, double amount, AccountVO account, String item,
+			String remark) {
+		this.date = date;
+		this.id = id;
+		this.institution = institution;
+		this.amount = amount;
+		this.account = account;
+		this.item = item;
+		this.remark = remark;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public String getInstitution() {
+		return institution;
+	}
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public AccountVO getAccount() {
+		return account;
+	}
+
+	public String getItem() {
+		return item;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
 }
