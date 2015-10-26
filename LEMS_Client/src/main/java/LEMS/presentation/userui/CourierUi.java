@@ -9,6 +9,10 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.Rectangle;
 
+/**
+ * @author 章承尧
+ * 快递员界面
+ */
 @SuppressWarnings("serial")
 public class CourierUi extends JPanel {
 
@@ -21,7 +25,7 @@ public class CourierUi extends JPanel {
 		setLayout(null);
 		
 		JButton button = new JButton("查询物流信息");
-		button.setBounds(298, 167, 177, 51);
+		button.setBounds(543, 261, 177, 51);
 		add(button);
 		
 		JButton button_1 = new JButton("订单管理");
@@ -29,7 +33,7 @@ public class CourierUi extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		button_1.setBounds(298, 287, 177, 51);
+		button_1.setBounds(543, 381, 177, 51);
 		add(button_1);
 
 	}

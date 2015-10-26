@@ -16,7 +16,6 @@ import java.awt.event.MouseEvent;
  * 查询物流信息界面
  */
 public class LogisticsInfoUi extends JPanel {
-	mainUi mainui=new mainUi();
 	/**
 	 * Create the panel.
 	 */
@@ -29,7 +28,7 @@ public class LogisticsInfoUi extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				LogisticsInfoUi.this.setVisible(false);
-				mainui.frame.setContentPane(mainui.contentPane);
+				mainUi.frame.setContentPane(mainUi.contentPane);
 				
 			}
 		});

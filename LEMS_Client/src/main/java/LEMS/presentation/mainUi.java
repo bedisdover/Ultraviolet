@@ -23,12 +23,28 @@ import LEMS.presentation.userui.GeneralManagerUi;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * @author 章承尧
+ *  系统主界面
+ *
+ */
 public class mainUi extends JFrame {
-
+	
+	/**
+	 * 主界面Panel
+	 */
 	static public JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
 	public static mainUi frame;
+	/**
+	 * 窗体宽度
+	 */
+	public static final int WIDTH=1024;
+	/**
+	 * 窗体高度
+	 */
+	public static final int HEIGHT=768;
 	/**
 	 * Launch the application.
 	 */
@@ -54,9 +70,9 @@ public class mainUi extends JFrame {
 		Dimension scrSize=Toolkit.getDefaultToolkit().getScreenSize(); 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Toolkit toolkit=Toolkit.getDefaultToolkit();
-		int x = (int)(toolkit.getScreenSize().getWidth()-1024)/2;
-		int y = (int)(toolkit.getScreenSize().getHeight()-768)/2;
-		setBounds( x,y,1024, 768);
+		int x = (int)(toolkit.getScreenSize().getWidth()-WIDTH)/2;
+		int y = (int)(toolkit.getScreenSize().getHeight()-HEIGHT)/2;
+		setBounds( x,y,WIDTH, HEIGHT);
 		
 		//创建mainUi的Panel
 		contentPane = new JPanel();

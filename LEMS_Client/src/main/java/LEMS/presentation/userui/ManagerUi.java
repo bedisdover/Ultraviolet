@@ -7,6 +7,10 @@ import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.Rectangle;
 
+/**
+ * @author 章承尧
+ * 管理人员界面
+ */
 public class ManagerUi extends JPanel {
 
 	/**

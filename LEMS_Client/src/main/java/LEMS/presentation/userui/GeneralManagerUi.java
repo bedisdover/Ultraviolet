@@ -15,6 +15,10 @@ import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * @author 章承尧
+ * 总经理界面
+ */
 @SuppressWarnings("serial")
 public class GeneralManagerUi extends JPanel {
 	mainUi mainui=new mainUi();
@@ -32,6 +36,7 @@ public class GeneralManagerUi extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				DiaryUi diaryui=new DiaryUi();
 				mainui.frame.setContentPane(diaryui);
+				diaryui.setVisible(true);
 			}
 		});
 		btnNewButton.setBounds(353, 216, 175, 74);

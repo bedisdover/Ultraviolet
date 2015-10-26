@@ -7,6 +7,10 @@ import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.Rectangle;
 
+/**
+ * @author 章承尧
+ * 营业厅业务员界面
+ */
 public class BusinessClerkUi extends JPanel {
 
 	/**

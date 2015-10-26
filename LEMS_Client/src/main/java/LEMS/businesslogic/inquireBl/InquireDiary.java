@@ -10,6 +10,10 @@ import LEMS.vo.inquirevo.DiaryVO;
 public class InquireDiary implements InquireDiaryService {
 	public DiaryVO getDiary(String date) {
 		// TODO Auto-generated method stub
+		DiaryVO dvo=new DiaryVO("2015/10/25", "add a payBill", "add an incomeBill","approve an order", "delete an account");
+		if(date.equals(dvo.getDate())){
+			return dvo;
+		}
 		return null;
 	}
 }

@@ -8,6 +8,10 @@ import javax.swing.border.LineBorder;
 import javax.swing.JButton;
 import java.awt.Rectangle;
 
+/**
+ * @author 章承尧
+ * 仓库管理人员界面
+ */
 @SuppressWarnings("serial")
 public class StoreManagerUi extends JPanel {
 
@@ -20,7 +24,7 @@ public class StoreManagerUi extends JPanel {
 		setLayout(null);
 		
 		JButton button = new JButton("仓库管理");
-		button.setBounds(132, 108, 184, 84);
+		button.setBounds(494, 323, 184, 84);
 		add(button);
 
 	}

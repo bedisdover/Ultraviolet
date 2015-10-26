@@ -7,6 +7,10 @@ import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.Rectangle;
 
+/**
+ * @author 章承尧
+ * 中转中心业务员界面
+ */
 public class TransferClerkUi extends JPanel {
 
 	/**
@@ -18,11 +22,11 @@ public class TransferClerkUi extends JPanel {
 		setLayout(null);
 		
 		JButton button = new JButton("中转接收");
-		button.setBounds(127, 65, 159, 62);
+		button.setBounds(496, 279, 159, 62);
 		add(button);
 		
 		JButton button_1 = new JButton("装运管理");
-		button_1.setBounds(127, 170, 159, 62);
+		button_1.setBounds(496, 384, 159, 62);
 		add(button_1);
 
 	}
