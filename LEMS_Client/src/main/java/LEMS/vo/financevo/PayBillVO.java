@@ -15,7 +15,7 @@ public class PayBillVO {
 	/**
 	 * 付款单编号
 	 */
-	private long id;
+	private String id;
 	/**
 	 * 付款单位
 	 */
@@ -42,7 +42,7 @@ public class PayBillVO {
 		// TODO 默认构造函数
 	}
 	
-	public PayBillVO(String date, long id, String institution, double amount, AccountVO account, String item,
+	public PayBillVO(String date, String id, String institution, double amount, AccountVO account, String item,
 			String remark) {
 		this.date = date;
 		this.id = id;
@@ -57,7 +57,7 @@ public class PayBillVO {
 		return date;
 	}
 
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 

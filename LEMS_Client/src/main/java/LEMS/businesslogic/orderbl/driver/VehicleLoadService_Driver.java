@@ -13,6 +13,6 @@ public class VehicleLoadService_Driver {
 	
 	public void drive(VehicleLoadService_Stub vehicleLoadService_Stub) {
 		vehicleLoadService_Stub.addOrder(123456);
-		vehicleLoadService_Stub.createVehicleLoadNote(new VehicleLoadVO("2015/10/23", 567812, null, "北京", new VehicleVO(12345, "11341351", "2", null)));
+		vehicleLoadService_Stub.createVehicleLoadNote(new VehicleLoadVO("2015/10/23", "567812", null, "北京", new VehicleVO("12345", "11341351", "2", null)));
 	}
 }

@@ -15,7 +15,7 @@ public class FinanceDataService_Stub implements FinanceDataService {
 
 	public FinancePO find(long id) throws RemoteException {
 		System.out.println("查找成功！\n");
-		return new FinancePO("2015/10/23", 123456, DocumentState.unaccepted);
+		return new FinancePO("2015/10/23", "123456", DocumentState.unaccepted);
 	}
 
 	public void insert(FinancePO po) throws RemoteException {

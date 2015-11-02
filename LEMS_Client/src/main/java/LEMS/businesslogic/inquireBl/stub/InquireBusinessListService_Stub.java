@@ -22,7 +22,7 @@ public class InquireBusinessListService_Stub implements	InquireBusinessListServi
 		ArrayList<Long> orderID=new ArrayList<Long>();
 		orderID.add(213459382L);
 		orderID.add(312324321L);
-		IncomeBillVO iv=new IncomeBillVO(startTime, 123456, orderID, 3000);
+		IncomeBillVO iv=new IncomeBillVO(startTime, "123456", orderID, 3000);
 		ib.add(iv);
 		BusinessListVO blv=new BusinessListVO("2015/10/24","2015/10/25",pb,ib);
 		return blv;

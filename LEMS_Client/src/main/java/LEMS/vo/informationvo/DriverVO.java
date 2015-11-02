@@ -12,7 +12,7 @@ public class DriverVO implements Serializable{
 	/*
 	 * 司机编号
 	 */
-	long id;
+	String id;
 	/*
 	 * 司机姓名
 	 */
@@ -37,7 +37,7 @@ public class DriverVO implements Serializable{
 	 * 司机性别
 	 */
 	private Gender gender;
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -67,7 +67,7 @@ public class DriverVO implements Serializable{
 
 	
 	
-	public DriverVO(long id,String name,String dateOfBirth,String IDcardNumber,String phoneNumber,String drivingPeriod,Gender gender){
+	public DriverVO(String id,String name,String dateOfBirth,String IDcardNumber,String phoneNumber,String drivingPeriod,Gender gender){
 		this.id = id;
 		this.name = name;
 		this.dateOfBirth = dateOfBirth;
@@ -77,7 +77,7 @@ public class DriverVO implements Serializable{
 		this.gender = gender;
 	}
 	
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 

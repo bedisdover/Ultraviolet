@@ -11,7 +11,7 @@ public class LogisticsInfoDataService_Stub implements LogisticsInfoDataService {
 		// TODO Auto-generated method stub
 		ArrayList<String> trace=new ArrayList<String>();
 		trace.add("待发货");
-		LogisticsInfoPO lpo=new LogisticsInfoPO(123456, trace);
+		LogisticsInfoPO lpo=new LogisticsInfoPO("123456", trace);
 		return lpo;
 	}
 	

@@ -15,13 +15,13 @@ public class FinancePO {
 	/**
 	 * 单据ID
 	 */
-	private long id;
+	private String id;
 	/**
 	 * 单据状态
 	 */
 	private DocumentState state;
 	
-	public FinancePO(String date, long id, DocumentState state) {
+	public FinancePO(String date, String id, DocumentState state) {
 		this.date = date;
 		this.id = id;
 		this.state = state;
@@ -31,7 +31,7 @@ public class FinancePO {
 		return date;
 	}
 
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 

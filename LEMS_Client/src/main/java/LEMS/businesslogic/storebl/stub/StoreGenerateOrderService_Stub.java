@@ -10,7 +10,7 @@ import LEMS.vo.storevo.OutboundOrderVO;
 public class StoreGenerateOrderService_Stub {
 	
 	public InboundOrderVO generateInboundOrder(){
-		long id=000111000;
+		String id="000111000";
 		String inDate="2015.10.25";
 		int row=1;		
 		int stand=1;		
@@ -21,7 +21,7 @@ public class StoreGenerateOrderService_Stub {
 	
 
 	public OutboundOrderVO generateOutboundOrder(){
-		long id=000111000;
+		String id="000111000";
 		String outDate="2015.10.25";
 		int tnum=00000011111;
 		OutboundOrderVO oovo=new OutboundOrderVO(id,outDate,Destination.上海,LoadFormat.飞机,tnum);

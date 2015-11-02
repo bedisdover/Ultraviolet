@@ -15,13 +15,13 @@ public class TransferVO {
 	/**
 	 * 中转单编号
 	 */
-	private long id;
+	private String id;
 	/**
 	 * 订单列表
 	 */
 	private ArrayList<Long> orders;
 	
-	public TransferVO(String date, long id, ArrayList<Long> orders) {
+	public TransferVO(String date, String id, ArrayList<Long> orders) {
 		this.date = date;
 		this.id = id;
 		this.orders = orders;
@@ -31,7 +31,7 @@ public class TransferVO {
 		return date;
 	}
 
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 

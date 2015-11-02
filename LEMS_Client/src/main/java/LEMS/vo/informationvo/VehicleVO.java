@@ -13,7 +13,7 @@ public class VehicleVO implements Serializable{
 	/*
 	 * 车辆编号
 	 */
-	long id;
+	String id;
 	/*
 	 * 车牌号
 	 */
@@ -27,14 +27,14 @@ public class VehicleVO implements Serializable{
 	 */
 	Image i;
 	
-	public VehicleVO(long id,String plateNumber,String workTime,Image i){
+	public VehicleVO(String id,String plateNumber,String workTime,Image i){
 		this.id = id;
 		this.plateNumber = plateNumber;
 		this.workTime = workTime;
 		this.i = i;
 	}
 	
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 	public String getPlateNumber() {

@@ -9,16 +9,17 @@ import java.io.Serializable;
  */
 @SuppressWarnings("serial")
 public class InstitutionVO implements Serializable{
+	/*
+	 * 机构编号
+	 */
 	String id;
+	
+	/*
+	 * 机构所在地
+	 */
 	String location;
 	public InstitutionVO(String id,String location){
-		/*
-		 * 机构编号
-		 */
 		this.id = id;
-		/*
-		 * 机构所在地
-		 */
 		this.location = location;
 	}
 	

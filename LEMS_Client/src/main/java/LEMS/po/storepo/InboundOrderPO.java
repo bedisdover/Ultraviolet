@@ -1,7 +1,7 @@
 package LEMS.po.storepo;
 
 public class InboundOrderPO {
-	long id;
+	String id;
 	String inDate;
 	Destination destination;
 	Area area;
@@ -9,7 +9,7 @@ public class InboundOrderPO {
 	int stand;		//架
 	int position;	//位
 	
-	public InboundOrderPO(long identity,String d,Destination des,Area ar,int r,int s,int pos){
+	public InboundOrderPO(String identity,String d,Destination des,Area ar,int r,int s,int pos){
 		id=identity;
 		inDate=d;
 		destination=des;
@@ -19,10 +19,10 @@ public class InboundOrderPO {
 		position=pos;
 	}
 	
-	public long getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getInDate() {

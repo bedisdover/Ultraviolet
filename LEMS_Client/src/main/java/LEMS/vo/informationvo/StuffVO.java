@@ -1,7 +1,6 @@
 package LEMS.vo.informationvo;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 import LEMS.po.informationpo.InstitutionPO;
 

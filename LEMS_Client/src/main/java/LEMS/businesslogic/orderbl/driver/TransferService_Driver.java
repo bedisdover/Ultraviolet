@@ -12,6 +12,6 @@ public class TransferService_Driver {
 	
 	public void drive(TransferService_Stub transferService_Stub) {
 		transferService_Stub.addOrder(123456);
-		transferService_Stub.createTransferNote(new TransferVO("2015/10/23", 567812, null));
+		transferService_Stub.createTransferNote(new TransferVO("2015/10/23", "567812", null));
 	}
 }

@@ -2,7 +2,6 @@ package LEMS.data.informationdata.driver;
 
 import java.rmi.RemoteException;
 
-import LEMS.businesslogicservice.informationblservice.InformationFindService;
 import LEMS.dataservice.informationdataservice.InformationFindDataService;
 
 public class InformationFindDataService_Driver {

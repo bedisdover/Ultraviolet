@@ -1,13 +1,13 @@
 package LEMS.po.storepo;
 
 public class GoodsPO {
-	long id;
+	String id;
 	Area area;
 	int row;		//排
 	int stand;		//架
 	int position;	//位
 	
-	public GoodsPO(long i,Area ar,int r,int s,int p){
+	public GoodsPO(String i,Area ar,int r,int s,int p){
 		id=i;
 		area=ar;
 		row=r;
@@ -15,10 +15,10 @@ public class GoodsPO {
 		position=p;
 	}
 	
-	public long getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public Area getArea() {

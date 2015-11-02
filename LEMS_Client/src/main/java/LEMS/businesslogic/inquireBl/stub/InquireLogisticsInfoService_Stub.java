@@ -18,7 +18,7 @@ public class InquireLogisticsInfoService_Stub implements InquireLogisticsInfoSer
 		trace.add("到达寄件人中转点");
 		trace.add("到达收件人集散地");
 		trace.add("派送中");
-		LogisticsInfoVO liv=new LogisticsInfoVO(213459382,trace);
+		LogisticsInfoVO liv=new LogisticsInfoVO("213459382",trace);
 		return liv;
 	}
 	

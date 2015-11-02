@@ -2,12 +2,6 @@ package LEMS.data.informationdata;
 
 import java.rmi.RemoteException;
 
-import LEMS.po.informationpo.AccountPO;
-import LEMS.po.informationpo.DriverPO;
-import LEMS.po.informationpo.InstitutionPO;
-import LEMS.po.informationpo.StuffPO;
-import LEMS.po.informationpo.VehiclePO;
-
 /**
  * @author 苏琰梓
  * InformationDelete包数据

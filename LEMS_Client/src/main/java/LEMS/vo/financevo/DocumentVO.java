@@ -13,7 +13,7 @@ public class DocumentVO {
 	/**
 	 * 单据编号
 	 */
-	private long id;
+	private String id;
 	/**
 	 * 单据状态
 	 */
@@ -23,7 +23,7 @@ public class DocumentVO {
 		return date;
 	}
 
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 

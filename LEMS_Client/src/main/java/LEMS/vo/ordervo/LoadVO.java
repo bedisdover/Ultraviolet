@@ -15,7 +15,7 @@ public class LoadVO {
 	/**
 	 * 装运编号
 	 */
-	private long id;
+	private String id;
 	/**
 	 * 订单列表
 	 */
@@ -33,7 +33,7 @@ public class LoadVO {
 	 */
 	private double carriage;
 	
-	public LoadVO(String date, long id, ArrayList<Long> orders, String destination, TransportType type,
+	public LoadVO(String date, String id, ArrayList<Long> orders, String destination, TransportType type,
 			double carriage) {
 		this.date = date;
 		this.id = id;
@@ -47,7 +47,7 @@ public class LoadVO {
 		return date;
 	}
 
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 

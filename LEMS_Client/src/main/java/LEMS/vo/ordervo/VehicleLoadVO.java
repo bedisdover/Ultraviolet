@@ -17,7 +17,7 @@ public class VehicleLoadVO {
 	/**
 	 * 装车单编号
 	 */
-	private long id;
+	private String id;
 	/**
 	 * 订单列表
 	 */
@@ -31,7 +31,7 @@ public class VehicleLoadVO {
 	 */
 	private VehicleVO vehicle;
 	
-	public VehicleLoadVO(String date, long id, ArrayList<Long> orders, String destination, VehicleVO vehicle) {
+	public VehicleLoadVO(String date, String id, ArrayList<Long> orders, String destination, VehicleVO vehicle) {
 		this.date = date;
 		this.id = id;
 		this.orders = orders;
@@ -43,7 +43,7 @@ public class VehicleLoadVO {
 		return date;
 	}
 
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 

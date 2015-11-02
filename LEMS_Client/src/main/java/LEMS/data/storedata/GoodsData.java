@@ -1,9 +1,5 @@
 package LEMS.data.storedata;
 
-import java.util.ArrayList;
-
-import org.omg.Messaging.SyncScopeHelper;
-
 import LEMS.dataservice.storedataservice.GoodsDataService;
 import LEMS.po.storepo.Area;
 import LEMS.po.storepo.GoodsPO;
@@ -11,7 +7,7 @@ import LEMS.po.storepo.GoodsPO;
 
 public class GoodsData implements GoodsDataService {
 
-	public GoodsPO find(long id){
+	public GoodsPO find(String id){
 		return new GoodsPO(id,Area.航运区,1,1,1);
 	}
 	

@@ -4,7 +4,7 @@ import LEMS.po.storepo.Area;
 import LEMS.po.storepo.GoodsPO;
 
 public class GoodsDataService_Stub {
-	public GoodsPO find(long id){
+	public GoodsPO find(String id){
 
 	Area area=Area.航运区;
 	int	row=1;

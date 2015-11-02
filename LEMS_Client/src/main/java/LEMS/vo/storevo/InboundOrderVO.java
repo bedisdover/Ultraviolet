@@ -1,14 +1,10 @@
 package LEMS.vo.storevo;
 
-import java.util.ArrayList;
-
 import LEMS.po.storepo.Area;
 import LEMS.po.storepo.Destination;
-import LEMS.vo.financevo.PayBillVO;
-import LEMS.vo.ordervo.IncomeBillVO;
 
 public class InboundOrderVO {
-	long id;
+	String id;
 	String inDate;
 	Destination destination;
 	Area area;
@@ -16,7 +12,7 @@ public class InboundOrderVO {
 	int stand;		//架
 	int position;	//位
 	
-	public InboundOrderVO(long identity,String d,Destination des,Area ar,int r,int s,int pos){
+	public InboundOrderVO(String identity,String d,Destination des,Area ar,int r,int s,int pos){
 		id=identity;
 		inDate=d;
 		destination=des;
@@ -26,10 +22,10 @@ public class InboundOrderVO {
 		position=pos;
 	}
 	
-	public long getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getInDate() {

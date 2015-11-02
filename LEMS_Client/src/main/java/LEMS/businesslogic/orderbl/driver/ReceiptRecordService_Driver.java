@@ -11,6 +11,6 @@ import LEMS.vo.ordervo.IncomeBillVO;
 public class ReceiptRecordService_Driver {
 	public void drive(ReceiptRecordService_Stub receiptRecordService_Stub) {
 		receiptRecordService_Stub.addOrder(123456);
-		receiptRecordService_Stub.createIncomeBill(new IncomeBillVO("2015/10/23", 563421, null, 0));
+		receiptRecordService_Stub.createIncomeBill(new IncomeBillVO("2015/10/23", "563421", null, 0));
 	}
 }

@@ -14,7 +14,7 @@ import LEMS.vo.storevo.OutboundOrderVO;
 public class StoreGenerateOrderService_Driver {
 	public void drive(StoreGenerateOrderService storeGenerateOrderService){
 		InboundOrderVO iov=storeGenerateOrderService.generateInboundOrder(new InboundOrderPO
-				(000111111,"2015.10.25",Destination.上海,Area.航运区,1,1,1));
+				("000111111","2015.10.25",Destination.上海,Area.航运区,1,1,1));
 		System.out.println("快递单号："+iov.getId());
 		iov.setInDate("2015.10.25");
 		System.out.println("入库日期："+iov.getInDate());
@@ -30,7 +30,7 @@ public class StoreGenerateOrderService_Driver {
 		System.out.println("入库单：none");
 		
 		OutboundOrderVO oov=storeGenerateOrderService.generateOutboundOrder(new OutboundOrderPO
-				(000111111,"2015.10.25",Destination.上海,LoadFormat.飞机,000111000));
+				("000111111","2015.10.25",Destination.上海,LoadFormat.飞机,000111000));
 		System.out.println("快递单号："+oov.getId());
 		oov.setOutDate("2015.10.26");
 		System.out.println("出库日期："+oov.getOutDate());

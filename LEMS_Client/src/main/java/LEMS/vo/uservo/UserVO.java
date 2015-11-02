@@ -11,7 +11,7 @@ public class UserVO {
 	/**
      * 用户ID
      */
-    private long id;
+    private String id;
     /**
      * 用户姓名
      */
@@ -25,14 +25,14 @@ public class UserVO {
      */
     private UserRole role;
 
-    public UserVO(long id, String name, String password, UserRole role) {
+    public UserVO(String id, String name, String password, UserRole role) {
         this.id = id;
         this.name = name;
         this.password = password;
         this.role = role;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 

@@ -1,13 +1,13 @@
 package LEMS.po.storepo;
 
 public class OutboundOrderPO {
-	long id;
+	String id;
 	String outDate;
 	Destination destination;
 	LoadFormat loadFormat;	//装运形式
 	long transferNum;	//中转单编号或汽运编号
 	
-	public OutboundOrderPO(long identity,String d,Destination des,LoadFormat lf,long num){
+	public OutboundOrderPO(String identity,String d,Destination des,LoadFormat lf,long num){
 		id=identity;
 		outDate=d;
 		destination=des;
@@ -15,10 +15,10 @@ public class OutboundOrderPO {
 		transferNum=num;
 	}
 	
-	public long getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getOutDate() {

@@ -12,7 +12,7 @@ public class UserPO implements Serializable {
     /**
      * 用户ID
      */
-    private long id;
+    private String id;
     /**
      * 用户姓名
      */
@@ -26,14 +26,14 @@ public class UserPO implements Serializable {
      */
     private UserRole role;
 
-    public UserPO(long id, String name, String password, UserRole role) {
+    public UserPO(String id, String name, String password, UserRole role) {
         this.id = id;
         this.name = name;
         this.password = password;
         this.role = role;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
