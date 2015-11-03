@@ -10,7 +10,7 @@ import LEMS.vo.financevo.IncomeBillVO;
  */
 public class SettlementService_Stub implements SettlementService {
 
-	public IncomeBillVO getIncomeInfo(long id) {
+	public IncomeBillVO getIncomeInfo(String id) {
 		return new IncomeBillVO("2015/10/4", "南京市栖霞区营业厅", 1032); 
 	}
 

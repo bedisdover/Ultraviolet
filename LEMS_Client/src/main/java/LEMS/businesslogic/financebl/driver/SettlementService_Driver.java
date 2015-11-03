@@ -11,7 +11,7 @@ import LEMS.vo.financevo.IncomeBillVO;
 public class SettlementService_Driver {
 	
 	public void drive(SettlementService_Stub settlement) {
-		IncomeBillVO income = settlement.getIncomeInfo(1041341);
+		IncomeBillVO income = settlement.getIncomeInfo("1041341");
 		System.out.println("获取收款信息........\n");
 		System.out.println("日期：\t" +income.getDate() + "金额：\t" + income.getAmount());
 		System.out.println("收款单位：\t" + income.getInstitution() + "\n");

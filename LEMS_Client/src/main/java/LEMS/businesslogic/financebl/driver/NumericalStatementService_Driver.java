@@ -10,6 +10,6 @@ import LEMS.businesslogic.financebl.stub.NumericalStatementService_Stub;
 public class NumericalStatementService_Driver {
 	
 	public void drive(NumericalStatementService_Stub stub) {
-		stub.export(13413531);
+		stub.export("13413531");
 	}
 }

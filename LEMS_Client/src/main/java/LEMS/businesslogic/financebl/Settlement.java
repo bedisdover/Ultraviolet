@@ -10,7 +10,7 @@ import LEMS.vo.financevo.IncomeBillVO;
  */
 public class Settlement implements SettlementService {
 
-	public IncomeBillVO getIncomeInfo(long id) {
+	public IncomeBillVO getIncomeInfo(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

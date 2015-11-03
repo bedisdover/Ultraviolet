@@ -9,7 +9,7 @@ import LEMS.businesslogicservice.financeblservice.NumericalStatementService;
  */
 public class NumericalStatement implements NumericalStatementService {
 
-	public void export(long id) {
+	public void export(String id) {
 		// TODO Auto-generated method stub
 		
 	}

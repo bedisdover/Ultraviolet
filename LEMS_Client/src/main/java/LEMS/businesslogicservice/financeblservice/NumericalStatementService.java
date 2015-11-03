@@ -11,5 +11,5 @@ public interface NumericalStatementService {
 	 * 
 	 * @param id 报表ID
 	 */
-	public void export(long id);
+	public void export(String id);
 }

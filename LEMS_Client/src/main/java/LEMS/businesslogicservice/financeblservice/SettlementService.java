@@ -14,7 +14,7 @@ public interface SettlementService {
 	 * @param id 收款ID
 	 * @return 收款信息
 	 */
-	public IncomeBillVO getIncomeInfo(long id);
+	public IncomeBillVO getIncomeInfo(String id);
 	/**
 	 * 添加收款信息到收款单
 	 * 
