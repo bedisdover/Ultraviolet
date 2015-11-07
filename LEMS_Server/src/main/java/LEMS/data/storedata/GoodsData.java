@@ -30,5 +30,10 @@ public class GoodsData implements GoodsDataService {
 	public void finish(){
 		System.out.println("end!");
 	}
+
+	public GoodsPO find(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

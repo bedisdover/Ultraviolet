@@ -4,7 +4,7 @@ import LEMS.po.storepo.GoodsPO;
 
 public interface GoodsDataService {
 
-	public GoodsPO find(long id);
+	public GoodsPO find(String id);
 	
 	public void insert(GoodsPO goodsPO);
 	
