@@ -13,6 +13,7 @@ public class InquireLogisticsInfoTest {
 		LogisticsInfo lo=new LogisticsInfo("1234567890");
 		ArrayList<String> t=lo.getLogisticsInfo();
 		assertEquals("到达中转站",t.get(0));
+		assertEquals("派送中",t.get(1));
 	}
 
 }
