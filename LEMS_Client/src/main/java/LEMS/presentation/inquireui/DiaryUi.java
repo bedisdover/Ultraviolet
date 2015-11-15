@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 
 import javax.swing.JButton;
 
-import LEMS.businesslogic.inquirebl.InquireDiary;
+import LEMS.businesslogic.inquirebl.inquirediary.InquireDiary;
 import LEMS.businesslogicservice.inquireblservice.InquireDiaryService;
 import LEMS.presentation.mainUi;
 import LEMS.presentation.userui.GeneralManagerUi;
@@ -71,11 +71,11 @@ public class DiaryUi extends JPanel{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				InquireDiaryService ind=new InquireDiary();
-				DiaryVO diary=ind.getDiary(textField.getText());
-				textArea.append(diary.getPayBillOperation()+"\n");
-				textArea.append(diary.getIncomeBillOperation()+"\n");
-				textArea.append(diary.getDocumentApproval()+"\n");
-				textArea.append(diary.getAccountManagement()+"\n");
+//				DiaryVO diary=ind.getDiary(textField.getText());
+//				textArea.append(diary.getPayBillOperation()+"\n");
+//				textArea.append(diary.getIncomeBillOperation()+"\n");
+//				textArea.append(diary.getDocumentApproval()+"\n");
+//				textArea.append(diary.getAccountManagement()+"\n");
 				textArea.setVisible(true);
 				textArea.setEnabled(false);
 			}

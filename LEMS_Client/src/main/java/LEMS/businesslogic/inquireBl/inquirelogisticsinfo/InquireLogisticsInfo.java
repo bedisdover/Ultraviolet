@@ -1,4 +1,4 @@
-package LEMS.businesslogic.inquirebl;
+package LEMS.businesslogic.inquirebl.inquirelogisticsinfo;
 
 import LEMS.businesslogicservice.inquireblservice.InquireLogisticsInfoService;
 import LEMS.vo.inquirevo.LogisticsInfoVO;

@@ -1,4 +1,4 @@
-package LEMS.businesslogic.inquirebl;
+package LEMS.businesslogic.inquirebl.inquirecostbenefitlist;
 
 import LEMS.businesslogicservice.inquireblservice.InquireCostBenefitListService;
 import LEMS.vo.inquirevo.CostBenefitListVO;
