@@ -11,6 +11,7 @@ public class InquireCostBenefitList implements InquireCostBenefitListService {
 
 	public CostBenefitListVO getCostBenefitList(String startTime, String endTime) {
 		// TODO Auto-generated method stub
+		CostBenefitList cbl=new CostBenefitList(startTime,endTime);
 		return null;
 	}
 
