@@ -11,8 +11,11 @@ public class InboundOrderVO {
 	int row;		//排
 	int stand;		//架
 	int position;	//位
+	ArrayList<String> operation;
 	
-	public InboundOrderVO(String identity,String d,Destination des,Area ar,int r,int s,int pos){
+	
+
+	public InboundOrderVO(String identity,String d,Destination des,Area ar,int r,int s,int pos,ArrayList<String> o){
 		id=identity;
 		inDate=d;
 		destination=des;
@@ -20,6 +23,7 @@ public class InboundOrderVO {
 		row=r;
 		stand=s;
 		position=pos;
+		operation=o;
 	}
 	
 	public String getId() {
@@ -65,6 +69,8 @@ public class InboundOrderVO {
 	public void setPosition(int position) {
 		this.position = position;
 	}
-	
+	public ArrayList<String> getOperation(){
+		return operation;
+	}
 	
 }

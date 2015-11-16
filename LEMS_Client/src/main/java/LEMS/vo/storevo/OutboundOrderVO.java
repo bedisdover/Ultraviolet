@@ -9,13 +9,15 @@ public class OutboundOrderVO {
 	Destination destination;
 	LoadFormat loadFormat;	//装运形式
 	long transferNum;	//中转单编号或汽运编号
+	ArrayList<String> operation;
 	
-	public OutboundOrderVO(String identity,String d,Destination des,LoadFormat lf,long num){
+	public OutboundOrderVO(String identity,String d,Destination des,LoadFormat lf,long num,ArrayList<String> o){
 		id=identity;
 		outDate=d;
 		destination=des;
 		loadFormat=lf;
 		transferNum=num;
+		operation=o;
 	}
 	
 	public String getId() {
@@ -47,5 +49,8 @@ public class OutboundOrderVO {
 	}
 	public void setTransferNum(long transferNum) {
 		this.transferNum = transferNum;
+	}
+	public ArrayList<String> getOperation(){
+		return operation;
 	}
 }
