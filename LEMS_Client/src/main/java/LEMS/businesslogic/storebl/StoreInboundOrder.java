@@ -1,8 +1,7 @@
-<<<<<<< HEAD
+
 package LEMS.businesslogic.storebl;
 
-=======
->>>>>>> origin/master
+
 import java.util.ArrayList;
 
 public class StoreInboundOrder {

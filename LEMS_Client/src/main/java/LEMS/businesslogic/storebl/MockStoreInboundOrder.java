@@ -1,14 +1,14 @@
-<<<<<<< HEAD
+
 package LEMS.businesslogic.storebl;
 
 import java.util.ArrayList;
 
 import LEMS.po.storepo.Area;
 import LEMS.po.storepo.Destination;
-=======
+
 import java.util.ArrayList;
 
->>>>>>> origin/master
+
 
 public class MockStoreInboundOrder extends StoreInboundOrder {
 	String id;
