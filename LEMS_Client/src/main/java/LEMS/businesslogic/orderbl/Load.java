@@ -10,7 +10,7 @@ import LEMS.vo.ordervo.LoadVO;
  */
 public class Load implements LoadService {
 
-	public void addOrder(long id) {
+	public void addOrder(String id) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -19,5 +19,4 @@ public class Load implements LoadService {
 		// TODO Auto-generated method stub
 		
 	}
-
 }

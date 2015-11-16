@@ -40,7 +40,7 @@ public interface OrderService {
 	 * 
 	 * @return 订单条形码
 	 */
-	public long createID();
+	public String createID();
 	/**
 	 * 计算货物运费
 	 * 
@@ -60,7 +60,7 @@ public interface OrderService {
 	 */
 	public String getTime();
 	/**
-	 * 技术订单管理任务
+	 * 结束订单管理任务
 	 */
-	public void endOrder();
+	//public void endOrder();
 }

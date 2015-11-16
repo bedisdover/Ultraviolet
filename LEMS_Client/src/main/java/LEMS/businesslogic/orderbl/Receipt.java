@@ -10,7 +10,7 @@ import LEMS.vo.ordervo.ArrivalVO;
  */
 public class Receipt implements ReceiptService {
 
-	public void addOrder(long id) {
+	public void addOrder(String id) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -19,5 +19,4 @@ public class Receipt implements ReceiptService {
 		// TODO Auto-generated method stub
 		
 	}
-
 }

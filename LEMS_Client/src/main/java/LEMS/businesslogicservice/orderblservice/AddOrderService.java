@@ -11,5 +11,5 @@ public interface AddOrderService {
 	 * 
 	 * @param id 订单ID
 	 */
-	public void addOrder(long id);
+	public void addOrder(String id);
 }

@@ -9,7 +9,7 @@ import LEMS.businesslogicservice.orderblservice.AddOrderService;
  */
 public class AddOrder implements AddOrderService{
 
-	public void addOrder(long id) {
+	public void addOrder(String id) {
 		// TODO Auto-generated method stub
 		
 	}

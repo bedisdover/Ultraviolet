@@ -10,14 +10,13 @@ import LEMS.vo.ordervo.TransferVO;
  */
 public class Transfer implements TransferService {
 
+	public void addOrder(String id) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public void createTransferNote(TransferVO transferInfo) {
 		// TODO Auto-generated method stub
 		
 	}
-
-	public void addOrder(long id) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

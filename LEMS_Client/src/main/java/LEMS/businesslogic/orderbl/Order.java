@@ -33,9 +33,9 @@ public class Order implements OrderService {
 		
 	}
 
-	public long createID() {
+	public String createID() {
 		// TODO Auto-generated method stub
-		return 0;
+		return null;
 	}
 
 	public double getMoney() {
