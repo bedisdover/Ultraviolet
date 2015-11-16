@@ -1,13 +1,40 @@
 package LEMS.po.storepo;
 
-public class InboundOrderPO {
+import java.io.Serializable;
+/**
+ * @author 周梦佳
+ * 入库单持久化对象
+ */
+@SuppressWarnings("serial")
+public class InboundOrderPO implements Serializable {
+	/**
+	 * 快递单号
+	 */
 	String id;
+	/**
+	 * 入库日期
+	 */
 	String inDate;
+	/**
+	 * 目的地
+	 */
 	Destination destination;
+	/**
+	 * 存放区域
+	 */
 	Area area;
-	int row;		//排
-	int stand;		//架
-	int position;	//位
+	/**
+	 * 排
+	 */
+	int row;		
+	/**
+	 * 架
+	 */
+	int stand;		
+	/**
+	 * 位
+	 */
+	int position;	
 	
 	public InboundOrderPO(String identity,String d,Destination des,Area ar,int r,int s,int pos){
 		id=identity;

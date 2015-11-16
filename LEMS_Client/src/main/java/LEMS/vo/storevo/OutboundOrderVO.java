@@ -4,13 +4,34 @@ import java.util.ArrayList;
 
 import LEMS.po.storepo.Destination;
 import LEMS.po.storepo.LoadFormat;
-
+/**
+ * @author 周梦佳
+ * OutboundOrder的值对象
+ */
 public class OutboundOrderVO {
+	/**
+	 * 快递单号
+	 */
 	String id;
+	/**
+	 * 出库日期
+	 */
 	String outDate;
+	/**
+	 * 目的地
+	 */
 	Destination destination;
-	LoadFormat loadFormat;	//装运形式
-	long transferNum;	//中转单编号或汽运编号
+	/**
+	 * 装运形式
+	 */
+	LoadFormat loadFormat;	
+	/**
+	 * 中转单编号或汽运编号
+	 */
+	long transferNum;
+	/**
+	 * 操作
+	 */
 	ArrayList<String> operation;
 	
 	public OutboundOrderVO(String identity,String d,Destination des,LoadFormat lf,long num,ArrayList<String> o){

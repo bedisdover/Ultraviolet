@@ -4,15 +4,42 @@ import java.util.ArrayList;
 
 import LEMS.po.storepo.Area;
 import LEMS.po.storepo.Destination;
-
+/**
+ * @author 周梦佳
+ * InboundOrder的值对象
+ */
 public class InboundOrderVO {
+	/**
+	 * 快递单号
+	 */
 	String id;
+	/**
+	 * 入库日期
+	 */
 	String inDate;
+	/**
+	 * 目的地
+	 */
 	Destination destination;
+	/**
+	 * 存放区域
+	 */
 	Area area;
-	int row;		//排
-	int stand;		//架
-	int position;	//位
+	/**
+	 * 排
+	 */
+	int row;		
+	/**
+	 * 架
+	 */
+	int stand;		
+	/**
+	 * 位
+	 */
+	int position;	
+	/**
+	 * 操作
+	 */
 	ArrayList<String> operation;
 	
 	

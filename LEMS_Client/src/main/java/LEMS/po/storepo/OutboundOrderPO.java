@@ -1,11 +1,32 @@
 package LEMS.po.storepo;
 
-public class OutboundOrderPO {
+import java.io.Serializable;
+/**
+ * @author 周梦佳
+ * 出库单持久化对象
+ */
+@SuppressWarnings("serial")
+public class OutboundOrderPO implements Serializable {
+	/**
+	 * 快递单号
+	 */
 	String id;
+	/**
+	 * 出库日期
+	 */
 	String outDate;
+	/**
+	 * 目的地
+	 */
 	Destination destination;
-	LoadFormat loadFormat;	//装运形式
-	long transferNum;	//中转单编号或汽运编号
+	/**
+	 * 装运形式
+	 */
+	LoadFormat loadFormat;	
+	/**
+	 * 中转单编号或汽运编号
+	 */
+	long transferNum;
 	
 	public OutboundOrderPO(String identity,String d,Destination des,LoadFormat lf,long num){
 		id=identity;
