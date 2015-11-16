@@ -1,11 +1,14 @@
 package LEMS.dataservice;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 import LEMS.data.inquiredata.CostBenefitListData;
 import LEMS.data.inquiredata.DiaryData;
+import LEMS.dataservice.inquiredataservice.CostBenefitListDataService;
+import LEMS.dataservice.inquiredataservice.DiaryDataService;
 
 public interface DatabaseFactory extends Remote{
-	public DiaryData getDiaryData();
-	public CostBenefitListData getCostBenefitList();
+	public DiaryDataService getDiaryData() throws RemoteException;
+	public CostBenefitListDataService getCostBenefitList() throws RemoteException;
 }

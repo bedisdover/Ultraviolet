@@ -1,7 +1,9 @@
+import java.util.ArrayList;
+
 
 public class MockStoreInboundOrder extends StoreInboundOrder {
 	ArrayList<String> operation=new ArrayList<String>();
-	public StoreInboundOrder(String id, String inDate, Destination destination, Area area, int row, int stand, int position){
+	public void StoreInboundOrder(String id, String inDate, Destination destination, Area area, int row, int stand, int position){
 		operation.add(id);
 		operation.add("add an id.");
 		operation.add(inDate);

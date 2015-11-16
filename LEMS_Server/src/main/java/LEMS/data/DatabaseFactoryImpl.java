@@ -1,17 +1,28 @@
 package LEMS.data;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
 import LEMS.data.inquiredata.CostBenefitListData;
 import LEMS.data.inquiredata.DiaryData;
 import LEMS.dataservice.DatabaseFactory;
+import LEMS.dataservice.inquiredataservice.DiaryDataService;
 
-public class DatabaseFactoryImpl implements DatabaseFactory {
+@SuppressWarnings("serial")
+public class DatabaseFactoryImpl extends UnicastRemoteObject implements DatabaseFactory {
 
-	public DiaryData getDiaryData() {
-		// TODO Auto-generated method stub
-		return null;
+	public DatabaseFactoryImpl() throws RemoteException {
+		super();
+
 	}
 
-	public CostBenefitListData getCostBenefitList() {
+	public DiaryData getDiaryData() throws RemoteException{
+		// TODO Auto-generated method stub
+		DiaryDataService diary=new DiaryData();
+		return (DiaryData) diary;
+	}
+
+	public CostBenefitListData getCostBenefitList() throws RemoteException{
 		// TODO Auto-generated method stub
 		return null;
 	}

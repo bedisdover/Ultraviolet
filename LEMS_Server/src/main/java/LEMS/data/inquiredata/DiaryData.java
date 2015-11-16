@@ -14,7 +14,7 @@ import LEMS.po.inquirepo.DiaryPO;
 @SuppressWarnings("serial")
 public class DiaryData extends UnicastRemoteObject implements DiaryDataService {
 
-	protected DiaryData() throws RemoteException {
+	public DiaryData() throws RemoteException {
 		super();
 	}
 
