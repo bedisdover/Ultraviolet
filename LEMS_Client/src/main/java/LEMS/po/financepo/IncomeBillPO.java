@@ -22,6 +22,10 @@ public class IncomeBillPO implements Serializable{
 	 */
 	private double amount;
 
+	public IncomeBillPO(String date) {
+		//TODO 根据日期获得收款单持久化对象
+	}
+	
 	public IncomeBillPO(String date, String institution, double amount) {
 		this.date = date;
 		this.institution = institution;

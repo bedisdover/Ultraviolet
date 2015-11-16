@@ -27,6 +27,8 @@ public interface CostService {
 
 	/**
 	 * 生成成本收益表
+	 * 
+	 * @param 成本收益信息
 	 */
-	public void costBenifitBill();
+	public void costBenifitBill(CostProfitVO costProfitVO);
 }

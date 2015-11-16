@@ -14,6 +14,7 @@ public class DocumentVO {
 	 * 单据编号
 	 */
 	private String id;
+	//TODO 默认单据状态为待审批
 	/**
 	 * 单据状态
 	 */

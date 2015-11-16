@@ -21,7 +21,7 @@ public class Cost implements CostService {
 		return null;
 	}
 
-	public void costBenifitBill() {
+	public void costBenifitBill(CostProfitVO costProfitVO) {
 		// TODO Auto-generated method stub
 		
 	}
