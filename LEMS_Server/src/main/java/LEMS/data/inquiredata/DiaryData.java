@@ -18,7 +18,7 @@ public class DiaryData extends UnicastRemoteObject implements DiaryDataService {
 	}
 
 	public DiaryPO findDiary(String date) throws RemoteException{
-		DiaryPO dpo=new DiaryPO(date, "add a payBill", "add an incomeBill", "approve a payBill", "delete an account");
+		DiaryPO dpo=new DiaryPO(date, "add a payBill");
 		return dpo;
 	}
 	public static void main(String[] args){

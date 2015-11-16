@@ -7,5 +7,5 @@ import LEMS.vo.inquirevo.LogisticsInfoVO;
  * 查询物流信息接口
  */
 public interface InquireLogisticsInfoService {
-	public LogisticsInfoVO getInquireLogisticsInfo();
+	public LogisticsInfoVO getInquireLogisticsInfo(String id);
 }
