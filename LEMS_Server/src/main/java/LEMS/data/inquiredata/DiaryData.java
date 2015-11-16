@@ -1,8 +1,6 @@
 package LEMS.data.inquiredata;
 
-import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
 
 import LEMS.dataservice.inquiredataservice.DiaryDataService;
@@ -22,15 +20,6 @@ public class DiaryData extends UnicastRemoteObject implements DiaryDataService {
 		DiaryPO dpo=new DiaryPO(date, "add a payBill");
 		return dpo;
 	}
-	public static void main(String[] args){
-		  try {
-			  DiaryDataService diary=new DiaryData();
-			  LocateRegistry.createRegistry(1099); 
-			  java.rmi.Naming.rebind("rmi://localhost:1099/diary",  diary);
-	          System.out.println("ready...");
-	       } catch (Exception e) {
-	            e.printStackTrace();
-	       }
-	 }
+	
 	
 }
