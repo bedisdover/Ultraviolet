@@ -1,5 +1,7 @@
 package LEMS.dataservice.inquiredataservice;
 
+import java.rmi.RemoteException;
+
 import LEMS.po.inquirepo.DiaryPO;
 
 /**
@@ -7,5 +9,5 @@ import LEMS.po.inquirepo.DiaryPO;
  * 日志数据层接口
  */
 public interface DiaryDataService {
-	public DiaryPO findDiary(String date);
+	public DiaryPO findDiary(String date) throws RemoteException;
 }

@@ -1,5 +1,7 @@
 package LEMS.vo.storevo;
 
+import java.util.ArrayList;
+
 import LEMS.po.storepo.Destination;
 import LEMS.po.storepo.LoadFormat;
 

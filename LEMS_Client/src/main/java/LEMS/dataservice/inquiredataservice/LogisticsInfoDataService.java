@@ -1,5 +1,7 @@
 package LEMS.dataservice.inquiredataservice;
 
+import java.rmi.RemoteException;
+
 import LEMS.po.inquirepo.LogisticsInfoPO;
 
 /**
@@ -7,5 +9,5 @@ import LEMS.po.inquirepo.LogisticsInfoPO;
  * 物流信息数据层接口
  */
 public interface LogisticsInfoDataService {
-	public LogisticsInfoPO findLogisticsInfo(long id);
+	public LogisticsInfoPO findLogisticsInfo(String id) throws RemoteException;
 }
