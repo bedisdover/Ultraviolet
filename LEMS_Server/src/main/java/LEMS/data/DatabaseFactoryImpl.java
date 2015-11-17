@@ -6,6 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 import LEMS.data.inquiredata.CostBenefitListData;
 import LEMS.data.inquiredata.DiaryData;
 import LEMS.dataservice.DatabaseFactory;
+import LEMS.dataservice.informationdataservice.InformationInsertDataService;
 import LEMS.dataservice.inquiredataservice.DiaryDataService;
 
 @SuppressWarnings("serial")
@@ -23,6 +24,11 @@ public class DatabaseFactoryImpl extends UnicastRemoteObject implements Database
 	}
 
 	public CostBenefitListData getCostBenefitList() throws RemoteException{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public InformationInsertDataService getInformationInsertData() throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}

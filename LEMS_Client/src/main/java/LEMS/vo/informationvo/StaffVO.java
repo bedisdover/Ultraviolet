@@ -10,7 +10,7 @@ import LEMS.po.informationpo.InstitutionPO;
  * 2015年10月25日
  */
 @SuppressWarnings("serial")
-public class StuffVO implements Serializable{
+public class StaffVO implements Serializable{
 	/*
 	 * 人员编号
 	 */
@@ -19,10 +19,19 @@ public class StuffVO implements Serializable{
 	 * 人员所在的机构信息
 	 */
 	InstitutionPO institution;
-	
-	public StuffVO(String id,InstitutionPO institution){
+	/**
+	 * 密码
+	 */
+	String password;
+	/**
+	 * 职位
+	 */
+	Position position;
+	public StaffVO(String id,InstitutionPO institution,String password,Position position){
 		this.id = id;
 		this.institution = institution;
+		this.password=password;
+		this.position=position;
 	}
 	
 	public String getID(){
@@ -31,5 +40,11 @@ public class StuffVO implements Serializable{
 	
 	public InstitutionPO getInstitution(){
 		return institution;
+	}
+	public String getPassword(){
+		return password;
+	}
+	public Position getPosition(){
+		return position;
 	}
 }

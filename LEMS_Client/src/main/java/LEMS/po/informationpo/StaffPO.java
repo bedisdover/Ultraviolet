@@ -2,13 +2,15 @@ package LEMS.po.informationpo;
 
 import java.io.Serializable;
 
+import LEMS.vo.informationvo.Position;
+
 /**
  * @author 苏琰梓
  * 人员信息持久化对象
  * 2015年10月25日
  */
 @SuppressWarnings("serial")
-public class StuffPO implements Serializable{
+public class StaffPO implements Serializable{
 	/*
 	 * 人员编号
 	 */
@@ -17,10 +19,19 @@ public class StuffPO implements Serializable{
 	 * 人员所在的机构信息
 	 */
 	InstitutionPO institution;
-	
-	public StuffPO(String id,InstitutionPO institution){
+	/**
+	 * 密码
+	 */
+	String password;
+	/**
+	 * 职位
+	 */
+	Position position;
+	public StaffPO(String id,String password,Position position,InstitutionPO institution){
 		this.id = id;
 		this.institution = institution;
+		this.password=password;
+		this.position=position;
 	}
 	
 	public String getID(){
@@ -29,5 +40,11 @@ public class StuffPO implements Serializable{
 	
 	public InstitutionPO getInstitution(){
 		return institution;
+	}
+	public String getPassword(){
+		return password;
+	}
+	public Position getPosition(){
+		return position;
 	}
 }

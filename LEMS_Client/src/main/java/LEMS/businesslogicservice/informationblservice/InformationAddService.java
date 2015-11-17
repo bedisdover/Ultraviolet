@@ -4,7 +4,7 @@ import LEMS.vo.informationvo.AccountVO;
 import LEMS.vo.informationvo.DriverVO;
 import LEMS.vo.informationvo.Gender;
 import LEMS.vo.informationvo.InstitutionVO;
-import LEMS.vo.informationvo.StuffVO;
+import LEMS.vo.informationvo.StaffVO;
 import LEMS.vo.informationvo.VehicleVO;
 
 /**
@@ -28,7 +28,7 @@ public interface InformationAddService {
 	/**
 	 * 增加人员信息
 	 */
-	public void addStuffVO(StuffVO stuffvo);
+	public void addStuffVO(StaffVO stuffvo);
 	/**
 	 * 增加账户信息
 	 */

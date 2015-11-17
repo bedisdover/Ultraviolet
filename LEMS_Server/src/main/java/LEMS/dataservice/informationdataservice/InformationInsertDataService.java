@@ -5,7 +5,7 @@ import java.rmi.RemoteException;
 import LEMS.po.informationpo.AccountPO;
 import LEMS.po.informationpo.DriverPO;
 import LEMS.po.informationpo.InstitutionPO;
-import LEMS.po.informationpo.StuffPO;
+import LEMS.po.informationpo.StaffPO;
 import LEMS.po.informationpo.VehiclePO;
 
 /**
@@ -17,6 +17,6 @@ public interface InformationInsertDataService {
 	public void insertDriverPO(DriverPO po) throws RemoteException;
 	public void insertVehiclePO(VehiclePO po) throws RemoteException;
 	public void insertInstitutionPO(InstitutionPO po) throws RemoteException;
-	public void insertStuffPO(StuffPO po) throws RemoteException;
+	public void insertStaffPO(StaffPO po) throws RemoteException;
 	public void insertAccountPO(AccountPO po) throws RemoteException;
 }

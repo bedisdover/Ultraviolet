@@ -1,9 +1,16 @@
 package LEMS.businesslogic.informationbl;
 
-import LEMS.po.informationpo.AccountPO;
+import java.rmi.Naming;
+
+import LEMS.dataservice.DatabaseFactory;
+import LEMS.dataservice.informationdataservice.InformationInsertDataService;
+import LEMS.dataservice.inquiredataservice.DiaryDataService;
+import LEMS.po.informationpo.StaffPO;
+import LEMS.po.inquirepo.DiaryPO;
+import LEMS.vo.informationvo.AccountVO;
 import LEMS.vo.informationvo.DriverVO;
 import LEMS.vo.informationvo.InstitutionVO;
-import LEMS.vo.informationvo.StuffVO;
+import LEMS.vo.informationvo.StaffVO;
 import LEMS.vo.informationvo.VehicleVO;
 
 public class InformationAdd {
@@ -28,13 +35,21 @@ public class InformationAdd {
 	/**
 	 * 增加人员信息
 	 */
-	public void addStuffVO(StuffVO stuffvo){
-		
+	public void addStaff(StaffVO staffvo){
+		try {
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
+			InformationInsertDataService infoinsert=database.getInformationInsertData();
+			StaffPO sp=new StaffPO(staffvo.getID(),staffvo.getPassword(),staffvo.getPosition(),staffvo.getInstitution());
+			infoinsert.insertStaffPO(sp);;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	/**
 	 * 增加账户信息
 	 */
-	public void addAccoutVO(AccountPO accoutvo){
+	public void addAccout(AccountVO accoutvo){
 		
 	}
 }
