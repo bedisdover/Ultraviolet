@@ -4,6 +4,7 @@ import java.rmi.Naming;
 import java.util.ArrayList;
 
 import LEMS.dataservice.factory.DatabaseFactory;
+import LEMS.dataservice.factory.UserFactory;
 import LEMS.dataservice.informationdataservice.InformationInsertDataService;
 import LEMS.dataservice.userdataservice.UserDataService;
 import LEMS.po.informationpo.StaffPO;
@@ -25,7 +26,8 @@ public class User {
 	public UserVO getUser(){
 		try {
 			DatabaseFactory database=(DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
-			UserDataService u=database.getUserData();
+			UserFactory uf=database.getUserFactory();
+			UserDataService u=uf.getUserData();
 			ap=u.find(role);
 			for(UserPO user:ap){
 				if(user.getId().equals(id)&&user.getPassword().equals(password)){

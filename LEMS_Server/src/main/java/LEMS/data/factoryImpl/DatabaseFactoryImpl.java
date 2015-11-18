@@ -1,4 +1,4 @@
-package LEMS.data;
+package LEMS.data.factoryImpl;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -59,7 +59,8 @@ public class DatabaseFactoryImpl extends UnicastRemoteObject implements Database
 
 	public InformationFactory getInformationFactory() throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		InformationFactoryImpl info= new InformationFactoryImpl();
+		return info;
 	}
 
 	public InquireFactory getInquireFactory() throws RemoteException {
@@ -79,7 +80,8 @@ public class DatabaseFactoryImpl extends UnicastRemoteObject implements Database
 
 	public UserFactory getUserFactory() throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		UserFactoryImpl us=new UserFactoryImpl();
+		return us;
 	}
 
 }

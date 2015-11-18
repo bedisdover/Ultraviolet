@@ -7,6 +7,8 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import LEMS.dataservice.factory.DatabaseFactory;
+import LEMS.dataservice.factory.InformationFactory;
+import LEMS.dataservice.factory.UserFactory;
 import LEMS.dataservice.informationdataservice.InformationInsertDataService;
 import LEMS.dataservice.userdataservice.UserDataService;
 import LEMS.po.userpo.UserPO;
@@ -38,13 +40,11 @@ public class InformationFind {
 	public StaffVO findStaff(String id){
 		return null;
 	}
-	public static void main(String[] args){
-		
-		
-		
+	public static void main(String[] args){		
 		try {
 			DatabaseFactory database=(DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
-			UserDataService u = database.getUserData();
+			UserFactory inf=database.getUserFactory();
+			UserDataService u = inf.getUserData();
 			ArrayList<UserPO> ua=u.find(UserRole.Manager);
 			UserPO upo=ua.get(1);
 			System.out.println(upo.getId()+" "+upo.getPassword()+" "+upo.getRole()+" "+upo.getName());

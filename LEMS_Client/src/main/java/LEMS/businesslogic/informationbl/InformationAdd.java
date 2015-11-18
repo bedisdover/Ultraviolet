@@ -3,6 +3,7 @@ package LEMS.businesslogic.informationbl;
 import java.rmi.Naming;
 
 import LEMS.dataservice.factory.DatabaseFactory;
+import LEMS.dataservice.factory.InformationFactory;
 import LEMS.dataservice.informationdataservice.InformationInsertDataService;
 import LEMS.dataservice.inquiredataservice.DiaryDataService;
 import LEMS.po.informationpo.StaffPO;
@@ -40,7 +41,8 @@ public class InformationAdd {
 	public void addStaff(UserVO uservo){
 		try {
 			DatabaseFactory database=(DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
-			InformationInsertDataService infoinsert=database.getInformationInsertData();
+			InformationFactory inf=database.getInformationFactory();
+			InformationInsertDataService infoinsert=inf.getInformationInsertData();
 			UserPO sp=new UserPO(uservo.getId(),uservo.getPassword(),uservo.getRole(),uservo.getName(),uservo.getInstitution());
 			infoinsert.insertStaffPO(sp);;
 		} catch (Exception e) {

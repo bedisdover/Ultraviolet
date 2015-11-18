@@ -47,6 +47,22 @@ public class InformationInsertData {
 			e.printStackTrace();
 		}
 		break;
+		case GeneralManager:try {
+			FileOutputStream fileStream=new FileOutputStream("GeneralManager.ser",true);
+			ObjectOutputStream os=new ObjectOutputStream(fileStream);
+			long pos=0;
+			 pos=fileStream.getChannel().position()-4;
+             fileStream.getChannel().truncate(pos);
+			os.writeObject(po);
+			os.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		break;
 		default:break;
 		}
 		

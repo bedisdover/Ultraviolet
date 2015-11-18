@@ -2,7 +2,7 @@ package LEMS.init;
 
 import java.rmi.registry.LocateRegistry;
 
-import LEMS.data.DatabaseFactoryImpl;
+import LEMS.data.factoryImpl.DatabaseFactoryImpl;
 import LEMS.dataservice.factory.DatabaseFactory;
 
 /**
