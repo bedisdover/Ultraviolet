@@ -2,8 +2,10 @@ package LEMS.data.informationdata;
 
 import java.rmi.RemoteException;
 
-import LEMS.po.informationpo.Position;
+
+
 import LEMS.po.informationpo.StaffPO;
+import LEMS.po.userpo.UserRole;
 
 /**
  * @author 苏琰梓
@@ -20,7 +22,7 @@ public class InformationFindData {
 	public void findInstitutionPO(String id) throws RemoteException{
 		
 	}
-	public StaffPO findStaffPO(String id,String password,Position p) throws RemoteException{
+	public StaffPO findStaffPO(String id,String password,UserRole r) throws RemoteException{
 		return null;
 	}
 }

@@ -8,4 +8,11 @@ package LEMS.po.userpo;
  */
 public enum UserRole {
 	//TODO 添加用户类型
+	Courier,
+	BusinessClerk,
+	TransferClerk,
+	StoreManager,
+	GeneralManager,
+	Manager,
+	FinanceClerk
 }

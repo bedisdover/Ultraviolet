@@ -7,6 +7,7 @@ import LEMS.po.informationpo.DriverPO;
 import LEMS.po.informationpo.InstitutionPO;
 import LEMS.po.informationpo.StaffPO;
 import LEMS.po.informationpo.VehiclePO;
+import LEMS.po.userpo.UserPO;
 
 /**
  * @author 苏琰梓
@@ -17,6 +18,6 @@ public interface InformationInsertDataService {
 	public void insertDriverPO(DriverPO po) throws RemoteException;
 	public void insertVehiclePO(VehiclePO po) throws RemoteException;
 	public void insertInstitutionPO(InstitutionPO po) throws RemoteException;
-	public void insertStaffPO(StaffPO po) throws RemoteException;
+	public void insertStaffPO(UserPO po) throws RemoteException;
 	public void insertAccountPO(AccountPO po) throws RemoteException;
 }

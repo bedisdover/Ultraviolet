@@ -1,8 +1,14 @@
 package LEMS.data.userdata;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import LEMS.po.userpo.UserPO;
+import LEMS.po.userpo.UserRole;
 
 public class UserData {
 
@@ -15,7 +21,158 @@ public class UserData {
 	public void update(UserPO po) throws RemoteException{
 		
 	}
-	public UserPO find(long id) throws RemoteException{
-		return null;
+	public ArrayList<UserPO> find(UserRole r) throws RemoteException{
+		ArrayList<UserPO> ua=new ArrayList<UserPO>();
+		switch(r){
+		case Manager:try {
+				FileInputStream fi=new FileInputStream("Manager.ser");
+				ObjectInputStream os=new ObjectInputStream(fi);
+				while(fi.available()>0){
+					UserPO user=(UserPO)os.readObject();
+					ua.add(user);
+				}
+				os.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		break;
+		case GeneralManager:try {
+				FileInputStream fi=new FileInputStream("GeneralManager.ser");
+				ObjectInputStream os=new ObjectInputStream(fi);
+				while(fi.available()>0){
+					UserPO user=(UserPO)os.readObject();
+					ua.add(user);
+				}
+				os.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case StoreManager:	try {
+				FileInputStream fi=new FileInputStream("StoreManager.ser");
+				ObjectInputStream os=new ObjectInputStream(fi);
+				while(fi.available()>0){
+					UserPO user=(UserPO)os.readObject();
+					ua.add(user);
+				}
+				os.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case BusinessClerk:	try {
+				FileInputStream fi=new FileInputStream("BusinessClerk.ser");
+				ObjectInputStream os=new ObjectInputStream(fi);
+				while(fi.available()>0){
+					UserPO user=(UserPO)os.readObject();
+					ua.add(user);
+				}
+				os.close();
+		} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case TransferClerk:try {
+				FileInputStream fi=new FileInputStream("TransferClerk.ser");
+				ObjectInputStream os=new ObjectInputStream(fi);
+				while(fi.available()>0){
+					UserPO user=(UserPO)os.readObject();
+					ua.add(user);
+				}
+				os.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		break;
+		case Courier:try {
+				FileInputStream fi=new FileInputStream("Courier.ser");
+				ObjectInputStream os=new ObjectInputStream(fi);
+				while(fi.available()>0){
+					UserPO user=(UserPO)os.readObject();
+					ua.add(user);
+				}
+				os.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		case FinanceClerk:try {
+				FileInputStream fi=new FileInputStream("FinanceClerk.ser");
+				ObjectInputStream os=new ObjectInputStream(fi);
+				while(fi.available()>0){
+					UserPO user=(UserPO)os.readObject();
+					ua.add(user);
+				}
+				os.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+		default:break;
+		}
+		return ua;
+	}
+	public static void main(String[] args){
+		UserData u=new UserData();
+		ArrayList<UserPO> ua;
+		UserPO upo=null;;
+		try {
+			ua=u.find(UserRole.Manager);
+			upo=ua.get(1);
+			
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(upo.getId()+" "+upo.getPassword()+" "+upo.getRole()+" "+upo.getName());
 	}
 }

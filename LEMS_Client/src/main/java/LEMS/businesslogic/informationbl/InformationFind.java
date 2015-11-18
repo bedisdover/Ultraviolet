@@ -1,5 +1,7 @@
 package LEMS.businesslogic.informationbl;
 
+import LEMS.vo.informationvo.StaffVO;
+
 public class InformationFind {
 	/**
 	 * 查找司机信息
@@ -22,7 +24,7 @@ public class InformationFind {
 	/**
 	 * 查找人员信息
 	 */
-	public void findStuffVO(String id){
-		
+	public StaffVO findStaff(String id){
+		return null;
 	}
 }

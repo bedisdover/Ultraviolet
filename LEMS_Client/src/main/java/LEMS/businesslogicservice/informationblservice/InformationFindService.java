@@ -1,5 +1,8 @@
 package LEMS.businesslogicservice.informationblservice;
 
+import LEMS.vo.informationvo.StaffVO;
+
+
 
 /**
  * @author 苏琰梓
@@ -22,5 +25,5 @@ public interface InformationFindService {
 	/**
 	 * 查找人员信息
 	 */
-	public void findStuffVO(String id);
+	public StaffVO findStaffVO(String id);
 }

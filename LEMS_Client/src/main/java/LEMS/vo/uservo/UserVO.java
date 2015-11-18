@@ -1,5 +1,6 @@
 package LEMS.vo.uservo;
 
+import LEMS.po.informationpo.InstitutionPO;
 import LEMS.po.userpo.UserRole;
 
 /**
@@ -24,12 +25,13 @@ public class UserVO {
      * 用户类型
      */
     private UserRole role;
-
-    public UserVO(String id, String name, String password, UserRole role) {
+    private InstitutionPO institution;
+    public UserVO(String id, String password, UserRole role, String name, InstitutionPO institution) {
         this.id = id;
         this.name = name;
         this.password = password;
         this.role = role;
+        this.institution=institution;
     }
 
     public String getId() {
@@ -46,5 +48,8 @@ public class UserVO {
 
     public UserRole getRole() {
         return role;
+    }
+    public InstitutionPO getInstitution(){
+    	return institution;
     }
 }

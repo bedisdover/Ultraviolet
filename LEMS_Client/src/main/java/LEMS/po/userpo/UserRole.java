@@ -13,5 +13,6 @@ public enum UserRole {
 	TransferClerk,
 	StoreManager,
 	GeneralManager,
-	Manager
+	Manager,
+	FinanceClerk
 }

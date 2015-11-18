@@ -7,11 +7,13 @@ import LEMS.dataservice.informationdataservice.InformationInsertDataService;
 import LEMS.dataservice.inquiredataservice.DiaryDataService;
 import LEMS.po.informationpo.StaffPO;
 import LEMS.po.inquirepo.DiaryPO;
+import LEMS.po.userpo.UserPO;
 import LEMS.vo.informationvo.AccountVO;
 import LEMS.vo.informationvo.DriverVO;
 import LEMS.vo.informationvo.InstitutionVO;
 import LEMS.vo.informationvo.StaffVO;
 import LEMS.vo.informationvo.VehicleVO;
+import LEMS.vo.uservo.UserVO;
 
 public class InformationAdd {
 	/**
@@ -35,11 +37,11 @@ public class InformationAdd {
 	/**
 	 * 增加人员信息
 	 */
-	public void addStaff(StaffVO staffvo){
+	public void addStaff(UserVO uservo){
 		try {
 			DatabaseFactory database=(DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
 			InformationInsertDataService infoinsert=database.getInformationInsertData();
-			StaffPO sp=new StaffPO(staffvo.getID(),staffvo.getPassword(),staffvo.getPosition(),staffvo.getInstitution());
+			UserPO sp=new UserPO(uservo.getId(),uservo.getPassword(),uservo.getRole(),uservo.getName(),uservo.getInstitution());
 			infoinsert.insertStaffPO(sp);;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

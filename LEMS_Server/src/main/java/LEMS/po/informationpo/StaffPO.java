@@ -3,7 +3,8 @@ package LEMS.po.informationpo;
 import java.io.Serializable;
 
 import LEMS.po.informationpo.InstitutionPO;
-import LEMS.po.informationpo.Position;
+
+import LEMS.po.userpo.UserRole;
 
 /**
  * @author 苏琰梓
@@ -27,12 +28,12 @@ public class StaffPO implements Serializable{
 	/**
 	 * 职位
 	 */
-	Position position;
-	public StaffPO(String id,String password,Position position,InstitutionPO institution){
+	UserRole role;
+	public StaffPO(String id,String password,UserRole role,InstitutionPO institution){
 		this.id = id;
 		this.institution = institution;
 		this.password=password;
-		this.position=position;
+		this.role=role;
 	}
 	
 	public String getID(){
@@ -45,7 +46,7 @@ public class StaffPO implements Serializable{
 	public String getPassword(){
 		return password;
 	}
-	public Position getPosition(){
-		return position;
+	public UserRole getRole(){
+		return role;
 	}
 }

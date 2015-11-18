@@ -8,6 +8,7 @@ import LEMS.data.inquiredata.DiaryData;
 import LEMS.dataservice.DatabaseFactory;
 import LEMS.dataservice.informationdataservice.InformationInsertDataService;
 import LEMS.dataservice.inquiredataservice.DiaryDataService;
+import LEMS.dataservice.userdataservice.UserDataService;
 
 @SuppressWarnings("serial")
 public class DatabaseFactoryImpl extends UnicastRemoteObject implements DatabaseFactory {
@@ -29,6 +30,11 @@ public class DatabaseFactoryImpl extends UnicastRemoteObject implements Database
 	}
 
 	public InformationInsertDataService getInformationInsertData() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public UserDataService getUserData() throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
