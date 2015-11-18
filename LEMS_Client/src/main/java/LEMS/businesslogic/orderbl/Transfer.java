@@ -1,6 +1,9 @@
 package LEMS.businesslogic.orderbl;
 
+import java.util.ArrayList;
+
 import LEMS.businesslogicservice.orderblservice.TransferService;
+import LEMS.po.orderpo.OrderPO;
 import LEMS.vo.ordervo.TransferVO;
 
 /**
@@ -10,6 +13,16 @@ import LEMS.vo.ordervo.TransferVO;
  */
 public class Transfer implements TransferService {
 
+	/**
+	 * 订单列表
+	 */
+	private ArrayList<OrderPO> orders;
+	
+	public Transfer() {
+		//新建订单列表
+		orders = new ArrayList<OrderPO>();
+	}
+	
 	public void addOrder(String id) {
 		// TODO Auto-generated method stub
 		
@@ -18,5 +31,9 @@ public class Transfer implements TransferService {
 	public void createTransferNote(TransferVO transferInfo) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public ArrayList<OrderPO> getOrders() {
+		return orders;
 	}
 }

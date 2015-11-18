@@ -1,5 +1,6 @@
 package LEMS.businesslogicservice.financeblservice;
 
+import LEMS.po.financepo.PayBillPO;
 import LEMS.vo.financevo.CostProfitVO;
 import LEMS.vo.financevo.PayBillVO;
 
@@ -15,7 +16,7 @@ public interface CostService {
 	 * 
 	 * @param pay 付款信息
 	 */
-	public void payBill(PayBillVO pay);
+	public PayBillPO payBill(PayBillVO pay);
 	
 	/**
 	 * 获得成本收益信息 

@@ -3,6 +3,7 @@ package LEMS.businesslogic.orderbl;
 import LEMS.businesslogicservice.orderblservice.OrderService;
 import LEMS.vo.ordervo.Express;
 import LEMS.vo.ordervo.GoodsVO;
+import LEMS.vo.ordervo.OrderVO;
 import LEMS.vo.ordervo.ReceiverVO;
 import LEMS.vo.ordervo.SenderVO;
 
@@ -13,24 +14,30 @@ import LEMS.vo.ordervo.SenderVO;
  */
 public class Order implements OrderService {
 
+	/**
+	 * 订单值对象
+	 */
+	private OrderVO order;
+	
+	public Order() {
+		//新建订单
+		order = new OrderVO();
+	}
+	
 	public void addSender(SenderVO sender) {
-		// TODO Auto-generated method stub
-		
+		order.setSender(sender);
 	}
 
 	public void addReceiver(ReceiverVO receiver) {
-		// TODO Auto-generated method stub
-		
+		order.setReceiver(receiver);
 	}
 
 	public void addGoodsInfo(GoodsVO goods) {
-		// TODO Auto-generated method stub
-		
+		order.setGoodsInfo(goods);
 	}
 
 	public void chooseType(Express type) {
-		// TODO Auto-generated method stub
-		
+		order.setExpressType(type);
 	}
 
 	public String createID() {

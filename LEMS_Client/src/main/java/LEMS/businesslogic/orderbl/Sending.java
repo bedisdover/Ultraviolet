@@ -1,6 +1,9 @@
 package LEMS.businesslogic.orderbl;
 
+import java.util.ArrayList;
+
 import LEMS.businesslogicservice.orderblservice.SendingService;
+import LEMS.po.orderpo.OrderPO;
 import LEMS.vo.ordervo.DeliveryVO;
 
 /**
@@ -10,6 +13,16 @@ import LEMS.vo.ordervo.DeliveryVO;
  */
 public class Sending implements SendingService {
 
+	/**
+	 * 订单列表
+	 */
+	private ArrayList<OrderPO> orders;
+	
+	public Sending() {
+		//新建订单列表
+		orders = new ArrayList<OrderPO>();
+	}
+	
 	public void addOrder(String id) {
 		// TODO Auto-generated method stub
 		
@@ -20,4 +33,7 @@ public class Sending implements SendingService {
 		
 	}
 
+	public ArrayList<OrderPO> getOrders() {
+		return orders;
+	}
 }

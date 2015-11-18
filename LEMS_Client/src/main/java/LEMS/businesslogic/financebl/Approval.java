@@ -1,6 +1,7 @@
 package LEMS.businesslogic.financebl;
 
 import LEMS.businesslogicservice.financeblservice.ApprovalService;
+import LEMS.vo.financevo.DocumentState;
 import LEMS.vo.financevo.DocumentVO;
 
 /**
@@ -11,13 +12,11 @@ import LEMS.vo.financevo.DocumentVO;
 public class Approval implements ApprovalService {
 
 	public void accepted(DocumentVO document) {
-		// TODO Auto-generated method stub
-		
+		document.setState(DocumentState.accepted);
 	}
 
 	public void unaccepted(DocumentVO document) {
-		// TODO Auto-generated method stub
-		
+		document.setState(DocumentState.unaccepted);		
 	}
 
 }

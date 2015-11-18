@@ -1,0 +1,295 @@
+
+
+
+
+
+<html>
+	<head>
+		
+		<title>Teaching Support System: Error</title>
+		<link href="/tss/main.css;jsessionid=1EFD5EC7B2FEAA46E3624D8E9A29CBBB" type="text/css" rel="stylesheet">
+	</head>
+	<body>
+		<table cellpadding="0" cellspacing="0" width="100%">
+		<tr><td>
+		<!--Begin Head Table-->
+			
+
+    <table class="headtable" border="0" cellpadding="0" cellspacing="0">
+        <tr valign="middle">
+            <td height="80">
+                <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td valign="middle">
+                            <table border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td height="16" colspan="2"><img class="spacerimg"></td>
+                                </tr>
+                                <tr>
+                                    <td width="20"><img class="spacerimg"></td>
+                                    <td><img src="/tss/pic/njusititle.gif;jsessionid=1EFD5EC7B2FEAA46E3624D8E9A29CBBB"></td>
+                                </tr>
+                                <tr>
+                                    <td height="16" colspan="2"><img class="spacerimg"></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td valign="top" align="right">
+                <table class="searchtable" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td class="searchtable-corner"><img class="spacerimg"></td>
+                        <td width="20" valign="middle"><img class="spacerimg"></td>
+<!--                         <td><a href="https://software.nju.edu.cn/webmail" target="_blank">MAIL</a></td>-->
+                        <td><a href="https://218.94.159.102/GlobalLogin/mymail.jsp" target="_blank">MAIL</a></td>
+                        <td class="dividerimg" width="27">&nbsp;&nbsp;</td>
+                        <td><a href="http://218.94.159.102/pis/" target="_blank">PIS</a></td>
+                        <td class="dividerimg" width="27">&nbsp;&nbsp;</td>
+                        <td><a href="http://218.94.159.102/css/" target="_blank">CSS</a></td>
+                        <td class="dividerimg" width="27">&nbsp;&nbsp;</td>
+                        <td><a href="http://software.nju.edu.cn" target="_blank">SWI</a></td>
+                        <td class="dividerimg" width="27">&nbsp;&nbsp;</td>
+                        <td><a href="http://www.nju.edu.cn" target="_blank">NJU</a></td>
+                        <td class="dividerimg" width="27">&nbsp;&nbsp;</td>
+                        <td><a href="/tss/en/c0973/error/techCenter.html;jsessionid=1EFD5EC7B2FEAA46E3624D8E9A29CBBB">Bug Report</a></td>
+                        <td width="20" valign="middle"><img class="spacerimg"></td>
+                    </tr>
+                    <tr bgcolor="black">
+                        <td height="20" colspan="14"><img class="spacerimg"></td>
+                    </tr>
+                    <tr bgcolor="black" valign="bottom">
+                        <td colspan="14" align="center">
+<!--
+                            <form name="search" method="get" action="http://www.google.com/search" target="_blank">
+                                <INPUT TYPE="hidden" name="hl"  value="zh-CN" />
+                                <INPUT TYPE="hidden" name="ie"  value="gbk" />
+                                <input type="text" name="q" size="30"> &nbsp;&nbsp;
+                                <INPUT TYPE="hidden" name="q"  value="site:218.94.159.102" />
+                                <input type="image" name="submit" src="/tss/pic/search.gif;jsessionid=1EFD5EC7B2FEAA46E3624D8E9A29CBBB" />
+                            </form>
+-->
+                            <form name="search" method="get" action="http://www.baidu.com/s" target="_blank">
+                            <table><tr>
+                                <TD>
+                                    <INPUT TYPE="hidden" name="ie" value="gbk" />
+                                    <INPUT TYPE="hidden" name="ct" value="2097152" />
+                                    <INPUT TYPE="hidden" name="si" value="218.94.159.102" />
+                                    <input type="text" name="word" size="20"> &nbsp;&nbsp;
+                                </TD>
+                                <TD>
+                                    &nbsp;<input type="image" name="submit" src="/tss/pic/search.gif;jsessionid=1EFD5EC7B2FEAA46E3624D8E9A29CBBB" />
+                                </TD>
+                            </tr></table>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <!--Begin Top Navigation-->
+    <table class="topnav" width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr bgcolor="#99afc4">
+            <td height="4"><img class="spacerimg"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                <table class="topnav" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td height="20" width="20" valign="middle"><img class="spacerimg"></td>
+                        <td><a href="/tss/en/home/index.html;jsessionid=1EFD5EC7B2FEAA46E3624D8E9A29CBBB" >TSS Home</a></td>
+                        <td class="dividerimg" width="27">&nbsp;&nbsp;</td>
+                        <td><a href="/tss/en/home/courselist.html;jsessionid=1EFD5EC7B2FEAA46E3624D8E9A29CBBB" >Course List</a></td>
+
+                        
+                            <td class="dividerimg" width="27">&nbsp;&nbsp;</td>
+                            <td><a href= "/tss/en/c0973/signin.html;jsessionid=1EFD5EC7B2FEAA46E3624D8E9A29CBBB?url=http%3A%2F%2F218.94.159.102%2Ftss%2Fen%2Fc0973%2Ferror%2Fnoright.html%3Bjsessionid%3D1EFD5EC7B2FEAA46E3624D8E9A29CBBB">Sign In
+                            </a></td>
+                        
+                        <td class="dividerimg" width="27">&nbsp;&nbsp;</td>
+                        <td><a href="/tss/en/c0973/faq.html;jsessionid=1EFD5EC7B2FEAA46E3624D8E9A29CBBB" >FAQ</a></td>
+                        <td class="dividerimg" width="27">&nbsp;&nbsp;</td>
+                        <td><a href="/tss/en/c0973/about.html;jsessionid=1EFD5EC7B2FEAA46E3624D8E9A29CBBB" >About</a></td>
+                        
+                    </tr>
+                </table>
+            </td>
+            <td align="right"><table class="location" border="0" cellpadding="0" cellspacing="0">
+                <tr><td nowrap>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Your position:
+                    <a href="/tss/en/home/index.html;jsessionid=1EFD5EC7B2FEAA46E3624D8E9A29CBBB">TSS Home</a>
+                    
+                        -&gt;
+                        <a href="/tss/en/c0973/index.html;jsessionid=1EFD5EC7B2FEAA46E3624D8E9A29CBBB">
+                            软件工程与计算 II
+                        </a>
+                    
+                    
+                     
+                    -&gt;noright
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </td></tr>
+            </table></td>
+        </tr>
+        <tr bgcolor="#99afc4">
+            <td height="2"><img class="spacerimg"></td>
+            <td></td>
+        </tr>
+    </table>
+    <!--End Top Navigation-->
+
+		<!--End Head Table-->
+		</td></tr>
+		<tr><td>
+		<table class="bodytable" border="0" width="100%" cellpadding="0" cellspacing="0">
+			<tr>
+				<td class="navtable">
+					
+<table class="navtable" border="0" cellpadding="0" cellspacing="0">
+	<tr bgcolor="white" valign="middle">
+		
+		<td align="center" height="40"> Good evening 
+			
+		</td>
+
+	</tr>
+	<tr bgcolor="#98b1c4">
+		<td height="20">
+			<img src="/tss/pic/spacer.gif;jsessionid=1EFD5EC7B2FEAA46E3624D8E9A29CBBB" width="10">
+			<font color="white">Course Navigation</font>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<!--Begin Left Navigation-->
+			<table class="navtable" border="0" cellpadding="0" cellspacing="0">
+				
+					
+
+					<tr  >
+						<td width="10"><img class="spacerimg"></td>
+						<td><img class="spacerimg"></td>
+						<td height="28" valign="middle">
+							<a href="/tss/en/c0973/index.html;jsessionid=1EFD5EC7B2FEAA46E3624D8E9A29CBBB">Course Home</a>
+						</td>
+					</tr>
+					<tr  >
+						<td width="10"><img class="spacerimg"></td>
+						<td><img class="spacerimg"></td>
+						<td height="28" valign="middle">
+							<a href="/tss/en/c0973/announcement/index.html;jsessionid=1EFD5EC7B2FEAA46E3624D8E9A29CBBB">Announcement</a>
+						</td>
+					</tr>
+					<tr  >
+						<td width="10"><img class="spacerimg"></td>
+						<td><img class="spacerimg"></td>
+						<td height="28" valign="middle">
+							<a href="/tss/en/c0973/slide/index.html;jsessionid=1EFD5EC7B2FEAA46E3624D8E9A29CBBB">Lecture Notes</a>
+						</td>
+					</tr>
+					<tr  >
+						<td width="10"><img class="spacerimg"></td>
+						<td><img class="spacerimg"></td>
+						<td height="28" valign="middle">
+							<a href="/tss/en/c0973/assignment/index.html;jsessionid=1EFD5EC7B2FEAA46E3624D8E9A29CBBB">Assignment</a>
+						</td>
+					</tr>
+					<tr  >
+						<td width="10"><img class="spacerimg"></td>
+						<td><img class="spacerimg"></td>
+						<td height="28" valign="middle">
+							<a href="/tss/en/c0973/forum/index.html;jsessionid=1EFD5EC7B2FEAA46E3624D8E9A29CBBB">Forum</a>
+						</td>
+					</tr>
+					<tr  >
+						<td width="10"><img class="spacerimg"></td>
+						<td><img class="spacerimg"></td>
+						<td height="28" valign="middle">
+							<a href="/tss/en/c0973/score/listScoresheet.html;jsessionid=1EFD5EC7B2FEAA46E3624D8E9A29CBBB">Score</a>
+						</td>
+					</tr>
+					<tr  >
+						<td width="10"><img class="spacerimg"></td>
+						<td><img class="spacerimg"></td>
+						<td height="28" valign="middle">
+							<a href="/tss/en/c0973/note/index.html;jsessionid=1EFD5EC7B2FEAA46E3624D8E9A29CBBB">Weekly notes</a>
+						</td>
+					</tr>
+			
+			</table>
+			<!--End Left Navigation-->
+		</td>
+	</tr>
+</table>
+
+
+
+				</td>
+				<td class="bodytable">
+					<!--BEGIN BODY TABLE-->
+					<table class="bodytable" border="0"  cellpadding="0" cellspacing="0">
+						<tr>
+							<td width="10"><img class="spacerimg"></td>
+							<td class="breadcrumb"  bgcolor="#f8fafc">
+								<!--location-->&nbsp;
+							</td>
+						</tr>
+						<tr>
+							<td><img class="spacerimg"></td>
+							<td valign="top"  bgcolor="#f8fafc" class="bodytext">
+									<center>
+	<h2>
+		Technique Support Center
+	</h2>
+
+	<h3><font color="#ff0000">
+		Sorry, you are not allowed to access the resource or complete the operation.
+	</font></h3>
+
+</center>
+
+									<br/>
+							</td>
+						</tr>
+					</table>
+					<!--END BODY TABLE-->
+				</td>
+			</tr>
+		</table>
+		</td></tr>
+		<tr><td>
+		<iframe width="1" height="1" frameborder="0" scrolling="no" src="/tss/active.html;jsessionid=1EFD5EC7B2FEAA46E3624D8E9A29CBBB"></iframe>
+		<!--Begin Footer Table-->
+		<table class="footertable" width="100%" border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+					<table class="footertable" border="0" cellpadding="0" cellspacing="0">
+						<tr>
+							<td height="20" width="20" valign="middle"><img class="spacerimg"></td>
+							<td><a href="http://software.nju.edu.cn" target="_blank">Software Institute</a></td>
+							<td class="dividerimg" width="27">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+							<td><a href="http://www.nju.edu.cn" target="_blank">Nanjing University</a></td>
+							<td class="dividerimg" width="27">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+
+							<td>Copyright 2012 Software Institute, Nanjing University</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<!--End Footer Table-->
+		</td></tr>
+	</table>
+<script src="http://www.google-analytics.com/urchin.js" 
+type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-2258925-1";
+urchinTracker();
+</script>
+	</body>
+</html>

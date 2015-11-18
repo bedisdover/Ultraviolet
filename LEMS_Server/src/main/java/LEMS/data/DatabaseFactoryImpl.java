@@ -6,7 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 import LEMS.data.inquiredata.CostBenefitListData;
 import LEMS.data.inquiredata.DiaryData;
 import LEMS.data.userdata.UserData;
-import LEMS.dataservice.DatabaseFactory;
+import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.informationdataservice.InformationInsertDataService;
 import LEMS.dataservice.inquiredataservice.DiaryDataService;
 import LEMS.dataservice.userdataservice.UserDataService;

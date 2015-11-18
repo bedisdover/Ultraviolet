@@ -3,7 +3,7 @@ package LEMS.businesslogic.userbl;
 import java.rmi.Naming;
 import java.util.ArrayList;
 
-import LEMS.dataservice.DatabaseFactory;
+import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.informationdataservice.InformationInsertDataService;
 import LEMS.dataservice.userdataservice.UserDataService;
 import LEMS.po.informationpo.StaffPO;

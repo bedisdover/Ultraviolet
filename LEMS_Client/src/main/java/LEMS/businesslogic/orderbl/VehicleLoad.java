@@ -1,6 +1,9 @@
 package LEMS.businesslogic.orderbl;
 
+import java.util.ArrayList;
+
 import LEMS.businesslogicservice.orderblservice.VehicleLoadService;
+import LEMS.po.orderpo.OrderPO;
 import LEMS.vo.ordervo.VehicleLoadVO;
 
 /**
@@ -10,6 +13,17 @@ import LEMS.vo.ordervo.VehicleLoadVO;
  */
 public class VehicleLoad implements VehicleLoadService {
 
+	/**
+	 * 订单列表
+	 */
+	private ArrayList<OrderPO> orders;
+	
+	public VehicleLoad() {
+		//新建订单列表
+		orders = new ArrayList<OrderPO>();
+		// TODO Auto-generated constructor stub
+	}
+	
 	public void addOrder(String id) {
 		// TODO Auto-generated method stub
 		
@@ -19,5 +33,8 @@ public class VehicleLoad implements VehicleLoadService {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	public ArrayList<OrderPO> getOrders() {
+		return orders;
+	}
 }

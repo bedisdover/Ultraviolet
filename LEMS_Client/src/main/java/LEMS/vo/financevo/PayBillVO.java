@@ -1,5 +1,6 @@
 package LEMS.vo.financevo;
 
+import LEMS.po.userpo.UserPO;
 import LEMS.vo.informationvo.AccountVO;
 
 /**
@@ -24,7 +25,10 @@ public class PayBillVO {
 	 * 付款金额
 	 */
 	private double amount;
-	//TODO 付款人
+	/**
+	 * 付款人
+	 */
+	private UserPO payer;
 	/**
 	 * 付款账号
 	 */
@@ -79,5 +83,9 @@ public class PayBillVO {
 
 	public String getRemark() {
 		return remark;
+	}
+
+	public UserPO getPayer() {
+		return payer;
 	}
 }

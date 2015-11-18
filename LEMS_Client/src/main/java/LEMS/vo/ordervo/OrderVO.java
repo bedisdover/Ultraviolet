@@ -39,16 +39,17 @@ public class OrderVO {
 		
 	}
 	
-	public OrderVO(SenderVO sender, ReceiverVO receiver, GoodsVO goodsInfo, Express expressType, long amount,
-			String time, String id) {
-		this.sender = sender;
-		this.receiver = receiver;
-		this.goodsInfo = goodsInfo;
-		this.expressType = expressType;
-		this.amount = amount;
-		this.time = time;
-		this.id = id;
-	}
+	//TODO 极有可能不用的构造函数
+//	public OrderVO(SenderVO sender, ReceiverVO receiver, GoodsVO goodsInfo, Express expressType, long amount,
+//			String time, String id) {
+//		this.sender = sender;
+//		this.receiver = receiver;
+//		this.goodsInfo = goodsInfo;
+//		this.expressType = expressType;
+//		this.amount = amount;
+//		this.time = time;
+//		this.id = id;
+//	}
 
 	public SenderVO getSender() {
 		return sender;

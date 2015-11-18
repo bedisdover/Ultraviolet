@@ -3,7 +3,7 @@ package LEMS.init;
 import java.rmi.registry.LocateRegistry;
 
 import LEMS.data.DatabaseFactoryImpl;
-import LEMS.dataservice.DatabaseFactory;
+import LEMS.dataservice.factory.DatabaseFactory;
 
 /**
  * @author 章承尧

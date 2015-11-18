@@ -1,4 +1,4 @@
-package LEMS.dataservice;
+package LEMS.dataservice.factory;
 
 import java.rmi.Remote;
 
@@ -15,4 +15,5 @@ public interface DatabaseFactory extends Remote{
 	public CostBenefitListDataService getCostBenefitList() throws RemoteException;
 	public InformationInsertDataService getInformationInsertData() throws RemoteException;
 	public UserDataService getUserData() throws RemoteException;
+	
 }

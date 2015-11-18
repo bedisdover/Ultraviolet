@@ -1,6 +1,7 @@
 package LEMS.businesslogic.financebl;
 
 import LEMS.businesslogicservice.financeblservice.CostService;
+import LEMS.po.financepo.PayBillPO;
 import LEMS.vo.financevo.CostProfitVO;
 import LEMS.vo.financevo.PayBillVO;
 
@@ -11,9 +12,9 @@ import LEMS.vo.financevo.PayBillVO;
  */
 public class Cost implements CostService {
 
-	public void payBill(PayBillVO pay) {
-		// TODO Auto-generated method stub
-		
+	public PayBillPO payBill(PayBillVO pay) {
+		//根据付款单值对象直接生成持久化对象
+		return new PayBillPO(pay);
 	}
 
 	public CostProfitVO costProfit(String date) {

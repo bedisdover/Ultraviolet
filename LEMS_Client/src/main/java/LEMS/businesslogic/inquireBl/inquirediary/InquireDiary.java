@@ -2,7 +2,7 @@ package LEMS.businesslogic.inquirebl.inquirediary;
 
 import java.rmi.Naming;
 import LEMS.businesslogicservice.inquireblservice.InquireDiaryService;
-import LEMS.dataservice.DatabaseFactory;
+import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.inquiredataservice.DiaryDataService;
 import LEMS.po.inquirepo.DiaryPO;
 import LEMS.vo.inquirevo.DiaryVO;

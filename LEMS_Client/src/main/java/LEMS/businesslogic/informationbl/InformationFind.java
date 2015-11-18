@@ -6,9 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-
-
-import LEMS.dataservice.DatabaseFactory;
+import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.informationdataservice.InformationInsertDataService;
 import LEMS.dataservice.userdataservice.UserDataService;
 import LEMS.po.userpo.UserPO;

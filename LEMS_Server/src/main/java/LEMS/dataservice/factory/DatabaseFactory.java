@@ -1,4 +1,4 @@
-package LEMS.dataservice;
+package LEMS.dataservice.factory;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

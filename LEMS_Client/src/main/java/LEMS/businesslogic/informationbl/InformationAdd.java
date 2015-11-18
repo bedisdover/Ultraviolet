@@ -2,7 +2,7 @@ package LEMS.businesslogic.informationbl;
 
 import java.rmi.Naming;
 
-import LEMS.dataservice.DatabaseFactory;
+import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.informationdataservice.InformationInsertDataService;
 import LEMS.dataservice.inquiredataservice.DiaryDataService;
 import LEMS.po.informationpo.StaffPO;
