@@ -5,12 +5,24 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import LEMS.dataservice.userdataservice.UserDataService;
 import LEMS.po.userpo.UserPO;
 import LEMS.po.userpo.UserRole;
 
-public class UserData {
+@SuppressWarnings("serial")
+public class UserData extends UnicastRemoteObject implements UserDataService{
+	public UserData() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public void insert(UserPO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
 
 	public void getUserDatabase(UserPO po) throws RemoteException{
 		
@@ -161,18 +173,7 @@ public class UserData {
 		}
 		return ua;
 	}
-	public static void main(String[] args){
-		UserData u=new UserData();
-		ArrayList<UserPO> ua;
-		UserPO upo=null;;
-		try {
-			ua=u.find(UserRole.Manager);
-			upo=ua.get(1);
-			
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println(upo.getId()+" "+upo.getPassword()+" "+upo.getRole()+" "+upo.getName());
-	}
+	
+
+	
 }

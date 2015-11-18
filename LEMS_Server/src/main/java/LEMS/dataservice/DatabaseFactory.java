@@ -3,8 +3,7 @@ package LEMS.dataservice;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import LEMS.data.inquiredata.CostBenefitListData;
-import LEMS.data.inquiredata.DiaryData;
+
 import LEMS.dataservice.informationdataservice.InformationInsertDataService;
 import LEMS.dataservice.inquiredataservice.CostBenefitListDataService;
 import LEMS.dataservice.inquiredataservice.DiaryDataService;
