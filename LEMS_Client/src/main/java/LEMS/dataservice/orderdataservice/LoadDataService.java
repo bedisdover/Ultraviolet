@@ -1,5 +1,5 @@
 package LEMS.dataservice.orderdataservice;
 
-public class LoadDataService {
+public interface LoadDataService {
 
 }
