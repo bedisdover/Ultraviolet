@@ -1,7 +1,7 @@
 package LEMS.businesslogic.financebl.mock;
 
 import LEMS.po.financepo.DocumentPO;
-import LEMS.vo.financevo.DocumentState;
+import LEMS.po.financepo.DocumentState;
 
 public class MockApproval {
 	

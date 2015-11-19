@@ -1,4 +1,4 @@
-package LEMS.vo.financevo;
+package LEMS.po.financepo;
 
 /**
  * @author 宋益明

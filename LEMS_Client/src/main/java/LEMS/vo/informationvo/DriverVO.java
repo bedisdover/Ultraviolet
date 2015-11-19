@@ -2,6 +2,8 @@ package LEMS.vo.informationvo;
 
 import java.io.Serializable;
 
+import LEMS.po.informationpo.Gender;
+
 /**
  * @author 苏琰梓
  * 司机信息值对象

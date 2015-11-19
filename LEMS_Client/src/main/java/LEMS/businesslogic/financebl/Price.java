@@ -9,7 +9,7 @@ import LEMS.po.orderpo.Express;
 /**
  * @author 宋益明
  * 
- *         制定价格任务
+ * 制定价格任务
  */
 public class Price implements PriceService {
 

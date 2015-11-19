@@ -1,5 +1,7 @@
 package LEMS.vo.financevo;
 
+import LEMS.po.financepo.DocumentState;
+
 /**
  * @author 宋益明
  * 
