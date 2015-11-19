@@ -1,6 +1,6 @@
 package LEMS.businesslogicservice.orderblservice;
 
-import LEMS.vo.ordervo.Express;
+import LEMS.po.orderpo.Express;
 import LEMS.vo.ordervo.GoodsVO;
 import LEMS.vo.ordervo.ReceiverVO;
 import LEMS.vo.ordervo.SenderVO;

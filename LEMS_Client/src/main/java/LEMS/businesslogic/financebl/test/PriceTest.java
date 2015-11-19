@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import LEMS.businesslogic.financebl.mock.MockPrice;
 import LEMS.po.financepo.PricePO;
-import LEMS.vo.ordervo.Express;
+import LEMS.po.orderpo.Express;
 
 public class PriceTest {
 

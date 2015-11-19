@@ -1,6 +1,6 @@
 package LEMS.businesslogic.orderbl.mock;
 
-import LEMS.vo.ordervo.Express;
+import LEMS.po.orderpo.Express;
 import LEMS.vo.ordervo.GoodsVO;
 import LEMS.vo.ordervo.OrderVO;
 import LEMS.vo.ordervo.ReceiverVO;

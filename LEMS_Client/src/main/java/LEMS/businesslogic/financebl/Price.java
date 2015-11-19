@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import LEMS.businesslogicservice.financeblservice.PriceService;
 import LEMS.po.financepo.PricePO;
-import LEMS.vo.ordervo.Express;
+import LEMS.po.orderpo.Express;
 
 /**
  * @author 宋益明
@@ -31,5 +31,4 @@ public class Price implements PriceService {
 		//更新价格
 		priceList.put(type, price);
 	}
-
 }

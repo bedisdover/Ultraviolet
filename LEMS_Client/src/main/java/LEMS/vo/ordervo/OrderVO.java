@@ -1,5 +1,7 @@
 package LEMS.vo.ordervo;
 
+import LEMS.po.orderpo.Express;
+
 /**
  * @author 宋益明
  * 

@@ -1,6 +1,6 @@
 package LEMS.businesslogicservice.financeblservice;
 
-import LEMS.vo.ordervo.Express;
+import LEMS.po.orderpo.Express;
 
 /**
  * @author 宋益明

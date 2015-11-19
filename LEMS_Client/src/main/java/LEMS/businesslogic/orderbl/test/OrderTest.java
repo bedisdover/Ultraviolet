@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import LEMS.businesslogic.orderbl.mock.MockOrder;
-import LEMS.vo.ordervo.Express;
+import LEMS.po.orderpo.Express;
 import LEMS.vo.ordervo.GoodsVO;
 import LEMS.vo.ordervo.OrderVO;
 import LEMS.vo.ordervo.ReceiverVO;

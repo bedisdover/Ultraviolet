@@ -3,7 +3,7 @@ package LEMS.businesslogic.financebl.mock;
 import java.util.HashMap;
 
 import LEMS.po.financepo.PricePO;
-import LEMS.vo.ordervo.Express;
+import LEMS.po.orderpo.Express;
 
 public class MockPrice {
 	

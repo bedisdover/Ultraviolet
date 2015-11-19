@@ -2,7 +2,6 @@ package LEMS.po.orderpo;
 
 import java.io.Serializable;
 
-import LEMS.vo.ordervo.Express;
 import LEMS.vo.ordervo.GoodsVO;
 import LEMS.vo.ordervo.ReceiverVO;
 import LEMS.vo.ordervo.SenderVO;
