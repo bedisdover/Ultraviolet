@@ -21,7 +21,16 @@ public class InformationAdd {
 	 * 增加司机信息
 	 */
 	public void addDriverVO(DriverVO drivervo){
-
+		try {
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
+			InformationFactory inf=database.getInformationFactory();
+			InformationInsertDataService infoinsert=inf.getInformationInsertData();
+//			UserPO sp=new UserPO(uservo.getId(),uservo.getPassword(),uservo.getRole(),uservo.getName(),uservo.getInstitution());
+//			infoinsert.insertStaffPO(sp);;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	/**
 	 * 增加车辆信息
