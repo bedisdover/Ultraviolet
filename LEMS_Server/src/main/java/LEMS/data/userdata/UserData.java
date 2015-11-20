@@ -6,7 +6,17 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+
+
+
+
+
 
 import LEMS.dataservice.userdataservice.UserDataService;
 import LEMS.po.userpo.UserPO;
@@ -18,7 +28,11 @@ public class UserData extends UnicastRemoteObject implements UserDataService{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	public static final String DBDRIVER="org.gjt.mm.mysql.Driver";
+	public static final String DBURL="jdbc:mysql://localhost:3306/mldn";
+	public static final String DBUSER="root";
+	public static final String DBPASS="admin";
 	public void insert(UserPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		
@@ -173,7 +187,40 @@ public class UserData extends UnicastRemoteObject implements UserDataService{
 		}
 		return ua;
 	}
-	
+	public static void main(String[] args){
+		Connection conn=null;
+		PreparedStatement pstmt = null; 
+		ResultSet result=null;
+		String sql="SELECT id,password,role,name,institutionid,institutionlocation FROM user";
+		try {
+			Class.forName(DBDRIVER);
+			conn = DriverManager.getConnection(DBURL, DBUSER, DBPASS);
+			pstmt = conn.prepareStatement(sql) ;
+			result=pstmt.executeQuery();
+			while(result.next()){
+				String id=result.getString(1);
+				String password=result.getString(2);
+				String role=result.getString(3);
+				String name=result.getString(4);
+				String institutionid=result.getString(5);
+				String institutionlocation=result.getString(6);
+				System.out.println(id+" "+password+" "+role+" "+name+" "+institutionid+" "+institutionlocation);
+				
+				
+			}
+			result.close();
+				pstmt.close();
+				conn.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
 
 	
 }

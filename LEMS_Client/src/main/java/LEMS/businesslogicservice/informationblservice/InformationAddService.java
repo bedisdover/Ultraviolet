@@ -5,6 +5,7 @@ import LEMS.vo.informationvo.DriverVO;
 import LEMS.vo.informationvo.InstitutionVO;
 import LEMS.vo.informationvo.StaffVO;
 import LEMS.vo.informationvo.VehicleVO;
+import LEMS.vo.uservo.UserVO;
 
 /**
  * @author 苏琰梓
@@ -27,10 +28,10 @@ public interface InformationAddService {
 	/**
 	 * 增加人员信息
 	 */
-	public void addStuffVO(StaffVO stuffvo);
+	public void addStaff(UserVO staffvo);
 	/**
 	 * 增加账户信息
 	 */
-	public void addAccoutVO(AccountVO accoutvo);
+	public void addAccout(AccountVO accoutvo);
 	
 }

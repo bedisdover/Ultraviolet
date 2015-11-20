@@ -2,6 +2,7 @@ package LEMS.businesslogic.informationbl;
 
 import java.rmi.Naming;
 
+import LEMS.businesslogicservice.informationblservice.InformationAddService;
 import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.InformationFactory;
 import LEMS.dataservice.informationdataservice.InformationInsertDataService;
@@ -16,7 +17,7 @@ import LEMS.vo.informationvo.StaffVO;
 import LEMS.vo.informationvo.VehicleVO;
 import LEMS.vo.uservo.UserVO;
 
-public class InformationAdd {
+public class InformationAdd implements InformationAddService{
 	/**
 	 * 增加司机信息
 	 */
@@ -65,4 +66,5 @@ public class InformationAdd {
 	public void addAccout(AccountVO accoutvo){
 		
 	}
+
 }
