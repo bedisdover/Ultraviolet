@@ -42,7 +42,16 @@ public class InboundOrderVO {
 	 */
 	ArrayList<String> operation;
 	
-	
+	public InboundOrderVO(String identity,String d,Destination des,Area ar,int r,int s,int pos){
+		id=identity;
+		inDate=d;
+		destination=des;
+		area=ar;
+		row=r;
+		stand=s;
+		position=pos;
+		
+	}
 
 	public InboundOrderVO(String identity,String d,Destination des,Area ar,int r,int s,int pos,ArrayList<String> o){
 		id=identity;

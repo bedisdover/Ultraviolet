@@ -3,7 +3,8 @@ package LEMS.vo.storevo;
 import java.util.ArrayList;
 
 import LEMS.po.storepo.Destination;
-import LEMS.po.storepo.LoadFormat;
+
+import LEMS.vo.ordervo.TransportType;
 /**
  * @author 周梦佳
  * OutboundOrder的值对象
@@ -24,7 +25,7 @@ public class OutboundOrderVO {
 	/**
 	 * 装运形式
 	 */
-	LoadFormat loadFormat;	
+	TransportType transportType;	
 	/**
 	 * 中转单编号或汽运编号
 	 */
@@ -34,11 +35,20 @@ public class OutboundOrderVO {
 	 */
 	ArrayList<String> operation;
 	
-	public OutboundOrderVO(String identity,String d,Destination des,LoadFormat lf,long num,ArrayList<String> o){
+	public OutboundOrderVO(String identity,String d,Destination des,TransportType tt,long num){
 		id=identity;
 		outDate=d;
 		destination=des;
-		loadFormat=lf;
+		transportType=tt;
+		transferNum=num;
+	}
+	
+	
+	public OutboundOrderVO(String identity,String d,Destination des,TransportType tt,long num,ArrayList<String> o){
+		id=identity;
+		outDate=d;
+		destination=des;
+		transportType=tt;
 		transferNum=num;
 		operation=o;
 	}
@@ -61,11 +71,11 @@ public class OutboundOrderVO {
 	public void setDestination(Destination destination) {
 		this.destination = destination;
 	}
-	public LoadFormat getLoadFormat() {
-		return loadFormat;
+	public TransportType getTransportType() {
+		return transportType;
 	}
-	public void setLoadFormat(LoadFormat loadFormat) {
-		this.loadFormat = loadFormat;
+	public void setTransportType(TransportType transportType) {
+		this.transportType = transportType;
 	}
 	public long getTransferNum() {
 		return transferNum;
