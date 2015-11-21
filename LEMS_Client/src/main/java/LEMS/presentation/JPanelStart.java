@@ -1,4 +1,4 @@
-package ui;
+package LEMS.presentation;
 
 import java.awt.*;
 import java.awt.event.*;

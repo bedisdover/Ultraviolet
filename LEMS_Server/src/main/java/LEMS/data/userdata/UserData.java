@@ -1,9 +1,5 @@
 package LEMS.data.userdata;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
@@ -18,7 +14,9 @@ import java.util.ArrayList;
 
 
 
+
 import LEMS.dataservice.userdataservice.UserDataService;
+import LEMS.po.informationpo.InstitutionPO;
 import LEMS.po.userpo.UserPO;
 import LEMS.po.userpo.UserRole;
 
@@ -49,141 +47,42 @@ public class UserData extends UnicastRemoteObject implements UserDataService{
 	}
 	public ArrayList<UserPO> find(UserRole r) throws RemoteException{
 		ArrayList<UserPO> ua=new ArrayList<UserPO>();
+		String userRole="";
 		switch(r){
-		case Manager:try {
-				FileInputStream fi=new FileInputStream("Manager.ser");
-				ObjectInputStream os=new ObjectInputStream(fi);
-				while(fi.available()>0){
-					UserPO user=(UserPO)os.readObject();
-					ua.add(user);
-				}
-				os.close();
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		break;
-		case GeneralManager:try {
-				FileInputStream fi=new FileInputStream("GeneralManager.ser");
-				ObjectInputStream os=new ObjectInputStream(fi);
-				while(fi.available()>0){
-					UserPO user=(UserPO)os.readObject();
-					ua.add(user);
-				}
-				os.close();
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			break;
-		case StoreManager:	try {
-				FileInputStream fi=new FileInputStream("StoreManager.ser");
-				ObjectInputStream os=new ObjectInputStream(fi);
-				while(fi.available()>0){
-					UserPO user=(UserPO)os.readObject();
-					ua.add(user);
-				}
-				os.close();
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			break;
-		case BusinessClerk:	try {
-				FileInputStream fi=new FileInputStream("BusinessClerk.ser");
-				ObjectInputStream os=new ObjectInputStream(fi);
-				while(fi.available()>0){
-					UserPO user=(UserPO)os.readObject();
-					ua.add(user);
-				}
-				os.close();
-		} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			break;
-		case TransferClerk:try {
-				FileInputStream fi=new FileInputStream("TransferClerk.ser");
-				ObjectInputStream os=new ObjectInputStream(fi);
-				while(fi.available()>0){
-					UserPO user=(UserPO)os.readObject();
-					ua.add(user);
-				}
-				os.close();
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		break;
-		case Courier:try {
-				FileInputStream fi=new FileInputStream("Courier.ser");
-				ObjectInputStream os=new ObjectInputStream(fi);
-				while(fi.available()>0){
-					UserPO user=(UserPO)os.readObject();
-					ua.add(user);
-				}
-				os.close();
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			break;
-		case FinanceClerk:try {
-				FileInputStream fi=new FileInputStream("FinanceClerk.ser");
-				ObjectInputStream os=new ObjectInputStream(fi);
-				while(fi.available()>0){
-					UserPO user=(UserPO)os.readObject();
-					ua.add(user);
-				}
-				os.close();
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			break;
+		case Manager:userRole="Manager";break;
+		case GeneralManager:userRole="GeneralManager";break;
+		case StoreManager:userRole="StoreManager";break;
+		case BusinessClerk:userRole="BusinessClerk";break;
+		case TransferClerk:userRole="TransferClerk";break;
+		case Courier:userRole="Courier";break;
+		case FinanceClerk:userRole="FinanceClerk";break;
 		default:break;
+		}
+		Connection conn=null;
+		PreparedStatement pstmt = null; 
+		ResultSet result=null;
+		String sql="SELECT id,password,role,name,institutionid,institutionlocation FROM user";
+		try {
+			Class.forName(DBDRIVER);
+			conn = DriverManager.getConnection(DBURL, DBUSER, DBPASS);
+			pstmt = conn.prepareStatement(sql) ;
+			result=pstmt.executeQuery();
+			while(result.next()){
+				if(result.getString(3).equals(userRole)){
+					InstitutionPO ipo=new InstitutionPO(result.getString(5),result.getString(6));
+					UserPO upo=new UserPO(result.getString(1),result.getString(2),r,result.getString(4),ipo);
+					ua.add(upo);
+				}					
+			}
+			result.close();
+				pstmt.close();
+				conn.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return ua;
 	}
