@@ -1,0 +1,2 @@
+SenderVO 和 ReceiverVO 没必要区分开来
+所有涉及时间的对象均用Date类实现，而不用String

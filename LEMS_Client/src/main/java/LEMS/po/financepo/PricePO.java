@@ -17,7 +17,7 @@ public class PricePO {
 	 */
 	private static HashMap<Express, Double> price;
 	
-	//TODO 单例化，确保程序中值存在一个对象
+	//TODO 单例化，确保程序中只存在一个对象
 	private PricePO() {
 		price = new HashMap<Express, Double>();
 //		init();

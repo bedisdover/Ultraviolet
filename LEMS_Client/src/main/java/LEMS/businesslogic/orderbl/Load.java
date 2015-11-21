@@ -40,18 +40,4 @@ public class Load implements LoadService {
 	public ArrayList<OrderPO> getOrders() {
 		return orders;
 	}
-	
-//	public static void main(String[] args) {
-//		try {
-//			DatabaseFactory database = (DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
-//			OrderFactory orderFactory = (OrderFactory)database;
-//			OrderDataService dataService = orderFactory.getOrderData();
-//			OrderPO order = dataService.find(12345678);
-//			System.out.println(order.getId());
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//	}
 }
