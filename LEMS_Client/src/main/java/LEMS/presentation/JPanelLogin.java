@@ -5,6 +5,11 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
+import LEMS.businesslogic.userbl.UserLogin;
+import LEMS.po.userpo.UserRole;
+import LEMS.presentation.informationui.JPanelManagement;
+import LEMS.vo.uservo.UserVO;
+
 /**
  * @author 苏琰梓
  * 登陆界面
@@ -65,12 +70,34 @@ public class JPanelLogin extends JPanel{
 		but1.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				final String name = textName.getText();
+				@SuppressWarnings("deprecation")
 				final String password = textPassword.getText();
-
-
-
-				//暂定点击登陆后跳转到管理员界面
-				mainFrame.setContentPane(new JPanelManagement(mainFrame));
+				String role=(String)comboBox.getSelectedItem();
+				UserLogin ul=new UserLogin();
+				UserVO uvo=null;
+				switch(role){
+				case "管理员":uvo=ul.login(name,password,UserRole.Manager);break;
+				case "总经理":uvo=ul.login(name,password,UserRole.GeneralManager);break;
+				case "仓库管理人员":uvo=ul.login(name,password,UserRole.StoreManager);break;
+				case "财务人员":uvo=ul.login(name,password,UserRole.FinanceClerk);break;
+				case "快递员":uvo=ul.login(name,password,UserRole.Courier);break;
+				case "营业厅业务员":uvo=ul.login(name,password,UserRole.BusinessClerk);break;
+				case "中转中心业务员":uvo=ul.login(name,password,UserRole.TransferClerk);break;
+				default:break;
+				}
+				if(uvo==null){
+					System.out.println("fail");
+				}
+				else{
+					switch(uvo.getRole()){
+					//暂定点击登陆后跳转到管理员界面
+					case Manager:mainFrame.setContentPane(new JPanelManagement(mainFrame));break;
+					default:break;
+					}
+					
+				}
+				
+				
 			}
 		});
 		//点击返回按钮

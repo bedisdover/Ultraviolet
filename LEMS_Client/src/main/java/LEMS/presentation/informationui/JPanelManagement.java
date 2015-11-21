@@ -1,10 +1,13 @@
-package ui;
+package LEMS.presentation.informationui;
 
 import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
+
+import LEMS.presentation.JPanelLogin;
+import LEMS.presentation.MainFrame;
 
 /**
  * @author 苏琰梓

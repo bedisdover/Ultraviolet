@@ -1,6 +1,9 @@
-package ui;
+package LEMS.presentation.inquireui;
 
 import javax.swing.*;
+
+import LEMS.presentation.JPanelStart;
+import LEMS.presentation.MainFrame;
 
 import java.awt.*;
 import java.awt.event.*;

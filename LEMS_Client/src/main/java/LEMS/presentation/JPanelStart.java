@@ -5,6 +5,8 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
+import LEMS.presentation.inquireui.JPanelLogisticsInfo;
+
 /**
  * @author 苏琰梓
  * 开始界面
