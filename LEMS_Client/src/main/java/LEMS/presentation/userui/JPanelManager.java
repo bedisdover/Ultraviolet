@@ -1,4 +1,4 @@
-package LEMS.presentation.informationui;
+package LEMS.presentation.userui;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -14,7 +14,7 @@ import LEMS.presentation.MainFrame;
  * 管理员界面
  * 2015年11月18日
  */
-public class JPanelManagement extends JPanel{
+public class JPanelManager extends JPanel{
 	MainFrame mainFrame;
 	JLabel title = new JLabel("用户管理");
 	JButton butOut = new JButton("登出");
@@ -38,7 +38,7 @@ public class JPanelManagement extends JPanel{
 	JLabel labelLocation = new JLabel("机构所在地:");
 	JTextField textLocation = new JTextField();
 	Image im;
-	public JPanelManagement(final MainFrame mainFrame){
+	public JPanelManager(final MainFrame mainFrame){
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
 		this.setBounds(0,0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
