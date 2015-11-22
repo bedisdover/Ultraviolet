@@ -7,9 +7,11 @@ import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.InformationFactory;
 import LEMS.dataservice.informationdataservice.InformationInsertDataService;
 import LEMS.dataservice.inquiredataservice.DiaryDataService;
+import LEMS.po.informationpo.InstitutionPO;
 import LEMS.po.informationpo.StaffPO;
 import LEMS.po.inquirepo.DiaryPO;
 import LEMS.po.userpo.UserPO;
+import LEMS.po.userpo.UserRole;
 import LEMS.vo.informationvo.AccountVO;
 import LEMS.vo.informationvo.DriverVO;
 import LEMS.vo.informationvo.InstitutionVO;
@@ -54,7 +56,7 @@ public class InformationAdd implements InformationAddService{
 			InformationFactory inf=database.getInformationFactory();
 			InformationInsertDataService infoinsert=inf.getInformationInsertData();
 			UserPO sp=new UserPO(uservo.getId(),uservo.getPassword(),uservo.getRole(),uservo.getName(),uservo.getInstitution());
-			infoinsert.insertStaffPO(sp);;
+			infoinsert.insert(sp);;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -66,5 +68,9 @@ public class InformationAdd implements InformationAddService{
 	public void addAccout(AccountVO accoutvo){
 		
 	}
-
+	public static void main(String[] args){
+		InformationAdd ia=new InformationAdd();
+		InstitutionPO ipo=new InstitutionPO("","");
+		ia.addStaff(new UserVO("fc00000","123456",UserRole.FinanceClerk,"苏燕子",ipo));		
+	}
 }

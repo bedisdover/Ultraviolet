@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 
 
+
 import LEMS.dataservice.userdataservice.UserDataService;
 import LEMS.po.informationpo.InstitutionPO;
 import LEMS.po.userpo.UserPO;
@@ -32,8 +33,42 @@ public class UserData extends UnicastRemoteObject implements UserDataService{
 	public static final String DBUSER="root";
 	public static final String DBPASS="admin";
 	public void insert(UserPO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		String userRole="";
+		switch(po.getRole()){
+		case Manager:userRole="Manager";break;
+		case GeneralManager:userRole="GeneralManager";break;
+		case StoreManager:userRole="StoreManager";break;
+		case BusinessClerk:userRole="BusinessClerk";break;
+		case TransferClerk:userRole="TransferClerk";break;
+		case Courier:userRole="Courier";break;
+		case FinanceClerk:userRole="FinanceClerk";break;
+		default:break;
+		}
+		InstitutionPO ipo=po.getInstitution();
+		Connection conn=null;
+		PreparedStatement pstmt = null; 
+		String sql="INSERT INTO user(id,password,role,name,institutionid,institutionlocation) VALUES (?,?,?,?,?,?) ";
+		try {
+			Class.forName(DBDRIVER);
+			conn = DriverManager.getConnection(DBURL, DBUSER, DBPASS);
+			pstmt = conn.prepareStatement(sql) ;
+			pstmt.setString(1,po.getId());
+			pstmt.setString(2,po.getPassword());
+			pstmt.setString(3,userRole);
+			pstmt.setString(4,po.getName());
+			pstmt.setString(5,ipo.getID());
+			pstmt.setString(6,ipo.getLocation());
+			pstmt.executeUpdate();
+			pstmt.close() ;
+			conn.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	public void getUserDatabase(UserPO po) throws RemoteException{

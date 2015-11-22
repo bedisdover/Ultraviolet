@@ -10,15 +10,8 @@ import LEMS.dataservice.inquiredataservice.DiaryDataService;
 import LEMS.dataservice.userdataservice.UserDataService;
 
 public interface DatabaseFactory extends Remote {
-	public DiaryDataService getDiaryData() throws RemoteException;
 
-	public CostBenefitListDataService getCostBenefitList() throws RemoteException;
 
-	public InformationInsertDataService getInformationInsertData() throws RemoteException;
-
-	public UserDataService getUserData() throws RemoteException;
-
-	// ***********************************************************
 
 	/**
 	 * 获得FinanceFactory的引用

@@ -19,18 +19,9 @@ public class InquireDiary implements InquireDiaryService {
 		return dvo;
 	}
 	
-	public static void main(String[] args){
-		try {
-			DatabaseFactory database=(DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
-			DiaryDataService diary=database.getDiaryData();
-			DiaryPO d=diary.findDiary("2015/10/25");
-			System.out.println(d.getOperation());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 	
 		
 
-	}
+	
 }

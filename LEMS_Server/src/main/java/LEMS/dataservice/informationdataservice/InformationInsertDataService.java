@@ -1,5 +1,6 @@
 package LEMS.dataservice.informationdataservice;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 import LEMS.po.informationpo.AccountPO;
@@ -14,10 +15,10 @@ import LEMS.po.userpo.UserPO;
  * 增加Information信息数据层接口
  * 2015年10月26日
  */
-public interface InformationInsertDataService {
-	public void insertDriverPO(DriverPO po) throws RemoteException;
-	public void insertVehiclePO(VehiclePO po) throws RemoteException;
-	public void insertInstitutionPO(InstitutionPO po) throws RemoteException;
-	public void insertStaffPO(UserPO po) throws RemoteException;
-	public void insertAccountPO(AccountPO po) throws RemoteException;
+public interface InformationInsertDataService extends Remote{
+	public void insert(DriverPO po) throws RemoteException;
+	public void insert(VehiclePO po) throws RemoteException;
+	public void insert(InstitutionPO po) throws RemoteException;
+	public void insert(UserPO po) throws RemoteException;
+	public void insert(AccountPO po) throws RemoteException;
 }

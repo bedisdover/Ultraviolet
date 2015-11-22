@@ -1,25 +1,34 @@
 package LEMS.data.informationdata;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
+import LEMS.dataservice.informationdataservice.InformationInsertDataService;
 import LEMS.po.informationpo.AccountPO;
 import LEMS.po.informationpo.DriverPO;
 import LEMS.po.informationpo.InstitutionPO;
-import LEMS.po.informationpo.StaffPO;
 import LEMS.po.informationpo.VehiclePO;
 import LEMS.po.userpo.UserPO;
-import LEMS.po.userpo.UserRole;
 
 /**
  * @author 苏琰梓
  * InformationInsert包数据
  * 2015年10月26日
  */
-public class InformationInsertData {
+@SuppressWarnings("serial")
+public class InformationInsertData extends UnicastRemoteObject implements InformationInsertDataService{
+	public static final String DBDRIVER="org.gjt.mm.mysql.Driver";
+	public static final String DBURL="jdbc:mysql://localhost:3306/mldn";
+	public static final String DBUSER="root";
+	public static final String DBPASS="admin";
+	public InformationInsertData() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public void insert(DriverPO po) throws RemoteException{
 		
 	}
@@ -30,55 +39,47 @@ public class InformationInsertData {
 		
 	}
 	public void insert(UserPO po) throws RemoteException{
+		String userRole="";
 		switch(po.getRole()){
-		case Manager:try {
-			FileOutputStream fileStream=new FileOutputStream("Manager.ser",true);
-			ObjectOutputStream os=new ObjectOutputStream(fileStream);
-			long pos=0;
-			 pos=fileStream.getChannel().position()-4;
-             fileStream.getChannel().truncate(pos);
-			os.writeObject(po);
-			os.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		break;
-		case GeneralManager:try {
-			FileOutputStream fileStream=new FileOutputStream("GeneralManager.ser",true);
-			ObjectOutputStream os=new ObjectOutputStream(fileStream);
-			long pos=0;
-			 pos=fileStream.getChannel().position()-4;
-             fileStream.getChannel().truncate(pos);
-			os.writeObject(po);
-			os.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		break;
+		case Manager:userRole="Manager";break;
+		case GeneralManager:userRole="GeneralManager";break;
+		case StoreManager:userRole="StoreManager";break;
+		case BusinessClerk:userRole="BusinessClerk";break;
+		case TransferClerk:userRole="TransferClerk";break;
+		case Courier:userRole="Courier";break;
+		case FinanceClerk:userRole="FinanceClerk";break;
 		default:break;
 		}
+		InstitutionPO ipo=po.getInstitution();
+		Connection conn=null;
+		PreparedStatement pstmt = null; 
+		String sql="INSERT INTO user(id,password,role,name,institutionid,institutionlocation) VALUES (?,?,?,?,?,?) ";
+		try {
+			Class.forName(DBDRIVER);
+			conn = DriverManager.getConnection(DBURL, DBUSER, DBPASS);
+			pstmt = conn.prepareStatement(sql) ;
+			pstmt.setString(1,po.getId());
+			pstmt.setString(2,po.getPassword());
+			pstmt.setString(3,userRole);
+			pstmt.setString(4,po.getName());
+			pstmt.setString(5,ipo.getID());
+			pstmt.setString(6,ipo.getLocation());
+			pstmt.executeUpdate();
+			pstmt.close() ;
+			conn.close();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 	}
 	public void insert(AccountPO po) throws RemoteException{
 		
 	}
-	public static void main(String[] args){
-		InstitutionPO ip=new InstitutionPO("","");
-		UserPO sp=new UserPO("m00001","123456",UserRole.Manager,"章承尧",ip);
-		InformationInsertData i=new InformationInsertData();
-		try {
-			i.insert(sp);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	
+	
 }

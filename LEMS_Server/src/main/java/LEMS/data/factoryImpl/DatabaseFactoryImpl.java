@@ -25,33 +25,11 @@ public class DatabaseFactoryImpl extends UnicastRemoteObject implements Database
 
 	}
 
-	public DiaryData getDiaryData() throws RemoteException{
-		// TODO Auto-generated method stub
-		DiaryDataService diary=new DiaryData();
-		return (DiaryData) diary;
-	}
 
-	public CostBenefitListData getCostBenefitList() throws RemoteException{
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	public InformationInsertDataService getInformationInsertData() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	public UserDataService getUserData() throws RemoteException {
-		// TODO Auto-generated method stub
-		UserDataService user=new UserData();
-		return (UserData)user;
-	}
 
-	
-	//****************************************************
-	//******************************************************
-	//TODO
-	
+
 	public FinanceFactory getFinanceFactory() throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
