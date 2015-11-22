@@ -93,7 +93,7 @@ public class StoreManagement {
 	}
 
 	public void warning() {
-		int standardNum = 0;
+		int standardNum = 10000;
 		ArrayList<GoodsVO> al = new ArrayList<GoodsVO>();
 		al = check();
 		int presentNum = al.size();
