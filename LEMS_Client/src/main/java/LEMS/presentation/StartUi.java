@@ -5,14 +5,14 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
-import LEMS.presentation.inquireui.JPanelLogisticsInfo;
+import LEMS.presentation.inquireui.LogisticsInfoUi;
 
 /**
  * @author 苏琰梓
  * 开始界面
  * 2015年11月18日
  */
-public class JPanelStart extends JPanel{
+public class StartUi extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -23,7 +23,7 @@ public class JPanelStart extends JPanel{
 	JButton but3 = new JButton("关于我们");
 	JButton but4 = new JButton("退出系统");
 
-	public JPanelStart(final MainFrame mainFrame){
+	public StartUi(final MainFrame mainFrame){
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
 		mainFrame.setDragable(this);
@@ -42,14 +42,14 @@ public class JPanelStart extends JPanel{
 		//点击物流查询
 		but1.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				mainFrame.setContentPane(new JPanelLogisticsInfo(mainFrame));
+				mainFrame.setContentPane(new LogisticsInfoUi(mainFrame));
 				mainFrame.setVisible(true);
 			}
 		});
 		//点击用户登录
 		but2.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				mainFrame.setContentPane(new JPanelLogin(mainFrame));
+				mainFrame.setContentPane(new LoginUi(mainFrame));
 			}
 		});
 		//点击关于我们

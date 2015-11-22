@@ -1,40 +1,37 @@
 package LEMS.presentation.inquireui;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 
-import java.awt.Rectangle;
+import LEMS.presentation.StartUi;
+import LEMS.presentation.MainFrame;
 
-import javax.swing.JButton;
-
-import LEMS.presentation.mainUi;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.*;
+import java.awt.event.*;
 
 /**
- * @author 章承尧
+ * @author 苏琰梓
  * 查询物流信息界面
+ * 2015年11月20日
  */
-public class LogisticsInfoUi extends JPanel {
-	/**
-	 * Create the panel.
-	 */
-	public LogisticsInfoUi() {
-		setBounds(new Rectangle(0, 0, mainUi.WIDTH, mainUi.HEIGHT));
-		setLayout(null);
+public class LogisticsInfoUi extends JPanel{
+	MainFrame mainFrame;
+	JButton but = new JButton("返回");
+	JLabel title = new JLabel("查询物流信息");
+	public LogisticsInfoUi(final MainFrame mainFrame){
+		this.setLayout(null);
+		this.mainFrame = mainFrame;
+		mainFrame.setDragable(this);
+		but.setBounds(52,36,120,40);
+		title.setBounds(489, 37, 168, 39);
+		Font fnt=new Font("Courier",Font.PLAIN,26);
+		title.setFont(fnt);
+		this.add(title);
+		this.add(but);
 		
-		JButton button = new JButton("退出");
-		button.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				LogisticsInfoUi.this.setVisible(false);
-				mainUi.frame.setContentPane(mainUi.contentPane);
-				
+		but.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				mainFrame.setContentPane(new StartUi(mainFrame));
 			}
 		});
-		button.setBounds(832, 26, 153, 60);
-		add(button);
-
 	}
-
 }

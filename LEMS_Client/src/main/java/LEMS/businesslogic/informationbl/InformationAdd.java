@@ -39,7 +39,13 @@ public class InformationAdd implements InformationAddService{
 	 * 增加车辆信息
 	 */
 	public void addVehicleVO(VehicleVO vehiclevo){
-		
+		try{
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
+			InformationFactory inf=database.getInformationFactory();
+			InformationInsertDataService infoinsert=inf.getInformationInsertData();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	/**
 	 * 增加机构信息
