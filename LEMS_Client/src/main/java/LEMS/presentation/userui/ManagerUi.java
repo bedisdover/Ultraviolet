@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -52,9 +50,8 @@ public class ManagerUi extends JPanel{
 	private JTextField textLocation;
 	
 	private JComboBox<String> comboBox;
-	private Image im;
-	private Font fnt1=new Font("Courier",Font.PLAIN,26);
 	
+	private Font fnt1=new Font("Courier",Font.PLAIN,26);
 	
 	public ManagerUi(final MainFrame mainFrame){
 		this.mainFrame = mainFrame;
@@ -64,14 +61,17 @@ public class ManagerUi extends JPanel{
 		this.init();
 		//初始化组件
 		this.initComponents();
+		//设置输入框不可编辑
+		this.setTestState(false);
 		//添加事件监听器
 		this.addListener();
-		
-		im = Toolkit.getDefaultToolkit().getImage("02.jpg");
 		
 		this.repaint();
 	}
 	
+	/**
+	 * 初始化
+	 */
 	private void init() {
 		title = new JLabel("用户管理");
 		butOut = new JButton("登出");
@@ -97,7 +97,9 @@ public class ManagerUi extends JPanel{
 		comboBox = new JComboBox<String>();
 	}
 
-	
+	/**
+	 * 初始化各组件
+	 */
 	private void initComponents() {
 
 		title.setBounds(449, 37, 148, 39);
@@ -114,12 +116,6 @@ public class ManagerUi extends JPanel{
 		labelLocation.setBounds(75,486,131,30);
 		textLocation.setBounds(206,489,144,24);
 		
-		textID.setEditable(false);
-		textPassword.setEditable(false);
-		textName.setEditable(false);
-		textInstitutionID.setEditable(false);
-		textLocation.setEditable(false);
-		
 		comboBox.setBounds(206,351,144,24);
 		comboBox.addItem("管理员");
 		comboBox.addItem("总经理");
@@ -128,8 +124,6 @@ public class ManagerUi extends JPanel{
 		comboBox.addItem("营业厅业务员");
 		comboBox.addItem("中转中心业务员");
 		comboBox.addItem("仓库管理人员");
-		
-		comboBox.setEnabled(false);
 		
 		OK.setBounds(86,533,120,40);
 		cancel.setBounds(230,533,120,40);
@@ -171,6 +165,7 @@ public class ManagerUi extends JPanel{
 			tabulation[i].setEnabled(false);
 			tabulation[i].setDisabledTextColor(Color.BLACK);
 			tabulation[i].setFont(fnt2);
+			//居中
 			tabulation[i].setHorizontalAlignment(JTextField.CENTER);
 			jPanel.add(tabulation[i]);
 		}
@@ -184,16 +179,49 @@ public class ManagerUi extends JPanel{
 	
 	}
 	
+	/**
+	 * 设置输入框状态
+	 * 
+	 * @param state 输入框状态（是否可编辑）
+	 */
+	private void setTestState(boolean state) {
+		textID.setEditable(state);
+		textPassword.setEditable(state);
+		textName.setEditable(state);
+		textInstitutionID.setEditable(state);
+		textLocation.setEditable(state);
+		
+		comboBox.setEnabled(state);
+		
+		OK.setEnabled(state);
+		cancel.setEnabled(state);
+	}
+	
+	/**
+	 * 清空输入框
+	 */
+	private void empty() {
+		textID.setText(null);
+		textPassword.setText(null);
+		textName.setText(null);
+		textInstitutionID.setText(null);
+		textLocation.setText(null);
+	}
+	
+	/**
+	 * 为按钮添加事件监听器
+	 */
 	private void addListener() {
 		butOut.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				mainFrame.setContentPane(new LoginUi(mainFrame));
 			}
 		});
+		
 		butAdd.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-
-			
+				//设置输入框可编辑
+				setTestState(true);
 			}
 		});
 		butDel.addMouseListener(new MouseAdapter(){
@@ -216,20 +244,22 @@ public class ManagerUi extends JPanel{
 		});
 		OK.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-
-			
+				//TODO 确定按钮的具体实现
+				//清空输入框
+				empty();
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				mainFrame.setContentPane(new ManagerUi(mainFrame));
-			
+				//清空输入框
+				empty();
+				//设置输入框不可编辑
+				setTestState(false);
 			}
 		});
 	}
 	public void paintComponent(Graphics g){
-		g.drawImage(im, 0, 0,this.getWidth(),this.getHeight(), null);
-//		this.requestFocus();
+		g.drawImage(MainFrame.background, 0, 0,this.getWidth(),this.getHeight(), null);
 		g.draw3DRect(63, 124, 306, 470, false);
 	}
 }
