@@ -17,16 +17,14 @@ import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 
 /**
- * @author 苏琰梓
- * 管理员界面
- * 2015年11月18日
+ * @author 苏琰梓 管理员界面 2015年11月18日
  */
-public class ManagerUi extends JPanel{
+public class ManagerUi extends JPanel {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private MainFrame mainFrame;
 	private JLabel title;
 	private JButton butOut;
@@ -36,7 +34,7 @@ public class ManagerUi extends JPanel{
 	private JButton butChange;
 	private JButton OK;
 	private JButton cancel;
-	
+
 	private JLabel labelID;
 	private JTextField textID;
 	private JLabel labelPassword;
@@ -48,27 +46,27 @@ public class ManagerUi extends JPanel{
 	private JTextField textInstitutionID;
 	private JLabel labelLocation;
 	private JTextField textLocation;
-	
+
 	private JComboBox<String> comboBox;
-	
-	private Font fnt1=new Font("Courier",Font.PLAIN,26);
-	
-	public ManagerUi(final MainFrame mainFrame){
+
+	private Font fnt1 = new Font("Courier", Font.PLAIN, 26);
+
+	public ManagerUi(final MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
-		this.setBounds(0,0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
-		//初始化
+		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
+		// 初始化
 		this.init();
-		//初始化组件
+		// 初始化组件
 		this.initComponents();
-		//设置输入框不可编辑
+		// 设置输入框不可编辑
 		this.setTestState(false);
-		//添加事件监听器
+		// 添加事件监听器
 		this.addListener();
-		
+
 		this.repaint();
 	}
-	
+
 	/**
 	 * 初始化
 	 */
@@ -81,7 +79,7 @@ public class ManagerUi extends JPanel{
 		butChange = new JButton("修改");
 		OK = new JButton("确定");
 		cancel = new JButton("取消");
-		
+
 		labelID = new JLabel("用户ID:");
 		textID = new JTextField();
 		labelPassword = new JLabel("密码:");
@@ -93,7 +91,7 @@ public class ManagerUi extends JPanel{
 		labelLocation = new JLabel("机构所在地:");
 		textLocation = new JTextField();
 		labelStatue = new JLabel("身份");
-		
+
 		comboBox = new JComboBox<String>();
 	}
 
@@ -104,19 +102,19 @@ public class ManagerUi extends JPanel{
 
 		title.setBounds(449, 37, 148, 39);
 		title.setFont(fnt1);
-		labelID.setBounds(86,140,131,30);
-		textID.setBounds(206,144,144,24);
-		labelPassword.setBounds(96,210,131,30);
-		textPassword.setBounds(206,213,144,24);
-		labelName.setBounds(81,279,131,30);
-		textName.setBounds(206,282,144,24);
-		labelStatue.setBounds(81,348,131,30);
-		labelInstitutionID.setBounds(75,417,131,30);
-		textInstitutionID.setBounds(206,420,144,24);
-		labelLocation.setBounds(75,486,131,30);
-		textLocation.setBounds(206,489,144,24);
-		
-		comboBox.setBounds(206,351,144,24);
+		labelID.setBounds(86, 140, 131, 30);
+		textID.setBounds(206, 144, 144, 24);
+		labelPassword.setBounds(96, 210, 131, 30);
+		textPassword.setBounds(206, 213, 144, 24);
+		labelName.setBounds(81, 279, 131, 30);
+		textName.setBounds(206, 282, 144, 24);
+		labelStatue.setBounds(81, 348, 131, 30);
+		labelInstitutionID.setBounds(75, 417, 131, 30);
+		textInstitutionID.setBounds(206, 420, 144, 24);
+		labelLocation.setBounds(75, 486, 131, 30);
+		textLocation.setBounds(206, 489, 144, 24);
+
+		comboBox.setBounds(206, 351, 144, 24);
 		comboBox.addItem("管理员");
 		comboBox.addItem("总经理");
 		comboBox.addItem("财务人员");
@@ -124,15 +122,15 @@ public class ManagerUi extends JPanel{
 		comboBox.addItem("营业厅业务员");
 		comboBox.addItem("中转中心业务员");
 		comboBox.addItem("仓库管理人员");
-		
-		OK.setBounds(86,533,120,40);
-		cancel.setBounds(230,533,120,40);
-		butOut.setBounds(52,36,120,40);
-		butAdd.setBounds(114,632,120,40);
-		butDel.setBounds(336,632,120,40);
-		butFind.setBounds(557,632,120,40);
-		butChange.setBounds(779,632,120,40);  
-		
+
+		OK.setBounds(86, 533, 120, 40);
+		cancel.setBounds(230, 533, 120, 40);
+		butOut.setBounds(52, 36, 120, 40);
+		butAdd.setBounds(114, 632, 120, 40);
+		butDel.setBounds(336, 632, 120, 40);
+		butFind.setBounds(557, 632, 120, 40);
+		butChange.setBounds(779, 632, 120, 40);
+
 		this.add(title);
 		this.add(labelID);
 		this.add(textID);
@@ -153,19 +151,20 @@ public class ManagerUi extends JPanel{
 		this.add(butDel);
 		this.add(butFind);
 		this.add(butChange);
-		
+
 		JPanel jPanel = new JPanel();
 		jPanel.setForeground(Color.RED);
-		jPanel.setLayout(new GridLayout(10,4));
-		jPanel.setBounds(384,126,561,465);
-		JTextField tabulation[] = new JTextField[40];
-		Font fnt2 = new Font("Courier",Font.PLAIN,20);
-		for(int i = 0;i<40;i++){
+		jPanel.setLayout(new GridLayout(20, 4));
+		jPanel.setBounds(384, 126, 561, 465);
+		JTextField tabulation[] = new JTextField[80];
+		Font fnt2 = new Font("Courier", Font.PLAIN, 20);
+		for (int i = 0; i < 80; i++) {
 			tabulation[i] = new JTextField();
+			tabulation[i].setSize(200, 200);
 			tabulation[i].setEnabled(false);
 			tabulation[i].setDisabledTextColor(Color.BLACK);
 			tabulation[i].setFont(fnt2);
-			//居中
+			// 居中
 			tabulation[i].setHorizontalAlignment(JTextField.CENTER);
 			jPanel.add(tabulation[i]);
 		}
@@ -174,15 +173,16 @@ public class ManagerUi extends JPanel{
 		tabulation[2].setText("用户身份");
 		tabulation[3].setText("用户姓名");
 		this.add(jPanel);
-		
+
 		this.repaint();
-	
+
 	}
-	
+
 	/**
 	 * 设置输入框状态
 	 * 
-	 * @param state 输入框状态（是否可编辑）
+	 * @param state
+	 *            输入框状态（是否可编辑）
 	 */
 	private void setTestState(boolean state) {
 		textID.setEditable(state);
@@ -190,13 +190,13 @@ public class ManagerUi extends JPanel{
 		textName.setEditable(state);
 		textInstitutionID.setEditable(state);
 		textLocation.setEditable(state);
-		
+
 		comboBox.setEnabled(state);
-		
+
 		OK.setEnabled(state);
 		cancel.setEnabled(state);
 	}
-	
+
 	/**
 	 * 清空输入框
 	 */
@@ -207,59 +207,57 @@ public class ManagerUi extends JPanel{
 		textInstitutionID.setText(null);
 		textLocation.setText(null);
 	}
-	
+
 	/**
 	 * 为按钮添加事件监听器
 	 */
 	private void addListener() {
-		butOut.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
+		butOut.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
 				mainFrame.setContentPane(new LoginUi(mainFrame));
 			}
 		});
-		
-		butAdd.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
-				//设置输入框可编辑
+
+		butAdd.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				// 设置输入框可编辑
 				setTestState(true);
 			}
 		});
-		butDel.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
+		butDel.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
 
-			
 			}
 		});
-		butFind.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
+		butFind.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
 
-			
 			}
 		});
-		butChange.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
+		butChange.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
 
-			
 			}
 		});
-		OK.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
-				//TODO 确定按钮的具体实现
-				//清空输入框
+		OK.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				// TODO 确定按钮的具体实现
+				// 清空输入框
 				empty();
 			}
 		});
-		cancel.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
-				//清空输入框
+		cancel.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				// 清空输入框
 				empty();
-				//设置输入框不可编辑
+				// 设置输入框不可编辑
 				setTestState(false);
 			}
 		});
 	}
-	public void paintComponent(Graphics g){
-		g.drawImage(MainFrame.background, 0, 0,this.getWidth(),this.getHeight(), null);
+
+	public void paintComponent(Graphics g) {
+		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
 		g.draw3DRect(63, 124, 306, 470, false);
 	}
 }
