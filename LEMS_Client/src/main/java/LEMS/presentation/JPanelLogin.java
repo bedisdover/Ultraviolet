@@ -7,7 +7,7 @@ import javax.swing.*;
 
 import LEMS.businesslogic.userbl.UserLogin;
 import LEMS.po.userpo.UserRole;
-import LEMS.presentation.userui.JPanelManager;
+import LEMS.presentation.userui.ManagerUi;
 import LEMS.vo.uservo.UserVO;
 
 /**
@@ -106,7 +106,7 @@ public class JPanelLogin extends JPanel{
 				else{
 					switch(uvo.getRole()){
 					//暂定点击登陆后跳转到管理员界面
-					case Manager:mainFrame.setContentPane(new JPanelManager(mainFrame));break;
+					case Manager:mainFrame.setContentPane(new ManagerUi(mainFrame));break;
 					default:break;
 					}
 					
@@ -120,7 +120,7 @@ public class JPanelLogin extends JPanel{
 			public void mouseClicked(MouseEvent e){
 
 
-				mainFrame.setContentPane(new JPanelStart(mainFrame));
+				mainFrame.setContentPane(new StartUi(mainFrame));
 			}
 		});
 	}

@@ -109,19 +109,19 @@ public class mainUi extends JFrame {
 		button.setBounds(443, 348, 116, 64);
 		contentPane.add(button);
 		
-		JButton button_2 = new JButton("查询物流信息");
-		button_2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				LogisticsInfoUi logisticsUi=new LogisticsInfoUi();
-				logisticsUi.setBounds(0, 0, 1024, 768);
-				frame.setContentPane(logisticsUi);
-				logisticsUi.setVisible(true);
-			}
-		});
-		button_2.setBounds(393, 461, 245, 56);
-		contentPane.add(button_2);
-		
+//		JButton button_2 = new JButton("查询物流信息");
+//		button_2.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				LogisticsInfoUi logisticsUi=new LogisticsInfoUi();
+//				logisticsUi.setBounds(0, 0, 1024, 768);
+//				frame.setContentPane(logisticsUi);
+//				logisticsUi.setVisible(true);
+//			}
+//		});
+//		button_2.setBounds(393, 461, 245, 56);
+//		contentPane.add(button_2);
+//		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(443, 269, 116, 32);
 		contentPane.add(comboBox);
