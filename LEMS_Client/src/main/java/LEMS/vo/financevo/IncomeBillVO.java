@@ -1,5 +1,7 @@
 package LEMS.vo.financevo;
 
+import LEMS.po.informationpo.AccountPO;
+
 /**
  * @author 宋益明
  * 
@@ -18,10 +20,15 @@ public class IncomeBillVO {
 	 * 收款金额
 	 */
 	private double amount;
+	/**
+	 * 收款账户
+	 */
+	private AccountPO account;
 
-	public IncomeBillVO(String date, String institution, double amount) {
+	public IncomeBillVO(String date, String institution, AccountPO account, double amount) {
 		this.date = date;
 		this.institution = institution;
+		this.account = account;
 		this.amount = amount;
 	}
 
@@ -35,5 +42,9 @@ public class IncomeBillVO {
 
 	public double getAmount() {
 		return amount;
+	}
+	
+	public AccountPO getAccount() {
+		return account;
 	}
 }

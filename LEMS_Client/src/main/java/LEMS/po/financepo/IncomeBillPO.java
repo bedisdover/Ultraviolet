@@ -2,6 +2,8 @@ package LEMS.po.financepo;
 
 import java.io.Serializable;
 
+import LEMS.po.informationpo.AccountPO;
+
 /**
  * @author 宋益明
  *
@@ -21,14 +23,19 @@ public class IncomeBillPO implements Serializable{
 	 * 收款金额
 	 */
 	private double amount;
+	/**
+	 * 收款账户
+	 */
+	private AccountPO account;
 
 	public IncomeBillPO(String date) {
 		//TODO 根据日期获得收款单持久化对象
 	}
 	
-	public IncomeBillPO(String date, String institution, double amount) {
+	public IncomeBillPO(String date, String institution, AccountPO account, double amount) {
 		this.date = date;
 		this.institution = institution;
+		this.account = account;
 		this.amount = amount;
 	}
 
@@ -42,5 +49,9 @@ public class IncomeBillPO implements Serializable{
 
 	public double getAmount() {
 		return amount;
+	}
+	
+	public AccountPO getAccount() {
+		return account;
 	}
 }
