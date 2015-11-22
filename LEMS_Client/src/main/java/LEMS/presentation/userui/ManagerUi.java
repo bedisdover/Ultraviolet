@@ -1,10 +1,19 @@
 package LEMS.presentation.userui;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-import javax.swing.*;
-import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
@@ -15,35 +24,82 @@ import LEMS.presentation.MainFrame;
  * 2015年11月18日
  */
 public class ManagerUi extends JPanel{
-	MainFrame mainFrame;
-	JLabel title = new JLabel("用户管理");
-	JButton butOut = new JButton("登出");
-	JButton butAdd = new JButton("新增");
-	JButton butDel = new JButton("删除");
-	JButton butFind = new JButton("查询");
-	JButton butChange = new JButton("修改");
-	JButton OK = new JButton("确定");
-	JButton cancel = new JButton("取消");
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
-	JLabel labelID = new JLabel("用户ID:");
-	JTextField textID = new JTextField();
-	JLabel labelPassword = new JLabel("密码:");
-	JTextField textPassword = new JTextField();
-	JLabel labelName = new JLabel("用户姓名:");
-	JTextField textName = new JTextField();
-	JLabel labelStatue = new JLabel("用户身份:");
-	JComboBox comboBox = new JComboBox();
-	JLabel labelInstitutionID = new JLabel("所在机构编号:");
-	JTextField textInstitutionID = new JTextField();
-	JLabel labelLocation = new JLabel("机构所在地:");
-	JTextField textLocation = new JTextField();
-	Image im;
+	private MainFrame mainFrame;
+	private JLabel title;
+	private JButton butOut;
+	private JButton butAdd;
+	private JButton butDel;
+	private JButton butFind;
+	private JButton butChange;
+	private JButton OK;
+	private JButton cancel;
+	
+	private JLabel labelID;
+	private JTextField textID;
+	private JLabel labelPassword;
+	private JTextField textPassword;
+	private JLabel labelName;
+	private JTextField textName;
+	private JLabel labelStatue;
+	private JLabel labelInstitutionID;
+	private JTextField textInstitutionID;
+	private JLabel labelLocation;
+	private JTextField textLocation;
+	
+	private JComboBox<String> comboBox;
+	private Image im;
+	private Font fnt1=new Font("Courier",Font.PLAIN,26);
+	
+	
 	public ManagerUi(final MainFrame mainFrame){
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
 		this.setBounds(0,0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
+		//初始化
+		this.init();
+		//初始化组件
+		this.initComponents();
+		//添加事件监听器
+		this.addListener();
 		
-		Font fnt1=new Font("Courier",Font.PLAIN,26);
+		im = Toolkit.getDefaultToolkit().getImage("02.jpg");
+		
+		this.repaint();
+	}
+	
+	private void init() {
+		title = new JLabel("用户管理");
+		butOut = new JButton("登出");
+		butAdd = new JButton("新增");
+		butDel = new JButton("删除");
+		butFind = new JButton("查询");
+		butChange = new JButton("修改");
+		OK = new JButton("确定");
+		cancel = new JButton("取消");
+		
+		labelID = new JLabel("用户ID:");
+		textID = new JTextField();
+		labelPassword = new JLabel("密码:");
+		textPassword = new JTextField();
+		labelName = new JLabel("用户姓名:");
+		textName = new JTextField();
+		labelInstitutionID = new JLabel("所在机构编号:");
+		textInstitutionID = new JTextField();
+		labelLocation = new JLabel("机构所在地:");
+		textLocation = new JTextField();
+		labelStatue = new JLabel("身份");
+		
+		comboBox = new JComboBox<String>();
+	}
+
+	
+	private void initComponents() {
+
 		title.setBounds(449, 37, 148, 39);
 		title.setFont(fnt1);
 		labelID.setBounds(86,140,131,30);
@@ -53,6 +109,17 @@ public class ManagerUi extends JPanel{
 		labelName.setBounds(81,279,131,30);
 		textName.setBounds(206,282,144,24);
 		labelStatue.setBounds(81,348,131,30);
+		labelInstitutionID.setBounds(75,417,131,30);
+		textInstitutionID.setBounds(206,420,144,24);
+		labelLocation.setBounds(75,486,131,30);
+		textLocation.setBounds(206,489,144,24);
+		
+		textID.setEditable(false);
+		textPassword.setEditable(false);
+		textName.setEditable(false);
+		textInstitutionID.setEditable(false);
+		textLocation.setEditable(false);
+		
 		comboBox.setBounds(206,351,144,24);
 		comboBox.addItem("管理员");
 		comboBox.addItem("总经理");
@@ -61,10 +128,8 @@ public class ManagerUi extends JPanel{
 		comboBox.addItem("营业厅业务员");
 		comboBox.addItem("中转中心业务员");
 		comboBox.addItem("仓库管理人员");
-		labelInstitutionID.setBounds(75,417,131,30);
-		textInstitutionID.setBounds(206,420,144,24);
-		labelLocation.setBounds(75,486,131,30);
-		textLocation.setBounds(206,489,144,24);
+		
+		comboBox.setEnabled(false);
 		
 		OK.setBounds(86,533,120,40);
 		cancel.setBounds(230,533,120,40);
@@ -116,7 +181,10 @@ public class ManagerUi extends JPanel{
 		this.add(jPanel);
 		
 		this.repaint();
-		
+	
+	}
+	
+	private void addListener() {
 		butOut.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				mainFrame.setContentPane(new LoginUi(mainFrame));
@@ -158,8 +226,6 @@ public class ManagerUi extends JPanel{
 			
 			}
 		});
-		im = Toolkit.getDefaultToolkit().getImage("02.jpg");
-		this.repaint();
 	}
 	public void paintComponent(Graphics g){
 		g.drawImage(im, 0, 0,this.getWidth(),this.getHeight(), null);
