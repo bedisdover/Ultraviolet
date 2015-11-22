@@ -76,14 +76,29 @@ public class JPanelLogin extends JPanel{
 				UserLogin ul=new UserLogin();
 				UserVO uvo=null;
 				switch(role){
-				case "管理员":uvo=ul.login(name,password,UserRole.Manager);break;
-				case "总经理":uvo=ul.login(name,password,UserRole.GeneralManager);break;
-				case "仓库管理人员":uvo=ul.login(name,password,UserRole.StoreManager);break;
-				case "财务人员":uvo=ul.login(name,password,UserRole.FinanceClerk);break;
-				case "快递员":uvo=ul.login(name,password,UserRole.Courier);break;
-				case "营业厅业务员":uvo=ul.login(name,password,UserRole.BusinessClerk);break;
-				case "中转中心业务员":uvo=ul.login(name,password,UserRole.TransferClerk);break;
-				default:break;
+				case "管理员":
+					uvo=ul.login(name,password,UserRole.Manager);
+					break;
+				case "总经理":
+					uvo=ul.login(name,password,UserRole.GeneralManager);
+					break;
+				case "仓库管理人员":
+					uvo=ul.login(name,password,UserRole.StoreManager);
+					break;
+				case "财务人员":
+					uvo=ul.login(name,password,UserRole.FinanceClerk);
+					break;
+				case "快递员":
+					uvo=ul.login(name,password,UserRole.Courier);
+					break;
+				case "营业厅业务员":
+					uvo=ul.login(name,password,UserRole.BusinessClerk);
+					break;
+				case "中转中心业务员":
+					uvo=ul.login(name,password,UserRole.TransferClerk);
+					break;
+				default:
+					break;
 				}
 				if(uvo==null){
 					System.out.println("fail");
