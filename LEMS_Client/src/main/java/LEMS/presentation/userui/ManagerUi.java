@@ -72,7 +72,7 @@ public class ManagerUi extends JPanel{
 		butAdd.setBounds(114,632,120,40);
 		butDel.setBounds(336,632,120,40);
 		butFind.setBounds(557,632,120,40);
-		butChange.setBounds(779,632,120,40);
+		butChange.setBounds(779,632,120,40);  
 		
 		this.add(title);
 		this.add(labelID);
