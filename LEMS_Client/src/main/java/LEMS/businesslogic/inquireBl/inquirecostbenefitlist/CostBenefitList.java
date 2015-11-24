@@ -5,6 +5,7 @@ package LEMS.businesslogic.inquirebl.inquirecostbenefitlist;
  * 获得制定时间段的成本收益表
  */
 public class CostBenefitList {
+	
 	/**
 	 * 开始日期
 	 */

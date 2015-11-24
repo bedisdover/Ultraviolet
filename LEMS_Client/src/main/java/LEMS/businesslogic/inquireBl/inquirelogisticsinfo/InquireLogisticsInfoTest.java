@@ -16,4 +16,5 @@ public class InquireLogisticsInfoTest {
 		assertEquals("派送中",t.get(1));
 	}
 
+	
 }

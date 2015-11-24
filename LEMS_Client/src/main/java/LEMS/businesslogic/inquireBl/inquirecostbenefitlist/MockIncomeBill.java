@@ -5,6 +5,7 @@ package LEMS.businesslogic.inquirebl.inquirecostbenefitlist;
  * 收款单的mock对象
  */
 public class MockIncomeBill {
+	
 	/**
 	 * 日期
 	 */

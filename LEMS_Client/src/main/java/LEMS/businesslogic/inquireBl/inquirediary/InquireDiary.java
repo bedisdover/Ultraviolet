@@ -12,6 +12,7 @@ import LEMS.vo.inquirevo.DiaryVO;
  * inquireDiaryService接口的实现
  */
 public class InquireDiary implements InquireDiaryService {
+	
 	public DiaryVO getDiary(String date) {
 		// TODO Auto-generated method stub
 		Diary diary=new MockDiary(date);

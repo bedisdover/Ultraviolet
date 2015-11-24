@@ -7,6 +7,7 @@ import junit.framework.TestCase;
  * 测试查询成本收益表
  */
 public class InquireCostBenefitListTest extends TestCase {
+	
 	/**
 	 * 测试CostBenefitList类中计算总收入、总支出、总利润的方法
 	 */

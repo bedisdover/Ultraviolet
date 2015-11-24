@@ -6,6 +6,7 @@ import LEMS.businesslogic.inquirebl.inquirecostbenefitlist.MockIncomeBill;
 import LEMS.businesslogic.inquirebl.inquirecostbenefitlist.MockPayBill;
 
 public class BusinessList {
+	
 	String startTime;
 	String endTime;
 	ArrayList<MockPayBill> pay;

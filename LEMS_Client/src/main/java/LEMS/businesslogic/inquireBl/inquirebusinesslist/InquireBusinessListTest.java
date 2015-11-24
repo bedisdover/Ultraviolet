@@ -6,6 +6,7 @@ import LEMS.businesslogic.inquirebl.inquirecostbenefitlist.MockPayBill;
 import junit.framework.TestCase;
 
 public class InquireBusinessListTest extends TestCase {
+	
 	public void testInquireBusinessList() {
 		BusinessList bl=new BusinessList("2015/10/25","2015/10/26");
 		ArrayList<MockPayBill> a1=bl.getPayBill();		

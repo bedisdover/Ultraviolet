@@ -14,6 +14,7 @@ public class MockPayBill {
 	 * 支出
 	 */
 	double expense;
+	
 	public MockPayBill(String d,double e){
 		date=d;
 		expense=e;
