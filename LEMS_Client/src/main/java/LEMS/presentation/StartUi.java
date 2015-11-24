@@ -70,9 +70,8 @@ public class StartUi extends JPanel{
 		});
 	}
 	
-//	public void paintComponent(Graphics g){
-//		g.drawImage(im, 0, 0,this.getWidth(),this.getHeight(), null); 
-//		this.requestFocus();
-////		this.repaint();
-//	}
+	public void paintComponent(Graphics g){
+		g.drawImage(im, 0, 0,this.getWidth(),this.getHeight(), null); 
+		this.repaint();
+	}
 }

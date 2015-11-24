@@ -64,7 +64,6 @@ public class ManagerUi extends JPanel {
 		// 添加事件监听器
 		this.addListener();
 
-		this.repaint();
 	}
 
 	/**
@@ -90,7 +89,7 @@ public class ManagerUi extends JPanel {
 		textInstitutionID = new JTextField();
 		labelLocation = new JLabel("机构所在地:");
 		textLocation = new JTextField();
-		labelStatue = new JLabel("身份");
+		labelStatue = new JLabel("身份:");
 
 		comboBox = new JComboBox<String>();
 	}
@@ -174,7 +173,6 @@ public class ManagerUi extends JPanel {
 		tabulation[3].setText("用户姓名");
 		this.add(jPanel);
 
-		this.repaint();
 
 	}
 
@@ -258,6 +256,7 @@ public class ManagerUi extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
-		g.draw3DRect(63, 124, 306, 470, false);
+		g.draw3DRect(63, 126, 306, 465, false);
+		this.repaint();
 	}
 }

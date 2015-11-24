@@ -123,8 +123,9 @@ public class LoginUi extends JPanel {
 			}
 		});
 	}
-	// public void paintComponent(Graphics g){
-	// g.drawImage(im, 0, 0,this.getWidth(),this.getHeight(), null);
-	// this.requestFocus();
-	// }
+
+	public void paintComponent(Graphics g) {
+		g.drawImage(im, 0, 0, this.getWidth(), this.getHeight(), null);
+		this.repaint();
+	}
 }
