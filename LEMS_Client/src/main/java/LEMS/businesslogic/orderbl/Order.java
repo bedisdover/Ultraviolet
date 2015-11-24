@@ -30,11 +30,19 @@ public class Order implements OrderService {
 	/**
 	 * 快递类型
 	 */
-	private Express type;
+	private Express expressType;
+	/**
+	 * 包装类型
+	 */
+	private Packing packageType;
 	/**
 	 * 货物信息
 	 */
 	private GoodsVO goods;
+	/**
+	 * 邮寄距离
+	 */
+	private double distance;
 	
 	public Order() {
 		//新建订单
@@ -59,12 +67,18 @@ public class Order implements OrderService {
 		order.setGoodsInfo(goods);
 	}
 
-	public void chooseType(Express type) {
-		this.type = type;
+	public void chooseExpress(Express type) {
+		this.expressType = type;
 		
 		order.setExpressType(type);
 	}
 
+	public void choosePack(Packing type) {
+		this.packageType = type;
+		
+		order.setPackingType(type);
+	}
+	
 	public String createID() {
 		// TODO Auto-generated method stub
 		return null;
@@ -72,31 +86,23 @@ public class Order implements OrderService {
 
 	public double getMoney() {
 		//获得距离
-		double distance = Distance.getDistance(sender.getAddress().substring(0, 2), receiver.getAddress().substring(0, 2));
+		distance = Distance.getDistance(sender.getAddress().substring(0, 2), receiver.getAddress().substring(0, 2));
 		//获得单价
-		double price = PricePO.getPrice(type);
+		double price = PricePO.getPrice(expressType);
 		
 		return distance / 1000 * price * goods.getWeight();
 	}
 
 	public double getTotal() {
-		// TODO Auto-generated method stub
-		return 0;
+		return PricePO.getPrice(packageType) + getMoney();
 	}
 
 	public String getTime() {
-		// TODO Auto-generated method stub
-		return null;
+		return Time.getTime(distance, expressType);
 	}
 
 	public void endOrder() {
 		// TODO Auto-generated method stub
 		
 	}
-
-	public void choosePack(Packing type) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

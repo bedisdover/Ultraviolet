@@ -51,7 +51,7 @@ public class OrderController {
 	}
 
 	public void chooseType(Express express) {
-		order.chooseType(express);
+		order.chooseExpress(express);
 	}
 
 	public void choosePack(Packing packing) {

@@ -34,8 +34,7 @@ public interface OrderService {
 	 * 
 	 * @param type 快递类型
 	 */
-	public void chooseType(Express type);
-	
+	public void chooseExpress(Express type);
 	/**
 	 * 选择包装类型
 	 * 

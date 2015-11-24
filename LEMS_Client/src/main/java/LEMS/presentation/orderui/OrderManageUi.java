@@ -262,7 +262,7 @@ public class OrderManageUi extends JPanel {
 		OK.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				//生成订单
-				createOrder();	
+				createOrder();
 			}
 		});
 		
@@ -297,5 +297,7 @@ public class OrderManageUi extends JPanel {
 		controller.chooseType((Express) cExpress.getSelectedItem());
 		//选择包装类型
 		controller.choosePack((Packing) cPackage.getSelectedItem());
+		//TODO 添加对话框显示价格与时间
+		
 	}
 }
