@@ -18,47 +18,38 @@ import LEMS.dataservice.inquiredataservice.DiaryDataService;
 import LEMS.dataservice.userdataservice.UserDataService;
 
 @SuppressWarnings("serial")
-public class DatabaseFactoryImpl extends UnicastRemoteObject implements DatabaseFactory {
+public class DatabaseFactoryImpl extends UnicastRemoteObject implements
+		DatabaseFactory {
 
 	public DatabaseFactoryImpl() throws RemoteException {
 		super();
 
 	}
 
-
-
-
-
-
 	public FinanceFactory getFinanceFactory() throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public InformationFactory getInformationFactory() throws RemoteException {
-		// TODO Auto-generated method stub
-		InformationFactoryImpl info= new InformationFactoryImpl();
+		InformationFactoryImpl info = new InformationFactoryImpl();
 		return info;
 	}
 
 	public InquireFactory getInquireFactory() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		InquireFactoryImpl inquire=new InquireFactoryImpl();
+		return inquire;
 	}
 
 	public OrderFactory getOrderFactory() throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public StoreFactory getStoreFactory() throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public UserFactory getUserFactory() throws RemoteException {
-		// TODO Auto-generated method stub
-		UserFactoryImpl us=new UserFactoryImpl();
+		UserFactoryImpl us = new UserFactoryImpl();
 		return us;
 	}
 
