@@ -1,10 +1,9 @@
 package LEMS.businesslogic.orderbl.mock;
 
 import LEMS.po.orderpo.Express;
+import LEMS.vo.ordervo.CustomerVO;
 import LEMS.vo.ordervo.GoodsVO;
 import LEMS.vo.ordervo.OrderVO;
-import LEMS.vo.ordervo.ReceiverVO;
-import LEMS.vo.ordervo.SenderVO;
 
 /**
  * @author 宋益明
@@ -14,11 +13,11 @@ import LEMS.vo.ordervo.SenderVO;
 public class MockOrder {
 	private OrderVO order = new OrderVO();
 	
-	public void addSender(SenderVO sender) {
+	public void addSender(CustomerVO sender) {
 		order.setSender(sender);
 	}
 
-	public void addReceiver(ReceiverVO receiver) {
+	public void addReceiver(CustomerVO receiver) {
 		order.setReceiver(receiver);	
 	}
 

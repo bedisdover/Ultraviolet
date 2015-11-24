@@ -3,23 +3,23 @@ package LEMS.vo.ordervo;
 /**
  * @author 宋益明
  *
- * 寄件人值对象
+ * 顾客值对象（寄件人、收件人）
  */
-public class SenderVO {
+public class CustomerVO {
 	/**
-	 * 寄件人姓名
+	 * 姓名
 	 */
 	private String name;
 	/**
-	 * 寄件人电话
+	 * 电话
 	 */
 	private String phone;
 	/**
-	 * 寄件人地址
+	 * 地址
 	 */
 	private String address;
 	
-	public SenderVO() {
+	public CustomerVO() {
 		
 	}
 	

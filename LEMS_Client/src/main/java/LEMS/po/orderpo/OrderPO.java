@@ -2,9 +2,8 @@ package LEMS.po.orderpo;
 
 import java.io.Serializable;
 
+import LEMS.vo.ordervo.CustomerVO;
 import LEMS.vo.ordervo.GoodsVO;
-import LEMS.vo.ordervo.ReceiverVO;
-import LEMS.vo.ordervo.SenderVO;
 
 /**
  * @author 宋益明
@@ -16,11 +15,11 @@ public class OrderPO implements Serializable {
 	/**
 	 * 寄件人
 	 */
-	private SenderVO sender;
+	private CustomerVO sender;
 	/**
 	 * 收件人
 	 */
-	private ReceiverVO receiver;
+	private CustomerVO receiver;
 	/**
 	 * 货物信息
 	 */
@@ -51,7 +50,7 @@ public class OrderPO implements Serializable {
 		this.id = id;
 	}
 	
-	public OrderPO(SenderVO sender, ReceiverVO receiver, GoodsVO goodsInfo, Express expressType, long amount,
+	public OrderPO(CustomerVO sender, CustomerVO receiver, GoodsVO goodsInfo, Express expressType, long amount,
 			String time, String id) {
 		this.sender = sender;
 		this.receiver = receiver;
@@ -62,11 +61,11 @@ public class OrderPO implements Serializable {
 		this.id = id;
 	}
 
-	public SenderVO getSender() {
+	public CustomerVO getSender() {
 		return sender;
 	}
 
-	public ReceiverVO getReceiver() {
+	public CustomerVO getReceiver() {
 		return receiver;
 	}
 

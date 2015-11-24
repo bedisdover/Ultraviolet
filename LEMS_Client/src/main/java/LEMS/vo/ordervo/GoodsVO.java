@@ -27,13 +27,14 @@ public class GoodsVO {
 	 */
 	private double volumn;
 	
-	public GoodsVO(String name, String size, int quantity, double weight, double volumn) {
-		this.name = name;
-		this.size = size;
-		this.quantity = quantity;
-		this.weight = weight;
-		this.volumn = volumn;
-	}
+	//TODO 可能不需要的构造函数
+//	public GoodsVO(String name, String size, int quantity, double weight, double volumn) {
+//		this.name = name;
+//		this.size = size;
+//		this.quantity = quantity;
+//		this.weight = weight;
+//		this.volumn = volumn;
+//	}
 
 	public String getName() {
 		return name;
@@ -53,5 +54,25 @@ public class GoodsVO {
 
 	public double getVolumn() {
 		return volumn;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public void setWeight(double weight) {
+		this.weight = weight;
+	}
+
+	public void setVolumn(double volumn) {
+		this.volumn = volumn;
 	}
 }

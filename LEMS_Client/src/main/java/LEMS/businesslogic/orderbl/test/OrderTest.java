@@ -6,10 +6,9 @@ import org.junit.Test;
 
 import LEMS.businesslogic.orderbl.mock.MockOrder;
 import LEMS.po.orderpo.Express;
+import LEMS.vo.ordervo.CustomerVO;
 import LEMS.vo.ordervo.GoodsVO;
 import LEMS.vo.ordervo.OrderVO;
-import LEMS.vo.ordervo.ReceiverVO;
-import LEMS.vo.ordervo.SenderVO;
 
 public class OrderTest {
 	
@@ -22,13 +21,13 @@ public class OrderTest {
 	}
 	
 	@Test
-	public void testAddSender(SenderVO sender) {
+	public void testAddSender(CustomerVO sender) {
 		order.addSender(sender);
 		assertEquals(sender, orderVO.getSender());
 	}
 	
 	@Test
-	public void testAddReceiver(ReceiverVO receiver) {
+	public void testAddReceiver(CustomerVO receiver) {
 		order.addReceiver(receiver);
 		assertEquals(receiver, orderVO.getReceiver());
 	}

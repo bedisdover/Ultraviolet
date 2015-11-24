@@ -2,10 +2,10 @@ package LEMS.businesslogic.orderbl;
 
 import LEMS.businesslogicservice.orderblservice.OrderService;
 import LEMS.po.orderpo.Express;
+import LEMS.po.orderpo.Packing;
+import LEMS.vo.ordervo.CustomerVO;
 import LEMS.vo.ordervo.GoodsVO;
 import LEMS.vo.ordervo.OrderVO;
-import LEMS.vo.ordervo.ReceiverVO;
-import LEMS.vo.ordervo.SenderVO;
 
 /**
  * @author 宋益明
@@ -24,11 +24,11 @@ public class Order implements OrderService {
 		order = new OrderVO();
 	}
 	
-	public void addSender(SenderVO sender) {
+	public void addSender(CustomerVO sender) {
 		order.setSender(sender);
 	}
 
-	public void addReceiver(ReceiverVO receiver) {
+	public void addReceiver(CustomerVO receiver) {
 		order.setReceiver(receiver);
 	}
 
@@ -61,6 +61,11 @@ public class Order implements OrderService {
 	}
 
 	public void endOrder() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void choosePack(Packing type) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -1,6 +1,7 @@
 package LEMS.vo.ordervo;
 
 import LEMS.po.orderpo.Express;
+import LEMS.po.orderpo.Packing;
 
 /**
  * @author 宋益明
@@ -11,11 +12,11 @@ public class OrderVO {
 	/**
 	 * 寄件人
 	 */
-	private SenderVO sender;
+	private CustomerVO sender;
 	/**
 	 * 收件人
 	 */
-	private ReceiverVO receiver;
+	private CustomerVO receiver;
 	/**
 	 * 货物信息
 	 */
@@ -24,6 +25,11 @@ public class OrderVO {
 	 * 快递类型
 	 */
 	private Express expressType;
+	
+	/**
+	 * 包装类型
+	 */
+	private Packing packingType;
 	/**
 	 * 订单金额
 	 */
@@ -53,11 +59,11 @@ public class OrderVO {
 //		this.id = id;
 //	}
 
-	public SenderVO getSender() {
+	public CustomerVO getSender() {
 		return sender;
 	}
 
-	public ReceiverVO getReceiver() {
+	public CustomerVO getReceiver() {
 		return receiver;
 	}
 
@@ -81,11 +87,19 @@ public class OrderVO {
 		return id;
 	}
 
-	public void setSender(SenderVO sender) {
+	public Packing getPackingType() {
+		return packingType;
+	}
+	
+	public void setPackingType(Packing packingType) {
+		this.packingType = packingType;
+	}
+	
+	public void setSender(CustomerVO sender) {
 		this.sender = sender;
 	}
 
-	public void setReceiver(ReceiverVO receiver) {
+	public void setReceiver(CustomerVO receiver) {
 		this.receiver = receiver;
 	}
 

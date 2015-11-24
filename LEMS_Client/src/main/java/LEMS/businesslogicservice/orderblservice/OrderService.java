@@ -1,9 +1,9 @@
 package LEMS.businesslogicservice.orderblservice;
 
 import LEMS.po.orderpo.Express;
+import LEMS.po.orderpo.Packing;
+import LEMS.vo.ordervo.CustomerVO;
 import LEMS.vo.ordervo.GoodsVO;
-import LEMS.vo.ordervo.ReceiverVO;
-import LEMS.vo.ordervo.SenderVO;
 
 /**
  * @author 宋益明
@@ -16,13 +16,13 @@ public interface OrderService {
 	 * 
 	 * @param sender 寄件人
 	 */
-	public void addSender(SenderVO sender);
+	public void addSender(CustomerVO sender);
 	/**
 	 * 添加收件人
 	 * 
 	 * @param receiver
 	 */
-	public void addReceiver(ReceiverVO receiver);
+	public void addReceiver(CustomerVO receiver);
 	/**
 	 * 添加货物信息
 	 * 
@@ -35,6 +35,13 @@ public interface OrderService {
 	 * @param type 快递类型
 	 */
 	public void chooseType(Express type);
+	
+	/**
+	 * 选择包装类型
+	 * 
+	 * @param type 包装类型
+	 */
+	public void choosePack(Packing type);
 	/**
 	 * 生成订单条形码
 	 * 

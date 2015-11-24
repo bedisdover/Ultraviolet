@@ -11,10 +11,10 @@ public class main {
 //		mainFrame.setContentPane(jPanelStart);
 //		JPanelLogin jPanelLogin = new JPanelLogin(mainFrame);
 //		mainFrame.setContentPane(jPanelLogin);
-		ManagerUi managerUi = new ManagerUi(mainFrame);
-		mainFrame.setContentPane(managerUi);
-//		OrderManageUi orderManagerUi = new OrderManageUi(mainFrame);
-//		mainFrame.setContentPane(orderManagerUi);
+//		ManagerUi managerUi = new ManagerUi(mainFrame);
+//		mainFrame.setContentPane(managerUi);
+		OrderManageUi orderManagerUi = new OrderManageUi(mainFrame);
+		mainFrame.setContentPane(orderManagerUi);
 	}
 
 }
