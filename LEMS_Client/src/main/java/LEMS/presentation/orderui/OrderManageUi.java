@@ -2,7 +2,7 @@ package LEMS.presentation.orderui;
 
 import javax.swing.*;
 
-import java.awt.Graphics;
+import java.awt.*;
 
 import javax.swing.JButton;
 
@@ -58,6 +58,8 @@ public class OrderManageUi extends JPanel {
 	private JButton OK;
 	private JButton cancel;
 
+	private Font fnt1 = new Font("Courier", Font.PLAIN, 26);
+	
 	/**
 	 * Create the panel.
 	 */
@@ -127,7 +129,8 @@ public class OrderManageUi extends JPanel {
 	 * 初始化控件
 	 */
 	private void initcomponents() {
-		title.setBounds(378,1,322,61);
+		title.setBounds(449, 10, 148, 39);
+		title.setFont(fnt1);
 		//寄件人
 		sender.setBounds(124,50,118,57);
 		theSenderName.setBounds(140,91,107,27);
@@ -202,6 +205,29 @@ public class OrderManageUi extends JPanel {
 		this.add(butOut);
 		this.add(OK);
 		this.add(cancel);
+		
+		JPanel jPanel = new JPanel();
+		jPanel.setForeground(Color.RED);
+		jPanel.setLayout(new GridLayout(20, 5));
+		jPanel.setBounds(440, 51, 561, 672);
+		JTextField tabulation[] = new JTextField[100];
+		Font fnt2 = new Font("Courier", Font.PLAIN, 20);
+		for (int i = 0; i < 100; i++) {
+			tabulation[i] = new JTextField();
+			tabulation[i].setSize(200, 200);
+			tabulation[i].setEnabled(false);
+			tabulation[i].setDisabledTextColor(Color.BLACK);
+			tabulation[i].setFont(fnt2);
+			// 居中
+			tabulation[i].setHorizontalAlignment(JTextField.CENTER);
+			jPanel.add(tabulation[i]);
+		}
+		tabulation[0].setText("日期");
+		tabulation[1].setText("名称");
+		tabulation[2].setText("条形码号");
+		tabulation[3].setText("报价");
+		tabulation[4].setText("预估时间");
+		this.add(jPanel);
 	}
 
 	private void addListener() {
