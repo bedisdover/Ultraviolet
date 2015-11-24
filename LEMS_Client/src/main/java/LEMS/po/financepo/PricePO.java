@@ -15,11 +15,11 @@ public class PricePO {
 	 * 用于存储价格
 	 *
 	 */
-	private static HashMap<Express, Double> price;
+	private static HashMap<Express, Double> priceList;
 	
 	//TODO 单例化，确保程序中只存在一个对象
 	private PricePO() {
-		price = new HashMap<Express, Double>();
+		priceList = new HashMap<Express, Double>();
 		init();
 	}
 	
@@ -28,12 +28,16 @@ public class PricePO {
 	 * 初始化价格持久化对象
 	 */
 	private static void init() {
-		price.put(Express.economy, 18.0);
-		price.put(Express.standard, 23.0);
-		price.put(Express.special, 25.0);
+		priceList.put(Express.economy, 18.0);
+		priceList.put(Express.standard, 23.0);
+		priceList.put(Express.special, 25.0);
+	}
+	
+	public static void pricing(Express type, double price) {
+		priceList.put(type, price);
 	}
 
-	public static HashMap<Express, Double> getPrice() {
-		return price;
+	public static double getPrice(Express type) {
+		return priceList.get(type);
 	}
 }

@@ -1,7 +1,5 @@
 package LEMS.businesslogic.financebl.mock;
 
-import java.util.HashMap;
-
 import LEMS.po.financepo.PricePO;
 import LEMS.po.orderpo.Express;
 
@@ -26,18 +24,6 @@ public class MockPrice {
 	}
 	
 	public void pricing(Express type, double price) {
-		//价格列表
-		HashMap<Express, Double> priceList = PricePO.getPrice();
-		
-		switch (type) {
-		case economy:
-			priceList.put(Express.economy, price);
-			break;
-		case standard:
-			priceList.put(Express.standard, price);
-			break;
-		case special:
-			priceList.put(Express.special, price);
-		}
+		PricePO.pricing(type, price);
 	}
 }

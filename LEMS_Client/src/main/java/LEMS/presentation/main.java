@@ -13,7 +13,7 @@ public class main {
 //		mainFrame.setContentPane(jPanelLogin);
 //		ManagerUi managerUi = new ManagerUi(mainFrame);
 //		mainFrame.setContentPane(managerUi);
-		OrderManageUi orderManagerUi = new OrderManageUi(mainFrame);
+		OrderManageUi orderManagerUi = new OrderManageUi();
 		mainFrame.setContentPane(orderManagerUi);
 	}
 

@@ -15,6 +15,8 @@ import javax.swing.JTextField;
 
 import LEMS.businesslogic.orderbl.Order;
 import LEMS.businesslogic.orderbl.OrderController;
+import LEMS.po.orderpo.Express;
+import LEMS.po.orderpo.Packing;
 import LEMS.presentation.MainFrame;
 
 /**
@@ -23,7 +25,6 @@ import LEMS.presentation.MainFrame;
 @SuppressWarnings("serial")
 public class OrderManageUi extends JPanel {
 
-	private MainFrame mainFrame;
 	private JLabel title;
 	
 	// 寄件人
@@ -60,8 +61,8 @@ public class OrderManageUi extends JPanel {
 	private JTextField cWeight;
 	private JTextField cVolume;
 	private JTextField cSize;
-	private JComboBox<String> cPackage;
-	private JComboBox<String> cExpress;
+	private JComboBox<Packing> cPackage;
+	private JComboBox<Express> cExpress;
 	
 	// 按钮
 	private JButton butOut;
@@ -80,8 +81,7 @@ public class OrderManageUi extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public OrderManageUi(final MainFrame mainFrame) {
-		this.mainFrame = mainFrame;
+	public OrderManageUi() {
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
 
@@ -131,15 +131,15 @@ public class OrderManageUi extends JPanel {
 		cWeight = new JTextField();
 		cVolume = new JTextField();
 		cSize = new JTextField();
-		cPackage = new JComboBox<String>();
-		cPackage.addItem("木箱");
-		cPackage.addItem("纸箱");
-		cPackage.addItem("快递袋");
-		cPackage.addItem("其他");
-		cExpress = new JComboBox<String>();
-		cExpress.addItem("经济");
-		cExpress.addItem("标准");
-		cExpress.addItem("特快");
+		cPackage = new JComboBox<Packing>();
+		cPackage.addItem(Packing.Wooden);
+		cPackage.addItem(Packing.Carton);
+		cPackage.addItem(Packing.Bag);
+		cPackage.addItem(Packing.Other);
+		cExpress = new JComboBox<Express>();
+		cExpress.addItem(Express.standard);
+		cExpress.addItem(Express.economy);
+		cExpress.addItem(Express.special);
 		//按钮
 		butOut = new JButton("返回");
 		OK = new JButton("确定");
@@ -294,8 +294,8 @@ public class OrderManageUi extends JPanel {
 		controller.addGoodsInfo(cName.getText(), cSize.getText(), cNumber.getText(), 
 								cWeight.getText(), cVolume.getText());
 		//选择快递类型
-		controller.chooseType(cExpress.getSelectedItem());
+		controller.chooseType((Express) cExpress.getSelectedItem());
 		//选择包装类型
-		controller.choosePack(cPackage.getSelectedItem());
+		controller.choosePack((Packing) cPackage.getSelectedItem());
 	}
 }

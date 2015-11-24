@@ -11,6 +11,11 @@ import java.util.Map;
 public class Distance {
 
 	/**
+	 * 同一城市各营业厅距离
+	 */
+	public static double SAME_CITY = 30.0;
+	
+	/**
 	 * 存储距离常量
 	 */
 	static Map<String, Double> distance;
@@ -41,6 +46,11 @@ public class Distance {
 	 * @return 距离
 	 */
 	public static double getDistance(String former, String latter) {
+		
+		if (former.equals(latter)) {
+			return SAME_CITY;
+		}
+		
 		return distance.get(former + latter);
 	}
 }

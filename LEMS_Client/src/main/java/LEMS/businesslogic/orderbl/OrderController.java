@@ -50,16 +50,16 @@ public class OrderController {
 		order.addGoodsInfo(goods);
 	}
 
-	public void chooseType(Object express) {
-		order.chooseType((Express) express);
+	public void chooseType(Express express) {
+		order.chooseType(express);
 	}
 
-	public void choosePack(Object packing) {
-		order.choosePack((Packing) packing);
+	public void choosePack(Packing packing) {
+		order.choosePack(packing);
 	}
 
 	public String createID() {
-		// TODO Auto-generated method stub
+		// TODO 根据已有单据创建ID
 		return null;
 	}
 
