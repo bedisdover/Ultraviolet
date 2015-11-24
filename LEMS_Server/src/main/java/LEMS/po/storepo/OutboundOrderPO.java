@@ -1,17 +1,19 @@
 package LEMS.po.storepo;
 
+import LEMS.vo.ordervo.TransportType;
+
 public class OutboundOrderPO {
 	long id;
 	String outDate;
 	Destination destination;
-	LoadFormat loadFormat;	//装运形式
+	TransportType transportType;	//装运形式
 	long transferNum;	//中转单编号或汽运编号
 	
-	public OutboundOrderPO(long identity,String d,Destination des,LoadFormat lf,long num){
+	public OutboundOrderPO(long identity,String d,Destination des,TransportType tt,long num){
 		id=identity;
 		outDate=d;
 		destination=des;
-		loadFormat=lf;
+		transportType=tt;
 		transferNum=num;
 	}
 	
@@ -33,11 +35,11 @@ public class OutboundOrderPO {
 	public void setDestination(Destination destination) {
 		this.destination = destination;
 	}
-	public LoadFormat getLoadFormat() {
-		return loadFormat;
+	public TransportType  getTransportType() {
+		return  transportType;
 	}
-	public void setLoadFormat(LoadFormat loadFormat) {
-		this.loadFormat = loadFormat;
+	public void setTransportType(TransportType transportType) {
+		this. transportType =  transportType;
 	}
 	public long getTransferNum() {
 		return transferNum;

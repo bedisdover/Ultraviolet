@@ -1,10 +1,12 @@
 package LEMS.dataservice.storedataservice;
 
+import java.util.ArrayList;
+
 import LEMS.po.storepo.GoodsPO;
 
 public interface GoodsDataService {
 
-	public GoodsPO find(String id);
+	public ArrayList find(String id);
 	
 	public void insert(GoodsPO goodsPO);
 	
