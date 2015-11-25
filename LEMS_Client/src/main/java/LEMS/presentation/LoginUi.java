@@ -23,7 +23,7 @@ public class LoginUi extends JPanel {
 	JLabel labPassword = new JLabel("密码：");
 	JTextField textName = new JTextField();
 	JPasswordField textPassword = new JPasswordField();
-	JComboBox comboBox = new JComboBox();
+	JComboBox<String> comboBox = new JComboBox<String>();
 
 	public LoginUi(final MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
