@@ -14,13 +14,10 @@ public class main {
 //		mainFrame.setContentPane(jPanelLogin);
 //		ManagerUi managerUi = new ManagerUi(mainFrame);
 //		mainFrame.setContentPane(managerUi);
-<<<<<<< HEAD
-		OrderManageUi orderManagerUi = new OrderManageUi(mainFrame);
-=======
+//		OrderManageUi orderManagerUi = new OrderManageUi(mainFrame);
 //		OrderManageUi orderManagerUi = new OrderManageUi(mainFrame);
 //		mainFrame.setContentPane(orderManagerUi);
 		FinancialStaffUi orderManagerUi = new FinancialStaffUi(mainFrame);
->>>>>>> origin/master
 		mainFrame.setContentPane(orderManagerUi);
 	}
 

@@ -15,7 +15,7 @@ public class City {
 //	上海,
 //	南京,
 //	广州,
-	public static List<String> cityList = new ArrayList<>();
+	public static List<String> cityList = new ArrayList<String>();
 	
 	static {
 		cityList.add("北京");

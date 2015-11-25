@@ -21,7 +21,7 @@ public class Distance {
 	static Map<String, Double> distance;
 
 	static {
-		distance = new HashMap<>();
+		distance = new HashMap<String, Double>();
 		distance.put("北京上海", 1064.7);
 		distance.put("上海北京", 1064.7);
 		distance.put("北京广州", 1888.8);
