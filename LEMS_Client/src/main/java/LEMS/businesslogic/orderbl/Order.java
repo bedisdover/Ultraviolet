@@ -2,6 +2,7 @@ package LEMS.businesslogic.orderbl;
 
 import LEMS.businesslogicservice.orderblservice.OrderService;
 import LEMS.po.financepo.PricePO;
+import LEMS.po.orderpo.DistancePO;
 import LEMS.po.orderpo.Express;
 import LEMS.po.orderpo.Packing;
 import LEMS.vo.ordervo.CustomerVO;
@@ -86,7 +87,7 @@ public class Order implements OrderService {
 
 	public double getMoney() {
 		//获得距离
-		distance = Distance.getDistance(sender.getAddress().substring(0, 2), receiver.getAddress().substring(0, 2));
+		distance = DistancePO.getDistance(sender.getAddress().substring(0, 2), receiver.getAddress().substring(0, 2));
 		//获得单价
 		double price = PricePO.getPrice(expressType);
 		

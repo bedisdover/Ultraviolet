@@ -1,4 +1,4 @@
-package LEMS.businesslogic.orderbl;
+package LEMS.po.orderpo;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,7 +8,7 @@ import java.util.Map;
  * 
  *         用于获得各城市间距离
  */
-public class Distance {
+public class DistancePO {
 
 	/**
 	 * 同一城市各营业厅距离

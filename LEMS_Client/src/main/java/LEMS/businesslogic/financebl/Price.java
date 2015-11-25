@@ -25,12 +25,12 @@ public class Price implements PriceService {
 	}
 
 	public void pricing(Express type, double price) {
-		//更新价格
+		//更新快递价格
 		PricePO.pricing(type, price);
 	}
 	
 	public void pricing(Packing type, double price) {
-		//更新价格
+		//更新包装价格
 		PricePO.pricing(type, price);
 	}
 }
