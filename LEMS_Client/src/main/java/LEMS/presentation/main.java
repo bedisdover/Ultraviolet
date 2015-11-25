@@ -2,8 +2,13 @@ package LEMS.presentation;
 
 import LEMS.presentation.userui.FinancialStaffUi;
 import LEMS.presentation.userui.ManagerUi;
+import LEMS.presentation.inquireui.DiaryUi;
 import LEMS.presentation.orderui.OrderManageUi;
 
+/**
+ * @author 苏琰梓
+ *
+ */
 public class main {
 
 	public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package LEMS.businesslogic.inquirebl.inquirediary;
+package LEMS.businesslogic.inquireBl.inquirediary;
 
 import java.rmi.Naming;
 import LEMS.businesslogicservice.inquireblservice.InquireDiaryService;

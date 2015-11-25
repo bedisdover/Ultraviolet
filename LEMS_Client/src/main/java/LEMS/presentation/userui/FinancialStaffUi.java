@@ -6,6 +6,8 @@ import javax.swing.border.*;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.mainUi;
 import LEMS.presentation.financeui.CostPanel;
+import LEMS.presentation.financeui.SettlementPanel;
+import LEMS.presentation.inquireui.DiaryUi;
 import LEMS.presentation.inquireui.StatisticsReportUi;
 
 import java.awt.*;
@@ -21,8 +23,8 @@ public class FinancialStaffUi extends JPanel {
 	private JTabbedPane tabbedPane;
 	StatisticsReportUi statisticsReportUi;
 	CostPanel costPanel;
-	
-	
+	DiaryUi diaryUi;
+	SettlementPanel settlementPanel;
 	/**
 	 * Create the panel.
 	 */
@@ -33,18 +35,28 @@ public class FinancialStaffUi extends JPanel {
 		
 		statisticsReportUi = new StatisticsReportUi(this.mainFrame);
 		costPanel = new CostPanel(this.mainFrame);
-		statisticsReportUi.setBackground(Color.yellow);  
+		diaryUi = new DiaryUi(this.mainFrame);
+		settlementPanel = new SettlementPanel(this.mainFrame);
 		init();
 		initComponents();
 	}
 	
 	private void init(){
 		tabbedPane = new JTabbedPane();
-		tabbedPane.addTab("标签1",null,statisticsReportUi,"First panel");  
-        tabbedPane.addTab("标签2",null,costPanel,"Second panel");  
+		tabbedPane.addTab("结算管理",null,settlementPanel,"结算管理界面");  
+        tabbedPane.addTab("成本管理",null,costPanel,"成本管理界面");
+        tabbedPane.addTab("统计报表",null,statisticsReportUi,"统计报表界面"); 
+        tabbedPane.addTab("查询日志",null,diaryUi,"查询日志界面"); 
+        
 	}
 	
 	private void initComponents(){
+		tabbedPane.setTabPlacement(JTabbedPane.LEFT);
 		this.add(tabbedPane);
+	}
+	
+	public void paintComponent(Graphics g) {
+		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
+		this.repaint();
 	}
 }
