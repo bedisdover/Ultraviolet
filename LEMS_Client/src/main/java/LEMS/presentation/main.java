@@ -1,5 +1,6 @@
 package LEMS.presentation;
 
+import LEMS.presentation.userui.FinancialStaffUi;
 import LEMS.presentation.userui.ManagerUi;
 import LEMS.presentation.orderui.OrderManageUi;
 
@@ -13,7 +14,9 @@ public class main {
 //		mainFrame.setContentPane(jPanelLogin);
 //		ManagerUi managerUi = new ManagerUi(mainFrame);
 //		mainFrame.setContentPane(managerUi);
-		OrderManageUi orderManagerUi = new OrderManageUi();
+//		OrderManageUi orderManagerUi = new OrderManageUi(mainFrame);
+//		mainFrame.setContentPane(orderManagerUi);
+		FinancialStaffUi orderManagerUi = new FinancialStaffUi(mainFrame);
 		mainFrame.setContentPane(orderManagerUi);
 	}
 
