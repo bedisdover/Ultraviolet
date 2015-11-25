@@ -39,13 +39,18 @@ public class OrderController {
 		order.addReceiver(receiver);
 	}
 
-	public void addGoodsInfo(String name, String size, String quantity, String weight, String volumn) {
+	public void addGoodsInfo(String name, String quantity, String weight, String length, String width, String height) {
 		GoodsVO goods = new GoodsVO();
+		//体积
+		double volumn = Double.parseDouble(length) * Double.parseDouble(width) * Double.parseDouble(height);
+		//重量
+		double w = Double.parseDouble(weight);
+		w = ((volumn / 5000) > w) ? (volumn / 5000) : w;
+		
 		goods.setName(name);
-		goods.setSize(size);		
 		goods.setQuantity(Integer.parseInt(quantity));
-		goods.setWeight(Double.parseDouble(weight));
-		goods.setVolumn(Double.parseDouble(volumn));
+		goods.setVolumn(volumn);
+		goods.setWeight(w);
 		
 		order.addGoodsInfo(goods);
 	}

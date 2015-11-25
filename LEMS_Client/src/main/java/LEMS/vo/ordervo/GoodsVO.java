@@ -11,10 +11,6 @@ public class GoodsVO {
 	 */
 	private String name;
 	/**
-	 * 货物尺寸
-	 */
-	private String size;
-	/**
 	 * 货物数量
 	 */
 	private int quantity;
@@ -40,10 +36,6 @@ public class GoodsVO {
 		return name;
 	}
 
-	public String getSize() {
-		return size;
-	}
-
 	public int getQuantity() {
 		return quantity;
 	}
@@ -58,10 +50,6 @@ public class GoodsVO {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public void setSize(String size) {
-		this.size = size;
 	}
 
 	public void setQuantity(int quantity) {

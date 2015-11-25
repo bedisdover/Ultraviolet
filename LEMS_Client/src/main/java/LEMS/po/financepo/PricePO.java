@@ -19,6 +19,10 @@ public class PricePO {
 	 * 用于记录不同包装类型价格
 	 */
 	private static HashMap<Packing, Double> packagePrice;
+
+	static {
+		new PricePO();
+	}
 	
 	//TODO 单例化，确保程序中只存在一个对象
 	private PricePO() {
@@ -40,6 +44,7 @@ public class PricePO {
 		packagePrice.put(Packing.Carton, 5.0);
 		packagePrice.put(Packing.Wooden, 10.0);
 		packagePrice.put(Packing.Bag, 1.0);
+		packagePrice.put(Packing.Other, 0.0);
 	}
 	
 	public static void pricing(Express type, double price) {
