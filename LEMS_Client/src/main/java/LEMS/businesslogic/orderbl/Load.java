@@ -15,7 +15,7 @@ import LEMS.vo.ordervo.LoadVO;
  * 
  * 装运管理任务
  */
-public class Load implements LoadService {
+public class Load extends AddOrder implements LoadService {
 
 	/**
 	 * 订单列表
@@ -28,8 +28,7 @@ public class Load implements LoadService {
 	}
 	
 	public void addOrder(String id) {
-		//TODO 根据ID获取订单持久化对象
-		orders.add(new OrderPO(id));
+		orders.add(findOrder(id));
 	}
 
 	public void createLoadNote(LoadVO loadInfo) {

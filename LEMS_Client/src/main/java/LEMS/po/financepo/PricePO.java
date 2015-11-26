@@ -19,12 +19,7 @@ public class PricePO {
 	 * 用于记录不同包装类型价格
 	 */
 	private static HashMap<Packing, Double> packagePrice;
-
-	static {
-		new PricePO();
-	}
 	
-	//TODO 单例化，确保程序中只存在一个对象
 	private PricePO() {
 		expressPrice = new HashMap<Express, Double>();
 		packagePrice = new HashMap<Packing, Double>();
@@ -32,11 +27,11 @@ public class PricePO {
 		init();
 	}
 	
-	//TODO 测试用初始化
 	/**
 	 * 初始化价格持久化对象
 	 */
-	private static void init() {
+	private void init() {
+		//TODO 测试用初始化
 		expressPrice.put(Express.economy, 18.0);
 		expressPrice.put(Express.standard, 23.0);
 		expressPrice.put(Express.special, 25.0);
@@ -47,11 +42,12 @@ public class PricePO {
 		packagePrice.put(Packing.Other, 0.0);
 	}
 	
-	public static void pricing(Express type, double price) {
+	public void pricing(Express type, double price) {
 		expressPrice.put(type, price);
+		
 	}
 
-	public static void pricing(Packing type, double price) {
+	public void pricing(Packing type, double price) {
 		packagePrice.put(type, price);
 	}
 	
@@ -61,5 +57,13 @@ public class PricePO {
 	
 	public static double getPrice(Packing type) {
 		return packagePrice.get(type);
+	}
+
+	public void setExpressPrice(HashMap<Express, Double> expressPrice) {
+		PricePO.expressPrice = expressPrice;
+	}
+
+	public void setPackagePrice(HashMap<Packing, Double> packagePrice) {
+		PricePO.packagePrice = packagePrice;
 	}
 }
