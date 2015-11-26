@@ -21,11 +21,15 @@ public class IncomeBillPO implements Serializable{
 	 * 收款金额
 	 */
 	private double amount;
-
-	public IncomeBillPO(String date, String institution, double amount) {
+	/**
+	 * 收款账户
+	 */
+	private String account;
+	public IncomeBillPO(String date, String institution, double amount,String account) {
 		this.date = date;
 		this.institution = institution;
 		this.amount = amount;
+		this.account=account;
 	}
 
 	public String getDate() {
@@ -38,5 +42,9 @@ public class IncomeBillPO implements Serializable{
 
 	public double getAmount() {
 		return amount;
+	}
+	
+	public String getAccount(){
+		return account;
 	}
 }

@@ -2,15 +2,13 @@ package LEMS.po.financepo;
 
 import java.io.Serializable;
 
-import LEMS.po.informationpo.AccountPO;
-
 /**
  * @author 宋益明
  *
  * 收款单持久化对象（结算管理、成本管理）
  */
 @SuppressWarnings("serial")
-public class IncomeBillPO implements Serializable{
+public class IncomeBillPO implements Serializable {
 	/**
 	 * 收款日期
 	 */
@@ -26,17 +24,13 @@ public class IncomeBillPO implements Serializable{
 	/**
 	 * 收款账户
 	 */
-	private AccountPO account;
+	private String account;
 
-	public IncomeBillPO(String date) {
-		//TODO 根据日期获得收款单持久化对象
-	}
-	
-	public IncomeBillPO(String date, String institution, AccountPO account, double amount) {
+	public IncomeBillPO(String date, String institution, double amount,String account) {
 		this.date = date;
 		this.institution = institution;
-		this.account = account;
 		this.amount = amount;
+		this.account = account;
 	}
 
 	public String getDate() {
@@ -50,8 +44,8 @@ public class IncomeBillPO implements Serializable{
 	public double getAmount() {
 		return amount;
 	}
-	
-	public AccountPO getAccount() {
+
+	public String getAccount() {
 		return account;
 	}
 }

@@ -27,7 +27,8 @@ public class DatabaseFactoryImpl extends UnicastRemoteObject implements
 	}
 
 	public FinanceFactory getFinanceFactory() throws RemoteException {
-		return null;
+		FinanceFactory ff=new FinanceFactoryImpl();
+		return ff;
 	}
 
 	public InformationFactory getInformationFactory() throws RemoteException {
