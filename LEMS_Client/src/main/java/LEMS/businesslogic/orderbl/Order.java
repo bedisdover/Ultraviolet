@@ -1,6 +1,14 @@
 package LEMS.businesslogic.orderbl;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+
 import LEMS.businesslogicservice.orderblservice.OrderService;
+import LEMS.dataservice.factory.DatabaseFactory;
+import LEMS.dataservice.factory.OrderFactory;
+import LEMS.dataservice.orderdataservice.OrderDataService;
 import LEMS.po.financepo.PricePO;
 import LEMS.po.orderpo.DistancePO;
 import LEMS.po.orderpo.Express;
@@ -103,7 +111,20 @@ public class Order implements OrderService {
 	}
 
 	public void endOrder() {
-		// TODO Auto-generated method stub
-		
+		try {
+			//获得数据库的引用
+			DatabaseFactory databaseFactory = (DatabaseFactory) Naming.lookup("rmi://localhost:1099/data");
+			OrderFactory orderFactory = databaseFactory.getOrderFactory();
+			OrderDataService orderDataService = orderFactory.getOrderData();
+
+			//写入数据
+			orderDataService.insert(order.transfer());
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
 	}
 }

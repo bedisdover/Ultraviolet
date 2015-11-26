@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import LEMS.businesslogic.orderbl.Order;
-import LEMS.businesslogic.orderbl.OrderController;
+import LEMS.businesslogic.orderbl.controller.OrderController;
 import LEMS.po.orderpo.City;
 import LEMS.po.orderpo.Express;
 import LEMS.po.orderpo.Packing;

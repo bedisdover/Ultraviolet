@@ -1,6 +1,7 @@
 package LEMS.vo.ordervo;
 
 import LEMS.po.orderpo.Express;
+import LEMS.po.orderpo.OrderPO;
 import LEMS.po.orderpo.Packing;
 
 /**
@@ -59,6 +60,18 @@ public class OrderVO {
 //		this.id = id;
 //	}
 
+	public OrderPO transfer() {
+		OrderPO orderPO = new OrderPO();
+		orderPO.setId(id);
+		orderPO.setSender(sender);
+		orderPO.setReceiver(receiver);
+		orderPO.setExpressType(expressType);
+		orderPO.setAmount(amount);
+		orderPO.setGoodsInfo(goodsInfo);
+		
+		return orderPO;
+	}
+	
 	public CustomerVO getSender() {
 		return sender;
 	}

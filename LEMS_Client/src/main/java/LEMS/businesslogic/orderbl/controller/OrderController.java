@@ -1,5 +1,6 @@
-package LEMS.businesslogic.orderbl;
+package LEMS.businesslogic.orderbl.controller;
 
+import LEMS.businesslogic.orderbl.Order;
 import LEMS.po.orderpo.Express;
 import LEMS.po.orderpo.Packing;
 import LEMS.vo.ordervo.CustomerVO;
@@ -78,5 +79,9 @@ public class OrderController {
 
 	public String getTime() {
 		return order.getTime();
+	}
+	
+	public void endOrder() {
+		order.endOrder();
 	}
 }

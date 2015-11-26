@@ -53,6 +53,9 @@ public class DiaryUi extends JPanel{
 		this.addListener();
 	}
 	
+	public DiaryUi() {
+	}
+	
 	private void init(){
 		date = new JLabel("日期：");
 		title = new JLabel("查询日志");

@@ -1,6 +1,7 @@
 package LEMS.po.orderpo;
 
 import java.io.Serializable;
+import java.util.List;
 
 import LEMS.vo.ordervo.CustomerVO;
 import LEMS.vo.ordervo.GoodsVO;
@@ -31,7 +32,7 @@ public class OrderPO implements Serializable {
 	/**
 	 * 订单金额
 	 */
-	private long amount;
+	private double amount;
 	/**
 	 * 预估时间
 	 */
@@ -40,6 +41,11 @@ public class OrderPO implements Serializable {
 	 * 订单ID
 	 */
 	private String id;
+	//TODO 等待处理的物流信息
+	/**
+	 * 物流信息
+	 */
+	private List<String> logistics;
 	
 	public OrderPO() {
 		super();
@@ -77,7 +83,7 @@ public class OrderPO implements Serializable {
 		return expressType;
 	}
 
-	public long getAmount() {
+	public double getAmount() {
 		return amount;
 	}
 
@@ -87,6 +93,34 @@ public class OrderPO implements Serializable {
 	
 	public String getId() {
 		return id;
+	}
+
+	public void setSender(CustomerVO sender) {
+		this.sender = sender;
+	}
+
+	public void setReceiver(CustomerVO receiver) {
+		this.receiver = receiver;
+	}
+
+	public void setGoodsInfo(GoodsVO goodsInfo) {
+		this.goodsInfo = goodsInfo;
+	}
+
+	public void setExpressType(Express expressType) {
+		this.expressType = expressType;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 }
 
