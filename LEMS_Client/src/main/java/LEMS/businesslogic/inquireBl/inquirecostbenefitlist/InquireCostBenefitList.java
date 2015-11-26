@@ -10,9 +10,9 @@ import LEMS.vo.inquirevo.CostBenefitListVO;
 public class InquireCostBenefitList implements InquireCostBenefitListService {
 
 	public CostBenefitListVO getCostBenefitList(String startTime, String endTime) {
-		// TODO Auto-generated method stub
 		CostBenefitList cbl=new CostBenefitList(startTime,endTime);
-		return null;
+		CostBenefitListVO cvo=new CostBenefitListVO(startTime,endTime,cbl.totalIncome,cbl.totalExpense,cbl.totalProfit);
+		return cvo;
 	}
 
 }

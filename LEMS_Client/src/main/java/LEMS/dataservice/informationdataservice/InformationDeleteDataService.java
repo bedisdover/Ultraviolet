@@ -17,7 +17,7 @@ public interface InformationDeleteDataService {
 	public void deleteDriverPO(long id) throws RemoteException;
 	public void deleteVehiclePO(long id) throws RemoteException;
 	public void deleteInstitutionPO(String id) throws RemoteException;
-	public void deleteStuffPO(String id) throws RemoteException;
+	public void deleteStaff(String id) throws RemoteException;
 	public void deleteAccountPO(String name) throws RemoteException;
 
 }

@@ -16,17 +16,17 @@ public class CostBenefitListVO {
 	/**
 	 * 总收入
 	 */
-	long totalIncome;
+	double totalIncome;
 	/**
 	 * 总支出
 	 */
-	long totalExpense;
+	double totalExpense;
 	/**
 	 * 总利润
 	 */
-	long totalBenefit;
+	double totalBenefit;
 	
-	public CostBenefitListVO(String st,String et,long ti,long te,long tb){
+	public CostBenefitListVO(String st,String et,double ti,double te,double tb){
 		startTime=st;
 		endTime=et;
 		totalIncome=ti;
@@ -39,13 +39,13 @@ public class CostBenefitListVO {
 	public String getEndTime(){
 		return endTime;
 	}
-	public long getTotalIncome(){
+	public double getTotalIncome(){
 		return totalIncome;
 	}
-	public long getTotalExpense(){
+	public double getTotalExpense(){
 		return totalExpense;
 	}
-	public long getTotalBenefit(){
+	public double getTotalBenefit(){
 		return totalBenefit;
 	}
 }

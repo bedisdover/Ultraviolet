@@ -1,6 +1,7 @@
 package LEMS.data.informationdata;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,7 +15,11 @@ import LEMS.dataservice.informationdataservice.InformationDeleteDataService;
  * InformationDelete包数据
  * 2015年10月26日
  */
-public class InformationDeleteData implements InformationDeleteDataService{
+@SuppressWarnings("serial")
+public class InformationDeleteData extends UnicastRemoteObject implements InformationDeleteDataService{
+	public InformationDeleteData() throws RemoteException {
+		super();
+	}
 	public void deleteDriverPO(long id) throws RemoteException{
 		
 	}
@@ -37,10 +42,8 @@ public class InformationDeleteData implements InformationDeleteDataService{
 			pstmt.close();
 			conn.close();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

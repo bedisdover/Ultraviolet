@@ -1,5 +1,7 @@
 package LEMS.businesslogicservice.informationblservice;
 
+import LEMS.po.userpo.UserPO;
+
 
 /**
  * @author 苏琰梓
@@ -22,5 +24,5 @@ public interface InformationUpdateService {
 	/**
 	 * 修改人员信息
 	 */
-	public void updateStuffVO(String id);
+	public void updateStaff(UserPO upo);
 }

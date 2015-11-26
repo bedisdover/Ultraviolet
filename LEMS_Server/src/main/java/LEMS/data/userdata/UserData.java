@@ -18,7 +18,6 @@ import LEMS.po.userpo.UserRole;
 public class UserData extends UnicastRemoteObject implements UserDataService {
 	public UserData() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public static final String DBDRIVER = "org.gjt.mm.mysql.Driver";
@@ -71,10 +70,8 @@ public class UserData extends UnicastRemoteObject implements UserDataService {
 			pstmt.close();
 			conn.close();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -138,10 +135,8 @@ public class UserData extends UnicastRemoteObject implements UserDataService {
 			pstmt.close();
 			conn.close();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return ua;
