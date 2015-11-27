@@ -9,8 +9,16 @@ import LEMS.po.orderpo.Packing;
  * @author 宋益明
  *
  * 价格持久化对象
+ * 单例化静态对象PricePO
+ * 调用者LEMS.businesslogic.financebl.Price
+ * 调用者LEMS.businesslogic.orderbl.Order
  */
 public class PricePO {
+	
+	/**
+	 * 全局静态变量
+	 */
+	public static PricePO pricePO;
 	/**
 	 * 用于记录不同快递类型价格
 	 */
@@ -21,17 +29,15 @@ public class PricePO {
 	private static HashMap<Packing, Double> packagePrice;
 	
 	private PricePO() {
+	}
+	
+	static {
+		//TODO 测试用初始化
+		pricePO = new PricePO();
+		
 		expressPrice = new HashMap<Express, Double>();
 		packagePrice = new HashMap<Packing, Double>();
 		
-		init();
-	}
-	
-	/**
-	 * 初始化价格持久化对象
-	 */
-	private void init() {
-		//TODO 测试用初始化
 		expressPrice.put(Express.economy, 18.0);
 		expressPrice.put(Express.standard, 23.0);
 		expressPrice.put(Express.special, 25.0);
@@ -42,12 +48,12 @@ public class PricePO {
 		packagePrice.put(Packing.Other, 0.0);
 	}
 	
-	public void pricing(Express type, double price) {
+	public static void pricing(Express type, double price) {
 		expressPrice.put(type, price);
 		
 	}
 
-	public void pricing(Packing type, double price) {
+	public static void pricing(Packing type, double price) {
 		packagePrice.put(type, price);
 	}
 	
@@ -59,11 +65,11 @@ public class PricePO {
 		return packagePrice.get(type);
 	}
 
-	public void setExpressPrice(HashMap<Express, Double> expressPrice) {
+	public static void setExpressPrice(HashMap<Express, Double> expressPrice) {
 		PricePO.expressPrice = expressPrice;
 	}
 
-	public void setPackagePrice(HashMap<Packing, Double> packagePrice) {
+	public static void setPackagePrice(HashMap<Packing, Double> packagePrice) {
 		PricePO.packagePrice = packagePrice;
 	}
 }

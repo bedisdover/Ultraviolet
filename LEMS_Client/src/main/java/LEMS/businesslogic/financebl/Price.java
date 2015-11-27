@@ -20,8 +20,6 @@ import LEMS.po.orderpo.Packing;
  */
 public class Price implements PriceService {
 
-	private static PricePO pricePO;
-	
 	public Price() {
 		//初始化PricePO
 		init();
@@ -38,12 +36,12 @@ public class Price implements PriceService {
 
 	public void pricing(Express type, double price) {
 		//更新快递价格
-		pricePO.pricing(type, price);
+		PricePO.pricing(type, price);
 	}
 	
 	public void pricing(Packing type, double price) {
 		//更新包装价格
-		pricePO.pricing(type, price);
+		PricePO.pricing(type, price);
 	}
 	
 	/**
@@ -51,7 +49,9 @@ public class Price implements PriceService {
 	 */
 	private void init() {
 		try {
-			pricePO = getService().getPrice();
+			
+			//TODO 可能存在严重问题，违反信息隐藏
+			PricePO.pricePO = getService().getPrice();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -62,7 +62,7 @@ public class Price implements PriceService {
 	 */
 	public void record() {
 		try {
-			getService().pricing(pricePO);
+			getService().pricing(PricePO.pricePO);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

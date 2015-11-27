@@ -13,6 +13,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import LEMS.businesslogic.orderbl.Order;
@@ -21,6 +22,7 @@ import LEMS.po.orderpo.City;
 import LEMS.po.orderpo.Express;
 import LEMS.po.orderpo.Packing;
 import LEMS.presentation.MainFrame;
+import LEMS.presentation.Table;
 
 /**
  * @author 章承尧,苏琰梓 订单管理界面 2015年11月23日
@@ -250,28 +252,32 @@ public class OrderManageUi extends JPanel {
 		this.add(OK);
 		this.add(cancel);
 		
-		JPanel jPanel = new JPanel();
-		jPanel.setForeground(Color.RED);
-		jPanel.setLayout(new GridLayout(20, 5));
-		jPanel.setBounds(420, 51, 561, 672);
-		JTextField tabulation[] = new JTextField[100];
-		Font fnt2 = new Font("Courier", Font.PLAIN, 20);
-		for (int i = 0; i < 100; i++) {
-			tabulation[i] = new JTextField();
-			tabulation[i].setSize(200, 200);
-			tabulation[i].setEnabled(false);
-			tabulation[i].setDisabledTextColor(Color.BLACK);
-			tabulation[i].setFont(fnt2);
-			// 居中
-			tabulation[i].setHorizontalAlignment(JTextField.CENTER);
-			jPanel.add(tabulation[i]);
-		}
-		tabulation[0].setText("日期");
-		tabulation[1].setText("名称");
-		tabulation[2].setText("条形码号");
-		tabulation[3].setText("报价");
-		tabulation[4].setText("预估时间");
-		this.add(jPanel);
+//		JPanel jPanel = new JPanel();
+//		jPanel.setForeground(Color.RED);
+//		jPanel.setLayout(new GridLayout(20, 5));
+//		jPanel.setBounds(420, 51, 561, 672);
+//		JTextField tabulation[] = new JTextField[100];
+//		Font fnt2 = new Font("Courier", Font.PLAIN, 20);
+//		for (int i = 0; i < 100; i++) {
+//			tabulation[i] = new JTextField();
+//			tabulation[i].setSize(200, 200);
+//			tabulation[i].setEnabled(false);
+//			tabulation[i].setDisabledTextColor(Color.BLACK);
+//			tabulation[i].setFont(fnt2);
+//			// 居中
+//			tabulation[i].setHorizontalAlignment(JTextField.CENTER);
+//			jPanel.add(tabulation[i]);
+//		}
+//		tabulation[0].setText("日期");
+//		tabulation[1].setText("名称");
+//		tabulation[2].setText("条形码号");
+//		tabulation[3].setText("报价");
+//		tabulation[4].setText("预估时间");
+//		this.add(jPanel);
+		String strings[] = {"编号", "日期", "名称", "条形码号", "报价", "预估时间"};
+		int nums[] = {300, 93, 20, 30, 20, 420, 55, 576, 650}; 
+		JScrollPane pane = new Table().drawTable(strings, nums);
+		this.add(pane);
 	}
 
 	private void addListener() {
@@ -330,22 +336,23 @@ public class OrderManageUi extends JPanel {
 	 */
 	private void okOperation() {
 		//判断输入是否为空
-		if (isEmpty()) {
-			JOptionPane.showMessageDialog(null, "输入内容为空！", "Error", JOptionPane.ERROR_MESSAGE);
-			return;
-		} 
-		
-		//判断目标城市是否在服务范围内
-		if (!legalCity()) {
-			//TODO 很丑的对话框
-			JOptionPane.showMessageDialog(mainFrame, "输入地址无效" + "\n或\n" +"目标城市不在服务范围内！", "Error", JOptionPane.ERROR_MESSAGE);
-			return;
-		} 
+//		if (isEmpty()) {
+//			JOptionPane.showMessageDialog(null, "输入内容为空！", "Error", JOptionPane.ERROR_MESSAGE);
+//			return;
+//		} 
 		
 		//判断输入是否合法
-		if (!isLegal()) {
-			return;
-		}
+//		if (!isLegal()) {
+//			return;
+//		}
+		
+		//判断目标城市是否在服务范围内
+//		if (!legalCity()) {
+//			//TODO 很丑的对话框
+//			JOptionPane.showMessageDialog(mainFrame, "输入地址无效" + "\n或\n" +"目标城市不在服务范围内！", "Error", JOptionPane.ERROR_MESSAGE);
+//			return;
+//		} 
+		
 		// 生成订单
 		createOrder();
 		// 清空输入框
@@ -400,9 +407,10 @@ public class OrderManageUi extends JPanel {
 	private boolean isLegal() {
 		
 		//TODO 利用正则表达式判断输入是否合法
-//		if (!cNumber.getText().matches("\\")) {
-//			cNumber.setForeground(Color.red);
-//		}
+		if (!sPhone.getText().matches("\\d+") || aPhone.getText().matches("\\d+")) {
+			JOptionPane.showMessageDialog(mainFrame, "输入手机号无效!" + "\n或\n" +"手机号不存在！", "Error", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
 		
 		return true;
 	}
@@ -421,6 +429,8 @@ public class OrderManageUi extends JPanel {
 		cType.setText(null);
 		cNumber.setText(null);
 		cLength.setText(null);
+		cWidth.setText(null);
+		cHeight.setText(null);
 		cWeight.setText(null);
 	}
 	
