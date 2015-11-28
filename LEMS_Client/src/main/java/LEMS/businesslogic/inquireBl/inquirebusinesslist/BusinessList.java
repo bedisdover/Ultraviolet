@@ -2,31 +2,30 @@ package LEMS.businesslogic.inquirebl.inquirebusinesslist;
 
 import java.util.ArrayList;
 
-import LEMS.businesslogic.inquirebl.inquirecostbenefitlist.MockIncomeBill;
-import LEMS.businesslogic.inquirebl.inquirecostbenefitlist.MockPayBill;
+import LEMS.businesslogic.inquirebl.inquirecostbenefitlist.CostBenefitList;
+import LEMS.po.financepo.IncomeBillPO;
+import LEMS.po.financepo.PayBillPO;
 
 public class BusinessList {
 	
 	String startTime;
 	String endTime;
-	ArrayList<MockPayBill> pay;
-	ArrayList<MockIncomeBill> income;
+	ArrayList<PayBillPO> pay;
+	ArrayList<IncomeBillPO> income;
 	
 	public BusinessList(String startTime,String endTime){
 		this.startTime=startTime;
 		this.endTime=endTime;
 	}
 	
-	public ArrayList<MockPayBill> getPayBill(){
-		pay=new ArrayList<MockPayBill>();
-		MockPayBill b1=new MockPayBill("2015/10/25",21.3);
-		MockPayBill b2=new MockPayBill("2015/10/26",22.1);
-		pay.add(b1);
-		pay.add(b2);
+	public ArrayList<PayBillPO> getPayBill(){
+		CostBenefitList cfl=new CostBenefitList(startTime,endTime);
+		pay=cfl.getPayBill(startTime, endTime);
 		return pay;
 	}
-	public ArrayList<MockIncomeBill> getIncomeBill(){
-		income=new ArrayList<MockIncomeBill>();
+	public ArrayList<IncomeBillPO> getIncomeBill(){
+		CostBenefitList cfl=new CostBenefitList(startTime,endTime);
+		income=cfl.getIncomeBill(startTime, endTime);
 		return income;
 	}
 }

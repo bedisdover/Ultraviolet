@@ -11,6 +11,7 @@ import LEMS.dataservice.factory.FinanceFactory;
 import LEMS.dataservice.factory.InquireFactory;
 import LEMS.dataservice.factory.UserFactory;
 import LEMS.dataservice.financedataservice.IncomeBillDataService;
+import LEMS.dataservice.financedataservice.PayBillDataService;
 import LEMS.dataservice.userdataservice.UserDataService;
 import LEMS.po.financepo.IncomeBillPO;
 import LEMS.po.financepo.PayBillPO;
@@ -58,8 +59,10 @@ public class CostBenefitList {
 	 * @return double 计算若干收款单的总收入
 	 */
 	public double calculateIncome() {
-		incomeBills=getIncomeBill(startTime,endTime);
-		
+		incomeBills = getIncomeBill(startTime, endTime);
+		for(IncomeBillPO ibpo:incomeBills){
+			totalIncome+=ibpo.getAmount();
+		}
 		return (double) Math.round(totalIncome * 100) / 100;
 	}
 
@@ -67,9 +70,10 @@ public class CostBenefitList {
 	 * @return double 计算若干付款单的总支出
 	 */
 	public double calculateExpense() {
-		MockPayBill b1 = new MockPayBill(startTime, 10.1);
-		MockPayBill b2 = new MockPayBill(startTime, 19.8);
-		totalExpense = b1.getExpense() + b2.getExpense();
+		payBills=getPayBill(startTime,endTime);
+		for(PayBillPO pbpo:payBills){
+			totalExpense+=pbpo.getAmount();
+		}
 		return (double) Math.round(totalExpense * 100) / 100;
 	}
 
@@ -83,15 +87,20 @@ public class CostBenefitList {
 	/**
 	 * @param startTime
 	 * @param endTime
-	 * @return ArrayList<IncomeBillPO>
-	 * 获得这段时间内所有收款单
+	 * @return ArrayList<IncomeBillPO> 获得这段时间内所有收款单
 	 */
-	private ArrayList<IncomeBillPO> getIncomeBill(String startTime,String endTime) {
+	public ArrayList<IncomeBillPO> getIncomeBill(String startTime,
+			String endTime) {
 		try {
-			DatabaseFactory database=(DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
-			FinanceFactory ff=database.getFinanceFactory();
-			IncomeBillDataService in=ff.getIncomeBillData();
-			incomeBills=in.getIncomeBill(startTime, endTime);
+			DatabaseFactory database = (DatabaseFactory) Naming.lookup("rmi://localhost:1099/data");
+			FinanceFactory ff = database.getFinanceFactory();
+			IncomeBillDataService in = ff.getIncomeBillData();
+			incomeBills = in.getIncomeBill(startTime, endTime);
+			for (int i = 0; i < incomeBills.size(); i++) {
+				if (!isValid(incomeBills.get(i).getDate())) {
+					incomeBills.remove(i);
+				}
+			}
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {
@@ -99,22 +108,101 @@ public class CostBenefitList {
 		} catch (NotBoundException e) {
 			e.printStackTrace();
 		}
-		
+
 		return incomeBills;
 	}
-	private ArrayList<PayBillPO> getPayBill(String startTime,String endTime) {
+
+	public ArrayList<PayBillPO> getPayBill(String startTime, String endTime) {
+		try {
+			DatabaseFactory database = (DatabaseFactory) Naming.lookup("rmi://localhost:1099/data");
+			FinanceFactory ff = database.getFinanceFactory();
+			PayBillDataService in = ff.getPayBillData();
+			payBills = in.getPayBill(startTime, endTime);
+			for (int i = 0; i < payBills.size(); i++) {
+				if (!isValid(payBills.get(i).getDate())) {
+					incomeBills.remove(i);
+				}
+			}
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
 		return payBills;
 	}
-	private boolean isValid(String time){
-		String[] t1=startTime.split("-");
-		String[] t2=endTime.split("-");
-		String[] t=time.split("-");
-		if((Integer.parseInt(t[0])>=Integer.parseInt(t1[0]))&&(Integer.parseInt(t[0])<=Integer.parseInt(t2[0]))){
-			
+
+	private boolean isValid(String time) {
+		String[] t1 = startTime.split("-");
+		String[] t2 = endTime.split("-");
+		String[] t = time.split("-");
+		int month1=Integer.parseInt(t1[1].substring(0, 1))*10+Integer.parseInt(t1[1].substring(1));
+		int month2=Integer.parseInt(t2[1].substring(0, 1))*10+Integer.parseInt(t2[1].substring(1));
+		int month=Integer.parseInt(t[1].substring(0, 1))*10+Integer.parseInt(t[1].substring(1));
+		int day1=Integer.parseInt(t1[2].substring(0, 1))*10+Integer.parseInt(t1[2].substring(1));
+		int day2=Integer.parseInt(t2[2].substring(0, 1))*10+Integer.parseInt(t2[2].substring(1));
+		int day=Integer.parseInt(t[2].substring(0, 1))*10+Integer.parseInt(t[2].substring(1));
+		if ((Integer.parseInt(t[0]) > Integer.parseInt(t1[0]))&& (Integer.parseInt(t[0]) < Integer.parseInt(t2[0]))) {
+			return true;
+		} 
+		else if((Integer.parseInt(t[0]) == Integer.parseInt(t1[0]))&& (Integer.parseInt(t[0]) < Integer.parseInt(t2[0]))){
+			if(month>month1){
+				return true;
+			}
+			else if(month==month1&&day>=day1){
+				return true;
+			}
+			else{
+				return false;
+			}			
+		}
+		else if((Integer.parseInt(t[0]) > Integer.parseInt(t1[0]))&& (Integer.parseInt(t[0]) == Integer.parseInt(t2[0]))){
+			if(month<month2){
+				return true;
+			}
+			else if(month==month2&&day<=day2){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		else if((Integer.parseInt(t[0]) == Integer.parseInt(t1[0]))&& (Integer.parseInt(t[0]) == Integer.parseInt(t2[0]))){
+			if(month>month1&&month<month2){
+				return true;
+			}
+			else if(month==month1&&month<month2){
+				if(day>=day1){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}
+			else if(month>month1&&month==month2){
+				if(day<=day2){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}
+			else if(month==month1&&month==month2){
+				if(day>=day1&&day<=day2){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}
+			else{
+				return false;
+			}
 		}
 		else{
 			return false;
-		}
-		return false;
+		}		
 	}
+	
 }
