@@ -1,34 +1,65 @@
 package LEMS.po.orderpo;
 
-import java.io.Serializable;
 import java.util.List;
-
-import LEMS.vo.ordervo.CustomerVO;
-import LEMS.vo.ordervo.GoodsVO;
 
 /**
  * @author 宋益明
  * 
  * 订单持久化对象
  */
-@SuppressWarnings("serial")
-public class OrderPO implements Serializable {
+public class OrderPO {
+	
 	/**
-	 * 寄件人
+	 * 寄件人姓名
 	 */
-	private CustomerVO sender;
+	private String senderName;
 	/**
-	 * 收件人
+	 * 寄件人电话
 	 */
-	private CustomerVO receiver;
+	private String senderPhone;
 	/**
-	 * 货物信息
+	 * 寄件人地址
 	 */
-	private GoodsVO goodsInfo;
+	private String senderAddress;
+	
+	/**
+	 * 收件人姓名 
+	 */
+	private String receiverName;
+	/**
+	 * 收件人电话
+	 */
+	private String receiverPhone;
+	/**
+	 * 收件人地址
+	 */
+	private String receiverAddress;
+	
+	/**
+	 * 货物名称
+	 */
+	private String name;
+	/**
+	 * 货物数量
+	 */
+	private int quantity;
+	/**
+	 * 货物质量
+	 */
+	private double weight;
+	/**
+	 * 货物体积
+	 */
+	private double volumn;
+
 	/**
 	 * 快递类型
 	 */
 	private Express expressType;
+	/**
+	 * 包装类型
+	 */
+	private Packing packageType;
 	/**
 	 * 订单金额
 	 */
@@ -41,7 +72,7 @@ public class OrderPO implements Serializable {
 	 * 订单ID
 	 */
 	private String id;
-	//TODO 等待处理的物流信息
+
 	/**
 	 * 物流信息
 	 */
@@ -56,27 +87,55 @@ public class OrderPO implements Serializable {
 		this.id = id;
 	}
 	
-	public OrderPO(CustomerVO sender, CustomerVO receiver, GoodsVO goodsInfo, Express expressType, long amount,
-			String time, String id) {
-		this.sender = sender;
-		this.receiver = receiver;
-		this.goodsInfo = goodsInfo;
-		this.expressType = expressType;
-		this.amount = amount;
-		this.time = time;
-		this.id = id;
+//	public OrderPO(CustomerVO sender, CustomerVO receiver, GoodsVO goodsInfo, Express expressType, long amount,
+//			String time, String id) {
+//		this.sender = sender;
+//		this.receiver = receiver;
+//		this.goodsInfo = goodsInfo;
+//		this.expressType = expressType;
+//		this.amount = amount;
+//		this.time = time;
+//		this.id = id;
+//	}
+
+	public String getSenderName() {
+		return senderName;
 	}
 
-	public CustomerVO getSender() {
-		return sender;
+	public String getSenderPhone() {
+		return senderPhone;
 	}
 
-	public CustomerVO getReceiver() {
-		return receiver;
+	public String getSenderAddress() {
+		return senderAddress;
 	}
 
-	public GoodsVO getGoodsInfo() {
-		return goodsInfo;
+	public String getReceiverName() {
+		return receiverName;
+	}
+
+	public String getReceiverPhone() {
+		return receiverPhone;
+	}
+
+	public String getReceiverAddress() {
+		return receiverAddress;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public double getWeight() {
+		return weight;
+	}
+
+	public double getVolumn() {
+		return volumn;
 	}
 
 	public Express getExpressType() {
@@ -90,21 +149,53 @@ public class OrderPO implements Serializable {
 	public String getTime() {
 		return time;
 	}
-	
+
 	public String getId() {
 		return id;
 	}
 
-	public void setSender(CustomerVO sender) {
-		this.sender = sender;
+	public List<String> getLogistics() {
+		return logistics;
 	}
 
-	public void setReceiver(CustomerVO receiver) {
-		this.receiver = receiver;
+	public void setSenderName(String senderName) {
+		this.senderName = senderName;
 	}
 
-	public void setGoodsInfo(GoodsVO goodsInfo) {
-		this.goodsInfo = goodsInfo;
+	public void setSenderPhone(String senderPhone) {
+		this.senderPhone = senderPhone;
+	}
+
+	public void setSenderAddress(String senderAddress) {
+		this.senderAddress = senderAddress;
+	}
+
+	public void setReceiverName(String receiverName) {
+		this.receiverName = receiverName;
+	}
+
+	public void setReceiverPhone(String receiverPhone) {
+		this.receiverPhone = receiverPhone;
+	}
+
+	public void setReceiverAddress(String receiverAddress) {
+		this.receiverAddress = receiverAddress;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public void setWeight(double weight) {
+		this.weight = weight;
+	}
+
+	public void setVolumn(double volumn) {
+		this.volumn = volumn;
 	}
 
 	public void setExpressType(Express expressType) {
@@ -121,6 +212,18 @@ public class OrderPO implements Serializable {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public Packing getPackageType() {
+		return packageType;
+	}
+
+	public void setPackageType(Packing packageType) {
+		this.packageType = packageType;
+	}
+	
+	public void setLogistics(List<String> logistics) {
+		this.logistics = logistics;
 	}
 }
 

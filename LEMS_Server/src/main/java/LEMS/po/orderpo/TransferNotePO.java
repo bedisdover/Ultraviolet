@@ -1,9 +1,9 @@
 package LEMS.po.orderpo;
 
-import LEMS.vo.ordervo.TransferVO;
+import java.awt.datatransfer.Transferable;
 
 public class TransferNotePO {
-	public TransferNotePO(TransferVO transferVO) {
+	public TransferNotePO(Transferable transferPO) {
 		// TODO Auto-generated constructor stub
 	}
 }

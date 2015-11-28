@@ -1,5 +1,7 @@
 package LEMS.vo.ordervo;
 
+import java.util.List;
+
 import LEMS.po.orderpo.Express;
 import LEMS.po.orderpo.OrderPO;
 import LEMS.po.orderpo.Packing;
@@ -30,7 +32,7 @@ public class OrderVO {
 	/**
 	 * 包装类型
 	 */
-	private Packing packingType;
+	private Packing packageType;
 	/**
 	 * 订单金额
 	 */
@@ -43,10 +45,10 @@ public class OrderVO {
 	 * 订单ID
 	 */
 	private String id;
-	
-	public OrderVO() {
-		
-	}
+	/**
+	 * 物流信息
+	 */
+	private List<String> logistics;
 	
 	//TODO 极有可能不用的构造函数
 //	public OrderVO(SenderVO sender, ReceiverVO receiver, GoodsVO goodsInfo, Express expressType, long amount,
@@ -60,14 +62,33 @@ public class OrderVO {
 //		this.id = id;
 //	}
 
-	public OrderPO transfer() {
+	/**
+	 * 将订单值对象转换为持久化对象
+	 * 
+	 * @return 订单持久化对象
+	 */
+	public OrderPO transferToPO() {
 		OrderPO orderPO = new OrderPO();
+		
 		orderPO.setId(id);
-		orderPO.setSender(sender);
-		orderPO.setReceiver(receiver);
 		orderPO.setExpressType(expressType);
+		orderPO.setPackageType(packageType);
 		orderPO.setAmount(amount);
-		orderPO.setGoodsInfo(goodsInfo);
+		orderPO.setTime(time);
+		orderPO.setLogistics(logistics);
+		
+		orderPO.setSenderName(sender.getName());
+		orderPO.setSenderPhone(sender.getPhone());
+		orderPO.setSenderAddress(sender.getAddress());
+		
+		orderPO.setReceiverName(receiver.getName());
+		orderPO.setReceiverPhone(receiver.getPhone());
+		orderPO.setReceiverAddress(receiver.getAddress());
+
+		orderPO.setName(goodsInfo.getName());
+		orderPO.setQuantity(goodsInfo.getQuantity());
+		orderPO.setWeight(goodsInfo.getWeight());
+		orderPO.setVolumn(goodsInfo.getVolumn());
 		
 		return orderPO;
 	}
@@ -101,11 +122,11 @@ public class OrderVO {
 	}
 
 	public Packing getPackingType() {
-		return packingType;
+		return packageType;
 	}
 	
 	public void setPackingType(Packing packingType) {
-		this.packingType = packingType;
+		this.packageType = packingType;
 	}
 	
 	public void setSender(CustomerVO sender) {
@@ -134,5 +155,13 @@ public class OrderVO {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public List<String> getLogistics() {
+		return logistics;
+	}
+
+	public void setLogistics(List<String> logistics) {
+		this.logistics = logistics;
 	} 
 }

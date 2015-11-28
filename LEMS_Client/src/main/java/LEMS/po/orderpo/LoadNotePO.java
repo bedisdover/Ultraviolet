@@ -1,7 +1,5 @@
 package LEMS.po.orderpo;
 
-import LEMS.vo.ordervo.LoadVO;
-
 /**
  * @author 宋益明
  * 
@@ -9,7 +7,7 @@ import LEMS.vo.ordervo.LoadVO;
  */
 public class LoadNotePO {
 
-	public LoadNotePO(LoadVO loadInfo) {
+	public LoadNotePO(LoadNotePO loadInfo) {
 		//TODO 根据装车信息生成装车单持久化对象
 	}
 }

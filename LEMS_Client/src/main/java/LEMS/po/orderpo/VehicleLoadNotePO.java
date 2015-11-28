@@ -1,10 +1,8 @@
 package LEMS.po.orderpo;
 
-import LEMS.vo.ordervo.VehicleLoadVO;
-
 public class VehicleLoadNotePO {
 	
-	public VehicleLoadNotePO(VehicleLoadVO vehicleLoadVO) {
+	public VehicleLoadNotePO(VehicleLoadNotePO vehicleLoadPO) {
 		// TODO Auto-generated constructor stub
 	}
 }

@@ -1,7 +1,9 @@
 package LEMS.data.orderdata;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
+import LEMS.data.Connect;
 import LEMS.dataservice.orderdataservice.OrderDataService;
 import LEMS.po.orderpo.OrderPO;
 
@@ -10,10 +12,24 @@ import LEMS.po.orderpo.OrderPO;
  * 
  * Order包数据
  */
-public class OrderData implements OrderDataService {
+public class OrderData extends UnicastRemoteObject implements OrderDataService {
 
-	public OrderPO find(long id) throws RemoteException {
-		// TODO Auto-generated method stub
+	/**
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public OrderData() throws RemoteException {
+		super();
+	}
+
+	private Connect connect;
+	
+	public OrderPO find(String id) throws RemoteException {
+		
+		connect = new Connect();
+		
+		String sql = "SELECT id,password,role,name,institutionid,institutionlocation FROM order";
+		
 		return null;
 	}
 
@@ -41,5 +57,4 @@ public class OrderData implements OrderDataService {
 		// TODO Auto-generated method stub
 		
 	}
-
 }

@@ -118,7 +118,7 @@ public class Order implements OrderService {
 			OrderDataService orderDataService = orderFactory.getOrderData();
 
 			//写入数据
-			orderDataService.insert(order.transfer());
+			orderDataService.insert(order.transferToPO());
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {

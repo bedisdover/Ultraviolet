@@ -1,7 +1,5 @@
 package LEMS.po.orderpo;
 
-import LEMS.vo.ordervo.ArrivalVO;
-
 /**
  * @author 宋益明
  *
@@ -9,7 +7,7 @@ import LEMS.vo.ordervo.ArrivalVO;
  */
 public class ArrivalNotePO {
 	
-	public ArrivalNotePO(ArrivalVO arrivalInfo) {
+	public ArrivalNotePO(ArrivalNotePO arrivalInfo) {
 		//TODO 
 	}
 }
