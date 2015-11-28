@@ -28,7 +28,8 @@ public class PricePO {
 	 */
 	private static HashMap<Packing, Double> packagePrice;
 	
-	private PricePO() {
+	//TODO 全局构造函数
+	public PricePO() {
 	}
 	
 	static {
