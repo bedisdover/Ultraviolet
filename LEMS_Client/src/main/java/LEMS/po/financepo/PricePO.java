@@ -38,14 +38,14 @@ public class PricePO {
 		expressPrice = new HashMap<Express, Double>();
 		packagePrice = new HashMap<Packing, Double>();
 		
-		expressPrice.put(Express.economy, 18.0);
-		expressPrice.put(Express.standard, 23.0);
-		expressPrice.put(Express.special, 25.0);
-		
-		packagePrice.put(Packing.Carton, 5.0);
-		packagePrice.put(Packing.Wooden, 10.0);
-		packagePrice.put(Packing.Bag, 1.0);
-		packagePrice.put(Packing.Other, 0.0);
+//		expressPrice.put(Express.economy, 0.0);
+//		expressPrice.put(Express.standard, 23.0);
+//		expressPrice.put(Express.special, 25.0);
+//		
+//		packagePrice.put(Packing.Carton, 5.0);
+//		packagePrice.put(Packing.Wooden, 10.0);
+//		packagePrice.put(Packing.Bag, 1.0);
+//		packagePrice.put(Packing.Other, 0.0);
 	}
 	
 	public static void pricing(Express type, double price) {

@@ -14,7 +14,7 @@ public interface OrderDataService {
 	/**
 	 * 按ID进行查找返回对应的OrderPO结果
 	 */
-	public OrderPO find(long id) throws RemoteException;
+	public OrderPO find(String id) throws RemoteException;
 	
 	/**
 	 * 在数据库中插入一个po记录

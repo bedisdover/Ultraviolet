@@ -1,5 +1,6 @@
 package LEMS.dataservice.financedataservice;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 import LEMS.po.financepo.FinancePO;
@@ -9,7 +10,7 @@ import LEMS.po.financepo.FinancePO;
  * 
  * Finance包数据接口
  */
-public interface FinanceDataService {
+public interface FinanceDataService extends Remote{
 	
 	/**
 	 * 按ID进行查找返回对应的FinancePO结果

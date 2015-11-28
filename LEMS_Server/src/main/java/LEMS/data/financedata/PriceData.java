@@ -1,6 +1,7 @@
 package LEMS.data.financedata;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,8 +14,12 @@ import LEMS.po.financepo.PricePO;
 import LEMS.po.orderpo.Express;
 import LEMS.po.orderpo.Packing;
 
-public class PriceData implements PriceDataService {
+@SuppressWarnings("serial")
+public class PriceData extends UnicastRemoteObject implements PriceDataService {
 
+	public PriceData() throws RemoteException {
+		super();
+	}
 	private PricePO pricePO;
 
 	private Connect connect;
@@ -54,6 +59,20 @@ public class PriceData implements PriceDataService {
 			e.printStackTrace();
 		}
 		connect.closeConnection();
+		HashMap<Express, Double> express = new HashMap<Express, Double>();
+		express.put(Express.economy, expressPrice.get("economy"));
+		express.put(Express.standard, expressPrice.get("standard"));
+		express.put(Express.special, expressPrice.get("special"));
+		
+		//创建并初始化包装类型价格表
+		HashMap<Packing, Double> pack = new HashMap<Packing, Double>();
+		pack.put(Packing.Carton,packagePrice.get("carton"));
+		pack.put(Packing.Wooden, packagePrice.get("wooden"));
+		pack.put(Packing.Bag, packagePrice.get("bag"));
+		pack.put(Packing.Other, packagePrice.get("other"));
+		pricePO.setExpressPrice(express);
+		pricePO.setPackagePrice(pack);
+		
 		return pricePO;
 	}
 

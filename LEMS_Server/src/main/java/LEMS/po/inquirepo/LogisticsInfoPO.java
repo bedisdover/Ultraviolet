@@ -12,17 +12,17 @@ public class LogisticsInfoPO implements Serializable{
 	/**
 	 * 订单编号
 	 */
-	long id;
+	String id;
 	/**
 	 * 快递物流轨迹
 	 */
 	ArrayList<String> trace;
 	
-	public LogisticsInfoPO(long i,ArrayList<String> t){
+	public LogisticsInfoPO(String i,ArrayList<String> t){
 		id=i;
 		trace=t;
 	}
-	public long getId(){
+	public String getId(){
 		return id;
 	}
 	public ArrayList<String> getTrace(){

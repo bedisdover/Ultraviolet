@@ -30,7 +30,7 @@ public class PricePO {
 	
 	private PricePO() {
 	}
-
+	
 	static {
 		//TODO 测试用初始化
 		pricePO = new PricePO();

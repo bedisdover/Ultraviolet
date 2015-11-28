@@ -96,6 +96,7 @@ public static void main(String[] args){
 		
 		Price p=new Price();
 		p.init();
-		
+		System.out.println(PricePO.getPrice(Express.economy));
+		System.out.println(PricePO.getPrice(Packing.Bag));
 	}
 }

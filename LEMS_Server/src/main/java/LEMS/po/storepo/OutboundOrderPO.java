@@ -1,15 +1,36 @@
 package LEMS.po.storepo;
 
-import LEMS.vo.ordervo.TransportType;
+import java.io.Serializable;
 
-public class OutboundOrderPO {
-	long id;
+import LEMS.vo.ordervo.TransportType;
+/**
+ * @author 周梦佳
+ * 出库单持久化对象
+ */
+@SuppressWarnings("serial")
+public class OutboundOrderPO implements Serializable {
+	/**
+	 * 快递单号
+	 */
+	String id;
+	/**
+	 * 出库日期
+	 */
 	String outDate;
+	/**
+	 * 目的地
+	 */
 	Destination destination;
-	TransportType transportType;	//装运形式
-	long transferNum;	//中转单编号或汽运编号
+	/**
+	 * 装运形式
+	 */
+	TransportType transportType;	
+	/**
+	 * 中转单编号或汽运编号
+	 */
+	long transferNum;
 	
-	public OutboundOrderPO(long identity,String d,Destination des,TransportType tt,long num){
+	public OutboundOrderPO(String identity,String d,Destination des,TransportType tt,long num){
 		id=identity;
 		outDate=d;
 		destination=des;
@@ -17,10 +38,10 @@ public class OutboundOrderPO {
 		transferNum=num;
 	}
 	
-	public long getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getOutDate() {
@@ -35,11 +56,11 @@ public class OutboundOrderPO {
 	public void setDestination(Destination destination) {
 		this.destination = destination;
 	}
-	public TransportType  getTransportType() {
-		return  transportType;
+	public TransportType getTransportType() {
+		return transportType;
 	}
-	public void setTransportType(TransportType transportType) {
-		this. transportType =  transportType;
+	public void setTransportType(TransportType loadFormat) {
+		this.transportType = loadFormat;
 	}
 	public long getTransferNum() {
 		return transferNum;

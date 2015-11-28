@@ -5,10 +5,10 @@ import java.io.Serializable;
 /**
  * @author 宋益明
  *
- * 收款单持久化对象
+ * 收款单持久化对象（结算管理、成本管理）
  */
 @SuppressWarnings("serial")
-public class IncomeBillPO implements Serializable{
+public class IncomeBillPO implements Serializable {
 	/**
 	 * 收款日期
 	 */
@@ -25,11 +25,12 @@ public class IncomeBillPO implements Serializable{
 	 * 收款账户
 	 */
 	private String account;
+
 	public IncomeBillPO(String date, String institution, double amount,String account) {
 		this.date = date;
 		this.institution = institution;
 		this.amount = amount;
-		this.account=account;
+		this.account = account;
 	}
 
 	public String getDate() {
@@ -43,8 +44,8 @@ public class IncomeBillPO implements Serializable{
 	public double getAmount() {
 		return amount;
 	}
-	
-	public String getAccount(){
+
+	public String getAccount() {
 		return account;
 	}
 }

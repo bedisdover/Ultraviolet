@@ -2,9 +2,8 @@ package LEMS.po.informationpo;
 
 import java.io.Serializable;
 
-import LEMS.po.informationpo.InstitutionPO;
-
 import LEMS.po.userpo.UserRole;
+
 
 /**
  * @author 苏琰梓
