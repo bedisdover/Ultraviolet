@@ -28,10 +28,9 @@ public class PricePO {
 	 */
 	private static HashMap<Packing, Double> packagePrice;
 	
-	//TODO 全局构造函数
-	public PricePO() {
+	private PricePO() {
 	}
-	
+
 	static {
 		//TODO 测试用初始化
 		pricePO = new PricePO();

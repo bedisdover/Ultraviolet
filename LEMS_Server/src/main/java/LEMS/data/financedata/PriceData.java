@@ -58,11 +58,12 @@ public class PriceData implements PriceDataService {
 	}
 
 	public void pricing(PricePO price) throws RemoteException {
+		
 		PreparedStatement pstmt = null;
 
 		connect = new Connect();
 		String sql = "INSERT INTO price(type, price) VALUES (?, ?)";
-
+		this.makeEmpty();
 		try {
 			pstmt = connect.getPreparedStatement(sql);
 
@@ -101,26 +102,48 @@ public class PriceData implements PriceDataService {
 
 		connect.closeConnection();
 	}
+	public void makeEmpty() throws RemoteException{
+		PreparedStatement pstmt = null;
 
-	public static void main(String[] args) {
-		PriceData priceData = new PriceData();
-		
-		PricePO pricePO = new PricePO();
-		
-		pricePO.pricing(Express.economy, 18.0);
-		pricePO.pricing(Express.standard, 23.0);
-		pricePO.pricing(Express.special, 25.0);
-		
-		pricePO.pricing(Packing.Bag, 1.0);
-		pricePO.pricing(Packing.Carton, 5.0);
-		pricePO.pricing(Packing.Wooden, 10.0);
-		pricePO.pricing(Packing.Other, 0.0);
-		
+		connect = new Connect();
+		String sql = "DELETE FROM price";
+
 		try {
-			priceData.pricing(pricePO);
-		} catch (RemoteException e) {
+			pstmt = connect.getPreparedStatement(sql);	
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
+		connect.closeConnection();
 	}
+//	public static void main(String[] args) {
+//		PriceData priceData = new PriceData();
+//		
+//		PricePO pricePO=null;
+//		try {
+//			pricePO = priceData.getPrice();
+//		} catch (RemoteException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//		
+//		System.out.println(pricePO.getPrice(Express.economy));
+//		System.out.println(pricePO.getPrice(Express.standard));
+//		System.out.println(pricePO.getPrice(Express.special));
+//		
+//		System.out.println(pricePO.getPrice(Packing.Bag));
+//		System.out.println(pricePO.getPrice(Packing.Carton));
+//		System.out.println(pricePO.getPrice(Packing.Wooden));
+//		System.out.println(pricePO.getPrice(Packing.Other));
+//		
+//		
+//		try {
+//			
+//			priceData.pricing(pricePO);
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
 }
