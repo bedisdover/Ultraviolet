@@ -92,8 +92,10 @@ public class Price implements PriceService {
 		
 		return priceDataService;
 	}
-	public static void main(String[] args){
+public static void main(String[] args){
+		
 		Price p=new Price();
 		p.init();
+		
 	}
 }
