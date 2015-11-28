@@ -336,22 +336,22 @@ public class OrderManageUi extends JPanel {
 	 */
 	private void okOperation() {
 		//判断输入是否为空
-//		if (isEmpty()) {
-//			JOptionPane.showMessageDialog(null, "输入内容为空！", "Error", JOptionPane.ERROR_MESSAGE);
-//			return;
-//		} 
+		if (isEmpty()) {
+			JOptionPane.showMessageDialog(null, "输入内容为空！", "Error", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 		
 		//判断输入是否合法
-//		if (!isLegal()) {
-//			return;
-//		}
+		if (!isLegal()) {
+			return;
+		}
 		
 		//判断目标城市是否在服务范围内
-//		if (!legalCity()) {
-//			//TODO 很丑的对话框
-//			JOptionPane.showMessageDialog(mainFrame, "输入地址无效" + "\n或\n" +"目标城市不在服务范围内！", "Error", JOptionPane.ERROR_MESSAGE);
-//			return;
-//		} 
+		if (!legalCity()) {
+			//TODO 很丑的对话框
+			JOptionPane.showMessageDialog(mainFrame, "输入地址无效" + "\n或\n" +"目标城市不在服务范围内！", "Error", JOptionPane.ERROR_MESSAGE);
+			return;
+		} 
 		
 		// 生成订单
 		createOrder();
