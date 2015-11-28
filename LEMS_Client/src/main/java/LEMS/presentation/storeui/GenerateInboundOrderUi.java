@@ -35,9 +35,6 @@ public class GenerateInboundOrderUi extends JPanel{
 	private JButton exit;
 	private JButton OK;
 	private JButton cancel;
-	private JButton inbound;
-	private JButton outbound;
-	
 
 	private JLabel labelId;
 	private JTextField textId;
@@ -55,9 +52,10 @@ public class GenerateInboundOrderUi extends JPanel{
 	private JComboBox<String> comboBox1;//destination
 	private JComboBox<String> comboBox2;//area
 	
-	private Font fnt1 = new Font("Courier", Font.PLAIN, 26);//标题字体格式
+	private Font fnt1 = new Font("Courier", Font.BOLD, 26);//标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);//其余字体格式
-
+	private Font fnt2 = new Font("宋体", Font.BOLD, 16);//按钮字体格式
+	
 	public GenerateInboundOrderUi(final MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
@@ -81,8 +79,6 @@ public class GenerateInboundOrderUi extends JPanel{
 		exit = new JButton("返回");
 		OK = new JButton("确定");
 		cancel = new JButton("取消");
-		inbound = new JButton("入库");
-		outbound = new JButton("出库");
 		labelId = new JLabel("快递单号:");
 		textId = new JTextField();
 		labelInDate = new JLabel("入库日期:");
@@ -104,21 +100,21 @@ public class GenerateInboundOrderUi extends JPanel{
 	 */
 	private void initComponents() {
 
-		title.setBounds(400, 37, 230, 39);
+		title.setBounds(340, 37, 230, 39);
 		
-		labelId.setBounds(80, 180, 131, 30);
-		labelInDate.setBounds(80, 240, 131, 30);
-		labelDestination.setBounds(85, 300, 131, 30);
-		labelArea.setBounds(80, 360, 131, 30);
-		labelRow.setBounds(95, 420, 131, 30);
-		labelStand.setBounds(95, 480, 131, 30);
-		labelPosition.setBounds(95, 540, 131, 30);
+		labelId.setBounds(40, 160, 131, 30);
+		labelInDate.setBounds(40, 220, 131, 30);
+		labelDestination.setBounds(45, 280, 131, 30);
+		labelArea.setBounds(40, 340, 131, 30);
+		labelRow.setBounds(55, 400, 131, 30);
+		labelStand.setBounds(55, 460, 131, 30);
+		labelPosition.setBounds(55, 520, 131, 30);
 		
-		textId.setBounds(160, 185, 150, 24);
-		textInDate.setBounds(160, 245, 150, 24);
-		textRow.setBounds(160, 425, 150, 24);
-		textStand.setBounds(160, 485, 150, 24);
-		textPosition.setBounds(160, 545, 150, 24);
+		textId.setBounds(113, 165, 130, 24);
+		textInDate.setBounds(113, 225, 130, 24);
+		textRow.setBounds(113, 405, 130, 24);
+		textStand.setBounds(113, 465, 130, 24);
+		textPosition.setBounds(113, 525, 130, 24);
 		
 		title.setFont(fnt1);
 		labelId.setFont(fnt);
@@ -129,26 +125,28 @@ public class GenerateInboundOrderUi extends JPanel{
 		labelStand.setFont(fnt);
 		labelPosition.setFont(fnt);
 		
-		comboBox1.setBounds(160, 303, 150, 28);
+		cancel.setFont(fnt2);
+		OK.setFont(fnt2);
+		exit.setFont(fnt2);
+		
+		comboBox1.setBounds(113, 285, 130, 25);
 		comboBox1.addItem("");
 		comboBox1.addItem("北京");
 		comboBox1.addItem("上海");
 		comboBox1.addItem("广州");
 		comboBox1.addItem("南京");
 		
-		comboBox2.setBounds(160, 363, 150, 28);
+		comboBox2.setBounds(113, 345, 130, 25);
 		comboBox2.addItem("");
 		comboBox2.addItem("航运区");
 		comboBox2.addItem("铁运区");
 		comboBox2.addItem("汽运区");
 		comboBox2.addItem("机动区");
 		
-		OK.setBounds(80, 600, 100, 40);
-		cancel.setBounds(220, 600, 100, 40);
-		exit.setBounds(52, 36, 100, 40);
-		inbound.setBounds(300, 100, 100, 40);
-		outbound.setBounds(600, 100, 100, 40);
-	
+		OK.setBounds(40, 590, 90, 40);
+		cancel.setBounds(160, 590, 90, 40);
+		exit.setBounds(47, 70, 100, 40);
+
 		this.add(title);
 		this.add(labelId);
 		this.add(textId);
@@ -167,12 +165,11 @@ public class GenerateInboundOrderUi extends JPanel{
 		this.add(OK);
 		this.add(cancel);
 		this.add(exit);
-		this.add(inbound);
-		this.add(outbound);
+	
 		
 
 		String[] columnNames = { "快递单号", "入库日期", "目的地", "存放区域", "排号","架号","位号" };  
-		int[] list={40,87,14,30,20,355,156,630,500};
+		int[] list={40,81,14,30,20,285,136,588,520};
 
 	    Table table=new Table();
 		add(table.drawTable(columnNames, list));
@@ -217,14 +214,7 @@ public class GenerateInboundOrderUi extends JPanel{
 	 * 为按钮添加事件监听器
 	 */
 	private void addListener() {
-		outbound.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				mainFrame.setContentPane(new GenerateOutboundOrderUi(mainFrame));
-			}
-		});
-
-
-
+		
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				// TODO 确定按钮的具体实现
@@ -244,7 +234,7 @@ public class GenerateInboundOrderUi extends JPanel{
 
 	public void paintComponent(Graphics g) {
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
-		g.draw3DRect(51, 156, 290, 500, false);  //输入框外框
+		g.draw3DRect(25, 136, 240, 520, false);  //输入框外框
 		this.repaint();
 	}
 
