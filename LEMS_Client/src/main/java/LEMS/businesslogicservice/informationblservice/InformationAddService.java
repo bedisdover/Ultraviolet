@@ -16,15 +16,15 @@ public interface InformationAddService {
 	/**
 	 * 增加司机信息
 	 */
-	public void addDriverVO(DriverVO drivervo);
+	public void addDriver(DriverVO drivervo);
 	/**
 	 * 增加车辆信息
 	 */
-	public void addVehicleVO(VehicleVO vehiclevo);
+	public void addVehicle(VehicleVO vehiclevo);
 	/**
 	 * 增加机构信息
 	 */
-	public void addInstitutionVO(InstitutionVO institutionvo);
+	public void addInstitution(InstitutionVO institutionvo);
 	/**
 	 * 增加人员信息
 	 */
