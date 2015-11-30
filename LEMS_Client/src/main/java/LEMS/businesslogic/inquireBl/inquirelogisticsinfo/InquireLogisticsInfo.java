@@ -10,8 +10,14 @@ import LEMS.vo.inquirevo.LogisticsInfoVO;
 public class InquireLogisticsInfo implements InquireLogisticsInfoService{
 
 	public LogisticsInfoVO getInquireLogisticsInfo(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		LogisticsInfo logisInfo=new LogisticsInfo(id);
+		if(logisInfo.getLogisticsInfo()!=null){
+			LogisticsInfoVO lovo=new LogisticsInfoVO(id,logisInfo.getLogisticsInfo());
+			return lovo;
+		}
+		else{
+			return null;
+		}		
 	}
-
+	
 }

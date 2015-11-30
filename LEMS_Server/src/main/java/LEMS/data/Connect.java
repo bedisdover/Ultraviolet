@@ -21,8 +21,8 @@ public class Connect {
 	public PreparedStatement getPreparedStatement(String sql) {
 
 		try {
-			Class.forName(UserData.DBDRIVER);
-			conn = DriverManager.getConnection(UserData.DBURL, UserData.DBUSER, UserData.DBPASS);
+			Class.forName(Connect.DBDRIVER);
+			conn = DriverManager.getConnection(Connect.DBURL, Connect.DBUSER, Connect.DBPASS);
 			pstmt = conn.prepareStatement(sql);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

@@ -4,7 +4,9 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import LEMS.data.inquiredata.BusinessListData;
+import LEMS.data.inquiredata.CostBenefitListData;
 import LEMS.data.inquiredata.DiaryData;
+import LEMS.data.inquiredata.LogisticsInfoData;
 import LEMS.dataservice.factory.InquireFactory;
 import LEMS.dataservice.inquiredataservice.BusinessListDataService;
 import LEMS.dataservice.inquiredataservice.CostBenefitListDataService;
@@ -25,7 +27,8 @@ public class InquireFactoryImpl extends UnicastRemoteObject implements
 	}
 
 	public CostBenefitListDataService getCostBenefitList() throws RemoteException {
-		return null;
+		CostBenefitListDataService cbfd=new CostBenefitListData();
+		return cbfd;
 	}
 
 	public DiaryDataService getDiaryData() throws RemoteException {
@@ -34,7 +37,8 @@ public class InquireFactoryImpl extends UnicastRemoteObject implements
 	}
 
 	public LogisticsInfoDataService getLogisticsInfo() throws RemoteException {
-		return null;
+		LogisticsInfoDataService lid=new LogisticsInfoData();
+		return lid;
 	}
 
 }
