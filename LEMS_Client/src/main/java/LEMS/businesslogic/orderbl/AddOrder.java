@@ -29,9 +29,12 @@ public class AddOrder implements AddOrderService {
 		OrderPO order = new OrderPO();
 		
 		try {
+			//获得数据库的引用
 			DatabaseFactory databaseFactory = (DatabaseFactory) Naming.lookup("rmi://localhost:1099/data");
 			OrderFactory orderFactory = databaseFactory.getOrderFactory();
 			OrderDataService orderDataService = orderFactory.getOrderData();
+			
+			//获得订单信息
 			order = orderDataService.find(id);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -45,7 +48,7 @@ public class AddOrder implements AddOrderService {
 	}
 	
 	public void addOrder(String id) {
-		// TODO Auto-generated method stub
+		// TODO 似乎不需要的方法，但是考虑到需求变更，就暂且放在这里了
 		
 	}
 

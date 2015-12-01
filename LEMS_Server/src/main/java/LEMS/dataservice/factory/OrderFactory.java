@@ -3,6 +3,7 @@ package LEMS.dataservice.factory;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
+import LEMS.dataservice.orderdataservice.DistanceDataService;
 import LEMS.dataservice.orderdataservice.LoadDataService;
 import LEMS.dataservice.orderdataservice.OrderDataService;
 
@@ -28,5 +29,13 @@ public interface OrderFactory extends Remote {
 	 * @throws RemoteException
 	 */
 	public LoadDataService getLoadData() throws RemoteException; 
+	
+	/**
+	 * 获得距离数据服务
+	 * 
+	 * @return
+	 * @throws RemoteException
+	 */
+	public DistanceDataService getDistanceData() throws RemoteException;
 	
 }

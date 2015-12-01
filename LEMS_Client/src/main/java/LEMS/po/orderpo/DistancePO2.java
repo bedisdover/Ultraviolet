@@ -6,16 +6,17 @@ import java.util.Map;
 /**
  * @author 宋益明
  * 
- *         用于获得各城市间距离
+ * 用于获得各城市间距离（非静态数据）
  */
-public class DistancePO {
+public class DistancePO2 {
 
 	//TODO 忽然发现总经理居然还可以制定城市间距离，我也是醉了
 	
-	/**
-	 * 同一城市各营业厅距离
-	 */
-	public static double SAME_CITY = 30.0;
+	public Map<String, Double> cityDistance;
+	
+	public DistancePO2() {
+		cityDistance = new HashMap<>();
+	}
 	
 	/**
 	 * 存储距离常量
@@ -47,10 +48,10 @@ public class DistancePO {
 	 *            到达地
 	 * @return 距离
 	 */
-	public static double getDistance(String former, String latter) {
+	public double getDistance(String former, String latter) {
 		
 		if (former.equals(latter)) {
-			return SAME_CITY;
+			//TODO 
 		}
 		
 		return distance.get(former + latter);

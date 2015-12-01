@@ -44,10 +44,12 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 		
 		try {
 			orderPO.setSenderName(result.getString(2));
+			
+			connect.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return orderPO;
 	}
 
 	public void insert(OrderPO orderPO) throws RemoteException {
@@ -76,6 +78,8 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 			pstmt.setString(15, orderPO.getTime());
 			
 			pstmt.executeUpdate();
+			
+			connect.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -89,6 +93,8 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 		
 		try {
 			pstmt.executeUpdate();
+			
+			connect.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -102,6 +108,8 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 		
 		try {
 			pstmt.executeUpdate();
+			
+			connect.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

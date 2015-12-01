@@ -11,7 +11,7 @@ import LEMS.vo.ordervo.ArrivalVO;
  * 
  * 接收任务
  */
-public class Receipt implements ReceiptService {
+public class Receipt extends AddOrder implements ReceiptService {
 
 	/**
 	 * 订单列表
@@ -24,7 +24,7 @@ public class Receipt implements ReceiptService {
 	}
 	
 	public void addOrder(String id) {
-		
+		orders.add(findOrder(id));
 	}
 
 	public void createArrivalNote(ArrivalVO arrivalInfo) {

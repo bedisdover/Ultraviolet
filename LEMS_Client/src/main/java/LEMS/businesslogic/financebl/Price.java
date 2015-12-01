@@ -19,7 +19,7 @@ import LEMS.po.orderpo.Packing;
  * 制定价格任务
  */
 public class Price implements PriceService {
-
+	
 	public Price() {
 		//初始化PricePO
 		init();

@@ -11,7 +11,6 @@ public class LoadController extends Controller {
 	private Load load;
 	
 	public LoadController() {
-		// TODO Auto-generated constructor stub
 		load = new Load();
 	}
 	
@@ -19,4 +18,7 @@ public class LoadController extends Controller {
 		load.addOrder(order.getId());
 	}
 	
+	public void createLoadNote() {
+		
+	}
 }
