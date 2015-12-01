@@ -5,12 +5,11 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import LEMS.businesslogic.financebl.Price;
 import LEMS.businesslogicservice.orderblservice.OrderService;
 import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.OrderFactory;
 import LEMS.dataservice.orderdataservice.OrderDataService;
-import LEMS.po.financepo.PricePO;
-import LEMS.po.orderpo.DistancePO;
 import LEMS.po.orderpo.Express;
 import LEMS.po.orderpo.Packing;
 import LEMS.vo.ordervo.CustomerVO;
@@ -53,9 +52,15 @@ public class Order implements OrderService {
 	 */
 	private double distance;
 	
+	private Price price;
+	private Distance cityDistance;
+	
 	public Order() {
 		//新建订单
 		order = new OrderVO();
+		
+		price = new Price();
+		cityDistance = new Distance();
 	}
 	
 	public void addSender(CustomerVO sender) {
@@ -95,16 +100,16 @@ public class Order implements OrderService {
 
 	public double getMoney() {
 		//获得距离
-		distance = DistancePO.getDistance(sender.getAddress().substring(0, 2), receiver.getAddress().substring(0, 2));
+		distance = cityDistance.getDistance(sender.getAddress().substring(0, 2), receiver.getAddress().substring(0, 2));
 		//获得单价
-		double price = PricePO.getPrice(expressType);
+		double temp = price.getPrice(expressType);
 		
-		return distance / 1000 * price * goods.getWeight();
+		return distance / 1000 * temp * goods.getWeight();
 	}
 
 	public double getTotal() {
 		
-		order.setAmount(PricePO.getPrice(packageType) + getMoney()) ;
+		order.setAmount(price.getPrice(packageType) + getMoney()) ;
 		
 		return order.getAmount();
 	}

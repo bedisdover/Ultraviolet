@@ -1,7 +1,6 @@
 package LEMS.vo.ordervo;
 
-import java.util.List;
-
+import LEMS.po.inquirepo.LogisticsInfoPO;
 import LEMS.po.orderpo.Express;
 import LEMS.po.orderpo.OrderPO;
 import LEMS.po.orderpo.Packing;
@@ -48,7 +47,7 @@ public class OrderVO {
 	/**
 	 * 物流信息
 	 */
-	private List<String> logistics;
+	private LogisticsInfoPO logistics;
 	
 	//TODO 极有可能不用的构造函数
 //	public OrderVO(SenderVO sender, ReceiverVO receiver, GoodsVO goodsInfo, Express expressType, long amount,
@@ -75,7 +74,7 @@ public class OrderVO {
 		orderPO.setPackageType(packageType);
 		orderPO.setAmount(amount);
 		orderPO.setTime(time);
-		orderPO.setLogistics(logistics);
+		orderPO.setLogisticsInfoPO(logistics);
 		
 		orderPO.setSenderName(sender.getName());
 		orderPO.setSenderPhone(sender.getPhone());
@@ -157,11 +156,11 @@ public class OrderVO {
 		this.id = id;
 	}
 
-	public List<String> getLogistics() {
+	public LogisticsInfoPO getLogistics() {
 		return logistics;
 	}
 
-	public void setLogistics(List<String> logistics) {
+	public void setLogistics(LogisticsInfoPO logistics) {
 		this.logistics = logistics;
 	} 
 }

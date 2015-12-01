@@ -20,28 +20,31 @@ import LEMS.po.orderpo.Packing;
  */
 public class Price implements PriceService {
 	
+	PricePO pricePO;
+	
 	public Price() {
+		pricePO = new PricePO();
 		//初始化PricePO
 		init();
 	}
 
 	
 	public double getPrice(Express type) {
-		return PricePO.getPrice(type);
+		return pricePO.getPrice(type);
 	}
 
 	public double getPrice(Packing type) {
-		return PricePO.getPrice(type);
+		return pricePO.getPrice(type);
 	}
 
 	public void pricing(Express type, double price) {
 		//更新快递价格
-		PricePO.pricing(type, price);
+		pricePO.pricing(type, price);
 	}
 	
 	public void pricing(Packing type, double price) {
 		//更新包装价格
-		PricePO.pricing(type, price);
+		pricePO.pricing(type, price);
 	}
 	
 	/**
@@ -49,9 +52,7 @@ public class Price implements PriceService {
 	 */
 	private void init() {
 		try {
-			
-			//TODO 可能存在严重问题，违反信息隐藏
-			PricePO.pricePO = getService().getPrice();
+			pricePO = getService().getPrice();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -62,7 +63,7 @@ public class Price implements PriceService {
 	 */
 	public void record() {
 		try {
-			getService().pricing(PricePO.pricePO);
+			getService().pricing(pricePO);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -92,11 +93,11 @@ public class Price implements PriceService {
 		
 		return priceDataService;
 	}
-public static void main(String[] args){
+	
+	
+	public static void main(String[] args){
 		
 		Price p=new Price();
 		p.init();
-		System.out.println(PricePO.getPrice(Express.economy));
-		System.out.println(PricePO.getPrice(Packing.Bag));
 	}
 }
