@@ -29,13 +29,19 @@ import LEMS.presentation.Table;
 public class GenerateInboundOrderUi extends JPanel{
 
 	private static final long serialVersionUID = 1L;
+	private static final int LOCATION_LABEL_X=70;
+	private static final int LOCATION_LABEL_Y=140;
+	private static final int LOCATION_TEXT_X=163;
+	private static final int LOCATION_TEXT_Y=145;
+	private static final int BOUND_X=130;
+	private static final int BOUND_Y=30;
 
 	private MainFrame mainFrame;
 	private JLabel title;
 	private JButton exit;
 	private JButton OK;
 	private JButton cancel;
-
+	
 	private JLabel labelId;
 	private JTextField textId;
 	private JLabel labelInDate;
@@ -100,21 +106,21 @@ public class GenerateInboundOrderUi extends JPanel{
 	 */
 	private void initComponents() {
 
-		title.setBounds(340, 37, 230, 39);
+		title.setBounds(420, 37, 230, 39);
 		
-		labelId.setBounds(40, 160, 131, 30);
-		labelInDate.setBounds(40, 220, 131, 30);
-		labelDestination.setBounds(45, 280, 131, 30);
-		labelArea.setBounds(40, 340, 131, 30);
-		labelRow.setBounds(55, 400, 131, 30);
-		labelStand.setBounds(55, 460, 131, 30);
-		labelPosition.setBounds(55, 520, 131, 30);
+		labelId.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y, BOUND_X, BOUND_Y);
+		labelInDate.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+60, BOUND_X, BOUND_Y);
+		labelDestination.setBounds(LOCATION_LABEL_X+5, LOCATION_LABEL_Y+120, BOUND_X, BOUND_Y);
+		labelArea.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+180, BOUND_X, BOUND_Y);
+		labelRow.setBounds(LOCATION_LABEL_X+15, LOCATION_LABEL_Y+240, BOUND_X, BOUND_Y);
+		labelStand.setBounds(LOCATION_LABEL_X+15, LOCATION_LABEL_Y+300, BOUND_X, BOUND_Y);
+		labelPosition.setBounds(LOCATION_LABEL_X+15, LOCATION_LABEL_Y+360, BOUND_X, BOUND_Y);
 		
-		textId.setBounds(113, 165, 130, 24);
-		textInDate.setBounds(113, 225, 130, 24);
-		textRow.setBounds(113, 405, 130, 24);
-		textStand.setBounds(113, 465, 130, 24);
-		textPosition.setBounds(113, 525, 130, 24);
+		textId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y, BOUND_X, BOUND_Y-6);
+		textInDate.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+60, BOUND_X, BOUND_Y-6);
+		textRow.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+240, BOUND_X, BOUND_Y-6);
+		textStand.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+300, BOUND_X, BOUND_Y-6);
+		textPosition.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+360, BOUND_X, BOUND_Y-6);
 		
 		title.setFont(fnt1);
 		labelId.setFont(fnt);
@@ -129,23 +135,23 @@ public class GenerateInboundOrderUi extends JPanel{
 		OK.setFont(fnt2);
 		exit.setFont(fnt2);
 		
-		comboBox1.setBounds(113, 285, 130, 25);
+		comboBox1.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+120, BOUND_X, BOUND_Y-5);
 		comboBox1.addItem("");
 		comboBox1.addItem("北京");
 		comboBox1.addItem("上海");
 		comboBox1.addItem("广州");
 		comboBox1.addItem("南京");
 		
-		comboBox2.setBounds(113, 345, 130, 25);
+		comboBox2.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+180, BOUND_X, BOUND_Y-5);
 		comboBox2.addItem("");
 		comboBox2.addItem("航运区");
 		comboBox2.addItem("铁运区");
 		comboBox2.addItem("汽运区");
 		comboBox2.addItem("机动区");
 		
-		OK.setBounds(40, 590, 90, 40);
-		cancel.setBounds(160, 590, 90, 40);
-		exit.setBounds(47, 70, 100, 40);
+		OK.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+430, BOUND_X-40, BOUND_Y+10);
+		cancel.setBounds(LOCATION_LABEL_X+120, LOCATION_LABEL_Y+430, BOUND_X-40, BOUND_Y+10);
+		exit.setBounds(90, 60, 100, 40);
 
 		this.add(title);
 		this.add(labelId);
@@ -165,11 +171,10 @@ public class GenerateInboundOrderUi extends JPanel{
 		this.add(OK);
 		this.add(cancel);
 		this.add(exit);
-	
-		
+		setTestState(true);
 
 		String[] columnNames = { "快递单号", "入库日期", "目的地", "存放区域", "排号","架号","位号" };  
-		int[] list={40,81,14,30,20,285,136,588,520};
+		int[] list={40,87,14,30,20,350,116,627,520};
 
 	    Table table=new Table();
 		add(table.drawTable(columnNames, list));
@@ -234,7 +239,7 @@ public class GenerateInboundOrderUi extends JPanel{
 
 	public void paintComponent(Graphics g) {
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
-		g.draw3DRect(25, 136, 240, 520, false);  //输入框外框
+		g.draw3DRect(50, 116, 270, 520, false);  //输入框外框
 		this.repaint();
 	}
 

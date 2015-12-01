@@ -1,51 +1,61 @@
 package LEMS.presentation.userui;
 
 import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
-import javax.swing.border.LineBorder;
+import javax.swing.JTabbedPane;
+import java.awt.BorderLayout;
+import javax.swing.ImageIcon;
+import LEMS.presentation.MainFrame;
+import LEMS.presentation.orderui.TransferUi;
+import LEMS.presentation.orderui.VehicleLoadUi;
 
-import java.awt.Color;
-
-import javax.swing.JButton;
-
-import LEMS.presentation.mainUi;
-
-import java.awt.Rectangle;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 /**
- * @author 章承尧
+ * @author 周梦佳
  * 中转中心业务员界面
+ * 中转接收 装运管理
  */
 public class TransferClerkUi extends JPanel {
 
-	/**
-	 * Create the panel.
-	 */
-	public TransferClerkUi() {
-		setBounds(new Rectangle(0, 0, mainUi.WIDTH, mainUi.HEIGHT));
-		setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "\u4E2D\u8F6C\u4E2D\u5FC3\u4E1A\u52A1\u5458\u754C\u9762", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		setLayout(null);
-		
-		JButton button = new JButton("中转接收");
-		button.setBounds(454, 216, 201, 125);
-		add(button);
-		
-		JButton button_1 = new JButton("装运管理");
-		button_1.setBounds(454, 384, 201, 125);
-		add(button_1);
-		
-		JButton button_2 = new JButton("退出");
-		button_2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				mainUi.frame.setContentPane(mainUi.contentPane);
-			}
-		});
-		button_2.setBounds(841, 647, 121, 76);
-		add(button_2);
 
+	MainFrame mainFrame;
+	private JTabbedPane tabbedPane;
+	TransferUi transferUi;
+	VehicleLoadUi vehicleUi;
+
+	public TransferClerkUi(final MainFrame mainFrame) {
+		this.mainFrame = mainFrame;
+		this.setLayout(new BorderLayout());
+		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
+		transferUi = new TransferUi(this.mainFrame);
+		vehicleUi = new VehicleLoadUi(this.mainFrame);
+		init();
+		initComponents();
 	}
+	
+	private void init(){
+		tabbedPane = new JTabbedPane(); 
+		ImageIcon image1=new ImageIcon("source\\tabbedpanel\\生成出库单.png");
+		ImageIcon image2=new ImageIcon("source\\tabbedpanel\\装运管理.png");
+		
+	//tabbedPane.addTab(title, icon, component, tip);
+		//添加由 title 和/或 icon 表示的 component 和 tip，其中任意一个都可以为 null。
+		
+		tabbedPane.addTab(null,image1,transferUi,"中转接收");  
+        tabbedPane.addTab(null,image2,vehicleUi,"装运管理");
+        
+	}
+	
+	private void initComponents(){
+		tabbedPane.setTabPlacement(JTabbedPane.NORTH);
+		this.add(tabbedPane);
+	}
+	
+//	public void paintComponent(Graphics g) {
+//		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
+//		this.repaint();
+//	}
 
+
+
+	
 }

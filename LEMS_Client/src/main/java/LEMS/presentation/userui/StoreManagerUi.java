@@ -1,48 +1,67 @@
 package LEMS.presentation.userui;
 
 import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
-
-import java.awt.Color;
-
-import javax.swing.border.LineBorder;
-import javax.swing.JButton;
-
-import LEMS.presentation.mainUi;
-
-import java.awt.Rectangle;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import javax.swing.JTabbedPane;
+import java.awt.BorderLayout;
+import javax.swing.ImageIcon;
+import LEMS.presentation.MainFrame;
+import LEMS.presentation.storeui.GenerateInboundOrderUi;
+import LEMS.presentation.storeui.GenerateOutboundOrderUi;
+import LEMS.presentation.storeui.StoreCheckUi;
+import LEMS.presentation.storeui.StoreInquireUi;
 
 /**
- * @author 章承尧
- * 仓库管理人员界面
+ * @author 周梦佳
+ * 仓库管理人员主界面
  */
 @SuppressWarnings("serial")
 public class StoreManagerUi extends JPanel {
 
-	/**
-	 * Create the panel.
-	 */
-	public StoreManagerUi() {
-		setBounds(new Rectangle(0, 0, mainUi.WIDTH, mainUi.HEIGHT));
-		setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 1, true), "\u4ED3\u5E93\u7BA1\u7406\u4EBA\u5458\u754C\u9762", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		setLayout(null);
-		
-		JButton button = new JButton("仓库管理");
-		button.setBounds(494, 323, 184, 84);
-		add(button);
-		
-		JButton button_1 = new JButton("退出");
-		button_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				mainUi.frame.setContentPane(mainUi.contentPane);
-			}
-		});
-		button_1.setBounds(838, 650, 134, 74);
-		add(button_1);
+	MainFrame mainFrame;
+	private JTabbedPane tabbedPane;
+	GenerateInboundOrderUi inboundUi;
+	GenerateOutboundOrderUi outboundUi;
+	StoreInquireUi inquireUi;
+	StoreCheckUi checkUi;
 
+	public StoreManagerUi(final MainFrame mainFrame) {
+		this.mainFrame = mainFrame;
+		this.setLayout(new BorderLayout());
+		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
+		inboundUi = new GenerateInboundOrderUi(this.mainFrame);
+		outboundUi = new GenerateOutboundOrderUi(this.mainFrame);
+		inquireUi = new StoreInquireUi(this.mainFrame);
+		checkUi = new StoreCheckUi(this.mainFrame);
+		init();
+		initComponents();
 	}
+	
+	private void init(){
+		tabbedPane = new JTabbedPane(); 
+		ImageIcon image1=new ImageIcon("source\\tabbedpanel\\生成入库单.png");
+		ImageIcon image2=new ImageIcon("source\\tabbedpanel\\生成出库单.png");
+		ImageIcon image3=new ImageIcon("source\\tabbedpanel\\库存查看.png");
+		ImageIcon image4=new ImageIcon("source\\tabbedpanel\\库存盘点.png");
+		
+	//tabbedPane.addTab(title, icon, component, tip);
+		//添加由 title 和/或 icon 表示的 component 和 tip，其中任意一个都可以为 null。
+		
+		tabbedPane.addTab(null,image1,inboundUi,"生成入库单");  
+        tabbedPane.addTab(null,image2,outboundUi,"生成出库单");
+        tabbedPane.addTab(null,image3,inquireUi,"库存查看"); 
+        tabbedPane.addTab(null,image4,checkUi,"库存盘点"); 
+        
+	}
+	
+	private void initComponents(){
+		tabbedPane.setTabPlacement(JTabbedPane.NORTH);
+	//	tabbedPane.setTabPlacement(JTabbedPane.LEFT);
+		this.add(tabbedPane);
+	}
+	
+//	public void paintComponent(Graphics g) {
+//		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
+//		this.repaint();
+//	}
 
 }

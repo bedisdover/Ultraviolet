@@ -14,10 +14,14 @@ import LEMS.presentation.Table;
 /**
  * 
  * @author 周梦佳
- *库存查看 设定一个时间段，查看此时间段内的出/入库数量/金额，存储位置，库存数量要有合计
+ *3库存查看 设定一个时间段，查看此时间段内的出/入库数量/金额，存储位置，库存数量要有合计
  */
 public class StoreInquireUi extends JPanel{
 	private static final long serialVersionUID = 1L;
+	private static final int LOCATION_X=360;
+	private static final int LOCATION_Y=213;
+	private static final int BOUND_X=131;
+	private static final int BOUND_Y=30;
 
 	private MainFrame mainFrame;
 	private JLabel title;
@@ -78,8 +82,8 @@ public class StoreInquireUi extends JPanel{
 		money1=new JTextField();
 		store=new JTextField();
 		
-		dateChooser1=new DateChooser(this,283,106);
-		dateChooser2=new DateChooser(this,531,106);
+		dateChooser1=new DateChooser(this,353,106);
+		dateChooser2=new DateChooser(this,593,106);
 
 	}
 
@@ -88,18 +92,18 @@ public class StoreInquireUi extends JPanel{
 	 */
 	private void initComponents() {
 
-		title.setBounds(370, 37, 230, 39);
-		startTime.setBounds(190, 100, 131, 30);
-		endTime.setBounds(438, 100, 131, 30);
-		inboundNum.setBounds(300,220 ,131 , 30);
-		outboundNum.setBounds(300,260 ,131 , 30 );
-		money.setBounds(325,300 ,131 , 30 );
-		storeNum.setBounds(300,340 ,131 , 30 );
+		title.setBounds(440, 37, 230, 39);
+		startTime.setBounds(270, 100, BOUND_X, BOUND_Y);
+		endTime.setBounds(510, 100, BOUND_X, BOUND_Y);
+		inboundNum.setBounds(LOCATION_X,LOCATION_Y ,BOUND_X , BOUND_Y);
+		outboundNum.setBounds(LOCATION_X,LOCATION_Y+40 ,BOUND_X , BOUND_Y );
+		money.setBounds(LOCATION_X+25,LOCATION_Y+80 ,BOUND_X , BOUND_Y );
+		storeNum.setBounds(LOCATION_X,LOCATION_Y+120 ,BOUND_X , BOUND_Y );
 		
-		inbound.setBounds(400,225 ,131 , 25);
-		outbound.setBounds(400,260 ,131 , 25 );
-		money1.setBounds(400,300 ,131 , 25 );
-		store.setBounds(400,340 ,131 , 25 );
+		inbound.setBounds(LOCATION_X+100,LOCATION_Y+5 ,BOUND_X , BOUND_Y-5);
+		outbound.setBounds(LOCATION_X+100,LOCATION_Y+40 ,BOUND_X , BOUND_Y-5 );
+		money1.setBounds(LOCATION_X+100,LOCATION_Y+80 ,BOUND_X , BOUND_Y-5 );
+		store.setBounds(LOCATION_X+100,LOCATION_Y+120 ,BOUND_X , BOUND_Y-5 );
 		
 		title.setFont(fnt1);
 		startTime.setFont(fnt);
@@ -114,10 +118,10 @@ public class StoreInquireUi extends JPanel{
 		exit.setFont(fnt2);
 		excel.setFont(fnt2);
 		
-		OK.setBounds(320, 145,90, 40);
-		cancel.setBounds(440, 145, 90, 40);
-		exit.setBounds(47, 70, 100, 40);
-		excel.setBounds(650,335 ,131 , 40  );
+		OK.setBounds(390, 145,BOUND_X-41, BOUND_Y+10);
+		cancel.setBounds(510, 145, BOUND_X-41, BOUND_Y+10);
+		exit.setBounds(90, 60, 100, 40);
+		excel.setBounds(680,320 ,BOUND_X , BOUND_Y+10);
 		
 		this.add(title);
 		this.add(startTime);
@@ -139,7 +143,7 @@ public class StoreInquireUi extends JPanel{
 
 		
 	String[] columnNames = { "快递单号", "入库日期","出库日期","目的地","存储区域","架号","排号","位号", "装运形式", "单号" };  
-	int[] list={40,84,14,30,20,15,426,860,260};
+	int[] list={40,85,14,30,20,70,395,868,250};
 	//list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 	 //* 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
 	 //* 
@@ -206,7 +210,7 @@ public class StoreInquireUi extends JPanel{
 	
 	public void paintComponent(Graphics g) {
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
-		g.draw3DRect(80, 200, 740, 200, false);  //输入框外框
+//		g.draw3DRect(140, 200, 740, 200, false);  //输入框外框
 		this.repaint();
 	}
 

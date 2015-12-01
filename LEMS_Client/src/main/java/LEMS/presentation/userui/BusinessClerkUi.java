@@ -1,67 +1,86 @@
 package LEMS.presentation.userui;
 
+import java.awt.BorderLayout;
+
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
-import javax.swing.border.LineBorder;
+import javax.swing.JTabbedPane;
 
-import java.awt.Color;
-
-import javax.swing.JButton;
-
-import LEMS.presentation.mainUi;
-
-import java.awt.Rectangle;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import LEMS.presentation.MainFrame;
+import LEMS.presentation.informationui.DriverManageUi;
+import LEMS.presentation.informationui.VehicleManageUi;
+import LEMS.presentation.orderui.LoadUi;
+import LEMS.presentation.orderui.ReceiptRecordUi;
+import LEMS.presentation.orderui.ReceiveUi;
+import LEMS.presentation.orderui.SendUi;
+import LEMS.presentation.orderui.TransferUi;
+import LEMS.presentation.orderui.VehicleLoadUi;
 
 /**
- * @author 章承尧
+ * @author 周梦佳
  * 营业厅业务员界面
  */
 public class BusinessClerkUi extends JPanel {
-
-	/**
-	 * Create the panel.
-	 */
-	public BusinessClerkUi() {
-		setBounds(new Rectangle(0, 0, mainUi.WIDTH, mainUi.HEIGHT));
-		setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "\u8425\u4E1A\u5385\u4E1A\u52A1\u5458\u754C\u9762", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		setLayout(null);
-		
-		JButton button = new JButton("车辆信息管理");
-		button.setBounds(336, 191, 172, 86);
-		add(button);
-		
-		JButton button_1 = new JButton("司机信息管理");
-		button_1.setBounds(336, 308, 172, 86);
-		add(button_1);
-		
-		JButton button_2 = new JButton("车辆装车管理");
-		button_2.setBounds(336, 422, 172, 86);
-		add(button_2);
-		
-		JButton button_3 = new JButton("记录收款单");
-		button_3.setBounds(568, 191, 172, 86);
-		add(button_3);
-		
-		JButton button_4 = new JButton("派件");
-		button_4.setBounds(568, 308, 172, 86);
-		add(button_4);
-		
-		JButton button_5 = new JButton("接收");
-		button_5.setBounds(568, 419, 172, 89);
-		add(button_5);
-		
-		JButton button_6 = new JButton("退出");
-		button_6.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				mainUi.frame.setContentPane(mainUi.contentPane);
-			}
-		});
-		button_6.setBounds(846, 647, 134, 68);
-		add(button_6);
-
+	
+	MainFrame mainFrame;
+	private JTabbedPane tabbedPane;
+	
+	ReceiveUi receiveUi;		//接收
+	SendUi	sendUi;			//派件
+	ReceiptRecordUi	receiptRecordUi;	//记录收款单
+	LoadUi	loadUi;		//装车管理
+	VehicleManageUi	vehicleManageUi;	//车辆信息管理
+	DriverManageUi		driverManageUi;//司机信息管理
+	
+	public BusinessClerkUi(final MainFrame mainFrame) {
+		this.mainFrame = mainFrame;
+		this.setLayout(new BorderLayout());
+		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
+		receiveUi = new ReceiveUi(this.mainFrame);
+		sendUi = new SendUi(this.mainFrame);
+		receiptRecordUi = new ReceiptRecordUi(this.mainFrame);
+		loadUi = new LoadUi(this.mainFrame);
+		vehicleManageUi = new VehicleManageUi(this.mainFrame);
+		driverManageUi = new DriverManageUi(this.mainFrame);
+		init();
+		initComponents();
 	}
+	
+	private void init(){
+		tabbedPane = new JTabbedPane(); 
+		ImageIcon image1=new ImageIcon("source\\tabbedpanel\\生成出库单.png");
+		ImageIcon image2=new ImageIcon("source\\tabbedpanel\\装运管理.png");
+		ImageIcon image3=new ImageIcon("source\\tabbedpanel\\生成出库单.png");
+		ImageIcon image4=new ImageIcon("source\\tabbedpanel\\装运管理.png");
+		ImageIcon image5=new ImageIcon("source\\tabbedpanel\\生成出库单.png");
+		ImageIcon image6=new ImageIcon("source\\tabbedpanel\\装运管理.png");
+		
+	//tabbedPane.addTab(title, icon, component, tip);
+		//添加由 title 和/或 icon 表示的 component 和 tip，其中任意一个都可以为 null。
+		
+		
+		
+		tabbedPane.addTab(null,image1,loadUi,"派件"); 
+//		tabbedPane.addTab(null,image1,receiveUi,"接收");  
+//        tabbedPane.addTab(null,image2,sendUi,"派件");
+//        tabbedPane.addTab(null,image3,receiptRecordUi,"记录收款单");
+//        tabbedPane.addTab(null,image4,loadUi,"装车管理");
+//        tabbedPane.addTab(null,image5,vehicleManageUi,"车辆信息管理");
+//        tabbedPane.addTab(null,image6,driverManageUi,"司机信息管理");
+        
+	}
+	
+	private void initComponents(){
+		tabbedPane.setTabPlacement(JTabbedPane.NORTH);
+		this.add(tabbedPane);
+	}
+	
+//	public void paintComponent(Graphics g) {
+//		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
+//		this.repaint();
+//	}
+
+
+
 
 }

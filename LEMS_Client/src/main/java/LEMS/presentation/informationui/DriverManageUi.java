@@ -1,27 +1,23 @@
-package LEMS.presentation.orderui;
+package LEMS.presentation.informationui;
 
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
-
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Rectangle;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 /**
  * @author 周梦佳
- * 装车管理界面
+ * 司机信息管理界面
  */
-@SuppressWarnings("serial")
-public class LoadUi extends JPanel {
+public class DriverManageUi extends JPanel {
 
 
 	private static final long serialVersionUID = 1L;
@@ -64,7 +60,7 @@ public class LoadUi extends JPanel {
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);//其余字体格式
 	private Font fnt2 = new Font("宋体", Font.BOLD, 16);//按钮字体格式
 	
-	public LoadUi(final MainFrame mainFrame) {
+	public DriverManageUi(final MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
@@ -268,7 +264,5 @@ public class LoadUi extends JPanel {
 	
 
 
-	
-	
 
 }

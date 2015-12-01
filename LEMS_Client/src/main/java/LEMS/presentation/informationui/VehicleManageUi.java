@@ -1,28 +1,25 @@
-package LEMS.presentation.orderui;
+package LEMS.presentation.informationui;
 
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
 import LEMS.presentation.storeui.DateChooser;
-
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Rectangle;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 /**
  * @author 周梦佳
- * 中转接收界面
+ * 车辆信息管理界面
  */
-@SuppressWarnings("serial")
-public class TransferUi extends JPanel {
+public class VehicleManageUi extends JPanel{
+
 
 
 	private static final long serialVersionUID = 1L;
@@ -55,7 +52,7 @@ public class TransferUi extends JPanel {
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);//其余字体格式
 	private Font fnt2 = new Font("宋体", Font.BOLD, 16);//按钮字体格式
 	
-	public TransferUi(final MainFrame mainFrame) {
+	public VehicleManageUi(final MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
@@ -222,6 +219,7 @@ public class TransferUi extends JPanel {
 	
 
 	
+
 
 
 
