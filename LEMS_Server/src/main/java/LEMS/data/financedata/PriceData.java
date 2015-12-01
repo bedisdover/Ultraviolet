@@ -25,10 +25,8 @@ public class PriceData extends UnicastRemoteObject implements PriceDataService {
 		super(); 
 		
 		connect = new Connect();
-		pricePO=new PricePO();
+		pricePO= new PricePO();
 	}
-	
-
 
 	public PricePO getPrice() throws RemoteException {
 		// 创建并初始化快递类型价格表

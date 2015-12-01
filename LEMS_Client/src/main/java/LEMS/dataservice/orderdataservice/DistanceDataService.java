@@ -1,5 +1,6 @@
 package LEMS.dataservice.orderdataservice;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 import LEMS.po.orderpo.DistancePO;
@@ -9,7 +10,7 @@ import LEMS.po.orderpo.DistancePO;
  * 
  * 距离数据接口
  */
-public interface DistanceDataService {
+public interface DistanceDataService extends Remote {
 	
 	/**
 	 * 获得城市间距离持久化对象 
