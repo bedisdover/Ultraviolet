@@ -50,30 +50,69 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 		return null;
 	}
 
-	public void insert(OrderPO po) throws RemoteException {
+	public void insert(OrderPO orderPO) throws RemoteException {
 		
-		String sql = "INSERT INTO order(id, senderName, senderPhone, senderAddress";
+		String sql = "INSERT INTO order VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		PreparedStatement pstmt = connect.getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1, orderPO.getId());
+			pstmt.setString(2, orderPO.getSenderName());
+			pstmt.setString(3, orderPO.getSenderPhone());
+			pstmt.setString(4, orderPO.getSenderAddress());
+			
+			pstmt.setString(5, orderPO.getReceiverName());
+			pstmt.setString(6, orderPO.getReceiverPhone());
+			pstmt.setString(7, orderPO.getReceiverAddress());
+			
+			pstmt.setString(8, orderPO.getName());
+			pstmt.setString(9, orderPO.getExpressType() + "");
+			pstmt.setString(10, orderPO.getPackageType() + "");
+			pstmt.setDouble(11, orderPO.getAmount());
+			pstmt.setInt(12, orderPO.getQuantity());
+			pstmt.setDouble(13, orderPO.getWeight());
+			pstmt.setDouble(14, orderPO.getVolumn());
+			pstmt.setString(15, orderPO.getTime());
+			
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void delete(OrderPO po) throws RemoteException {
-		// TODO Auto-generated method stub
+		// TODO 待检验
+		String sql = "DELETE * FROM order WHERE id = " + po.getId();
 		
+		PreparedStatement pstmt = connect.getPreparedStatement(sql);
+		
+		try {
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void update(OrderPO po) throws RemoteException {
-		// TODO Auto-generated method stub
+		// TODO 待检验
+		String sql = "UPDATE * FROM order WHERE id = " + po.getId();
 		
+		PreparedStatement pstmt = connect.getPreparedStatement(sql);
+		
+		try {
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void init() throws RemoteException {
-		// TODO Auto-generated method stub
+		// TODO 似乎没用的方法
 		
 	}
 
 	public void finish() throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		// TODO 似乎没用的方法
 	}
 }
