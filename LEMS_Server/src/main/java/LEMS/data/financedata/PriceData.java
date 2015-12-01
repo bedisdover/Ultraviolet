@@ -18,11 +18,12 @@ import LEMS.po.orderpo.Packing;
 
 @SuppressWarnings("serial")
 public class PriceData extends UnicastRemoteObject implements PriceDataService {
-
-	public PriceData() throws RemoteException {
-		super();
-	}
 	private PricePO pricePO;
+	public PriceData() throws RemoteException {
+		super(); 
+		pricePO=new PricePO();
+	}
+	
 
 	private Connect connect;
 
@@ -52,6 +53,7 @@ public class PriceData extends UnicastRemoteObject implements PriceDataService {
 				if (expressPrice.containsKey(result.getString(1))) {
 					expressPrice.put(result.getString(1), result.getDouble(2));
 				} else if (packagePrice.containsKey(result.getString(1))) {
+					System.out.println(result.getString(1));
 					packagePrice.put(result.getString(1), result.getDouble(2));
 				}
 			}
@@ -81,7 +83,7 @@ public class PriceData extends UnicastRemoteObject implements PriceDataService {
 	public void pricing(PricePO price) throws RemoteException {
 
 		connect = new Connect();
-		String sql = "INSERT INTO price(type, price) VALUES (?, ?)";
+		String sql = "INSERT INTO price VALUES (?, ?)";
 		this.makeEmpty();
 		
 		HashMap<Express, Double> expressPrice = price.getExpressPrice();
@@ -127,16 +129,37 @@ public class PriceData extends UnicastRemoteObject implements PriceDataService {
 		connect.closeConnection();
 	}
 	public static void main(String[] args) {
-		PriceData priceData = new PriceData();
+		PriceData priceData=null;
+		try {
+			priceData = new PriceData();
+		} catch (RemoteException e2) {
+			e2.printStackTrace();
+		}
 		
 		PricePO pricePO=null;
 		try {
 			pricePO = priceData.getPrice();
 		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
+		
+		
+		
+		try {
+			PricePO p=new PricePO();
+			p.pricing(Express.economy, 18.0);
+			p.pricing(Express.standard, 23.0);
+			p.pricing(Express.special, 25.0);
+			
+			p.pricing(Packing.Carton, 5.0);
+			p.pricing(Packing.Wooden, 10.0);
+			p.pricing(Packing.Bag, 1.0);
+			p.pricing(Packing.Other, 0.0);
+			priceData.pricing(pricePO);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		System.out.println(pricePO.getPrice(Express.economy));
 		System.out.println(pricePO.getPrice(Express.standard));
 		System.out.println(pricePO.getPrice(Express.special));
@@ -145,14 +168,6 @@ public class PriceData extends UnicastRemoteObject implements PriceDataService {
 		System.out.println(pricePO.getPrice(Packing.Carton));
 		System.out.println(pricePO.getPrice(Packing.Wooden));
 		System.out.println(pricePO.getPrice(Packing.Other));
-		
-		
-		try {
-			
-			priceData.pricing(pricePO);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
 	}
 	
 }
