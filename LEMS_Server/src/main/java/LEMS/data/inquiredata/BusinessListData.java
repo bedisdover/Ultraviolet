@@ -15,11 +15,9 @@ public class BusinessListData extends UnicastRemoteObject implements BusinessLis
 
 	public BusinessListData() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public BusinessListPO findBusinessList(String startTime, String endTime) throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -20,7 +20,7 @@ public class InformationFactoryImpl extends UnicastRemoteObject implements Infor
 
 	public InformationInsertDataService getInformationInsertData() throws RemoteException {
 		InformationInsertDataService ii=new InformationInsertData();
-		return (InformationInsertData)ii;
+		return ii;
 	}
 
 	public InformationDeleteDataService getInformationDeleteData() throws RemoteException {
