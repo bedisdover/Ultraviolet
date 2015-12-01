@@ -27,7 +27,6 @@ public class InformationInsertData extends UnicastRemoteObject implements Inform
 	public static final String DBPASS="admin";
 	public InformationInsertData() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public void insert(DriverPO po) throws RemoteException{
 		
@@ -68,10 +67,8 @@ public class InformationInsertData extends UnicastRemoteObject implements Inform
 			pstmt.close() ;
 			conn.close();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

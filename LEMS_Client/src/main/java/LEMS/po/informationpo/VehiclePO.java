@@ -23,13 +23,13 @@ public class VehiclePO implements Serializable {
 	/*
 	 * 车辆图片
 	 */
-	Image i;
+	String image;
 
-	public VehiclePO(String id, String plateNumber, String workTime, Image i) {
+	public VehiclePO(String id, String plateNumber, String workTime, String image) {
 		this.id = id;
 		this.plateNumber = plateNumber;
 		this.workTime = workTime;
-		this.i = i;
+		this.image = image;
 	}
 
 	public String getId() {
@@ -44,8 +44,8 @@ public class VehiclePO implements Serializable {
 		return workTime;
 	}
 
-	public Image getI() {
-		return i;
+	public String getImage() {
+		return image;
 	}
 
 }

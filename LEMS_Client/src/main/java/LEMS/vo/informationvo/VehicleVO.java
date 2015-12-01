@@ -25,26 +25,30 @@ public class VehicleVO implements Serializable{
 	/*
 	 * 车辆图片
 	 */
-	Image i;
-	
-	public VehicleVO(String id,String plateNumber,String workTime,Image i){
+	String image;
+
+	public VehicleVO(String id, String plateNumber, String workTime, String image) {
 		this.id = id;
 		this.plateNumber = plateNumber;
 		this.workTime = workTime;
-		this.i = i;
+		this.image = image;
 	}
-	
+
 	public String getId() {
 		return id;
 	}
+
 	public String getPlateNumber() {
 		return plateNumber;
 	}
+
 	public String getWorkTime() {
 		return workTime;
 	}
-	public Image getI() {
-		return i;
+
+	public String getImage() {
+		return image;
 	}
+
 	
 }

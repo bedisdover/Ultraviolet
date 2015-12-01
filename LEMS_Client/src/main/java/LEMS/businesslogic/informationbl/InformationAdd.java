@@ -13,6 +13,7 @@ import LEMS.dataservice.inquiredataservice.DiaryDataService;
 import LEMS.po.informationpo.DriverPO;
 import LEMS.po.informationpo.InstitutionPO;
 import LEMS.po.informationpo.StaffPO;
+import LEMS.po.informationpo.VehiclePO;
 import LEMS.po.inquirepo.DiaryPO;
 import LEMS.po.userpo.UserPO;
 import LEMS.po.userpo.UserRole;
@@ -46,7 +47,8 @@ public class InformationAdd implements InformationAddService{
 			DatabaseFactory database=(DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
 			InformationFactory inf=database.getInformationFactory();
 			InformationInsertDataService infoinsert=inf.getInformationInsertData();
-			
+			VehiclePO vp=new VehiclePO(vehiclevo.getId(),vehiclevo.getPlateNumber(),vehiclevo.getWorkTime(),vehiclevo.getImage());
+			infoinsert.insert(vp);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
