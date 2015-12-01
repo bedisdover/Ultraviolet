@@ -145,8 +145,8 @@ public class OrderVO {
 		this.expressType = expressType;
 	}
 
-	public void setAmount(long amount) {
-		this.amount = amount;
+	public void setAmount(double d) {
+		this.amount = d;
 	}
 
 	public void setTime(String time) {

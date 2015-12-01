@@ -1,6 +1,6 @@
 package LEMS.po.orderpo;
 
-import java.util.List;
+import LEMS.po.inquirepo.LogisticsInfoPO;
 
 /**
  * @author 宋益明
@@ -76,7 +76,7 @@ public class OrderPO {
 	/**
 	 * 物流信息
 	 */
-	private List<String> logistics;
+	private LogisticsInfoPO logisticsInfoPO;
 	
 	public OrderPO() {
 		super();
@@ -154,10 +154,6 @@ public class OrderPO {
 		return id;
 	}
 
-	public List<String> getLogistics() {
-		return logistics;
-	}
-
 	public void setSenderName(String senderName) {
 		this.senderName = senderName;
 	}
@@ -221,9 +217,13 @@ public class OrderPO {
 	public void setPackageType(Packing packageType) {
 		this.packageType = packageType;
 	}
-	
-	public void setLogistics(List<String> logistics) {
-		this.logistics = logistics;
+
+	public LogisticsInfoPO getLogisticsInfoPO() {
+		return logisticsInfoPO;
+	}
+
+	public void setLogisticsInfoPO(LogisticsInfoPO logisticsInfoPO) {
+		this.logisticsInfoPO = logisticsInfoPO;
 	}
 }
 

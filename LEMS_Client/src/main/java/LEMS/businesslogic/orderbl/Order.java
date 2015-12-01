@@ -103,7 +103,10 @@ public class Order implements OrderService {
 	}
 
 	public double getTotal() {
-		return PricePO.getPrice(packageType) + getMoney();
+		
+		order.setAmount(PricePO.getPrice(packageType) + getMoney()) ;
+		
+		return order.getAmount();
 	}
 
 	public String getTime() {

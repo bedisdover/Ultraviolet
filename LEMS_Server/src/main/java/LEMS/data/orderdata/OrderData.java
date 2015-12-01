@@ -2,6 +2,9 @@ package LEMS.data.orderdata;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import LEMS.data.Connect;
 import LEMS.dataservice.orderdataservice.OrderDataService;
@@ -18,24 +21,40 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private Connect connect;
+	
 	public OrderData() throws RemoteException {
 		super();
+		
+		connect = new Connect();
 	}
 
-	private Connect connect;
 	
 	public OrderPO find(String id) throws RemoteException {
 		
-		connect = new Connect();
+//		String sql = "SELECT id, senderName, senderPhone, senderAddress, "
+//					 + "receiverName, receiverPhone, receiverAddress, "
+//					 + "name, quantity, weight, volumn, expressType, packageType, amount, time FROM order";
+		//TODO 待检验
+		String sql = "SELECT * FROME order WHERE id = " + id;
 		
-		String sql = "SELECT id,password,role,name,institutionid,institutionlocation FROM order";
+		ResultSet result = connect.getResultSet(sql);
 		
+		OrderPO orderPO = new OrderPO();
+		
+		try {
+			orderPO.setSenderName(result.getString(2));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	public void insert(OrderPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		
+		String sql = "INSERT INTO order(id, senderName, senderPhone, senderAddress";
+		
+		PreparedStatement pstmt = connect.getPreparedStatement(sql);
 	}
 
 	public void delete(OrderPO po) throws RemoteException {
