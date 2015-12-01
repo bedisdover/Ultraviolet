@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import LEMS.data.Connect;
 import LEMS.dataservice.informationdataservice.InformationInsertDataService;
 import LEMS.po.informationpo.AccountPO;
 import LEMS.po.informationpo.DriverPO;
@@ -21,15 +22,27 @@ import LEMS.po.userpo.UserPO;
  */
 @SuppressWarnings("serial")
 public class InformationInsertData extends UnicastRemoteObject implements InformationInsertDataService{
-	public static final String DBDRIVER="org.gjt.mm.mysql.Driver";
-	public static final String DBURL="jdbc:mysql://localhost:3306/mldn";
-	public static final String DBUSER="root";
-	public static final String DBPASS="admin";
+
 	public InformationInsertData() throws RemoteException {
 		super();
 	}
 	public void insert(DriverPO po) throws RemoteException{
-		
+		Connect co=new Connect();
+		String sql="INSERT INTO driver VALUES (?,?,?,?,?,?,?)";
+		PreparedStatement pstmt=co.getPreparedStatement(sql);
+		try {
+			pstmt.setString(1,po.getId());
+			pstmt.setString(2,po.getName());
+			pstmt.setString(3,po.getDateOfBirth());
+			pstmt.setString(4,po.getIDcardNumber());
+			pstmt.setString(5,po.getPhoneNumber());
+			pstmt.setString(6,po.getDrivingPeriod());
+			pstmt.setString(7,po.getGender()+"");
+			pstmt.executeUpdate();
+			co.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	public void insert(VehiclePO po) throws RemoteException{
 		
@@ -54,8 +67,8 @@ public class InformationInsertData extends UnicastRemoteObject implements Inform
 		PreparedStatement pstmt = null; 
 		String sql="INSERT INTO user(id,password,role,name,institutionid,institutionlocation) VALUES (?,?,?,?,?,?) ";
 		try {
-			Class.forName(DBDRIVER);
-			conn = DriverManager.getConnection(DBURL, DBUSER, DBPASS);
+			Class.forName(Connect.DBDRIVER);
+			conn = DriverManager.getConnection(Connect.DBURL, Connect.DBUSER, Connect.DBPASS);
 			pstmt = conn.prepareStatement(sql) ;
 			pstmt.setString(1,po.getId());
 			pstmt.setString(2,po.getPassword());

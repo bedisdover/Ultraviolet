@@ -8,9 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import LEMS.data.Connect;
-import LEMS.dataservice.informationdataservice.InformationInsertDataService;
 import LEMS.dataservice.informationdataservice.InformationUpdateDataService;
+import LEMS.po.informationpo.InstitutionPO;
 import LEMS.po.userpo.UserPO;
+import LEMS.po.userpo.UserRole;
 
 /**
  * @author 苏琰梓
@@ -22,30 +23,28 @@ public class InformationUpdateData extends UnicastRemoteObject implements Inform
 	public InformationUpdateData() throws RemoteException {
 		super();
 	}
-	public void updateDriverPO(long id) throws RemoteException{
+	public void updateDriver(String id) throws RemoteException{
 		
 	}
-	public void updateVehiclePO(long id) throws RemoteException{
+	public void updateVehicle(String id) throws RemoteException{
 		
 	}
-	public void updateInstitutionPO(String id) throws RemoteException{
+	public void updateInstitution(String id) throws RemoteException{
 		
 	}
 	public void updateStaff(UserPO upo) throws RemoteException{
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		String sql="DELETE FROM user WHERE id = ?";
+		InformationDeleteData delete=new InformationDeleteData();
+		delete.deleteStaff(upo.getId());
+		InformationInsertData insert=new InformationInsertData();
+		insert.insert(upo);
+	}
+	
+	public static void main(String[] args){
 		try {
-			Class.forName(Connect.DBDRIVER);
-			conn = DriverManager.getConnection(Connect.DBURL, Connect.DBUSER, Connect.DBPASS);
-			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1,id);
-			pstmt.executeUpdate();
-			pstmt.close();
-			conn.close();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
+			InformationUpdateData o=new InformationUpdateData();
+			InstitutionPO ipo=new InstitutionPO("","");
+			o.updateStaff(new UserPO("m00000","123456",UserRole.Manager,"宋益明",ipo));
+		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 	}

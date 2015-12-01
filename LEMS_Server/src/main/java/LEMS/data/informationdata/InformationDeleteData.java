@@ -20,14 +20,41 @@ public class InformationDeleteData extends UnicastRemoteObject implements Inform
 	public InformationDeleteData() throws RemoteException {
 		super();
 	}
-	public void deleteDriverPO(long id) throws RemoteException{
-		
+	public void deleteDriver(String id) throws RemoteException{
+		Connect co=new Connect();
+		String sql="DELETE FROM driver WHERE id = ?";
+		PreparedStatement pstmt=co.getPreparedStatement(sql);
+		try {
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+			co.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
-	public void deleteVehiclePO(long id) throws RemoteException{
-		
+	public void deleteVehicle(String id) throws RemoteException{
+		Connect co=new Connect();
+		String sql="DELETE FROM vehicle WHERE id = ?";
+		PreparedStatement pstmt=co.getPreparedStatement(sql);
+		try {
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+			co.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
-	public void deleteInstitutionPO(String id) throws RemoteException{
-		
+	public void deleteInstitution(String id) throws RemoteException{
+		Connect co=new Connect();
+		String sql="DELETE FROM institution WHERE id = ?";
+		PreparedStatement pstmt=co.getPreparedStatement(sql);
+		try {
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+			co.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	public void deleteStaff(String id) throws RemoteException{
 		Connection conn = null;
@@ -47,7 +74,16 @@ public class InformationDeleteData extends UnicastRemoteObject implements Inform
 			e.printStackTrace();
 		}
 	}
-	public void deleteAccountPO(String name) throws RemoteException{
-		
+	public void deleteAccount(String id) throws RemoteException{
+		Connect co=new Connect();
+		String sql="DELETE FROM account WHERE id = ?";
+		PreparedStatement pstmt=co.getPreparedStatement(sql);
+		try {
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+			co.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}	
 }
