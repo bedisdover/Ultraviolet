@@ -9,7 +9,7 @@ public class AccountPO {
 	/*
 	 * 账户名称
 	 */
-	private String name;
+	private String id;
 	/*
 	 * 账户余额
 	 */
@@ -19,14 +19,14 @@ public class AccountPO {
 	 */
 	private String password;
 	
-	public AccountPO(String name,String password,double balance){
-		this.name =  name;
+	public AccountPO(String id,double balance,String password){
+		this.id =  id;
 		this.balance = balance;
 		this.password = password;
 	}
 	
-	public String getName(){
-		return name;
+	public String getId(){
+		return id;
 	}
 	public double getBalance(){
 		return balance;
