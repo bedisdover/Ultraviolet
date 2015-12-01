@@ -42,7 +42,6 @@ public class PricePO {
 	
 	public void pricing(Express type, double price) {
 		expressPrice.put(type, price);
-		
 	}
 
 	public void pricing(Packing type, double price) {

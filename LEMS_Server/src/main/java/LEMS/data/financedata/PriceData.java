@@ -19,13 +19,16 @@ import LEMS.po.orderpo.Packing;
 @SuppressWarnings("serial")
 public class PriceData extends UnicastRemoteObject implements PriceDataService {
 	private PricePO pricePO;
+	private Connect connect;
+	
 	public PriceData() throws RemoteException {
 		super(); 
+		
+		connect = new Connect();
 		pricePO=new PricePO();
 	}
 	
 
-	private Connect connect;
 
 	public PricePO getPrice() throws RemoteException {
 		// 创建并初始化快递类型价格表
@@ -36,14 +39,13 @@ public class PriceData extends UnicastRemoteObject implements PriceDataService {
 		
 		//创建并初始化包装类型价格表
 		Map<String, Double> packagePrice = new HashMap<String, Double>();
-		packagePrice.put("carton", 0.0);
-		packagePrice.put("wooden", 0.0);
-		packagePrice.put("bag", 0.0);
-		packagePrice.put("other", 0.0);
+		packagePrice.put("Carton", 0.0);
+		packagePrice.put("Wooden", 0.0);
+		packagePrice.put("Bag", 0.0);
+		packagePrice.put("Other", 0.0);
 		
-		String sql = "SELECT type, price FROM price";
+		String sql = "SELECT * FROM price";
 
-		connect = new Connect();
 		ResultSet result = null;
 		result = connect.getResultSet(sql);
 		
@@ -53,7 +55,6 @@ public class PriceData extends UnicastRemoteObject implements PriceDataService {
 				if (expressPrice.containsKey(result.getString(1))) {
 					expressPrice.put(result.getString(1), result.getDouble(2));
 				} else if (packagePrice.containsKey(result.getString(1))) {
-					System.out.println(result.getString(1));
 					packagePrice.put(result.getString(1), result.getDouble(2));
 				}
 			}
@@ -70,10 +71,10 @@ public class PriceData extends UnicastRemoteObject implements PriceDataService {
 		
 		//创建并初始化包装类型价格表
 		HashMap<Packing, Double> pack = new HashMap<Packing, Double>();
-		pack.put(Packing.Carton,packagePrice.get("carton"));
-		pack.put(Packing.Wooden, packagePrice.get("wooden"));
-		pack.put(Packing.Bag, packagePrice.get("bag"));
-		pack.put(Packing.Other, packagePrice.get("other"));
+		pack.put(Packing.Carton,packagePrice.get("Carton"));
+		pack.put(Packing.Wooden, packagePrice.get("Wooden"));
+		pack.put(Packing.Bag, packagePrice.get("Bag"));
+		pack.put(Packing.Other, packagePrice.get("Other"));
 		pricePO.setExpressPrice(express);
 		pricePO.setPackagePrice(pack);
 		
@@ -83,7 +84,7 @@ public class PriceData extends UnicastRemoteObject implements PriceDataService {
 	public void pricing(PricePO price) throws RemoteException {
 
 		connect = new Connect();
-		String sql = "INSERT INTO price VALUES (?, ?)";
+		String sql = "INSERT INTO price(type, price) VALUES (?, ?)";
 		this.makeEmpty();
 		
 		HashMap<Express, Double> expressPrice = price.getExpressPrice();
@@ -106,7 +107,6 @@ public class PriceData extends UnicastRemoteObject implements PriceDataService {
 				pstmt.setDouble(2, entry.getValue());
 				pstmt.executeUpdate();
 			}
-			
 			connect.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -130,21 +130,14 @@ public class PriceData extends UnicastRemoteObject implements PriceDataService {
 	}
 	public static void main(String[] args) {
 		PriceData priceData=null;
+		
+		PricePO pricePO=new PricePO();
 		try {
 			priceData = new PriceData();
-		} catch (RemoteException e2) {
-			e2.printStackTrace();
-		}
-		
-		PricePO pricePO=null;
-		try {
 			pricePO = priceData.getPrice();
 		} catch (RemoteException e1) {
 			e1.printStackTrace();
 		}
-		
-		
-		
 		
 		try {
 			PricePO p=new PricePO();
@@ -156,7 +149,7 @@ public class PriceData extends UnicastRemoteObject implements PriceDataService {
 			p.pricing(Packing.Wooden, 10.0);
 			p.pricing(Packing.Bag, 1.0);
 			p.pricing(Packing.Other, 0.0);
-			priceData.pricing(pricePO);
+			priceData.pricing(p);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -169,5 +162,4 @@ public class PriceData extends UnicastRemoteObject implements PriceDataService {
 		System.out.println(pricePO.getPrice(Packing.Wooden));
 		System.out.println(pricePO.getPrice(Packing.Other));
 	}
-	
 }
