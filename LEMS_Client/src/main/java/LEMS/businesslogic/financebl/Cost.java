@@ -14,7 +14,7 @@ public class Cost implements CostService {
 
 	public PayBillPO payBill(PayBillVO pay) {
 		//根据付款单值对象直接生成持久化对象
-		return new PayBillPO(pay);
+		return null;
 	}
 
 	public CostProfitVO costProfit(String date) {

@@ -11,7 +11,7 @@ import LEMS.vo.ordervo.DeliveryVO;
  * 
  * 派件任务
  */
-public class Sending implements SendingService {
+public class Sending extends AddOrder implements SendingService {
 
 	/**
 	 * 订单列表
@@ -24,8 +24,14 @@ public class Sending implements SendingService {
 	}
 	
 	public void addOrder(String id) {
-		// TODO Auto-generated method stub
+		OrderPO orderPO = findOrder(id);
 		
+		//记录收件时间
+		this.setTime(orderPO);
+		//记录收件人
+		this.setReceiver(orderPO);
+		
+		orders.add(orderPO);
 	}
 
 	public void createDeliveryNote(DeliveryVO deliveryInfo) {
@@ -35,5 +41,19 @@ public class Sending implements SendingService {
 
 	public ArrayList<OrderPO> getOrders() {
 		return orders;
+	}
+	
+	/**
+	 * 存储收件时间
+	 */
+	private void setTime(OrderPO orderPO) {
+		
+	}
+	
+	/**
+	 * 存储收件人
+	 */
+	private void setReceiver(OrderPO orderPO) {
+		
 	}
 }

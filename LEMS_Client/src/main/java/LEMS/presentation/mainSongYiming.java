@@ -1,14 +1,13 @@
 package LEMS.presentation;
 
-import LEMS.presentation.orderui.OrderManageUi;
+import LEMS.presentation.orderui.LoadUi;
 
 public class mainSongYiming {
 
 	public static void main(String[] args) {
 		MainFrame mainFrame = new MainFrame();
-		OrderManageUi orderManageUi = new OrderManageUi(mainFrame);
-		
-		mainFrame.setContentPane(orderManageUi);
+		LoadUi loadUi = new LoadUi(mainFrame);
+		mainFrame.setContentPane(loadUi);
 		mainFrame.setVisible(true);
 	}
 

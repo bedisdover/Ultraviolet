@@ -54,7 +54,7 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 
 	public void insert(OrderPO orderPO) throws RemoteException {
 		
-		String sql = "INSERT INTO dingdan VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO dingdan VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		PreparedStatement pstmt = connect.getPreparedStatement(sql);
 		
@@ -76,6 +76,8 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 			pstmt.setDouble(13, orderPO.getWeight());
 			pstmt.setDouble(14, orderPO.getVolumn());
 			pstmt.setString(15, orderPO.getTime());
+			//实际收件人
+			pstmt.setString(16, orderPO.getReceiver());
 			
 			pstmt.executeUpdate();
 			connect.closeConnection();

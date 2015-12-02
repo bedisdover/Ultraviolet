@@ -72,6 +72,10 @@ public class OrderPO {
 	 * 订单ID
 	 */
 	private String id;
+	/**
+	 * 实际收件人
+	 */
+	private String receiver;
 
 	/**
 	 * 物流信息
@@ -124,6 +128,14 @@ public class OrderPO {
 
 	public String getName() {
 		return name;
+	}
+
+	public String getReceiver() {
+		return receiver;
+	}
+	
+	public void setReceiver(String receiver) {
+		this.receiver = receiver;
 	}
 
 	public int getQuantity() {
