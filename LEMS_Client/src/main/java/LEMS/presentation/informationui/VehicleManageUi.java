@@ -23,9 +23,9 @@ public class VehicleManageUi extends JPanel{
 
 
 	private static final long serialVersionUID = 1L;
-	private static final int LOCATION_LABEL_X=70;
+	private static final int LOCATION_LABEL_X=100;
 	private static final int LOCATION_LABEL_Y=150;
-	private static final int LOCATION_TEXT_X=178;
+	private static final int LOCATION_TEXT_X=200;
 	private static final int LOCATION_TEXT_Y=155;
 	private static final int BOUND_X=130;
 	private static final int BOUND_Y=30;
@@ -36,17 +36,15 @@ public class VehicleManageUi extends JPanel{
 	private JButton OK;
 	private JButton cancel;
 	
-	private JLabel labelInsititutionId;
-	private JLabel labelDate;
+	
 	private JLabel labelId;
-	private JLabel labelDeparture;
-	private JLabel labelStatus;
+	private JLabel labelNum;
+	private JLabel labelTime;
+	private JLabel picture;
 	
-	private JTextField textInsititutionId;
 	private JTextField textId;
-	
-	private JComboBox<String> comboBox1;//departure
-	private JComboBox<String> comboBox2;//status
+	private JTextField textNum;
+	private JTextField textTime;
 	
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);//标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);//其余字体格式
@@ -71,24 +69,20 @@ public class VehicleManageUi extends JPanel{
 	 * 初始化
 	 */
 	private void init() {
-		title = new JLabel("中转接收");
+		title = new JLabel("车辆信息管理");
 		exit = new JButton("返回");
 		OK = new JButton("确定");
 		cancel = new JButton("取消");
 	
-		labelInsititutionId = new JLabel("中转中心编号:");
-		labelDate = new JLabel("到达日期:");
-		labelId = new JLabel("中转单编号:");
-		labelDeparture = new JLabel("出发地:");
-		labelStatus = new JLabel("货物到达状态：");
+		labelId = new JLabel("车辆代号:");
+		labelNum = new JLabel("车牌号:");
+		labelTime = new JLabel("服役状态：");
+		picture=new JLabel();			//还要加图片呀呀呀
 		
-		textInsititutionId = new JTextField();
 		textId = new JTextField();
-		
-		comboBox1 = new JComboBox<String>();
-		comboBox2 = new JComboBox<String>();
-		
-		DateChooser dc= new DateChooser(this,LOCATION_TEXT_X,LOCATION_TEXT_Y+80);
+		textNum = new JTextField();
+		textTime = new JTextField();
+	
 	}
 
 	/**
@@ -96,28 +90,15 @@ public class VehicleManageUi extends JPanel{
 	 */
 	private void initComponents() {
 
-		title.setBounds(420, 27, 230, 39);
+		title.setBounds(420, 27, 230, 39);		
 		
-		labelInsititutionId.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y, BOUND_X, BOUND_Y);
-		labelDate.setBounds(LOCATION_LABEL_X+15, LOCATION_LABEL_Y+80, BOUND_X, BOUND_Y);
-		labelId.setBounds(LOCATION_LABEL_X+9, LOCATION_LABEL_Y+160, BOUND_X, BOUND_Y);
-		labelDeparture.setBounds(LOCATION_LABEL_X+23, LOCATION_LABEL_Y+240, BOUND_X, BOUND_Y);
-		labelStatus.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+320, BOUND_X, BOUND_Y);
+		labelId.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y, BOUND_X, BOUND_Y);
+		labelNum.setBounds(LOCATION_LABEL_X+7, LOCATION_LABEL_Y+80, BOUND_X, BOUND_Y);
+		labelTime.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+160, BOUND_X, BOUND_Y);
 		
-		textInsititutionId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y, BOUND_X, BOUND_Y-6);
-		textId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+160, BOUND_X, BOUND_Y-6);
-		
-		comboBox1.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+240, BOUND_X, BOUND_Y-5);
-		comboBox1.addItem("");
-		comboBox1.addItem("北京");
-		comboBox1.addItem("上海");
-		comboBox1.addItem("广州");
-		comboBox1.addItem("南京");
-		
-		comboBox2.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+320, BOUND_X, BOUND_Y-5);
-		comboBox2.addItem("");
-		comboBox2.addItem("到达");
-		comboBox2.addItem("丢失");
+		textId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y, BOUND_X, BOUND_Y-6);
+		textNum.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+80, BOUND_X, BOUND_Y-6);
+		textTime.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+160, BOUND_X, BOUND_Y-6);
 		
 		
 		OK.setBounds(LOCATION_LABEL_X+5, LOCATION_LABEL_Y+405, BOUND_X-40, BOUND_Y+10);
@@ -126,11 +107,9 @@ public class VehicleManageUi extends JPanel{
 
 		
 		title.setFont(fnt1);
-		labelInsititutionId.setFont(fnt);
-		labelDate.setFont(fnt);
 		labelId.setFont(fnt);
-		labelDeparture.setFont(fnt);
-		labelStatus.setFont(fnt);
+		labelNum.setFont(fnt);
+		labelTime.setFont(fnt);
 		cancel.setFont(fnt2);
 		OK.setFont(fnt2);
 		exit.setFont(fnt2);
@@ -139,22 +118,20 @@ public class VehicleManageUi extends JPanel{
 		
 
 		this.add(title);
-		this.add(labelInsititutionId);
-		this.add(labelDate);
 		this.add(labelId);
-		this.add(labelDeparture);
-		this.add(labelStatus);
+		this.add(labelNum);
+		this.add(labelTime);
+		this.add(picture);
 		this.add(textId);
-		this.add(textInsititutionId);
-		this.add(comboBox1);
-		this.add(comboBox2);
+		this.add(textNum);
+		this.add(textTime);
 		this.add(OK);
 		this.add(cancel);
 		this.add(exit);
 		setTestState(true);
 
-		String[] columnNames = { "中转中心编号", "到达日期", "中转单编号", "出发地", "货物到达状态"};  
-		int[] list={40,116,14,30,20,355,125,598,500};
+		String[] columnNames = { "车辆代号", "车牌号", "服役时间"};  
+		int[] list={40,170,14,30,20,400,125,528,500};
 
 	    Table table=new Table();
 		add(table.drawTable(columnNames, list));
@@ -170,8 +147,8 @@ public class VehicleManageUi extends JPanel{
 	private void setTestState(boolean state) {
 
 		textId.setEditable(state);
-		textInsititutionId.setEditable(state);
-		
+		textNum.setEditable(state);
+		textTime.setEditable(state);
 
 		OK.setEnabled(state);
 		cancel.setEnabled(state);
@@ -182,8 +159,8 @@ public class VehicleManageUi extends JPanel{
 	 */
 	private void empty() {
 		textId.setText(null);
-		textInsititutionId.setText(null);
-		
+		textNum.setText(null);
+		textTime.setText(null);
 	}
 
 	/**
@@ -210,7 +187,7 @@ public class VehicleManageUi extends JPanel{
 
 	public void paintComponent(Graphics g) {
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
-		g.draw3DRect(50, 125, 280, 500, false);  //输入框外框
+		g.draw3DRect(80, 125, 280, 500, false);  //输入框外框
 		this.repaint();
 	}
 

@@ -6,13 +6,13 @@ import LEMS.po.storepo.GoodsPO;
 
 public interface GoodsDataService {
 
-	public ArrayList find(String id);
+	public ArrayList<String> find(String id);
 	
-	public void insert(GoodsPO goodsPO);
+	public int insert(GoodsPO goodsPO);
 	
-	public void delete(GoodsPO goodsPO);
+	public int delete(GoodsPO goodsPO);
 	
-	public void update(GoodsPO goodsPO);
+	public int update(GoodsPO goodsPO);
 	
 	public void init();
 	

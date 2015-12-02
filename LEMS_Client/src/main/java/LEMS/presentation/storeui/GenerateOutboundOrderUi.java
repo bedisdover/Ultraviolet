@@ -51,8 +51,6 @@ public class GenerateOutboundOrderUi extends JPanel{
 	private JLabel labelTransferNum2;
 	private JTextField textTransferNum;
 	
-
-
 	private JComboBox<String> comboBox1;//destination
 	private JComboBox<String> comboBox2;//transportType
 	

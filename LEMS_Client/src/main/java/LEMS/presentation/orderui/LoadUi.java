@@ -2,17 +2,15 @@ package LEMS.presentation.orderui;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
+import LEMS.presentation.storeui.DateChooser;
 
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -25,10 +23,10 @@ public class LoadUi extends JPanel {
 
 
 	private static final long serialVersionUID = 1L;
-	private static final int LOCATION_LABEL_X=55;
-	private static final int LOCATION_LABEL_Y=110;
-	private static final int LOCATION_TEXT_X=145;
-	private static final int LOCATION_TEXT_Y=115;
+	private static final int LOCATION_LABEL_X=65;
+	private static final int LOCATION_LABEL_Y=105;
+	private static final int LOCATION_TEXT_X=155;
+	private static final int LOCATION_TEXT_Y=200;
 	private static final int BOUND_X=130;
 	private static final int BOUND_Y=30;
 
@@ -38,27 +36,29 @@ public class LoadUi extends JPanel {
 	private JButton OK;
 	private JButton cancel;
 	
-
-	private JLabel labelId;
 	private JLabel labelDate;
-	private JLabel labelDeparture;
 	private JLabel labelDestination;
-	private JLabel labelAirline;
-	private JLabel labelStand;
+	private JLabel labelInstitutionId;
+	private JLabel labelTransferNum;
+	private JLabel labelVehicleId;
 	private JLabel labelGuard;
-	private JLabel labelAllID;
+	private JLabel labelDeliverStaff;
+	private JLabel labelVehicleInfo;
+	private JLabel labelBarcode;
 	private JLabel labelMoney;
 	
-	private JTextField textId;
-	private JTextField textDate;
-	private JTextField textAirline;
-	private JTextField textStand;
+
+	private JTextField textInstitutionId;
+	private JTextField textTransferNum;
+	private JTextField textVehicleId;
 	private JTextField textGuard;
-	private JTextField textAllID;
+	private JTextField textDeliverStaff;
+	private JTextField textVehicleInfo;
+	private JTextField textBarcode;
 	private JTextField textMoney;
 	
-	private JComboBox<String> comboBox1;//departure
-	private JComboBox<String> comboBox2;//destination
+
+	private JComboBox<String> comboBox;//destination
 	
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);//标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);//其余字体格式
@@ -83,30 +83,36 @@ public class LoadUi extends JPanel {
 	 * 初始化
 	 */
 	private void init() {
-		title = new JLabel("装运管理");
+		title = new JLabel("装车管理");
 		exit = new JButton("返回");
 		OK = new JButton("确定");
 		cancel = new JButton("取消");
 		
-		labelId = new JLabel("中转单编号:");
-		labelDate = new JLabel("装车日期:");
-		labelDeparture = new JLabel("出发地:");
-		labelDestination = new JLabel("目的地:");
-		labelAirline = new JLabel("航班号：");
-		labelStand = new JLabel("货柜号:");
-		labelGuard = new JLabel("监装员:");
-		labelAllID = new JLabel("本次装箱所有托运单号:");
-		labelMoney = new JLabel("运费:");
 		
-		textId = new JTextField();
-		textDate = new JTextField();
-		textAirline = new JTextField();
-		textStand = new JTextField();
+		
+		labelDate = new JLabel("装车日期:");
+		labelDestination = new JLabel("目的地:");
+		labelInstitutionId = new JLabel("营业厅编号:");
+		labelTransferNum = new JLabel("汽运编号:");
+		labelVehicleId = new JLabel("车辆代号：");
+		labelDeliverStaff = new JLabel("押运员:");
+		labelGuard = new JLabel("监装员:");
+		labelVehicleInfo = new JLabel("车辆信息:");
+		labelMoney = new JLabel("运费:");
+		labelBarcode= new JLabel("订单条形码号：");
+		
+		textInstitutionId = new JTextField();
+		textTransferNum = new JTextField();
+		textVehicleId = new JTextField();
+		textDeliverStaff = new JTextField();
 		textGuard = new JTextField();
-		textAllID = new JTextField();
+		textVehicleInfo = new JTextField();
 		textMoney = new JTextField();
-		comboBox1 = new JComboBox<String>();
-		comboBox2 = new JComboBox<String>();
+		textBarcode=new JTextField();
+		comboBox = new JComboBox<String>();
+		
+		DateChooser dc=new DateChooser(this, LOCATION_TEXT_X+2, LOCATION_TEXT_Y-90);
+		
 	}
 
 	/**
@@ -117,83 +123,83 @@ public class LoadUi extends JPanel {
 		title.setBounds(420, 27, 230, 39);
 		
 		
-		labelId.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y, BOUND_X, BOUND_Y);
-		labelDate.setBounds(LOCATION_LABEL_X+8, LOCATION_LABEL_Y+48, BOUND_X, BOUND_Y);
-		labelDeparture.setBounds(LOCATION_LABEL_X+15, LOCATION_LABEL_Y+96, BOUND_X, BOUND_Y);
-		labelDestination.setBounds(LOCATION_LABEL_X+15, LOCATION_LABEL_Y+144, BOUND_X, BOUND_Y);
-		labelAirline.setBounds(LOCATION_LABEL_X+15, LOCATION_LABEL_Y+192, BOUND_X, BOUND_Y);
-		labelStand.setBounds(LOCATION_LABEL_X+15, LOCATION_LABEL_Y+240, BOUND_X, BOUND_Y);
-		labelGuard.setBounds(LOCATION_LABEL_X+15, LOCATION_LABEL_Y+288, BOUND_X, BOUND_Y);
-		labelAllID.setBounds(LOCATION_LABEL_X+15, LOCATION_LABEL_Y+333, BOUND_X+40, BOUND_Y);
-		labelMoney.setBounds(LOCATION_LABEL_X+23, LOCATION_LABEL_Y+435, BOUND_X, BOUND_Y);
+		labelDate.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y, BOUND_X, BOUND_Y);
+		labelDestination.setBounds(LOCATION_LABEL_X+7, LOCATION_LABEL_Y+45, BOUND_X, BOUND_Y);
+		labelInstitutionId.setBounds(LOCATION_LABEL_X-7, LOCATION_LABEL_Y+90, BOUND_X, BOUND_Y);
+		labelTransferNum.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+135, BOUND_X, BOUND_Y);
+		labelBarcode.setBounds(LOCATION_LABEL_X-15, LOCATION_LABEL_Y+180, BOUND_X, BOUND_Y);
+		labelGuard.setBounds(LOCATION_LABEL_X+7, LOCATION_LABEL_Y+225, BOUND_X, BOUND_Y);
+		labelDeliverStaff.setBounds(LOCATION_LABEL_X+7, LOCATION_LABEL_Y+270, BOUND_X, BOUND_Y);
+		labelVehicleId.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+315, BOUND_X+40, BOUND_Y);
+		labelVehicleInfo.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+385, BOUND_X, BOUND_Y);
+		labelMoney.setBounds(LOCATION_LABEL_X+15, LOCATION_LABEL_Y+454, BOUND_X, BOUND_Y);
 		
-		textId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y, BOUND_X, BOUND_Y-6);
-		textDate.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+48, BOUND_X, BOUND_Y-6);
-		textAirline.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+192, BOUND_X, BOUND_Y-6);
-		textStand.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+240, BOUND_X, BOUND_Y-6);
-		textGuard.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+288, BOUND_X, BOUND_Y-6);
-		textAllID.setBounds(LOCATION_TEXT_X-87, LOCATION_TEXT_Y+360, BOUND_X+85, BOUND_Y+25);
-		textMoney.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+435, BOUND_X, BOUND_Y-6);
+		textInstitutionId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y, BOUND_X, BOUND_Y-6);
+		textTransferNum.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+45, BOUND_X, BOUND_Y-6);
+		textBarcode.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+90, BOUND_X, BOUND_Y-6);
+		textGuard.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+135, BOUND_X, BOUND_Y-6);
+		textDeliverStaff.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+180, BOUND_X, BOUND_Y-6);
+		textVehicleId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+225, BOUND_X, BOUND_Y-6);
+		textVehicleInfo.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+270, BOUND_X, BOUND_Y+40);
+		textMoney.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+360, BOUND_X, BOUND_Y-6);
 		
-		comboBox1.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+96, BOUND_X, BOUND_Y-5);
-		comboBox1.addItem("");
-		comboBox1.addItem("北京");
-		comboBox1.addItem("上海");
-		comboBox1.addItem("广州");
-		comboBox1.addItem("南京");
+		comboBox.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y-45, BOUND_X, BOUND_Y-5);
+		comboBox.addItem("");
+		comboBox.addItem("北京");
+		comboBox.addItem("上海");
+		comboBox.addItem("广州");
+		comboBox.addItem("南京");
 		
-		comboBox2.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+144, BOUND_X, BOUND_Y-5);
-		comboBox2.addItem("");
-		comboBox2.addItem("北京");
-		comboBox2.addItem("上海");
-		comboBox2.addItem("广州");
-		comboBox2.addItem("南京");
 		
-		OK.setBounds(LOCATION_LABEL_X+5, LOCATION_LABEL_Y+485, BOUND_X-40, BOUND_Y+10);
-		cancel.setBounds(LOCATION_LABEL_X+125, LOCATION_LABEL_Y+485, BOUND_X-40, BOUND_Y+10);
+		OK.setBounds(LOCATION_LABEL_X+5, LOCATION_LABEL_Y+500, BOUND_X-40, BOUND_Y+10);
+		cancel.setBounds(LOCATION_LABEL_X+125, LOCATION_LABEL_Y+500, BOUND_X-40, BOUND_Y+10);
 		exit.setBounds(80, 50, 100, 40);
 
 		title.setFont(fnt1);
-		labelId.setFont(fnt);
+		labelInstitutionId.setFont(fnt);
 		labelDate.setFont(fnt);
 		labelDestination.setFont(fnt);
-		labelDeparture.setFont(fnt);
-		labelAirline.setFont(fnt);
-		labelStand.setFont(fnt);
+		labelTransferNum.setFont(fnt);
+		labelVehicleId.setFont(fnt);
+		labelDeliverStaff.setFont(fnt);
 		labelGuard.setFont(fnt);
-		labelAllID.setFont(fnt);
+		labelVehicleInfo.setFont(fnt);
 		labelMoney.setFont(fnt);
+		labelBarcode.setFont(fnt);
+		
 		cancel.setFont(fnt2);
 		OK.setFont(fnt2);
 		exit.setFont(fnt2);
 		
 		this.add(title);
-		this.add(labelId);
+		this.add(labelInstitutionId);
 		this.add(labelDate);
 		this.add(labelDestination);
-		this.add(labelDeparture);
-		this.add(labelAirline);
-		this.add(labelStand);
+		this.add(labelTransferNum);
+		this.add(labelVehicleId);
+		this.add(labelDeliverStaff);
 		this.add(labelGuard);
-		this.add(labelAllID);
+		this.add(labelVehicleInfo);
 		this.add(labelMoney);
+		this.add(labelBarcode);
 		
-		this.add(textId);
-		this.add(textDate);
-		this.add(textAirline);
+		this.add(textInstitutionId);
+		this.add(textTransferNum);
+		this.add(textVehicleId);
 		this.add(textGuard);
-		this.add(textStand);
-		this.add(textAllID);
+		this.add(textDeliverStaff);
+		this.add(textVehicleInfo);
 		this.add(textMoney);
-		this.add(comboBox1);
-		this.add(comboBox2);
+		this.add(textBarcode);
+		this.add(comboBox);
+		
 		this.add(OK);
 		this.add(cancel);
 		this.add(exit);
 		setTestState(true);
 
-		String[] columnNames = { "中转单编号", "装车日期", "出发地", "目的地", "航班号","所有托运单号","运费" };  
-		int[] list={40,91,14,30,20,315,105,655,547};
+		String[] columnNames = {"装车日期", "目的地","营业厅编号",  "汽运编号","条形码","车辆代号","运费" };  
+		int[] list={40,91,14,30,20,330,105,655,547};
 
 	    Table table=new Table();
 		add(table.drawTable(columnNames, list));
@@ -208,14 +214,15 @@ public class LoadUi extends JPanel {
 	 */
 	private void setTestState(boolean state) {
 
-		textId.setEditable(state);
-		textDate.setEditable(state);
-		textAirline.setEditable(state);
-		textStand.setEditable(state);
+		textInstitutionId.setEditable(state);
+		textTransferNum.setEditable(state);
+		textVehicleId.setEditable(state);
+		textDeliverStaff.setEditable(state);
 		textGuard.setEditable(state);
-		textAllID.setEnabled(state);
+		textVehicleInfo.setEnabled(state);
 		textMoney.setEnabled(state);
-
+		textBarcode.setEnabled(state);
+		
 		OK.setEnabled(state);
 		cancel.setEnabled(state);
 	}
@@ -224,13 +231,14 @@ public class LoadUi extends JPanel {
 	 * 清空输入框
 	 */
 	private void empty() {
-		textId.setText(null);
-		textDate.setText(null);
-		textAirline.setText(null);
+		textInstitutionId.setText(null);
+		textTransferNum.setText(null);
+		textVehicleId.setText(null);
+		textDeliverStaff.setText(null);
 		textGuard.setText(null);
-		textGuard.setText(null);
-		textStand.setText(null);
+		textVehicleInfo.setText(null);
 		textMoney.setText(null);
+		textBarcode.setText(null);
 	}
 
 	/**
@@ -257,7 +265,7 @@ public class LoadUi extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
-		g.draw3DRect(40, 105, 250, 547, false);  //输入框外框
+		g.draw3DRect(35, 105, 274, 547, false);  //输入框外框
 		this.repaint();
 	}
 

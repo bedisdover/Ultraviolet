@@ -2,19 +2,14 @@ package LEMS.presentation.orderui;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
 import LEMS.presentation.storeui.DateChooser;
-
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Rectangle;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 /**
@@ -71,7 +66,7 @@ public class ReceiveUi extends JPanel {
 	 * 初始化
 	 */
 	private void init() {
-		title = new JLabel("中转接收");
+		title = new JLabel("接收");
 		exit = new JButton("返回");
 		OK = new JButton("确定");
 		cancel = new JButton("取消");
@@ -94,7 +89,7 @@ public class ReceiveUi extends JPanel {
 	 */
 	private void initComponents() {
 
-		title.setBounds(440, 27, 230, 39);
+		title.setBounds(450, 27, 230, 39);
 		
 		labelDate.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y, BOUND_X, BOUND_Y);
 		labelId.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+80, BOUND_X, BOUND_Y);

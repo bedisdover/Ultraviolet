@@ -58,15 +58,12 @@ public class BusinessClerkUi extends JPanel {
 	//tabbedPane.addTab(title, icon, component, tip);
 		//添加由 title 和/或 icon 表示的 component 和 tip，其中任意一个都可以为 null。
 		
-		
-		
-		tabbedPane.addTab(null,image1,loadUi,"派件"); 
-//		tabbedPane.addTab(null,image1,receiveUi,"接收");  
-//        tabbedPane.addTab(null,image2,sendUi,"派件");
-//        tabbedPane.addTab(null,image3,receiptRecordUi,"记录收款单");
-//        tabbedPane.addTab(null,image4,loadUi,"装车管理");
-//        tabbedPane.addTab(null,image5,vehicleManageUi,"车辆信息管理");
-//        tabbedPane.addTab(null,image6,driverManageUi,"司机信息管理");
+		tabbedPane.addTab(null,image1,receiveUi,"接收");  
+        tabbedPane.addTab(null,image2,sendUi,"派件");
+        tabbedPane.addTab(null,image3,receiptRecordUi,"记录收款单");
+        tabbedPane.addTab(null,image4,loadUi,"装车管理");
+        tabbedPane.addTab(null,image5,vehicleManageUi,"车辆信息管理");
+        tabbedPane.addTab(null,image6,driverManageUi,"司机信息管理");
         
 	}
 	
