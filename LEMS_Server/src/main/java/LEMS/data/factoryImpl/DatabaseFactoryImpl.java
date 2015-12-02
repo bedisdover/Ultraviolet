@@ -42,7 +42,8 @@ public class DatabaseFactoryImpl extends UnicastRemoteObject implements
 	}
 
 	public OrderFactory getOrderFactory() throws RemoteException {
-		return null;
+		OrderFactory order=new OrderFactoryImpl();
+		return order;
 	}
 
 	public StoreFactory getStoreFactory() throws RemoteException {

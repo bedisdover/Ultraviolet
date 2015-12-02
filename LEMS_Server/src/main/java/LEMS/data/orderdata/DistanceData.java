@@ -19,7 +19,7 @@ public class DistanceData extends UnicastRemoteObject implements DistanceDataSer
 	// 获取数据库连接
 	private Connect connect;
 
-	protected DistanceData() throws RemoteException {
+	public DistanceData() throws RemoteException {
 		super();
 		connect = new Connect();
 	}

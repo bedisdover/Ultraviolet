@@ -17,7 +17,7 @@ public class OrderFactoryImpl extends UnicastRemoteObject implements OrderFactor
 	 */
 	private static final long serialVersionUID = 1L;
 
-	protected OrderFactoryImpl() throws RemoteException {
+	public OrderFactoryImpl() throws RemoteException {
 		super();
 	}
 

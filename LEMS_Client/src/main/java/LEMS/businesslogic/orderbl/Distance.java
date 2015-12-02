@@ -31,7 +31,7 @@ public class Distance {
 		try {
 			//连接数据库
 			DatabaseFactory databaseFactory = (DatabaseFactory) Naming.lookup("rmi://localhost:1099/data");
-			OrderFactory orderFactory = databaseFactory.getOrderFactory();
+			OrderFactory orderFactory = databaseFactory.getOrderFactory();System.out.println(databaseFactory);
 			DistanceDataService distanceDataService = orderFactory.getDistanceData();
 			//获得距离数据
 			distancePO = distanceDataService.getDistance();
@@ -51,4 +51,5 @@ public class Distance {
 	public void setDistance(String former, String latter, double distance) {
 		distancePO.setDistance(former, latter, distance);
 	}
+	
 }
