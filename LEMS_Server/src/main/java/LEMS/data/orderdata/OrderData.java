@@ -45,7 +45,25 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 		OrderPO orderPO = new OrderPO();
 		
 		try {
+			//设置寄件人信息
 			orderPO.setSenderName(result.getString(2));
+			orderPO.setSenderPhone(result.getString(3));
+			orderPO.setSenderAddress(result.getString(4));
+			//设置收件人信息
+			orderPO.setReceiverName(result.getString(5));
+			orderPO.setReceiverPhone(result.getString(6));
+			orderPO.setReceiverAddress(result.getString(7));
+			//设置货物信息
+			orderPO.setName(result.getString(8));
+			orderPO.setExpressType(Express.valueOf(result.getString(9)));
+			orderPO.setPackageType(Packing.valueOf(result.getString(10)));
+			orderPO.setAmount(result.getDouble(11));
+			orderPO.setQuantity(result.getInt(12));
+			orderPO.setWeight(result.getDouble(13));
+			orderPO.setVolumn(result.getDouble(14));
+			orderPO.setTime(result.getString(15));
+			//设置实际收件人
+			orderPO.setReceiver(result.getString(16));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

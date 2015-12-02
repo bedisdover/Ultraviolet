@@ -5,8 +5,9 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 
@@ -30,17 +31,21 @@ public class PriceData extends UnicastRemoteObject implements PriceDataService {
 
 	public PricePO getPrice() throws RemoteException {
 		// 创建并初始化快递类型价格表
-		Map<String, Double> expressPrice = new HashMap<String, Double>();
-		expressPrice.put("economy", 0.0);
-		expressPrice.put("standard", 0.0);
-		expressPrice.put("special", 0.0);
+		List<String> expressList = new ArrayList<String>();
+		Express[] expresses = Express.values();
+		for (int i = 0; i < expresses.length; i++) {
+			expressList.add(expresses[i] + "");
+		}
 		
 		//创建并初始化包装类型价格表
-		Map<String, Double> packagePrice = new HashMap<String, Double>();
-		packagePrice.put("Carton", 0.0);
-		packagePrice.put("Wooden", 0.0);
-		packagePrice.put("Bag", 0.0);
-		packagePrice.put("Other", 0.0);
+		List<String> packingList = new ArrayList<String>();
+		Packing[] packings = Packing.values();
+		for (int i = 0; i < packings.length; i++) {
+			packingList.add(packings[i] + "");
+		}
+		
+		HashMap<Express, Double> express = new HashMap<Express, Double>();		
+		HashMap<Packing, Double> packing = new HashMap<Packing, Double>();
 		
 		String sql = "SELECT * FROM price";
 
@@ -50,31 +55,23 @@ public class PriceData extends UnicastRemoteObject implements PriceDataService {
 		try {
 			//TODO 价格类型判断
 			while (result.next()) {
-				if (expressPrice.containsKey(result.getString(1))) {
-					expressPrice.put(result.getString(1), result.getDouble(2));
-				} else if (packagePrice.containsKey(result.getString(1))) {
-					packagePrice.put(result.getString(1), result.getDouble(2));
+				if (expressList.contains(result.getString(1))) {
+					express.put(Express.valueOf(result.getString(1)), result.getDouble(2));
+				} else if (packingList.contains(result.getString(1))) {
+					packing.put(Packing.valueOf(result.getString(1)), result.getDouble(2));
 				}
 			}
+			//断开数据库连接
+			connect.closeConnection();
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		connect.closeConnection();
-		HashMap<Express, Double> express = new HashMap<Express, Double>();
-		express.put(Express.economy, expressPrice.get("economy"));
-		express.put(Express.standard, expressPrice.get("standard"));
-		express.put(Express.special, expressPrice.get("special"));
 		
-		//创建并初始化包装类型价格表
-		HashMap<Packing, Double> pack = new HashMap<Packing, Double>();
-		pack.put(Packing.Carton,packagePrice.get("Carton"));
-		pack.put(Packing.Wooden, packagePrice.get("Wooden"));
-		pack.put(Packing.Bag, packagePrice.get("Bag"));
-		pack.put(Packing.Other, packagePrice.get("Other"));
+		//更新价格	
 		pricePO.setExpressPrice(express);
-		pricePO.setPackagePrice(pack);
+		pricePO.setPackagePrice(packing);
 		
 		return pricePO;
 	}
