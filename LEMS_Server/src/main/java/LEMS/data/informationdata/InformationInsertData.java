@@ -48,7 +48,17 @@ public class InformationInsertData extends UnicastRemoteObject implements Inform
 		
 	}
 	public void insert(InstitutionPO po) throws RemoteException{
-		
+		Connect co=new Connect();
+		String sql="INSERT INTO institution VALUES (?,?) ";
+		PreparedStatement pstmt=co.getPreparedStatement(sql);
+		try {
+			pstmt.setString(1,po.getID());
+			pstmt.setString(2,po.getLocation());			
+			pstmt.executeUpdate();
+			co.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	public void insert(UserPO po) throws RemoteException{
 		String userRole="";

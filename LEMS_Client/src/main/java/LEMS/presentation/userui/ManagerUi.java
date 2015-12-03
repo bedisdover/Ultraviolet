@@ -13,6 +13,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import LEMS.businesslogic.informationbl.InformationAdd;
+import LEMS.po.informationpo.InstitutionPO;
+import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
@@ -210,7 +213,7 @@ public class ManagerUi extends JPanel {
 		butAdd.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				// 设置输入框可编辑
-				setTestState(true);
+				setTestState(true);				
 			}
 		});
 		butDel.addMouseListener(new MouseAdapter() {
@@ -236,8 +239,11 @@ public class ManagerUi extends JPanel {
 				table.setValueAt(i, 0, textID.getText());
 				table.setValueAt(i, 1, textPassword.getText());
 				table.setValueAt(i, 2, textName.getText());
-				table.setValueAt(i, 3, (String)comboBox.getSelectedItem());
-				
+				table.setValueAt(i, 3, comboBox.getSelectedItem()+"");
+				InstitutionPO ipo=new InstitutionPO(textInstitutionID.getText(),textLocation.getText());
+				UserVO uvo=new UserVO(textID.getText(),textPassword.getText(),ManagerUi.exchange((String)comboBox.getSelectedItem()), textName.getText(),ipo);
+				InformationAdd add=new InformationAdd();
+				add.addStaff(uvo);
 				// 清空输入框
 				empty();
 				//使输入框不可编辑
@@ -258,5 +264,40 @@ public class ManagerUi extends JPanel {
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
 		g.draw3DRect(63, 126, 306, 465, false);
 		this.repaint();
+	}
+	
+	/**
+	 * @param s
+	 * @return UserRole
+	 * 将复选框中的String转换为对应的UserRole类型
+	 */
+	private static UserRole exchange(String s){
+		UserRole role=null;
+		switch(s){
+		case "管理员":
+			role=UserRole.Manager;
+			break;
+		case "总经理":
+			role=UserRole.GeneralManager;
+			break;
+		case "仓库管理人员":
+			role=UserRole.StoreManager;
+			break;
+		case "营业厅业务员":
+			role=UserRole.BusinessClerk;
+			break;
+		case "中转中心业务员":
+			role=UserRole.TransferClerk;
+			break;
+		case "快递员":
+			role=UserRole.Courier;
+			break;
+		case "财务人员":
+			role=UserRole.FinanceClerk;
+			break;
+		default:
+			break;
+		}
+		return role;
 	}
 }
