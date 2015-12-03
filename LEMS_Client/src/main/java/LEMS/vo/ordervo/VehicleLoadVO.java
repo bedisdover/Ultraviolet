@@ -21,7 +21,11 @@ public class VehicleLoadVO {
 	/**
 	 * 订单列表
 	 */
-	private ArrayList<Long> orders;
+	private ArrayList<String> orders;
+	/**
+	 * 出发地
+	 */
+	private String departure;
 	/**
 	 * 目的地
 	 */
@@ -30,13 +34,45 @@ public class VehicleLoadVO {
 	 * 货运车辆
 	 */
 	private VehicleVO vehicle;
+	/**
+	 * 运费
+	 */
+	private double passage;
 	
-	public VehicleLoadVO(String date, String id, ArrayList<Long> orders, String destination, VehicleVO vehicle) {
+	public String getDeparture() {
+		return departure;
+	}
+
+	public double getPassage() {
+		return passage;
+	}
+
+	public void setDate(String date) {
 		this.date = date;
+	}
+
+	public void setId(String id) {
 		this.id = id;
+	}
+
+	public void setOrders(ArrayList<String> orders) {
 		this.orders = orders;
+	}
+
+	public void setDeparture(String departure) {
+		this.departure = departure;
+	}
+
+	public void setDestination(String destination) {
 		this.destination = destination;
+	}
+
+	public void setVehicle(VehicleVO vehicle) {
 		this.vehicle = vehicle;
+	}
+
+	public void setPassage(double passage) {
+		this.passage = passage;
 	}
 
 	public String getDate() {
@@ -47,7 +83,7 @@ public class VehicleLoadVO {
 		return id;
 	}
 
-	public ArrayList<Long> getOrders() {
+	public ArrayList<String> getOrders() {
 		return orders;
 	}
 

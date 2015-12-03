@@ -33,10 +33,6 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 
 	
 	public OrderPO find(String id) throws RemoteException {
-		
-//		String sql = "SELECT id, senderName, senderPhone, senderAddress, "
-//					 + "receiverName, receiverPhone, receiverAddress, "
-//					 + "name, quantity, weight, volumn, expressType, packageType, amount, time FROM order";
 		//TODO 待检验
 		String sql = "SELECT * FROME order WHERE id = " + id;
 		
@@ -64,10 +60,12 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 			orderPO.setTime(result.getString(15));
 			//设置实际收件人
 			orderPO.setReceiver(result.getString(16));
+			
+			connect.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return orderPO;
 	}
 
 	public void insert(OrderPO orderPO) throws RemoteException {
@@ -98,6 +96,7 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 			pstmt.setString(16, orderPO.getReceiver());
 			
 			pstmt.executeUpdate();
+			
 			connect.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -106,12 +105,14 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 
 	public void delete(OrderPO po) throws RemoteException {
 		// TODO 待检验
-		String sql = "DELETE * FROM dingdan WHERE id = " + po.getId();
+		String sql = "DELETE FROM dingdan WHERE id = " + po.getId();
 		
 		PreparedStatement pstmt = connect.getPreparedStatement(sql);
 		
 		try {
 			pstmt.executeUpdate();
+			
+			connect.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -119,15 +120,8 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 
 	public void update(OrderPO po) throws RemoteException {
 		// TODO 待检验
-		String sql = "UPDATE * FROM dingdan WHERE id = " + po.getId();
-		
-		PreparedStatement pstmt = connect.getPreparedStatement(sql);
-		
-		try {
-			pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		this.delete(po);
+		this.insert(po);
 	}
 
 	public void init() throws RemoteException {

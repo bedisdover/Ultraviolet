@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.List;
 
 import LEMS.businesslogicservice.orderblservice.AddOrderService;
 import LEMS.dataservice.factory.DatabaseFactory;
@@ -25,22 +26,12 @@ public class AddOrder implements AddOrderService {
 	 * @return 订单持久化对象
 	 */
 	public OrderPO findOrder(String id) {
-		
-		OrderPO order = new OrderPO();
+		OrderPO order = null;
 		
 		try {
-			//获得数据库的引用
-			DatabaseFactory databaseFactory = (DatabaseFactory) Naming.lookup("rmi://localhost:1099/data");
-			OrderFactory orderFactory = databaseFactory.getOrderFactory();
-			OrderDataService orderDataService = orderFactory.getOrderData();
-			
 			//获得订单信息
-			order = orderDataService.find(id);
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			order = this.getDataService().find(id);
 		} catch (RemoteException e) {
-			e.printStackTrace();
-		} catch (NotBoundException e) {
 			e.printStackTrace();
 		}
 		
@@ -51,7 +42,58 @@ public class AddOrder implements AddOrderService {
 		// TODO 似乎不需要的方法，但是考虑到需求变更，就暂且放在这里了
 		
 	}
-
 	
+	/**
+	 * 更新订单信息
+	 * 
+	 * @param orderPO 目标单据持久化对象
+	 */
+	protected void updateOrder(OrderPO orderPO) {
+		try {
+			//更新信息
+			this.getDataService().update(orderPO);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 获得一个订单列表中所有订单的总质量
+	 * @return 总质量
+	 */
+	protected double sumWeight(List<OrderPO> orders) {
+		double sum = 0.0;
+		
+		for (OrderPO orderPO : orders) {
+			sum += orderPO.getWeight();
+		}
+		
+		return sum;
+	}
+	
+	/**
+	 * 获得数据库的引用
+	 * 
+	 * @return Order数据服务
+	 */
+	private OrderDataService getDataService() {
+		
+		OrderDataService orderDataService = null;
+		
+		try {
+			//获得数据库的引用
+			DatabaseFactory databaseFactory = (DatabaseFactory) Naming.lookup("rmi://localhost:1099/data");
+			OrderFactory orderFactory = databaseFactory.getOrderFactory();
+			orderDataService = orderFactory.getOrderData();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+		
+		return orderDataService;
+	}
 	
 }

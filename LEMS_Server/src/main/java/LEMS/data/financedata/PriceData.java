@@ -80,7 +80,7 @@ public class PriceData extends UnicastRemoteObject implements PriceDataService {
 
 		connect = new Connect();
 		String sql = "INSERT INTO price(type, price) VALUES (?, ?)";
-		this.makeEmpty();
+		this.delete();
 		
 		HashMap<Express, Double> expressPrice = price.getExpressPrice();
 		HashMap<Packing, Double> packagePrice = price.getPackagePrice();
@@ -108,7 +108,7 @@ public class PriceData extends UnicastRemoteObject implements PriceDataService {
 		}
 	}
 	
-	private void makeEmpty() throws RemoteException{
+	private void delete() throws RemoteException{
 		PreparedStatement pstmt = null;
 
 		connect = new Connect();
