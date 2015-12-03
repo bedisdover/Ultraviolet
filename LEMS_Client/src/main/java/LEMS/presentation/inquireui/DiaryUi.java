@@ -3,15 +3,18 @@ package LEMS.presentation.inquireui;
 import javax.swing.JPanel;
 
 import java.awt.Color;
-import java.awt.Rectangle;
+import java.awt.Graphics;
 
 import javax.swing.JButton;
+
+
 
 
 
 //import LEMS.businesslogic.inquirebl.inquirediary.InquireDiary;
 import LEMS.businesslogicservice.inquireblservice.InquireDiaryService;
 import LEMS.presentation.MainFrame;
+import LEMS.presentation.Table;
 import LEMS.presentation.mainUi;
 import LEMS.presentation.userui.GeneralManagerUi;
 import LEMS.vo.inquirevo.DiaryVO;
@@ -40,13 +43,15 @@ public class DiaryUi extends JPanel{
 	private JLabel statue;
 	private JButton but;
 	
+	private Table table;
+	
 	GeneralManagerUi gm=new GeneralManagerUi();
 	/**
 	 * Create the panel.
 	 */
 	public DiaryUi(MainFrame mainFrame) {
 		this.setLayout(null);
-		this.setBounds(228, 0, MainFrame.JFRAME_WIDTH-288, MainFrame.JFRAME_HEIGHT);
+		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH-288, MainFrame.JFRAME_HEIGHT);
 		
 		this.init();
 		this.initComponent();
@@ -70,8 +75,8 @@ public class DiaryUi extends JPanel{
 		date.setBounds(237,122,80,25);
 		title.setBounds(434,16,249,45);
 		title.setFont(font);
-		name.setBounds(375,65,135,28);
-		statue.setBounds(548,65,183,28);
+		name.setBounds(355,65,135,28);
+		statue.setBounds(528,65,183,28);
 		but.setBounds(692,119,120,30);
 		textField.setBounds(381,122,160,25);
 		
@@ -82,27 +87,16 @@ public class DiaryUi extends JPanel{
 		this.add(but);
 		this.add(textField);
 		
-		JPanel jPanel = new JPanel();
-		jPanel.setForeground(Color.RED);
-		jPanel.setLayout(new GridLayout(20, 4));
-		jPanel.setBounds(186, 172, 632, 510);
-		JTextField tabulation[] = new JTextField[80];
-		Font fnt2 = new Font("Courier", Font.PLAIN, 20);
-		for (int i = 0; i < 80; i++) {
-			tabulation[i] = new JTextField();
-			tabulation[i].setSize(200, 200);
-			tabulation[i].setEnabled(false);
-			tabulation[i].setDisabledTextColor(Color.BLACK);
-			tabulation[i].setFont(fnt2);
-			// 居中
-			tabulation[i].setHorizontalAlignment(JTextField.CENTER);
-			jPanel.add(tabulation[i]);
-		}
-		tabulation[0].setText("付款单");
-		tabulation[1].setText("收款单");
-		tabulation[2].setText("审批单据");
-		tabulation[3].setText("账户管理");
-		this.add(jPanel);
+		
+		String[] columnNames = { "付款单", "收款单", "审批单据", "账户管理" };
+		int[] list = { 40, 153, 14, 30, 20, 186, 172, 632, 510 };
+		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
+		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
+		// *
+		table = new Table();
+		add(table.drawTable(columnNames, list));
+		
+		
 	}
 	
 	private void addListener(){
@@ -117,5 +111,10 @@ public class DiaryUi extends JPanel{
 				textField.setText(null);
 			}
 		});
+	}
+	
+	public void paintComponent(Graphics g) {
+		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
+		this.repaint();
 	}
 }

@@ -54,12 +54,12 @@ public class FinancialStaffUi extends JPanel {
 	}
 	
 	private void initComponents(){
-		tabbedPane.setTabPlacement(JTabbedPane.LEFT);
+		tabbedPane.setTabPlacement(JTabbedPane.NORTH);
 		this.add(tabbedPane);
 	}
 	
-	public void paintComponent(Graphics g) {
-		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
-		this.repaint();
-	}
+//	public void paintComponent(Graphics g) {
+//		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
+//		this.repaint();
+//	}
 }
