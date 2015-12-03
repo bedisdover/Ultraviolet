@@ -6,6 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import LEMS.businesslogic.inquirebl.inquirelogisticsinfo.InquireLogisticsInfo;
 import LEMS.businesslogicservice.orderblservice.AddOrderService;
 import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.InquireFactory;
@@ -14,6 +15,7 @@ import LEMS.dataservice.inquiredataservice.LogisticsInfoDataService;
 import LEMS.dataservice.orderdataservice.OrderDataService;
 import LEMS.po.inquirepo.LogisticsInfoPO;
 import LEMS.po.orderpo.OrderPO;
+import LEMS.vo.inquirevo.LogisticsInfoVO;
 
 /**
  * @author 宋益明
@@ -21,6 +23,8 @@ import LEMS.po.orderpo.OrderPO;
  * 增加订单
  */
 public class AddOrder implements AddOrderService {
+	
+	private InquireLogisticsInfo inquireLogisticsInfo = new InquireLogisticsInfo();
 
 	/**
 	 * 根据ID获得订单持久化对象
@@ -52,17 +56,10 @@ public class AddOrder implements AddOrderService {
 	 * @param id
 	 * @return
 	 */
-	protected LogisticsInfoPO getLogistics(String id) {
-		LogisticsInfoPO logisticsInfoPO = null;
-		//获得数据库引用
-		LogisticsInfoDataService logisticsInfoDataService = this.getLogisticsDataService();
-		try {
-			logisticsInfoPO = logisticsInfoDataService.findLogisticsInfo(id);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+	protected LogisticsInfoVO getLogistics(String id) {
+		LogisticsInfoVO logisticsInfoVO = inquireLogisticsInfo.getLogisticsInfo(id);
 		
-		return logisticsInfoPO;
+		return logisticsInfoVO;
 	}
 	
 	/**
@@ -77,6 +74,10 @@ public class AddOrder implements AddOrderService {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	protected void updateLogistics(LogisticsInfoVO logisticsInfoVO) {
+		inquireLogisticsInfo.updateLogisticsInfo(logisticsInfoVO);
 	}
 	
 	/**

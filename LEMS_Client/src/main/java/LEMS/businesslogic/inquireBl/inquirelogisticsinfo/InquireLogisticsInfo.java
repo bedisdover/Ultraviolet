@@ -15,7 +15,7 @@ import LEMS.vo.inquirevo.LogisticsInfoVO;
  */
 public class InquireLogisticsInfo implements InquireLogisticsInfoService {
 
-	public LogisticsInfoVO getInquireLogisticsInfo(String id) {
+	public LogisticsInfoVO getLogisticsInfo(String id) {
 		LogisticsInfoVO lvo=null;
 		try {
 			LogisticsInfoPO lpo=getLogisticsInfoData().findLogisticsInfo(id);
