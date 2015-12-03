@@ -110,12 +110,12 @@ public class LoginUi extends JPanel {
 					switch (userVO.getRole()) {
 					// 登录后跳转到管理员界面
 					case Manager:
-						mainFrame.setContentPane(new ManagerUi(mainFrame));
+						mainFrame.setContentPane(new ManagerUi(mainFrame,userVO));
 						repaint();
 						break;
 					//登录后跳转到仓库管理员界面
 					case StoreManager:
-						mainFrame.setContentPane(new StoreManagerUi(mainFrame));
+						mainFrame.setContentPane(new StoreManagerUi(mainFrame,userVO));
 						repaint();
 						break;
 					//登录后跳转到总经理界面
@@ -125,7 +125,7 @@ public class LoginUi extends JPanel {
 						break;
 					//登录后跳转到财务人员界面
 					case FinanceClerk:
-						mainFrame.setContentPane(new FinancialStaffUi(mainFrame));
+						mainFrame.setContentPane(new FinancialStaffUi(mainFrame,userVO));
 						repaint();
 						break;
 					//登录后跳转到快递员界面
@@ -135,12 +135,12 @@ public class LoginUi extends JPanel {
 						break;
 					//登录后跳转到营业厅业务员界面
 					case BusinessClerk:
-						mainFrame.setContentPane(new BusinessClerkUi(mainFrame));
+						mainFrame.setContentPane(new BusinessClerkUi(mainFrame,userVO));
 						repaint();
 						break;
 					//登录后跳转到中转中心员界面
 					case TransferClerk:
-						mainFrame.setContentPane(new TransferClerkUi(mainFrame));
+						mainFrame.setContentPane(new TransferClerkUi(mainFrame,userVO));
 						repaint();
 						break;
 					default:

@@ -2,11 +2,15 @@ package LEMS.presentation.userui;
 
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+
 import java.awt.BorderLayout;
+
 import javax.swing.ImageIcon;
+
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.orderui.TransferUi;
 import LEMS.presentation.orderui.VehicleLoadUi;
+import LEMS.vo.uservo.UserVO;
 
 
 /**
@@ -21,8 +25,9 @@ public class TransferClerkUi extends JPanel {
 	private JTabbedPane tabbedPane;
 	TransferUi transferUi;
 	VehicleLoadUi vehicleUi;
-
-	public TransferClerkUi(final MainFrame mainFrame) {
+	UserVO user;
+	public TransferClerkUi(final MainFrame mainFrame,UserVO uvo) {
+		user=uvo;
 		this.mainFrame = mainFrame;
 		this.setLayout(new BorderLayout());
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);

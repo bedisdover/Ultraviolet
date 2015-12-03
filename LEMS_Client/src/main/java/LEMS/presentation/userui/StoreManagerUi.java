@@ -2,13 +2,17 @@ package LEMS.presentation.userui;
 
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+
 import java.awt.BorderLayout;
+
 import javax.swing.ImageIcon;
+
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.storeui.GenerateInboundOrderUi;
 import LEMS.presentation.storeui.GenerateOutboundOrderUi;
 import LEMS.presentation.storeui.StoreCheckUi;
 import LEMS.presentation.storeui.StoreInquireUi;
+import LEMS.vo.uservo.UserVO;
 
 /**
  * @author 周梦佳
@@ -23,8 +27,9 @@ public class StoreManagerUi extends JPanel {
 	GenerateOutboundOrderUi outboundUi;
 	StoreInquireUi inquireUi;
 	StoreCheckUi checkUi;
-
-	public StoreManagerUi(final MainFrame mainFrame) {
+	UserVO user;
+	public StoreManagerUi(final MainFrame mainFrame,UserVO uvo) {
+		user=uvo;
 		this.mainFrame = mainFrame;
 		this.setLayout(new BorderLayout());
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);

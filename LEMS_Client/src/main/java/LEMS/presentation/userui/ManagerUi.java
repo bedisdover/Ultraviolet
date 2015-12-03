@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
+import LEMS.vo.uservo.UserVO;
 
 /**
  * @author 苏琰梓 管理员界面 2015年11月18日
@@ -50,8 +51,10 @@ public class ManagerUi extends JPanel {
 	private JComboBox<String> comboBox;
 
 	private Font fnt1 = new Font("Courier", Font.PLAIN, 26);
-
-	public ManagerUi(final MainFrame mainFrame) {
+	
+	private UserVO user;
+	public ManagerUi(final MainFrame mainFrame,UserVO uvo) {
+		user=uvo;
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);

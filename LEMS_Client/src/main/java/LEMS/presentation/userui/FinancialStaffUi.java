@@ -9,6 +9,7 @@ import LEMS.presentation.financeui.CostPanel;
 import LEMS.presentation.financeui.SettlementPanel;
 import LEMS.presentation.inquireui.DiaryUi;
 import LEMS.presentation.inquireui.StatisticsReportUi;
+import LEMS.vo.uservo.UserVO;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -25,10 +26,12 @@ public class FinancialStaffUi extends JPanel {
 	CostPanel costPanel;
 	DiaryUi diaryUi;
 	SettlementPanel settlementPanel;
+	UserVO user;
 	/**
 	 * Create the panel.
 	 */
-	public FinancialStaffUi(final MainFrame mainFrame) {
+	public FinancialStaffUi(final MainFrame mainFrame,UserVO uvo) {
+		user=uvo;
 		this.mainFrame = mainFrame;
 		this.setLayout(new BorderLayout());
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);

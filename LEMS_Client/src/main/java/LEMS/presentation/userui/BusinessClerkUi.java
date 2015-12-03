@@ -15,6 +15,7 @@ import LEMS.presentation.orderui.ReceiveUi;
 import LEMS.presentation.orderui.SendUi;
 import LEMS.presentation.orderui.TransferUi;
 import LEMS.presentation.orderui.VehicleLoadUi;
+import LEMS.vo.uservo.UserVO;
 
 /**
  * @author 周梦佳
@@ -24,7 +25,7 @@ public class BusinessClerkUi extends JPanel {
 	
 	MainFrame mainFrame;
 	private JTabbedPane tabbedPane;
-	
+	UserVO user;
 	ReceiveUi receiveUi;		//接收
 	SendUi	sendUi;			//派件
 	ReceiptRecordUi	receiptRecordUi;	//记录收款单
@@ -32,7 +33,8 @@ public class BusinessClerkUi extends JPanel {
 	VehicleManageUi	vehicleManageUi;	//车辆信息管理
 	DriverManageUi		driverManageUi;//司机信息管理
 	
-	public BusinessClerkUi(final MainFrame mainFrame) {
+	public BusinessClerkUi(final MainFrame mainFrame,UserVO uvo) {
+		user=uvo;
 		this.mainFrame = mainFrame;
 		this.setLayout(new BorderLayout());
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
