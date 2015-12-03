@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
+import LEMS.presentation.Table;
 import LEMS.vo.uservo.UserVO;
 
 /**
@@ -51,6 +52,8 @@ public class ManagerUi extends JPanel {
 	private JComboBox<String> comboBox;
 
 	private Font fnt1 = new Font("Courier", Font.PLAIN, 26);
+	
+	Table table;
 	
 	private UserVO user;
 	public ManagerUi(final MainFrame mainFrame,UserVO uvo) {
@@ -153,29 +156,14 @@ public class ManagerUi extends JPanel {
 		this.add(butDel);
 		this.add(butFind);
 		this.add(butChange);
-
-		JPanel jPanel = new JPanel();
-		jPanel.setForeground(Color.RED);
-		jPanel.setLayout(new GridLayout(20, 4));
-		jPanel.setBounds(384, 126, 561, 465);
-		JTextField tabulation[] = new JTextField[80];
-		Font fnt2 = new Font("Courier", Font.PLAIN, 20);
-		for (int i = 0; i < 80; i++) {
-			tabulation[i] = new JTextField();
-			tabulation[i].setSize(200, 200);
-			tabulation[i].setEnabled(false);
-			tabulation[i].setDisabledTextColor(Color.BLACK);
-			tabulation[i].setFont(fnt2);
-			// 居中
-			tabulation[i].setHorizontalAlignment(JTextField.CENTER);
-			jPanel.add(tabulation[i]);
-		}
-		tabulation[0].setText("用户名");
-		tabulation[1].setText("密码");
-		tabulation[2].setText("用户身份");
-		tabulation[3].setText("用户姓名");
-		this.add(jPanel);
-
+		
+		String[] columnNames = { "用户名", "密码", "用户姓名", "用户身份" };
+		int[] list = { 40, 135, 14, 30, 20, 384, 126, 561, 465 };
+		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
+		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
+		// *
+		table = new Table();
+		add(table.drawTable(columnNames, list));
 
 	}
 
@@ -242,9 +230,18 @@ public class ManagerUi extends JPanel {
 		});
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				//TODO 获得第几行为空
+				int i = table.numOfEmpty();
 				// TODO 确定按钮的具体实现
+				table.setValueAt(i, 0, textID.getText());
+				table.setValueAt(i, 1, textPassword.getText());
+				table.setValueAt(i, 2, textName.getText());
+				table.setValueAt(i, 3, (String)comboBox.getSelectedItem());
+				
 				// 清空输入框
 				empty();
+				//使输入框不可编辑
+				setTestState(false);
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {

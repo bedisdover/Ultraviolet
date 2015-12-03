@@ -10,6 +10,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 
 public class Table {
+	
+	Object[][] obj;
 
 	public JScrollPane drawTable(String[] name, int[] list) {
 		/**
@@ -21,7 +23,7 @@ public class Table {
 		 */
 
 		int columns = name.length;
-		Object[][] obj = new Object[list[0]][columns];
+		obj = new Object[list[0]][columns];
 		JTable table = new JTable(obj, name);
 		/**
 		 * 设置表格不能编辑但能选中一行
@@ -65,5 +67,16 @@ public class Table {
 		return scroll;
 
 	}
+	
+	public void setValueAt(int r,int c,String value){
+		obj[r][c] = value;
+	}
 
+	public int numOfEmpty(){
+		int count = 0;
+		while(obj[count][0]!=null){
+			count++;
+		}
+		return count;
+	}
 }
