@@ -20,14 +20,8 @@ public class ArrivalVO {
 	/**
 	 * 订单列表
 	 */
-	private ArrayList<Long> orders;
+	private ArrayList<String> orders;
 	
-	public ArrivalVO(String date, String id, ArrayList<Long> orders) {
-		this.date = date;
-		this.id = id;
-		this.orders = orders;
-	}
-
 	public String getDate() {
 		return date;
 	}
@@ -36,7 +30,23 @@ public class ArrivalVO {
 		return id;
 	}
 
-	public ArrayList<Long> getGoods() {
+	public ArrayList<String> getGoods() {
 		return orders;
+	}
+
+	public ArrayList<String> getOrders() {
+		return orders;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void setOrders(ArrayList<String> orders) {
+		this.orders = orders;
 	}
 }

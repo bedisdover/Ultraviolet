@@ -27,8 +27,7 @@ public class VehicleLoad extends AddOrder implements VehicleLoadService {
 	}
 	
 	public void addOrder(String id) {
-		// TODO Auto-generated method stub
-		
+		orders.add(findOrder(id));
 	}
 
 	public void createVehicleLoadNote(VehicleLoadVO vehicleLoadVO) {

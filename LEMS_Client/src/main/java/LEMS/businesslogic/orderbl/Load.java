@@ -18,7 +18,6 @@ public class Load extends AddOrder implements LoadService {
 	 */
 	private ArrayList<OrderPO> orders;
 	
-	
 	public Load() {
 		//新建订单列表
 		orders = new ArrayList<OrderPO>();

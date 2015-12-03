@@ -3,8 +3,7 @@ package LEMS.vo.inquirevo;
 import java.util.ArrayList;
 
 /**
- * @author 章承尧
- * LogisticsInfo的值对象
+ * @author 章承尧 LogisticsInfo的值对象
  */
 public class LogisticsInfoVO {
 	/**
@@ -15,15 +14,42 @@ public class LogisticsInfoVO {
 	 * 快递的物流轨迹
 	 */
 	ArrayList<String> trace;
-	
-	public LogisticsInfoVO(String i,ArrayList<String> t){
-		id=i;
-		trace=t;
+	/**
+	 * 机构名称（用于获得各种单据中的出发地）
+	 */
+	private String institution;
+
+	public LogisticsInfoVO(String i, ArrayList<String> t) {
+		id = i;
+		trace = t;
 	}
-	public String getId(){
+
+	public String getId() {
 		return id;
 	}
-	public ArrayList<String> getTrace(){
+
+	/**
+	 * 返回最新物流信息（列表中最后一条）
+	 * 
+	 * @return 物流信息
+	 */
+	public String getLast() {
+		return trace.get(trace.size() - 1);
+	}
+
+	public ArrayList<String> getTrace() {
 		return trace;
+	}
+	
+	public String getInstitution() {
+		return institution;
+	}
+	
+	public void setInstitution(String institution) {
+		this.institution = institution;
+	}
+	
+	public void setTrace(String logistics) {
+		trace.add(logistics);
 	}
 }
