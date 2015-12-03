@@ -23,7 +23,14 @@ public class LogisticsInfoVO {
 		id = i;
 		trace = t;
 	}
-
+	public LogisticsInfoVO(){
+		
+	}
+	
+	/**
+	 * @return String
+	 * 返回该物流信息对应的订单号
+	 */
 	public String getId() {
 		return id;
 	}
@@ -37,6 +44,10 @@ public class LogisticsInfoVO {
 		return trace.get(trace.size() - 1);
 	}
 
+	/**
+	 * 返回历史轨迹
+	 * @return ArrayList<String>
+	 */
 	public ArrayList<String> getTrace() {
 		return trace;
 	}

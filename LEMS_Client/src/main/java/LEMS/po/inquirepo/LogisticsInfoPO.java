@@ -26,15 +26,44 @@ public class LogisticsInfoPO implements Serializable {
 		trace = t;
 	}
 
+	public LogisticsInfoPO() {
+
+	}
+
+	/**
+	 * @return String 返回该物流信息对应的订单号
+	 */
 	public String getId() {
 		return id;
 	}
 
+	/**
+	 * 返回最新物流信息（列表中最后一条）
+	 * 
+	 * @return 物流信息
+	 */
+	public String getLast() {
+		return trace.get(trace.size() - 1);
+	}
+
+	/**
+	 * 返回历史轨迹
+	 * 
+	 * @return ArrayList<String>
+	 */
 	public ArrayList<String> getTrace() {
 		return trace;
 	}
 
 	public String getInstitution() {
 		return institution;
+	}
+
+	public void setInstitution(String institution) {
+		this.institution = institution;
+	}
+
+	public void setTrace(String logistics) {
+		trace.add(logistics);
 	}
 }

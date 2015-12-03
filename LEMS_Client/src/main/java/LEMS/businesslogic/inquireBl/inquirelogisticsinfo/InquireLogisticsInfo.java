@@ -40,7 +40,14 @@ public class InquireLogisticsInfo implements InquireLogisticsInfoService {
 	}
 	
 	public void createLogistics(LogisticsInfoVO logisticsInfoVO) {
-		
+		LogisticsInfoDataService logicsdata=getLogisticsInfoData();
+		LogisticsInfoPO lpo=new LogisticsInfoPO(logisticsInfoVO.getId(),logisticsInfoVO.getTrace());
+		lpo.setInstitution(logisticsInfoVO.getInstitution());
+		try {
+			logicsdata.insertLogisticsInfo(lpo);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private static LogisticsInfoDataService getLogisticsInfoData() {

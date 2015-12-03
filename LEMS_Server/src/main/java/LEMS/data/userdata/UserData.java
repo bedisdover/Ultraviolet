@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import LEMS.data.Connect;
 import LEMS.dataservice.userdataservice.UserDataService;
 import LEMS.po.informationpo.InstitutionPO;
 import LEMS.po.userpo.UserPO;
@@ -142,39 +143,50 @@ public class UserData extends UnicastRemoteObject implements UserDataService {
 		return ua;
 	}
 
-	public static void main(String[] args) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet result = null;
-		String sql = "SELECT id,password,role,name,institutionid,institutionlocation FROM user";
+	public ArrayList<UserPO> findAll() throws RemoteException {
+		ArrayList<UserPO> upos=new ArrayList<UserPO>();
+		UserRole userRole=null;
+		Connect co=new Connect();
+		String sql="SELECT * FROM user";
+		ResultSet result=co.getResultSet(sql);
 		try {
-			Class.forName(DBDRIVER);
-			conn = DriverManager.getConnection(DBURL, DBUSER, DBPASS);
-			pstmt = conn.prepareStatement(sql);
-			result = pstmt.executeQuery();
-			while (result.next()) {
-				String id = result.getString(1);
-				String password = result.getString(2);
-				String role = result.getString(3);
-				String name = result.getString(4);
-				String institutionid = result.getString(5);
-				String institutionlocation = result.getString(6);
-				System.out.println(id + " " + password + " " + role + " "
-						+ name + " " + institutionid + " "
-						+ institutionlocation);
-
+			while(result.next()){
+				String role=result.getString(3);
+				switch (role) {
+				case "Manager":
+					userRole = UserRole.Manager;
+					break;
+				case "GeneralManager":
+					userRole = UserRole.GeneralManager;
+					break;
+				case "StoreManager":
+					userRole = UserRole.StoreManager;
+					break;
+				case "BusinessClerk":
+					userRole = UserRole.BusinessClerk;
+					break;
+				case "TransferClerk":
+					userRole = UserRole.TransferClerk;
+					break;
+				case "Courier":
+					userRole = UserRole.Courier;
+					break;
+				case "FinanceClerk":
+					userRole = UserRole.FinanceClerk;
+					break;
+				default:
+					break;
+				}
+				InstitutionPO ipo = new InstitutionPO(result.getString(5),result.getString(6));
+				UserPO upo = new UserPO(result.getString(1),result.getString(2), userRole, result.getString(4), ipo);
+				upos.add(upo);
 			}
-			result.close();
-			pstmt.close();
-			conn.close();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		return upos;
 	}
+
+	
 
 }

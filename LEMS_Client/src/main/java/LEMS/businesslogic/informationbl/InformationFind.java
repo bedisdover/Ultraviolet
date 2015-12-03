@@ -6,6 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import LEMS.businesslogicservice.informationblservice.InformationFindService;
 import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.InformationFactory;
 import LEMS.dataservice.factory.UserFactory;
@@ -14,8 +15,9 @@ import LEMS.dataservice.userdataservice.UserDataService;
 import LEMS.po.userpo.UserPO;
 import LEMS.po.userpo.UserRole;
 import LEMS.vo.informationvo.StaffVO;
+import LEMS.vo.uservo.UserVO;
 
-public class InformationFind {
+public class InformationFind implements InformationFindService{
 	/**
 	 * 查找司机信息
 	 */
@@ -37,28 +39,26 @@ public class InformationFind {
 	/**
 	 * 查找人员信息
 	 */
-	public StaffVO findStaff(String id){
-		return null;
-	}
-	public static void main(String[] args){		
+	public ArrayList<UserVO> findStaff(){
+		ArrayList<UserVO> uservo=new ArrayList<UserVO>();
 		try {
 			DatabaseFactory database=(DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
-			UserFactory inf=database.getUserFactory();
-			UserDataService u = inf.getUserData();
-			ArrayList<UserPO> ua=u.find(UserRole.Manager);
-			UserPO upo=ua.get(1);
-			System.out.println(upo.getId()+" "+upo.getPassword()+" "+upo.getRole()+" "+upo.getName());
+			UserFactory userFac=database.getUserFactory();
+			UserDataService us = userFac.getUserData();
+			ArrayList<UserPO> users=us.findAll();
+			for(int i=0;i<users.size();i++){
+				UserVO uvo=new UserVO(users.get(i).getId(),users.get(i).getPassword(),users.get(i).getRole(),users.get(i).getName(),users.get(i).getInstitution());
+				uservo.add(uvo);
+			}
+			
 		} catch (MalformedURLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (NotBoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-		
+		return uservo;
 	}
+	
 }

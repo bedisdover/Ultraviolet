@@ -12,4 +12,5 @@ public interface UserDataService extends Remote{
 	public void delete(UserPO po) throws RemoteException;
 	public void update(UserPO po) throws RemoteException;
 	public  ArrayList<UserPO> find(UserRole r) throws RemoteException;
+	public ArrayList<UserPO> findAll() throws RemoteException;
 }

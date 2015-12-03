@@ -1,6 +1,9 @@
 package LEMS.businesslogicservice.informationblservice;
 
+import java.util.ArrayList;
+
 import LEMS.vo.informationvo.StaffVO;
+import LEMS.vo.uservo.UserVO;
 
 
 
@@ -25,5 +28,5 @@ public interface InformationFindService {
 	/**
 	 * 查找人员信息
 	 */
-	public StaffVO findStaffVO(String id);
+	public ArrayList<UserVO> findStaff();
 }

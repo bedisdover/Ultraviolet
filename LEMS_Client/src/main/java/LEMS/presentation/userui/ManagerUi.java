@@ -1,11 +1,10 @@
 package LEMS.presentation.userui;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -14,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import LEMS.businesslogic.informationbl.InformationAdd;
+import LEMS.businesslogic.informationbl.InformationFind;
 import LEMS.po.informationpo.InstitutionPO;
 import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
@@ -167,7 +167,14 @@ public class ManagerUi extends JPanel {
 		// *
 		table = new Table();
 		add(table.drawTable(columnNames, list));
-
+		InformationFind findInfo=new InformationFind();
+		ArrayList<UserVO> users=findInfo.findStaff();
+		for(int i=0;i<users.size();i++){
+			table.setValueAt(i, 0, users.get(i).getId());
+			table.setValueAt(i, 1, users.get(i).getPassword());
+			table.setValueAt(i, 2, users.get(i).getName());
+			table.setValueAt(i, 3, UserRole.transfer(users.get(i).getRole()));
+		}
 	}
 
 	/**
@@ -300,4 +307,5 @@ public class ManagerUi extends JPanel {
 		}
 		return role;
 	}
+	
 }

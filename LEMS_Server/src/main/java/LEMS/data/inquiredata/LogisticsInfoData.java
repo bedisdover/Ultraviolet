@@ -67,17 +67,18 @@ public class LogisticsInfoData extends UnicastRemoteObject implements LogisticsI
 			e.printStackTrace();
 		}
 	}
-	public void insertLogisticsInfo(LogisticsInfoPO lpo){
+	public void insertLogisticsInfo(LogisticsInfoPO lpo) throws RemoteException{
 		String trace="";
 		for(int i=0;i<lpo.getTrace().size();i++){
 			trace+=(lpo.getTrace().get(i)+" ");
 		}
 		Connect co=new Connect();
-		String sql="INSERT INTO logistics VALUES (?,?)";
+		String sql="INSERT INTO logistics VALUES (?,?,?)";
 		PreparedStatement pstmt=co.getPreparedStatement(sql);
 		try {
 			pstmt.setString(1,lpo.getId());
 			pstmt.setString(2,trace);
+			pstmt.setString(3, lpo.getInstitution());
 			pstmt.executeUpdate();
 			co.closeConnection();
 		} catch (SQLException e) {
