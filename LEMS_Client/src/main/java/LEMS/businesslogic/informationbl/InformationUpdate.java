@@ -30,19 +30,16 @@ public class InformationUpdate implements InformationUpdateService{
 
 	@Override
 	public void updateDriverVO(long id) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void updateVehicleVO(long id) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void updateInstitutionVO(String id) {
-		// TODO Auto-generated method stub
 		
 	}
 

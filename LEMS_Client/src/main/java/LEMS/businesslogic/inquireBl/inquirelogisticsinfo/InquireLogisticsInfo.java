@@ -1,23 +1,55 @@
 package LEMS.businesslogic.inquirebl.inquirelogisticsinfo;
 
+import java.rmi.Naming;
+import java.rmi.RemoteException;
+
 import LEMS.businesslogicservice.inquireblservice.InquireLogisticsInfoService;
+import LEMS.dataservice.factory.DatabaseFactory;
+import LEMS.dataservice.factory.InquireFactory;
+import LEMS.dataservice.inquiredataservice.LogisticsInfoDataService;
+import LEMS.po.inquirepo.LogisticsInfoPO;
 import LEMS.vo.inquirevo.LogisticsInfoVO;
 
 /**
- * @author 章承尧
- * inquireLogisticsInfoService接口的实现
+ * @author 章承尧 inquireLogisticsInfoService接口的实现
  */
-public class InquireLogisticsInfo implements InquireLogisticsInfoService{
+public class InquireLogisticsInfo implements InquireLogisticsInfoService {
 
 	public LogisticsInfoVO getInquireLogisticsInfo(String id) {
-		LogisticsInfo logisInfo=new LogisticsInfo(id);
-		if(logisInfo.getLogisticsInfo()!=null){
-			LogisticsInfoVO lovo=new LogisticsInfoVO(id,logisInfo.getLogisticsInfo());
-			return lovo;
+		LogisticsInfoVO lvo=null;
+		try {
+			LogisticsInfoPO lpo=getLogisticsInfoData().findLogisticsInfo(id);
+			if(lpo!=null){
+				lvo=new LogisticsInfoVO(lpo.getId(),lpo.getTrace());				
+			}						
+		} catch (RemoteException e) {
+			e.printStackTrace();
 		}
-		else{
-			return null;
-		}		
+		return lvo;
+		
 	}
 	
+	public void updateLogisticsInfo(LogisticsInfoVO lvo){
+		LogisticsInfoDataService logicsdata=getLogisticsInfoData();
+		LogisticsInfoPO lpo=new LogisticsInfoPO(lvo.getId(),lvo.getTrace());
+		try {
+			logicsdata.update(lpo);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
+	private static LogisticsInfoDataService getLogisticsInfoData() {
+		LogisticsInfoDataService lo = null;
+		try {
+			DatabaseFactory database = (DatabaseFactory) Naming
+					.lookup("rmi://localhost:1099/data");
+			InquireFactory inquire = database.getInquireFactory();
+			lo = inquire.getLogisticsInfo();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return lo;
+	}
+
 }

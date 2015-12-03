@@ -12,15 +12,15 @@ public interface InformationDeleteService extends Remote{
 	/**
 	 * 删除司机信息
 	 */
-	public void deleteDriverVO(long id);
+	public void deleteDriver(String id);
 	/**
 	 * 删除车辆信息
 	 */
-	public void deleteVehicleVO(long id);
+	public void deleteVehicle(String id);
 	/**
 	 * 删除机构信息
 	 */
-	public void deleteInstitutionVO(String id);
+	public void deleteInstitution(String id);
 	/**
 	 * 删除人员信息
 	 */
@@ -28,6 +28,6 @@ public interface InformationDeleteService extends Remote{
 	/**
 	 * 删除账户信息
 	 */
-	public void deleteAccoutVO(String name);
+	public void deleteAccout(String id);
 	
 }
