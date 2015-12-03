@@ -2,6 +2,7 @@ package LEMS.data.inquiredata;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,7 +21,16 @@ public class LogisticsInfoData extends UnicastRemoteObject implements LogisticsI
 	public  LogisticsInfoData() throws RemoteException {
 		super();
 	}
-
+	public void update(LogisticsInfoPO lpo){
+		try {
+			LogisticsInfoData lidata=new LogisticsInfoData();
+			lidata.deleteLogisticsInfo(lpo.getId());
+			lidata.insertLogisticsInfo(lpo);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	public LogisticsInfoPO findLogisticsInfo(String id) throws RemoteException {
 		LogisticsInfoPO lipo=null;
 		ArrayList<String> trace=new ArrayList<String>();
@@ -45,5 +55,36 @@ public class LogisticsInfoData extends UnicastRemoteObject implements LogisticsI
 		co.closeConnection();
 		return lipo;
 	}
-	
+	public void deleteLogisticsInfo(String id) throws RemoteException{
+		Connect co=new Connect();
+		String sql="DELETE FROM logistics WHERE id = ?";
+		PreparedStatement pstmt=co.getPreparedStatement(sql);
+		try {
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+			co.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public void insertLogisticsInfo(LogisticsInfoPO lpo){
+		String trace="";
+		for(int i=0;i<lpo.getTrace().size();i++){
+			trace+=(lpo.getTrace().get(i)+" ");
+		}
+		Connect co=new Connect();
+		String sql="INSERT INTO logistics VALUES (?,?)";
+		PreparedStatement pstmt=co.getPreparedStatement(sql);
+		try {
+			pstmt.setString(1,lpo.getId());
+			pstmt.setString(2,trace);
+			pstmt.executeUpdate();
+			co.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public static void main(String[] args){
+		
+	}
 }
