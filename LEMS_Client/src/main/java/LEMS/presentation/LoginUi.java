@@ -7,7 +7,13 @@ import javax.swing.*;
 
 import LEMS.businesslogic.userbl.UserLogin;
 import LEMS.po.userpo.UserRole;
+import LEMS.presentation.userui.BusinessClerkUi;
+import LEMS.presentation.userui.CourierUi;
+import LEMS.presentation.userui.FinancialStaffUi;
+import LEMS.presentation.userui.GeneralManagerUi;
 import LEMS.presentation.userui.ManagerUi;
+import LEMS.presentation.userui.StoreManagerUi;
+import LEMS.presentation.userui.TransferClerkUi;
 import LEMS.vo.uservo.UserVO;
 
 /**
@@ -102,9 +108,39 @@ public class LoginUi extends JPanel {
 					System.out.println("fail");
 				} else {
 					switch (userVO.getRole()) {
-					// 暂定点击登陆后跳转到管理员界面
+					// 登录后跳转到管理员界面
 					case Manager:
 						mainFrame.setContentPane(new ManagerUi(mainFrame));
+						repaint();
+						break;
+					//登录后跳转到仓库管理员界面
+					case StoreManager:
+						mainFrame.setContentPane(new StoreManagerUi(mainFrame));
+						repaint();
+						break;
+					//登录后跳转到总经理界面
+					case GeneralManager:
+						mainFrame.setContentPane(new GeneralManagerUi());
+						repaint();
+						break;
+					//登录后跳转到财务人员界面
+					case FinanceClerk:
+						mainFrame.setContentPane(new FinancialStaffUi(mainFrame));
+						repaint();
+						break;
+					//登录后跳转到快递员界面
+					case Courier:
+						mainFrame.setContentPane(new CourierUi());
+						repaint();
+						break;
+					//登录后跳转到营业厅业务员界面
+					case BusinessClerk:
+						mainFrame.setContentPane(new BusinessClerkUi(mainFrame));
+						repaint();
+						break;
+					//登录后跳转到中转中心员界面
+					case TransferClerk:
+						mainFrame.setContentPane(new TransferClerkUi(mainFrame));
 						repaint();
 						break;
 					default:
