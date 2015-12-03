@@ -35,4 +35,14 @@ public class Load extends AddOrder implements LoadService {
 	public ArrayList<OrderPO> getOrders() {
 		return orders;
 	}
+	
+	/**
+	 * 计算运费
+	 * 
+	 * @return
+	 */
+	private double calculateMessage() {
+		double sum = sumWeight(orders);
+		return 0;
+	}
 }

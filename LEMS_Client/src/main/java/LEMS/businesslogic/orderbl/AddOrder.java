@@ -8,8 +8,11 @@ import java.util.List;
 
 import LEMS.businesslogicservice.orderblservice.AddOrderService;
 import LEMS.dataservice.factory.DatabaseFactory;
+import LEMS.dataservice.factory.InquireFactory;
 import LEMS.dataservice.factory.OrderFactory;
+import LEMS.dataservice.inquiredataservice.LogisticsInfoDataService;
 import LEMS.dataservice.orderdataservice.OrderDataService;
+import LEMS.po.inquirepo.LogisticsInfoPO;
 import LEMS.po.orderpo.OrderPO;
 
 /**
@@ -41,6 +44,25 @@ public class AddOrder implements AddOrderService {
 	public void addOrder(String id) {
 		// TODO 似乎不需要的方法，但是考虑到需求变更，就暂且放在这里了
 		
+	}
+	
+	/**
+	 * 根据ID查找物流信息
+	 * 
+	 * @param id
+	 * @return
+	 */
+	protected LogisticsInfoPO getLogistics(String id) {
+		LogisticsInfoPO logisticsInfoPO = null;
+		//获得数据库引用
+		LogisticsInfoDataService logisticsInfoDataService = this.getLogisticsDataService();
+		try {
+			logisticsInfoPO = logisticsInfoDataService.findLogisticsInfo(id);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		return logisticsInfoPO;
 	}
 	
 	/**
@@ -96,4 +118,26 @@ public class AddOrder implements AddOrderService {
 		return orderDataService;
 	}
 	
+	/**
+	 * 获得数据库的引用
+	 * 
+	 * @return 物流信息数据服务
+	 */
+	private LogisticsInfoDataService getLogisticsDataService() {
+		LogisticsInfoDataService logisticsInfoDataService = null;
+		
+		try {
+			DatabaseFactory databaseFactory = (DatabaseFactory) Naming.lookup("rmi://localhost:1099/data");
+			InquireFactory inquireFactory = databaseFactory.getInquireFactory();
+			logisticsInfoDataService = inquireFactory.getLogisticsInfo();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+		
+		return logisticsInfoDataService;
+	}
 }
