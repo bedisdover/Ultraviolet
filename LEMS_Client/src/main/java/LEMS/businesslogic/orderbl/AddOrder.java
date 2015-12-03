@@ -76,6 +76,11 @@ public class AddOrder implements AddOrderService {
 		}
 	}
 	
+	/**
+	 * 更新物流信息
+	 * 
+	 * @param logisticsInfoVO 物流信息值对象
+	 */
 	protected void updateLogistics(LogisticsInfoVO logisticsInfoVO) {
 		inquireLogisticsInfo.updateLogisticsInfo(logisticsInfoVO);
 	}
@@ -117,28 +122,5 @@ public class AddOrder implements AddOrderService {
 		}
 		
 		return orderDataService;
-	}
-	
-	/**
-	 * 获得数据库的引用
-	 * 
-	 * @return 物流信息数据服务
-	 */
-	private LogisticsInfoDataService getLogisticsDataService() {
-		LogisticsInfoDataService logisticsInfoDataService = null;
-		
-		try {
-			DatabaseFactory databaseFactory = (DatabaseFactory) Naming.lookup("rmi://localhost:1099/data");
-			InquireFactory inquireFactory = databaseFactory.getInquireFactory();
-			logisticsInfoDataService = inquireFactory.getLogisticsInfo();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		} catch (NotBoundException e) {
-			e.printStackTrace();
-		}
-		
-		return logisticsInfoDataService;
 	}
 }
