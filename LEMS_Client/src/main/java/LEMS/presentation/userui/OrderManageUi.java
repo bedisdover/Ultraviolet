@@ -1,13 +1,12 @@
-package LEMS.presentation.orderui;
+package LEMS.presentation.userui;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.GridLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -16,13 +15,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-import LEMS.businesslogic.orderbl.Order;
 import LEMS.businesslogic.orderbl.controller.OrderController;
 import LEMS.po.orderpo.City;
 import LEMS.po.orderpo.Express;
 import LEMS.po.orderpo.Packing;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
+import LEMS.vo.uservo.UserVO;
 
 /**
  * @author 章承尧,苏琰梓 订单管理界面 2015年11月23日
@@ -80,11 +79,6 @@ public class OrderManageUi extends JPanel {
 
 	private Font fnt1 = new Font("Courier", Font.PLAIN, 26);
 	
-	/**
-	 * 订单对象
-	 */
-	Order order;
-	
 	private OrderController controller;
 	
 	MainFrame mainFrame;
@@ -92,20 +86,20 @@ public class OrderManageUi extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public OrderManageUi(MainFrame mainFrame) {
+	public OrderManageUi(MainFrame mainFrame, UserVO user) {
 		this.mainFrame = mainFrame;
-		
+		//设置布局格式
 		this.setLayout(null);
+		//设置边界
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
-
+		//组件声明
 		this.init();
+		//初始化组件
 		this.initcomponents();
+		//添加监听事件
 		this.addListener();
-		
-		
-		order = new Order();
-		
-		controller = new OrderController();
+
+		controller = new OrderController(user);
 	}
 
 	/**

@@ -5,6 +5,7 @@ import LEMS.po.orderpo.Express;
 import LEMS.po.orderpo.Packing;
 import LEMS.vo.ordervo.CustomerVO;
 import LEMS.vo.ordervo.GoodsVO;
+import LEMS.vo.uservo.UserVO;
 
 /**
  * @author 宋益明
@@ -18,8 +19,8 @@ public class OrderController {
 	 */
 	private Order order;
 	
-	public OrderController() {
-		order = new Order();
+	public OrderController(UserVO user) {
+		order = new Order(user);
 	}
 
 	public void addSender(String name, String phone, String address) {

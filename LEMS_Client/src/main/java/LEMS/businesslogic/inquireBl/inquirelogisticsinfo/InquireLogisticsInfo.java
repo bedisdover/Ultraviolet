@@ -38,6 +38,11 @@ public class InquireLogisticsInfo implements InquireLogisticsInfoService {
 			e.printStackTrace();
 		}
 	}
+	
+	public void createLogistics(LogisticsInfoVO logisticsInfoVO) {
+		
+	}
+	
 	private static LogisticsInfoDataService getLogisticsInfoData() {
 		LogisticsInfoDataService lo = null;
 		try {

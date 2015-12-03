@@ -18,6 +18,10 @@ public class ArrivalVO {
 	 */
 	private String id;
 	/**
+	 * 出发地
+	 */
+	private String depature;
+	/**
 	 * 订单列表
 	 */
 	private ArrayList<String> orders;
@@ -38,6 +42,10 @@ public class ArrivalVO {
 		return orders;
 	}
 
+	public String getDepature() {
+		return depature;
+	}
+	
 	public void setDate(String date) {
 		this.date = date;
 	}
@@ -48,5 +56,9 @@ public class ArrivalVO {
 
 	public void setOrders(ArrayList<String> orders) {
 		this.orders = orders;
+	}
+	
+	public void setDepature(String depature) {
+		this.depature = depature;
 	}
 }

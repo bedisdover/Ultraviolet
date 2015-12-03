@@ -33,7 +33,7 @@ public class Receipt extends AddOrder implements ReceiptService {
 	private UserVO user;
 	
 	/**
-	 * 
+	 * 出发地
 	 */
 	private String depature;
 	
@@ -47,8 +47,11 @@ public class Receipt extends AddOrder implements ReceiptService {
 	public void addOrder(String id) {
 		//获得物流信息
 		LogisticsInfoVO logistics = getLogistics(id);
+		depature = logistics.getInstitution();
+		
 		//更新物流信息
 		logistics.setTrace("到达" + user.getInstitution().getLocation() + "营业厅");
+		logistics.setInstitution(user.getInstitution().getLocation());
 		updateLogistics(logistics);
 		
 		//添加订单到订单列表中
@@ -56,11 +59,11 @@ public class Receipt extends AddOrder implements ReceiptService {
 	}
 
 	public void createArrivalNote(ArrivalVO arrivalInfo) {
-		// TODO Auto-generated method stub
+		// TODO 添加货物状态
 		//设置到达时间
 		arrivalVO.setDate(DateFormate.DATE_FORMAT.format(new Date()));
 		//设置出发地
-		
+		arrivalVO.setDepature(depature);
 		
 	}
 	

@@ -15,6 +15,7 @@ import LEMS.po.orderpo.Packing;
 import LEMS.vo.ordervo.CustomerVO;
 import LEMS.vo.ordervo.GoodsVO;
 import LEMS.vo.ordervo.OrderVO;
+import LEMS.vo.uservo.UserVO;
 
 /**
  * @author 宋益明
@@ -55,7 +56,7 @@ public class Order implements OrderService {
 	private Price price;
 	private Distance cityDistance;
 	
-	public Order() {
+	public Order(UserVO user) {
 		//新建订单
 		order = new OrderVO();
 		
@@ -129,6 +130,7 @@ public class Order implements OrderService {
 
 			//写入数据
 			orderDataService.insert(order.transferToPO());
+			//TODO 生成物流信息
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {
