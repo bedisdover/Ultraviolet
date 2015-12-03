@@ -84,7 +84,5 @@ public class LogisticsInfoData extends UnicastRemoteObject implements LogisticsI
 			e.printStackTrace();
 		}
 	}
-	public static void main(String[] args){
-		
-	}
+	
 }
