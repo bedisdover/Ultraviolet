@@ -72,36 +72,36 @@ public class LoginUi extends JPanel {
 				final String password = textPassword.getText();
 				String role = (String) comboBox.getSelectedItem();
 				UserLogin ul = new UserLogin();
-				UserVO uvo = null;
+				UserVO userVO = null;
 				switch (role) {
 				case "管理员":
-					uvo = ul.login(name, password, UserRole.Manager);
+					userVO = ul.login(name, password, UserRole.Manager);
 					break;
 				case "总经理":
-					uvo = ul.login(name, password, UserRole.GeneralManager);
+					userVO = ul.login(name, password, UserRole.GeneralManager);
 					break;
 				case "仓库管理人员":
-					uvo = ul.login(name, password, UserRole.StoreManager);
+					userVO = ul.login(name, password, UserRole.StoreManager);
 					break;
 				case "财务人员":
-					uvo = ul.login(name, password, UserRole.FinanceClerk);
+					userVO = ul.login(name, password, UserRole.FinanceClerk);
 					break;
 				case "快递员":
-					uvo = ul.login(name, password, UserRole.Courier);
+					userVO = ul.login(name, password, UserRole.Courier);
 					break;
 				case "营业厅业务员":
-					uvo = ul.login(name, password, UserRole.BusinessClerk);
+					userVO = ul.login(name, password, UserRole.BusinessClerk);
 					break;
 				case "中转中心业务员":
-					uvo = ul.login(name, password, UserRole.TransferClerk);
+					userVO = ul.login(name, password, UserRole.TransferClerk);
 					break;
 				default:
 					break;
 				}
-				if (uvo == null) {
+				if (userVO == null) {
 					System.out.println("fail");
 				} else {
-					switch (uvo.getRole()) {
+					switch (userVO.getRole()) {
 					// 暂定点击登陆后跳转到管理员界面
 					case Manager:
 						mainFrame.setContentPane(new ManagerUi(mainFrame));

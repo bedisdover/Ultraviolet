@@ -3,9 +3,11 @@ package LEMS.presentation.orderui;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import LEMS.po.userpo.UserRole;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
 import LEMS.presentation.storeui.DateChooser;
+import LEMS.vo.uservo.UserVO;
 
 import java.awt.Font;
 import java.awt.Graphics;
@@ -61,7 +63,6 @@ public class ReceiptRecordUi extends JPanel {
 		this.setTestState(false);
 		// 添加事件监听器
 		this.addListener();
-
 	}
 
 	/**
