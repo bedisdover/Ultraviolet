@@ -2,6 +2,7 @@ package LEMS.presentation.inquireui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -9,6 +10,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 import LEMS.presentation.MainFrame;
+import LEMS.presentation.Table;
 
 /**
  * @author 苏琰梓
@@ -33,6 +35,10 @@ public class StatisticsReportUi extends JPanel {
 	private JButton but;
 	
 	private Font font;
+	private Font subfont;
+	
+	Table table1;
+	Table table2;
 	
 	public StatisticsReportUi(final MainFrame mainFrame) {
 		this.setBounds(228, 0, MainFrame.JFRAME_WIDTH-288, MainFrame.JFRAME_HEIGHT);
@@ -52,9 +58,11 @@ public class StatisticsReportUi extends JPanel {
 		textDate1 = new JTextField();
 		textDate2 = new JTextField();
 		font = new Font("宋体", Font.PLAIN, 22);
+		subfont = new Font("Dialog", Font.PLAIN, 18);
 		but = new JButton("查看");
 		subtitle1 = new JLabel("付款单信息");
 		subtitle2 = new JLabel("收款单信息");
+		System.out.println(subtitle1.getFont());
 	}
 	
 	private void initComponent(){
@@ -67,8 +75,10 @@ public class StatisticsReportUi extends JPanel {
 		labelDate2.setBounds(490,122,80,25);
 		textDate1.setBounds(290,122,160,25);
 		textDate2.setBounds(540,122,160,25);
-		subtitle1.setBounds(548,148,169,39);
-		subtitle2.setBounds(548,438,169,39);
+		subtitle1.setBounds(456,156,169,39);
+		subtitle2.setBounds(456,430,169,39);
+		subtitle1.setFont(subfont);
+		subtitle2.setFont(subfont);
 		
 		this.add(title);
 		this.add(labelDate1);
@@ -81,41 +91,22 @@ public class StatisticsReportUi extends JPanel {
 		this.add(subtitle1);
 		this.add(subtitle2);
 		
-		JPanel jPanel = new JPanel();
-		jPanel.setForeground(Color.RED);
-		jPanel.setLayout(new GridLayout(20, 4));
-		jPanel.setBounds(218, 203, 611, 220);
-		JTextField tabulation[] = new JTextField[80];
-		Font fnt2 = new Font("Courier", Font.PLAIN, 20);
-		for (int i = 0; i < 80; i++) {
-			tabulation[i] = new JTextField();
-			tabulation[i].setSize(200, 200);
-			tabulation[i].setEnabled(false);
-			tabulation[i].setDisabledTextColor(Color.BLACK);
-			tabulation[i].setFont(fnt2);
-			// 居中
-			tabulation[i].setHorizontalAlignment(JTextField.CENTER);
-			jPanel.add(tabulation[i]);
-		}
 		
-		JPanel jPanel2 = new JPanel();
-		jPanel.setForeground(Color.RED);
-		jPanel.setLayout(new GridLayout(20, 4));
-		jPanel.setBounds(218, 492, 611, 220);
-		JTextField tabulation2[] = new JTextField[80];
-		for (int i = 0; i < 80; i++) {
-			tabulation2[i] = new JTextField();
-			tabulation2[i].setSize(200, 200);
-			tabulation2[i].setEnabled(false);
-			tabulation2[i].setDisabledTextColor(Color.BLACK);
-			tabulation2[i].setFont(fnt2);
-			// 居中
-			tabulation2[i].setHorizontalAlignment(JTextField.CENTER);
-			jPanel2.add(tabulation2[i]);
-		}
+		String[] columnNames1 = { "付款单", "收款单", "审批单据", "账户管理" };
+		int[] list1 = { 30, 148, 14, 30, 20, 218, 198, 611, 220 };
+		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
+		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
+		// *
+		table1 = new Table();
+		add(table1.drawTable(columnNames1, list1));
 		
-		this.add(jPanel);
-		this.add(jPanel2);
+		String[] columnNames2 = { "付款单", "收款单", "审批单据", "账户管理" };
+		int[] list2 = { 30, 148, 14, 30, 20, 218, 472, 611, 220};
+		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
+		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
+		// *
+		table2 = new Table();
+		add(table2.drawTable(columnNames2, list2));
 	}
 	
 	private void addListener(){
@@ -127,5 +118,10 @@ public class StatisticsReportUi extends JPanel {
 				
 			}
 		});
+	}
+	
+	public void paintComponent(Graphics g) {
+		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
+		this.repaint();
 	}
 }

@@ -73,7 +73,7 @@ public class DiaryUi extends JPanel{
 	
 	private void initComponent(){
 		date.setBounds(237,122,80,25);
-		title.setBounds(434,16,249,45);
+		title.setBounds(444,16,249,45);
 		title.setFont(font);
 		name.setBounds(355,65,135,28);
 		statue.setBounds(528,65,183,28);
