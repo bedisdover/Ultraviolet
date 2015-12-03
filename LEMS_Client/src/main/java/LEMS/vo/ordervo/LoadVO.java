@@ -2,6 +2,8 @@ package LEMS.vo.ordervo;
 
 import java.util.ArrayList;
 
+import LEMS.po.orderpo.TransportType;
+
 /**
  * @author 宋益明
  * 

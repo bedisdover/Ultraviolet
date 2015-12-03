@@ -43,6 +43,7 @@ public class Load extends AddOrder implements LoadService {
 	 */
 	private double calculateMessage() {
 		double sum = sumWeight(orders);
+		
 		return 0;
 	}
 }

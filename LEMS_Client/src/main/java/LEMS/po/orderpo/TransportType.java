@@ -1,4 +1,4 @@
-package LEMS.vo.ordervo;
+package LEMS.po.orderpo;
 
 /**
  * @author 宋益明

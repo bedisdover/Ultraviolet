@@ -2,7 +2,7 @@ package LEMS.po.storepo;
 
 import java.io.Serializable;
 
-import LEMS.vo.ordervo.TransportType;
+import LEMS.po.orderpo.TransportType;
 /**
  * @author 周梦佳
  * 货物持久化对象

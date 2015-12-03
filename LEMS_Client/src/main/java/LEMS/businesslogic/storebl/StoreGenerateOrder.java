@@ -6,12 +6,12 @@ import java.util.ArrayList;
  *生成仓库出库入库单
  */
 import LEMS.businesslogicservice.storeblservice.StoreGenerateOrderService;
+import LEMS.po.orderpo.TransportType;
 import LEMS.po.storepo.Area;
 import LEMS.po.storepo.Destination;
 import LEMS.po.storepo.InboundOrderPO;
 
 import LEMS.po.storepo.OutboundOrderPO;
-import LEMS.vo.ordervo.TransportType;
 import LEMS.vo.storevo.InboundOrderVO;
 import LEMS.vo.storevo.OutboundOrderVO;
 
