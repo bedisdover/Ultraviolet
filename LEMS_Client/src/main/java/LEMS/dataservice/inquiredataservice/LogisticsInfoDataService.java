@@ -11,4 +11,5 @@ import LEMS.po.inquirepo.LogisticsInfoPO;
  */
 public interface LogisticsInfoDataService extends Remote{
 	public LogisticsInfoPO findLogisticsInfo(String id) throws RemoteException;
+	public void update(LogisticsInfoPO lpo) throws RemoteException;
 }
