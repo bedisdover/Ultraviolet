@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 
 import LEMS.businesslogic.financebl.Price;
 import LEMS.businesslogic.inquirebl.inquirelogisticsinfo.InquireLogisticsInfo;
+import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.businesslogicservice.orderblservice.OrderService;
 import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.OrderFactory;
@@ -126,7 +127,7 @@ public class Order implements OrderService {
 	public void endOrder() {
 		try {
 			//获得数据库的引用
-			DatabaseFactory databaseFactory = (DatabaseFactory) Naming.lookup("rmi://localhost:1099/data");
+			DatabaseFactory databaseFactory = (DatabaseFactory) Naming.lookup(RMIConnect.RMI);
 			OrderFactory orderFactory = databaseFactory.getOrderFactory();
 			OrderDataService orderDataService = orderFactory.getOrderData();
 

@@ -4,17 +4,16 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import LEMS.data.orderdata.DistanceData;
+import LEMS.data.orderdata.LoadData;
 import LEMS.data.orderdata.OrderData;
+import LEMS.data.orderdata.VehicleLoadData;
 import LEMS.dataservice.factory.OrderFactory;
 import LEMS.dataservice.orderdataservice.DistanceDataService;
 import LEMS.dataservice.orderdataservice.LoadDataService;
 import LEMS.dataservice.orderdataservice.OrderDataService;
+import LEMS.dataservice.orderdataservice.VehicleLoadDataService;
 
 public class OrderFactoryImpl extends UnicastRemoteObject implements OrderFactory {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public OrderFactoryImpl() throws RemoteException {
@@ -27,13 +26,20 @@ public class OrderFactoryImpl extends UnicastRemoteObject implements OrderFactor
 	}
 
 	public LoadDataService getLoadData() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		LoadDataService loadDataService = new LoadData();
+		return loadDataService;
 	}
-
+	
+	@Override
 	public DistanceDataService getDistanceData() throws RemoteException {
 		DistanceDataService distanceDataService = new DistanceData();
 		return distanceDataService;
+	}
+
+	@Override
+	public VehicleLoadDataService getVehicleLoadData() throws RemoteException {
+		VehicleLoadDataService vehicleLoadDataService = new VehicleLoadData();
+		return vehicleLoadDataService;
 	}
 
 }

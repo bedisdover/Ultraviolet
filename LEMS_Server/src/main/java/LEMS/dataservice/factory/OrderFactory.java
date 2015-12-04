@@ -6,6 +6,7 @@ import java.rmi.RemoteException;
 import LEMS.dataservice.orderdataservice.DistanceDataService;
 import LEMS.dataservice.orderdataservice.LoadDataService;
 import LEMS.dataservice.orderdataservice.OrderDataService;
+import LEMS.dataservice.orderdataservice.VehicleLoadDataService;
 
 /**
  * @author 宋益明
@@ -37,5 +38,11 @@ public interface OrderFactory extends Remote {
 	 * @throws RemoteException
 	 */
 	public DistanceDataService getDistanceData() throws RemoteException;
+	
+	/**
+	 * @return
+	 * @throws RemoteException
+	 */
+	public VehicleLoadDataService getVehicleLoadData() throws RemoteException;
 	
 }

@@ -11,7 +11,7 @@ import LEMS.po.userpo.UserPO;
  * 
  * 车辆装车单持久化对象
  */
-public class VehicleLoadNotePO implements Serializable {
+public class VehicleLoadPO implements Serializable {
 	//TODO 可能会发生变化
 	private static final long serialVersionUID = 1L;
 	
