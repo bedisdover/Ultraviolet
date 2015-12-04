@@ -5,6 +5,8 @@ import java.util.Date;
 
 import LEMS.businesslogic.utility.DateFormate;
 import LEMS.businesslogicservice.orderblservice.ReceiptService;
+import LEMS.dataservice.orderdataservice.ReceiptDataService;
+import LEMS.po.orderpo.ArrivalNotePO;
 import LEMS.po.orderpo.OrderPO;
 import LEMS.vo.inquirevo.LogisticsInfoVO;
 import LEMS.vo.ordervo.ArrivalVO;
@@ -23,25 +25,26 @@ public class Receipt extends AddOrder implements ReceiptService {
 	private ArrayList<OrderPO> orders;
 	
 	/**
-	 * 到达单值对象
-	 */
-	private ArrivalVO arrivalVO;
-	
-	/**
 	 * 营业厅业务员
 	 */
 	private UserVO user;
+	
+	/**
+	 * 到达单值对象
+	 */
+	private ArrivalVO arrivalVO;
 	
 	/**
 	 * 出发地
 	 */
 	private String depature;
 	
-	public Receipt(UserVO user) {
+	public Receipt(UserVO user, ArrivalVO arrivalVO) {
 		//新建订单列表
 		orders = new ArrayList<OrderPO>();
 		
 		this.user = user;
+		this.arrivalVO = arrivalVO;
 	}
 	
 	public void addOrder(String id) {
@@ -58,16 +61,25 @@ public class Receipt extends AddOrder implements ReceiptService {
 		orders.add(findOrder(id));
 	}
 
-	public void createArrivalNote(ArrivalVO arrivalInfo) {
+	public void createArrivalNote() {
 		// TODO 添加货物状态
-		//设置到达时间
-		arrivalVO.setDate(DateFormate.DATE_FORMAT.format(new Date()));
-		//设置出发地
-		arrivalVO.setDepature(depature);
+		ArrivalNotePO arrivalNotePO = new ArrivalNotePO();
+		
+		arrivalNotePO.setDate(arrivalVO.getDate());
+		arrivalNotePO.setDeparture(arrivalVO.getDepature());
+		arrivalNotePO.setOrders(orders);
+		arrivalNotePO.setId(createId());
+		
 		
 	}
 	
-	public ArrayList<OrderPO> getOrders() {
-		return orders;
+	/**
+	 * 生成到达单ID
+	 */
+	private String createId() {
+		//TODO 
+		return null;
 	}
+	
+	private ReceiptDataService 
 }

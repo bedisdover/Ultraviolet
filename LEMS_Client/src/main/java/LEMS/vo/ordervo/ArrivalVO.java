@@ -1,8 +1,5 @@
 package LEMS.vo.ordervo;
 
-import java.util.ArrayList;
-
-
 /**
  * @author 宋益明
  * 
@@ -21,10 +18,6 @@ public class ArrivalVO {
 	 * 出发地
 	 */
 	private String depature;
-	/**
-	 * 订单列表
-	 */
-	private ArrayList<String> orders;
 	
 	public String getDate() {
 		return date;
@@ -32,14 +25,6 @@ public class ArrivalVO {
 
 	public String getId() {
 		return id;
-	}
-
-	public ArrayList<String> getGoods() {
-		return orders;
-	}
-
-	public ArrayList<String> getOrders() {
-		return orders;
 	}
 
 	public String getDepature() {
@@ -52,10 +37,6 @@ public class ArrivalVO {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public void setOrders(ArrayList<String> orders) {
-		this.orders = orders;
 	}
 	
 	public void setDepature(String depature) {

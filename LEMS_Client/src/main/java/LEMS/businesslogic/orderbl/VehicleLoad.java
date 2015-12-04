@@ -58,7 +58,7 @@ public class VehicleLoad extends AddOrder implements VehicleLoadService {
 		try {
 			DatabaseFactory databaseFactory = (DatabaseFactory) Naming.lookup(RMIConnect.RMI);
 			OrderFactory orderFactory = databaseFactory.getOrderFactory();
-			VehicleLoadDataService vehicleLoadDataService = orderFactory.getVehicleDate();
+			VehicleLoadDataService vehicleLoadDataService = orderFactory.getVehicleLoadData();
 			
 			vehicleLoadDataService.insert(vehicleLoadNotePO);
 		} catch (MalformedURLException e) {

@@ -6,7 +6,10 @@ import java.rmi.RemoteException;
 import LEMS.dataservice.orderdataservice.DistanceDataService;
 import LEMS.dataservice.orderdataservice.LoadDataService;
 import LEMS.dataservice.orderdataservice.OrderDataService;
+import LEMS.dataservice.orderdataservice.ReceiptDataService;
+import LEMS.dataservice.orderdataservice.ReceiptRecordDataService;
 import LEMS.dataservice.orderdataservice.SendingDataService;
+import LEMS.dataservice.orderdataservice.TransferDataService;
 import LEMS.dataservice.orderdataservice.VehicleLoadDataService;
 
 /**
@@ -40,7 +43,13 @@ public interface OrderFactory extends Remote {
 	 */
 	public DistanceDataService getDistanceData() throws RemoteException;
 	
-	public VehicleLoadDataService getVehicleLoadDate() throws RemoteException;
+	public VehicleLoadDataService getVehicleLoadData() throws RemoteException;
 	
 	public SendingDataService getSendingData() throws RemoteException;
+	
+	public ReceiptDataService getReceiptData() throws RemoteException;
+	
+	public ReceiptRecordDataService getReceiptRecordData() throws RemoteException;
+	
+	public TransferDataService getTransferData() throws RemoteException;
 }

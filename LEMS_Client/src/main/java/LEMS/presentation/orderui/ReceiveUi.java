@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -16,10 +17,13 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import LEMS.businesslogic.orderbl.Receipt;
+import LEMS.businesslogic.utility.DateFormate;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
 import LEMS.presentation.storeui.DateChooser;
+import LEMS.vo.ordervo.ArrivalVO;
 /**
  * @author 周梦佳
  * 接收界面
@@ -48,6 +52,7 @@ public class ReceiveUi extends JPanel {
 	private JLabel labelDeparture;
 	private JLabel labelStatus;
 	private JTextField textId;
+	//TODO 不规范命名
 	private JComboBox<String> comboBox1;//departure
 	private JComboBox<String> comboBox2;//status
 	
@@ -55,6 +60,12 @@ public class ReceiveUi extends JPanel {
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);//其余字体格式
 	private Font fnt2 = new Font("宋体", Font.BOLD, 16);//按钮字体格式
 
+	private Receipt receipt;
+	
+	/**
+	 * 到达单值对象
+	 */
+	private ArrivalVO arrivalVO;
 	
 	public ReceiveUi(final MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
@@ -70,6 +81,9 @@ public class ReceiveUi extends JPanel {
 		// 添加事件监听器
 		this.addListener();
 
+		arrivalVO = new ArrivalVO();
+		//TODO User对象
+		receipt = new Receipt(null, arrivalVO);
 	}
 
 	/**
@@ -229,9 +243,7 @@ public class ReceiveUi extends JPanel {
 		
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO 确定按钮的具体实现
-				// 清空输入框
-				//empty();
+
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {
@@ -249,5 +261,15 @@ public class ReceiveUi extends JPanel {
 		this.repaint();
 	}
 
-
+	/**
+	 * 确认按钮按下后的操作
+	 */
+	private void OKOperation() {
+		//TODO 日期
+		arrivalVO.setDate(DateFormate.DATE_FORMAT.format(new Date()));
+		arrivalVO.setDepature((String) comboBox1.getSelectedItem());
+		receipt.addOrder(textId.getText());
+		//生成到达单
+		receipt.createArrivalNote();
+	}
 }
