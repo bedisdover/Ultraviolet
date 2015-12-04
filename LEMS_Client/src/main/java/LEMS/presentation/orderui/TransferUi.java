@@ -11,10 +11,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import LEMS.businesslogic.orderbl.Transfer;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
 import LEMS.presentation.storeui.DateChooser;
+import LEMS.vo.ordervo.TransferVO;
 
 /**
  * @author 周梦佳
@@ -56,6 +58,10 @@ public class TransferUi extends JPanel {
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);//标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);//其余字体格式
 	private Font fnt2 = new Font("宋体", Font.BOLD, 16);//按钮字体格式
+	
+	private Transfer transfer;
+	
+	private TransferVO transferVO;
 	
 	public TransferUi(final MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
