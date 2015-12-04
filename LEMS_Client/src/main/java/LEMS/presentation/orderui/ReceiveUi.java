@@ -243,7 +243,7 @@ public class ReceiveUi extends JPanel {
 		
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-
+				OKOperation();
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {
@@ -265,6 +265,8 @@ public class ReceiveUi extends JPanel {
 	 * 确认按钮按下后的操作
 	 */
 	private void OKOperation() {
+		this.empty();
+		
 		//TODO 日期
 		arrivalVO.setDate(DateFormate.DATE_FORMAT.format(new Date()));
 		arrivalVO.setDepature((String) comboBox1.getSelectedItem());

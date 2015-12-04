@@ -1,10 +1,17 @@
 package LEMS.businesslogic.orderbl;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
 import LEMS.businesslogic.utility.DateFormate;
+import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.businesslogicservice.orderblservice.ReceiptService;
+import LEMS.dataservice.factory.DatabaseFactory;
+import LEMS.dataservice.factory.OrderFactory;
 import LEMS.dataservice.orderdataservice.ReceiptDataService;
 import LEMS.po.orderpo.ArrivalNotePO;
 import LEMS.po.orderpo.OrderPO;
@@ -70,7 +77,11 @@ public class Receipt extends AddOrder implements ReceiptService {
 		arrivalNotePO.setOrders(orders);
 		arrivalNotePO.setId(createId());
 		
-		
+		try {
+			getDataService().insert(arrivalNotePO);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -81,5 +92,22 @@ public class Receipt extends AddOrder implements ReceiptService {
 		return null;
 	}
 	
-	private ReceiptDataService 
+	private ReceiptDataService getDataService() {
+		
+		ReceiptDataService receiptDataService = null;
+		
+		try {
+			DatabaseFactory databaseFactory = (DatabaseFactory) Naming.lookup(RMIConnect.RMI);
+			OrderFactory orderFactory = databaseFactory.getOrderFactory();
+			receiptDataService = orderFactory.getReceiptData();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+		
+		return receiptDataService;
+	}
 }

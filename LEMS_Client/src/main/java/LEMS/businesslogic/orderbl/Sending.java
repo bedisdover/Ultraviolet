@@ -55,6 +55,7 @@ public class Sending extends AddOrder implements SendingService {
 		
 		deliveryNotePO.setDate(deliveryVO.getDate());
 		deliveryNotePO.setOrders(orders);
+		deliveryNotePO.setId(this.createId());
 		
 		try {
 			getDataService().insert(deliveryNotePO);
@@ -62,9 +63,13 @@ public class Sending extends AddOrder implements SendingService {
 			e.printStackTrace();
 		}
 	}
-
-	public ArrayList<OrderPO> getOrders() {
-		return orders;
+	
+	/**
+	 * 生成派件单ID
+	 */
+	private String createId() {
+		//TODO 
+		return null;
 	}
 	
 	private SendingDataService getDataService() {
