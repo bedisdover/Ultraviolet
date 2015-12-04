@@ -2,8 +2,6 @@ package LEMS.po.orderpo;
 
 import java.util.ArrayList;
 
-import LEMS.po.userpo.UserPO;
-
 /**
  * @author 宋益明
  *
@@ -27,10 +25,10 @@ public class DeliveryNotePO {
 	 */
 	private ArrayList<OrderPO> orders;
 	
-	/**
-	 * 派送员
-	 */
-	private UserPO deliver;
+//	/**
+//	 * 派送员
+//	 */
+//	private UserPO deliver;
 	
 	public String getId() {
 		return id;
@@ -38,10 +36,6 @@ public class DeliveryNotePO {
 	
 	public String getDate() {
 		return date;
-	}
-	
-	public UserPO getDeliver() {
-		return deliver;
 	}
 	
 	public ArrayList<OrderPO> getOrders() {
@@ -54,10 +48,6 @@ public class DeliveryNotePO {
 	
 	public void setDate(String date) {
 		this.date = date;
-	}
-	
-	public void setDeliver(UserPO deliver) {
-		this.deliver = deliver;
 	}
 	
 	public void setOrders(ArrayList<OrderPO> orders) {
