@@ -13,5 +13,5 @@ public interface TransferService extends AddOrderService {
 	 * 
 	 * @param transferInfo 中转接收信息
 	 */
-	public void createTransferNote(TransferVO transferInfo);
+	public void createTransferNote();
 }

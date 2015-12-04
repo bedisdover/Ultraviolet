@@ -5,20 +5,29 @@ import java.util.ArrayList;
 import LEMS.businesslogicservice.orderblservice.TransferService;
 import LEMS.po.orderpo.OrderPO;
 import LEMS.vo.ordervo.TransferVO;
+import LEMS.vo.uservo.UserVO;
 
 /**
  * @author 宋益明
  * 
  * 中转接收任务
  */
-public class Transfer implements TransferService {
+public class Transfer extends AddOrder implements TransferService {
 
 	/**
 	 * 订单列表
 	 */
 	private ArrayList<OrderPO> orders;
 	
-	public Transfer() {
+	private UserVO user;
+	
+	private TransferVO transferVO;
+	
+	public Transfer(UserVO user, TransferVO transferVO) {
+		
+		this.user = user;
+		this.transferVO = transferVO;
+		
 		//新建订单列表
 		orders = new ArrayList<OrderPO>();
 	}
@@ -28,7 +37,7 @@ public class Transfer implements TransferService {
 		
 	}
 
-	public void createTransferNote(TransferVO transferInfo) {
+	public void createTransferNote() {
 		// TODO Auto-generated method stub
 		
 	}
