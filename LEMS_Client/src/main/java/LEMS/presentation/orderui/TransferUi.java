@@ -1,21 +1,20 @@
 package LEMS.presentation.orderui;
 
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-import LEMS.presentation.MainFrame;
-import LEMS.presentation.Table;
-import LEMS.presentation.storeui.DateChooser;
-
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Rectangle;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import LEMS.presentation.LoginUi;
+import LEMS.presentation.MainFrame;
+import LEMS.presentation.Table;
+import LEMS.presentation.storeui.DateChooser;
 
 /**
  * @author 周梦佳
@@ -27,9 +26,9 @@ public class TransferUi extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private static final int LOCATION_LABEL_X=70;
-	private static final int LOCATION_LABEL_Y=150;
+	private static final int LOCATION_LABEL_Y=140;
 	private static final int LOCATION_TEXT_X=178;
-	private static final int LOCATION_TEXT_Y=155;
+	private static final int LOCATION_TEXT_Y=145;
 	private static final int BOUND_X=130;
 	private static final int BOUND_Y=30;
 
@@ -38,7 +37,10 @@ public class TransferUi extends JPanel {
 	private JButton exit;
 	private JButton OK;
 	private JButton cancel;
-	
+	private JButton add;
+	private JButton delete;
+	private JButton update;
+	private JButton inquire;
 	private JLabel labelInsititutionId;
 	private JLabel labelDate;
 	private JLabel labelId;
@@ -78,7 +80,10 @@ public class TransferUi extends JPanel {
 		exit = new JButton("返回");
 		OK = new JButton("确定");
 		cancel = new JButton("取消");
-	
+		add=new JButton("新增");
+		delete=new JButton("删除");
+		update=new JButton("修改");
+		inquire=new JButton("查找");
 		labelInsititutionId = new JLabel("中转中心编号:");
 		labelDate = new JLabel("到达日期:");
 		labelId = new JLabel("中转单编号:");
@@ -100,34 +105,30 @@ public class TransferUi extends JPanel {
 	private void initComponents() {
 
 		title.setBounds(420, 27, 230, 39);
-		
 		labelInsititutionId.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y, BOUND_X, BOUND_Y);
-		labelDate.setBounds(LOCATION_LABEL_X+15, LOCATION_LABEL_Y+80, BOUND_X, BOUND_Y);
-		labelId.setBounds(LOCATION_LABEL_X+9, LOCATION_LABEL_Y+160, BOUND_X, BOUND_Y);
-		labelDeparture.setBounds(LOCATION_LABEL_X+23, LOCATION_LABEL_Y+240, BOUND_X, BOUND_Y);
-		labelStatus.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+320, BOUND_X, BOUND_Y);
-		
+		labelDate.setBounds(LOCATION_LABEL_X+15, LOCATION_LABEL_Y+70, BOUND_X, BOUND_Y);
+		labelId.setBounds(LOCATION_LABEL_X+9, LOCATION_LABEL_Y+140, BOUND_X, BOUND_Y);
+		labelDeparture.setBounds(LOCATION_LABEL_X+23, LOCATION_LABEL_Y+210, BOUND_X, BOUND_Y);
+		labelStatus.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+280, BOUND_X, BOUND_Y);
 		textInsititutionId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y, BOUND_X, BOUND_Y-6);
-		textId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+160, BOUND_X, BOUND_Y-6);
-		
-		comboBox1.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+240, BOUND_X, BOUND_Y-5);
-		comboBox1.addItem("");
+		textId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+140, BOUND_X, BOUND_Y-6);
+		comboBox1.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+210, BOUND_X, BOUND_Y-5);
 		comboBox1.addItem("北京");
 		comboBox1.addItem("上海");
 		comboBox1.addItem("广州");
 		comboBox1.addItem("南京");
-		
-		comboBox2.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+320, BOUND_X, BOUND_Y-5);
-		comboBox2.addItem("");
+		comboBox2.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+280, BOUND_X, BOUND_Y-5);
 		comboBox2.addItem("到达");
 		comboBox2.addItem("丢失");
 		
-		
-		OK.setBounds(LOCATION_LABEL_X+5, LOCATION_LABEL_Y+405, BOUND_X-40, BOUND_Y+10);
-		cancel.setBounds(LOCATION_LABEL_X+125, LOCATION_LABEL_Y+405, BOUND_X-40, BOUND_Y+10);
+		OK.setBounds(LOCATION_LABEL_X+15, LOCATION_LABEL_Y+355, BOUND_X-40, BOUND_Y+10);
+		cancel.setBounds(LOCATION_LABEL_X+135, LOCATION_LABEL_Y+355, BOUND_X-40, BOUND_Y+10);
 		exit.setBounds(80, 50, 100, 40);
+		add.setBounds(150, 590, 120, 40);
+		delete.setBounds(350, 590, 120,40);
+		update.setBounds(550, 590, 120, 40);
+		inquire.setBounds(750, 590, 120, 40);
 
-		
 		title.setFont(fnt1);
 		labelInsititutionId.setFont(fnt);
 		labelDate.setFont(fnt);
@@ -137,10 +138,15 @@ public class TransferUi extends JPanel {
 		cancel.setFont(fnt2);
 		OK.setFont(fnt2);
 		exit.setFont(fnt2);
+		add.setFont(fnt2);
+		delete.setFont(fnt2);
+		update.setFont(fnt2);
+		inquire.setFont(fnt2);
+		textId.setFont(fnt);
+		textInsititutionId.setFont(fnt);
+		comboBox1.setFont(fnt);
+		comboBox2.setFont(fnt);
 		
-		textId.setFont(fnt2);
-		
-
 		this.add(title);
 		this.add(labelInsititutionId);
 		this.add(labelDate);
@@ -154,10 +160,13 @@ public class TransferUi extends JPanel {
 		this.add(OK);
 		this.add(cancel);
 		this.add(exit);
-		setTestState(true);
+		this.add(add);
+		this.add(delete);
+		this.add(update);
+		this.add(inquire);
 
 		String[] columnNames = { "中转中心编号", "到达日期", "中转单编号", "出发地", "货物到达状态"};  
-		int[] list={40,116,14,30,20,355,125,598,500};
+		int[] list={40,116,14,30,20,355,125,598,435};
 
 	    Table table=new Table();
 		add(table.drawTable(columnNames, list));
@@ -174,10 +183,9 @@ public class TransferUi extends JPanel {
 
 		textId.setEditable(state);
 		textInsititutionId.setEditable(state);
-		
-
 		OK.setEnabled(state);
 		cancel.setEnabled(state);
+		//日期不可编辑
 	}
 
 	/**
@@ -186,34 +194,61 @@ public class TransferUi extends JPanel {
 	private void empty() {
 		textId.setText(null);
 		textInsititutionId.setText(null);
-		
+		comboBox1.setSelectedIndex(0);
+		comboBox2.setSelectedIndex(0);
+		//日期
 	}
 
 	/**
 	 * 为按钮添加事件监听器
 	 */
 	private void addListener() {
+		add.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				setTestState(true);
+				// TODO 返回按钮的具体实现
+			}
+		});
+		delete.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				// TODO 返回按钮的具体实现
+			}
+		});
+		update.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				// TODO 返回按钮的具体实现
+			}
+		});
+		inquire.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				setTestState(true);
+				// TODO 返回按钮的具体实现
+			}
+		});
 		
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				// TODO 确定按钮的具体实现
-				// 清空输入框
 				empty();
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// 清空输入框
 				empty();
-				// 设置输入框不可编辑
 				setTestState(false);
+			}
+		});
+		exit.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				LoginUi l=new LoginUi(mainFrame);
+				mainFrame.setContentPane(l);
 			}
 		});
 	}
 
 	public void paintComponent(Graphics g) {
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
-		g.draw3DRect(50, 125, 280, 500, false);  //输入框外框
+		g.draw3DRect(50, 125, 280, 435, false);  //输入框外框
 		this.repaint();
 	}
 
