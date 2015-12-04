@@ -25,6 +25,10 @@ public class VehicleLoad extends AddOrder implements VehicleLoadService {
 	 * 订单列表
 	 */
 	private ArrayList<OrderPO> orders;
+	/**
+	 * 运费（单价）
+	 */
+	private static final double PRICE = 2;
 	
 	public VehicleLoad() {
 		//新建订单列表
@@ -46,7 +50,7 @@ public class VehicleLoad extends AddOrder implements VehicleLoadService {
 	public double calculatePassage() {
 		double weight = sumWeight(orders);
 		//TODO 营业厅与中转中心间距离未知，默认30
-		return 2 * 30 * weight / 1000;
+		return PRICE * 30 * weight / 1000;
 	}
 
 	@Override

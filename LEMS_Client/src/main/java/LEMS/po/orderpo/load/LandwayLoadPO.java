@@ -1,4 +1,4 @@
-package LEMS.po.orderpo;
+package LEMS.po.orderpo.load;
 
 import LEMS.po.userpo.UserPO;
 

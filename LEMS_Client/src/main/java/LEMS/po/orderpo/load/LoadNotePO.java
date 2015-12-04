@@ -1,7 +1,8 @@
-package LEMS.po.orderpo;
+package LEMS.po.orderpo.load;
 
 import java.util.ArrayList;
 
+import LEMS.po.orderpo.OrderPO;
 import LEMS.po.userpo.UserPO;
 
 /**
@@ -12,9 +13,13 @@ import LEMS.po.userpo.UserPO;
 public class LoadNotePO {
 	
 	/**
-	 * 运输（航运、货运、汽运）编号
+	 * 装运单ID
 	 */
 	private String id;
+	/**
+	 * （航运、货运、汽运）编号
+	 */
+	private String number;
 	/**
 	 * 装运日期
 	 */
@@ -66,6 +71,14 @@ public class LoadNotePO {
 
 	public String getId() {
 		return id;
+	}
+	
+	public String getNumber() {
+		return number;
+	}
+	
+	public void setNumber(String number) {
+		this.number = number;
 	}
 	
 	public void setId(String id) {

@@ -6,7 +6,7 @@ package LEMS.po.orderpo;
  * 运输方式：飞机、火车、汽车
  */
 public enum TransportType {
-	airplane,//飞机
-	railway,//火车
-	landway//汽车
+	Airplane,//飞机
+	Railway,//火车
+	Landway//汽车
 }

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import LEMS.businesslogic.orderbl.AddOrder;
 import LEMS.businesslogicservice.orderblservice.LoadService;
 import LEMS.po.orderpo.OrderPO;
+import LEMS.po.orderpo.load.LoadNotePO;
+import LEMS.po.userpo.UserPO;
 import LEMS.vo.ordervo.LoadVO;
 
 /**
@@ -18,6 +20,8 @@ public abstract class Load extends AddOrder implements LoadService {
 	 */
 	protected ArrayList<OrderPO> orders;
 	
+	private LoadNotePO loadNotePO;
+	
 	public Load() {
 		//新建订单列表
 		orders = new ArrayList<OrderPO>();
@@ -29,6 +33,26 @@ public abstract class Load extends AddOrder implements LoadService {
 
 	public void createLoadNote(LoadVO loadInfo) {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	public void setDate() {
+		
+	}
+	
+	public void setNumber(String number) {
+		
+	}
+	
+	public void setDeparture(String departure) {
+		
+	}
+	
+	public void setDestination(String destination) {
+		
+	}
+	
+	public void setSuperVision(UserPO superVision) {
 		
 	}
 	
