@@ -1,48 +1,48 @@
 package LEMS.presentation.storeui;
 
-
 import java.awt.BasicStroke;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GridLayout;
+ import java.awt.BorderLayout;
+ import java.awt.Color;
+ import java.awt.Component;
+ import java.awt.Cursor;
+ import java.awt.Dimension;
+ import java.awt.Font;
+ import java.awt.Graphics;
+ import java.awt.Graphics2D;
+ import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Point;
-import java.awt.Polygon;
-import java.awt.Stroke;
-import java.awt.Toolkit;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
-
-import javax.swing.BorderFactory;
+ import java.awt.Polygon;
+ import java.awt.Stroke;
+ import java.awt.Toolkit;
+ import java.awt.event.FocusEvent;
+ import java.awt.event.FocusListener;
+ import java.awt.event.MouseAdapter;
+ import java.awt.event.MouseEvent;
+ import java.awt.event.MouseListener;
+ import java.awt.event.MouseMotionListener;
+ import java.text.SimpleDateFormat;
+ import java.util.ArrayList;
+ import java.util.Calendar;
+ import java.util.Comparator;
+ import java.util.Date;
+ import java.util.List;
+ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+ import javax.swing.JFrame;
+ import javax.swing.JLabel;
+ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.Popup;
-import javax.swing.PopupFactory;
-import javax.swing.SwingUtilities;
-import javax.swing.event.AncestorEvent;
-import javax.swing.event.AncestorListener;
+ import javax.swing.PopupFactory;
+ import javax.swing.SwingUtilities;
+ import javax.swing.event.AncestorEvent;
+ import javax.swing.event.AncestorListener;
 
 /**
   * public DateChooser(JPanel panel,int x,int y)
-  *panel为当前panel;
+  * panel为当前panel;
   * (x,y)为组件嵌入位置
   */
  public class DateChooser extends JPanel{
@@ -56,9 +56,9 @@ import javax.swing.event.AncestorListener;
      private JP4 jp4;
      private Font font=new Font("宋体",Font.PLAIN,12);
      private final LabelManager lm=new LabelManager();
-     private JTextField showDate;//,toSelect;
+     public JTextField showDate;//,toSelect;
      private JButton choose;
-     private SimpleDateFormat sdf=new SimpleDateFormat("yyyy年mm月dd日");
+     private SimpleDateFormat sdf=new SimpleDateFormat("yyyy年MM月dd日");
      private boolean isShow=false;
      private Popup pop;
      private int x;
@@ -126,10 +126,6 @@ import javax.swing.event.AncestorListener;
          showDate.setRequestFocusEnabled(true);
          showDate.setVisible(true);
          showDate.setBounds(x,y,width,length);
-         /**
-          * 这个是什么图片？
-          */
-         
          ImageIcon dateIcon = new ImageIcon("graphic/common/time.png");
          choose=new JButton(dateIcon);
          choose.setBounds(x+width,y,23,length);
@@ -178,9 +174,8 @@ import javax.swing.event.AncestorListener;
          SwingUtilities.updateComponentTreeUI(this);
      }
      //提交日期
-    private void commit(){         
-            System.out.println("选中的日期是："+sdf.format(select.getTime()));
-
+    private void commit(){
+         System.out.println("选中的日期是："+sdf.format(select.getTime()));
          showDate.setText(sdf.format(select.getTime()));
          hidePanel();
      }
@@ -223,13 +218,9 @@ import javax.swing.event.AncestorListener;
          }
          private void initJP1(){
              left=new JLabel(" << ",JLabel.CENTER);
-          
-               left.setToolTipText("上一月");
-           
+             left.setToolTipText("上一月");
              right=new JLabel(" >> ",JLabel.CENTER);
-        
-               right.setToolTipText("下一月");
-          
+             right.setToolTipText("下一月");
              left.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
              right.setBorder(BorderFactory.createEmptyBorder(10,0,0,0));
              center=new JLabel("",JLabel.CENTER);
@@ -276,8 +267,7 @@ import javax.swing.event.AncestorListener;
              });
          }
          private void updateDate(){
-        	 center.setText(select.get(Calendar.YEAR)+"年"+(select.get(Calendar.MONTH)+1)+"月");
-            
+             center.setText(select.get(Calendar.YEAR)+"年"+(select.get(Calendar.MONTH)+1)+"月");
          }
      }
      private class JP2 extends JPanel{
@@ -362,14 +352,14 @@ import javax.swing.event.AncestorListener;
          protected void paintComponent(Graphics g){
              if(day==select.get(Calendar.DAY_OF_MONTH)&&
                      month==select.get(Calendar.MONTH)){
-            	 //如果当前日期是选择日期,则高亮显示
+                 //如果当前日期是选择日期,则高亮显示
                 g.setColor(new Color(147,210,233));
                  g.fillRect(0,0,getWidth(),getHeight());
              }
              if(year==now.get(Calendar.YEAR)&&
                      month==now.get(Calendar.MONTH)&&
                      day==now.get(Calendar.DAY_OF_MONTH)){
-            	 //如果日期和当前日期一样,则用红框
+                 //如果日期和当前日期一样,则用红框
                 Graphics2D gd=(Graphics2D)g;
                  gd.setColor(Color.DARK_GRAY);
                  Polygon p=new Polygon();
@@ -460,9 +450,9 @@ import javax.swing.event.AncestorListener;
              }
          }
          public void setSelect(Point p,boolean b){
-        	 //如果是拖动,则要优化一下,以提高效率
+             //如果是拖动,则要优化一下,以提高效率
             if(b){
-            	//表示是否能返回,不用比较完所有的标签,能返回的标志就是把上一个标签和
+                 //表示是否能返回,不用比较完所有的标签,能返回的标志就是把上一个标签和
                 //将要显示的标签找到了就可以了
                 boolean findPrevious=false,findNext=false;
                  for(MyLabel m:list){
@@ -502,7 +492,7 @@ import javax.swing.event.AncestorListener;
              super(new BorderLayout());
              this.setPreferredSize(new Dimension(295,20));
              this.setBackground(new Color(147,210,233));
-             SimpleDateFormat sdf=new SimpleDateFormat("yyyy年mm月dd日");
+             SimpleDateFormat sdf=new SimpleDateFormat("yyyy年MM月dd日");
              final JLabel jl=new JLabel("今天: "+sdf.format(new Date()));
              jl.setToolTipText("点击回到今天日期");
              this.add(jl,BorderLayout.CENTER);

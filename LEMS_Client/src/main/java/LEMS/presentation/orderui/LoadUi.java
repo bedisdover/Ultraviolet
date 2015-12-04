@@ -2,6 +2,8 @@ package LEMS.presentation.orderui;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
 import LEMS.presentation.storeui.DateChooser;
@@ -16,17 +18,17 @@ import java.awt.event.MouseEvent;
 
 /**
  * @author 周梦佳
- * 装车管理界面
+ * 装运管理界面
  */
 @SuppressWarnings("serial")
 public class LoadUi extends JPanel {
 
 
 	private static final long serialVersionUID = 1L;
-	private static final int LOCATION_LABEL_X=65;
-	private static final int LOCATION_LABEL_Y=105;
-	private static final int LOCATION_TEXT_X=155;
-	private static final int LOCATION_TEXT_Y=200;
+	private static final int LOCATION_LABEL_X=80;
+	private static final int LOCATION_LABEL_Y=126;
+	private static final int LOCATION_TEXT_X=170;
+	private static final int LOCATION_TEXT_Y=221;
 	private static final int BOUND_X=130;
 	private static final int BOUND_Y=30;
 
@@ -35,7 +37,10 @@ public class LoadUi extends JPanel {
 	private JButton exit;
 	private JButton OK;
 	private JButton cancel;
-	
+	private JButton add;
+	private JButton delete;
+	private JButton update;
+	private JButton inquire;
 	private JLabel labelDate;
 	private JLabel labelDestination;
 	private JLabel labelInstitutionId;
@@ -43,9 +48,7 @@ public class LoadUi extends JPanel {
 	private JLabel labelVehicleId;
 	private JLabel labelGuard;
 	private JLabel labelDeliverStaff;
-	private JLabel labelVehicleInfo;
 	private JLabel labelBarcode;
-	private JLabel labelMoney;
 	
 
 	private JTextField textInstitutionId;
@@ -53,9 +56,7 @@ public class LoadUi extends JPanel {
 	private JTextField textVehicleId;
 	private JTextField textGuard;
 	private JTextField textDeliverStaff;
-	private JTextField textVehicleInfo;
 	private JTextField textBarcode;
-	private JTextField textMoney;
 	
 
 	private JComboBox<String> comboBox;//destination
@@ -83,13 +84,14 @@ public class LoadUi extends JPanel {
 	 * 初始化
 	 */
 	private void init() {
-		title = new JLabel("装车管理");
+		title = new JLabel("装运管理");
 		exit = new JButton("返回");
 		OK = new JButton("确定");
 		cancel = new JButton("取消");
-		
-		
-		
+		add=new JButton("新增");
+		delete=new JButton("删除");
+		update=new JButton("修改");
+		inquire=new JButton("查找");
 		labelDate = new JLabel("装车日期:");
 		labelDestination = new JLabel("目的地:");
 		labelInstitutionId = new JLabel("营业厅编号:");
@@ -97,8 +99,6 @@ public class LoadUi extends JPanel {
 		labelVehicleId = new JLabel("车辆代号：");
 		labelDeliverStaff = new JLabel("押运员:");
 		labelGuard = new JLabel("监装员:");
-		labelVehicleInfo = new JLabel("车辆信息:");
-		labelMoney = new JLabel("运费:");
 		labelBarcode= new JLabel("订单条形码号：");
 		
 		textInstitutionId = new JTextField();
@@ -106,8 +106,6 @@ public class LoadUi extends JPanel {
 		textVehicleId = new JTextField();
 		textDeliverStaff = new JTextField();
 		textGuard = new JTextField();
-		textVehicleInfo = new JTextField();
-		textMoney = new JTextField();
 		textBarcode=new JTextField();
 		comboBox = new JComboBox<String>();
 		
@@ -125,25 +123,21 @@ public class LoadUi extends JPanel {
 		
 		labelDate.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y, BOUND_X, BOUND_Y);
 		labelDestination.setBounds(LOCATION_LABEL_X+7, LOCATION_LABEL_Y+45, BOUND_X, BOUND_Y);
-		labelInstitutionId.setBounds(LOCATION_LABEL_X-7, LOCATION_LABEL_Y+90, BOUND_X, BOUND_Y);
-		labelTransferNum.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+135, BOUND_X, BOUND_Y);
-		labelBarcode.setBounds(LOCATION_LABEL_X-15, LOCATION_LABEL_Y+180, BOUND_X, BOUND_Y);
-		labelGuard.setBounds(LOCATION_LABEL_X+7, LOCATION_LABEL_Y+225, BOUND_X, BOUND_Y);
-		labelDeliverStaff.setBounds(LOCATION_LABEL_X+7, LOCATION_LABEL_Y+270, BOUND_X, BOUND_Y);
-		labelVehicleId.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+315, BOUND_X+40, BOUND_Y);
-		labelVehicleInfo.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+385, BOUND_X, BOUND_Y);
-		labelMoney.setBounds(LOCATION_LABEL_X+15, LOCATION_LABEL_Y+454, BOUND_X, BOUND_Y);
+		labelInstitutionId.setBounds(LOCATION_LABEL_X-7, LOCATION_LABEL_Y+96, BOUND_X, BOUND_Y);
+		labelTransferNum.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+144, BOUND_X, BOUND_Y);
+		labelBarcode.setBounds(LOCATION_LABEL_X-15, LOCATION_LABEL_Y+192, BOUND_X, BOUND_Y);
+		labelGuard.setBounds(LOCATION_LABEL_X+7, LOCATION_LABEL_Y+237, BOUND_X, BOUND_Y);
+		labelDeliverStaff.setBounds(LOCATION_LABEL_X+7, LOCATION_LABEL_Y+285, BOUND_X, BOUND_Y);
+		labelVehicleId.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+333, BOUND_X+40, BOUND_Y);
 		
 		textInstitutionId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y, BOUND_X, BOUND_Y-6);
-		textTransferNum.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+45, BOUND_X, BOUND_Y-6);
-		textBarcode.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+90, BOUND_X, BOUND_Y-6);
-		textGuard.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+135, BOUND_X, BOUND_Y-6);
-		textDeliverStaff.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+180, BOUND_X, BOUND_Y-6);
-		textVehicleId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+225, BOUND_X, BOUND_Y-6);
-		textVehicleInfo.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+270, BOUND_X, BOUND_Y+40);
-		textMoney.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+360, BOUND_X, BOUND_Y-6);
+		textTransferNum.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+48, BOUND_X, BOUND_Y-6);
+		textBarcode.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+96, BOUND_X, BOUND_Y-6);
+		textGuard.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+144, BOUND_X, BOUND_Y-6);
+		textDeliverStaff.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+192, BOUND_X, BOUND_Y-6);
+		textVehicleId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+237, BOUND_X, BOUND_Y-6);
 		
-		comboBox.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y-45, BOUND_X, BOUND_Y-5);
+		comboBox.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y-48, BOUND_X, BOUND_Y-5);
 		comboBox.addItem("");
 		comboBox.addItem("北京");
 		comboBox.addItem("上海");
@@ -151,10 +145,14 @@ public class LoadUi extends JPanel {
 		comboBox.addItem("南京");
 		
 		
-		OK.setBounds(LOCATION_LABEL_X+5, LOCATION_LABEL_Y+500, BOUND_X-40, BOUND_Y+10);
-		cancel.setBounds(LOCATION_LABEL_X+125, LOCATION_LABEL_Y+500, BOUND_X-40, BOUND_Y+10);
+		OK.setBounds(LOCATION_LABEL_X+5, LOCATION_LABEL_Y+390, BOUND_X-40, BOUND_Y+10);
+		cancel.setBounds(LOCATION_LABEL_X+125, LOCATION_LABEL_Y+390, BOUND_X-40, BOUND_Y+10);
 		exit.setBounds(80, 50, 100, 40);
-
+		add.setBounds(150, 590, 120, 40);
+		delete.setBounds(350, 590, 120,40);
+		update.setBounds(550, 590, 120, 40);
+		inquire.setBounds(750, 590, 120, 40);
+		
 		title.setFont(fnt1);
 		labelInstitutionId.setFont(fnt);
 		labelDate.setFont(fnt);
@@ -163,13 +161,15 @@ public class LoadUi extends JPanel {
 		labelVehicleId.setFont(fnt);
 		labelDeliverStaff.setFont(fnt);
 		labelGuard.setFont(fnt);
-		labelVehicleInfo.setFont(fnt);
-		labelMoney.setFont(fnt);
 		labelBarcode.setFont(fnt);
 		
 		cancel.setFont(fnt2);
 		OK.setFont(fnt2);
 		exit.setFont(fnt2);
+		add.setFont(fnt2);
+		delete.setFont(fnt2);
+		update.setFont(fnt2);
+		inquire.setFont(fnt2);
 		
 		this.add(title);
 		this.add(labelInstitutionId);
@@ -179,8 +179,6 @@ public class LoadUi extends JPanel {
 		this.add(labelVehicleId);
 		this.add(labelDeliverStaff);
 		this.add(labelGuard);
-		this.add(labelVehicleInfo);
-		this.add(labelMoney);
 		this.add(labelBarcode);
 		
 		this.add(textInstitutionId);
@@ -188,18 +186,19 @@ public class LoadUi extends JPanel {
 		this.add(textVehicleId);
 		this.add(textGuard);
 		this.add(textDeliverStaff);
-		this.add(textVehicleInfo);
-		this.add(textMoney);
 		this.add(textBarcode);
 		this.add(comboBox);
 		
 		this.add(OK);
 		this.add(cancel);
 		this.add(exit);
-		setTestState(true);
-
-		String[] columnNames = {"装车日期", "目的地","营业厅编号",  "汽运编号","条形码","车辆代号","运费" };  
-		int[] list={40,91,14,30,20,330,105,655,547};
+		this.add(add);
+		this.add(delete);
+		this.add(update);
+		this.add(inquire);
+		
+		String[] columnNames = {"装车日期", "目的地","营业厅编号",  "汽运编号","条形码","车辆代号"};  
+		int[] list={40,94,14,30,20,370,105,582,470};
 
 	    Table table=new Table();
 		add(table.drawTable(columnNames, list));
@@ -219,8 +218,6 @@ public class LoadUi extends JPanel {
 		textVehicleId.setEditable(state);
 		textDeliverStaff.setEditable(state);
 		textGuard.setEditable(state);
-		textVehicleInfo.setEnabled(state);
-		textMoney.setEnabled(state);
 		textBarcode.setEnabled(state);
 		
 		OK.setEnabled(state);
@@ -236,8 +233,6 @@ public class LoadUi extends JPanel {
 		textVehicleId.setText(null);
 		textDeliverStaff.setText(null);
 		textGuard.setText(null);
-		textVehicleInfo.setText(null);
-		textMoney.setText(null);
 		textBarcode.setText(null);
 	}
 
@@ -245,6 +240,28 @@ public class LoadUi extends JPanel {
 	 * 为按钮添加事件监听器
 	 */
 	private void addListener() {
+		add.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				setTestState(true);
+				// TODO 返回按钮的具体实现
+			}
+		});
+		delete.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				// TODO 返回按钮的具体实现
+			}
+		});
+		update.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				// TODO 返回按钮的具体实现
+			}
+		});
+		inquire.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				setTestState(true);
+				// TODO 返回按钮的具体实现
+			}
+		});
 		
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -261,11 +278,17 @@ public class LoadUi extends JPanel {
 				setTestState(false);
 			}
 		});
+		exit.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				LoginUi l=new LoginUi(mainFrame);
+				mainFrame.setContentPane(l);
+			}
+		});
 	}
 
 	public void paintComponent(Graphics g) {
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
-		g.draw3DRect(35, 105, 274, 547, false);  //输入框外框
+		g.draw3DRect(55, 105, 274, 470, false);  //输入框外框
 		this.repaint();
 	}
 
