@@ -1,12 +1,19 @@
 package LEMS.businesslogic.orderbl;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Date;
 
+import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.businesslogicservice.orderblservice.SendingService;
+import LEMS.dataservice.factory.DatabaseFactory;
+import LEMS.dataservice.factory.OrderFactory;
+import LEMS.dataservice.orderdataservice.SendingDataService;
+import LEMS.po.orderpo.DeliveryNotePO;
 import LEMS.po.orderpo.OrderPO;
+import LEMS.po.userpo.UserPO;
 import LEMS.vo.ordervo.DeliveryVO;
 
 /**
@@ -22,65 +29,90 @@ public class Sending extends AddOrder implements SendingService {
 	private ArrayList<OrderPO> orders;
 	
 	/**
-	 * 日期格式
+	 * 派件单值对象
 	 */
-	private SimpleDateFormat dateFormat;
+	private DeliveryVO deliveryVO;
 	
-	public Sending() {
+	public Sending(DeliveryVO deliveryVO) {
 		//新建订单列表
 		orders = new ArrayList<OrderPO>();
 		
-		dateFormat = new SimpleDateFormat("yyyyMMddhh");
+		this.deliveryVO = deliveryVO;
 	}
 	
-	public void addOrder(String id) {
+	public void addOrder(String id, UserPO deliver) {
 		OrderPO orderPO = findOrder(id);
-		
-		//记录收件时间
-		this.setTime(orderPO);
-		//记录收件人
-		this.setReceiver(orderPO);
+		orderPO.setDeliver(deliver);
+
 		//更新订单信息
 		updateOrder(orderPO);
 		
 		orders.add(orderPO);
 	}
 
-	public void createDeliveryNote(DeliveryVO deliveryInfo) {
-		// TODO Auto-generated method stub
+	public void createDeliveryNote() {
+		DeliveryNotePO deliveryNotePO = new DeliveryNotePO();
 		
+		deliveryNotePO.setDate(deliveryVO.getDate());
+		deliveryNotePO.setOrders(orders);
+		
+		try {
+			getDataService().insert(deliveryNotePO);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public ArrayList<OrderPO> getOrders() {
 		return orders;
 	}
 	
-	/**
-	 * 存储收件时间
-	 */
-	private void setTime(OrderPO orderPO) {
-		String time = orderPO.getTime();
+	private SendingDataService getDataService() {
+		
+		SendingDataService sendingDataService = null;
+		
 		try {
-			Date sendDate = dateFormat.parse(time);
-			Date receiveDate = new Date();
-			long diff = receiveDate.getTime() - sendDate.getTime();
-			//天数
-			long day = diff / (1000 * 60 * 60 * 24);
-			//小时数
-			long hour = (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60);
-			//时间（天数+小时数）
-			time = day + "" + hour;
-			//更新快递所需时间
-			orderPO.setTime(time);
-		} catch (ParseException e) {
+			DatabaseFactory databaseFactory = (DatabaseFactory) Naming.lookup(RMIConnect.RMI);
+			OrderFactory orderFactory = databaseFactory.getOrderFactory();
+			sendingDataService = orderFactory.getSendingData();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
 			e.printStackTrace();
 		}
+		
+		return sendingDataService;
 	}
 	
-	/**
-	 * 存储收件人
-	 */
-	private void setReceiver(OrderPO orderPO) {
-		//TODO 添加实际收件人
-	}
+//	//TODO 应该是快递员送达以后设置的送达时间，但是似乎没有这个功能
+//	/**
+//	 * 存储收件时间
+//	 */
+//	private void setTime(OrderPO orderPO) {
+//		String time = orderPO.getTime();
+//		try {
+//			Date sendDate = DateFormate.DATE_FORMAT.parse(time);
+//			Date receiveDate = new Date();
+//			long diff = receiveDate.getTime() - sendDate.getTime();
+//			//天数
+//			long day = diff / (1000 * 60 * 60 * 24);
+//			//小时数
+//			long hour = (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60);
+//			//时间（天数+小时数）
+//			time = day + "" + hour;
+//			//更新快递所需时间
+//			orderPO.setTime(time);
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
+//	}
+//	
+//	/**
+//	 * 存储收件人
+//	 */
+//	private void setReceiver(OrderPO orderPO) {
+//		//TODO 添加实际收件人
+//	}
 }

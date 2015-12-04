@@ -4,16 +4,20 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import LEMS.businesslogic.orderbl.Sending;
+import LEMS.businesslogic.utility.DateFormate;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
 import LEMS.presentation.storeui.DateChooser;
+import LEMS.vo.ordervo.DeliveryVO;
 
 /**
  * @author 周梦佳 派件界面
@@ -47,6 +51,10 @@ public class SendUi extends JPanel {
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);// 其余字体格式
 	private Font fnt2 = new Font("宋体", Font.BOLD, 16);// 按钮字体格式
 
+	private Sending sending;
+	
+	private DeliveryVO deliveryVO;
+	
 	public SendUi(final MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
@@ -60,6 +68,9 @@ public class SendUi extends JPanel {
 		// 添加事件监听器
 		this.addListener();
 
+		deliveryVO = new DeliveryVO();
+
+		sending = new Sending(deliveryVO);
 	}
 
 	/**
@@ -167,7 +178,6 @@ public class SendUi extends JPanel {
 		add.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				setTestState(true);
-				// TODO 返回按钮的具体实现
 			}
 		});
 		delete.addMouseListener(new MouseAdapter() {
@@ -196,9 +206,7 @@ public class SendUi extends JPanel {
 
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO 确定按钮的具体实现
-				// 清空输入框
-				empty();
+				OKOperation();
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {
@@ -217,4 +225,14 @@ public class SendUi extends JPanel {
 		this.repaint();
 	}
 
+	/**
+	 * 按下确定按钮后的动作
+	 * 
+	 */
+	private void OKOperation() {
+		//TODO 获取时间
+		deliveryVO.setDate(DateFormate.DATE_FORMAT.format(new Date()));
+		//TODO 根据ID获得UserPO对象
+		sending.addOrder(textId.getText(), null);
+	}
 }

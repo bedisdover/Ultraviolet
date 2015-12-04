@@ -10,18 +10,18 @@ import LEMS.po.orderpo.TransportType;
  * 装运管理值对象
  */
 public class LoadVO {
-	/**
-	 * 装运日期
-	 */
-	private String date;
-	/**
-	 * 装运编号
-	 */
-	private String id;
+//	/**
+//	 * 装运日期
+//	 */
+//	private String date;
+//	/**
+//	 * 装运编号
+//	 */
+//	private String id;
 	/**
 	 * 订单列表
 	 */
-	private ArrayList<Long> orders;
+	private ArrayList<String> orders;
 	/**
 	 * 目的地
 	 */
@@ -30,30 +30,12 @@ public class LoadVO {
 	 * 运输方式
 	 */
 	private TransportType type;
-	/**
-	 * 运费
-	 */
-	private double passage;
-	
-	public LoadVO(String date, String id, ArrayList<Long> orders, String destination, TransportType type,
-			double passage) {
-		this.date = date;
-		this.id = id;
-		this.orders = orders;
-		this.destination = destination;
-		this.type = type;
-		this.passage = passage;
-	}
+//	/**
+//	 * 运费
+//	 */
+//	private double passage;
 
-	public String getDate() {
-		return date;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public ArrayList<Long> getOrders() {
+	public ArrayList<String> getOrders() {
 		return orders;
 	}
 
@@ -64,8 +46,16 @@ public class LoadVO {
 	public TransportType getType() {
 		return type;
 	}
-
-	public double getPassage() {
-		return passage;
+	
+	public void setDestination(String destination) {
+		this.destination = destination;
+	}
+	
+	public void setOrders(ArrayList<String> orders) {
+		this.orders = orders;
+	}
+	
+	public void setType(TransportType type) {
+		this.type = type;
 	}
 }

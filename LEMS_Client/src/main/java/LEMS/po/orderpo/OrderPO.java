@@ -1,6 +1,7 @@
 package LEMS.po.orderpo;
 
 import LEMS.po.inquirepo.LogisticsInfoPO;
+import LEMS.po.userpo.UserPO;
 
 /**
  * @author 宋益明
@@ -81,6 +82,15 @@ public class OrderPO {
 	 * 物流信息
 	 */
 	private LogisticsInfoPO logisticsInfoPO;
+	
+	/**
+	 * 揽件员
+	 */
+	private UserPO collector;
+	/**
+	 * 派件员
+	 */
+	private UserPO deliver;
 	
 	public OrderPO() {
 		super();
@@ -166,6 +176,22 @@ public class OrderPO {
 		return id;
 	}
 
+	public UserPO getCollector() {
+		return collector;
+	}
+	
+	public UserPO getDeliver() {
+		return deliver;
+	}
+	
+	public void setCollector(UserPO collector) {
+		this.collector = collector;
+	}
+	
+	public void setDeliver(UserPO deliver) {
+		this.deliver = deliver;
+	}
+	
 	public void setSenderName(String senderName) {
 		this.senderName = senderName;
 	}

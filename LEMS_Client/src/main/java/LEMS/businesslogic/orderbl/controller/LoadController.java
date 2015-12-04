@@ -21,14 +21,6 @@ public class LoadController extends Controller {
 
 		load = new Factory().createLoad(type);
 	}
-
-	public void setDate() {
-		
-	}
-	
-	public void setNumber(String number) {
-		
-	}
 	
 	public void setDeparture(String departure) {
 		
