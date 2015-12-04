@@ -2,7 +2,9 @@ package LEMS.vo.ordervo;
 
 import java.util.ArrayList;
 
-import LEMS.vo.informationvo.VehicleVO;
+import LEMS.po.informationpo.VehiclePO;
+import LEMS.po.orderpo.OrderPO;
+import LEMS.po.userpo.UserPO;
 
 /**
  * @author 宋益明
@@ -21,7 +23,7 @@ public class VehicleLoadVO {
 	/**
 	 * 订单列表
 	 */
-	private ArrayList<String> orders;
+	private ArrayList<OrderPO> orders;
 	/**
 	 * 出发地
 	 */
@@ -33,7 +35,15 @@ public class VehicleLoadVO {
 	/**
 	 * 货运车辆
 	 */
-	private VehicleVO vehicle;
+	private VehiclePO vehicle;
+	/**
+	 * 监装员
+	 */
+	private UserPO superVision;
+	/**
+	 * 押运员
+	 */
+	private UserPO superCargo;
 	/**
 	 * 运费
 	 */
@@ -55,7 +65,7 @@ public class VehicleLoadVO {
 		this.id = id;
 	}
 
-	public void setOrders(ArrayList<String> orders) {
+	public void setOrders(ArrayList<OrderPO> orders) {
 		this.orders = orders;
 	}
 
@@ -67,7 +77,7 @@ public class VehicleLoadVO {
 		this.destination = destination;
 	}
 
-	public void setVehicle(VehicleVO vehicle) {
+	public void setVehicle(VehiclePO vehicle) {
 		this.vehicle = vehicle;
 	}
 
@@ -83,7 +93,7 @@ public class VehicleLoadVO {
 		return id;
 	}
 
-	public ArrayList<String> getOrders() {
+	public ArrayList<OrderPO> getOrders() {
 		return orders;
 	}
 
@@ -91,7 +101,23 @@ public class VehicleLoadVO {
 		return destination;
 	}
 
-	public VehicleVO getVehicle() {
+	public VehiclePO getVehicle() {
 		return vehicle;
+	}
+
+	public UserPO getSupervision() {
+		return superVision;
+	}
+
+	public UserPO getSuperCargo() {
+		return superCargo;
+	}
+
+	public void setSuperVision(UserPO superVision) {
+		this.superVision = superVision;
+	}
+
+	public void setSuperCargo(UserPO superCargo) {
+		this.superCargo = superCargo;
 	}
 }

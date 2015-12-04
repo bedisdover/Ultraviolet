@@ -6,12 +6,14 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import LEMS.businesslogic.financebl.Price;
+import LEMS.businesslogic.inquirebl.inquirelogisticsinfo.InquireLogisticsInfo;
 import LEMS.businesslogicservice.orderblservice.OrderService;
 import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.OrderFactory;
 import LEMS.dataservice.orderdataservice.OrderDataService;
 import LEMS.po.orderpo.Express;
 import LEMS.po.orderpo.Packing;
+import LEMS.vo.inquirevo.LogisticsInfoVO;
 import LEMS.vo.ordervo.CustomerVO;
 import LEMS.vo.ordervo.GoodsVO;
 import LEMS.vo.ordervo.OrderVO;
@@ -130,7 +132,8 @@ public class Order implements OrderService {
 
 			//写入数据
 			orderDataService.insert(order.transferToPO());
-			//TODO 生成物流信息
+			//生成物流信息
+			this.createLogistics();
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {
@@ -138,5 +141,13 @@ public class Order implements OrderService {
 		} catch (NotBoundException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * 生成物流信息
+	 */
+	private void createLogistics() {
+		LogisticsInfoVO logistics = new LogisticsInfoVO();
+		new InquireLogisticsInfo().createLogistics(logistics);
 	}
 }

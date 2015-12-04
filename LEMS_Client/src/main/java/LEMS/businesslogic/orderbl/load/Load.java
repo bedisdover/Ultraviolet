@@ -1,7 +1,8 @@
-package LEMS.businesslogic.orderbl;
+package LEMS.businesslogic.orderbl.load;
 
 import java.util.ArrayList;
 
+import LEMS.businesslogic.orderbl.AddOrder;
 import LEMS.businesslogicservice.orderblservice.LoadService;
 import LEMS.po.orderpo.OrderPO;
 import LEMS.vo.ordervo.LoadVO;
@@ -11,12 +12,11 @@ import LEMS.vo.ordervo.LoadVO;
  * 
  * 装运管理任务
  */
-public class Load extends AddOrder implements LoadService {
-
+public abstract class Load extends AddOrder implements LoadService {
 	/**
 	 * 订单列表
 	 */
-	private ArrayList<OrderPO> orders;
+	protected ArrayList<OrderPO> orders;
 	
 	public Load() {
 		//新建订单列表
@@ -39,11 +39,7 @@ public class Load extends AddOrder implements LoadService {
 	/**
 	 * 计算运费
 	 * 
-	 * @return
+	 * @param 距离
 	 */
-	private double calculateMessage() {
-		double sum = sumWeight(orders);
-		
-		return 0;
-	}
+	public abstract double calculateMessage(double distance);
 }

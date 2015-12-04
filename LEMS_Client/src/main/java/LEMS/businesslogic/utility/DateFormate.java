@@ -15,6 +15,7 @@ public class DateFormate {
 	 * 		orderbl.Receipt
 	 * 		orderbl.Sending
 	 * 		orderbl.Order
+	 * 		orderbl.VehicleLoadController
 	 */
 	public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyyMMddhh");
 }

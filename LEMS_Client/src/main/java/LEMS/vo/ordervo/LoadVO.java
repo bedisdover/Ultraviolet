@@ -33,16 +33,16 @@ public class LoadVO {
 	/**
 	 * 运费
 	 */
-	private double carriage;
+	private double passage;
 	
 	public LoadVO(String date, String id, ArrayList<Long> orders, String destination, TransportType type,
-			double carriage) {
+			double passage) {
 		this.date = date;
 		this.id = id;
 		this.orders = orders;
 		this.destination = destination;
 		this.type = type;
-		this.carriage = carriage;
+		this.passage = passage;
 	}
 
 	public String getDate() {
@@ -65,7 +65,7 @@ public class LoadVO {
 		return type;
 	}
 
-	public double getCarriage() {
-		return carriage;
+	public double getPassage() {
+		return passage;
 	}
 }
