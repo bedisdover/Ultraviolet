@@ -3,6 +3,7 @@ package LEMS.po.orderpo;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import LEMS.po.financepo.DocumentState;
 import LEMS.po.informationpo.VehiclePO;
 import LEMS.po.userpo.UserPO;
 
@@ -10,9 +11,10 @@ import LEMS.po.userpo.UserPO;
  * @author 宋益明
  * 
  * 车辆装车单持久化对象
+ * 包括装车单编号、装车单状态、装车日期、托运订单条形码号、
+ * 出发地、目的地、货运车辆、监装员、押运员、路费
  */
 public class VehicleLoadPO implements Serializable {
-	//TODO 可能会发生变化
 	private static final long serialVersionUID = 1L;
 	
 	/**
@@ -23,6 +25,10 @@ public class VehicleLoadPO implements Serializable {
 	 * 装车单编号
 	 */
 	private String id;
+	/**
+	 * 车辆装车单状态
+	 */
+	private DocumentState state;
 	/**
 	 * 订单列表
 	 */
@@ -52,6 +58,10 @@ public class VehicleLoadPO implements Serializable {
 	 */
 	private double passage;
 	
+	public VehicleLoadPO() {
+		state = DocumentState.waiting;
+	}
+	
 	public String getDeparture() {
 		return departure;
 	}
@@ -60,6 +70,14 @@ public class VehicleLoadPO implements Serializable {
 		return passage;
 	}
 
+	public DocumentState getState() {
+		return state;
+	}
+	
+	public void setState(DocumentState state) {
+		this.state = state;
+	}
+	
 	public void setDate(String date) {
 		this.date = date;
 	}

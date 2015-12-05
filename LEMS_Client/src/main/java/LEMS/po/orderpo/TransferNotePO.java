@@ -1,9 +1,8 @@
 package LEMS.po.orderpo;
 
-import java.awt.datatransfer.Transferable;
+import java.io.Serializable;
 
-public class TransferNotePO {
-	public TransferNotePO(Transferable transferPO) {
-		// TODO Auto-generated constructor stub
-	}
+public class TransferNotePO implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 }

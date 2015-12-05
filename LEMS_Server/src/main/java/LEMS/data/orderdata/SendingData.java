@@ -5,18 +5,22 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import LEMS.data.Connect;
 import LEMS.dataservice.orderdataservice.SendingDataService;
 import LEMS.po.orderpo.DeliveryNotePO;
-import LEMS.po.orderpo.OrderPO;
 
 public class SendingData extends UnicastRemoteObject implements SendingDataService {
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 数据库连接对象
+	 */
 	private Connect connect;
 	
+	/**
+	 * 订单ID转换
+	 */
 	private TransferID transferID;
 	
 	public SendingData() throws RemoteException {
