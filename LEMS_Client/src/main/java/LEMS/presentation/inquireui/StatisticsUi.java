@@ -2,6 +2,7 @@ package LEMS.presentation.inquireui;
 
 import javax.swing.JPanel;
 
+import LEMS.presentation.MainFrame;
 import LEMS.presentation.mainUi;
 
 import java.awt.Rectangle;
@@ -16,7 +17,7 @@ public class StatisticsUi extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public StatisticsUi() {
+	public StatisticsUi(MainFrame mainFrame) {
 		setBounds(new Rectangle(0, 0, mainUi.WIDTH, mainUi.HEIGHT));
 
 	}

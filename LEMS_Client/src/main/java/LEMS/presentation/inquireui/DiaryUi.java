@@ -45,7 +45,6 @@ public class DiaryUi extends JPanel{
 	
 	private Table table;
 	
-	GeneralManagerUi gm=new GeneralManagerUi();
 	/**
 	 * Create the panel.
 	 */
@@ -73,10 +72,10 @@ public class DiaryUi extends JPanel{
 	
 	private void initComponent(){
 		date.setBounds(237,122,80,25);
-		title.setBounds(444,16,249,45);
+		title.setBounds(444,26,249,45);
 		title.setFont(font);
-		name.setBounds(355,65,135,28);
-		statue.setBounds(528,65,183,28);
+		name.setBounds(355,75,135,28);
+		statue.setBounds(528,75,183,28);
 		but.setBounds(692,119,120,30);
 		textField.setBounds(381,122,160,25);
 		

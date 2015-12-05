@@ -41,7 +41,7 @@ public class StatisticsReportUi extends JPanel {
 	Table table2;
 	
 	public StatisticsReportUi(final MainFrame mainFrame) {
-		this.setBounds(228, 0, MainFrame.JFRAME_WIDTH-288, MainFrame.JFRAME_HEIGHT);
+		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH-288, MainFrame.JFRAME_HEIGHT);
 		this.setLayout(null);
 		this.mainFrame = mainFrame;
 		this.init();
@@ -62,21 +62,20 @@ public class StatisticsReportUi extends JPanel {
 		but = new JButton("查看");
 		subtitle1 = new JLabel("付款单信息");
 		subtitle2 = new JLabel("收款单信息");
-		System.out.println(subtitle1.getFont());
 	}
 	
 	private void initComponent(){
-		title.setBounds(434,16,249,45);
+		title.setBounds(434,26,249,45);
 		title.setFont(font);
-		name.setBounds(375,65,135,28);
-		statue.setBounds(548,65,183,28);
+		name.setBounds(375,75,135,28);
+		statue.setBounds(548,75,183,28);
 		but.setBounds(740,119,120,30);
 		labelDate1.setBounds(217,122,80,25);
 		labelDate2.setBounds(490,122,80,25);
 		textDate1.setBounds(290,122,160,25);
 		textDate2.setBounds(540,122,160,25);
 		subtitle1.setBounds(456,156,169,39);
-		subtitle2.setBounds(456,430,169,39);
+		subtitle2.setBounds(456,423,169,39);
 		subtitle1.setFont(subfont);
 		subtitle2.setFont(subfont);
 		
@@ -101,7 +100,7 @@ public class StatisticsReportUi extends JPanel {
 		add(table1.drawTable(columnNames1, list1));
 		
 		String[] columnNames2 = { "付款单", "收款单", "审批单据", "账户管理" };
-		int[] list2 = { 30, 148, 14, 30, 20, 218, 472, 611, 220};
+		int[] list2 = { 30, 148, 14, 30, 20, 218, 462, 611, 220};
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
 		// *

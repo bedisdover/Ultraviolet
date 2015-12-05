@@ -5,8 +5,8 @@ import javax.swing.border.*;
 
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.mainUi;
-import LEMS.presentation.financeui.CostPanel;
-import LEMS.presentation.financeui.SettlementPanel;
+import LEMS.presentation.financeui.CostUi;
+import LEMS.presentation.financeui.SettlementUi;
 import LEMS.presentation.inquireui.DiaryUi;
 import LEMS.presentation.inquireui.StatisticsReportUi;
 import LEMS.vo.uservo.UserVO;
@@ -23,9 +23,9 @@ public class FinancialStaffUi extends JPanel {
 	MainFrame mainFrame;
 	private JTabbedPane tabbedPane;
 	StatisticsReportUi statisticsReportUi;
-	CostPanel costPanel;
+	CostUi costPanel;
 	DiaryUi diaryUi;
-	SettlementPanel settlementPanel;
+	SettlementUi settlementPanel;
 	UserVO user;
 	/**
 	 * Create the panel.
@@ -37,9 +37,9 @@ public class FinancialStaffUi extends JPanel {
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
 		
 		statisticsReportUi = new StatisticsReportUi(this.mainFrame);
-		costPanel = new CostPanel(this.mainFrame);
+		costPanel = new CostUi(this.mainFrame);
 		diaryUi = new DiaryUi(this.mainFrame);
-		settlementPanel = new SettlementPanel(this.mainFrame);
+		settlementPanel = new SettlementUi(this.mainFrame);
 		init();
 		initComponents();
 	}

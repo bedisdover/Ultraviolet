@@ -17,7 +17,7 @@ import LEMS.vo.uservo.UserVO;
 /**
  * @author 苏琰梓 成本管理界面 2015年11月25日
  */
-public class CostPanel extends JPanel {
+public class CostUi extends JPanel {
 	MainFrame mainFrame;
 
 	private JLabel label[];
@@ -34,7 +34,7 @@ public class CostPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public CostPanel(final MainFrame mainFrame) {
+	public CostUi(final MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
@@ -63,10 +63,10 @@ public class CostPanel extends JPanel {
 	public void initComponents() {
 		int b = 70;//整体左移量
 		
-		title.setBounds(454,16,249,45);
+		title.setBounds(454,26,249,45);
 		title.setFont(font);
-		name.setBounds(375,65,135,28);
-		statue.setBounds(548,65,183,28);
+		name.setBounds(375,75,135,28);
+		statue.setBounds(548,75,183,28);
 		textArea.setBounds(304,427,119,90);
 
 		for(int i = 0;i<6;i++){

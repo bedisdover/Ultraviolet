@@ -1,16 +1,26 @@
 package LEMS.presentation.userui;
 
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.JButton;
 
+import LEMS.presentation.MainFrame;
 import LEMS.presentation.mainUi;
+import LEMS.presentation.financeui.CostUi;
+import LEMS.presentation.financeui.ExamDocumentUi;
+import LEMS.presentation.financeui.SettlementUi;
+import LEMS.presentation.informationui.InstitutionManageUi;
+import LEMS.presentation.informationui.StuffManageUi;
 import LEMS.presentation.inquireui.DiaryUi;
+import LEMS.presentation.inquireui.StatisticsReportUi;
 import LEMS.presentation.inquireui.StatisticsUi;
+import LEMS.vo.uservo.UserVO;
 
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
@@ -23,63 +33,49 @@ import java.awt.event.MouseEvent;
 @SuppressWarnings("serial")
 public class GeneralManagerUi extends JPanel {
 	
+	MainFrame mainFrame;
+	private JTabbedPane tabbedPane;
+	UserVO user;
+	
+	DiaryUi diaryUi;
+	ExamDocumentUi examDocumentUi;
+	InstitutionManageUi institutionManageUi;
+	StuffManageUi stuffManageUi;
+	StatisticsUi statisticsUi;
+	LEMS.presentation.financeui.SettingPriceUi SettingPriceUi;
+	
 	/**
 	 * Create the panel.
 	 */
-	public GeneralManagerUi() {
-		setBounds(new Rectangle(0, 0, mainUi.WIDTH, mainUi.HEIGHT));
-		setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "\u603B\u7ECF\u7406\u754C\u9762", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		setLayout(null);
+	public GeneralManagerUi(final MainFrame mainFrame,UserVO uvo) {
+		user=uvo;
+		this.mainFrame = mainFrame;
+		this.setLayout(new BorderLayout());
+		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
 		
-		JButton btnNewButton = new JButton("查询日志");
-		btnNewButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				DiaryUi diaryui=new DiaryUi();
-				mainUi.frame.setContentPane(diaryui);
-				diaryui.setVisible(true);
-			}
-		});
-		btnNewButton.setBounds(353, 216, 175, 74);
-		add(btnNewButton);
-		
-		JButton button = new JButton("审批单据");
-		button.setBounds(353, 323, 175, 67);
-		add(button);
-		
-		JButton button_1 = new JButton("机构管理");
-		button_1.setBounds(353, 423, 175, 74);
-		add(button_1);
-		
-		JButton button_2 = new JButton("人员管理");
-		button_2.setBounds(581, 216, 168, 74);
-		add(button_2);
-		
-		JButton button_3 = new JButton("制定价格");
-		button_3.setBounds(581, 323, 168, 67);
-		add(button_3);
-		
-		JButton button_4 = new JButton("查看统计分析");
-		button_4.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				StatisticsUi statistics=new StatisticsUi();
-				mainUi.frame.setContentPane(statistics);
-			}
-		});
-		button_4.setBounds(581, 423, 168, 74);
-		add(button_4);
-		
-		JButton button_5 = new JButton("退出");
-		button_5.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				mainUi.frame.setContentPane(mainUi.contentPane);
-			}
-		});
-		button_5.setBounds(865, 649, 120, 67);
-		add(button_5);
+		examDocumentUi = new ExamDocumentUi(this.mainFrame);
+		institutionManageUi = new InstitutionManageUi(this.mainFrame);
+		diaryUi = new DiaryUi(this.mainFrame);
+		stuffManageUi = new StuffManageUi(this.mainFrame);
+		statisticsUi = new StatisticsUi(this.mainFrame);
+		SettingPriceUi = new LEMS.presentation.financeui.SettingPriceUi(this.mainFrame);
+		init();
+		initComponents();
 
 	}
 
+	private void init(){
+		tabbedPane = new JTabbedPane();
+		tabbedPane.addTab("制定价格",null,SettingPriceUi,"制定价格界面");
+		tabbedPane.addTab("查询日志",null,diaryUi,"查询日志界面");  
+        tabbedPane.addTab("审批单据",null,examDocumentUi,"审批单据界面");
+        tabbedPane.addTab("机构管理",null,institutionManageUi,"机构管理界面"); 
+        tabbedPane.addTab("人员管理",null,stuffManageUi,"人员管理界面"); 
+        tabbedPane.addTab("查看统计分析",null,statisticsUi,"查看统计分析界面");
+	}
+	
+	private void initComponents(){
+		tabbedPane.setTabPlacement(JTabbedPane.NORTH);
+		this.add(tabbedPane);
+	}
 }
