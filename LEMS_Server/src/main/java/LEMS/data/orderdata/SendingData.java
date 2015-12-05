@@ -17,10 +17,13 @@ public class SendingData extends UnicastRemoteObject implements SendingDataServi
 
 	private Connect connect;
 	
+	private TransferID transferID;
+	
 	public SendingData() throws RemoteException {
 		super();
 		
 		connect = new Connect();
+		transferID = new TransferID();
 	}
 
 	@Override
@@ -35,7 +38,7 @@ public class SendingData extends UnicastRemoteObject implements SendingDataServi
 		try {
 			deliveryNotePO.setId(result.getString(1));
 			deliveryNotePO.setDate(result.getString(2));
-			deliveryNotePO.setOrders(this.transferOrder(result.getString(3)));
+			deliveryNotePO.setOrders(transferID.transferOrder(result.getString(3)));
 			
 			connect.closeConnection();
 		} catch (SQLException e) {
@@ -54,7 +57,7 @@ public class SendingData extends UnicastRemoteObject implements SendingDataServi
 		try {
 			pstm.setString(1, deliveryNotePO.getId());
 			pstm.setString(2, deliveryNotePO.getDate());
-			pstm.setString(3, this.transferOrder(deliveryNotePO.getOrders()));
+			pstm.setString(3, transferID.transferOrder(deliveryNotePO.getOrders()));
 			
 			pstm.executeUpdate();
 			
@@ -75,46 +78,5 @@ public class SendingData extends UnicastRemoteObject implements SendingDataServi
 	public void delete(String id) throws RemoteException {
 		// TODO Auto-generated method stub
 		
-	}
-	
-	/**
-	 * 将订单ID提取出并合并为一项，方便存储与读取
-	 * 
-	 * @param orders 所有托运订单
-	 * @return 所有订单ID
-	 */
-	private String transferOrder(ArrayList<OrderPO> orders) {
-		
-		String result = "";
-		
-		for (OrderPO orderPO : orders) {
-			result += orderPO.getId() + " ";
-		}
-		
-		return result;
-	}
-	
-	/**
-	 * 将所有订单的ID转换为OrderPO集合
-	 * 
-	 * @param id 从数据库中读取出的所有订单ID
-	 * @return 所有订单持久化对象
-	 */
-	private ArrayList<OrderPO> transferOrder(String id) {
-		ArrayList<OrderPO> orders = new ArrayList<OrderPO>();
-		
-		String temp[] = id.split(" ");
-		
-		try {
-			OrderData orderData = new OrderData();
-			
-			for (String string : temp) {
-				orders.add(orderData.find(string));
-			}
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		
-		return orders;
 	}
 }
