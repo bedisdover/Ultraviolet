@@ -9,7 +9,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 
-public class Table {
+public class Table extends JTable{
 	
 	Object[][] obj;
 

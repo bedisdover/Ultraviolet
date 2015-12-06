@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -168,6 +169,7 @@ public class ManagerUi extends JPanel {
 		// *
 		table = new Table();
 		add(table.drawTable(columnNames, list));
+		
 		InformationFind findInfo=new InformationFind();
 		ArrayList<UserVO> users=findInfo.findStaff();
 		for(int i=0;i<users.size();i++){
@@ -227,7 +229,16 @@ public class ManagerUi extends JPanel {
 		
 		butDel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-								
+				int currentLine=table.getSelectedRow();
+				if(currentLine==-1){
+					JOptionPane.showMessageDialog(ManagerUi.this,"请选择要删除的行!");
+				}
+				else{
+					table.setValueAt(currentLine, 0, "");
+					table.setValueAt(currentLine, 1, "");
+					table.setValueAt(currentLine, 2, "");
+					table.setValueAt(currentLine, 3, "");
+				}		
 			}
 		});
 		
