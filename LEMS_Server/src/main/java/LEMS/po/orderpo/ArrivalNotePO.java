@@ -28,6 +28,11 @@ public class ArrivalNotePO implements Serializable {
 	private DocumentState state;
 	
 	/**
+	 * 到达日期
+	 */
+	private String date;
+	
+	/**
 	 * 出发地
 	 */
 	private String departure;
@@ -67,6 +72,10 @@ public class ArrivalNotePO implements Serializable {
 		return state;
 	}
 	
+	public String getDate() {
+		return date;
+	}
+	
 	public String getTransferNoteId() {
 		return transferNoteId;
 	}
@@ -89,6 +98,10 @@ public class ArrivalNotePO implements Serializable {
 	
 	public void setState(DocumentState state) {
 		this.state = state;
+	}
+	
+	public void setDate(String date) {
+		this.date = date;
 	}
 	
 	public void setTransferNoteId(String transferNoteId) {

@@ -5,9 +5,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Date;
 
-import LEMS.businesslogic.utility.DateFormate;
 import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.businesslogicservice.orderblservice.ReceiptService;
 import LEMS.dataservice.factory.DatabaseFactory;
@@ -41,10 +39,10 @@ public class Receipt extends AddOrder implements ReceiptService {
 	 */
 	private ArrivalVO arrivalVO;
 	
-	/**
-	 * 出发地
-	 */
-	private String depature;
+//	/**
+//	 * 出发地
+//	 */
+//	private String depature;
 	
 	public Receipt(UserVO user, ArrivalVO arrivalVO) {
 		//新建订单列表
@@ -57,7 +55,6 @@ public class Receipt extends AddOrder implements ReceiptService {
 	public void addOrder(String id) {
 		//获得物流信息
 		LogisticsInfoVO logistics = getLogistics(id);
-		depature = logistics.getInstitution();
 		
 		//更新物流信息
 		logistics.setTrace("到达" + user.getInstitution().getLocation() + "营业厅");

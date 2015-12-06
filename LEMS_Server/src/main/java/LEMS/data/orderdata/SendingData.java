@@ -49,7 +49,7 @@ public class SendingData extends UnicastRemoteObject implements SendingDataServi
 			e.printStackTrace();
 		}
 		
-		return null;
+		return deliveryNotePO;
 	}
 
 	@Override
@@ -74,13 +74,22 @@ public class SendingData extends UnicastRemoteObject implements SendingDataServi
 
 	@Override
 	public void update(DeliveryNotePO deliveryNotePO) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		this.delete(deliveryNotePO.getId());
+		this.insert(deliveryNotePO);
 	}
 
 	@Override
 	public void delete(String id) throws RemoteException {
-		// TODO Auto-generated method stub
+		String sql = "DELETE FROM deliverynote WHERE id = " + id;
 		
+		PreparedStatement pstm = connect.getPreparedStatement(sql);
+		
+		try {
+			pstm.executeUpdate();
+			
+			connect.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -14,7 +14,7 @@ import LEMS.po.userpo.UserPO;
  * 包括装车单编号、装车单状态、装车日期、托运订单条形码号、
  * 出发地、目的地、货运车辆、监装员、押运员、路费
  */
-public class VehicleLoadPO implements Serializable {
+public class VehicleLoadNotePO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	/**
@@ -58,7 +58,7 @@ public class VehicleLoadPO implements Serializable {
 	 */
 	private double passage;
 	
-	public VehicleLoadPO() {
+	public VehicleLoadNotePO() {
 		state = DocumentState.waiting;
 	}
 	
