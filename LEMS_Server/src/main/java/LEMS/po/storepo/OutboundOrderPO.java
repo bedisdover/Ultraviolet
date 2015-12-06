@@ -2,7 +2,6 @@ package LEMS.po.storepo;
 
 import java.io.Serializable;
 
-import LEMS.vo.ordervo.TransportType;
 /**
  * @author 周梦佳
  * 出库单持久化对象
@@ -28,9 +27,9 @@ public class OutboundOrderPO implements Serializable {
 	/**
 	 * 中转单编号或汽运编号
 	 */
-	long transferNum;
+	String transferNum;
 	
-	public OutboundOrderPO(String identity,String d,Destination des,TransportType tt,long num){
+	public OutboundOrderPO(String identity,String d,Destination des,TransportType tt,String num){
 		id=identity;
 		outDate=d;
 		destination=des;
@@ -62,10 +61,10 @@ public class OutboundOrderPO implements Serializable {
 	public void setTransportType(TransportType loadFormat) {
 		this.transportType = loadFormat;
 	}
-	public long getTransferNum() {
+	public String getTransferNum() {
 		return transferNum;
 	}
-	public void setTransferNum(long transferNum) {
+	public void setTransferNum(String transferNum) {
 		this.transferNum = transferNum;
 	}
 	

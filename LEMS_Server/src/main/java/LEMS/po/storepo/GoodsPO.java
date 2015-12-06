@@ -47,8 +47,8 @@ public class GoodsPO implements Serializable {
 	/**
 	 * 中转单或汽运编号
 	 */
-	int transferNum;
-	public GoodsPO(String i,String iDate,String oDate,Destination des,Area ar,int r,int s,int p,TransportType tt,int tn){
+	String transferNum;
+	public GoodsPO(String i,String iDate,String oDate,Destination des,Area ar,int r,int s,int p,TransportType tt,String tn){
 		id=i;
 		inDate=iDate;
 		outDate=oDate;
@@ -141,11 +141,11 @@ public class GoodsPO implements Serializable {
 		this.transportType = transportType;
 	}
 
-	public int getTransferNum() {
+	public String getTransferNum() {
 		return transferNum;
 	}
 
-	public void setTransferNum(int transferNum) {
+	public void setTransferNum(String transferNum) {
 		this.transferNum = transferNum;
 	}
 	
