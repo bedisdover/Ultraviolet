@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
 
@@ -123,21 +124,21 @@ public class StoreCheckUi extends JPanel {
 	private void addListener() {
 		exit.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO 返回按钮的具体实现
+			LoginUi l=new LoginUi(mainFrame);
+			mainFrame.setContentPane(l);
 			}
 		});
 
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO 确定按钮的具体实现
+			setTestState(false);
+			//todo
 
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// 清空输入框
 				empty();
-				// 设置输入框不可编辑
 				setTestState(false);
 			}
 		});

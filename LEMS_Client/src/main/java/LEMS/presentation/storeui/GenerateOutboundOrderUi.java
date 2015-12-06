@@ -6,7 +6,10 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -16,8 +19,15 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import LEMS.businesslogic.storebl.StoreGenerateOrder;
+import LEMS.po.orderpo.TransportType;
+import LEMS.po.storepo.Area;
+import LEMS.po.storepo.Destination;
+import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
+import LEMS.vo.storevo.InboundOrderVO;
+import LEMS.vo.storevo.OutboundOrderVO;
 
 /**
  * 
@@ -29,9 +39,9 @@ public class GenerateOutboundOrderUi extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 	private static final int LOCATION_LABEL_X=70;
-	private static final int LOCATION_LABEL_Y=160;
+	private static final int LOCATION_LABEL_Y=140;
 	private static final int LOCATION_TEXT_X=155;
-	private static final int LOCATION_TEXT_Y=165;
+	private static final int LOCATION_TEXT_Y=145;
 	private static final int BOUND_X=130;
 	private static final int BOUND_Y=30;
 
@@ -40,23 +50,33 @@ public class GenerateOutboundOrderUi extends JPanel{
 	private JButton exit;
 	private JButton OK;
 	private JButton cancel;
-
+	private JButton add;
+	private JButton delete;
+	private JButton update;
+	private JButton inquire;
+	private JButton getTime;
 	private JLabel labelId;
-	private JTextField textId;
 	private JLabel labelOutDate;
-	private JTextField textOutDate;
 	private JLabel labelDestination;
 	private JLabel labelTransportType;
 	private JLabel labelTransferNum1;
 	private JLabel labelTransferNum2;
+	private JTextField textId;
+	private JTextField textOutDate;
 	private JTextField textTransferNum;
+	private JTextField textTime;
 	
-	private JComboBox<String> comboBox1;//destination
-	private JComboBox<String> comboBox2;//transportType
+	private JComboBox<String> comboBoxDestination;//destination
+	private JComboBox<String> comboBoxTransportType;//transportType
 	
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);//标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);//其余字体格式
 	private Font fnt2 = new Font("宋体", Font.BOLD, 16);//按钮字体格式
+	
+	/**
+	 * 判断是干什么的确定 1是新建 2是删除 3是修改 4是查找
+	 */
+	int whichButton = 0;
 	
 	public GenerateOutboundOrderUi(final MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
@@ -81,19 +101,25 @@ public class GenerateOutboundOrderUi extends JPanel{
 		exit = new JButton("返回");
 		OK = new JButton("确定");
 		cancel = new JButton("取消");
+		add=new JButton("新增");
+		delete=new JButton("删除");
+		update=new JButton("修改");
+		inquire=new JButton("查找");
+		getTime=new JButton("获取时间");
+		getTime.setBorder(BorderFactory.createEtchedBorder());
 		labelId = new JLabel("快递单号:");
-		textId = new JTextField();
 		labelOutDate = new JLabel("出库日期:");
-		textOutDate = new JTextField();
 		labelDestination = new JLabel("目的地:");
 		labelTransportType = new JLabel("装运形式:");
 		labelTransferNum1 = new JLabel("中转单编号");
 		labelTransferNum2 = new JLabel("或汽运编号:");
+		textId = new JTextField();
+		textOutDate = new JTextField();
 		textTransferNum = new JTextField();
-	
+		textTime = new JTextField();
 
-		comboBox1 = new JComboBox<String>();
-		comboBox2 = new JComboBox<String>();
+		comboBoxDestination = new JComboBox<String>();
+		comboBoxTransportType = new JComboBox<String>();
 	}
 
 	/**
@@ -104,15 +130,16 @@ public class GenerateOutboundOrderUi extends JPanel{
 		title.setBounds(420, 37, 230, 39);
 		
 		labelId.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y, BOUND_X, BOUND_Y);
-		labelOutDate.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+70, BOUND_X, BOUND_Y);
-		labelDestination.setBounds(LOCATION_LABEL_X+5, LOCATION_LABEL_Y+140, BOUND_X, BOUND_Y);
-		labelTransportType.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+210, BOUND_X, BOUND_Y);
-		labelTransferNum1.setBounds(LOCATION_LABEL_X-4, LOCATION_LABEL_Y+270, BOUND_X+30, BOUND_Y);
-		labelTransferNum2.setBounds(LOCATION_LABEL_X-4, LOCATION_LABEL_Y+290, BOUND_X+30, BOUND_Y);
+		labelOutDate.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+60, BOUND_X, BOUND_Y);
+		labelDestination.setBounds(LOCATION_LABEL_X+5, LOCATION_LABEL_Y+155, BOUND_X, BOUND_Y);
+		labelTransportType.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+215, BOUND_X, BOUND_Y);
+		labelTransferNum1.setBounds(LOCATION_LABEL_X-4, LOCATION_LABEL_Y+275, BOUND_X+30, BOUND_Y);
+		labelTransferNum2.setBounds(LOCATION_LABEL_X-4, LOCATION_LABEL_Y+295, BOUND_X+30, BOUND_Y);
 		
 		textId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y, BOUND_X, BOUND_Y-6);
-		textOutDate.setBounds(LOCATION_TEXT_X,LOCATION_TEXT_Y+70, BOUND_X, BOUND_Y-6);
-		textTransferNum.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+280, BOUND_X, BOUND_Y-6);
+		textOutDate.setBounds(LOCATION_TEXT_X,LOCATION_TEXT_Y+58, BOUND_X, BOUND_Y-6);
+		textTransferNum.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+282, BOUND_X, BOUND_Y-6);
+		textTime.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+87, BOUND_X, BOUND_Y-6);
 		
 		title.setFont(fnt1);
 		labelId.setFont(fnt);
@@ -121,28 +148,41 @@ public class GenerateOutboundOrderUi extends JPanel{
 		labelTransportType.setFont(fnt);
 		labelTransferNum1.setFont(fnt);
 		labelTransferNum2.setFont(fnt);
-		
+		textId.setFont(fnt);
+		textOutDate.setFont(fnt);
+		textTransferNum.setFont(fnt);
+		textTime.setFont(fnt);
+		comboBoxDestination.setFont(fnt);
+		comboBoxTransportType.setFont(fnt);
 		cancel.setFont(fnt2);
 		OK.setFont(fnt2);
 		exit.setFont(fnt2);
+		add.setFont(fnt2);
+		delete.setFont(fnt2);
+		update.setFont(fnt2);
+		inquire.setFont(fnt2);
+		getTime.setFont(fnt);
 		
-		comboBox1.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+140, BOUND_X, BOUND_Y-5);
-		comboBox1.addItem("");
-		comboBox1.addItem("北京");
-		comboBox1.addItem("上海");
-		comboBox1.addItem("广州");
-		comboBox1.addItem("南京");
+		comboBoxDestination.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+155, BOUND_X, BOUND_Y-5);
+		comboBoxDestination.addItem("北京");
+		comboBoxDestination.addItem("上海");
+		comboBoxDestination.addItem("广州");
+		comboBoxDestination.addItem("南京");
 		
-		comboBox2.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+210, BOUND_X, BOUND_Y-5);
-		comboBox2.addItem("");
-		comboBox2.addItem("飞机");
-		comboBox2.addItem("火车");
-		comboBox2.addItem("汽车");
+		comboBoxTransportType.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+215, BOUND_X, BOUND_Y-5);
+		comboBoxTransportType.addItem("飞机");
+		comboBoxTransportType.addItem("火车");
+		comboBoxTransportType.addItem("汽车");
 		
-		OK.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+370, BOUND_X-40, BOUND_Y+10);
-		cancel.setBounds(LOCATION_TEXT_X+40, LOCATION_LABEL_Y+370, BOUND_X-40, BOUND_Y+10);
+		OK.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+360, BOUND_X-40, BOUND_Y+10);
+		cancel.setBounds(LOCATION_TEXT_X+40, LOCATION_LABEL_Y+360, BOUND_X-40, BOUND_Y+10);
 		exit.setBounds(90, 60, 100, 40);
-	
+		add.setBounds(150, 600, 120, 40);
+		delete.setBounds(350, 600, 120,40);
+		update.setBounds(550, 600, 120, 40);
+		inquire.setBounds(750, 600, 120, 40);
+		getTime.setBounds(LOCATION_LABEL_X-5, LOCATION_LABEL_Y+88, 70, 30);
+		
 		this.add(title);
 		this.add(labelId);
 		this.add(textId);
@@ -154,15 +194,20 @@ public class GenerateOutboundOrderUi extends JPanel{
 		this.add(labelTransferNum2);
 		this.add(textTransferNum);
 	
-		this.add(comboBox1);
-		this.add(comboBox2);
+		this.add(comboBoxDestination);
+		this.add(comboBoxTransportType);
 		this.add(OK);
 		this.add(cancel);
 		this.add(exit);
-		
+		this.add(add);
+		this.add(delete);
+		this.add(update);
+		this.add(inquire);
+		this.add(getTime);
+		this.add(textTime);
 		
 	String[] columnNames = { "快递单号", "出库日期", "目的地", "装运形式", "中转单/汽运编号" };  
-	int[] list={40,120,14,30,20,340,125,618,490};
+	int[] list={40,120,14,30,20,340,125,618,450};
 
 		Table table=new Table();
 		add(table.drawTable(columnNames, list));
@@ -180,10 +225,10 @@ public class GenerateOutboundOrderUi extends JPanel{
 		textId.setEditable(state);
 		textOutDate.setEditable(state);
 		textTransferNum.setEditable(state);
-		
-		comboBox1.setEnabled(state);
-		comboBox2.setEnabled(state);
-
+		textTime.setEditable(state);
+		comboBoxDestination.setEnabled(state);
+		comboBoxTransportType.setEnabled(state);
+		getTime.setEnabled(state);
 		OK.setEnabled(state);
 		cancel.setEnabled(state);
 	}
@@ -195,8 +240,9 @@ public class GenerateOutboundOrderUi extends JPanel{
 		textId.setText(null);
 		textOutDate.setText(null);
 		textTransferNum.setText(null);
-		comboBox1.setToolTipText(null);
-		comboBox2.setToolTipText(null);
+		textTime.setText(null);
+		comboBoxDestination.setSelectedIndex(0);
+		comboBoxTransportType.setSelectedIndex(0);
 		
 	}
 
@@ -204,29 +250,168 @@ public class GenerateOutboundOrderUi extends JPanel{
 	 * 为按钮添加事件监听器
 	 */
 	private void addListener() {
-
+		getTime.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHH:mm:ss");//设置日期格式
+				String time=df.format(new Date()).substring(8, 16);// new Date()为获取当前系统时间
+				textTime.setText(time);
+			}
+		});
+		add.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				setTestState(true);
+				delete.setEnabled(false);
+				update.setEnabled(false);
+				inquire.setEnabled(false);
+				whichButton = 1;
+			}
+		});
+		delete.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				whichButton = 2;
+				add.setEnabled(false);
+				update.setEnabled(false);
+				inquire.setEnabled(false);
+				OK.setEnabled(true);
+				cancel.setEnabled(true);
+				// TODO 返回按钮的具体实现
+			}
+		});
+		update.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				whichButton = 3;
+				setTestState(true);
+				add.setEnabled(false);
+				delete.setEnabled(false);
+				inquire.setEnabled(false);
+				// TODO 返回按钮的具体实现
+			}
+		});
+		inquire.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				whichButton = 4;
+				add.setEnabled(false);
+				delete.setEnabled(false);
+				update.setEnabled(false);
+				textId.setEditable(true);
+				OK.setEnabled(true);
+				cancel.setEnabled(true);
+				// TODO 返回按钮的具体实现
+			}
+		});
+		
 
 
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO 确定按钮的具体实现
-				// 清空输入框
-				empty();
+				if(whichButton==1){
+					int showRow = 0;
+					int showColumn = 0;
+					String id = textId.getText();
+					String outDate = textOutDate.getText();
+					String transferNum=textTransferNum.getText();
+					Destination des = null;
+					TransportType transportType = null;
+					switch (comboBoxDestination.getSelectedItem().toString()) {
+					case "北京":
+						des = Destination.valueOf("Beijing");
+					case "上海":
+						des = Destination.valueOf("Shanghai");
+					case "广州":
+						des = Destination.valueOf("Guangzhou");
+					case "南京":
+						des = Destination.valueOf("Nanjing");
+					}
+					switch (comboBoxTransportType.getSelectedItem().toString()) {
+					case "飞机":
+						transportType = TransportType.valueOf("Airplane");
+					case "火车":
+						transportType = TransportType.valueOf("Railway");
+					case "汽车":
+						transportType = TransportType.valueOf("Landway");
+					}
+					OutboundOrderVO outboundOrderVO = new OutboundOrderVO(id, outDate, des, transportType, transferNum);
+					StoreGenerateOrder storeGenerateOrder = new StoreGenerateOrder();
+					int judge = storeGenerateOrder.generateOutboundOrderPO(outboundOrderVO);
+					if (judge == 0) {
+						// 新建失败，跳出提示
+					} else {
+						Table table = new Table();
+						table.setValueAt(showRow, showColumn, id);
+						table.setValueAt(showRow, showColumn + 1, outDate);
+						table.setValueAt(showRow, showColumn + 2, des.toString());
+						table.setValueAt(showRow, showColumn + 3, transportType.toString());
+						table.setValueAt(showRow, showColumn + 4, transferNum);
+						showRow++;
+
+					}
+				
+				}
+				else if(whichButton==2){
+					
+				}
+				else if(whichButton==3){
+					
+				}
+				else{
+					String id = textId.getText();
+					StoreGenerateOrder sgo = new StoreGenerateOrder();
+					OutboundOrderVO oovo = sgo.inquireOutboundOrder(id);
+					textId.setText(id);
+					textOutDate.setText(oovo.getOutDate());
+					textTransferNum.setText(oovo.getTransferNum());
+					String des = oovo.getDestination().toString();
+					String transportType = oovo.getTransportType().toString();
+					switch (des) {
+					case "Beijing":
+						comboBoxDestination.setSelectedIndex(0);
+						break;
+					case "Shanghai":
+						comboBoxDestination.setSelectedIndex(1);
+						break;
+					case "Guangzhou":
+						comboBoxDestination.setSelectedIndex(2);
+						break;
+					case "Nanjing":
+						comboBoxDestination.setSelectedIndex(3);
+						break;
+					}
+					switch (transportType) {
+					case "Airplane":
+						comboBoxTransportType.setSelectedIndex(0);
+						break;
+					case "Railway":
+						comboBoxTransportType.setSelectedIndex(1);
+						break;
+					case "Landway":
+						comboBoxTransportType.setSelectedIndex(2);
+						break;
+					}
+				
+				}
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// 清空输入框
 				empty();
-				// 设置输入框不可编辑
 				setTestState(false);
+				add.setEnabled(true);
+				delete.setEnabled(true);
+				update.setEnabled(true);
+				inquire.setEnabled(true);
+			}
+		});
+		exit.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+			LoginUi l=new LoginUi(mainFrame);
+			mainFrame.setContentPane(l);
 			}
 		});
 	}
 
 	public void paintComponent(Graphics g) {
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
-		g.draw3DRect(50, 125, 260, 490, false);  //输入框外框
+		g.draw3DRect(50, 125, 260, 450, false);  //输入框外框
 		this.repaint();
 	}
 

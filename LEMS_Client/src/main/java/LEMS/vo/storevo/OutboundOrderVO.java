@@ -28,13 +28,13 @@ public class OutboundOrderVO {
 	/**
 	 * 中转单编号或汽运编号
 	 */
-	long transferNum;
+	String transferNum;
 	/**
 	 * 操作
 	 */
 	ArrayList<String> operation;
 	
-	public OutboundOrderVO(String identity,String d,Destination des,TransportType tt,long num){
+	public OutboundOrderVO(String identity,String d,Destination des,TransportType tt,String num){
 		id=identity;
 		outDate=d;
 		destination=des;
@@ -43,7 +43,7 @@ public class OutboundOrderVO {
 	}
 	
 	
-	public OutboundOrderVO(String identity,String d,Destination des,TransportType tt,long num,ArrayList<String> o){
+	public OutboundOrderVO(String identity,String d,Destination des,TransportType tt,String num,ArrayList<String> o){
 		id=identity;
 		outDate=d;
 		destination=des;
@@ -76,10 +76,10 @@ public class OutboundOrderVO {
 	public void setTransportType(TransportType transportType) {
 		this.transportType = transportType;
 	}
-	public long getTransferNum() {
+	public String getTransferNum() {
 		return transferNum;
 	}
-	public void setTransferNum(long transferNum) {
+	public void setTransferNum(String transferNum) {
 		this.transferNum = transferNum;
 	}
 	public ArrayList<String> getOperation(){

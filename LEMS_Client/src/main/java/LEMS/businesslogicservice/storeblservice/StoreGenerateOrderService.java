@@ -9,9 +9,17 @@ import LEMS.vo.storevo.OutboundOrderVO;
 
 public interface StoreGenerateOrderService {
 
-	public InboundOrderVO generateInboundOrder(InboundOrderPO inboundOrderPO);	//生成单个入库单
+	public InboundOrderVO generateInboundOrderVO(String id);	//生成单个入库单
 	
-	public OutboundOrderVO generateOutboundOrder(OutboundOrderPO outboundOrderPO);//生成单个出库单
+	public int generateInboundOrderPO(InboundOrderVO inboundOrderVO);
+	
+	public OutboundOrderVO generateOutboundOrderVO(String id);//生成单个出库单
+	
+	public int generateOutboundOrderPO(OutboundOrderVO outboundOrderVO);
+	
+	public InboundOrderVO inquireInboundOrder(String id);//查询
+	
+	public OutboundOrderVO inquireOutboundOrder(String id);//查询
 	
 	public ArrayList<InboundOrderVO> totalInboundOrder();//所有入库单
 	

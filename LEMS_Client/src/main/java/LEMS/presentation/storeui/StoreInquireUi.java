@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
 /**
@@ -186,7 +187,8 @@ public class StoreInquireUi extends JPanel{
 	private void addListener() {
 		exit.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO 返回按钮的具体实现
+			LoginUi l=new LoginUi(mainFrame);
+			mainFrame.setContentPane(l);
 			}
 		});
 
@@ -194,15 +196,14 @@ public class StoreInquireUi extends JPanel{
 
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				setTestState(false);
 				// TODO 确定按钮的具体实现
 				
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// 清空输入框
 				empty();
-				// 设置输入框不可编辑
 				setTestState(false);
 			}
 		});
