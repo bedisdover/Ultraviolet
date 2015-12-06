@@ -66,18 +66,21 @@ public class SettingPriceUi extends JPanel {
 		this.add(OK);
 		this.add(text);
 		
+		this.addListener();
+		
 	}
 	
 	private void addListener(){
 		butOut.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				mainFrame.setContentPane(new LoginUi(mainFrame));
+//				mainFrame.setContentPane(new LoginUi(mainFrame));
+				System.exit(0);
 			}
 		});
 		
 		OK.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				
+				System.exit(0);
 			}
 		});
 				

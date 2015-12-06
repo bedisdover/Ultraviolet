@@ -7,6 +7,7 @@ import javax.swing.border.LineBorder;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.JButton;
 
@@ -43,7 +44,8 @@ public class GeneralManagerUi extends JPanel {
 	StuffManageUi stuffManageUi;
 	StatisticsUi statisticsUi;
 	LEMS.presentation.financeui.SettingPriceUi SettingPriceUi;
-	
+	Font font = new Font("宋体", Font.PLAIN, 26);
+
 	/**
 	 * Create the panel.
 	 */
@@ -67,6 +69,7 @@ public class GeneralManagerUi extends JPanel {
 	private void init(){
 		tabbedPane = new JTabbedPane();
 		tabbedPane.addTab("制定价格",null,SettingPriceUi,"制定价格界面");
+		tabbedPane.setFont(font);
 		tabbedPane.addTab("查询日志",null,diaryUi,"查询日志界面");  
         tabbedPane.addTab("审批单据",null,examDocumentUi,"审批单据界面");
         tabbedPane.addTab("机构管理",null,institutionManageUi,"机构管理界面"); 

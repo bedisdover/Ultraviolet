@@ -11,6 +11,6 @@ public class ExamDocumentUi extends JPanel {
 	MainFrame mainFrame;
 
 	public ExamDocumentUi(final MainFrame mainFrame) {
-
+		
 	}
 }
