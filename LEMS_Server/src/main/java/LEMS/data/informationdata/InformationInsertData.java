@@ -26,6 +26,8 @@ public class InformationInsertData extends UnicastRemoteObject implements Inform
 	public InformationInsertData() throws RemoteException {
 		super();
 	}
+	
+	//存储一项司机信息
 	public void insert(DriverPO po) throws RemoteException{
 		Connect co=new Connect();
 		String sql="INSERT INTO driver VALUES (?,?,?,?,?,?,?)";
@@ -44,9 +46,25 @@ public class InformationInsertData extends UnicastRemoteObject implements Inform
 			e.printStackTrace();
 		}
 	}
+	
+	//存储一项车辆信息
 	public void insert(VehiclePO po) throws RemoteException{
-		
+		Connect co=new Connect();
+		String sql="INSERT INTO vehicle VALUES (?,?,?,?)";
+		PreparedStatement pstmt=co.getPreparedStatement(sql);
+		try {
+			pstmt.setString(1,po.getId());
+			pstmt.setString(2,po.getPlateNumber());
+			pstmt.setString(3,po.getWorkTime());
+			pstmt.setString(4,po.getImage());
+			pstmt.executeUpdate();
+			co.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
+	
+	//存储一项机构信息
 	public void insert(InstitutionPO po) throws RemoteException{
 		Connect co=new Connect();
 		String sql="INSERT INTO institution VALUES (?,?) ";
@@ -60,6 +78,8 @@ public class InformationInsertData extends UnicastRemoteObject implements Inform
 			e.printStackTrace();
 		}
 	}
+	
+	//存储一项用户信息
 	public void insert(UserPO po) throws RemoteException{
 		String userRole="";
 		switch(po.getRole()){
@@ -93,12 +113,23 @@ public class InformationInsertData extends UnicastRemoteObject implements Inform
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		
-		
+		}		
 	}
+	
+	//存储一项账户信息
 	public void insert(AccountPO po) throws RemoteException{
-		
+		Connect co=new Connect();
+		String sql="INSERT INTO account VALUES (?,?,?)";
+		PreparedStatement pstmt=co.getPreparedStatement(sql);
+		try {
+			pstmt.setString(1,po.getId());
+			pstmt.setString(2,po.getPassword());
+			pstmt.setDouble(3,po.getBalance());
+			pstmt.executeUpdate();
+			co.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	

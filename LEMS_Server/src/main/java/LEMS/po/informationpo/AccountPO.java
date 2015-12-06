@@ -19,7 +19,7 @@ public class AccountPO {
 	 */
 	private String password;
 	
-	public AccountPO(String id,double balance,String password){
+	public AccountPO(String id,String password,double balance){
 		this.id =  id;
 		this.balance = balance;
 		this.password = password;

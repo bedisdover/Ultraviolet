@@ -1,6 +1,9 @@
 package LEMS.businesslogicservice.informationblservice;
 
-import LEMS.po.userpo.UserPO;
+import LEMS.vo.informationvo.DriverVO;
+import LEMS.vo.informationvo.InstitutionVO;
+import LEMS.vo.informationvo.VehicleVO;
+import LEMS.vo.uservo.UserVO;
 
 
 /**
@@ -12,17 +15,17 @@ public interface InformationUpdateService {
 	/**
 	 * 修改司机信息
 	 */
-	public void updateDriverVO(long id);
+	public void updateDriver(DriverVO dvo);
 	/**
 	 * 修改车辆信息
 	 */
-	public void updateVehicleVO(long id);
+	public void updateVehicle(VehicleVO vvo);
 	/**
 	 * 修改机构信息
 	 */
-	public void updateInstitutionVO(String id);
+	public void updateInstitution(InstitutionVO ivo);
 	/**
 	 * 修改人员信息
 	 */
-	public void updateStaff(UserPO upo);
+	public void updateStaff(UserVO uvo);
 }

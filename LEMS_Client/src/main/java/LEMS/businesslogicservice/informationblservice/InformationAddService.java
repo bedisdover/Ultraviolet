@@ -32,6 +32,6 @@ public interface InformationAddService {
 	/**
 	 * 增加账户信息
 	 */
-	public void addAccout(AccountVO accoutvo);
+	public void addAccount(AccountVO accoutvo);
 	
 }

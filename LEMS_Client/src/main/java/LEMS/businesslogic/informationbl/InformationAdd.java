@@ -10,6 +10,7 @@ import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.InformationFactory;
 import LEMS.dataservice.informationdataservice.InformationInsertDataService;
 import LEMS.dataservice.inquiredataservice.DiaryDataService;
+import LEMS.po.informationpo.AccountPO;
 import LEMS.po.informationpo.DriverPO;
 import LEMS.po.informationpo.InstitutionPO;
 import LEMS.po.informationpo.StaffPO;
@@ -34,7 +35,7 @@ public class InformationAdd implements InformationAddService{
 			InformationFactory inf=database.getInformationFactory();
 			InformationInsertDataService infoinsert=inf.getInformationInsertData();
 			DriverPO dp=new DriverPO(drivervo.getId(),drivervo.getName(),drivervo.getDateOfBirth(),drivervo.getIDcardNumber(),drivervo.getPhoneNumber(),drivervo.getDrivingPeriod(),drivervo.getGender());
-			infoinsert.insert(dp);;
+			infoinsert.insert(dp);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -80,7 +81,7 @@ public class InformationAdd implements InformationAddService{
 			InformationFactory inf=database.getInformationFactory();
 			InformationInsertDataService infoinsert=inf.getInformationInsertData();
 			UserPO sp=new UserPO(uservo.getId(),uservo.getPassword(),uservo.getRole(),uservo.getName(),uservo.getInstitution());
-			infoinsert.insert(sp);;
+			infoinsert.insert(sp);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -88,8 +89,16 @@ public class InformationAdd implements InformationAddService{
 	/**
 	 * 增加账户信息
 	 */
-	public void addAccout(AccountVO accoutvo){
-		
+	public void addAccount(AccountVO accountvo){
+		try {
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
+			InformationFactory inf=database.getInformationFactory();
+			InformationInsertDataService infoinsert=inf.getInformationInsertData();
+			AccountPO ap=new AccountPO(accountvo.getId(),accountvo.getPassword(),accountvo.getBalance());
+			infoinsert.insert(ap);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	public static void main(String[] args){
 		InformationAdd ia=new InformationAdd();

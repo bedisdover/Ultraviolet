@@ -15,19 +15,52 @@ public class InformationDelete implements InformationDeleteService{
 	 * 删除司机信息
 	 */
 	public void deleteDriver(String id){
-		
+		try {
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
+			InformationFactory infof=database.getInformationFactory();
+			InformationDeleteDataService infod=infof.getInformationDeleteData();
+			infod.deleteDriver(id);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
 	}
 	/**
 	 * 删除车辆信息
 	 */
 	public void deleteVehicle(String id){
-		
+		try {
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
+			InformationFactory infof=database.getInformationFactory();
+			InformationDeleteDataService infod=infof.getInformationDeleteData();
+			infod.deleteVehicle(id);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
 	}
 	/**
 	 * 删除机构信息
 	 */
 	public void deleteInstitution(String id){
-		
+		try {
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
+			InformationFactory infof=database.getInformationFactory();
+			InformationDeleteDataService infod=infof.getInformationDeleteData();
+			infod.deleteInstitution(id);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
 	}
 	/**
 	 * 删除人员信息
@@ -49,7 +82,18 @@ public class InformationDelete implements InformationDeleteService{
 	/**
 	 * 删除账户信息
 	 */
-	public void deleteAccout(String id){
-		
+	public void deleteAccount(String id){
+		try {
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
+			InformationFactory infof=database.getInformationFactory();
+			InformationDeleteDataService infod=infof.getInformationDeleteData();
+			infod.deleteAccount(id);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -9,6 +9,8 @@ import java.rmi.RemoteException;
 
 
 
+import java.util.ArrayList;
+
 import LEMS.po.informationpo.DriverPO;
 import LEMS.po.informationpo.InstitutionPO;
 import LEMS.po.informationpo.VehiclePO;
@@ -22,8 +24,8 @@ import LEMS.po.userpo.UserRole;
  * 2015年10月26日
  */
 public interface InformationFindDataService extends Remote{
-	public void findDriverPO(long id) throws RemoteException;
-	public void findVehiclePO(long id) throws RemoteException;
-	public void findInstitutionPO(String id) throws RemoteException;
+	public ArrayList<DriverPO> findDriver(String businessid) throws RemoteException;
+	public ArrayList<VehiclePO> findVehicle(String businessid) throws RemoteException;
+	public ArrayList<InstitutionPO> findInstitution() throws RemoteException;
 	public UserPO findStaff(String i) throws RemoteException;
 }

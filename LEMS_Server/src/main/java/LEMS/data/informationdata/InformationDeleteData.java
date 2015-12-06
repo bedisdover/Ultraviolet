@@ -20,6 +20,8 @@ public class InformationDeleteData extends UnicastRemoteObject implements Inform
 	public InformationDeleteData() throws RemoteException {
 		super();
 	}
+	
+	//删除对应id的司机信息
 	public void deleteDriver(String id) throws RemoteException{
 		Connect co=new Connect();
 		String sql="DELETE FROM driver WHERE id = ?";
@@ -32,6 +34,8 @@ public class InformationDeleteData extends UnicastRemoteObject implements Inform
 			e.printStackTrace();
 		}
 	}
+	
+	//删除对应id的车辆信息
 	public void deleteVehicle(String id) throws RemoteException{
 		Connect co=new Connect();
 		String sql="DELETE FROM vehicle WHERE id = ?";
@@ -44,6 +48,8 @@ public class InformationDeleteData extends UnicastRemoteObject implements Inform
 			e.printStackTrace();
 		}
 	}
+	
+	//删除对应id的机构信息
 	public void deleteInstitution(String id) throws RemoteException{
 		Connect co=new Connect();
 		String sql="DELETE FROM institution WHERE id = ?";
@@ -56,6 +62,8 @@ public class InformationDeleteData extends UnicastRemoteObject implements Inform
 			e.printStackTrace();
 		}
 	}
+	
+	//删除对应id的人员信息
 	public void deleteStaff(String id) throws RemoteException{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -74,6 +82,8 @@ public class InformationDeleteData extends UnicastRemoteObject implements Inform
 			e.printStackTrace();
 		}
 	}
+	
+	//删除对应id的账户信息
 	public void deleteAccount(String id) throws RemoteException{
 		Connect co=new Connect();
 		String sql="DELETE FROM account WHERE id = ?";

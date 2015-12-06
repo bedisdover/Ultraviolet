@@ -28,6 +28,6 @@ public interface InformationDeleteService extends Remote{
 	/**
 	 * 删除账户信息
 	 */
-	public void deleteAccout(String id);
+	public void deleteAccount(String id);
 	
 }

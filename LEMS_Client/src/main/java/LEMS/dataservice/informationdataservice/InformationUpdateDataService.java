@@ -15,8 +15,8 @@ import LEMS.po.userpo.UserPO;
  * 2015年10月26日
  */
 public interface InformationUpdateDataService extends Remote{
-	public void updateDriver(String id) throws RemoteException;
-	public void updateVehicle(String id) throws RemoteException;
-	public void updateInstitution(String id) throws RemoteException;
+	public void updateDriver(DriverPO dpo) throws RemoteException;
+	public void updateVehicle(VehiclePO vpo) throws RemoteException;
+	public void updateInstitution(InstitutionPO ipo) throws RemoteException;
 	public void updateStaff(UserPO upo) throws RemoteException;
 }

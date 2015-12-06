@@ -2,7 +2,9 @@ package LEMS.businesslogicservice.informationblservice;
 
 import java.util.ArrayList;
 
-import LEMS.vo.informationvo.StaffVO;
+import LEMS.vo.informationvo.DriverVO;
+import LEMS.vo.informationvo.InstitutionVO;
+import LEMS.vo.informationvo.VehicleVO;
 import LEMS.vo.uservo.UserVO;
 
 
@@ -16,17 +18,17 @@ public interface InformationFindService {
 	/**
 	 * 查找司机信息
 	 */
-	public void findDriverVO(long id);
+	public ArrayList<DriverVO> findDriver(String businessid);
 	/**
 	 * 查找车辆信息
 	 */
-	public void findVehicleVO(long id);
+	public ArrayList<VehicleVO> findVehicle(String businessid);
 	/**
 	 * 查找机构信息
 	 */
-	public void findInstitutionVO(String id);
+	public ArrayList<InstitutionVO> findInstitution();
 	/**
-	 * 查找人员信息
+	 * 查找所有人员信息
 	 */
 	public ArrayList<UserVO> findStaff();
 }
