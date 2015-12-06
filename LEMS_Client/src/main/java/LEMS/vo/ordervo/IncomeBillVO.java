@@ -13,38 +13,48 @@ public class IncomeBillVO {
 	 */
 	private String date;
 	/**
-	 * 收款单编号
-	 */
-	private String id;
-	/**
 	 * 订单列表
 	 */
 	private ArrayList<Long> orders;
 	/**
 	 * 总金额
 	 */
-	private double sum;
+	private double amount;
+	/**
+	 * 揽件员
+	 */
+	private String collector;
 	
-	public IncomeBillVO(String date, String id, ArrayList<Long> orders, double sum) {
-		this.date = date;
-		this.id = id;
-		this.orders = orders;
-		this.sum = sum;
-	}
-
+	
 	public String getDate() {
 		return date;
-	}
-
-	public String getId() {
-		return id;
 	}
 
 	public ArrayList<Long> getOrders() {
 		return orders;
 	}
 
-	public double getSum() {
-		return sum;
+	public double getAmount() {
+		return amount;
+	}
+
+	public String getCollector() {
+		return collector;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public void setOrders(ArrayList<Long> orders) {
+		this.orders = orders;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	public void setCollector(String collector) {
+		this.collector = collector;
 	}
 }

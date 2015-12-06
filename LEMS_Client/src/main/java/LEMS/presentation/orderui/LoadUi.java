@@ -3,6 +3,8 @@ package LEMS.presentation.orderui;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import LEMS.businesslogic.orderbl.load.Load;
+import LEMS.po.orderpo.LoadNotePO;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
@@ -49,21 +51,23 @@ public class LoadUi extends JPanel {
 	private JLabel labelGuard;
 	private JLabel labelDeliverStaff;
 	private JLabel labelBarcode;
-	
 
 	private JTextField textInstitutionId;
 	private JTextField textTransferNum;
 	private JTextField textVehicleId;
 	private JTextField textGuard;
 	private JTextField textDeliverStaff;
-	private JTextField textBarcode;
-	
+	private JTextField textID;
 
 	private JComboBox<String> comboBox;//destination
 	
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);//标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);//其余字体格式
 	private Font fnt2 = new Font("宋体", Font.BOLD, 16);//按钮字体格式
+	
+	private Load load;
+	
+	private LoadNotePO loadNotePO;
 	
 	public LoadUi(final MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
@@ -77,7 +81,7 @@ public class LoadUi extends JPanel {
 		this.setTestState(false);
 		// 添加事件监听器
 		this.addListener();
-
+		//TODO load具体实现
 	}
 
 	/**
@@ -106,7 +110,7 @@ public class LoadUi extends JPanel {
 		textVehicleId = new JTextField();
 		textDeliverStaff = new JTextField();
 		textGuard = new JTextField();
-		textBarcode=new JTextField();
+		textID=new JTextField();
 		comboBox = new JComboBox<String>();
 		
 		DateChooser dc=new DateChooser(this, LOCATION_TEXT_X+2, LOCATION_TEXT_Y-90);
@@ -132,7 +136,7 @@ public class LoadUi extends JPanel {
 		
 		textInstitutionId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y, BOUND_X, BOUND_Y-6);
 		textTransferNum.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+48, BOUND_X, BOUND_Y-6);
-		textBarcode.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+96, BOUND_X, BOUND_Y-6);
+		textID.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+96, BOUND_X, BOUND_Y-6);
 		textGuard.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+144, BOUND_X, BOUND_Y-6);
 		textDeliverStaff.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+192, BOUND_X, BOUND_Y-6);
 		textVehicleId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+237, BOUND_X, BOUND_Y-6);
@@ -186,7 +190,7 @@ public class LoadUi extends JPanel {
 		this.add(textVehicleId);
 		this.add(textGuard);
 		this.add(textDeliverStaff);
-		this.add(textBarcode);
+		this.add(textID);
 		this.add(comboBox);
 		
 		this.add(OK);
@@ -218,7 +222,7 @@ public class LoadUi extends JPanel {
 		textVehicleId.setEditable(state);
 		textDeliverStaff.setEditable(state);
 		textGuard.setEditable(state);
-		textBarcode.setEnabled(state);
+		textID.setEnabled(state);
 		
 		OK.setEnabled(state);
 		cancel.setEnabled(state);
@@ -233,7 +237,7 @@ public class LoadUi extends JPanel {
 		textVehicleId.setText(null);
 		textDeliverStaff.setText(null);
 		textGuard.setText(null);
-		textBarcode.setText(null);
+		textID.setText(null);
 	}
 
 	/**

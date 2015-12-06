@@ -23,15 +23,6 @@ public class GoodsVO {
 	 */
 	private double volumn;
 	
-	//TODO 可能不需要的构造函数
-//	public GoodsVO(String name, String size, int quantity, double weight, double volumn) {
-//		this.name = name;
-//		this.size = size;
-//		this.quantity = quantity;
-//		this.weight = weight;
-//		this.volumn = volumn;
-//	}
-
 	public String getName() {
 		return name;
 	}

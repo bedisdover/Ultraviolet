@@ -2,9 +2,7 @@ package LEMS.vo.ordervo;
 
 import java.util.ArrayList;
 
-import LEMS.po.informationpo.VehiclePO;
 import LEMS.po.orderpo.OrderPO;
-import LEMS.po.userpo.UserPO;
 
 /**
  * @author 宋益明
@@ -37,15 +35,15 @@ public class VehicleLoadVO {
 	/**
 	 * 货运车辆
 	 */
-	private VehiclePO vehicle;
+	private String vehicle;
 	/**
 	 * 监装员
 	 */
-	private UserPO superVision;
+	private String superVision;
 	/**
 	 * 押运员
 	 */
-	private UserPO superCargo;
+	private String superCargo;
 //	/**
 //	 * 运费
 //	 */
@@ -59,7 +57,7 @@ public class VehicleLoadVO {
 		this.destination = destination;
 	}
 
-	public void setVehicle(VehiclePO vehicle) {
+	public void setVehicle(String vehicle) {
 		this.vehicle = vehicle;
 	}
 
@@ -71,7 +69,7 @@ public class VehicleLoadVO {
 		return destination;
 	}
 
-	public VehiclePO getVehicle() {
+	public String getVehicle() {
 		return vehicle;
 	}
 
@@ -79,7 +77,7 @@ public class VehicleLoadVO {
 		return date;
 	}
 
-	public UserPO getSuperVision() {
+	public String getSuperVision() {
 		return superVision;
 	}
 
@@ -87,15 +85,15 @@ public class VehicleLoadVO {
 		this.date = date;
 	}
 	
-	public UserPO getSuperCargo() {
+	public String getSuperCargo() {
 		return superCargo;
 	}
 
-	public void setSuperVision(UserPO superVision) {
+	public void setSuperVision(String superVision) {
 		this.superVision = superVision;
 	}
 
-	public void setSuperCargo(UserPO superCargo) {
+	public void setSuperCargo(String superCargo) {
 		this.superCargo = superCargo;
 	}
 }

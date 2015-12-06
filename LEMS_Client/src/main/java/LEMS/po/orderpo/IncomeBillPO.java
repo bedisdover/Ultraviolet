@@ -13,16 +13,34 @@ import LEMS.po.financepo.DocumentState;
  * 		收款快递员、对应的所有快递订单条形码号
  */
 public class IncomeBillPO {
+	/**
+	 * 收款单ID
+	 */
 	private String id;
 	
+	/**
+	 * 收款单状态
+	 */
 	private DocumentState state;
 	
+	/**
+	 * 收款日期
+	 */
 	private String date;
 	
+	/**
+	 * 收款金额
+	 */
 	private double amount;
 	
+	/**
+	 * 揽件员
+	 */
 	private String collector;
 	
+	/**
+	 * 订单列表
+	 */
 	private ArrayList<OrderPO> orders;
 	
 	public IncomeBillPO() {

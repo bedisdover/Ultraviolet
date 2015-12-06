@@ -3,15 +3,12 @@ package LEMS.vo.ordervo;
 import java.util.ArrayList;
 
 import LEMS.po.orderpo.OrderPO;
-import LEMS.po.userpo.UserPO;
 
 /**
  * @author 宋益明
  * 派件单值对象
  */
 public class DeliveryVO {
-
-	
 	/**
 	 * 派件时间
 	 */
@@ -25,13 +22,13 @@ public class DeliveryVO {
 	/**
 	 * 派送员
 	 */
-	private UserPO deliver;
+	private String deliver;
 	
 	public String getDate() {
 		return date;
 	}
 	
-	public UserPO getDeliver() {
+	public String getDeliver() {
 		return deliver;
 	}
 	
@@ -43,12 +40,11 @@ public class DeliveryVO {
 		this.date = date;
 	}
 	
-	public void setDeliver(UserPO deliver) {
+	public void setDeliver(String deliver) {
 		this.deliver = deliver;
 	}
 	
 	public void setOrders(ArrayList<OrderPO> orders) {
 		this.orders = orders;
 	}
-
 }

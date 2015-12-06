@@ -30,6 +30,8 @@ public class LoadVO {
 	 * 运输方式
 	 */
 	private TransportType type;
+	
+	
 //	/**
 //	 * 运费
 //	 */

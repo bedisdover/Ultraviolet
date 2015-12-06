@@ -4,6 +4,8 @@ package LEMS.vo.ordervo;
  * @author 宋益明
  *
  * 顾客值对象（寄件人、收件人）
+ * 包括：
+ * 		姓名、电话、地址
  */
 public class CustomerVO {
 	/**
