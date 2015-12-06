@@ -26,9 +26,9 @@ import LEMS.vo.ordervo.DeliveryVO;
 public class SendUi extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private static final int LOCATION_LABEL_X = 120;
+	private static final int LOCATION_LABEL_X = 100;
 	private static final int LOCATION_LABEL_Y = 160;
-	private static final int LOCATION_TEXT_X = 215;
+	private static final int LOCATION_TEXT_X = 195;
 	private static final int LOCATION_TEXT_Y = 165;
 	private static final int BOUND_X = 130;
 	private static final int BOUND_Y = 30;
@@ -47,6 +47,7 @@ public class SendUi extends JPanel {
 	private JLabel labelStaff;
 	private JTextField textId;
 	private JTextField textStaff;
+	private DateChooser dc;
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);// 标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);// 其余字体格式
 	private Font fnt2 = new Font("宋体", Font.BOLD, 16);// 按钮字体格式
@@ -84,13 +85,13 @@ public class SendUi extends JPanel {
 		add=new JButton("新增");
 		delete=new JButton("删除");
 		update=new JButton("修改");
-		inquire=new JButton("查找");
+		inquire=new JButton("完成");
 		labelDate = new JLabel("派送日期:");
 		labelId = new JLabel("条形码:");
 		labelStaff = new JLabel("派送员:");
 		textStaff = new JTextField();
 		textId = new JTextField();
-		DateChooser dc = new DateChooser(this, LOCATION_TEXT_X, LOCATION_TEXT_Y);
+		dc = new DateChooser(this, LOCATION_TEXT_X, LOCATION_TEXT_Y);
 	}
 
 	/**
@@ -100,10 +101,10 @@ public class SendUi extends JPanel {
 
 		title.setBounds(450, 27, 230, 39);
 		labelDate.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y, BOUND_X, BOUND_Y);
-		labelId.setBounds(LOCATION_LABEL_X + 8, LOCATION_LABEL_Y + 100, BOUND_X, BOUND_Y);
-		labelStaff.setBounds(LOCATION_LABEL_X + 8, LOCATION_LABEL_Y + 200, BOUND_X, BOUND_Y);
-		textId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 100, BOUND_X, BOUND_Y - 6);
-		textStaff.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 200, BOUND_X, BOUND_Y - 6);
+		labelStaff.setBounds(LOCATION_LABEL_X + 8, LOCATION_LABEL_Y + 100, BOUND_X, BOUND_Y);
+		labelId.setBounds(LOCATION_LABEL_X + 8, LOCATION_LABEL_Y + 200, BOUND_X, BOUND_Y);
+		textStaff.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 100, BOUND_X, BOUND_Y - 6);
+		textId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 200, BOUND_X, BOUND_Y - 6);
 		OK.setBounds(LOCATION_LABEL_X + 5, LOCATION_LABEL_Y + 290, BOUND_X - 40, BOUND_Y + 10);
 		cancel.setBounds(LOCATION_LABEL_X + 125, LOCATION_LABEL_Y + 290, BOUND_X - 40, BOUND_Y + 10);
 		exit.setBounds(80, 50, 100, 40);
@@ -140,8 +141,8 @@ public class SendUi extends JPanel {
 		this.add(update);
 		this.add(inquire);
 
-		String[] columnNames = { "货物派送日期", "订单条形码", "派送员" };
-		int[] list = { 40, 155, 14, 30, 20, 420, 125, 483, 420 };
+		String[] columnNames = {"序号", "货物派送日期", "订单条形码", "派送员" };
+		int[] list = { 40, 133, 14, 30, 20, 383, 125, 550, 420 };
 
 		Table table = new Table();
 		add(table.drawTable(columnNames, list));
@@ -221,7 +222,7 @@ public class SendUi extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
-		g.draw3DRect(90, 125, 280, 420, false); // 输入框外框
+		g.draw3DRect(70, 125, 280, 420, false); // 输入框外框
 		this.repaint();
 	}
 

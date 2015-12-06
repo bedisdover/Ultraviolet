@@ -27,10 +27,10 @@ import java.awt.event.MouseEvent;
 public class ReceiptRecordUi extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private static final int LOCATION_LABEL_X = 140;
-	private static final int LOCATION_LABEL_Y = 170;
-	private static final int LOCATION_TEXT_X = 238;
-	private static final int LOCATION_TEXT_Y = 175;
+	private static final int LOCATION_LABEL_X = 90;
+	private static final int LOCATION_LABEL_Y = 130;
+	private static final int LOCATION_TEXT_X = 188;
+	private static final int LOCATION_TEXT_Y = 135;
 	private static final int BOUND_X = 130;
 	private static final int BOUND_Y = 30;
 
@@ -43,8 +43,12 @@ public class ReceiptRecordUi extends JPanel {
 	private JButton delete;
 	private JButton update;
 	private JButton inquire;
+	private JLabel labelDate;
+	private JLabel labelStaff;
 	private JLabel labelId;
 	private JLabel labelMoney;
+	private JTextField textDate;
+	private JTextField textStaff;
 	private JTextField textId;
 	private JTextField textMoney;
 
@@ -77,9 +81,13 @@ public class ReceiptRecordUi extends JPanel {
 		add=new JButton("新增");
 		delete=new JButton("删除");
 		update=new JButton("修改");
-		inquire=new JButton("查找");
+		inquire=new JButton("完成");
+		labelDate=new JLabel("日期：");
+		labelStaff=new JLabel("揽件员：");
 		labelId = new JLabel("条形码号:");
 		labelMoney = new JLabel("金额:");
+		textDate= new JTextField();
+		textStaff= new JTextField();
 		textMoney = new JTextField();
 		textId = new JTextField();
 
@@ -91,12 +99,16 @@ public class ReceiptRecordUi extends JPanel {
 	private void initComponents() {
 
 		title.setBounds(420, 27, 230, 39);
-		labelId.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y, BOUND_X, BOUND_Y);
-		labelMoney.setBounds(LOCATION_LABEL_X + 13, LOCATION_LABEL_Y + 130, BOUND_X, BOUND_Y);
-		textId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y, BOUND_X, BOUND_Y - 6);
-		textMoney.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 130, BOUND_X, BOUND_Y - 6);
-		OK.setBounds(LOCATION_LABEL_X + 15, LOCATION_LABEL_Y + 250, BOUND_X - 40, BOUND_Y + 10);
-		cancel.setBounds(LOCATION_LABEL_X + 135, LOCATION_LABEL_Y + 250, BOUND_X - 40, BOUND_Y + 10);
+		labelDate.setBounds(LOCATION_LABEL_X+13, LOCATION_LABEL_Y, BOUND_X, BOUND_Y);
+		labelStaff.setBounds(LOCATION_LABEL_X+7, LOCATION_LABEL_Y+75, BOUND_X, BOUND_Y);
+		labelId.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+150, BOUND_X, BOUND_Y);
+		labelMoney.setBounds(LOCATION_LABEL_X + 13, LOCATION_LABEL_Y + 225, BOUND_X, BOUND_Y);
+		textDate.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y, BOUND_X, BOUND_Y - 6);
+		textStaff.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+75, BOUND_X, BOUND_Y - 6);
+		textId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+150, BOUND_X, BOUND_Y - 6);
+		textMoney.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 225, BOUND_X, BOUND_Y - 6);
+		OK.setBounds(LOCATION_LABEL_X + 15, LOCATION_LABEL_Y + 310, BOUND_X - 40, BOUND_Y + 10);
+		cancel.setBounds(LOCATION_LABEL_X + 135, LOCATION_LABEL_Y + 310, BOUND_X - 40, BOUND_Y + 10);
 		exit.setBounds(80, 50, 100, 40);
 		add.setBounds(150, 590, 120, 40);
 		delete.setBounds(350, 590, 120,40);
@@ -106,19 +118,26 @@ public class ReceiptRecordUi extends JPanel {
 		title.setFont(fnt1);
 		labelId.setFont(fnt);
 		labelMoney.setFont(fnt);
-		cancel.setFont(fnt2);
-		OK.setFont(fnt2);
-		exit.setFont(fnt2);
+		labelDate.setFont(fnt);
+		labelStaff.setFont(fnt);
+		textDate.setFont(fnt);
+		textStaff.setFont(fnt);
 		textId.setFont(fnt);
 		textMoney.setFont(fnt);
 		add.setFont(fnt2);
 		delete.setFont(fnt2);
 		update.setFont(fnt2);
 		inquire.setFont(fnt2);
-
+		cancel.setFont(fnt2);
+		OK.setFont(fnt2);
+		exit.setFont(fnt2);
 		this.add(title);
+		this.add(labelDate);
+		this.add(labelStaff);
 		this.add(labelId);
 		this.add(labelMoney);
+		this.add(textDate);
+		this.add(textStaff);
 		this.add(textId);
 		this.add(textMoney);
 		this.add(OK);
@@ -129,8 +148,8 @@ public class ReceiptRecordUi extends JPanel {
 		this.add(update);
 		this.add(inquire);
 
-		String[] columnNames = { "订单条形码号", "订单金额" };
-		int[] list = { 40, 220, 14, 30, 20, 454, 115, 458, 430 };
+		String[] columnNames = { "序号","揽件员","订单条形码号", "订单金额" };
+		int[] list = { 40, 130, 14, 30, 20, 385, 115, 538, 430 };
 
 		Table table = new Table();
 		add(table.drawTable(columnNames, list));
@@ -144,7 +163,8 @@ public class ReceiptRecordUi extends JPanel {
 	 *            输入框状态（是否可编辑）
 	 */
 	private void setTestState(boolean state) {
-
+		textDate.setEditable(state);
+		textStaff.setEditable(state);
 		textId.setEditable(state);
 		textMoney.setEditable(state);
 		OK.setEnabled(state);
@@ -157,6 +177,8 @@ public class ReceiptRecordUi extends JPanel {
 	private void empty() {
 		textId.setText(null);
 		textMoney.setText(null);
+		textDate.setText(null);
+		textStaff.setText(null);
 	}
 
 	/**
@@ -211,7 +233,7 @@ public class ReceiptRecordUi extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
-		g.draw3DRect(110, 115, 290, 430, false); // 输入框外框
+		g.draw3DRect(70, 115, 275, 430, false); // 输入框外框
 		this.repaint();
 	}
 

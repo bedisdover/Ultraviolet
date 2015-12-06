@@ -44,11 +44,17 @@ public class DriverManageUi extends JPanel {
 	private JLabel labelCard;
 	private JLabel labelMobile;
 	private JLabel labelBirthTime;
+	private JLabel labelYear;
+	private JLabel labelMonth;
+	private JLabel labelDay;
 	private JTextField textId;
 	private JTextField textName;
 	private JTextField textTime;
 	private JTextField textCard;
 	private JTextField textMobile;
+	private JTextField textYear;
+	private JTextField textMonth;
+	private JTextField textDay;
 	private JComboBox<String> comboBox;// sex
 
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);// 标题字体格式
@@ -89,11 +95,17 @@ public class DriverManageUi extends JPanel {
 		labelCard = new JLabel("身份证号：");
 		labelMobile = new JLabel("手机号:");
 		labelBirthTime = new JLabel("出生日期:");
+		labelYear=new JLabel("年");
+		labelMonth=new JLabel("月");
+		labelDay=new JLabel("日");
 		textId = new JTextField();
 		textName = new JTextField();
 		textTime = new JTextField();
 		textCard = new JTextField();
 		textMobile = new JTextField();
+		textYear= new JTextField();
+		textMonth= new JTextField();
+		textDay= new JTextField();
 		comboBox = new JComboBox<String>();
 	}
 
@@ -110,11 +122,17 @@ public class DriverManageUi extends JPanel {
 		labelCard.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y + 220, BOUND_X, BOUND_Y);
 		labelMobile.setBounds(LOCATION_LABEL_X + 7, LOCATION_LABEL_Y + 275, BOUND_X, BOUND_Y);
 		labelBirthTime.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y + 330, BOUND_X, BOUND_Y);
+		labelYear.setBounds(LOCATION_LABEL_X+132, LOCATION_LABEL_Y + 330, BOUND_X-100, BOUND_Y);
+		labelMonth.setBounds(LOCATION_LABEL_X+175, LOCATION_LABEL_Y + 330, BOUND_X-100, BOUND_Y);
+		labelDay.setBounds(LOCATION_LABEL_X+217, LOCATION_LABEL_Y + 330, BOUND_X-100, BOUND_Y);
 		textId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y, BOUND_X, BOUND_Y - 6);
 		textName.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 55, BOUND_X, BOUND_Y - 6);
 		textTime.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 110, BOUND_X, BOUND_Y - 6);
 		textCard.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 220, BOUND_X, BOUND_Y - 6);
 		textMobile.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 275, BOUND_X, BOUND_Y - 6);
+		textYear.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 330, BOUND_X-90, BOUND_Y - 6);
+		textMonth.setBounds(LOCATION_TEXT_X+58, LOCATION_TEXT_Y + 330, BOUND_X-105, BOUND_Y - 6);
+		textDay.setBounds(LOCATION_TEXT_X+101, LOCATION_TEXT_Y + 330, BOUND_X-105, BOUND_Y - 6);
 		comboBox.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 165, BOUND_X, BOUND_Y - 5);
 		comboBox.addItem("男");
 		comboBox.addItem("女");
@@ -134,11 +152,17 @@ public class DriverManageUi extends JPanel {
 		labelCard.setFont(fnt);
 		labelMobile.setFont(fnt);
 		labelBirthTime.setFont(fnt);
+		labelYear.setFont(fnt);
+		labelMonth.setFont(fnt);
+		labelDay.setFont(fnt);
 		textId.setFont(fnt);
 		textName.setFont(fnt);
 		textTime.setFont(fnt);
 		textCard.setFont(fnt);
 		textMobile.setFont(fnt);
+		textYear.setFont(fnt);
+		textMonth.setFont(fnt);
+		textDay.setFont(fnt);
 		comboBox.setFont(fnt);
 		cancel.setFont(fnt2);
 		OK.setFont(fnt2);
@@ -156,11 +180,17 @@ public class DriverManageUi extends JPanel {
 		this.add(labelCard);
 		this.add(labelMobile);
 		this.add(labelBirthTime);
+		this.add(labelYear);
+		this.add(labelMonth);
+		this.add(labelDay);
 		this.add(textId);
 		this.add(textName);
 		this.add(textTime);
 		this.add(textMobile);
 		this.add(textCard);
+		this.add(textYear);
+		this.add(textMonth);
+		this.add(textDay);
 		this.add(comboBox);
 		this.add(OK);
 		this.add(cancel);
@@ -191,6 +221,9 @@ public class DriverManageUi extends JPanel {
 		textTime.setEditable(state);
 		textCard.setEditable(state);
 		textMobile.setEditable(state);
+		textYear.setEditable(state);
+		textMonth.setEditable(state);
+		textDay.setEditable(state);
 		comboBox.setEditable(state);
 		OK.setEnabled(state);
 		cancel.setEnabled(state);
@@ -205,6 +238,9 @@ public class DriverManageUi extends JPanel {
 		textTime.setText(null);
 		textMobile.setText(null);
 		textCard.setText(null);
+		textYear.setText(null);
+		textMonth.setText(null);
+		textDay.setText(null);
 		comboBox.setSelectedIndex(0);
 	}
 
