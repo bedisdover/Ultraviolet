@@ -1,8 +1,9 @@
-package LEMS.data.orderdata;
+package LEMS.data;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import LEMS.data.orderdata.OrderData;
 import LEMS.po.orderpo.OrderPO;
 
 /**

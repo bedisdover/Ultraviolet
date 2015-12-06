@@ -234,5 +234,6 @@ public class SendUi extends JPanel {
 		deliveryVO.setDate(DateFormate.DATE_FORMAT.format(new Date()));
 		//TODO 根据ID获得UserPO对象
 		sending.addOrder(textId.getText(), null);
+		sending.createDeliveryNote();
 	}
 }

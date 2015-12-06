@@ -2,41 +2,103 @@ package LEMS.data.orderdata;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
+import LEMS.data.Connect;
+import LEMS.data.TransferID;
 import LEMS.dataservice.orderdataservice.VehicleLoadDataService;
+import LEMS.po.financepo.DocumentState;
 import LEMS.po.orderpo.VehicleLoadNotePO;
 
 public class VehicleLoadData extends UnicastRemoteObject implements VehicleLoadDataService {
 	private static final long serialVersionUID = 1L;
 
+	private Connect connect;
+	
+	private TransferID transferID;
+	
 	public VehicleLoadData() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
+		
+		connect = new Connect();
+		transferID = new TransferID();
 	}
 
 
 	@Override
 	public VehicleLoadNotePO find(String id) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		VehicleLoadNotePO vehicleLoadNotePO = new VehicleLoadNotePO();
+		
+		String sql = "SELECT * FROM vehicleloadnote WHERE id = " + id;
+		
+		ResultSet result = connect.getResultSet(sql);
+		
+		try {
+			vehicleLoadNotePO.setId(id);
+			vehicleLoadNotePO.setState(DocumentState.valueOf(result.getString(2)));
+			vehicleLoadNotePO.setDate(result.getString(3));
+			vehicleLoadNotePO.setVehicle(result.getString(4));
+			vehicleLoadNotePO.setDeparture(result.getString(5));
+			vehicleLoadNotePO.setDestination(result.getString(6));
+			vehicleLoadNotePO.setSuperVision(result.getString(7));
+			vehicleLoadNotePO.setSuperCargo(result.getString(8));
+			vehicleLoadNotePO.setOrders(transferID.transferOrder(result.getString(9)));
+			vehicleLoadNotePO.setPassage(result.getDouble(10));
+			
+			connect.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return vehicleLoadNotePO;
 	}
 
 	@Override
 	public void insert(VehicleLoadNotePO vehicleLoadNotePO) throws RemoteException {
-		// TODO Auto-generated method stub
+		String sql = "INSERT INTO vehicleloadnote VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
+		PreparedStatement pstm = connect.getPreparedStatement(sql);
+		
+		try {
+			pstm.setString(1, vehicleLoadNotePO.getId());
+			pstm.setString(2, vehicleLoadNotePO.getState() + "");
+			pstm.setString(3, vehicleLoadNotePO.getDate());
+			pstm.setString(4, vehicleLoadNotePO.getVehicle());
+			pstm.setString(5, vehicleLoadNotePO.getDeparture());
+			pstm.setString(6, vehicleLoadNotePO.getDestination());
+			pstm.setString(7, vehicleLoadNotePO.getSupervision());
+			pstm.setString(8, vehicleLoadNotePO.getSuperCargo());
+			pstm.setString(9, transferID.transferOrder(vehicleLoadNotePO.getOrders()));
+			pstm.setDouble(10, vehicleLoadNotePO.getPassage());
+			
+			pstm.executeUpdate();
+			
+			connect.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void update(VehicleLoadNotePO vehicleLoadNotePO) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		this.delete(vehicleLoadNotePO.getId());
+		this.insert(vehicleLoadNotePO);
 	}
 
 	@Override
 	public void delete(String id) throws RemoteException {
-		// TODO Auto-generated method stub
+		String sql = "DELETE FROM vehicleloadnote WHERE id = " + id;
 		
+		PreparedStatement pstm = connect.getPreparedStatement(sql);
+		
+		try {
+			pstm.executeUpdate();
+			
+			connect.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
-
 }

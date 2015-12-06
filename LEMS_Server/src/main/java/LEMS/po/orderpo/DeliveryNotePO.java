@@ -9,7 +9,8 @@ import LEMS.po.financepo.DocumentState;
  * @author 宋益明
  *
  * 派件单持久化对象（派件任务生成）
- * 包括派件单ID、派件单状态、派件日期、托运订单条形码号、派送员
+ * 派件单包括：
+ * 		派件单ID、派件单状态、派件日期、托运订单条形码号
  */
 public class DeliveryNotePO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -20,6 +21,11 @@ public class DeliveryNotePO implements Serializable {
 	private String id;
 	
 	/**
+	 * 派件单状态
+	 */
+	private DocumentState state;
+
+	/**
 	 * 派件时间
 	 */
 	private String date;
@@ -28,16 +34,6 @@ public class DeliveryNotePO implements Serializable {
 	 * 托运订单条形码号
 	 */
 	private ArrayList<OrderPO> orders;
-	
-	/**
-	 * 派件单状态
-	 */
-	private DocumentState state;
-	
-//	/**
-//	 * 派送员
-//	 */
-//	private UserPO deliver;
 	
 	public String getId() {
 		return id;

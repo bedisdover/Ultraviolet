@@ -1,6 +1,5 @@
 package LEMS.po.orderpo;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import LEMS.po.financepo.DocumentState;
@@ -8,34 +7,28 @@ import LEMS.po.financepo.DocumentState;
 /**
  * @author 宋益明
  * 
- * 中转单持久化对象
- * 中转单包含：
- * 		中转单编号（中转中心编号+日期+0000000七位数字）、
- * 		中转单状态、日期、航班号、出发地、到达地、
- * 		货柜号、监装员、本次装箱所有托运单号、运费
+ * 装车单持久化对象（中转中心业务员）
+ * 装车单包括：
+ * 		装车单ID（中转中心编号+日期+0000000七位数字）、
+ * 		装车单状态、装车日期、出发地、到达地（营业厅）、
+ * 		车辆代号、监装员、押运员、本次装箱所有订单条形码号）、
+ * 		运费（运费根据出发地和目的地自动生成）
  */
-public class TransferNotePO implements Serializable {
-	private static final long serialVersionUID = 1L;
-
+public class LoadNotePO {
 	/**
-	 * 中转单编号
+	 * 装车单ID
 	 */
 	private String id;
 	
 	/**
-	 * 中转单状态
+	 * 装车单状态
 	 */
 	private DocumentState state;
 	
 	/**
-	 * 日期
+	 * 装车日期
 	 */
 	private String date;
-	
-	/**
-	 * 航班号
-	 */
-	private String flight;
 	
 	/**
 	 * 出发地
@@ -48,14 +41,19 @@ public class TransferNotePO implements Serializable {
 	private String destination;
 	
 	/**
-	 * 货柜号
+	 * 车辆代号
 	 */
-	private String container;
+	private String vehicle;
 	
 	/**
 	 * 监装员
 	 */
 	private String superVision;
+	
+	/**
+	 * 押运员
+	 */
+	private String superCargo;
 	
 	/**
 	 * 托运订单
@@ -67,7 +65,7 @@ public class TransferNotePO implements Serializable {
 	 */
 	private double passage;
 	
-	public TransferNotePO() {
+	public LoadNotePO() {
 		state = DocumentState.waiting;
 	}
 
@@ -83,10 +81,6 @@ public class TransferNotePO implements Serializable {
 		return date;
 	}
 
-	public String getFlight() {
-		return flight;
-	}
-
 	public String getDeparture() {
 		return departure;
 	}
@@ -95,12 +89,16 @@ public class TransferNotePO implements Serializable {
 		return destination;
 	}
 
-	public String getContainer() {
-		return container;
+	public String getVehicle() {
+		return vehicle;
 	}
 
 	public String getSuperVision() {
 		return superVision;
+	}
+
+	public String getSuperCargo() {
+		return superCargo;
 	}
 
 	public ArrayList<OrderPO> getOrders() {
@@ -123,10 +121,6 @@ public class TransferNotePO implements Serializable {
 		this.date = date;
 	}
 
-	public void setFlight(String flight) {
-		this.flight = flight;
-	}
-
 	public void setDeparture(String departure) {
 		this.departure = departure;
 	}
@@ -135,12 +129,16 @@ public class TransferNotePO implements Serializable {
 		this.destination = destination;
 	}
 
-	public void setContainer(String container) {
-		this.container = container;
+	public void setVehicle(String vehicle) {
+		this.vehicle = vehicle;
 	}
 
 	public void setSuperVision(String superVision) {
 		this.superVision = superVision;
+	}
+
+	public void setSuperCargo(String superCargo) {
+		this.superCargo = superCargo;
 	}
 
 	public void setOrders(ArrayList<OrderPO> orders) {

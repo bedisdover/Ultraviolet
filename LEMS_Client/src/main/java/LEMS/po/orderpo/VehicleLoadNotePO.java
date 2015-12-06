@@ -4,23 +4,20 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import LEMS.po.financepo.DocumentState;
-import LEMS.po.informationpo.VehiclePO;
-import LEMS.po.userpo.UserPO;
 
 /**
  * @author 宋益明
  * 
- * 车辆装车单持久化对象
- * 包括装车单编号、装车单状态、装车日期、托运订单条形码号、
- * 出发地、目的地、货运车辆、监装员、押运员、路费
+ * 车辆装车单持久化对象（营业厅业务员）
+ * 车辆装车单包括：
+ * 		装车单ID（营业厅编号+日期+00000 、五位数字）、
+ * 		装车单状态、装车日期、车辆编号 、
+ * 		出发地、到达地（本地中转中心或者其它营业厅）、
+ * 		监装员、押运员、所有订单条形码号、运费
  */
-public class VehicleLoadPO implements Serializable {
+public class VehicleLoadNotePO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	/**
-	 * 装车日期
-	 */
-	private String date;
 	/**
 	 * 装车单编号
 	 */
@@ -29,6 +26,10 @@ public class VehicleLoadPO implements Serializable {
 	 * 车辆装车单状态
 	 */
 	private DocumentState state;
+	/**
+	 * 装车日期
+	 */
+	private String date;
 	/**
 	 * 订单列表
 	 */
@@ -44,21 +45,21 @@ public class VehicleLoadPO implements Serializable {
 	/**
 	 * 货运车辆
 	 */
-	private VehiclePO vehicle;
+	private String vehicle;
 	/**
 	 * 监装员
 	 */
-	private UserPO superVision;
+	private String superVision;
 	/**
 	 * 押运员
 	 */
-	private UserPO superCargo;
+	private String superCargo;
 	/**
 	 * 运费
 	 */
 	private double passage;
 	
-	public VehicleLoadPO() {
+	public VehicleLoadNotePO() {
 		state = DocumentState.waiting;
 	}
 	
@@ -98,7 +99,7 @@ public class VehicleLoadPO implements Serializable {
 		this.destination = destination;
 	}
 
-	public void setVehicle(VehiclePO vehicle) {
+	public void setVehicle(String vehicle) {
 		this.vehicle = vehicle;
 	}
 
@@ -122,24 +123,23 @@ public class VehicleLoadPO implements Serializable {
 		return destination;
 	}
 
-	public VehiclePO getVehicle() {
+	public String getVehicle() {
 		return vehicle;
 	}
 
-	public UserPO getSupervision() {
+	public String getSupervision() {
 		return superVision;
 	}
 
-	public UserPO getSuperCargo() {
+	public String getSuperCargo() {
 		return superCargo;
 	}
 
-	public void setSuperVision(UserPO superVision) {
+	public void setSuperVision(String superVision) {
 		this.superVision = superVision;
 	}
 
-	public void setSuperCargo(UserPO superCargo) {
+	public void setSuperCargo(String superCargo) {
 		this.superCargo = superCargo;
 	}
-
 }

@@ -13,7 +13,6 @@ import LEMS.dataservice.factory.OrderFactory;
 import LEMS.dataservice.orderdataservice.SendingDataService;
 import LEMS.po.orderpo.DeliveryNotePO;
 import LEMS.po.orderpo.OrderPO;
-import LEMS.po.userpo.UserPO;
 import LEMS.vo.ordervo.DeliveryVO;
 
 /**
@@ -40,7 +39,7 @@ public class Sending extends AddOrder implements SendingService {
 		this.deliveryVO = deliveryVO;
 	}
 	
-	public void addOrder(String id, UserPO deliver) {
+	public void addOrder(String id, String deliver) {
 		OrderPO orderPO = findOrder(id);
 		orderPO.setDeliver(deliver);
 
@@ -68,7 +67,7 @@ public class Sending extends AddOrder implements SendingService {
 	 * 生成派件单ID
 	 */
 	private String createId() {
-		//TODO 
+		//TODO 生成派件单ID
 		return null;
 	}
 	

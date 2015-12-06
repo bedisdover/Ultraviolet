@@ -1,12 +1,19 @@
 package LEMS.po.orderpo;
 
 import LEMS.po.inquirepo.LogisticsInfoPO;
-import LEMS.po.userpo.UserPO;
 
 /**
  * @author 宋益明
  * 
  * 订单持久化对象
+ * 订单包括：
+ * 		订单ID、物流信息
+ * 		寄件人姓名、电话、地址
+ * 		收件人姓名、电话、地址
+ * 		货物名称、数量、质量、体积
+ * 		快递类型、包装类型
+ * 		时间、金额、实际收件人、
+ * 		揽件员、收件员
  */
 public class OrderPO {
 	
@@ -86,32 +93,16 @@ public class OrderPO {
 	/**
 	 * 揽件员
 	 */
-	private UserPO collector;
+	private String collector;
 	/**
 	 * 派件员
 	 */
-	private UserPO deliver;
+	private String deliver;
 	
 	public OrderPO() {
 		super();
 	}
 	
-	//TODO 测试用，根据ID直接得到order
-	public OrderPO(String id) {
-		this.id = id;
-	}
-	
-//	public OrderPO(CustomerVO sender, CustomerVO receiver, GoodsVO goodsInfo, Express expressType, long amount,
-//			String time, String id) {
-//		this.sender = sender;
-//		this.receiver = receiver;
-//		this.goodsInfo = goodsInfo;
-//		this.expressType = expressType;
-//		this.amount = amount;
-//		this.time = time;
-//		this.id = id;
-//	}
-
 	public String getSenderName() {
 		return senderName;
 	}
@@ -176,19 +167,19 @@ public class OrderPO {
 		return id;
 	}
 
-	public UserPO getCollector() {
+	public String getCollector() {
 		return collector;
 	}
 	
-	public UserPO getDeliver() {
+	public String getDeliver() {
 		return deliver;
 	}
 	
-	public void setCollector(UserPO collector) {
+	public void setCollector(String collector) {
 		this.collector = collector;
 	}
 	
-	public void setDeliver(UserPO deliver) {
+	public void setDeliver(String deliver) {
 		this.deliver = deliver;
 	}
 	

@@ -3,10 +3,12 @@ package LEMS.presentation.orderui;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import LEMS.businesslogic.orderbl.VehicleLoad;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
 import LEMS.presentation.storeui.DateChooser;
+import LEMS.vo.ordervo.VehicleLoadVO;
 
 import java.awt.Font;
 import java.awt.Graphics;
@@ -59,7 +61,7 @@ public class VehicleLoadUi extends JPanel {
 	private JTextField textDeliverStaff;
 	private JTextField textGoodsNum;
 	private JTextField textGoodsGravity;
-	private JTextField textBarcode;
+	private JTextField textID;
 	
 
 	private JComboBox<String> comboBox;//destination
@@ -67,6 +69,10 @@ public class VehicleLoadUi extends JPanel {
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);//标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);//其余字体格式
 	private Font fnt2 = new Font("宋体", Font.BOLD, 16);//按钮字体格式
+	
+	private VehicleLoad vehicleLoad;
+	
+	private VehicleLoadVO vehicleLoadVO;
 	
 	public VehicleLoadUi(final MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
@@ -81,6 +87,9 @@ public class VehicleLoadUi extends JPanel {
 		// 添加事件监听器
 		this.addListener();
 
+		vehicleLoadVO = new VehicleLoadVO();
+		//TODO 获得UserVO
+		vehicleLoad = new VehicleLoad(null, vehicleLoadVO);
 	}
 
 	/**
@@ -112,7 +121,7 @@ public class VehicleLoadUi extends JPanel {
 		textDeliverStaff = new JTextField();
 		textGuard = new JTextField();
 		textGoodsNum = new JTextField();
-		textBarcode = new JTextField();
+		textID = new JTextField();
 		textGoodsGravity=new JTextField();
 		comboBox = new JComboBox<String>();
 		
@@ -144,7 +153,7 @@ public class VehicleLoadUi extends JPanel {
 		textDeliverStaff.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+135, BOUND_X, BOUND_Y-6);
 		textGoodsNum.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+195, BOUND_X, BOUND_Y-6);
 		textGoodsGravity.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+240, BOUND_X, BOUND_Y-6);
-		textBarcode.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+310, BOUND_X, BOUND_Y-6);
+		textID.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+310, BOUND_X, BOUND_Y-6);
 		
 		comboBox.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y-45, BOUND_X, BOUND_Y-5);
 		comboBox.addItem("北京");
@@ -178,7 +187,7 @@ public class VehicleLoadUi extends JPanel {
 		textDeliverStaff.setFont(fnt);
 		textGoodsNum.setFont(fnt);
 		textGoodsGravity.setFont(fnt);
-		textBarcode.setFont(fnt);
+		textID.setFont(fnt);
 		comboBox.setFont(fnt);
 		cancel.setFont(fnt2);
 		OK.setFont(fnt2);
@@ -204,7 +213,7 @@ public class VehicleLoadUi extends JPanel {
 		this.add(textGuard);
 		this.add(textDeliverStaff);
 		this.add(textGoodsNum);
-		this.add(textBarcode);
+		this.add(textID);
 		this.add(textGoodsGravity);
 		this.add(comboBox);
 		this.add(OK);
@@ -236,7 +245,7 @@ public class VehicleLoadUi extends JPanel {
 		textDeliverStaff.setEditable(state);
 		textGuard.setEditable(state);
 		textGoodsNum.setEnabled(state);
-		textBarcode.setEnabled(state);
+		textID.setEnabled(state);
 		textGoodsGravity.setEnabled(state);
 		comboBox.setEnabled(state);
 		OK.setEnabled(state);
@@ -253,7 +262,7 @@ public class VehicleLoadUi extends JPanel {
 		textDeliverStaff.setText(null);
 		textGuard.setText(null);
 		textGoodsNum.setText(null);
-		textBarcode.setText(null);
+		textID.setText(null);
 		textGoodsGravity.setText(null);
 		comboBox.setSelectedIndex(0);
 		//日期
@@ -295,8 +304,7 @@ public class VehicleLoadUi extends JPanel {
 		
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO 确定按钮的具体实现
-				empty();
+				OKOperation();
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {
@@ -319,15 +327,10 @@ public class VehicleLoadUi extends JPanel {
 		g.draw3DRect(80, 505, 290, 55, false);  //输入框外框
 		this.repaint();
 	}
-
-
-
 	
-
-	
-
-
-	
-	
-
+	private void OKOperation() {
+		this.empty();
+		//TODO 目的地应该是具体营业厅
+		vehicleLoad.addOrder(textID.getText());
+	}
 }

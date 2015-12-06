@@ -12,10 +12,10 @@ import LEMS.po.userpo.UserPO;
  * 车辆装车值对象
  */
 public class VehicleLoadVO {
-//	/**
-//	 * 装车日期
-//	 */
-//	private String date;
+	/**
+	 * 装车日期
+	 */
+	private String date;
 //	/**
 //	 * 装车单编号
 //	 */
@@ -24,7 +24,9 @@ public class VehicleLoadVO {
 	 * 订单列表
 	 */
 	private ArrayList<OrderPO> orders;
-//	/**
+
+
+	//	/**
 //	 * 出发地
 //	 */
 //	private String departure;
@@ -73,10 +75,18 @@ public class VehicleLoadVO {
 		return vehicle;
 	}
 
-	public UserPO getSupervision() {
+	public String getDate() {
+		return date;
+	}
+
+	public UserPO getSuperVision() {
 		return superVision;
 	}
 
+	public void setDate(String date) {
+		this.date = date;
+	}
+	
 	public UserPO getSuperCargo() {
 		return superCargo;
 	}

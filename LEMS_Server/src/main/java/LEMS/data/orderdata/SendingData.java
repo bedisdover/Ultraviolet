@@ -7,7 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import LEMS.data.Connect;
+import LEMS.data.TransferID;
 import LEMS.dataservice.orderdataservice.SendingDataService;
+import LEMS.po.financepo.DocumentState;
 import LEMS.po.orderpo.DeliveryNotePO;
 
 public class SendingData extends UnicastRemoteObject implements SendingDataService {
@@ -41,8 +43,9 @@ public class SendingData extends UnicastRemoteObject implements SendingDataServi
 		
 		try {
 			deliveryNotePO.setId(result.getString(1));
-			deliveryNotePO.setDate(result.getString(2));
-			deliveryNotePO.setOrders(transferID.transferOrder(result.getString(3)));
+			deliveryNotePO.setState(DocumentState.valueOf(result.getString(2)));
+			deliveryNotePO.setDate(result.getString(3));
+			deliveryNotePO.setOrders(transferID.transferOrder(result.getString(4)));
 			
 			connect.closeConnection();
 		} catch (SQLException e) {
@@ -54,14 +57,15 @@ public class SendingData extends UnicastRemoteObject implements SendingDataServi
 
 	@Override
 	public void insert(DeliveryNotePO deliveryNotePO) throws RemoteException {
-		String sql = "INSERT INTO deliverynote VALUES (?, ?, ?)";
+		String sql = "INSERT INTO deliverynote VALUES (?, ?, ?, ?)";
 		
 		PreparedStatement pstm = connect.getPreparedStatement(sql);
 		
 		try {
 			pstm.setString(1, deliveryNotePO.getId());
-			pstm.setString(2, deliveryNotePO.getDate());
-			pstm.setString(3, transferID.transferOrder(deliveryNotePO.getOrders()));
+			pstm.setString(2, deliveryNotePO.getState() + "");
+			pstm.setString(3, deliveryNotePO.getDate());
+			pstm.setString(4, transferID.transferOrder(deliveryNotePO.getOrders()));
 			
 			pstm.executeUpdate();
 			
@@ -69,7 +73,6 @@ public class SendingData extends UnicastRemoteObject implements SendingDataServi
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 	@Override

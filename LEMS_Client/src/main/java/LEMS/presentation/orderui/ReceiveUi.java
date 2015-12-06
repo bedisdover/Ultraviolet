@@ -203,7 +203,7 @@ public class ReceiveUi extends JPanel {
 		textId.setText(null);
 		comboBox1.setSelectedIndex(0);
 		comboBox2.setSelectedIndex(0);
-		//日期不能设置
+		//TODO 日期不能设置
 	}
 
 	/**
