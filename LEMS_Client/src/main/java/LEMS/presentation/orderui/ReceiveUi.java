@@ -1,24 +1,19 @@
 package LEMS.presentation.orderui;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Date;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import LEMS.businesslogic.orderbl.Receipt;
-import LEMS.businesslogic.utility.DateFormate;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
@@ -46,7 +41,7 @@ public class ReceiveUi extends JPanel {
 	private JButton add;
 	private JButton delete;
 	private JButton update;
-	private JButton inquire;
+	private JButton finish;
 	private JLabel labelDate;
 	private JLabel labelId;
 	private JLabel labelDeparture;
@@ -77,7 +72,7 @@ public class ReceiveUi extends JPanel {
 		// 初始化组件
 		this.initComponents();
 		// 设置输入框不可编辑
-		this.setTestState(false);
+		this.setTextState(false);
 		// 添加事件监听器
 		this.addListener();
 
@@ -98,7 +93,7 @@ public class ReceiveUi extends JPanel {
 		add=new JButton("新增");
 		delete=new JButton("删除");
 		update=new JButton("修改");
-		inquire=new JButton("生成");
+		finish=new JButton("生成");
 		labelDate = new JLabel("到达日期:");
 		labelId = new JLabel("订单编号:");
 		labelDeparture = new JLabel("出发地:");
@@ -136,7 +131,7 @@ public class ReceiveUi extends JPanel {
 		add.setBounds(150, 590, 120, 40);
 		delete.setBounds(350, 590, 120,40);
 		update.setBounds(550, 590, 120, 40);
-		inquire.setBounds(750, 590, 120, 40);
+		finish.setBounds(750, 590, 120, 40);
 
 		title.setFont(fnt1);
 		labelDate.setFont(fnt);
@@ -152,7 +147,7 @@ public class ReceiveUi extends JPanel {
 		add.setFont(fnt2);
 		delete.setFont(fnt2);
 		update.setFont(fnt2);
-		inquire.setFont(fnt2);
+		finish.setFont(fnt2);
 		
 		this.add(title);
 		this.add(labelDate);
@@ -169,7 +164,7 @@ public class ReceiveUi extends JPanel {
 		this.add(add);
 		this.add(delete);
 		this.add(update);
-		this.add(inquire);
+		this.add(finish);
 
 		String[] columnNames = { "序号","到达日期", "订单编号", "出发地","货物到达状态"};  
 		int[] list={40,108,14,30,20,388,125,558,430};
@@ -188,7 +183,7 @@ public class ReceiveUi extends JPanel {
 	 * @param state
 	 *            输入框状态（是否可编辑）
 	 */
-	private void setTestState(boolean state) {
+	private void setTextState(boolean state) {
 
 		textId.setEditable(state);
 		comboBoxDeparture.setEditable(state);
@@ -214,7 +209,7 @@ public class ReceiveUi extends JPanel {
 	
 		add.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				setTestState(true);
+				setTextState(true);
 				// TODO 返回按钮的具体实现
 			}
 		});
@@ -228,10 +223,9 @@ public class ReceiveUi extends JPanel {
 				// TODO 返回按钮的具体实现
 			}
 		});
-		inquire.addMouseListener(new MouseAdapter() {
+		finish.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				setTestState(true);
-				// TODO 返回按钮的具体实现
+				finishOperation();
 			}
 		});
 		
@@ -244,13 +238,15 @@ public class ReceiveUi extends JPanel {
 		
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				OKOperation();
+				if (isLegal()) {
+					OKOperation();
+				}
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				empty();
-				setTestState(false);
+				setTextState(false);
 			}
 		});
 	}
@@ -267,12 +263,32 @@ public class ReceiveUi extends JPanel {
 	 */
 	private void OKOperation() {
 		this.empty();
-		
-		//TODO 日期
-		arrivalVO.setDate(DateFormate.DATE_FORMAT.format(new Date()));
+
+		arrivalVO.setDate(dc.getTime());
 		arrivalVO.setDepature((String) comboBoxDeparture.getSelectedItem());
 		receipt.addOrder(textId.getText());
+	}
+	
+	/**
+	 * 完成按钮按下后的操作
+	 */
+	private void finishOperation() {
+		setTextState(false);
 		//生成到达单
 		receipt.createArrivalNote();
+	}
+	
+	/**
+	 * 判断输入是否合法 
+	 */
+	private boolean isLegal() {
+		//条形码全部为数字
+		boolean isNumer = textId.getText().matches("//d+");
+		
+		if (!isNumer || textId.getText().length() != 10) {
+			JOptionPane.showMessageDialog(mainFrame, "条形码输入错误！", "Error", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		return true;
 	}
 }

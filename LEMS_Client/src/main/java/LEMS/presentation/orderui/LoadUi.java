@@ -42,7 +42,7 @@ public class LoadUi extends JPanel {
 	private JButton add;
 	private JButton delete;
 	private JButton update;
-	private JButton inquire;
+	private JButton finish;
 	private JLabel labelDate;
 	private JLabel labelDestination;
 	private JLabel labelInstitutionId;
@@ -95,7 +95,7 @@ public class LoadUi extends JPanel {
 		add=new JButton("新增");
 		delete=new JButton("删除");
 		update=new JButton("修改");
-		inquire=new JButton("查找");
+		finish =new JButton("完成");
 		labelDate = new JLabel("装车日期:");
 		labelDestination = new JLabel("目的地:");
 		labelInstitutionId = new JLabel("营业厅编号:");
@@ -155,7 +155,7 @@ public class LoadUi extends JPanel {
 		add.setBounds(150, 590, 120, 40);
 		delete.setBounds(350, 590, 120,40);
 		update.setBounds(550, 590, 120, 40);
-		inquire.setBounds(750, 590, 120, 40);
+		finish.setBounds(750, 590, 120, 40);
 		
 		title.setFont(fnt1);
 		labelInstitutionId.setFont(fnt);
@@ -173,7 +173,7 @@ public class LoadUi extends JPanel {
 		add.setFont(fnt2);
 		delete.setFont(fnt2);
 		update.setFont(fnt2);
-		inquire.setFont(fnt2);
+		finish.setFont(fnt2);
 		
 		this.add(title);
 		this.add(labelInstitutionId);
@@ -199,7 +199,7 @@ public class LoadUi extends JPanel {
 		this.add(add);
 		this.add(delete);
 		this.add(update);
-		this.add(inquire);
+		this.add(finish);
 		
 		String[] columnNames = {"装车日期", "目的地","营业厅编号",  "汽运编号","条形码","车辆代号"};  
 		int[] list={40,94,14,30,20,370,105,582,470};
@@ -260,7 +260,7 @@ public class LoadUi extends JPanel {
 				// TODO 返回按钮的具体实现
 			}
 		});
-		inquire.addMouseListener(new MouseAdapter() {
+		finish.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				setTestState(true);
 				// TODO 返回按钮的具体实现
