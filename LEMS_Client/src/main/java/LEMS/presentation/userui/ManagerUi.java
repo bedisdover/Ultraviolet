@@ -57,12 +57,13 @@ public class ManagerUi extends JPanel {
 	private JComboBox<String> comboBox;
 
 	private Font fnt1 = new Font("Courier", Font.PLAIN, 26);
-	
+
 	Table table;
-	
+
 	private UserVO user;
-	public ManagerUi(final MainFrame mainFrame,UserVO uvo) {
-		user=uvo;
+
+	public ManagerUi(final MainFrame mainFrame, UserVO uvo) {
+		user = uvo;
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
@@ -161,7 +162,7 @@ public class ManagerUi extends JPanel {
 		this.add(butDel);
 		this.add(butFind);
 		this.add(butChange);
-		
+
 		String[] columnNames = { "用户名", "密码", "用户姓名", "用户身份" };
 		int[] list = { 40, 135, 14, 30, 20, 384, 126, 561, 465 };
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
@@ -169,15 +170,15 @@ public class ManagerUi extends JPanel {
 		// *
 		table = new Table();
 		add(table.drawTable(columnNames, list));
-		
-		InformationFind findInfo=new InformationFind();
-		ArrayList<UserVO> users=findInfo.findStaff();
-		for(int i=0;i<users.size();i++){
-			table.setValueAt(i, 0, users.get(i).getId());
-			table.setValueAt(i, 1, users.get(i).getPassword());
-			table.setValueAt(i, 2, users.get(i).getName());
-			table.setValueAt(i, 3, UserRole.transfer(users.get(i).getRole()));
-		}
+
+		// InformationFind findInfo=new InformationFind();
+		// ArrayList<UserVO> users=findInfo.findStaff();
+		// for(int i=0;i<users.size();i++){
+		// table.setValueAt(i, 0, users.get(i).getId());
+		// table.setValueAt(i, 1, users.get(i).getPassword());
+		// table.setValueAt(i, 2, users.get(i).getName());
+		// table.setValueAt(i, 3, UserRole.transfer(users.get(i).getRole()));
+		// }
 	}
 
 	/**
@@ -223,31 +224,31 @@ public class ManagerUi extends JPanel {
 		butAdd.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				// 设置输入框可编辑
-				setTestState(true);				
+				setTestState(true);
 			}
 		});
-		
+
 		butDel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				int currentLine=table.getSelectedRow();
-				if(currentLine==-1){
-					JOptionPane.showMessageDialog(ManagerUi.this,"请选择要删除的行!");
-				}
-				else{
+
+				int currentLine = table.table.getSelectedRow();
+				if (currentLine == -1) {
+					JOptionPane.showMessageDialog(ManagerUi.this, "请选择要删除的行!");
+				} else {
 					table.setValueAt(currentLine, 0, "");
 					table.setValueAt(currentLine, 1, "");
 					table.setValueAt(currentLine, 2, "");
 					table.setValueAt(currentLine, 3, "");
-				}		
+				}
 			}
 		});
-		
+
 		butFind.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 
 			}
 		});
-		
+
 		butChange.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 
@@ -255,20 +256,23 @@ public class ManagerUi extends JPanel {
 		});
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				//TODO 获得第几行为空
+				// TODO 获得第几行为空
 				int i = table.numOfEmpty();
 				// TODO 确定按钮的具体实现
 				table.setValueAt(i, 0, textID.getText());
 				table.setValueAt(i, 1, textPassword.getText());
 				table.setValueAt(i, 2, textName.getText());
-				table.setValueAt(i, 3, comboBox.getSelectedItem()+"");
-				InstitutionPO ipo=new InstitutionPO(textInstitutionID.getText(),textLocation.getText());
-				UserVO uvo=new UserVO(textID.getText(),textPassword.getText(),ManagerUi.exchange((String)comboBox.getSelectedItem()), textName.getText(),ipo);
-				InformationAdd add=new InformationAdd();
+				table.setValueAt(i, 3, comboBox.getSelectedItem() + "");
+				InstitutionPO ipo = new InstitutionPO(textInstitutionID
+						.getText(), textLocation.getText());
+				UserVO uvo = new UserVO(textID.getText(), textPassword
+						.getText(), ManagerUi.exchange((String) comboBox
+						.getSelectedItem()), textName.getText(), ipo);
+				InformationAdd add = new InformationAdd();
 				add.addStaff(uvo);
 				// 清空输入框
 				empty();
-				//使输入框不可编辑
+				// 使输入框不可编辑
 				setTestState(false);
 			}
 		});
@@ -283,44 +287,44 @@ public class ManagerUi extends JPanel {
 	}
 
 	public void paintComponent(Graphics g) {
-		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
+		g.drawImage(MainFrame.background, 0, 0, this.getWidth(),
+				this.getHeight(), null);
 		g.draw3DRect(63, 126, 306, 465, false);
 		this.repaint();
 	}
-	
+
 	/**
 	 * @param s
-	 * @return UserRole
-	 * 将复选框中的String转换为对应的UserRole类型
+	 * @return UserRole 将复选框中的String转换为对应的UserRole类型
 	 */
-	private static UserRole exchange(String s){
-		UserRole role=null;
-		switch(s){
+	private static UserRole exchange(String s) {
+		UserRole role = null;
+		switch (s) {
 		case "管理员":
-			role=UserRole.Manager;
+			role = UserRole.Manager;
 			break;
 		case "总经理":
-			role=UserRole.GeneralManager;
+			role = UserRole.GeneralManager;
 			break;
 		case "仓库管理人员":
-			role=UserRole.StoreManager;
+			role = UserRole.StoreManager;
 			break;
 		case "营业厅业务员":
-			role=UserRole.BusinessClerk;
+			role = UserRole.BusinessClerk;
 			break;
 		case "中转中心业务员":
-			role=UserRole.TransferClerk;
+			role = UserRole.TransferClerk;
 			break;
 		case "快递员":
-			role=UserRole.Courier;
+			role = UserRole.Courier;
 			break;
 		case "财务人员":
-			role=UserRole.FinanceClerk;
+			role = UserRole.FinanceClerk;
 			break;
 		default:
 			break;
 		}
 		return role;
 	}
-	
+
 }

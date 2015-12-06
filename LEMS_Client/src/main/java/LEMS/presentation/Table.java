@@ -11,7 +11,13 @@ import javax.swing.table.TableColumn;
 
 public class Table extends JTable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1302577670244342772L;
+	
 	Object[][] obj;
+	public JTable table;
 
 	public JScrollPane drawTable(String[] name, int[] list) {
 		/**
@@ -24,7 +30,7 @@ public class Table extends JTable{
 
 		int columns = name.length;
 		obj = new Object[list[0]][columns];
-		JTable table = new JTable(obj, name);
+		table = new JTable(obj, name);
 		/**
 		 * 设置表格不能编辑但能选中一行
 		 */

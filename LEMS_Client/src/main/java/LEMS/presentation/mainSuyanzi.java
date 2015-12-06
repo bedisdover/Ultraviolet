@@ -14,8 +14,9 @@ public class mainSuyanzi {
 		UserVO user = null;
 //		ManagerUi a = new ManagerUi(mainFrame,user);
 //		FinancialStaffUi a = new FinancialStaffUi(mainFrame,user);
-		GeneralManagerUi a = new GeneralManagerUi(mainFrame,user);
+//		GeneralManagerUi a = new GeneralManagerUi(mainFrame,user);
 //		TransferClerkUi a = new TransferClerkUi(mainFrame,user);
+		ManagerUi a = new ManagerUi(mainFrame,user);
 		mainFrame.setContentPane(a);
 	}
 
