@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -223,16 +224,19 @@ public class ManagerUi extends JPanel {
 				setTestState(true);				
 			}
 		});
+		
 		butDel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-
+								
 			}
 		});
+		
 		butFind.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 
 			}
 		});
+		
 		butChange.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 
