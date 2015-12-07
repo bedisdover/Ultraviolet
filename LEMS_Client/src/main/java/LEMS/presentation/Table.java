@@ -2,6 +2,7 @@ package LEMS.presentation;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.util.ArrayList;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -18,7 +19,8 @@ public class Table extends JTable{
 	
 	Object[][] obj;
 	public JTable table;
-
+	int columns=0;
+	int rows=0;
 	public JScrollPane drawTable(String[] name, int[] list) {
 		/**
 		 * list里面参数分别为需要的行数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
@@ -28,8 +30,9 @@ public class Table extends JTable{
 		 * list));
 		 */
 
-		int columns = name.length;
-		obj = new Object[list[0]][columns];
+		 columns = name.length;
+		 rows=list[0];
+		obj = new Object[rows][columns];
 		table = new JTable(obj, name);
 		/**
 		 * 设置表格不能编辑但能选中一行
@@ -88,5 +91,28 @@ public class Table extends JTable{
 			count++;
 		}
 		return count;
+	}
+	
+	public ArrayList<String> getValueAt(int r){
+		ArrayList<String> al=new ArrayList<String>();
+		for(int i=0;i<columns;i++){
+			al.add(obj[r][i].toString());
+		}
+		return al;
+	}
+	
+	public int columnNum(){
+		return columns;
+	}
+	//删除某一行
+	public void remove(int r){
+		for(int i=r;i<rows-1;i++){
+			for(int j=0;j<columns;j++){
+				setValueAt(i,j,obj[i+1][j].toString());
+			}
+		}
+		for(int k=0;k<columns;k++){
+		setValueAt(rows-1,k,"");
+		}
 	}
 }

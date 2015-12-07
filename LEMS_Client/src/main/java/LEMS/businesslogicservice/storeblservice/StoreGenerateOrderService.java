@@ -17,9 +17,17 @@ public interface StoreGenerateOrderService {
 	
 	public int generateOutboundOrderPO(OutboundOrderVO outboundOrderVO);
 	
-	public InboundOrderVO inquireInboundOrder(String id);//查询
+	public InboundOrderVO inquireInboundOrderPO(String id);//查询
 	
-	public OutboundOrderVO inquireOutboundOrder(String id);//查询
+	public OutboundOrderVO inquireOutboundOrderPO(String id);//查询
+	
+	public int deleteInboundOrderPO(String id);//删除入库单
+	
+	public int deleteOutboundOrderPO(String id);//删除出库单
+	
+	public int updateInboundOrderPO(InboundOrderVO inboundOrderVO);//修改入库单
+	
+	public int updateOutboundOrderPO(OutboundOrderVO outboundOrderVO);//修改出库单
 	
 	public ArrayList<InboundOrderVO> totalInboundOrder();//所有入库单
 	

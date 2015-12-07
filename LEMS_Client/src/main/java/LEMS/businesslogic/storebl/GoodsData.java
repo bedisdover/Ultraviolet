@@ -53,6 +53,12 @@ import LEMS.po.orderpo.TransportType;
 			return goodsPO;
 		}
 
+		public GoodsPO find(String startTime,String endTime){
+			//TODO
+			return null;
+			
+		}
+		
 		public int insert(GoodsPO goodsPO){
 			int judge=0;
 			String sql = "INSERT INTO goods(id,inDate,outDate,destination,area,row,stand,position,transportType,transferNum) VALUES (?,?,?,?,?,?,?,?,?,?) ";
@@ -79,9 +85,9 @@ import LEMS.po.orderpo.TransportType;
 			return judge;
 		}
 
-		public int delete(GoodsPO goodsPO){
+		public int delete(String id){
 			int judge=0;
-			String idTarget=goodsPO.getId();
+			String idTarget=id;
 			String sql="DELETE FROM goods WHERE id= '"+idTarget+"'";
 			ResultSet result=connect.getResultSet(sql);
 			PreparedStatement pstmt =connect.getPreparedStatement(sql);
@@ -150,11 +156,11 @@ import LEMS.po.orderpo.TransportType;
 		
 
 
-		public static void main(String[] args) throws RemoteException{
-		GoodsPO g=new GoodsPO("10", "10", "10", Destination.Nanjing, Area.Airline, 1, 1, 1, TransportType.Airplane, "11");
-		GoodsData gd=new GoodsData();
-		gd.delete(g);
-		}
+//		public static void main(String[] args) throws RemoteException{
+//		GoodsPO g=new GoodsPO("10", "10", "10", Destination.Nanjing, Area.Airline, 1, 1, 1, TransportType.Airplane, "11");
+//		GoodsData gd=new GoodsData();
+//		gd.delete(g);
+//		}
 
 	}
 	//create table goods(

@@ -42,7 +42,6 @@ public class StoreGenerateOrder implements StoreGenerateOrderService {
 			inboundOrderVO.setPosition(goodsPO.getPosition());
 
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		addInboundOrder.add(inboundOrderVO);
@@ -76,7 +75,6 @@ public class StoreGenerateOrder implements StoreGenerateOrderService {
 			}
 
 		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 			return judge;
@@ -98,7 +96,6 @@ public class StoreGenerateOrder implements StoreGenerateOrderService {
 			outboundOrderVO.setTransferNum(goodsPO.getTransferNum());
 
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		// addOutboundOrder.add(outboundOrderVO);
@@ -130,7 +127,6 @@ public class StoreGenerateOrder implements StoreGenerateOrderService {
 			}
 
 		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
@@ -138,7 +134,7 @@ public class StoreGenerateOrder implements StoreGenerateOrderService {
 		
 	}
 //输入id查询入库单
-	public InboundOrderVO inquireInboundOrder(String id){
+	public InboundOrderVO inquireInboundOrderPO(String id){
 		GoodsData goodsData;
 		InboundOrderVO inboundOrderVO = null;
 		try {
@@ -153,7 +149,6 @@ public class StoreGenerateOrder implements StoreGenerateOrderService {
 			int position=goodsPO.getPosition();
 			inboundOrderVO =new InboundOrderVO(Id,inDate,des,area,row,stand,position);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return inboundOrderVO;
@@ -161,7 +156,7 @@ public class StoreGenerateOrder implements StoreGenerateOrderService {
 	}
 	
 	//输入id查询出库单
-		public OutboundOrderVO inquireOutboundOrder(String id){
+		public OutboundOrderVO inquireOutboundOrderPO(String id){
 			GoodsData goodsData;
 			OutboundOrderVO outboundOrderVO = null;
 			try {
@@ -174,14 +169,93 @@ public class StoreGenerateOrder implements StoreGenerateOrderService {
 				String transferNum=goodsPO.getTransferNum();
 				outboundOrderVO =new OutboundOrderVO(Id,outDate,des,tt,transferNum);
 			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return outboundOrderVO;
 			
 		}
+		//告诉数据库删除入库单
+		public int deleteInboundOrderPO(String id){
+			GoodsData goodsData;
+			int judge=-1;
+			try {
+				goodsData = new GoodsData();
+				judge=goodsData.delete(id);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+			return judge;
+			
+		}
 		
-	
+		//删除出库单
+		public int deleteOutboundOrderPO(String id){
+			GoodsData goodsData;
+			int judge=-1;
+			try {
+				goodsData = new GoodsData();
+				GoodsPO goodsPO=goodsData.find(id);
+				if(goodsPO.getInDate().equals("")){
+					judge=goodsData.delete(id);
+				}
+				if(!goodsPO.getInDate().equals("")){
+					goodsPO.setOutDate("");
+					goodsPO.setTransferNum("");
+					goodsPO.setTransportType(TransportType.YetToKnow);
+					goodsData.update(goodsPO);
+				}
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+			return judge;
+			
+		}
+		//修改入库单
+		public int updateInboundOrderPO(InboundOrderVO iovo){
+			GoodsData goodsData;
+			int judge=-1;
+			try {
+				goodsData=new GoodsData();
+				String id=iovo.getId();
+				GoodsPO goodspo=goodsData.find(id);
+				String inDate=iovo.getInDate();
+				Destination des=iovo.getDestination();
+				Area area=iovo.getArea();
+				int row=iovo.getRow();
+				int stand=iovo.getStand();
+				int position=iovo.getPosition();
+				GoodsPO goodsPO=new GoodsPO(id,inDate,goodspo.getOutDate(),des,area,row,stand,position,goodspo.getTransportType(),goodspo.getTransferNum());
+				judge=goodsData.update(goodsPO);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+			
+			return judge;
+			
+		}
+		//修改出库单
+		public int updateOutboundOrderPO(OutboundOrderVO oovo){
+
+			GoodsData goodsData;
+			int judge=-1;
+			try {
+				goodsData=new GoodsData();
+				String id=oovo.getId();
+				GoodsPO goodspo=goodsData.find(id);
+				String outDate=oovo.getOutDate();
+				Destination des=oovo.getDestination();
+				TransportType tt=oovo.getTransportType();
+				String tn=oovo.getTransferNum();
+				GoodsPO goodsPO=new GoodsPO(id,goodspo.getInDate(),outDate,des,goodspo.getArea(),goodspo.getRow(),goodspo.getStand(),goodspo.getPosition(),tt,tn);
+				judge=goodsData.update(goodsPO);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+			
+			return judge;
+		}
+		
+		
 	public ArrayList<InboundOrderVO> totalInboundOrder() {
 		return addInboundOrder;
 
