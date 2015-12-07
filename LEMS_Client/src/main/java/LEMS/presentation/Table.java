@@ -77,6 +77,10 @@ public class Table extends JTable{
 	public void setValueAt(int r,int c,String value){
 		obj[r][c] = value;
 	}
+	
+	public String getValueAt(int r,int c){
+		return (String)obj[r][c];
+	}
 
 	public int numOfEmpty(){
 		int count = 0;

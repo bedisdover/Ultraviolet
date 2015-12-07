@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import LEMS.businesslogic.informationbl.InformationAdd;
+import LEMS.businesslogic.informationbl.InformationDelete;
 import LEMS.businesslogic.informationbl.InformationFind;
 import LEMS.po.informationpo.InstitutionPO;
 import LEMS.po.userpo.UserRole;
@@ -171,14 +172,14 @@ public class ManagerUi extends JPanel {
 		table = new Table();
 		add(table.drawTable(columnNames, list));
 
-		// InformationFind findInfo=new InformationFind();
-		// ArrayList<UserVO> users=findInfo.findStaff();
-		// for(int i=0;i<users.size();i++){
-		// table.setValueAt(i, 0, users.get(i).getId());
-		// table.setValueAt(i, 1, users.get(i).getPassword());
-		// table.setValueAt(i, 2, users.get(i).getName());
-		// table.setValueAt(i, 3, UserRole.transfer(users.get(i).getRole()));
-		// }
+		 InformationFind findInfo=new InformationFind();
+		 ArrayList<UserVO> users=findInfo.findStaff();
+		 for(int i=0;i<users.size();i++){
+		 table.setValueAt(i, 0, users.get(i).getId());
+		 table.setValueAt(i, 1, users.get(i).getPassword());
+		 table.setValueAt(i, 2, users.get(i).getName());
+		 table.setValueAt(i, 3, UserRole.transfer(users.get(i).getRole()));
+		 }
 	}
 
 	/**
@@ -230,15 +231,30 @@ public class ManagerUi extends JPanel {
 
 		butDel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-
 				int currentLine = table.table.getSelectedRow();
 				if (currentLine == -1) {
 					JOptionPane.showMessageDialog(ManagerUi.this, "请选择要删除的行!");
-				} else {
+				}
+				else {
+					int i = table.numOfEmpty();	
+					
+					InformationDelete dele=new InformationDelete();
+					dele.deleteStaff(table.getValueAt(currentLine, 0).trim());
+					
 					table.setValueAt(currentLine, 0, "");
 					table.setValueAt(currentLine, 1, "");
 					table.setValueAt(currentLine, 2, "");
 					table.setValueAt(currentLine, 3, "");
+					
+					
+					for(int j=currentLine;j<i;j++){
+						table.setValueAt(j, 0, table.getValueAt(j+1, 0));
+						table.setValueAt(j, 1, table.getValueAt(j+1, 1));
+						table.setValueAt(j, 2, table.getValueAt(j+1, 2));
+						table.setValueAt(j, 3, table.getValueAt(j+1, 3));
+					}
+					
+					
 				}
 			}
 		});
@@ -256,9 +272,9 @@ public class ManagerUi extends JPanel {
 		});
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO 获得第几行为空
+				// 获得第几行为空
 				int i = table.numOfEmpty();
-				// TODO 确定按钮的具体实现
+				// 确定按钮的具体实现
 				table.setValueAt(i, 0, textID.getText());
 				table.setValueAt(i, 1, textPassword.getText());
 				table.setValueAt(i, 2, textName.getText());
