@@ -31,4 +31,8 @@ public interface InformationFindService {
 	 * 查找所有人员信息
 	 */
 	public ArrayList<UserVO> findStaff();
+	/**
+	 * 查找指定id的人员信息
+	 */
+	public UserVO findStaff(String id);
 }

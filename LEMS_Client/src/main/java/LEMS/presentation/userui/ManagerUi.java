@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import LEMS.businesslogic.informationbl.InformationAdd;
 import LEMS.businesslogic.informationbl.InformationDelete;
 import LEMS.businesslogic.informationbl.InformationFind;
+import LEMS.businesslogic.informationbl.InformationUpdate;
 import LEMS.po.informationpo.InstitutionPO;
 import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
@@ -62,7 +63,9 @@ public class ManagerUi extends JPanel {
 	Table table;
 
 	private UserVO user;
-
+	private boolean isAdd;
+	private boolean isUpdate;
+	
 	public ManagerUi(final MainFrame mainFrame, UserVO uvo) {
 		user = uvo;
 		this.mainFrame = mainFrame;
@@ -171,6 +174,22 @@ public class ManagerUi extends JPanel {
 		// *
 		table = new Table();
 		add(table.drawTable(columnNames, list));
+		
+		JLabel label = new JLabel("*");
+		label.setBounds(75, 148, 21, 15);
+		add(label);
+		
+		JLabel label_1 = new JLabel("*");
+		label_1.setBounds(85, 215, 21, 15);
+		add(label_1);
+		
+		JLabel label_2 = new JLabel("*");
+		label_2.setBounds(73, 287, 21, 15);
+		add(label_2);
+		
+		JLabel label_3 = new JLabel("*");
+		label_3.setBounds(73, 353, 21, 15);
+		add(label_3);
 
 		 InformationFind findInfo=new InformationFind();
 		 ArrayList<UserVO> users=findInfo.findStaff();
@@ -226,6 +245,7 @@ public class ManagerUi extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				// 设置输入框可编辑
 				setTestState(true);
+				isAdd=true;
 			}
 		});
 
@@ -240,13 +260,7 @@ public class ManagerUi extends JPanel {
 					
 					InformationDelete dele=new InformationDelete();
 					dele.deleteStaff(table.getValueAt(currentLine, 0).trim());
-					
-					table.setValueAt(currentLine, 0, "");
-					table.setValueAt(currentLine, 1, "");
-					table.setValueAt(currentLine, 2, "");
-					table.setValueAt(currentLine, 3, "");
-					
-					
+										
 					for(int j=currentLine;j<i;j++){
 						table.setValueAt(j, 0, table.getValueAt(j+1, 0));
 						table.setValueAt(j, 1, table.getValueAt(j+1, 1));
@@ -267,29 +281,69 @@ public class ManagerUi extends JPanel {
 
 		butChange.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-
+				// 设置输入框可编辑
+				setTestState(true);
+				isUpdate=true;
+				
+				//将被选中人员的详细信息显示出来
+				int currentLine=table.table.getSelectedRow();
+				InformationFind find=new InformationFind();
+				UserVO theStaff=find.findStaff(table.getValueAt(currentLine, 0));
+				InstitutionPO ins=theStaff.getInstitution();
+				textID.setText(theStaff.getId());
+				textPassword.setText(theStaff.getPassword());
+				textName.setText(theStaff.getName());
+				textInstitutionID.setText(ins.getID());
+				textLocation.setText(ins.getLocation());
+				comboBox.setSelectedItem(UserRole.transfer(theStaff.getRole()));
 			}
 		});
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// 获得第几行为空
-				int i = table.numOfEmpty();
-				// 确定按钮的具体实现
-				table.setValueAt(i, 0, textID.getText());
-				table.setValueAt(i, 1, textPassword.getText());
-				table.setValueAt(i, 2, textName.getText());
-				table.setValueAt(i, 3, comboBox.getSelectedItem() + "");
-				InstitutionPO ipo = new InstitutionPO(textInstitutionID
-						.getText(), textLocation.getText());
-				UserVO uvo = new UserVO(textID.getText(), textPassword
-						.getText(), ManagerUi.exchange((String) comboBox
-						.getSelectedItem()), textName.getText(), ipo);
-				InformationAdd add = new InformationAdd();
-				add.addStaff(uvo);
-				// 清空输入框
-				empty();
-				// 使输入框不可编辑
-				setTestState(false);
+				if(isAdd){
+					// 获得第几行为空
+					int i = table.numOfEmpty();
+					// 确定按钮的具体实现
+					table.setValueAt(i, 0, textID.getText());
+					table.setValueAt(i, 1, textPassword.getText());
+					table.setValueAt(i, 2, textName.getText());
+					table.setValueAt(i, 3, comboBox.getSelectedItem() + "");
+					InstitutionPO ipo = new InstitutionPO(textInstitutionID
+							.getText(), textLocation.getText());
+					UserVO uvo = new UserVO(textID.getText(), textPassword
+							.getText(), ManagerUi.exchange((String) comboBox
+							.getSelectedItem()), textName.getText(), ipo);
+					InformationAdd add = new InformationAdd();
+					add.addStaff(uvo);
+					// 清空输入框
+					empty();
+					// 使输入框不可编辑
+					setTestState(false);
+					isAdd=false;
+				}
+				
+				if(isUpdate){
+					int currentLine=table.table.getSelectedRow();
+					//在数据库中修改该人员信息
+					InstitutionPO ipo = new InstitutionPO(textInstitutionID
+							.getText(), textLocation.getText());
+					UserVO uvo = new UserVO(textID.getText(), textPassword
+							.getText(), ManagerUi.exchange((String) comboBox
+							.getSelectedItem()), textName.getText(), ipo);
+					InformationUpdate update = new InformationUpdate();
+					update.updateStaff(uvo);
+					//在界面上修改该人员信息
+					table.setValueAt(currentLine, 0, textID.getText());
+					table.setValueAt(currentLine, 1, textPassword.getText());
+					table.setValueAt(currentLine, 2, textName.getText());
+					table.setValueAt(currentLine, 3, comboBox.getSelectedItem() + "");
+					
+					// 清空输入框
+					empty();
+					// 使输入框不可编辑
+					setTestState(false);
+					isUpdate=false;
+				}
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {
@@ -308,7 +362,10 @@ public class ManagerUi extends JPanel {
 		g.draw3DRect(63, 126, 306, 465, false);
 		this.repaint();
 	}
-
+	
+	private boolean isComplete(){
+		
+	}
 	/**
 	 * @param s
 	 * @return UserRole 将复选框中的String转换为对应的UserRole类型
@@ -342,5 +399,4 @@ public class ManagerUi extends JPanel {
 		}
 		return role;
 	}
-
 }

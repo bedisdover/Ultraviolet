@@ -4,10 +4,12 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import LEMS.data.informationdata.InformationDeleteData;
+import LEMS.data.informationdata.InformationFindData;
 import LEMS.data.informationdata.InformationInsertData;
 import LEMS.data.informationdata.InformationUpdateData;
 import LEMS.dataservice.factory.InformationFactory;
 import LEMS.dataservice.informationdataservice.InformationDeleteDataService;
+import LEMS.dataservice.informationdataservice.InformationFindDataService;
 import LEMS.dataservice.informationdataservice.InformationInsertDataService;
 import LEMS.dataservice.informationdataservice.InformationUpdateDataService;
 
@@ -30,6 +32,11 @@ public class InformationFactoryImpl extends UnicastRemoteObject implements Infor
 	public InformationUpdateDataService getInformationUpdateData() throws RemoteException{
 		InformationUpdateDataService iu=new InformationUpdateData();
 		return iu;
+	}
+
+	public InformationFindDataService getInformationFindData() throws RemoteException {
+		InformationFindDataService fd=new InformationFindData();
+		return fd;
 	}
 
 }

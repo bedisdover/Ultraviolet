@@ -96,7 +96,7 @@ public class InformationFind implements InformationFindService{
 		return institutionvo;
 	}
 	/**
-	 * 查找人员信息
+	 * 查找所有人员信息
 	 */
 	public ArrayList<UserVO> findStaff(){
 		ArrayList<UserVO> uservo=new ArrayList<UserVO>();
@@ -119,5 +119,21 @@ public class InformationFind implements InformationFindService{
 		}
 		return uservo;
 	}
-	
+	public UserVO findStaff(String id){
+		UserVO uvo=null;
+		try {
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup(RMIConnect.RMI);
+			InformationFactory infoFac=database.getInformationFactory();
+			InformationFindDataService find = infoFac.getInformationFindData();
+			UserPO upo=find.findStaff(id);
+			uvo=new UserVO(upo.getId(),upo.getPassword(),upo.getRole(),upo.getName(),upo.getInstitution());			
+		} catch (MalformedURLException e1) {
+			e1.printStackTrace();
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		} catch (NotBoundException e1) {
+			e1.printStackTrace();
+		}
+		return uvo;
+	}
 }
