@@ -23,7 +23,7 @@ public class LoginUi extends JPanel {
 
 	MainFrame mainFrame;
 	Image im;
-	JButton but1 = new JButton("登陆");
+	JButton but1 = new JButton("登录");
 	JButton but2 = new JButton("返回");
 	JLabel labName = new JLabel("账号：");
 	JLabel labPassword = new JLabel("密码：");

@@ -50,4 +50,37 @@ public enum UserRole {
 		}
 		return r;
 	}
+	/**
+	 * @param s
+	 * @return UserRole 将复选框中的String转换为对应的UserRole类型
+	 */
+	public static UserRole exchange(String s) {
+		UserRole role = null;
+		switch (s) {
+		case "管理员":
+			role = UserRole.Manager;
+			break;
+		case "总经理":
+			role = UserRole.GeneralManager;
+			break;
+		case "仓库管理人员":
+			role = UserRole.StoreManager;
+			break;
+		case "营业厅业务员":
+			role = UserRole.BusinessClerk;
+			break;
+		case "中转中心业务员":
+			role = UserRole.TransferClerk;
+			break;
+		case "快递员":
+			role = UserRole.Courier;
+			break;
+		case "财务人员":
+			role = UserRole.FinanceClerk;
+			break;
+		default:
+			break;
+		}
+		return role;
+	}
 }

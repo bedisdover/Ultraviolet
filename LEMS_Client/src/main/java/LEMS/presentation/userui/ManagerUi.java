@@ -4,7 +4,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -65,7 +64,7 @@ public class ManagerUi extends JPanel {
 	private UserVO user;
 	private boolean isAdd;
 	private boolean isUpdate;
-	
+	private String originalID;
 	public ManagerUi(final MainFrame mainFrame, UserVO uvo) {
 		user = uvo;
 		this.mainFrame = mainFrame;
@@ -275,7 +274,21 @@ public class ManagerUi extends JPanel {
 
 		butFind.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-
+				String inputValue=JOptionPane.showInputDialog("请输入用户账号：");
+				int i = table.numOfEmpty();
+				for(i=i-1;i>=0;i--){
+					if(table.table.getValueAt(i, 0).equals(inputValue)){
+						break;
+					}
+				}
+				if(i>=0){
+					table.table.setRowSelectionInterval(i, i);
+				}
+				else{
+					if(inputValue!=null){
+						JOptionPane.showMessageDialog(ManagerUi.this, "未找到该用户");
+					}
+				}
 			}
 		});
 
@@ -296,12 +309,14 @@ public class ManagerUi extends JPanel {
 				textInstitutionID.setText(ins.getID());
 				textLocation.setText(ins.getLocation());
 				comboBox.setSelectedItem(UserRole.transfer(theStaff.getRole()));
+				originalID=theStaff.getId();
 			}
 		});
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if(isAdd){
-					// 获得第几行为空
+					if(isComplete()){
+						// 获得第几行为空
 					int i = table.numOfEmpty();
 					// 确定按钮的具体实现
 					table.setValueAt(i, 0, textID.getText());
@@ -311,7 +326,7 @@ public class ManagerUi extends JPanel {
 					InstitutionPO ipo = new InstitutionPO(textInstitutionID
 							.getText(), textLocation.getText());
 					UserVO uvo = new UserVO(textID.getText(), textPassword
-							.getText(), ManagerUi.exchange((String) comboBox
+							.getText(), UserRole.exchange((String) comboBox
 							.getSelectedItem()), textName.getText(), ipo);
 					InformationAdd add = new InformationAdd();
 					add.addStaff(uvo);
@@ -320,6 +335,10 @@ public class ManagerUi extends JPanel {
 					// 使输入框不可编辑
 					setTestState(false);
 					isAdd=false;
+					}
+					else{
+						JOptionPane.showMessageDialog(ManagerUi.this, "请将必填信息填写完整");
+					}
 				}
 				
 				if(isUpdate){
@@ -328,8 +347,12 @@ public class ManagerUi extends JPanel {
 					InstitutionPO ipo = new InstitutionPO(textInstitutionID
 							.getText(), textLocation.getText());
 					UserVO uvo = new UserVO(textID.getText(), textPassword
-							.getText(), ManagerUi.exchange((String) comboBox
+							.getText(), UserRole.exchange((String) comboBox
 							.getSelectedItem()), textName.getText(), ipo);
+					if(!originalID.equals(textID.getText())){
+						InformationDelete de=new InformationDelete();
+						de.deleteStaff(originalID);
+					}
 					InformationUpdate update = new InformationUpdate();
 					update.updateStaff(uvo);
 					//在界面上修改该人员信息
@@ -364,39 +387,12 @@ public class ManagerUi extends JPanel {
 	}
 	
 	private boolean isComplete(){
-		
-	}
-	/**
-	 * @param s
-	 * @return UserRole 将复选框中的String转换为对应的UserRole类型
-	 */
-	private static UserRole exchange(String s) {
-		UserRole role = null;
-		switch (s) {
-		case "管理员":
-			role = UserRole.Manager;
-			break;
-		case "总经理":
-			role = UserRole.GeneralManager;
-			break;
-		case "仓库管理人员":
-			role = UserRole.StoreManager;
-			break;
-		case "营业厅业务员":
-			role = UserRole.BusinessClerk;
-			break;
-		case "中转中心业务员":
-			role = UserRole.TransferClerk;
-			break;
-		case "快递员":
-			role = UserRole.Courier;
-			break;
-		case "财务人员":
-			role = UserRole.FinanceClerk;
-			break;
-		default:
-			break;
+		if(!textID.getText().equals("")&&!textPassword.getText().equals("")&&!textName.getText().equals("")){
+			return true;
 		}
-		return role;
+		else{
+			return false;
+		}
 	}
+	
 }
