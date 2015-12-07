@@ -68,13 +68,13 @@ public class GeneralManagerUi extends JPanel {
 
 	private void init(){
 		tabbedPane = new JTabbedPane();
-		tabbedPane.addTab("制定价格",null,SettingPriceUi,"制定价格界面");
 		tabbedPane.setFont(font);
+		tabbedPane.addTab("机构管理",null,institutionManageUi,"机构管理界面"); 
 		tabbedPane.addTab("查询日志",null,diaryUi,"查询日志界面");  
         tabbedPane.addTab("审批单据",null,examDocumentUi,"审批单据界面");
-        tabbedPane.addTab("机构管理",null,institutionManageUi,"机构管理界面"); 
         tabbedPane.addTab("人员管理",null,stuffManageUi,"人员管理界面"); 
         tabbedPane.addTab("查看统计分析",null,statisticsUi,"查看统计分析界面");
+        tabbedPane.addTab("制定价格",null,SettingPriceUi,"制定价格界面");
 	}
 	
 	private void initComponents(){

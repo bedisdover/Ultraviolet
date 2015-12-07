@@ -122,7 +122,7 @@ public class ManagerUi extends JPanel {
 		textPassword.setBounds(206, 213, 144, 24);
 		labelName.setBounds(81, 279, 131, 30);
 		textName.setBounds(206, 282, 144, 24);
-		labelStatue.setBounds(81, 348, 131, 30);
+		labelStatue.setBounds(96, 348, 131, 30);
 		labelInstitutionID.setBounds(75, 417, 131, 30);
 		textInstitutionID.setBounds(206, 420, 144, 24);
 		labelLocation.setBounds(75, 486, 131, 30);
@@ -187,7 +187,7 @@ public class ManagerUi extends JPanel {
 		add(label_2);
 		
 		JLabel label_3 = new JLabel("*");
-		label_3.setBounds(73, 353, 21, 15);
+		label_3.setBounds(85, 353, 21, 15);
 		add(label_3);
 
 		 InformationFind findInfo=new InformationFind();
