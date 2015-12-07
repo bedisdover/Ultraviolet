@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -11,9 +12,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import LEMS.businesslogic.informationbl.InformationFind;
+import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
+import LEMS.vo.informationvo.DriverVO;
+import LEMS.vo.uservo.UserVO;
 
 /**
  * @author 周梦佳 司机信息管理界面
@@ -29,6 +34,7 @@ public class DriverManageUi extends JPanel {
 	private static final int BOUND_Y = 30;
 
 	private MainFrame mainFrame;
+	private Table table;
 	private JLabel title;
 	private JButton exit;
 	private JButton OK;
@@ -60,8 +66,12 @@ public class DriverManageUi extends JPanel {
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);// 标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);// 其余字体格式
 	private Font fnt2 = new Font("宋体", Font.BOLD, 16);// 按钮字体格式
-
-	public DriverManageUi(final MainFrame mainFrame) {
+	private UserVO uvo;
+	private boolean isAdd;
+	private boolean isUpdate;
+	
+	public DriverManageUi(final MainFrame mainFrame,UserVO uvo) {
+		this.uvo=uvo;
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
@@ -203,9 +213,19 @@ public class DriverManageUi extends JPanel {
 		String[] columnNames = { "司机编号", "姓名", "行驶证期限", "性别", "身份证号", "手机号" };
 		int[] list = { 40, 96, 14, 30, 20, 362, 105, 594, 460 };
 
-		Table table = new Table();
+		table = new Table();
 		add(table.drawTable(columnNames, list));
-
+		
+		InformationFind findInfo=new InformationFind();
+		 ArrayList<DriverVO> drivers=findInfo.findDriver(uvo.getId().substring(5, 8));
+		 for(int i=0;i<drivers.size();i++){
+		 table.setValueAt(i, 0, drivers.get(i).getId());
+		 table.setValueAt(i, 1, drivers.get(i).getName());
+		 table.setValueAt(i, 2, drivers.get(i).getDrivingPeriod());
+		 table.setValueAt(i, 3, drivers.get(i).getGender()+"");
+		 table.setValueAt(i, 4, drivers.get(i).getIDcardNumber());
+		 table.setValueAt(i, 5, drivers.get(i).getPhoneNumber());
+		 }
 	}
 
 	/**
@@ -251,7 +271,7 @@ public class DriverManageUi extends JPanel {
 		add.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				setTestState(true);
-				// TODO 返回按钮的具体实现
+				isAdd=true;
 			}
 		});
 		delete.addMouseListener(new MouseAdapter() {
@@ -261,13 +281,13 @@ public class DriverManageUi extends JPanel {
 		});
 		update.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO 返回按钮的具体实现
+				setTestState(true);
+				isUpdate=true;
 			}
 		});
 		inquire.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				setTestState(true);
-				// TODO 返回按钮的具体实现
+				
 			}
 		});
 		exit.addMouseListener(new MouseAdapter() {
@@ -279,7 +299,19 @@ public class DriverManageUi extends JPanel {
 
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO 确定按钮的具体实现
+				if(isAdd){
+					if(isComplete()){
+						int i = table.numOfEmpty();
+						table.setValueAt(i, 0, textId.getText());
+						table.setValueAt(i, 1, textName.getText());
+						table.setValueAt(i, 2, textTime.getText());
+						table.setValueAt(i, 3, (String)comboBox.getSelectedItem());
+						table.setValueAt(i, 4, textCard.getText());
+						table.setValueAt(i, 5, textMobile.getText());
+						
+						DriverVO dvo=new DriverVO();
+					}
+				}
 				empty();
 			}
 		});
@@ -296,5 +328,13 @@ public class DriverManageUi extends JPanel {
 		g.draw3DRect(70, 105, 250, 460, false); // 输入框外框
 		this.repaint();
 	}
-
+	
+	private boolean isComplete(){
+		if(textId.equals("")||textName.equals("")||textTime.equals("")||textCard.equals("")||textMobile.equals("")||textYear.equals("")||textMonth.equals("")||textDay.equals("")){
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
 }

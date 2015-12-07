@@ -105,7 +105,7 @@ public class LoginUi extends JPanel {
 					break;
 				}
 				if (userVO == null) {
-					System.out.println("fail");
+					JOptionPane.showMessageDialog(LoginUi.this, "账号或密码错误！");
 				} else {
 					switch (userVO.getRole()) {
 					// 登录后跳转到管理员界面

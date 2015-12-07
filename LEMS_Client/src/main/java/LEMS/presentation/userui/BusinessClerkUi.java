@@ -42,7 +42,7 @@ public class BusinessClerkUi extends JPanel {
 		receiptRecordUi = new ReceiptRecordUi(this.mainFrame);
 		vehicleLoadUi = new VehicleLoadUi(this.mainFrame);
 		vehicleManageUi = new VehicleManageUi(this.mainFrame);
-		driverManageUi = new DriverManageUi(this.mainFrame);
+		driverManageUi = new DriverManageUi(this.mainFrame,user);
 		init();
 		initComponents();
 	
