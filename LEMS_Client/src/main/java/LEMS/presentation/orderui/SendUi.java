@@ -4,15 +4,14 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import LEMS.businesslogic.orderbl.Sending;
-import LEMS.businesslogic.utility.DateFormate;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
@@ -22,7 +21,6 @@ import LEMS.vo.ordervo.DeliveryVO;
 /**
  * @author 周梦佳 派件界面
  */
-@SuppressWarnings("serial")
 public class SendUi extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -41,7 +39,7 @@ public class SendUi extends JPanel {
 	private JButton add;
 	private JButton delete;
 	private JButton update;
-	private JButton inquire;
+	private JButton finish;
 	private JLabel labelDate;
 	private JLabel labelId;
 	private JLabel labelStaff;
@@ -85,7 +83,7 @@ public class SendUi extends JPanel {
 		add=new JButton("新增");
 		delete=new JButton("删除");
 		update=new JButton("修改");
-		inquire=new JButton("完成");
+		finish=new JButton("完成");
 		labelDate = new JLabel("派送日期:");
 		labelId = new JLabel("条形码:");
 		labelStaff = new JLabel("派送员:");
@@ -111,7 +109,7 @@ public class SendUi extends JPanel {
 		add.setBounds(150, 590, 120, 40);
 		delete.setBounds(350, 590, 120,40);
 		update.setBounds(550, 590, 120, 40);
-		inquire.setBounds(750, 590, 120, 40);
+		finish.setBounds(750, 590, 120, 40);
 
 		title.setFont(fnt1);
 		labelStaff.setFont(fnt);
@@ -125,7 +123,7 @@ public class SendUi extends JPanel {
 		add.setFont(fnt2);
 		delete.setFont(fnt2);
 		update.setFont(fnt2);
-		inquire.setFont(fnt2);
+		finish.setFont(fnt2);
 		
 		this.add(title);
 		this.add(labelStaff);
@@ -139,7 +137,7 @@ public class SendUi extends JPanel {
 		this.add(add);
 		this.add(delete);
 		this.add(update);
-		this.add(inquire);
+		this.add(finish);
 
 		String[] columnNames = {"序号", "货物派送日期", "订单条形码", "派送员" };
 		int[] list = { 40, 133, 14, 30, 20, 383, 125, 550, 420 };
@@ -191,10 +189,9 @@ public class SendUi extends JPanel {
 				// TODO 返回按钮的具体实现
 			}
 		});
-		inquire.addMouseListener(new MouseAdapter() {
+		finish.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				setTestState(true);
-				// TODO 返回按钮的具体实现
+				finishOperation();
 			}
 		});
 		
@@ -207,7 +204,9 @@ public class SendUi extends JPanel {
 
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				OKOperation();
+				if (isLegal()) {
+					OKOperation();
+				}
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {
@@ -227,14 +226,29 @@ public class SendUi extends JPanel {
 	}
 
 	/**
+	 * 判断输入是否合法 
+	 */
+	private boolean isLegal() {
+		//条形码全部为数字
+		boolean isNumer = textId.getText().matches("//d+");
+		
+		if (!isNumer || textId.getText().length() != 10) {
+			JOptionPane.showMessageDialog(mainFrame, "条形码输入错误！", "Error", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		return true;
+	}
+	
+	/**
 	 * 按下确定按钮后的动作
-	 * 
 	 */
 	private void OKOperation() {
-		//TODO 获取时间
-		deliveryVO.setDate(DateFormate.DATE_FORMAT.format(new Date()));
-		//TODO 根据ID获得UserPO对象
-		sending.addOrder(textId.getText(), null);
+		deliveryVO.setDate(dc.getTime());
+		sending.addOrder(textId.getText(), textStaff.getText());
+	}
+	
+	private void finishOperation() {
+		setTestState(true);
 		sending.createDeliveryNote();
 	}
 }

@@ -1,29 +1,25 @@
 package LEMS.presentation.orderui;
 
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import LEMS.po.userpo.UserRole;
+import LEMS.businesslogic.orderbl.ReceiptRecord;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
-import LEMS.presentation.storeui.DateChooser;
-import LEMS.vo.uservo.UserVO;
-
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Rectangle;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import LEMS.vo.ordervo.IncomeBillVO;
 
 /**
  * @author 周梦佳 记录收款单界面
  */
-@SuppressWarnings("serial")
 public class ReceiptRecordUi extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -42,7 +38,7 @@ public class ReceiptRecordUi extends JPanel {
 	private JButton add;
 	private JButton delete;
 	private JButton update;
-	private JButton inquire;
+	private JButton finish;
 	private JLabel labelDate;
 	private JLabel labelStaff;
 	private JLabel labelId;
@@ -55,6 +51,10 @@ public class ReceiptRecordUi extends JPanel {
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);// 标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);// 其余字体格式
 	private Font fnt2 = new Font("宋体", Font.BOLD, 16);// 按钮字体格式
+	
+	private IncomeBillVO incomeBillVO;
+	
+	private ReceiptRecord receiptRecord;
 
 	public ReceiptRecordUi(final MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
@@ -65,9 +65,12 @@ public class ReceiptRecordUi extends JPanel {
 		// 初始化组件
 		this.initComponents();
 		// 设置输入框不可编辑
-		this.setTestState(false);
+		this.setTextState(false);
 		// 添加事件监听器
 		this.addListener();
+		
+		incomeBillVO = new IncomeBillVO();
+		receiptRecord = new ReceiptRecord(incomeBillVO);
 	}
 
 	/**
@@ -81,16 +84,15 @@ public class ReceiptRecordUi extends JPanel {
 		add=new JButton("新增");
 		delete=new JButton("删除");
 		update=new JButton("修改");
-		inquire=new JButton("完成");
+		finish=new JButton("完成");
 		labelDate=new JLabel("日期：");
 		labelStaff=new JLabel("揽件员：");
 		labelId = new JLabel("条形码号:");
-		labelMoney = new JLabel("金额:");
+		labelMoney = new JLabel("总金额:");
 		textDate= new JTextField();
 		textStaff= new JTextField();
 		textMoney = new JTextField();
 		textId = new JTextField();
-
 	}
 
 	/**
@@ -113,7 +115,7 @@ public class ReceiptRecordUi extends JPanel {
 		add.setBounds(150, 590, 120, 40);
 		delete.setBounds(350, 590, 120,40);
 		update.setBounds(550, 590, 120, 40);
-		inquire.setBounds(750, 590, 120, 40);
+		finish.setBounds(750, 590, 120, 40);
 
 		title.setFont(fnt1);
 		labelId.setFont(fnt);
@@ -127,7 +129,7 @@ public class ReceiptRecordUi extends JPanel {
 		add.setFont(fnt2);
 		delete.setFont(fnt2);
 		update.setFont(fnt2);
-		inquire.setFont(fnt2);
+		finish.setFont(fnt2);
 		cancel.setFont(fnt2);
 		OK.setFont(fnt2);
 		exit.setFont(fnt2);
@@ -146,7 +148,7 @@ public class ReceiptRecordUi extends JPanel {
 		this.add(add);
 		this.add(delete);
 		this.add(update);
-		this.add(inquire);
+		this.add(finish);
 
 		String[] columnNames = { "序号","揽件员","订单条形码号", "订单金额" };
 		int[] list = { 40, 130, 14, 30, 20, 385, 115, 538, 430 };
@@ -162,7 +164,7 @@ public class ReceiptRecordUi extends JPanel {
 	 * @param state
 	 *            输入框状态（是否可编辑）
 	 */
-	private void setTestState(boolean state) {
+	private void setTextState(boolean state) {
 		textDate.setEditable(state);
 		textStaff.setEditable(state);
 		textId.setEditable(state);
@@ -187,7 +189,7 @@ public class ReceiptRecordUi extends JPanel {
 	private void addListener() {
 		add.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				setTestState(true);
+				setTextState(true);
 				// TODO 返回按钮的具体实现
 			}
 		});
@@ -201,10 +203,9 @@ public class ReceiptRecordUi extends JPanel {
 				// TODO 返回按钮的具体实现
 			}
 		});
-		inquire.addMouseListener(new MouseAdapter() {
+		finish.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				setTestState(true);
-				// TODO 返回按钮的具体实现
+				finishOperation();
 			}
 		});
 		exit.addMouseListener(new MouseAdapter() {
@@ -216,9 +217,9 @@ public class ReceiptRecordUi extends JPanel {
 
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO 确定按钮的具体实现
-				// 清空输入框
-				empty();
+				if (isLegal()) {
+					OKOperation();
+				}
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {
@@ -226,7 +227,7 @@ public class ReceiptRecordUi extends JPanel {
 				// 清空输入框
 				empty();
 				// 设置输入框不可编辑
-				setTestState(false);
+				setTextState(false);
 			}
 		});
 	}
@@ -236,5 +237,35 @@ public class ReceiptRecordUi extends JPanel {
 		g.draw3DRect(70, 115, 275, 430, false); // 输入框外框
 		this.repaint();
 	}
-
+	
+	/**
+	 * 判断输入是否合法 
+	 */
+	private boolean isLegal() {
+		//条形码全部为数字
+		boolean isNumer = textId.getText().matches("//d+");
+		
+		if (!isNumer || textId.getText().length() != 10) {
+			JOptionPane.showMessageDialog(mainFrame, "条形码输入错误！", "Error", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		return true;
+	}
+	
+	
+	private void OKOperation() {
+		// 清空输入框
+		empty();
+		
+		receiptRecord.addOrder(textId.getText(), textStaff.getText());
+		textMoney.setText(incomeBillVO.getAmount() + "");
+	}
+	
+	private void finishOperation() {
+		setTextState(true);
+		//TODO 日期怎么回事啊？
+		incomeBillVO.setDate(textDate.getText());
+		
+		receiptRecord.createIncomeBill();
+	}
 }

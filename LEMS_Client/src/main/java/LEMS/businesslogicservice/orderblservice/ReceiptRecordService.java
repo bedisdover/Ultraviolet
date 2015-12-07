@@ -1,7 +1,5 @@
 package LEMS.businesslogicservice.orderblservice;
 
-import LEMS.vo.ordervo.IncomeBillVO;
-
 /**
  * @author 宋益明
  * 
@@ -13,5 +11,5 @@ public interface ReceiptRecordService extends AddOrderService {
 	 * 
 	 * @param income 收款信息
 	 */
-	public void createIncomeBill(IncomeBillVO income);
+	public void createIncomeBill();
 }
