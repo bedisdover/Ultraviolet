@@ -9,6 +9,7 @@ import javax.swing.*;
 
 import LEMS.businesslogic.informationbl.InformationAdd;
 import LEMS.po.informationpo.InstitutionPO;
+import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
 import LEMS.presentation.userui.ManagerUi;
@@ -29,6 +30,7 @@ public class CostUi extends JPanel {
 	private JButton button[];
 	private Font font;
 	private Table table;
+	private JButton butOut;
 	/**
 	 * 
 	 */
@@ -58,6 +60,7 @@ public class CostUi extends JPanel {
 		button = new JButton[5];
 		font = new Font("Courier", Font.PLAIN, 26);
 		button = new JButton[5];
+		butOut = new JButton("登出");
 	}
 
 	public void initComponents() {
@@ -69,6 +72,8 @@ public class CostUi extends JPanel {
 		name.setBounds(800,25,135,28);
 		statue.setBounds(800,60,183,28);
 		textArea.setBounds(304,427-change,119,90);
+		butOut.setBounds(52, 36, 120, 40);
+		this.add(butOut);
 
 		for(int i = 0;i<6;i++){
 			label[i] = new JLabel();
@@ -188,6 +193,12 @@ public class CostUi extends JPanel {
 		button[4].addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				
+			}
+		});
+		
+		butOut.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				mainFrame.setContentPane(new LoginUi(mainFrame));
 			}
 		});
 	}

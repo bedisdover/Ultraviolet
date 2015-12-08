@@ -13,8 +13,10 @@ import javax.swing.JButton;
 
 
 
+
 //import LEMS.businesslogic.inquirebl.inquirediary.InquireDiary;
 import LEMS.businesslogicservice.inquireblservice.InquireDiaryService;
+import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
 import LEMS.presentation.mainUi;
@@ -44,6 +46,7 @@ public class DiaryUi extends JPanel{
 	private JLabel name;
 	private JLabel statue;
 	private JButton but;
+	private JButton butOut;
 	
 	private Table table;
 	
@@ -70,6 +73,7 @@ public class DiaryUi extends JPanel{
 		but = new JButton("查找");
 		textField = new JTextField();
 		font = new Font("Courier", Font.PLAIN, 26);
+		butOut = new JButton("登出");
 	}
 	
 	private void initComponent(){
@@ -80,6 +84,7 @@ public class DiaryUi extends JPanel{
 		statue.setBounds(528,75,183,28);
 		but.setBounds(692,119,120,30);
 		textField.setBounds(381,122,160,25);
+		butOut.setBounds(52, 36, 120, 40);
 		
 		this.add(date);
 		this.add(title);
@@ -87,6 +92,7 @@ public class DiaryUi extends JPanel{
 		this.add(statue);
 		this.add(but);
 		this.add(textField);
+		this.add(butOut);
 		
 		
 		String[] columnNames = { "付款单", "收款单", "审批单据", "账户管理" };
@@ -110,6 +116,12 @@ public class DiaryUi extends JPanel{
 //				textArea.append(diary.getDocumentApproval()+"\n");
 //				textArea.append(diary.getAccountManagement()+"\n");
 				textField.setText(null);
+			}
+		});
+		
+		butOut.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				mainFrame.setContentPane(new LoginUi(mainFrame));
 			}
 		});
 	}

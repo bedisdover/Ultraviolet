@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 
+import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
 
@@ -33,6 +34,7 @@ public class StatisticsReportUi extends JPanel {
 	private JTextField textDate1;
 	private JTextField textDate2;
 	private JButton but;
+	private JButton butOut;
 	
 	private Font font;
 	private Font subfont;
@@ -62,6 +64,7 @@ public class StatisticsReportUi extends JPanel {
 		but = new JButton("查看");
 		subtitle1 = new JLabel("付款单信息");
 		subtitle2 = new JLabel("收款单信息");
+		butOut = new JButton("登出");
 	}
 	
 	private void initComponent(){
@@ -80,6 +83,7 @@ public class StatisticsReportUi extends JPanel {
 		subtitle2.setBounds(456,423-change,169,39);
 		subtitle1.setFont(subfont);
 		subtitle2.setFont(subfont);
+		butOut.setBounds(52, 36, 120, 40);
 		
 		this.add(title);
 		this.add(labelDate1);
@@ -91,6 +95,7 @@ public class StatisticsReportUi extends JPanel {
 		this.add(but);
 		this.add(subtitle1);
 		this.add(subtitle2);
+		this.add(butOut);
 		
 		
 		String[] columnNames1 = { "付款单", "收款单", "审批单据", "账户管理" };
@@ -117,6 +122,12 @@ public class StatisticsReportUi extends JPanel {
 				textDate2.setText(null);
 				
 				
+			}
+		});
+		
+		butOut.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				mainFrame.setContentPane(new LoginUi(mainFrame));
 			}
 		});
 	}
