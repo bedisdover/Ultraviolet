@@ -51,6 +51,7 @@ public class InformationFindData extends UnicastRemoteObject implements Informat
 		return drivers;
 	}
 	
+	//查找指定编号的司机信息
 	public DriverPO findTheDriver(String id) throws RemoteException{
 		DriverPO driver=null;
 		Connect co=new Connect();
@@ -89,6 +90,24 @@ public class InformationFindData extends UnicastRemoteObject implements Informat
 		return vehicles;
 	}
 	
+	//查找指定编号的车辆信息
+	public VehiclePO findTheVehicle(String id) throws RemoteException{
+		VehiclePO vehicle=null;
+		Connect co=new Connect();
+		String sql="SELECT * FROM vehicle";
+		ResultSet result=co.getResultSet(sql);
+		try {
+			while(result.next()){
+				if(result.getString(1).equals(id)){
+					vehicle=new VehiclePO(result.getString(1),result.getString(2),result.getString(3),result.getString(4));
+					break;
+				}				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return vehicle;
+	}
 	//查找所有机构信息
 	public ArrayList<InstitutionPO> findInstitution() throws RemoteException{
 		ArrayList<InstitutionPO> institutions=new ArrayList<InstitutionPO>();
