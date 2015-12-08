@@ -18,8 +18,6 @@ public class main {
 //		OrderManageUi orderManagerUi = new OrderManageUi(mainFrame);
 //		OrderManageUi orderManagerUi = new OrderManageUi(mainFrame);
 //		mainFrame.setContentPane(orderManagerUi);
-//		FinancialStaffUi orderManagerUi = new FinancialStaffUi(mainFrame);
-//		mainFrame.setContentPane(orderManagerUi);
 	}
 
 }

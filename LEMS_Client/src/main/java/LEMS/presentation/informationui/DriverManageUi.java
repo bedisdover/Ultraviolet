@@ -87,9 +87,9 @@ public class DriverManageUi extends JPanel {
 		this.setTestState(false);
 		// 添加事件监听器
 		this.addListener();
-
 	}
 
+	
 	/**
 	 * 初始化
 	 */
