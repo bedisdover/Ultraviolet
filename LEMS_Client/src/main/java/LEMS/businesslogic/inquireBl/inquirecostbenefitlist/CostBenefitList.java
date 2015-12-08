@@ -6,6 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.FinanceFactory;
 import LEMS.dataservice.factory.InquireFactory;
@@ -92,7 +93,7 @@ public class CostBenefitList {
 	public ArrayList<IncomeBillPO> getIncomeBill(String startTime,
 			String endTime) {
 		try {
-			DatabaseFactory database = (DatabaseFactory) Naming.lookup("rmi://localhost:1099/data");
+			DatabaseFactory database = (DatabaseFactory) Naming.lookup(RMIConnect.RMI);
 			FinanceFactory ff = database.getFinanceFactory();
 			IncomeBillDataService in = ff.getIncomeBillData();
 			incomeBills = in.getIncomeBill(startTime, endTime);
@@ -114,7 +115,7 @@ public class CostBenefitList {
 
 	public ArrayList<PayBillPO> getPayBill(String startTime, String endTime) {
 		try {
-			DatabaseFactory database = (DatabaseFactory) Naming.lookup("rmi://localhost:1099/data");
+			DatabaseFactory database = (DatabaseFactory) Naming.lookup(RMIConnect.RMI);
 			FinanceFactory ff = database.getFinanceFactory();
 			PayBillDataService in = ff.getPayBillData();
 			payBills = in.getPayBill(startTime, endTime);

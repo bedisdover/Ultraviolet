@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import LEMS.businesslogic.inquirebl.inquirelogisticsinfo.InquireLogisticsInfo;
+import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.businesslogicservice.orderblservice.AddOrderService;
 import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.InquireFactory;
@@ -110,7 +111,7 @@ public class AddOrder implements AddOrderService {
 		
 		try {
 			//获得数据库的引用
-			DatabaseFactory databaseFactory = (DatabaseFactory) Naming.lookup("rmi://localhost:1099/data");
+			DatabaseFactory databaseFactory = (DatabaseFactory) Naming.lookup(RMIConnect.RMI);
 			OrderFactory orderFactory = databaseFactory.getOrderFactory();
 			orderDataService = orderFactory.getOrderData();
 		} catch (MalformedURLException e) {

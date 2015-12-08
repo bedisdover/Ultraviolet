@@ -3,6 +3,7 @@ package LEMS.businesslogic.inquirebl.inquirediary;
 import java.rmi.Naming;
 import java.util.ArrayList;
 
+import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.InquireFactory;
 import LEMS.dataservice.inquiredataservice.DiaryDataService;
@@ -16,7 +17,7 @@ public class Diary {
 	}
 	public ArrayList<String> getOperation(){
 		try {
-			DatabaseFactory database=(DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup(RMIConnect.RMI);
 			InquireFactory inquire=database.getInquireFactory();
 			DiaryDataService dds=inquire.getDiaryData();
 			ArrayList<DiaryPO> diaries=dds.findDiary(date);

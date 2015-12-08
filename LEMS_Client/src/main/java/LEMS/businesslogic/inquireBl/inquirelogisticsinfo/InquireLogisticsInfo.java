@@ -3,6 +3,7 @@ package LEMS.businesslogic.inquirebl.inquirelogisticsinfo;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 
+import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.businesslogicservice.inquireblservice.InquireLogisticsInfoService;
 import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.InquireFactory;
@@ -54,7 +55,7 @@ public class InquireLogisticsInfo implements InquireLogisticsInfoService {
 		LogisticsInfoDataService lo = null;
 		try {
 			DatabaseFactory database = (DatabaseFactory) Naming
-					.lookup("rmi://localhost:1099/data");
+					.lookup(RMIConnect.RMI);
 			InquireFactory inquire = database.getInquireFactory();
 			lo = inquire.getLogisticsInfo();
 
