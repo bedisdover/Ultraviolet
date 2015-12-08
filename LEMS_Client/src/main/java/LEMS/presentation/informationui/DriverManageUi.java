@@ -292,20 +292,25 @@ public class DriverManageUi extends JPanel {
 				//将被选中司机的详细信息显示出来
 				int currentLine=table.table.getSelectedRow();
 				InformationFind find=new InformationFind();
-				DriverVO dvo=find.findTheDriver(textId.getText());
+				DriverVO dvo=find.findTheDriver(table.getValueAt(currentLine, 0));
 				textId.setText(dvo.getId());
 				textName.setText(dvo.getName());
 				textTime.setText(dvo.getDrivingPeriod());
 				comboBox.setSelectedItem(Gender.toString(dvo.getGender()));
 				textCard.setText(dvo.getIDcardNumber());
 				textMobile.setText(dvo.getPhoneNumber());
+				textYear.setText(dvo.getDateOfBirth().substring(0,4));
+				textMonth.setText(dvo.getDateOfBirth().substring(5, 7));
+				textDay.setText(dvo.getDateOfBirth().substring(8, 10));
 			}
 		});
+		
 		inquire.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				
 			}
 		});
+		
 		exit.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				LoginUi loginUi=new LoginUi(mainFrame);
