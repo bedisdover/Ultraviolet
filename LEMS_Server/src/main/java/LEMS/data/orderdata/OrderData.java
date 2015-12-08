@@ -188,7 +188,6 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 			OrderData od=new OrderData();
 			od.insert(opo);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
