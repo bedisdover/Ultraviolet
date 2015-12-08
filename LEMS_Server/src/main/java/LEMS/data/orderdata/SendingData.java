@@ -25,6 +25,8 @@ public class SendingData extends UnicastRemoteObject implements SendingDataServi
 	 */
 	private TransferID transferID;
 	
+	private final int ID_LENGTH = 18;
+	
 	public SendingData() throws RemoteException {
 		super();
 		
@@ -94,5 +96,12 @@ public class SendingData extends UnicastRemoteObject implements SendingDataServi
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public String createID(String institution, String date) throws RemoteException {
+		String id = new CreateID().createID("delivery", ID_LENGTH, institution + date);
+		
+		return id;
 	}
 }

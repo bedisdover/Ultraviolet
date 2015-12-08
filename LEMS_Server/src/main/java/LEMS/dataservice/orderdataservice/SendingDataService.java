@@ -15,5 +15,7 @@ public interface SendingDataService extends Remote {
 	public void update(DeliveryNotePO deliveryNotePO) throws RemoteException;
 	
 	public void delete(String id) throws RemoteException;
+	
+	public String createID(String institution, String date) throws RemoteException;
 
 }

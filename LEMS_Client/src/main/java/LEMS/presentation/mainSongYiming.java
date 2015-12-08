@@ -19,6 +19,7 @@ public class mainSongYiming {
 //		ManagerUi managerUi = new ManagerUi(mainFrame, null);
 //		mainFrame.setContentPane(managerUi);
 		mainFrame.setVisible(true);
+		System.out.println(Long.MAX_VALUE);
 	}
 
 }
