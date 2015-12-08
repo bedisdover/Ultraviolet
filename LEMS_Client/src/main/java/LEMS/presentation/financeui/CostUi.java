@@ -56,18 +56,19 @@ public class CostUi extends JPanel {
 		text = new JTextField[5];
 		textArea = new JTextArea();
 		button = new JButton[5];
-		font = new Font("宋体", Font.PLAIN, 22);
+		font = new Font("Courier", Font.PLAIN, 26);
 		button = new JButton[5];
 	}
 
 	public void initComponents() {
 		int b = 70;//整体左移量
+		int change = 30;//整体上移量
 		
 		title.setBounds(454,26,249,45);
 		title.setFont(font);
-		name.setBounds(375,75,135,28);
-		statue.setBounds(548,75,183,28);
-		textArea.setBounds(304,427,119,90);
+		name.setBounds(800,25,135,28);
+		statue.setBounds(800,60,183,28);
+		textArea.setBounds(304,427-change,119,90);
 
 		for(int i = 0;i<6;i++){
 			label[i] = new JLabel();
@@ -82,27 +83,27 @@ public class CostUi extends JPanel {
 		
 		int width = 60;//间隔
 		for (int i = 0; i < 5; i++) {
-			label[i].setBounds(261-b, 141+width*i, 108, 32);
+			label[i].setBounds(261-b, 141+width*i-change, 108, 32);
 			this.add(label[i]);
 		}
-		label[5].setBounds(261-b, 141+width*5+10, 108, 32);
+		label[5].setBounds(261-b, 141+width*5+10-change, 108, 32);
 		this.add(label[5]);
 		for (int i = 0; i < 5; i++) {
 			text[i] = new JTextField();
-			text[i].setBounds(374-b, 144+(width+1)*i, 119, 25);
+			text[i].setBounds(374-b, 144+(width+1)*i-change, 119, 25);
 			this.add(text[i]);
 		}
 		
 		button[0] = new JButton("确定");
-		button[0].setBounds(276-b,554,99,42);
+		button[0].setBounds(276-b,554-change,99,42);
 		button[1] = new JButton("取消");
-		button[1].setBounds(394-b,554,99,42);
+		button[1].setBounds(394-b,554-change,99,42);
 		button[2] = new JButton("新建");
-		button[2].setBounds(292-b,642,109,40);
+		button[2].setBounds(292-b,642-change,109,40);
 		button[3] = new JButton("删除");
-		button[3].setBounds(558-b,642,109,40);
+		button[3].setBounds(558-b,642-change,109,40);
 		button[4] = new JButton("生成成本收益表");
-		button[4].setBounds(823-b,642,153,40);
+		button[4].setBounds(823-b,642-change,153,40);
 		
 		for(int i = 0;i<5;i++){
 			this.add(button[i]);
@@ -113,7 +114,7 @@ public class CostUi extends JPanel {
 		this.add(textArea);
 		
 		String[] columnNames = { "付款账号", "付款日期", "付款金额" };
-		int[] list = { 40, 148, 14, 30, 20, 523-40, 123, 462, 489 };
+		int[] list = { 40, 148, 14, 30, 20, 523-40, 123-change, 462, 489 };
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
 		// *
@@ -193,7 +194,7 @@ public class CostUi extends JPanel {
 	
 	public void paintComponent(Graphics g) {
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
-		g.draw3DRect(163, 124, 294, 489, false);
+		g.draw3DRect(163, 124-30, 294, 489, false);
 		this.repaint();
 	}
 }

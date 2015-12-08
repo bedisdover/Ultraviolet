@@ -65,7 +65,7 @@ public class InstitutionManageUi extends JPanel {
 	}
 	
 	private void init() {
-		title = new JLabel("人员管理");
+		title = new JLabel("机构管理");
 		butOut = new JButton("登出");
 		butAdd = new JButton("新增");
 		butDel = new JButton("删除");
@@ -81,21 +81,22 @@ public class InstitutionManageUi extends JPanel {
 	}
 	
 	private void initComponents() {
-
-		title.setBounds(449, 37, 148, 39);
-		title.setFont(fnt1);
-		labelID.setBounds(100, 180, 131, 30);
-		textID.setBounds(206, 184, 144, 24);
-		labelLocation.setBounds(86, 300, 131, 30);
-		textLocation.setBounds(206, 303, 144, 24);
+		int change = 30;
 		
-		OK.setBounds(86, 533, 120, 40);
-		cancel.setBounds(230, 533, 120, 40);
+		title.setBounds(449, 27, 148, 39);
+		title.setFont(fnt1);
+		labelID.setBounds(100, 180-change, 131, 30);
+		textID.setBounds(206, 184-change, 144, 24);
+		labelLocation.setBounds(86, 300-change, 131, 30);
+		textLocation.setBounds(206, 303-change, 144, 24);
+		
+		OK.setBounds(86, 533-change, 120, 40);
+		cancel.setBounds(230, 533-change, 120, 40);
 		butOut.setBounds(52, 36, 120, 40);
-		butAdd.setBounds(114, 632, 120, 40);
-		butDel.setBounds(336, 632, 120, 40);
-		butFind.setBounds(557, 632, 120, 40);
-		butChange.setBounds(779, 632, 120, 40);
+		butAdd.setBounds(114, 632-change, 120, 40);
+		butDel.setBounds(336, 632-change, 120, 40);
+		butFind.setBounds(557, 632-change, 120, 40);
+		butChange.setBounds(779, 632-change, 120, 40);
 		
 		this.add(title);
 		this.add(labelID);
@@ -111,7 +112,7 @@ public class InstitutionManageUi extends JPanel {
 		this.add(butChange);
 		
 		String[] columnNames = { "机构所处城市", "机构编号" };
-		int[] list = { 40, 272, 14, 30, 20, 384, 126, 561, 465 };
+		int[] list = { 40, 272, 14, 30, 20, 384, 126-change, 561, 465 };
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
 		// *
@@ -271,7 +272,7 @@ public class InstitutionManageUi extends JPanel {
 	public void paintComponent(Graphics g) {
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(),
 				this.getHeight(), null);
-		g.draw3DRect(63, 126, 306, 465, false);
+		g.draw3DRect(63, 126-30, 306, 465, false);
 		this.repaint();
 	}
 	

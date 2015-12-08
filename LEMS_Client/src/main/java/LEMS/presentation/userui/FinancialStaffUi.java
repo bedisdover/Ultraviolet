@@ -46,10 +46,15 @@ public class FinancialStaffUi extends JPanel {
 	
 	private void init(){
 		tabbedPane = new JTabbedPane();
-		tabbedPane.addTab("结算管理",null,settlementPanel,"结算管理界面");  
-        tabbedPane.addTab("成本管理",null,costPanel,"成本管理界面");
-        tabbedPane.addTab("统计报表",null,statisticsReportUi,"统计报表界面"); 
-        tabbedPane.addTab("查询日志",null,diaryUi,"查询日志界面"); 
+		ImageIcon image1=new ImageIcon("source\\tabbedpanel\\结算管理.png");
+		ImageIcon image2=new ImageIcon("source\\tabbedpanel\\成本管理.png");
+		ImageIcon image3=new ImageIcon("source\\tabbedpanel\\统计报表.png");
+		ImageIcon image4=new ImageIcon("source\\tabbedpanel\\查询日志.png");
+		
+		tabbedPane.addTab(null,image1,settlementPanel,"结算管理界面");  
+        tabbedPane.addTab(null,image2,costPanel,"成本管理界面");
+        tabbedPane.addTab(null,image3,statisticsReportUi,"统计报表界面"); 
+        tabbedPane.addTab(null,image4,diaryUi,"查询日志界面"); 
         
 	}
 	

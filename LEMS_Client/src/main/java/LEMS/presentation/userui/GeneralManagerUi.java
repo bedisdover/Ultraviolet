@@ -1,5 +1,6 @@
 package LEMS.presentation.userui;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.border.TitledBorder;
@@ -42,9 +43,9 @@ public class GeneralManagerUi extends JPanel {
 	ExamDocumentUi examDocumentUi;
 	InstitutionManageUi institutionManageUi;
 	StuffManageUi stuffManageUi;
-	StatisticsUi statisticsUi;
+	StatisticsReportUi statisticsReportUi;
 	LEMS.presentation.financeui.SettingPriceUi SettingPriceUi;
-	Font font = new Font("宋体", Font.PLAIN, 26);
+	Font font = new Font("宋体", Font.PLAIN, 12);
 
 	/**
 	 * Create the panel.
@@ -59,7 +60,7 @@ public class GeneralManagerUi extends JPanel {
 		institutionManageUi = new InstitutionManageUi(this.mainFrame);
 		diaryUi = new DiaryUi(this.mainFrame);
 		stuffManageUi = new StuffManageUi(this.mainFrame);
-		statisticsUi = new StatisticsUi(this.mainFrame);
+		statisticsReportUi = new StatisticsReportUi(this.mainFrame);
 		SettingPriceUi = new LEMS.presentation.financeui.SettingPriceUi(this.mainFrame);
 		init();
 		initComponents();
@@ -68,13 +69,19 @@ public class GeneralManagerUi extends JPanel {
 
 	private void init(){
 		tabbedPane = new JTabbedPane();
-		tabbedPane.setFont(font);
-		tabbedPane.addTab("机构管理",null,institutionManageUi,"机构管理界面"); 
-		tabbedPane.addTab("查询日志",null,diaryUi,"查询日志界面");  
-        tabbedPane.addTab("审批单据",null,examDocumentUi,"审批单据界面");
-        tabbedPane.addTab("人员管理",null,stuffManageUi,"人员管理界面"); 
-        tabbedPane.addTab("查看统计分析",null,statisticsUi,"查看统计分析界面");
-        tabbedPane.addTab("制定价格",null,SettingPriceUi,"制定价格界面");
+		ImageIcon image1=new ImageIcon("source\\tabbedpanel\\查询日志.png");
+		ImageIcon image2=new ImageIcon("source\\tabbedpanel\\审批单据.png");
+		ImageIcon image3=new ImageIcon("source\\tabbedpanel\\机构管理.png");
+		ImageIcon image4=new ImageIcon("source\\tabbedpanel\\人员管理.png");
+		ImageIcon image5=new ImageIcon("source\\tabbedpanel\\查看统计分析.png");
+		ImageIcon image6=new ImageIcon("source\\tabbedpanel\\制定价格.png");
+		
+		tabbedPane.addTab(null,image1,diaryUi,"查询日志界面");  
+        tabbedPane.addTab(null,image2,examDocumentUi,"审批单据界面");
+        tabbedPane.addTab(null,image3,institutionManageUi,"机构管理界面"); 
+        tabbedPane.addTab(null,image4,stuffManageUi,"人员管理界面"); 
+        tabbedPane.addTab(null,image5,statisticsReportUi,"查看统计分析界面");
+        tabbedPane.addTab(null,image6,SettingPriceUi,"制定价格界面");
 	}
 	
 	private void initComponents(){

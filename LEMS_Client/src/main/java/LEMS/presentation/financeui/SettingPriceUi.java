@@ -31,7 +31,7 @@ public class SettingPriceUi extends JPanel {
 	JButton butOut = new JButton("登出");
 	JButton OK = new JButton("确定");
 	JTextField text = new JTextField();
-	Font font = new Font("宋体", Font.PLAIN, 22);
+	Font font = new Font("Courier", Font.PLAIN, 26);
 	
 	
 
@@ -73,14 +73,13 @@ public class SettingPriceUi extends JPanel {
 	private void addListener(){
 		butOut.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-//				mainFrame.setContentPane(new LoginUi(mainFrame));
-				System.exit(0);
+				mainFrame.setContentPane(new LoginUi(mainFrame));
 			}
 		});
 		
 		OK.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				System.exit(0);
+				
 			}
 		});
 				

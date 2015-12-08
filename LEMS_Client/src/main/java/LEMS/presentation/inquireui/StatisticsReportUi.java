@@ -53,11 +53,11 @@ public class StatisticsReportUi extends JPanel {
 		title = new JLabel("查看统计分析");
 		labelDate1 = new JLabel("日期：");
 		labelDate2 = new JLabel("至");
-		name = new JLabel("账号：   xxx");
-		statue = new JLabel("身份：    财务人员");
+		name = new JLabel("账号：   ");
+		statue = new JLabel("身份：    ");
 		textDate1 = new JTextField();
 		textDate2 = new JTextField();
-		font = new Font("宋体", Font.PLAIN, 22);
+		font = new Font("Courier", Font.PLAIN, 26);
 		subfont = new Font("Dialog", Font.PLAIN, 18);
 		but = new JButton("查看");
 		subtitle1 = new JLabel("付款单信息");
@@ -65,17 +65,19 @@ public class StatisticsReportUi extends JPanel {
 	}
 	
 	private void initComponent(){
-		title.setBounds(434,26,249,45);
+		int change = 20;
+		
+		title.setBounds(424,26,249,45);
 		title.setFont(font);
-		name.setBounds(375,75,135,28);
-		statue.setBounds(548,75,183,28);
-		but.setBounds(740,119,120,30);
-		labelDate1.setBounds(217,122,80,25);
-		labelDate2.setBounds(490,122,80,25);
-		textDate1.setBounds(290,122,160,25);
-		textDate2.setBounds(540,122,160,25);
-		subtitle1.setBounds(456,156,169,39);
-		subtitle2.setBounds(456,423,169,39);
+		name.setBounds(800,25,135,28);
+		statue.setBounds(800,60,183,28);
+		but.setBounds(740,119-change,120,30);
+		labelDate1.setBounds(217,122-change,80,25);
+		labelDate2.setBounds(490,122-change,80,25);
+		textDate1.setBounds(290,122-change,160,25);
+		textDate2.setBounds(540,122-change,160,25);
+		subtitle1.setBounds(456,156-change,169,39);
+		subtitle2.setBounds(456,423-change,169,39);
 		subtitle1.setFont(subfont);
 		subtitle2.setFont(subfont);
 		
@@ -92,7 +94,7 @@ public class StatisticsReportUi extends JPanel {
 		
 		
 		String[] columnNames1 = { "付款单", "收款单", "审批单据", "账户管理" };
-		int[] list1 = { 30, 148, 14, 30, 20, 218, 198, 611, 220 };
+		int[] list1 = { 30, 148, 14, 30, 20, 202, 198-change, 611, 220 };
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
 		// *
@@ -100,7 +102,7 @@ public class StatisticsReportUi extends JPanel {
 		add(table1.drawTable(columnNames1, list1));
 		
 		String[] columnNames2 = { "付款单", "收款单", "审批单据", "账户管理" };
-		int[] list2 = { 30, 148, 14, 30, 20, 218, 462, 611, 220};
+		int[] list2 = { 30, 148, 14, 30, 20, 202, 462-change, 611, 220};
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
 		// *
