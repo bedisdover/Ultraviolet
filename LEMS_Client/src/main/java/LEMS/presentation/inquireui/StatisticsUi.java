@@ -3,7 +3,6 @@ package LEMS.presentation.inquireui;
 import javax.swing.JPanel;
 
 import LEMS.presentation.MainFrame;
-import LEMS.presentation.mainUi;
 
 import java.awt.Rectangle;
 

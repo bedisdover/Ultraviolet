@@ -4,7 +4,6 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 import LEMS.presentation.MainFrame;
-import LEMS.presentation.mainUi;
 import LEMS.presentation.financeui.CostUi;
 import LEMS.presentation.financeui.SettlementUi;
 import LEMS.presentation.inquireui.DiaryUi;

@@ -3,30 +3,16 @@ package LEMS.presentation.userui;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-import javax.swing.border.TitledBorder;
-import javax.swing.border.LineBorder;
-
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Font;
 
-import javax.swing.JButton;
-
 import LEMS.presentation.MainFrame;
-import LEMS.presentation.mainUi;
-import LEMS.presentation.financeui.CostUi;
 import LEMS.presentation.financeui.ExamDocumentUi;
-import LEMS.presentation.financeui.SettlementUi;
 import LEMS.presentation.informationui.InstitutionManageUi;
 import LEMS.presentation.informationui.StuffManageUi;
 import LEMS.presentation.inquireui.DiaryUi;
 import LEMS.presentation.inquireui.StatisticsReportUi;
-import LEMS.presentation.inquireui.StatisticsUi;
 import LEMS.vo.uservo.UserVO;
-
-import java.awt.Rectangle;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 /**
  * @author 章承尧

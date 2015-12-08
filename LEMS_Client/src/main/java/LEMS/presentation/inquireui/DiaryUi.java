@@ -2,7 +2,6 @@ package LEMS.presentation.inquireui;
 
 import javax.swing.JPanel;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
@@ -14,19 +13,9 @@ import javax.swing.JButton;
 
 
 
-//import LEMS.businesslogic.inquirebl.inquirediary.InquireDiary;
-import LEMS.businesslogicservice.inquireblservice.InquireDiaryService;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
-import LEMS.presentation.mainUi;
-import LEMS.presentation.userui.GeneralManagerUi;
-import LEMS.vo.inquirevo.DiaryVO;
-
-import javax.swing.*;
-
-import java.awt.*;
-
 import javax.swing.*;
 
 import java.awt.event.*;
