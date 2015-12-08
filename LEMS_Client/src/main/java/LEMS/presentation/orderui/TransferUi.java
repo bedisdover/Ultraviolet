@@ -17,6 +17,7 @@ import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
 import LEMS.presentation.storeui.DateChooser;
 import LEMS.vo.ordervo.TransferVO;
+import LEMS.vo.uservo.UserVO;
 
 /**
  * @author 周梦佳
@@ -63,7 +64,7 @@ public class TransferUi extends JPanel {
 	
 	private TransferVO transferVO;
 	
-	public TransferUi(final MainFrame mainFrame) {
+	public TransferUi(final MainFrame mainFrame, UserVO user) {
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
@@ -76,6 +77,8 @@ public class TransferUi extends JPanel {
 		// 添加事件监听器
 		this.addListener();
 
+		transferVO = new TransferVO();
+		transfer = new Transfer(user, transferVO);
 	}
 
 	/**

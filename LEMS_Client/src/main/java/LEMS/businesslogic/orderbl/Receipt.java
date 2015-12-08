@@ -82,8 +82,14 @@ public class Receipt extends AddOrder implements ReceiptService {
 	 * 生成到达单ID
 	 */
 	private String createId() {
-		//TODO 
-		return null;
+		String id = "";
+		try {
+			id = this.getDataService().createID(user.getInstitution().getLocation(), arrivalVO.getDate());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		return id;
 	}
 	
 	private ReceiptDataService getDataService() {

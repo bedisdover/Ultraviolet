@@ -71,7 +71,7 @@ public class ReceiptRecordUi extends JPanel {
 		this.addListener();
 		
 		incomeBillVO = new IncomeBillVO();
-		receiptRecord = new ReceiptRecord(incomeBillVO);
+		receiptRecord = new ReceiptRecord(userVO, incomeBillVO);
 	}
 
 	/**

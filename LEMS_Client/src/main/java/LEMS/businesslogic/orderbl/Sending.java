@@ -14,6 +14,7 @@ import LEMS.dataservice.orderdataservice.SendingDataService;
 import LEMS.po.orderpo.DeliveryNotePO;
 import LEMS.po.orderpo.OrderPO;
 import LEMS.vo.ordervo.DeliveryVO;
+import LEMS.vo.uservo.UserVO;
 
 /**
  * @author 宋益明
@@ -32,10 +33,13 @@ public class Sending extends AddOrder implements SendingService {
 	 */
 	private DeliveryVO deliveryVO;
 	
-	public Sending(DeliveryVO deliveryVO) {
+	private UserVO userVO;
+	
+	public Sending(UserVO userVO, DeliveryVO deliveryVO) {
 		//新建订单列表
 		orders = new ArrayList<OrderPO>();
 		
+		this.userVO = userVO;
 		this.deliveryVO = deliveryVO;
 	}
 	
@@ -67,8 +71,14 @@ public class Sending extends AddOrder implements SendingService {
 	 * 生成派件单ID
 	 */
 	private String createId() {
-		//TODO 生成派件单ID
-		return null;
+		String id = "";
+		try {
+			id = this.getDataService().createID(userVO.getInstitution().getLocation(), deliveryVO.getDate());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		return id;
 	}
 	
 	private SendingDataService getDataService() {

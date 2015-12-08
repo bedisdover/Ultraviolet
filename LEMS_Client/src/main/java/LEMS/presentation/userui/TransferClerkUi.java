@@ -19,8 +19,8 @@ import LEMS.vo.uservo.UserVO;
  * 中转接收 装运管理
  */
 public class TransferClerkUi extends JPanel {
-
-
+	private static final long serialVersionUID = 1L;
+	
 	MainFrame mainFrame;
 	private JTabbedPane tabbedPane;
 	TransferUi transferUi;
@@ -31,7 +31,7 @@ public class TransferClerkUi extends JPanel {
 		this.mainFrame = mainFrame;
 		this.setLayout(new BorderLayout());
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
-		transferUi = new TransferUi(this.mainFrame);
+		transferUi = new TransferUi(this.mainFrame, user);
 		loadUi = new LoadUi(this.mainFrame);
 		init();
 		initComponents();

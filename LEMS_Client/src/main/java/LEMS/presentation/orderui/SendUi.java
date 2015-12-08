@@ -72,7 +72,7 @@ public class SendUi extends JPanel {
 
 		deliveryVO = new DeliveryVO();
 
-		sending = new Sending(deliveryVO);
+		sending = new Sending(userVO, deliveryVO);
 	}
 
 	/**

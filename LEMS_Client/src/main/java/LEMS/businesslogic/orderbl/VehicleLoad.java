@@ -74,8 +74,14 @@ public class VehicleLoad extends AddOrder implements VehicleLoadService {
 	}
 	
 	private String createID() {
-		//TODO 创建车辆装车单ID
-		return null;
+		String id = "";
+		try {
+			id = this.getDataService().createID(user.getInstitution().getLocation(), vehicleLoadVO.getDate());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		return id;
 	}
 	
 	/**

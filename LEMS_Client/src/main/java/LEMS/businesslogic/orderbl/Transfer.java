@@ -41,8 +41,4 @@ public class Transfer extends AddOrder implements TransferService {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	public ArrayList<OrderPO> getOrders() {
-		return orders;
-	}
 }

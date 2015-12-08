@@ -14,6 +14,7 @@ import LEMS.dataservice.orderdataservice.ReceiptRecordDataService;
 import LEMS.po.orderpo.IncomeBillPO;
 import LEMS.po.orderpo.OrderPO;
 import LEMS.vo.ordervo.IncomeBillVO;
+import LEMS.vo.uservo.UserVO;
 
 /**
  * @author 宋益明
@@ -29,8 +30,11 @@ public class ReceiptRecord extends AddOrder implements ReceiptRecordService {
 	
 	private IncomeBillVO incomeBillVO;
 	
-	public ReceiptRecord(IncomeBillVO incomeBillVO) {
+	private UserVO userVO;
+	
+	public ReceiptRecord(UserVO uservo, IncomeBillVO incomeBillVO) {
 		
+		this.userVO = uservo;
 		this.incomeBillVO = incomeBillVO;
 		
 		//新建订单列表
@@ -62,6 +66,14 @@ public class ReceiptRecord extends AddOrder implements ReceiptRecordService {
 	}
 	
 	private String createID() {
+		String id = "";
+		try {
+			id = this.getDataService().createID(userVO.getInstitution().getLocation(), incomeBillVO.getDate());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		return id;
 	}
 	
 	private ReceiptRecordDataService getDataService() {
