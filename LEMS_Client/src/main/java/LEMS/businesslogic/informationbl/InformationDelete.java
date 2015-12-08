@@ -5,6 +5,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.businesslogicservice.informationblservice.InformationDeleteService;
 import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.InformationFactory;
@@ -16,7 +17,7 @@ public class InformationDelete implements InformationDeleteService{
 	 */
 	public void deleteDriver(String id){
 		try {
-			DatabaseFactory database=(DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup(RMIConnect.RMI);
 			InformationFactory infof=database.getInformationFactory();
 			InformationDeleteDataService infod=infof.getInformationDeleteData();
 			infod.deleteDriver(id);
@@ -33,7 +34,7 @@ public class InformationDelete implements InformationDeleteService{
 	 */
 	public void deleteVehicle(String id){
 		try {
-			DatabaseFactory database=(DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup(RMIConnect.RMI);
 			InformationFactory infof=database.getInformationFactory();
 			InformationDeleteDataService infod=infof.getInformationDeleteData();
 			infod.deleteVehicle(id);
@@ -50,7 +51,7 @@ public class InformationDelete implements InformationDeleteService{
 	 */
 	public void deleteInstitution(String id){
 		try {
-			DatabaseFactory database=(DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup(RMIConnect.RMI);
 			InformationFactory infof=database.getInformationFactory();
 			InformationDeleteDataService infod=infof.getInformationDeleteData();
 			infod.deleteInstitution(id);
@@ -67,7 +68,7 @@ public class InformationDelete implements InformationDeleteService{
 	 */
 	public void deleteStaff(String id){
 		try {
-			DatabaseFactory database=(DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup(RMIConnect.RMI);
 			InformationFactory infof=database.getInformationFactory();
 			InformationDeleteDataService infod=infof.getInformationDeleteData();
 			infod.deleteStaff(id);
@@ -84,7 +85,7 @@ public class InformationDelete implements InformationDeleteService{
 	 */
 	public void deleteAccount(String id){
 		try {
-			DatabaseFactory database=(DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup(RMIConnect.RMI);
 			InformationFactory infof=database.getInformationFactory();
 			InformationDeleteDataService infod=infof.getInformationDeleteData();
 			infod.deleteAccount(id);

@@ -83,7 +83,7 @@ public class DiaryUi extends JPanel{
 		name.setBounds(355,75,135,28);
 		statue.setBounds(528,75,183,28);
 		but.setBounds(692,119,120,30);
-		textField.setBounds(381,122,160,25);
+		textField.setBounds(415,122,160,25);
 		butOut.setBounds(52, 36, 120, 40);
 		
 		this.add(date);
@@ -95,8 +95,8 @@ public class DiaryUi extends JPanel{
 		this.add(butOut);
 		
 		
-		String[] columnNames = { "付款单", "收款单", "审批单据", "账户管理" };
-		int[] list = { 40, 153, 14, 30, 20, 186, 172, 632, 470 };
+		String[] columnNames = {""};
+		int[] list = { 40, 414, 14, 30, 20, 290, 172, 432, 470 };
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
 		// *
