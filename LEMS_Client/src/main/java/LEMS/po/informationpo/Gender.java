@@ -11,4 +11,24 @@ public enum Gender{
     		return WOMEN;
     	}
     }
+    
+    public static Gender transfer(String gender){
+    	Gender g=null;
+    	if(gender.equals("MAN")){
+    		g=Gender.MAN;
+    	}
+    	else{
+    		g=Gender.WOMEN;
+    	}
+    	return g;
+    }
+    
+    public static String toString(Gender g){
+    	if(g==Gender.MAN){
+    		return "男";
+    	}
+    	else{
+    		return "女";
+    	}
+    }
 }

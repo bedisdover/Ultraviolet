@@ -9,14 +9,19 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import LEMS.businesslogic.informationbl.InformationAdd;
 import LEMS.businesslogic.informationbl.InformationFind;
+import LEMS.businesslogic.informationbl.InformationUpdate;
+import LEMS.po.informationpo.Gender;
 import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
+import LEMS.presentation.userui.ManagerUi;
 import LEMS.vo.informationvo.DriverVO;
 import LEMS.vo.uservo.UserVO;
 
@@ -283,6 +288,17 @@ public class DriverManageUi extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				setTestState(true);
 				isUpdate=true;
+				
+				//将被选中司机的详细信息显示出来
+				int currentLine=table.table.getSelectedRow();
+				InformationFind find=new InformationFind();
+				DriverVO dvo=find.findTheDriver(textId.getText());
+				textId.setText(dvo.getId());
+				textName.setText(dvo.getName());
+				textTime.setText(dvo.getDrivingPeriod());
+				comboBox.setSelectedItem(Gender.toString(dvo.getGender()));
+				textCard.setText(dvo.getIDcardNumber());
+				textMobile.setText(dvo.getPhoneNumber());
 			}
 		});
 		inquire.addMouseListener(new MouseAdapter() {
@@ -309,10 +325,40 @@ public class DriverManageUi extends JPanel {
 						table.setValueAt(i, 4, textCard.getText());
 						table.setValueAt(i, 5, textMobile.getText());
 						
-						DriverVO dvo=new DriverVO();
+						DriverVO dvo=new DriverVO(textId.getText(),textName.getText(),textYear.getText()+"年"+textMonth.getText()+"月"+textDay.getText()+"日",textCard.getText(),textMobile.getText(),textTime.getText(),Gender.exchange((String)comboBox.getSelectedItem()));
+						InformationAdd add = new InformationAdd();
+						add.addDriver(dvo);
+						
+						empty();
+						setTestState(false);
+						isAdd=false;
+					}
+					else{
+						JOptionPane.showMessageDialog(DriverManageUi.this, "请将信息填写完整");
 					}
 				}
-				empty();
+				
+				if(isUpdate){
+					int currentLine=table.table.getSelectedRow();
+					//在数据库中修改该司机信息
+					DriverVO dvo=new DriverVO(textId.getText(),textName.getText(),textYear.getText()+"年"+textMonth.getText()+"月"+textDay.getText()+"日",textCard.getText(),textMobile.getText(),textTime.getText(),Gender.exchange((String)comboBox.getSelectedItem()));
+					InformationUpdate update = new InformationUpdate();
+					update.updateDriver(dvo);
+					
+					//在界面上修改该司机信息
+					table.setValueAt(currentLine, 0, textId.getText());
+					table.setValueAt(currentLine, 1, textName.getText());
+					table.setValueAt(currentLine, 2, textTime.getText());
+					table.setValueAt(currentLine, 3, (String)comboBox.getSelectedItem());
+					table.setValueAt(currentLine, 4, textCard.getText());
+					table.setValueAt(currentLine, 5, textMobile.getText());
+					
+					// 清空输入框
+					empty();
+					// 使输入框不可编辑
+					setTestState(false);
+					isUpdate=false;
+				}
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {

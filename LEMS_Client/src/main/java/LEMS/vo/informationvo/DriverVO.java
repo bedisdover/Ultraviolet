@@ -79,6 +79,9 @@ public class DriverVO implements Serializable{
 		this.gender = gender;
 	}
 	
+	public DriverVO(){
+		
+	}
 	public String getId() {
 		return id;
 	}
@@ -106,7 +109,7 @@ public class DriverVO implements Serializable{
 	public Gender getGender() {
 		return gender;
 	}
-	
+		
 }
 
 

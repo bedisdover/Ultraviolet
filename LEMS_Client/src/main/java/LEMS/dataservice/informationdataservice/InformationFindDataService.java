@@ -16,6 +16,7 @@ import LEMS.po.informationpo.InstitutionPO;
 import LEMS.po.informationpo.VehiclePO;
 import LEMS.po.userpo.UserPO;
 import LEMS.po.userpo.UserRole;
+import LEMS.vo.informationvo.DriverVO;
 
 
 /**
@@ -25,6 +26,7 @@ import LEMS.po.userpo.UserRole;
  */
 public interface InformationFindDataService extends Remote{
 	public ArrayList<DriverPO> findDriver(String businessid) throws RemoteException;
+	public DriverPO findTheDriver(String id) throws RemoteException;
 	public ArrayList<VehiclePO> findVehicle(String businessid) throws RemoteException;
 	public ArrayList<InstitutionPO> findInstitution() throws RemoteException;
 	public UserPO findStaff(String i) throws RemoteException;

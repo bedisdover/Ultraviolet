@@ -51,6 +51,24 @@ public class InformationFindData extends UnicastRemoteObject implements Informat
 		return drivers;
 	}
 	
+	public DriverPO findTheDriver(String id) throws RemoteException{
+		DriverPO driver=null;
+		Connect co=new Connect();
+		String sql="SELECT * FROM driver";
+		ResultSet result=co.getResultSet(sql);
+		try {
+			while(result.next()){
+				if(result.getString(1).equals(id)){
+					driver=new DriverPO(result.getString(1),result.getString(2),result.getString(3),result.getString(4),result.getString(5),result.getString(6),Gender.transfer(result.getString(7)));
+					break;
+				}				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return driver;
+	}
+	
 	//查找某一机构所有车辆信息
 	public ArrayList<VehiclePO> findVehicle(String businessid) throws RemoteException{
 		ArrayList<VehiclePO> vehicles=new ArrayList<VehiclePO>();

@@ -49,6 +49,29 @@ public class InformationFind implements InformationFindService{
 		}
 		return drivervo;
 	}
+	public DriverVO findTheDriver(String id){
+		DriverVO d=new DriverVO();
+		try {
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup(RMIConnect.RMI);
+			InformationFactory findFac=database.getInformationFactory();
+			InformationFindDataService infofind = findFac.getInformationFindData();
+			DriverPO dpo=infofind.findTheDriver(id);
+			d.setId(dpo.getId());
+			d.setName(dpo.getName());
+			d.setDateOfBirth(dpo.getDateOfBirth());
+			d.setDrivingPeriod(dpo.getDrivingPeriod());
+			d.setIDcardNumber(dpo.getIDcardNumber());
+			d.setPhoneNumber(dpo.getPhoneNumber());
+			d.setGender(dpo.getGender());
+		} catch (MalformedURLException e1) {
+			e1.printStackTrace();
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		} catch (NotBoundException e1) {
+			e1.printStackTrace();
+		}
+		return d;
+	}
 	/**
 	 * 查找车辆信息
 	 */
