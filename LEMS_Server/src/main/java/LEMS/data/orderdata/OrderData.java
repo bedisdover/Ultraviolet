@@ -119,7 +119,6 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 	}
 
 	public void update(OrderPO po) throws RemoteException {
-		// TODO 待检验
 		this.delete(po);
 		this.insert(po);
 	}

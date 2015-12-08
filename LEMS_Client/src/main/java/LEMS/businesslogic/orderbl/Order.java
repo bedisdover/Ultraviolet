@@ -98,8 +98,13 @@ public class Order implements OrderService {
 	}
 	
 	public String createID() {
-		// TODO Auto-generated method stub
-		
+		try {
+			//TODO 
+			this.getDataService().createID(null);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return null;
 	}
@@ -125,23 +130,14 @@ public class Order implements OrderService {
 	}
 
 	public void endOrder() {
+		//写入数据
 		try {
-			//获得数据库的引用
-			DatabaseFactory databaseFactory = (DatabaseFactory) Naming.lookup(RMIConnect.RMI);
-			OrderFactory orderFactory = databaseFactory.getOrderFactory();
-			OrderDataService orderDataService = orderFactory.getOrderData();
-
-			//写入数据
-			orderDataService.insert(order.transferToPO());
-			//生成物流信息
-			this.createLogistics();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			this.getDataService().insert(order.transferToPO());
 		} catch (RemoteException e) {
 			e.printStackTrace();
-		} catch (NotBoundException e) {
-			e.printStackTrace();
 		}
+		//生成物流信息
+		this.createLogistics();
 	}
 	
 	/**
@@ -150,5 +146,24 @@ public class Order implements OrderService {
 	private void createLogistics() {
 		LogisticsInfoVO logistics = new LogisticsInfoVO();
 		new InquireLogisticsInfo().createLogistics(logistics);
+	}
+	
+	private OrderDataService getDataService() {
+		OrderDataService orderDataService = null;
+		
+		try {
+			//获得数据库的引用
+			DatabaseFactory databaseFactory = (DatabaseFactory) Naming.lookup(RMIConnect.RMI);
+			OrderFactory orderFactory = databaseFactory.getOrderFactory();
+			orderDataService = orderFactory.getOrderData();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+		
+		return orderDataService;
 	}
 }
