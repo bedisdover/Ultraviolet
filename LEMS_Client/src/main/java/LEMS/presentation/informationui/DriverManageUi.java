@@ -14,14 +14,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import LEMS.businesslogic.informationbl.InformationAdd;
+import LEMS.businesslogic.informationbl.InformationDelete;
 import LEMS.businesslogic.informationbl.InformationFind;
 import LEMS.businesslogic.informationbl.InformationUpdate;
 import LEMS.po.informationpo.Gender;
-import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
-import LEMS.presentation.userui.ManagerUi;
 import LEMS.vo.informationvo.DriverVO;
 import LEMS.vo.uservo.UserVO;
 
@@ -222,8 +221,8 @@ public class DriverManageUi extends JPanel {
 		add(table.drawTable(columnNames, list));
 		
 		InformationFind findInfo=new InformationFind();
-//		 ArrayList<DriverVO> drivers=findInfo.findDriver(uvo.getId().substring(5, 8));
-		ArrayList<DriverVO> drivers=findInfo.findDriver("000");
+		 ArrayList<DriverVO> drivers=findInfo.findDriver(uvo.getId().substring(6, 9));
+//		ArrayList<DriverVO> drivers=findInfo.findDriver("000");
 		 for(int i=0;i<drivers.size();i++){
 		 table.setValueAt(i, 0, drivers.get(i).getId());
 		 table.setValueAt(i, 1, drivers.get(i).getName());
@@ -250,7 +249,7 @@ public class DriverManageUi extends JPanel {
 		textYear.setEditable(state);
 		textMonth.setEditable(state);
 		textDay.setEditable(state);
-		comboBox.setEditable(state);
+		comboBox.setEnabled(state);
 		OK.setEnabled(state);
 		cancel.setEnabled(state);
 	}
@@ -282,7 +281,25 @@ public class DriverManageUi extends JPanel {
 		});
 		delete.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO 返回按钮的具体实现
+				int currentLine = table.table.getSelectedRow();
+				if (currentLine == -1) {
+					JOptionPane.showMessageDialog(DriverManageUi.this, "请选择要删除的行!");
+				}
+				else {
+					int i = table.numOfEmpty();	
+					
+					InformationDelete dele=new InformationDelete();
+					dele.deleteDriver(table.getValueAt(currentLine, 0).trim());
+										
+					for(int j=currentLine;j<i;j++){
+						table.setValueAt(j, 0, table.getValueAt(j+1, 0));
+						table.setValueAt(j, 1, table.getValueAt(j+1, 1));
+						table.setValueAt(j, 2, table.getValueAt(j+1, 2));
+						table.setValueAt(j, 3, table.getValueAt(j+1, 3));
+						table.setValueAt(j, 4, table.getValueAt(j+1, 4));
+						table.setValueAt(j, 5, table.getValueAt(j+1, 5));
+					}					
+				}
 			}
 		});
 		update.addMouseListener(new MouseAdapter() {
@@ -335,6 +352,7 @@ public class DriverManageUi extends JPanel {
 
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				//新建司机信息
 				if(isAdd){
 					if(isComplete()){
 						int i = table.numOfEmpty();
@@ -358,6 +376,7 @@ public class DriverManageUi extends JPanel {
 					}
 				}
 				
+				//修改司机信息
 				if(isUpdate){
 					int currentLine=table.table.getSelectedRow();
 					//在数据库中修改该司机信息
@@ -395,6 +414,7 @@ public class DriverManageUi extends JPanel {
 		this.repaint();
 	}
 	
+	//判断司机信息是否填写完整
 	private boolean isComplete(){
 		if(textId.equals("")||textName.equals("")||textTime.equals("")||textCard.equals("")||textMobile.equals("")||textYear.equals("")||textMonth.equals("")||textDay.equals("")){
 			return false;
