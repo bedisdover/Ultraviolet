@@ -3,6 +3,7 @@ package LEMS.businesslogic.userbl;
 import java.rmi.Naming;
 import java.util.ArrayList;
 
+import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.UserFactory;
 import LEMS.dataservice.informationdataservice.InformationInsertDataService;
@@ -25,7 +26,7 @@ public class User {
 	}
 	public UserVO getUser(){
 		try {
-			DatabaseFactory database=(DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup(RMIConnect.RMI);
 			UserFactory uf=database.getUserFactory();
 			UserDataService u=uf.getUserData();
 			ap=u.find(role);
