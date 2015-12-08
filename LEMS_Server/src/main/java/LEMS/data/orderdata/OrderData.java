@@ -143,25 +143,26 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 	
 	public static void main(String[] args){
 		OrderPO opo=new OrderPO();
-		opo.setId("1111100000");
-		opo.setSenderName("tt");
-		opo.setSenderPhone("123455");
-		opo.setSenderAddress("5555");
-		opo.setReceiverName("ttg");
-		opo.setReceiverPhone("tt");
-		opo.setReceiverAddress("tt");
-		opo.setName("re");
+		opo.setId("1234567890");
+		opo.setSenderName("章承尧");
+		opo.setSenderPhone("12345511111");
+		opo.setSenderAddress("南京市栖霞区123号");
+		opo.setReceiverName("苏燕子");
+		opo.setReceiverPhone("12345678901");
+		opo.setReceiverAddress("上海市闵行区111号");
+		opo.setName("笔记本电脑");
 		opo.setExpressType(Express.economy);
 		opo.setPackageType(Packing.Bag);
 		opo.setAmount(1.1);
 		opo.setQuantity(2);
 		opo.setWeight(3.1);
 		opo.setVolumn(5.3);
+		opo.setReceiver("宋一鸣");
 		opo.setTime("10");
 		try {
 			OrderData od=new OrderData();
-//			od.insert(opo);
-			System.out.println(od.createID("123"));
+			od.insert(opo);
+			
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
