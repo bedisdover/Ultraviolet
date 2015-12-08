@@ -222,7 +222,8 @@ public class DriverManageUi extends JPanel {
 		add(table.drawTable(columnNames, list));
 		
 		InformationFind findInfo=new InformationFind();
-		 ArrayList<DriverVO> drivers=findInfo.findDriver(uvo.getId().substring(5, 8));
+//		 ArrayList<DriverVO> drivers=findInfo.findDriver(uvo.getId().substring(5, 8));
+		ArrayList<DriverVO> drivers=findInfo.findDriver("000");
 		 for(int i=0;i<drivers.size();i++){
 		 table.setValueAt(i, 0, drivers.get(i).getId());
 		 table.setValueAt(i, 1, drivers.get(i).getName());
@@ -307,7 +308,21 @@ public class DriverManageUi extends JPanel {
 		
 		inquire.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				
+				String inputValue=JOptionPane.showInputDialog("请输入用户账号：");
+				int i = table.numOfEmpty();
+				for(i=i-1;i>=0;i--){
+					if(table.table.getValueAt(i, 0).equals(inputValue)){
+						break;
+					}
+				}
+				if(i>=0){
+					table.table.setRowSelectionInterval(i, i);
+				}
+				else{
+					if(inputValue!=null){
+						JOptionPane.showMessageDialog(DriverManageUi.this, "未找到该用户");
+					}
+				}
 			}
 		});
 		
