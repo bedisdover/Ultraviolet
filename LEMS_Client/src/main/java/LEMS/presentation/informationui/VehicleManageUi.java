@@ -1,9 +1,11 @@
 package LEMS.presentation.informationui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,6 +17,7 @@ import javax.swing.JTextField;
 
 import LEMS.businesslogic.informationbl.InformationAdd;
 import LEMS.businesslogic.informationbl.InformationDelete;
+import LEMS.businesslogic.informationbl.InformationFind;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
@@ -46,6 +49,7 @@ public class VehicleManageUi extends JPanel {
 	private JButton delete;
 	private JButton update;
 	private JButton inquire;
+	private JButton look;
 	private JLabel labelId;
 	private JLabel labelNum;
 	private JLabel labelTime;
@@ -59,12 +63,13 @@ public class VehicleManageUi extends JPanel {
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);// 标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);// 其余字体格式
 	private Font fnt2 = new Font("宋体", Font.BOLD, 16);// 按钮字体格式
-	
+	private ImageIcon image;
 	private boolean isAdd;
 	private boolean isUpdate;
-	
+	private UserVO uvo;
 	public VehicleManageUi(final MainFrame mainFrame, UserVO userVO) {
 		this.mainFrame = mainFrame;
+		uvo=userVO;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
 		// 初始化
@@ -86,6 +91,9 @@ public class VehicleManageUi extends JPanel {
 		exit = new JButton("返回");
 		OK = new JButton("确定");
 		cancel = new JButton("取消");
+		look=new JButton("查看");
+		look.setLocation(289, 384);
+		look.setSize(69, 50);
 		add=new JButton("新增");
 		delete=new JButton("删除");
 		update=new JButton("修改");
@@ -93,11 +101,8 @@ public class VehicleManageUi extends JPanel {
 		labelId = new JLabel("车辆代号:");
 		labelNum = new JLabel("车牌号:");
 		labelTime = new JLabel("服役状态：");
-		type=new JLabel("车辆型号: ");	
-		ImageIcon image = new ImageIcon("type1.jpg");
-		picture = new JLabel(image); // 还要加图片呀呀呀
+		type=new JLabel("车辆型号: ");			
 		
-
 		textId = new JTextField();
 		textNum = new JTextField();
 		textTime = new JTextField();
@@ -105,6 +110,10 @@ public class VehicleManageUi extends JPanel {
 		comboBox.addItem("type1");
 		comboBox.addItem("type2");
 		comboBox.setSelectedItem(null);
+		image = new ImageIcon("init.jpg");
+		picture = new JLabel(image);
+		
+
 	}
 
 	/**
@@ -160,6 +169,7 @@ public class VehicleManageUi extends JPanel {
 		this.add(textTime);
 		this.add(OK);
 		this.add(cancel);
+		this.add(look);
 		this.add(exit);
 		this.add(add);
 		this.add(delete);
@@ -173,7 +183,14 @@ public class VehicleManageUi extends JPanel {
 
 		table = new Table();
 		add(table.drawTable(columnNames, list));
-
+		
+		InformationFind find=new InformationFind();
+		ArrayList<VehicleVO> vehicles=find.findVehicle(uvo.getId().substring(6, 9));
+		for(int i=0;i<vehicles.size();i++){
+			table.setValueAt(i, 0, vehicles.get(i).getId());
+			table.setValueAt(i, 1, vehicles.get(i).getPlateNumber());
+			table.setValueAt(i, 2, vehicles.get(i).getWorkTime());
+		}
 	}
 
 	/**
@@ -189,6 +206,7 @@ public class VehicleManageUi extends JPanel {
 		textTime.setEditable(state);
 		OK.setEnabled(state);
 		cancel.setEnabled(state);
+		look.setEnabled(state);
 	}
 
 	/**
@@ -199,6 +217,8 @@ public class VehicleManageUi extends JPanel {
 		textNum.setText(null);
 		textTime.setText(null);
 		comboBox.setSelectedItem(null);
+		image = new ImageIcon("init.jpg");
+		picture.setIcon(image);
 	}
 
 	/**
@@ -232,11 +252,25 @@ public class VehicleManageUi extends JPanel {
 				}				
 			}
 		});
+		
 		update.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO 返回按钮的具体实现
+				setTestState(true);
+				isUpdate=true;
+				
+				//将被选中车辆的详细信息显示出来
+				int currentLine=table.table.getSelectedRow();
+				InformationFind find=new InformationFind();
+				VehicleVO vehicle=find.findTheVehicle(table.getValueAt(currentLine, 0));
+				textId.setText(vehicle.getId());
+				textNum.setText(vehicle.getPlateNumber());
+				textTime.setText(vehicle.getWorkTime());
+				comboBox.setSelectedItem(vehicle.getImage());
+				image=new ImageIcon(vehicle.getImage()+".jpg");
+				picture.setIcon(image);
 			}
 		});
+		
 		inquire.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 
@@ -282,6 +316,7 @@ public class VehicleManageUi extends JPanel {
 					
 					// 清空输入框
 					empty();
+					picture=new JLabel();
 					// 使输入框不可编辑
 					setTestState(false);
 					isAdd=false;
@@ -297,8 +332,16 @@ public class VehicleManageUi extends JPanel {
 				setTestState(false);
 			}
 		});
+		
+		look.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				image = new ImageIcon((String)comboBox.getSelectedItem()+".jpg");
+				picture.setIcon(image);				
+			}
+		});
 	}
-
+	
+	
 	public void paintComponent(Graphics g) {
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
 		g.draw3DRect(80, 110, 280, 450, false); // 输入框外框

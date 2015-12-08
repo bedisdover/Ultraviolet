@@ -27,7 +27,7 @@ import LEMS.vo.uservo.UserVO;
 
 public class InformationFind implements InformationFindService{
 	/**
-	 * 查找司机信息
+	 * 根据营业厅编号查找司机信息
 	 */
 	public ArrayList<DriverVO> findDriver(String businessid){
 		ArrayList<DriverVO> drivervo=new ArrayList<DriverVO>();
@@ -49,6 +49,10 @@ public class InformationFind implements InformationFindService{
 		}
 		return drivervo;
 	}
+	
+	/**
+	 * 根据司机编号查找司机信息
+	 */
 	public DriverVO findTheDriver(String id){
 		DriverVO d=new DriverVO();
 		try {
@@ -73,7 +77,7 @@ public class InformationFind implements InformationFindService{
 		return d;
 	}
 	/**
-	 * 查找车辆信息
+	 * 根据营业厅编号查找车辆信息
 	 */
 	public ArrayList<VehicleVO> findVehicle(String businessid){
 		ArrayList<VehicleVO> vehiclevo=new ArrayList<VehicleVO>();
@@ -94,6 +98,27 @@ public class InformationFind implements InformationFindService{
 			e1.printStackTrace();
 		}
 		return vehiclevo;
+	}
+	public VehicleVO findTheVehicle(String id){
+		VehicleVO vvo=new VehicleVO();
+		try {
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup(RMIConnect.RMI);
+			InformationFactory findFac=database.getInformationFactory();
+			InformationFindDataService infofind = findFac.getInformationFindData();
+			VehiclePO vpo=infofind.findTheVehicle(id);
+			vvo.setId(vpo.getId());
+			vvo.setPlateNumber(vpo.getPlateNumber());
+			vvo.setWorkTime(vpo.getWorkTime());
+			vvo.setImage(vpo.getImage());
+			
+		} catch (MalformedURLException e1) {
+			e1.printStackTrace();
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		} catch (NotBoundException e1) {
+			e1.printStackTrace();
+		}
+		return vvo;
 	}
 	/**
 	 * 查找机构信息

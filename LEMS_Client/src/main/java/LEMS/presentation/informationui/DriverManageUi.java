@@ -222,7 +222,6 @@ public class DriverManageUi extends JPanel {
 		
 		InformationFind findInfo=new InformationFind();
 		 ArrayList<DriverVO> drivers=findInfo.findDriver(uvo.getId().substring(6, 9));
-//		ArrayList<DriverVO> drivers=findInfo.findDriver("000");
 		 for(int i=0;i<drivers.size();i++){
 		 table.setValueAt(i, 0, drivers.get(i).getId());
 		 table.setValueAt(i, 1, drivers.get(i).getName());
