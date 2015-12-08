@@ -1,6 +1,12 @@
 package LEMS.businesslogic.financebl;
 
+import java.rmi.Naming;
+
+import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.businesslogicservice.financeblservice.CostService;
+import LEMS.dataservice.factory.DatabaseFactory;
+import LEMS.dataservice.factory.FinanceFactory;
+import LEMS.dataservice.financedataservice.FinanceInsertDataService;
 import LEMS.po.financepo.PayBillPO;
 import LEMS.vo.financevo.CostProfitVO;
 import LEMS.vo.financevo.PayBillVO;
@@ -24,6 +30,21 @@ public class Cost implements CostService {
 
 	public void costBenifitBill(CostProfitVO costProfitVO) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	public void addCost(PayBillVO pay) {
+		try{
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup(RMIConnect.RMI);
+			FinanceFactory fif = database.getFinanceFactory();
+			FinanceInsertDataService financeInsert = fif.getInsertData();
+//			PayBillPO p = new PayBillPO(pay.getDate(),pay.getId(),pay.getInstitution(),pay.g)
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+
+	public void deleteCost(String id) {
 		
 	}
 

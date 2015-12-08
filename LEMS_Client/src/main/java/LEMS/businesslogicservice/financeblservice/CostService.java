@@ -32,4 +32,16 @@ public interface CostService {
 	 * @param 成本收益信息
 	 */
 	public void costBenifitBill(CostProfitVO costProfitVO);
+	
+	/**
+	 * 新增付款单
+	 * @param pay 付款信息
+	 */
+	public void addCost(PayBillVO pay);
+	
+	/**
+	 * 删除付款单
+	 * @param 付款账号（ID）
+	 */
+	public void deleteCost(String id);
 }
