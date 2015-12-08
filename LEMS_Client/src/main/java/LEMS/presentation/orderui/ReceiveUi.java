@@ -19,6 +19,7 @@ import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
 import LEMS.presentation.storeui.DateChooser;
 import LEMS.vo.ordervo.ArrivalVO;
+import LEMS.vo.uservo.UserVO;
 /**
  * @author 周梦佳
  * 接收界面
@@ -62,7 +63,7 @@ public class ReceiveUi extends JPanel {
 	 */
 	private ArrivalVO arrivalVO;
 	
-	public ReceiveUi(final MainFrame mainFrame) {
+	public ReceiveUi(final MainFrame mainFrame, UserVO userVO) {
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
@@ -77,8 +78,7 @@ public class ReceiveUi extends JPanel {
 		this.addListener();
 
 		arrivalVO = new ArrivalVO();
-		//TODO User对象
-		receipt = new Receipt(null, arrivalVO);
+		receipt = new Receipt(userVO, arrivalVO);
 	}
 
 	/**

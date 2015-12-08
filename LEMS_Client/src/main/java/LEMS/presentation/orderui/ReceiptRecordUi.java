@@ -16,6 +16,7 @@ import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
 import LEMS.vo.ordervo.IncomeBillVO;
+import LEMS.vo.uservo.UserVO;
 
 /**
  * @author 周梦佳 记录收款单界面
@@ -56,7 +57,7 @@ public class ReceiptRecordUi extends JPanel {
 	
 	private ReceiptRecord receiptRecord;
 
-	public ReceiptRecordUi(final MainFrame mainFrame) {
+	public ReceiptRecordUi(final MainFrame mainFrame, UserVO userVO) {
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);

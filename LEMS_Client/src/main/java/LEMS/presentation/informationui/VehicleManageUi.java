@@ -15,6 +15,7 @@ import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
 import LEMS.presentation.storeui.DateChooser;
+import LEMS.vo.uservo.UserVO;
 
 /**
  * @author 周梦佳 车辆信息管理界面
@@ -50,7 +51,7 @@ public class VehicleManageUi extends JPanel {
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);// 其余字体格式
 	private Font fnt2 = new Font("宋体", Font.BOLD, 16);// 按钮字体格式
 
-	public VehicleManageUi(final MainFrame mainFrame) {
+	public VehicleManageUi(final MainFrame mainFrame, UserVO userVO) {
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);

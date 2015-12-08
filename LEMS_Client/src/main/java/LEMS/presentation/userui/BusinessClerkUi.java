@@ -1,6 +1,7 @@
 package LEMS.presentation.userui;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 
 import javax.swing.ImageIcon;
@@ -24,25 +25,23 @@ public class BusinessClerkUi extends JPanel {
 	
 	MainFrame mainFrame;
 	private JTabbedPane tabbedPane;
-	UserVO user;
-	ReceiveUi receiveUi;		//接收
-	SendUi	sendUi;			//派件
-	ReceiptRecordUi	receiptRecordUi;	//记录收款单
-	VehicleLoadUi	vehicleLoadUi;		//装车管理
-	VehicleManageUi	vehicleManageUi;	//车辆信息管理
-	DriverManageUi		driverManageUi;//司机信息管理
+	private ReceiveUi receiveUi;		//接收
+	private SendUi	sendUi;			//派件
+	private ReceiptRecordUi	receiptRecordUi;	//记录收款单
+	private VehicleLoadUi	vehicleLoadUi;		//装车管理
+	private VehicleManageUi	vehicleManageUi;	//车辆信息管理
+	private DriverManageUi	driverManageUi;//司机信息管理
 	
-	public BusinessClerkUi(final MainFrame mainFrame,UserVO uvo) {
-		user=uvo;
+	public BusinessClerkUi(final MainFrame mainFrame,UserVO userVO) {
 		this.mainFrame = mainFrame;
 		this.setLayout(new BorderLayout());
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
-		receiveUi = new ReceiveUi(this.mainFrame);
-		sendUi = new SendUi(this.mainFrame);
-		receiptRecordUi = new ReceiptRecordUi(this.mainFrame);
-		vehicleLoadUi = new VehicleLoadUi(this.mainFrame);
-		vehicleManageUi = new VehicleManageUi(this.mainFrame);
-		driverManageUi = new DriverManageUi(this.mainFrame,user);
+		receiveUi = new ReceiveUi(this.mainFrame, userVO);
+		sendUi = new SendUi(this.mainFrame, userVO);
+		receiptRecordUi = new ReceiptRecordUi(this.mainFrame, userVO);
+		vehicleLoadUi = new VehicleLoadUi(this.mainFrame, userVO);
+		vehicleManageUi = new VehicleManageUi(this.mainFrame, userVO);
+		driverManageUi = new DriverManageUi(this.mainFrame,userVO);
 		init();
 		initComponents();
 	
@@ -58,9 +57,8 @@ public class BusinessClerkUi extends JPanel {
 		ImageIcon image5=new ImageIcon("source\\tabbedpanel\\车辆信息管理.png");
 		ImageIcon image6=new ImageIcon("source\\tabbedpanel\\司机信息管理.png");
 		
-	//tabbedPane.addTab(title, icon, component, tip);
+		//tabbedPane.addTab(title, icon, component, tip);
 		//添加由 title 和/或 icon 表示的 component 和 tip，其中任意一个都可以为 null。
-		
 		tabbedPane.addTab(null,image1,receiveUi,"接收");  
         tabbedPane.addTab(null,image2,sendUi,"派件");
         tabbedPane.addTab(null,image3,receiptRecordUi,"记录收款单");

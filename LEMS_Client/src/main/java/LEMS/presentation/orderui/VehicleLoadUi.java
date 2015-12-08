@@ -1,5 +1,12 @@
 package LEMS.presentation.orderui;
 
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -9,20 +16,12 @@ import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
 import LEMS.presentation.storeui.DateChooser;
 import LEMS.vo.ordervo.VehicleLoadVO;
-
-import java.awt.Font;
-import java.awt.Graphics;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import LEMS.vo.uservo.UserVO;
 
 /**
  * @author 周梦佳
  * 车辆装车管理界面
  */
-@SuppressWarnings("serial")
 public class VehicleLoadUi extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -72,7 +71,7 @@ public class VehicleLoadUi extends JPanel {
 	
 	private VehicleLoadVO vehicleLoadVO;
 	
-	public VehicleLoadUi(final MainFrame mainFrame) {
+	public VehicleLoadUi(final MainFrame mainFrame, UserVO userVO) {
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
@@ -86,8 +85,7 @@ public class VehicleLoadUi extends JPanel {
 		this.addListener();
 
 		vehicleLoadVO = new VehicleLoadVO();
-		//TODO 获得UserVO
-		vehicleLoad = new VehicleLoad(null, vehicleLoadVO);
+		vehicleLoad = new VehicleLoad(userVO, vehicleLoadVO);
 	}
 
 	/**

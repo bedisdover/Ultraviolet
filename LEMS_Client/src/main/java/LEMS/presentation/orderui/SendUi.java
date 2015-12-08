@@ -17,6 +17,7 @@ import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
 import LEMS.presentation.storeui.DateChooser;
 import LEMS.vo.ordervo.DeliveryVO;
+import LEMS.vo.uservo.UserVO;
 
 /**
  * @author 周梦佳 派件界面
@@ -54,7 +55,7 @@ public class SendUi extends JPanel {
 	
 	private DeliveryVO deliveryVO;
 	
-	public SendUi(final MainFrame mainFrame) {
+	public SendUi(final MainFrame mainFrame, UserVO userVO) {
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
