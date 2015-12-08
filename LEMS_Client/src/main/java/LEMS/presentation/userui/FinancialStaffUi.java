@@ -1,7 +1,10 @@
 package LEMS.presentation.userui;
 
-import javax.swing.*;
-import javax.swing.border.*;
+import java.awt.BorderLayout;
+
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.financeui.CostUi;
@@ -9,9 +12,6 @@ import LEMS.presentation.financeui.SettlementUi;
 import LEMS.presentation.inquireui.DiaryUi;
 import LEMS.presentation.inquireui.StatisticsReportUi;
 import LEMS.vo.uservo.UserVO;
-
-import java.awt.*;
-import java.awt.event.*;
 
 /**
  * @author 章承尧
@@ -25,19 +25,17 @@ public class FinancialStaffUi extends JPanel {
 	CostUi costPanel;
 	DiaryUi diaryUi;
 	SettlementUi settlementPanel;
-	UserVO user;
 	/**
 	 * Create the panel.
 	 */
-	public FinancialStaffUi(final MainFrame mainFrame,UserVO uvo) {
-		user=uvo;
+	public FinancialStaffUi(final MainFrame mainFrame, UserVO uvo) {
 		this.mainFrame = mainFrame;
 		this.setLayout(new BorderLayout());
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
 		
 		statisticsReportUi = new StatisticsReportUi(this.mainFrame);
 		costPanel = new CostUi(this.mainFrame);
-		diaryUi = new DiaryUi(this.mainFrame);
+		diaryUi = new DiaryUi(this.mainFrame, uvo);
 		settlementPanel = new SettlementUi(this.mainFrame);
 		init();
 		initComponents();

@@ -7,6 +7,7 @@ import LEMS.presentation.orderui.LoadUi;
 import LEMS.presentation.orderui.ReceiptRecordUi;
 import LEMS.presentation.orderui.ReceiveUi;
 import LEMS.presentation.userui.BusinessClerkUi;
+import LEMS.presentation.userui.FinancialStaffUi;
 import LEMS.presentation.userui.ManagerUi;
 import LEMS.presentation.userui.TransferClerkUi;
 
@@ -23,11 +24,13 @@ public class mainSongYiming {
 //		mainFrame.setContentPane(transferClerkUi);
 //		ManagerUi managerUi = new ManagerUi(mainFrame, null);
 //		mainFrame.setContentPane(managerUi);
-//		mainFrame.setVisible(true);
+		FinancialStaffUi financialStaffUi = new FinancialStaffUi(mainFrame, null);
+		mainFrame.setContentPane(financialStaffUi);
+		mainFrame.setVisible(true);
 		
-		AddOrder addOrder = new AddOrder();
-		addOrder.findOrder("1234567890");
-		System.out.println("done");
+//		AddOrder addOrder = new AddOrder();
+//		addOrder.findOrder("1234567890");
+//		System.out.println("done");
 	}
 
 }
