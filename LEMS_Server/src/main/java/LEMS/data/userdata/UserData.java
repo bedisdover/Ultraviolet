@@ -21,11 +21,6 @@ public class UserData extends UnicastRemoteObject implements UserDataService {
 		super();
 	}
 
-	public static final String DBDRIVER = "org.gjt.mm.mysql.Driver";
-	public static final String DBURL = "jdbc:mysql://localhost:3306/mldn";
-	public static final String DBUSER = "root";
-	public static final String DBPASS = "admin";
-
 	public void insert(UserPO po) throws RemoteException {
 		String userRole = "";
 		switch (po.getRole()) {
@@ -58,8 +53,8 @@ public class UserData extends UnicastRemoteObject implements UserDataService {
 		PreparedStatement pstmt = null;
 		String sql = "INSERT INTO user(id,password,role,name,institutionid,institutionlocation) VALUES (?,?,?,?,?,?) ";
 		try {
-			Class.forName(DBDRIVER);
-			conn = DriverManager.getConnection(DBURL, DBUSER, DBPASS);
+			Class.forName(Connect.DBDRIVER);
+			conn = DriverManager.getConnection(Connect.DBURL, Connect.DBUSER, Connect.DBPASS);
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, po.getId());
 			pstmt.setString(2, po.getPassword());
@@ -119,8 +114,8 @@ public class UserData extends UnicastRemoteObject implements UserDataService {
 		ResultSet result = null;
 		String sql = "SELECT id,password,role,name,institutionid,institutionlocation FROM user";
 		try {
-			Class.forName(DBDRIVER);
-			conn = DriverManager.getConnection(DBURL, DBUSER, DBPASS);
+			Class.forName(Connect.DBDRIVER);
+			conn = DriverManager.getConnection(Connect.DBURL, Connect.DBUSER, Connect.DBPASS);
 			pstmt = conn.prepareStatement(sql);
 			result = pstmt.executeQuery();
 			while (result.next()) {
