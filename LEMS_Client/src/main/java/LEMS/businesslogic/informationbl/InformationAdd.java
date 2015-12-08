@@ -5,6 +5,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.businesslogicservice.informationblservice.InformationAddService;
 import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.InformationFactory;
@@ -31,7 +32,7 @@ public class InformationAdd implements InformationAddService{
 	 */
 	public void addDriver(DriverVO drivervo){
 		try {
-			DatabaseFactory database=(DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup(RMIConnect.RMI);
 			InformationFactory inf=database.getInformationFactory();
 			InformationInsertDataService infoinsert=inf.getInformationInsertData();
 			DriverPO dp=new DriverPO(drivervo.getId(),drivervo.getName(),drivervo.getDateOfBirth(),drivervo.getIDcardNumber(),drivervo.getPhoneNumber(),drivervo.getDrivingPeriod(),drivervo.getGender());
@@ -45,7 +46,7 @@ public class InformationAdd implements InformationAddService{
 	 */
 	public void addVehicle(VehicleVO vehiclevo){
 		try{
-			DatabaseFactory database=(DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup(RMIConnect.RMI);
 			InformationFactory inf=database.getInformationFactory();
 			InformationInsertDataService infoinsert=inf.getInformationInsertData();
 			VehiclePO vp=new VehiclePO(vehiclevo.getId(),vehiclevo.getPlateNumber(),vehiclevo.getWorkTime(),vehiclevo.getImage());
@@ -59,7 +60,7 @@ public class InformationAdd implements InformationAddService{
 	 */
 	public void addInstitution(InstitutionVO institutionvo){
 		try {
-			DatabaseFactory database=(DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup(RMIConnect.RMI);
 			InformationFactory inf=database.getInformationFactory();
 			InformationInsertDataService infoinsert=inf.getInformationInsertData();
 			InstitutionPO ip=new InstitutionPO(institutionvo.getID(),institutionvo.getLocation());
@@ -77,7 +78,7 @@ public class InformationAdd implements InformationAddService{
 	 */
 	public void addStaff(UserVO uservo){
 		try {
-			DatabaseFactory database=(DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup(RMIConnect.RMI);
 			InformationFactory inf=database.getInformationFactory();
 			InformationInsertDataService infoinsert=inf.getInformationInsertData();
 			UserPO sp=new UserPO(uservo.getId(),uservo.getPassword(),uservo.getRole(),uservo.getName(),uservo.getInstitution());
@@ -91,7 +92,7 @@ public class InformationAdd implements InformationAddService{
 	 */
 	public void addAccount(AccountVO accountvo){
 		try {
-			DatabaseFactory database=(DatabaseFactory)Naming.lookup("rmi://localhost:1099/data");
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup(RMIConnect.RMI);
 			InformationFactory inf=database.getInformationFactory();
 			InformationInsertDataService infoinsert=inf.getInformationInsertData();
 			AccountPO ap=new AccountPO(accountvo.getId(),accountvo.getPassword(),accountvo.getBalance());

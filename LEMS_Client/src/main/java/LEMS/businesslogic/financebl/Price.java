@@ -5,6 +5,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.businesslogicservice.financeblservice.PriceService;
 import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.FinanceFactory;
@@ -80,7 +81,7 @@ public class Price implements PriceService {
 		
 		try {
 			//获得数据库的引用
-			DatabaseFactory databaseFactory = (DatabaseFactory) Naming.lookup("rmi://localhost:1099/data");
+			DatabaseFactory databaseFactory = (DatabaseFactory) Naming.lookup(RMIConnect.RMI);
 			FinanceFactory financeFactory = databaseFactory.getFinanceFactory();
 			priceDataService = financeFactory.getPriceDataService();
 		} catch (MalformedURLException e) {
