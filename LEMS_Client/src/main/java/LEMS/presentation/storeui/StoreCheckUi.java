@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.ImageIcon;
@@ -21,6 +22,7 @@ import LEMS.businesslogic.storebl.StoreManagement;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
+import LEMS.vo.storevo.GoodsVO;
 
 /**
  * 
@@ -41,7 +43,8 @@ public class StoreCheckUi extends JPanel {
 	private JButton cancel;
 	private JButton excel;
 	private JTextField textTime;
-
+	
+	Table table;
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);// 标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 18);// 其余字体格式
 	private Font fnt2 = new Font("宋体", Font.BOLD, 16);// 按钮字体格式
@@ -112,7 +115,7 @@ public class StoreCheckUi extends JPanel {
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
 		// *
-		Table table = new Table();
+		table = new Table();
 		add(table.drawTable(columnNames, list));
 
 	}
@@ -158,11 +161,26 @@ public class StoreCheckUi extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHH:mm:ss");//设置日期格式
 				String time=df.format(new Date()).substring(8, 16);
+				String timeToTransfer=time.substring(0, 2)+time.substring(3,5)+time.substring(6, 8);
 				textTime.setText(time);
 				OK.setEnabled(false);
 				excel.setEnabled(true);
 				StoreManagement storeManagement=new StoreManagement();
-				storeManagement.check();
+				ArrayList<GoodsVO> al=storeManagement.check(timeToTransfer);
+				int length = al.size();
+				int showRow=0;
+				for(int p=0;p<length-8;p++){
+					GoodsVO gvo=al.get(p);
+					table.setValueAt(showRow, 0, gvo.getId());
+					table.setValueAt(showRow, 1, gvo.getInDate());
+					table.setValueAt(showRow, 2, gvo.getDestination().name());
+					table.setValueAt(showRow, 3, gvo.getArea().name());
+					table.setValueAt(showRow, 4, gvo.getRow());
+					table.setValueAt(showRow, 5, gvo.getStand());
+					table.setValueAt(showRow, 6, gvo.getPosition());
+					showRow++;
+				}
+			
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {

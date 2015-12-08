@@ -1,5 +1,4 @@
 package LEMS.po.storepo;
-
 import java.io.Serializable;
 /**
  * @author 周梦佳
@@ -88,6 +87,4 @@ public class InboundOrderPO implements Serializable {
 	public void setPosition(int position) {
 		this.position = position;
 	}
-	
-	
 }

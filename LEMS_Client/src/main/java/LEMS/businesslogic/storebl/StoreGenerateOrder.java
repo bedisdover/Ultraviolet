@@ -66,6 +66,7 @@ public class StoreGenerateOrder implements StoreGenerateOrderService {
 			int row = inboundOrderVO.getRow();
 			int stand = inboundOrderVO.getStand();
 			int pos = inboundOrderVO.getPosition();
+			
 			OrderPO orderpo=new OrderPO();
 			OrderData orderData =new OrderData();
 			orderpo=orderData.find(id);
@@ -269,13 +270,5 @@ public class StoreGenerateOrder implements StoreGenerateOrderService {
 		}
 		
 		
-	public ArrayList<InboundOrderVO> totalInboundOrder() {
-		return addInboundOrder;
-
-	}
-
-	public ArrayList<OutboundOrderVO> totalOutboundOrder() {
-		return addOutboundOrder;
-
-	}
+	
 }

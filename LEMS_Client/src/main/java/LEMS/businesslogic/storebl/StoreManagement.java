@@ -98,17 +98,23 @@ public class StoreManagement {
 			for(int k=0;k<alGoodsVONum;k++){
 				money=money+alGoodsVO.get(k).getMoney();
 			}
-			//最后两个的id就是出入库数量 我好流氓。。。hhhh
+			//最后八个的id就是各种数量 我好流氓。。。hhhh
 			GoodsVO gvo1=new GoodsVO(totalInbound+"", Area.Airline, -1, -1, -1);
 			GoodsVO gvo2=new GoodsVO(totalOutbound+"", Area.Airline, -1, -1, -1);
-			GoodsVO gvo3=new GoodsVO(totalInbound+"", Area.Airline, -1, -1, -1);
-			GoodsVO gvo4=new GoodsVO(totalOutbound+"", Area.Airline, -1, -1, -1);
-			GoodsVO gvo5=new GoodsVO(totalInbound+"", Area.Airline, -1, -1, -1);
-			GoodsVO gvo6=new GoodsVO(totalOutbound+"", Area.Airline, -1, -1, -1);
-			GoodsVO gvo7=new GoodsVO(totalInbound+"", Area.Airline, -1, -1, -1);
-			GoodsVO gvo8=new GoodsVO(totalOutbound+"", Area.Airline, -1, -1, -1);
+			GoodsVO gvo3=new GoodsVO(totalStock+"", Area.Airline, -1, -1, -1);
+			GoodsVO gvo4=new GoodsVO(money+"", Area.Airline, -1, -1, -1);
+			GoodsVO gvo5=new GoodsVO(airlineNum+"", Area.Airline, -1, -1, -1);
+			GoodsVO gvo6=new GoodsVO(trainlineNum+"", Area.Airline, -1, -1, -1);
+			GoodsVO gvo7=new GoodsVO(buslineNum+"", Area.Airline, -1, -1, -1);
+			GoodsVO gvo8=new GoodsVO(motolineNum+"", Area.Airline, -1, -1, -1);
 			alGoodsVO.add(gvo1);
 			alGoodsVO.add(gvo2);
+			alGoodsVO.add(gvo3);
+			alGoodsVO.add(gvo4);
+			alGoodsVO.add(gvo5);
+			alGoodsVO.add(gvo6);
+			alGoodsVO.add(gvo7);
+			alGoodsVO.add(gvo8);
 			
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -116,110 +122,6 @@ public class StoreManagement {
 		return alGoodsVO;
 	}
 	
-	public ArrayList<Double> inquireNum(String startTime,String endTime){
-		ArrayList<Double> alNum=new ArrayList<Double>();
-		ArrayList<GoodsVO> al=new ArrayList<GoodsVO>();
-		Double money=0.0;
-		double airlineNum=0;
-		double trainlineNum=0;
-		double buslineNum=0;
-		double motolineNum=0;
-		
-		al=inquire(startTime, endTime);
-		int length=al.size();
-		al.remove(length-1);
-		al.remove(length-2);
-		int number=al.size();
-		for(int i=0;i<number;i++){
-			GoodsVO gvo=al.get(i);
-			Area area=gvo.getArea();
-			switch(area){
-				case Airline:
-					airlineNum++;
-					break;
-				case Trainline:
-					trainlineNum++;
-					break;
-				case Busline:
-					buslineNum++;
-					break;
-				case Motoline:
-					motolineNum++;
-					break;
-			}
-			
-		}
-		
-		
-		
-		alNum.add(money);
-		alNum.add(airlineNum);
-		alNum.add(trainlineNum);
-		alNum.add(buslineNum);
-		alNum.add(motolineNum);
-		
-		return alNum;
-	}
-	
-	
-
-
-
-		
-//		
-//		int sTime=Integer.parseInt(startTime);
-//		int eTime=Integer.parseInt(endTime);
-//		ArrayList<InboundOrderVO> originalInboundOrderVO=new ArrayList<InboundOrderVO>();
-//		ArrayList<OutboundOrderVO> originalOutboundOrderVO=new ArrayList<OutboundOrderVO>();
-//		ArrayList<GoodsVO> result=new ArrayList<GoodsVO>();//查询结果
-//		StoreGenerateOrder generateOrder=new StoreGenerateOrder();
-//		originalInboundOrderVO=generateOrder.totalInboundOrder();		//ArrayList<InboundOrderVO>
-//		originalOutboundOrderVO=generateOrder.totalOutboundOrder();		//ArrayList<OutboundOrderVO>
-//		int inNum=0;
-//		int outNum=0;
-//		//统计时间段内出入库数量
-//		for(int i=0;i<originalInboundOrderVO.size();i++){
-//			int inDate=Integer.parseInt(originalInboundOrderVO.get(i).getInDate());
-//			if(sTime<=inDate && inDate<=eTime)
-//				inNum++;
-//		}
-//		for(int j=0;j<originalOutboundOrderVO.size();j++){
-//			int outDate=Integer.parseInt(originalOutboundOrderVO.get(j).getOutDate());
-//			if(sTime<=outDate && outDate<=eTime)
-//				outNum++;
-//		}
-//
-//		//出库时间在结束时间之前均删除
-//		for(int i=0;i<originalInboundOrderVO.size();i++){
-//			int inDate=Integer.parseInt(originalInboundOrderVO.get(i).getInDate());
-//			for(int j=0;j<originalOutboundOrderVO.size();j++){
-//				if(originalInboundOrderVO.get(i).getId().equals(originalOutboundOrderVO.get(j).getId())){
-//					int outDate=Integer.parseInt(originalOutboundOrderVO.get(j).getOutDate());
-//					if(outDate<=eTime){
-//					originalInboundOrderVO.remove(i);
-//					i--;
-//					}
-//				}
-//			}
-//			
-//			if(inDate>eTime){
-//				originalInboundOrderVO.remove(i);
-//				i--;
-//			}
-//		}
-//		//InboundOrderVO对象的ArrayList转成GoodsVO对象
-//		for(int k=0;k<originalInboundOrderVO.size();k++){
-//			String id=originalInboundOrderVO.get(k).getId();
-//			Area area=originalInboundOrderVO.get(k).getArea();
-//			int row=originalInboundOrderVO.get(k).getRow();
-//			int stand=originalInboundOrderVO.get(k).getStand();
-//			int position=originalInboundOrderVO.get(k).getPosition();
-//			GoodsVO gvo=new GoodsVO(id,area,row,stand,position);
-//			result.add(gvo);
-//		}
-//	return result;
-//	}
-//	
 	public GoodsVO getGoodsVOInfo(GoodsPO gpo){
 		String id=gpo.getId();
 		String inDate=gpo.getInDate();
@@ -239,23 +141,24 @@ public class StoreManagement {
 	}
 	
 	//库存盘点（盘点的是当天的库存快照，包括当天的各区快递的信息
-	public ArrayList<GoodsVO> check() {
+	public ArrayList<GoodsVO> check(String time) {
 		ArrayList<GoodsVO> alvo = new ArrayList<GoodsVO>();
 		Date date=new Date();		//获取当前系统时间
-		DateFormat format=new SimpleDateFormat("yyyyMMddHH:mm:ss");
-		String nowTime=format.format(date);
-		String todayStartTime=nowTime.substring(0, 8)+"00:00:00";
-		alvo=inquire(todayStartTime,nowTime);
+		DateFormat format=new SimpleDateFormat("yyyyMMddHHmmss");
+		String today=format.format(date).substring(0, 8);
+		String start=today+"000000";
+		String end=today+time;
+		alvo=inquire(start,end);
 		return alvo;
 	}
 
 	public void warning() {
-		int standardNum = 10000;
-		ArrayList<GoodsVO> al = new ArrayList<GoodsVO>();
-		al = check();
-		int presentNum = al.size();
-		if (presentNum >= standardNum)
-			System.out.println("Warning!");
+//		int standardNum = 10000;
+//		ArrayList<GoodsVO> al = new ArrayList<GoodsVO>();
+//		al = check();
+//		int presentNum = al.size();
+//		if (presentNum >= standardNum)
+//			System.out.println("Warning!");
 	}
 
 }

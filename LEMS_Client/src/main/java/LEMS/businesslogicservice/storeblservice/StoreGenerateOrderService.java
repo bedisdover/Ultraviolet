@@ -29,8 +29,6 @@ public interface StoreGenerateOrderService {
 	
 	public int updateOutboundOrderPO(OutboundOrderVO outboundOrderVO);//修改出库单
 	
-	public ArrayList<InboundOrderVO> totalInboundOrder();//所有入库单
-	
-	public ArrayList<OutboundOrderVO> totalOutboundOrder();//所有出库单
+
 
 }

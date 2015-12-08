@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -41,6 +42,12 @@ public class StoreInquireUi extends JPanel {
 	private JLabel labelTrainlineNum;
 	private JLabel labelBuslineNum;
 	private JLabel labelMotolineNum;
+	private JLabel hourStart;
+	private JLabel minuteStart;
+	private JLabel secondStart;
+	private JLabel hourEnd;
+	private JLabel minuteEnd;
+	private JLabel secondEnd;
 	private JTextField textInboundNum;
 	private JTextField textOutboundNum;
 	private JTextField textMoney;
@@ -54,6 +61,14 @@ public class StoreInquireUi extends JPanel {
 	private DateChooser dateChooserStart;
 	private DateChooser dateChooserEnd;
 
+	private JComboBox<Integer> sHour;
+	private JComboBox<Integer> sMin;
+	private JComboBox<Integer> sSec;
+	private JComboBox<Integer> eHour;
+	private JComboBox<Integer> eMin;
+	private JComboBox<Integer> eSec;
+
+	Table table;
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);// 标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 17);// 其余字体格式
 	private Font fnt2 = new Font("宋体", Font.BOLD, 16);// 按钮字体格式
@@ -91,6 +106,12 @@ public class StoreInquireUi extends JPanel {
 		labelTrainlineNum = new JLabel("铁运区数量：");
 		labelBuslineNum = new JLabel("汽运区数量：");
 		labelMotolineNum = new JLabel("机动区数量：");
+		hourStart=new JLabel("小时");
+		minuteStart=new JLabel("分钟");
+		secondStart=new JLabel("秒");
+		hourEnd=new JLabel("小时");
+		minuteEnd=new JLabel("分钟");
+		secondEnd=new JLabel("秒");
 		textInboundNum = new JTextField();
 		textOutboundNum = new JTextField();
 		textMoney = new JTextField();
@@ -99,8 +120,15 @@ public class StoreInquireUi extends JPanel {
 		textTrainlineNum = new JTextField();
 		textBuslineNum = new JTextField();
 		textMotolineNum = new JTextField();
-		dateChooserStart = new DateChooser(this, 353, 106);
-		dateChooserEnd = new DateChooser(this, 593, 106);
+		dateChooserStart = new DateChooser(this, 343, 86);
+		dateChooserEnd = new DateChooser(this, 343, 136);
+
+		sHour = new JComboBox<Integer>();
+		sMin = new JComboBox<Integer>();
+		sSec = new JComboBox<Integer>();
+		eHour = new JComboBox<Integer>();
+		eMin = new JComboBox<Integer>();
+		eSec = new JComboBox<Integer>();
 
 	}
 
@@ -110,28 +138,49 @@ public class StoreInquireUi extends JPanel {
 	private void initComponents() {
 
 		title.setBounds(440, 37, 230, 39);
-		startTime.setBounds(270, 100, BOUND_X, BOUND_Y);
-		endTime.setBounds(510, 100, BOUND_X, BOUND_Y);
-		labelInboundNum.setBounds(LOCATION_X, LOCATION_Y, BOUND_X, BOUND_Y);
-		labelOutboundNum.setBounds(LOCATION_X, LOCATION_Y + 40, BOUND_X, BOUND_Y);
-		labelMoney.setBounds(LOCATION_X + 25, LOCATION_Y + 80, BOUND_X, BOUND_Y);
-		labelStoreNum.setBounds(LOCATION_X, LOCATION_Y + 120, BOUND_X, BOUND_Y);
-		labelAirlineNum.setBounds(LOCATION_X+270, LOCATION_Y, BOUND_X, BOUND_Y);
-		labelTrainlineNum.setBounds(LOCATION_X+270, LOCATION_Y+40, BOUND_X, BOUND_Y);
-		labelBuslineNum.setBounds(LOCATION_X+270, LOCATION_Y+80, BOUND_X, BOUND_Y);
-		labelMotolineNum.setBounds(LOCATION_X+270, LOCATION_Y+120, BOUND_X, BOUND_Y);
-		
-		textInboundNum.setBounds(LOCATION_X + 100, LOCATION_Y + 5, BOUND_X, BOUND_Y - 5);
-		textOutboundNum.setBounds(LOCATION_X + 100, LOCATION_Y + 45, BOUND_X, BOUND_Y - 5);
-		textMoney.setBounds(LOCATION_X + 100, LOCATION_Y + 85, BOUND_X, BOUND_Y - 5);
-		textStoreNum.setBounds(LOCATION_X + 100, LOCATION_Y + 125, BOUND_X, BOUND_Y - 5);
-		textAirlineNum.setBounds(LOCATION_X + 390, LOCATION_Y + 5, BOUND_X, BOUND_Y - 5);
-		textTrainlineNum.setBounds(LOCATION_X + 390, LOCATION_Y + 45, BOUND_X, BOUND_Y - 5);
-		textBuslineNum.setBounds(LOCATION_X + 390, LOCATION_Y + 85, BOUND_X, BOUND_Y - 5);
-		textMotolineNum.setBounds(LOCATION_X + 390, LOCATION_Y + 125, BOUND_X, BOUND_Y - 5);
-	
-		OK.setBounds(390, 145, BOUND_X - 41, BOUND_Y + 10);
-		cancel.setBounds(510, 145, BOUND_X - 41, BOUND_Y + 10);
+		startTime.setBounds(260, 80, BOUND_X, BOUND_Y);
+		endTime.setBounds(260, 130, BOUND_X, BOUND_Y);
+		labelInboundNum.setBounds(LOCATION_X, LOCATION_Y+20, BOUND_X, BOUND_Y);
+		labelOutboundNum.setBounds(LOCATION_X, LOCATION_Y + 55, BOUND_X, BOUND_Y);
+		labelMoney.setBounds(LOCATION_X + 25, LOCATION_Y + 90, BOUND_X, BOUND_Y);
+		labelStoreNum.setBounds(LOCATION_X, LOCATION_Y + 125, BOUND_X, BOUND_Y);
+		labelAirlineNum.setBounds(LOCATION_X + 270, LOCATION_Y+20, BOUND_X, BOUND_Y);
+		labelTrainlineNum.setBounds(LOCATION_X + 270, LOCATION_Y + 55, BOUND_X, BOUND_Y);
+		labelBuslineNum.setBounds(LOCATION_X + 270, LOCATION_Y + 90, BOUND_X, BOUND_Y);
+		labelMotolineNum.setBounds(LOCATION_X + 270, LOCATION_Y + 125, BOUND_X, BOUND_Y);
+		hourStart.setBounds(LOCATION_X+300, LOCATION_Y-128, BOUND_X-85, BOUND_Y-5);
+		minuteStart.setBounds(LOCATION_X+390, LOCATION_Y-128, BOUND_X-85, BOUND_Y-5);
+		secondStart.setBounds(LOCATION_X+480, LOCATION_Y-128, BOUND_X-85, BOUND_Y-5);
+		hourEnd.setBounds(LOCATION_X+300, LOCATION_Y-78, BOUND_X-85, BOUND_Y-5);
+		minuteEnd.setBounds(LOCATION_X+390, LOCATION_Y-78, BOUND_X-85, BOUND_Y-5);
+		secondEnd.setBounds(LOCATION_X+480, LOCATION_Y-78, BOUND_X-85, BOUND_Y-5);
+		textInboundNum.setBounds(LOCATION_X + 100, LOCATION_Y + 25, BOUND_X, BOUND_Y - 5);
+		textOutboundNum.setBounds(LOCATION_X + 100, LOCATION_Y + 60, BOUND_X, BOUND_Y - 5);
+		textMoney.setBounds(LOCATION_X + 100, LOCATION_Y + 95, BOUND_X, BOUND_Y - 5);
+		textStoreNum.setBounds(LOCATION_X + 100, LOCATION_Y + 130, BOUND_X, BOUND_Y - 5);
+		textAirlineNum.setBounds(LOCATION_X + 390, LOCATION_Y + 25, BOUND_X, BOUND_Y - 5);
+		textTrainlineNum.setBounds(LOCATION_X + 390, LOCATION_Y + 60, BOUND_X, BOUND_Y - 5);
+		textBuslineNum.setBounds(LOCATION_X + 390, LOCATION_Y + 95, BOUND_X, BOUND_Y - 5);
+		textMotolineNum.setBounds(LOCATION_X + 390, LOCATION_Y + 130, BOUND_X, BOUND_Y - 5);
+		sHour.setBounds(LOCATION_X+250, LOCATION_Y-128, BOUND_X-85, BOUND_Y-5);
+		sMin.setBounds(LOCATION_X+340, LOCATION_Y-128, BOUND_X-85, BOUND_Y-5);
+		sSec.setBounds(LOCATION_X+430, LOCATION_Y-128, BOUND_X-85, BOUND_Y-5);
+		eHour.setBounds(LOCATION_X+250, LOCATION_Y-78, BOUND_X-85, BOUND_Y-5);
+		eMin.setBounds(LOCATION_X+340, LOCATION_Y-78, BOUND_X-85, BOUND_Y-5);
+		eSec.setBounds(LOCATION_X+430, LOCATION_Y-78, BOUND_X-85, BOUND_Y-5);
+		for (int i = 0; i < 24; i++) {
+			eHour.addItem(i);
+			sHour.addItem(i);
+		}
+		for (int j = 0; j < 60; j++) {
+			sMin.addItem(j);
+			sSec.addItem(j);
+			eMin.addItem(j);
+			eSec.addItem(j);
+		}
+
+		OK.setBounds(390, 175, BOUND_X - 41, BOUND_Y + 10);
+		cancel.setBounds(510, 175, BOUND_X - 41, BOUND_Y + 10);
 		exit.setBounds(90, 60, 100, 40);
 
 		title.setFont(fnt1);
@@ -145,6 +194,12 @@ public class StoreInquireUi extends JPanel {
 		labelBuslineNum.setFont(fnt);
 		labelMotolineNum.setFont(fnt);
 		labelTrainlineNum.setFont(fnt);
+		hourStart.setFont(fnt);
+		minuteStart.setFont(fnt);
+		secondStart.setFont(fnt);
+		hourEnd.setFont(fnt);
+		minuteEnd.setFont(fnt);
+		secondEnd.setFont(fnt);
 		textInboundNum.setFont(fnt);
 		textOutboundNum.setFont(fnt);
 		textMoney.setFont(fnt);
@@ -153,6 +208,12 @@ public class StoreInquireUi extends JPanel {
 		textBuslineNum.setFont(fnt);
 		textMotolineNum.setFont(fnt);
 		textTrainlineNum.setFont(fnt);
+		sHour.setFont(fnt);
+		sMin.setFont(fnt);
+		sSec.setFont(fnt);
+		eHour.setFont(fnt);
+		eMin.setFont(fnt);
+		eSec.setFont(fnt);
 		cancel.setFont(fnt2);
 		OK.setFont(fnt2);
 		exit.setFont(fnt2);
@@ -164,7 +225,7 @@ public class StoreInquireUi extends JPanel {
 		textBuslineNum.setEditable(false);
 		textMotolineNum.setEditable(false);
 		textTrainlineNum.setEditable(false);
-		//设置jtextfield透明色
+		// 设置jtextfield透明色
 		textInboundNum.setOpaque(false);
 		textOutboundNum.setOpaque(false);
 		textMoney.setOpaque(false);
@@ -173,10 +234,9 @@ public class StoreInquireUi extends JPanel {
 		textBuslineNum.setOpaque(false);
 		textMotolineNum.setOpaque(false);
 		textTrainlineNum.setOpaque(false);
-		
-//		textInboundNum.setBorder(new LineBorder(Color.DARK_GRAY));
-		
-	
+
+		// textInboundNum.setBorder(new LineBorder(Color.DARK_GRAY));
+
 		this.add(title);
 		this.add(startTime);
 		this.add(endTime);
@@ -193,6 +253,12 @@ public class StoreInquireUi extends JPanel {
 		this.add(labelBuslineNum);
 		this.add(labelMotolineNum);
 		this.add(labelTrainlineNum);
+		this.add(hourStart);
+		this.add(minuteStart);
+		this.add(secondStart);
+		this.add(hourEnd);
+		this.add(minuteEnd);
+		this.add(secondEnd);
 		this.add(textInboundNum);
 		this.add(textOutboundNum);
 		this.add(textMoney);
@@ -201,13 +267,19 @@ public class StoreInquireUi extends JPanel {
 		this.add(textBuslineNum);
 		this.add(textMotolineNum);
 		this.add(textTrainlineNum);
+		this.add(sHour);
+		this.add(sMin);
+		this.add(sSec);
+		this.add(eHour);
+		this.add(eMin);
+		this.add(eSec);
 
 		String[] columnNames = { "快递单号", "入库日期", "出库日期", "目的地", "存储区域", "架号", "排号", "位号", "装运形式", "单号" };
 		int[] list = { 40, 85, 14, 30, 20, 70, 395, 868, 250 };
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
 		// *
-		Table table = new Table();
+		table = new Table();
 		add(table.drawTable(columnNames, list));
 
 	}
@@ -241,7 +313,6 @@ public class StoreInquireUi extends JPanel {
 		textBuslineNum.setText(null);
 		textMotolineNum.setText(null);
 		textTrainlineNum.setText(null);
-	
 
 	}
 
@@ -259,21 +330,46 @@ public class StoreInquireUi extends JPanel {
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				setTestState(false);
-				StoreManagement sm=new StoreManagement();
-				String start=dateChooserStart.getTime();
-				String end=dateChooserEnd.getTime();
-				
-				ArrayList<GoodsVO> al=sm.inquire("", "");
-				int length=al.size();
-				textInboundNum.setText(al.get(length-8).getId());
-				textOutboundNum.setText(al.get(length-7).getId());
-				textStoreNum.setText(al.get(length-6).getId());
-				textMoney.setText(al.get(length-5).getId());
-				textAirlineNum.setText(al.get(length-4).getId());
-				textTrainlineNum.setText(al.get(length-3).getId());
-				textBuslineNum.setText(al.get(length-2).getId());
-				textMotolineNum.setText(al.get(length-1).getId());
-				
+				StoreManagement sm = new StoreManagement();
+
+				String startTime = sHour.getSelectedItem().toString() + sMin.getSelectedItem().toString()
+						+ sSec.getSelectedItem().toString();
+				String endTime = eHour.getSelectedItem().toString() + eMin.getSelectedItem().toString()
+						+ eSec.getSelectedItem().toString();
+				String start = dateChooserStart.getTime() + startTime;
+				String end = dateChooserEnd.getTime() + endTime;
+
+				if (start.compareTo(end) >= 0) {
+					// 不合法 跳出提示
+				} else {
+					ArrayList<GoodsVO> al = sm.inquire(start, end);
+					int length = al.size();
+					textInboundNum.setText(al.get(length - 8).getId());
+					textOutboundNum.setText(al.get(length - 7).getId());
+					textStoreNum.setText(al.get(length - 6).getId());
+					textMoney.setText(al.get(length - 5).getId());
+					textAirlineNum.setText(al.get(length - 4).getId());
+					textTrainlineNum.setText(al.get(length - 3).getId());
+					textBuslineNum.setText(al.get(length - 2).getId());
+					textMotolineNum.setText(al.get(length - 1).getId());
+					int showRow=0;
+					
+					for(int p=0;p<length-8;p++){
+						GoodsVO gvo=al.get(p);
+						table.setValueAt(showRow, 0, gvo.getId());
+						table.setValueAt(showRow, 1, gvo.getInDate());
+						table.setValueAt(showRow, 2, gvo.getOutDate());
+						table.setValueAt(showRow, 3, gvo.getDestination().name());
+						table.setValueAt(showRow, 4, gvo.getArea().name());
+						table.setValueAt(showRow, 5, gvo.getRow());
+						table.setValueAt(showRow, 6, gvo.getStand());
+						table.setValueAt(showRow, 7, gvo.getPosition());
+						table.setValueAt(showRow, 8, gvo.getTransportType().name());
+						table.setValueAt(showRow, 9, gvo.getTransferNum());
+						table.setValueAt(showRow, 10, gvo.getMoney()+"");
+						showRow++;
+					}
+				}
 
 			}
 		});

@@ -5,7 +5,8 @@ package LEMS.po.storepo;
  *运输方式
  */
 public enum TransportType {
-	airplane,//飞机
-	railway,//火车
-	landway//汽车
+	Airplane,//飞机
+	Railway,//火车
+	Landway//汽车
+, YetToKnow
 }
