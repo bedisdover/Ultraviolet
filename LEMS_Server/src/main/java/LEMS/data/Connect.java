@@ -10,7 +10,7 @@ import LEMS.data.userdata.UserData;
 
 public class Connect {
 	public static final String DBDRIVER = "org.gjt.mm.mysql.Driver";
-	public static final String DBURL = "jdbc:mysql://192.168.253.3:3306/mldn";
+	public static final String DBURL = "jdbc:mysql://172.29.150.3:3306/mldn";
 	public static final String DBUSER = "root";
 	public static final String DBPASS = "admin";
 
