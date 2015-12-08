@@ -238,9 +238,10 @@ public class ReceiveUi extends JPanel {
 		
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				if (isLegal()) {
+				//TODO 
+//				if (isLegal()) {
 					OKOperation();
-				}
+//				}
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {
@@ -262,11 +263,13 @@ public class ReceiveUi extends JPanel {
 	 * 确认按钮按下后的操作
 	 */
 	private void OKOperation() {
-		this.empty();
 
 		arrivalVO.setDate(dc.getTime());
 		arrivalVO.setDepature((String) comboBoxDeparture.getSelectedItem());
+		//TODO 待删除
+		System.out.println("id, ui" + textId.getText());
 		receipt.addOrder(textId.getText());
+		this.empty();
 	}
 	
 	/**
@@ -283,7 +286,7 @@ public class ReceiveUi extends JPanel {
 	 */
 	private boolean isLegal() {
 		//条形码全部为数字
-		boolean isNumer = textId.getText().matches("//d+");
+		boolean isNumer = textId.getText().matches("\\d+");
 		
 		if (!isNumer || textId.getText().length() != 10) {
 			JOptionPane.showMessageDialog(mainFrame, "条形码输入错误！", "Error", JOptionPane.ERROR_MESSAGE);

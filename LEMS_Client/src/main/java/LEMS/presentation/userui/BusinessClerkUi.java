@@ -32,7 +32,7 @@ public class BusinessClerkUi extends JPanel {
 	private VehicleManageUi	vehicleManageUi;	//车辆信息管理
 	private DriverManageUi	driverManageUi;//司机信息管理
 	
-	public BusinessClerkUi(final MainFrame mainFrame,UserVO userVO) {
+	public BusinessClerkUi(final MainFrame mainFrame, UserVO userVO) {
 		this.mainFrame = mainFrame;
 		this.setLayout(new BorderLayout());
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);

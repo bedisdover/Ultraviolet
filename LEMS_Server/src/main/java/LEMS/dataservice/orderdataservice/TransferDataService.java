@@ -13,4 +13,9 @@ public interface TransferDataService extends Remote {
 	public void update(TransferNotePO transferNotePO) throws RemoteException;
 	
 	public void delete(String id) throws RemoteException;
+	
+	/*
+	 * 根据数据库中已存在的订单ID，生成新的中转单ID
+	 */
+	public String createID(String institution, String date) throws RemoteException;
 }

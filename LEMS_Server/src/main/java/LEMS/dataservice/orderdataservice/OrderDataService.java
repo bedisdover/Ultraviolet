@@ -43,5 +43,5 @@ public interface OrderDataService extends Remote {
 	 * @param institution 机构编号
 	 * @return 记录ID
 	 */
-	public String createID(String institution) throws RemoteException;
+	public String createID(String date) throws RemoteException;
 }

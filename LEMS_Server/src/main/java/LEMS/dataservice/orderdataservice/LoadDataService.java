@@ -12,4 +12,6 @@ public interface LoadDataService {
 	public void update(LoadNotePO LoadNotePO) throws RemoteException;
 	
 	public void delete(String id) throws RemoteException;
+	
+	public String createID(String institution, String date) throws RemoteException;
 }

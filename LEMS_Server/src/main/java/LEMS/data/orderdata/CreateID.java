@@ -1,5 +1,6 @@
 package LEMS.data.orderdata;
 
+import java.math.BigInteger;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -54,7 +55,11 @@ public class CreateID implements IdDataService {
 			}
 		}
 		
-		id = Long.parseLong(id) + 1 + "";
+		//id+1
+		BigInteger temp = new BigInteger(id);
+		temp = temp.add(new BigInteger("1"));
+		
+		id = temp.toString();
 		
 		return id;
 	}

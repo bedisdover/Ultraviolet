@@ -40,14 +40,15 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 	
 	public OrderPO find(String id) throws RemoteException {
 		//TODO 待检验
-		String sql = "SELECT * FROME order WHERE id = " + id;
+		String sql = "SELECT * FROM dingdan WHERE id = " + id;
 		
 		ResultSet result = connect.getResultSet(sql);
-		
+		System.out.println(result);
 		OrderPO orderPO = new OrderPO();
 		
 		try {
 			//设置寄件人信息
+			System.out.println(result.getString(1));
 			orderPO.setSenderName(result.getString(2));
 			orderPO.setSenderPhone(result.getString(3));
 			orderPO.setSenderAddress(result.getString(4));
@@ -71,6 +72,7 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 		return orderPO;
 	}
 
@@ -161,8 +163,9 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 		opo.setTime("10");
 		try {
 			OrderData od=new OrderData();
-			od.insert(opo);
-			
+//			od.insert(opo);
+			OrderPO orderPO = od.find("1234567890");
+			System.out.println(orderPO.getAmount());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

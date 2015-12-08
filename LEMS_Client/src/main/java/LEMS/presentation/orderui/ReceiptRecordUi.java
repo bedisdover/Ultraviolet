@@ -244,7 +244,7 @@ public class ReceiptRecordUi extends JPanel {
 	 */
 	private boolean isLegal() {
 		//条形码全部为数字
-		boolean isNumer = textId.getText().matches("//d+");
+		boolean isNumer = textId.getText().matches("\\d+");
 		
 		if (!isNumer || textId.getText().length() != 10) {
 			JOptionPane.showMessageDialog(mainFrame, "条形码输入错误！", "Error", JOptionPane.ERROR_MESSAGE);

@@ -47,6 +47,8 @@ public class SendUi extends JPanel {
 	private JTextField textId;
 	private JTextField textStaff;
 	private DateChooser dc;
+	private Table table;
+	
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);// 标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);// 其余字体格式
 	private Font fnt2 = new Font("宋体", Font.BOLD, 16);// 按钮字体格式
@@ -143,7 +145,7 @@ public class SendUi extends JPanel {
 		String[] columnNames = {"序号", "货物派送日期", "订单条形码", "派送员" };
 		int[] list = { 40, 133, 14, 30, 20, 383, 125, 550, 420 };
 
-		Table table = new Table();
+		table = new Table();
 		add(table.drawTable(columnNames, list));
 
 	}
@@ -231,7 +233,7 @@ public class SendUi extends JPanel {
 	 */
 	private boolean isLegal() {
 		//条形码全部为数字
-		boolean isNumer = textId.getText().matches("//d+");
+		boolean isNumer = textId.getText().matches("\\d+");
 		
 		if (!isNumer || textId.getText().length() != 10) {
 			JOptionPane.showMessageDialog(mainFrame, "条形码输入错误！", "Error", JOptionPane.ERROR_MESSAGE);
@@ -244,6 +246,7 @@ public class SendUi extends JPanel {
 	 * 按下确定按钮后的动作
 	 */
 	private void OKOperation() {
+		System.out.println(table.numOfEmpty());
 		deliveryVO.setDate(dc.getTime());
 		sending.addOrder(textId.getText(), textStaff.getText());
 	}
