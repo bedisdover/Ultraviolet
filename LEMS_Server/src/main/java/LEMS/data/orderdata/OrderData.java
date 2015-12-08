@@ -160,7 +160,8 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 		opo.setTime("10");
 		try {
 			OrderData od=new OrderData();
-			od.insert(opo);
+//			od.insert(opo);
+			System.out.println(od.createID("123"));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
