@@ -274,7 +274,7 @@ public class ManagerUi extends JPanel {
 
 		butFind.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				String inputValue=JOptionPane.showInputDialog("请输入用户账号：");
+				String inputValue=JOptionPane.showInputDialog(ManagerUi.this,"请输入用户账号：");
 				int i = table.numOfEmpty();
 				for(i=i-1;i>=0;i--){
 					if(table.table.getValueAt(i, 0).equals(inputValue)){

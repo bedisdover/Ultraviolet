@@ -5,16 +5,22 @@ import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import LEMS.businesslogic.informationbl.InformationAdd;
+import LEMS.businesslogic.informationbl.InformationDelete;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
 import LEMS.presentation.storeui.DateChooser;
+import LEMS.presentation.userui.ManagerUi;
+import LEMS.vo.informationvo.VehicleVO;
 import LEMS.vo.uservo.UserVO;
 
 /**
@@ -31,6 +37,7 @@ public class VehicleManageUi extends JPanel {
 	private static final int BOUND_Y = 30;
 
 	private MainFrame mainFrame;
+	private Table table;
 	private JLabel title;
 	private JButton exit;
 	private JButton OK;
@@ -43,14 +50,19 @@ public class VehicleManageUi extends JPanel {
 	private JLabel labelNum;
 	private JLabel labelTime;
 	private JLabel picture;
+	private JLabel type;
 	private JTextField textId;
 	private JTextField textNum;
 	private JTextField textTime;
-
+	private JComboBox<String> comboBox;
+	
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);// 标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);// 其余字体格式
 	private Font fnt2 = new Font("宋体", Font.BOLD, 16);// 按钮字体格式
-
+	
+	private boolean isAdd;
+	private boolean isUpdate;
+	
 	public VehicleManageUi(final MainFrame mainFrame, UserVO userVO) {
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
@@ -81,12 +93,18 @@ public class VehicleManageUi extends JPanel {
 		labelId = new JLabel("车辆代号:");
 		labelNum = new JLabel("车牌号:");
 		labelTime = new JLabel("服役状态：");
-		picture = new JLabel(); // 还要加图片呀呀呀
+		type=new JLabel("车辆型号: ");	
+		ImageIcon image = new ImageIcon("type1.jpg");
+		picture = new JLabel(image); // 还要加图片呀呀呀
+		
 
 		textId = new JTextField();
 		textNum = new JTextField();
 		textTime = new JTextField();
-
+		comboBox=new JComboBox<String>();
+		comboBox.addItem("type1");
+		comboBox.addItem("type2");
+		comboBox.setSelectedItem(null);
 	}
 
 	/**
@@ -96,11 +114,11 @@ public class VehicleManageUi extends JPanel {
 
 		title.setBounds(420, 27, 230, 39);
 		labelId.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y, BOUND_X, BOUND_Y);
-		labelNum.setBounds(LOCATION_LABEL_X + 7, LOCATION_LABEL_Y + 70, BOUND_X, BOUND_Y);
-		labelTime.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y + 140, BOUND_X, BOUND_Y);
+		labelNum.setBounds(107, 188, BOUND_X, BOUND_Y);
+		labelTime.setBounds(100, 244, BOUND_X, BOUND_Y);
 		textId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y, BOUND_X, BOUND_Y - 6);
-		textNum.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 70, BOUND_X, BOUND_Y - 6);
-		textTime.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 140, BOUND_X, BOUND_Y - 6);
+		textNum.setBounds(200, 193, BOUND_X, BOUND_Y - 6);
+		textTime.setBounds(200, 249, BOUND_X, BOUND_Y - 6);
 		OK.setBounds(LOCATION_LABEL_X + 5, LOCATION_LABEL_Y + 355, BOUND_X - 40, BOUND_Y + 10);
 		cancel.setBounds(LOCATION_LABEL_X + 125, LOCATION_LABEL_Y + 355, BOUND_X - 40, BOUND_Y + 10);
 		exit.setBounds(80, 50, 100, 40);
@@ -108,7 +126,14 @@ public class VehicleManageUi extends JPanel {
 		delete.setBounds(350, 590, 120,40);
 		update.setBounds(550, 590, 120, 40);
 		inquire.setBounds(750, 590, 120, 40);
-		
+		comboBox.setLocation(200, 299);
+		comboBox.setSize(130, 24);		
+		type.setLocation(100, 298);
+		type.setSize(90, 30);
+		picture.setLocation(100, 338);
+		picture.setSize(182, 132);
+
+
 		title.setFont(fnt1);
 		labelId.setFont(fnt);
 		labelNum.setFont(fnt);
@@ -119,11 +144,12 @@ public class VehicleManageUi extends JPanel {
 		textId.setFont(fnt);
 		textNum.setFont(fnt);
 		textTime.setFont(fnt);
+		type.setFont(fnt);
 		add.setFont(fnt2);
 		delete.setFont(fnt2);
 		update.setFont(fnt2);
 		inquire.setFont(fnt2);
-
+		
 		this.add(title);
 		this.add(labelId);
 		this.add(labelNum);
@@ -139,11 +165,13 @@ public class VehicleManageUi extends JPanel {
 		this.add(delete);
 		this.add(update);
 		this.add(inquire);
+		this.add(comboBox);
+		this.add(type);
 		
 		String[] columnNames = { "车辆代号", "车牌号", "服役时间" };
 		int[] list = { 40, 170, 14, 30, 20, 400, 110, 528, 450 };
 
-		Table table = new Table();
+		table = new Table();
 		add(table.drawTable(columnNames, list));
 
 	}
@@ -155,7 +183,7 @@ public class VehicleManageUi extends JPanel {
 	 *            输入框状态（是否可编辑）
 	 */
 	private void setTestState(boolean state) {
-
+		comboBox.setEnabled(state);
 		textId.setEditable(state);
 		textNum.setEditable(state);
 		textTime.setEditable(state);
@@ -170,6 +198,7 @@ public class VehicleManageUi extends JPanel {
 		textId.setText(null);
 		textNum.setText(null);
 		textTime.setText(null);
+		comboBox.setSelectedItem(null);
 	}
 
 	/**
@@ -179,12 +208,28 @@ public class VehicleManageUi extends JPanel {
 		add.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				setTestState(true);
-				// TODO 返回按钮的具体实现
+				isAdd=true;
 			}
 		});
 		delete.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				// TODO 返回按钮的具体实现
+			public void mouseClicked(MouseEvent e) {				
+				int currentLine = table.table.getSelectedRow();
+				//未选中任何一行
+				if (currentLine == -1) {
+					JOptionPane.showMessageDialog(VehicleManageUi.this, "请选择要删除的行!");
+				}
+				else {
+					int i = table.numOfEmpty();	
+						
+					InformationDelete dele=new InformationDelete();
+					dele.deleteVehicle(table.getValueAt(currentLine, 0).trim());
+											
+					for(int j=currentLine;j<i;j++){
+						table.setValueAt(j, 0, table.getValueAt(j+1, 0));
+						table.setValueAt(j, 1, table.getValueAt(j+1, 1));
+						table.setValueAt(j, 2, table.getValueAt(j+1, 2));							
+					}						
+				}				
 			}
 		});
 		update.addMouseListener(new MouseAdapter() {
@@ -194,8 +239,22 @@ public class VehicleManageUi extends JPanel {
 		});
 		inquire.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				setTestState(true);
-				// TODO 返回按钮的具体实现
+
+				String inputValue=JOptionPane.showInputDialog(VehicleManageUi.this,"请输入车辆代号：");
+				int i = table.numOfEmpty();
+				for(i=i-1;i>=0;i--){
+					if(table.table.getValueAt(i, 0).equals(inputValue)){
+						break;
+					}
+				}
+				if(i>=0){
+					table.table.setRowSelectionInterval(i, i);
+				}
+				else{
+					if(inputValue!=null){
+						JOptionPane.showMessageDialog(VehicleManageUi.this, "未找到该车辆");
+					}
+				}
 			}
 		});
 		
@@ -208,9 +267,26 @@ public class VehicleManageUi extends JPanel {
 
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO 确定按钮的具体实现
-				// 清空输入框
-				empty();
+				if(isAdd){
+					// 获得第几行为空
+					int i = table.numOfEmpty();
+					// 确定按钮的具体实现
+					table.setValueAt(i, 0, textId.getText());
+					table.setValueAt(i, 1, textNum.getText());
+					table.setValueAt(i, 2, textTime.getText());
+					
+					//存进数据库中
+					VehicleVO vvo=new VehicleVO(textId.getText(),textNum.getText(),textTime.getText(),(String)comboBox.getSelectedItem());
+					InformationAdd add=new InformationAdd();
+					add.addVehicle(vvo);
+					
+					// 清空输入框
+					empty();
+					// 使输入框不可编辑
+					setTestState(false);
+					isAdd=false;
+				}
+				
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {
