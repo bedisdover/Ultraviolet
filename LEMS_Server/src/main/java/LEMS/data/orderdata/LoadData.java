@@ -101,4 +101,10 @@ public class LoadData extends UnicastRemoteObject implements LoadDataService {
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public String createID(String institution, String date) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

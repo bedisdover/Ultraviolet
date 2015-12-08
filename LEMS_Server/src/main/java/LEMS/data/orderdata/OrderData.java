@@ -19,9 +19,6 @@ import LEMS.po.orderpo.Packing;
  * Order包数据
  */
 public class OrderData extends UnicastRemoteObject implements OrderDataService {
-
-	/**
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private Connect connect;
@@ -43,12 +40,12 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 		String sql = "SELECT * FROM dingdan WHERE id = " + id;
 		
 		ResultSet result = connect.getResultSet(sql);
-		System.out.println(result);
+
 		OrderPO orderPO = new OrderPO();
 		
 		try {
+			result.next();
 			//设置寄件人信息
-			System.out.println(result.getString(1));
 			orderPO.setSenderName(result.getString(2));
 			orderPO.setSenderPhone(result.getString(3));
 			orderPO.setSenderAddress(result.getString(4));
@@ -164,8 +161,6 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 		try {
 			OrderData od=new OrderData();
 //			od.insert(opo);
-			OrderPO orderPO = od.find("1234567890");
-			System.out.println(orderPO.getAmount());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

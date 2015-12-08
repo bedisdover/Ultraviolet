@@ -266,8 +266,7 @@ public class ReceiveUi extends JPanel {
 
 		arrivalVO.setDate(dc.getTime());
 		arrivalVO.setDepature((String) comboBoxDeparture.getSelectedItem());
-		//TODO 待删除
-		System.out.println("id, ui" + textId.getText());
+
 		receipt.addOrder(textId.getText());
 		this.empty();
 	}

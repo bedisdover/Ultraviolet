@@ -50,8 +50,7 @@ public class Receipt extends AddOrder implements ReceiptService {
 	public void addOrder(String id) {
 		//获得物流信息
 		LogisticsInfoVO logistics = getLogistics(id);
-		System.out.println(id + "id");
-		
+		System.out.println(logistics.getId());
 		//更新物流信息
 		logistics.setTrace("到达" + user.getInstitution().getLocation() + "营业厅");
 		logistics.setInstitution(user.getInstitution().getLocation());
@@ -59,6 +58,7 @@ public class Receipt extends AddOrder implements ReceiptService {
 		
 		//添加订单到订单列表中
 		orders.add(findOrder(id));
+		System.out.println(orders);
 	}
 
 	public void createArrivalNote() {

@@ -21,15 +21,9 @@ public class LogisticsInfoData extends UnicastRemoteObject implements LogisticsI
 	public  LogisticsInfoData() throws RemoteException {
 		super();
 	}
-	public void update(LogisticsInfoPO lpo){
-		try {
-			LogisticsInfoData lidata=new LogisticsInfoData();
-			lidata.deleteLogisticsInfo(lpo.getId());
-			lidata.insertLogisticsInfo(lpo);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		
+	public void update(LogisticsInfoPO lpo) throws RemoteException {
+		this.deleteLogisticsInfo(lpo.getId());
+		this.insertLogisticsInfo(lpo);
 	}
 	public LogisticsInfoPO findLogisticsInfo(String id) throws RemoteException {
 		LogisticsInfoPO lipo=null;

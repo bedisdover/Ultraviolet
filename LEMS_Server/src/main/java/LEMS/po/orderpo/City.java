@@ -1,5 +1,6 @@
 package LEMS.po.orderpo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,8 @@ import java.util.List;
  * 
  * 服务城市范围
  */
-public class City {
+public class City implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	//TODO enum还是class，哪个更好
 //	北京,

@@ -1,5 +1,7 @@
 package LEMS.po.orderpo;
 
+import java.io.Serializable;
+
 import LEMS.po.inquirepo.LogisticsInfoPO;
 
 /**
@@ -15,7 +17,8 @@ import LEMS.po.inquirepo.LogisticsInfoPO;
  * 		时间、金额、实际收件人、
  * 		揽件员、收件员
  */
-public class OrderPO {
+public class OrderPO implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	/**
 	 * 寄件人姓名
