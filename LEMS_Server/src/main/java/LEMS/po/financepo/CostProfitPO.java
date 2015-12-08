@@ -1,6 +1,5 @@
 package LEMS.po.financepo;
 
-import LEMS.vo.financevo.CostProfitVO;
 
 /**
  * @author 宋益明
@@ -24,11 +23,6 @@ public class CostProfitPO {
 	 * 总利润
 	 */
 	private double profit;
-	
-	public CostProfitPO(CostProfitVO costProfit) {
-		// TODO Auto-generated constructor stub
-		//TODO 根据成本收益信息生成成本收益表
-	}
 	
 	public CostProfitPO(String date, double income, double cost, double profit) {
 		this.date = date;
