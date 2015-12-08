@@ -4,6 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import LEMS.po.orderpo.Express;
 import LEMS.po.orderpo.OrderPO;
 
 /**
@@ -44,4 +45,15 @@ public interface OrderDataService extends Remote {
 	 * @return 记录ID
 	 */
 	public String createID(String date) throws RemoteException;
+	
+	/**
+	 * 根据已有快件在出发地和到达地之间送达的平均时间，预计时间
+	 * 如果没有历史数据，为0
+	 * 
+	 * @param departure 出发地
+	 * @param destination 到达地
+	 * @param type 快递类型
+	 * @return 预估时间
+	 */
+	public String getTime(String departure, String destination, Express type);
 }

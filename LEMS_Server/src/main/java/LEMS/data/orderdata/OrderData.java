@@ -139,6 +139,34 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 		
 		return id;
 	}
+
+	@Override
+	public String getTime(String departure, String destination, Express type) {
+		String time = "";
+		
+		String sql = "SELECT * FROM dingdan";
+		
+		ResultSet result = connect.getResultSet(sql);
+		
+		try {
+			while (result.next()) {
+				String temp1 = result.getString(4).substring(0, 3);
+				String temp2 = result.getString(7).substring(0, 3);
+				departure = departure.substring(0, 3);
+				destination = destination.substring(0, 3);
+				
+				if (temp1.equals(departure) && temp2.equals(destination)) {
+					if (result.getString(9).equals(type + "")) {
+						time = result.getString(15);
+					}
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return time;
+	}
 	
 	public static void main(String[] args){
 		OrderPO opo=new OrderPO();

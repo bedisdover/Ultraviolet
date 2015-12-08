@@ -108,10 +108,8 @@ public class ReceiptRecordData extends UnicastRemoteObject implements ReceiptRec
 
 	@Override
 	public String createID(String institution, String date) throws RemoteException {
-
 		String id = new CreateID().createID("cash", ID_LENGTH, institution + date);
 		
 		return id;
-	
 	}
 }
