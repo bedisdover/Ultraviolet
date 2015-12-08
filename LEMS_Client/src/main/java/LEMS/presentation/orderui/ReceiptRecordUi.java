@@ -252,7 +252,6 @@ public class ReceiptRecordUi extends JPanel {
 		return true;
 	}
 	
-	
 	private void OKOperation() {
 		// 清空输入框
 		empty();

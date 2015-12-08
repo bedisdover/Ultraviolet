@@ -2,6 +2,7 @@ package LEMS.dataservice.orderdataservice;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import LEMS.po.orderpo.OrderPO;
 
@@ -33,12 +34,14 @@ public interface OrderDataService extends Remote {
 	public void update(OrderPO po) throws RemoteException;
 	
 	/**
-	 * 初始化持久化数据库
+	 * 在数据库中查询指定机构的所有订单
 	 */
-	public void init() throws RemoteException;
+	public ArrayList<String> findAll(String institution) throws RemoteException;
 	
 	/**
-	 * 结束持久化数据库的使用
+	 * 在数据库中查找指定机构最新的记录，并直接生成ID
+	 * @param institution 机构编号
+	 * @return 记录ID
 	 */
-	public void finish() throws RemoteException;
+	public String createID(String institution) throws RemoteException;
 }

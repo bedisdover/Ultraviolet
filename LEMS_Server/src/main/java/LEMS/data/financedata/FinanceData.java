@@ -41,5 +41,4 @@ public class FinanceData implements FinanceDataService {
 		// TODO Auto-generated method stub
 		
 	}
-
 }

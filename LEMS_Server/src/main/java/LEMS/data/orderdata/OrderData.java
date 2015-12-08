@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import LEMS.data.Connect;
 import LEMS.dataservice.orderdataservice.OrderDataService;
@@ -104,7 +105,6 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 	}
 
 	public void delete(OrderPO po) throws RemoteException {
-		// TODO 待检验
 		String sql = "DELETE FROM dingdan WHERE id = " + po.getId();
 		
 		PreparedStatement pstmt = connect.getPreparedStatement(sql);
@@ -123,15 +123,50 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 		this.delete(po);
 		this.insert(po);
 	}
-
-	public void init() throws RemoteException {
-		// TODO 似乎没用的方法
+	
+	@Override
+	public ArrayList<String> findAll(String institution) throws RemoteException {
+		ArrayList<String> orders = new ArrayList<String>();
 		
+		String sql = "SELECT * FROM dingdan";
+		
+		ResultSet result = connect.getResultSet(sql);
+		
+		try {
+			while (result.next()) {
+				if (result.getString(1).substring(0, 3).equals(institution)) {
+					orders.add(result.getString(1));
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return orders;
 	}
 
-	public void finish() throws RemoteException {
-		// TODO 似乎没用的方法
+	@Override
+	public String createID(String institution) throws RemoteException {
+		String id = "";
+		
+		ArrayList<String> orders = this.findAll(institution);
+		
+		if (orders.isEmpty()) {
+			id = institution + "0000001";
+			return id;
+		}
+		
+		for (String string : orders) {
+			if (string.compareTo(id) > 0) {
+				id = string;
+			}
+		}
+		
+		id = Long.parseLong(id) + 1 + "";
+		
+		return id;
 	}
+	
 	public static void main(String[] args){
 		OrderPO opo=new OrderPO();
 		opo.setId("1111100000");

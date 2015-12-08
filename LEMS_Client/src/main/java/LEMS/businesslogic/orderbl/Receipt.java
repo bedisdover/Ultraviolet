@@ -39,11 +39,6 @@ public class Receipt extends AddOrder implements ReceiptService {
 	 */
 	private ArrivalVO arrivalVO;
 	
-//	/**
-//	 * 出发地
-//	 */
-//	private String depature;
-	
 	public Receipt(UserVO user, ArrivalVO arrivalVO) {
 		//新建订单列表
 		orders = new ArrayList<OrderPO>();
