@@ -14,14 +14,22 @@ import javax.swing.JButton;
 
 
 
+
+
+
+
+import LEMS.businesslogic.inquirebl.inquirediary.InquireDiary;
+import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
+import LEMS.vo.inquirevo.DiaryVO;
 import LEMS.vo.uservo.UserVO;
 
 import javax.swing.*;
 
 import java.awt.event.*;
+import java.util.ArrayList;
 
 /**
  * @author 章承尧
@@ -46,6 +54,7 @@ public class DiaryUi extends JPanel{
 	 * Create the panel.
 	 */
 	public DiaryUi(MainFrame mainFrame,UserVO uvo) {
+		this.mainFrame=mainFrame;
 		user=uvo;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH-288, MainFrame.JFRAME_HEIGHT);
@@ -61,8 +70,8 @@ public class DiaryUi extends JPanel{
 	private void init(){
 		date = new JLabel("日期：");
 		title = new JLabel("查询日志");
-		name = new JLabel("账号：   xxx");
-		statue = new JLabel("身份：    财务人员");
+		name = new JLabel("账号：  "+user.getId());
+		statue = new JLabel("身份： "+UserRole.transfer(user.getRole()));
 		but = new JButton("查找");
 		textField = new JTextField();
 		font = new Font("Courier", Font.PLAIN, 26);
@@ -102,13 +111,16 @@ public class DiaryUi extends JPanel{
 	private void addListener(){
 		but.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-//				InquireDiaryService ind=new InquireDiary();
-//				DiaryVO diary=ind.getDiary(textField.getText());
-//				textArea.append(diary.getPayBillOperation()+"\n");
-//				textArea.append(diary.getIncomeBillOperation()+"\n");
-//				textArea.append(diary.getDocumentApproval()+"\n");
-//				textArea.append(diary.getAccountManagement()+"\n");
-				textField.setText(null);
+				int k=table.numOfEmpty();
+				for(;k>=0;k--){
+					table.setValueAt(k, 0, "");
+				}
+				InquireDiary ind=new InquireDiary();
+				DiaryVO diary=ind.getDiary(textField.getText());
+				ArrayList<String> operations=diary.getOperation();
+				for(int i=0;i<operations.size();i++){
+					table.setValueAt(i, 0, operations.get(i));
+				}				
 			}
 		});
 		
