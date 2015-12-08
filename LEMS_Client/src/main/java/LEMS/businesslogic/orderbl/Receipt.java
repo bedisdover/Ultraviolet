@@ -58,6 +58,7 @@ public class Receipt extends AddOrder implements ReceiptService {
 		
 		//添加订单到订单列表中
 		orders.add(findOrder(id));
+		System.out.println(findOrder(id).getAmount());
 		System.out.println(orders);
 	}
 
