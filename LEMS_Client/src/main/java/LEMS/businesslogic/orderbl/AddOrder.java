@@ -10,11 +10,8 @@ import LEMS.businesslogic.inquirebl.inquirelogisticsinfo.InquireLogisticsInfo;
 import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.businesslogicservice.orderblservice.AddOrderService;
 import LEMS.dataservice.factory.DatabaseFactory;
-import LEMS.dataservice.factory.InquireFactory;
 import LEMS.dataservice.factory.OrderFactory;
-import LEMS.dataservice.inquiredataservice.LogisticsInfoDataService;
 import LEMS.dataservice.orderdataservice.OrderDataService;
-import LEMS.po.inquirepo.LogisticsInfoPO;
 import LEMS.po.orderpo.OrderPO;
 import LEMS.vo.inquirevo.LogisticsInfoVO;
 

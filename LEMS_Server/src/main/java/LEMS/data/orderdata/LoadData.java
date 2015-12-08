@@ -18,6 +18,12 @@ public class LoadData extends UnicastRemoteObject implements LoadDataService {
 	private Connect connect;
 	
 	private TransferID transferID;
+
+	/**
+	 * ID长度
+	 * 营业厅编号+20150921日期+00000编码 、五位数字
+	 */
+	private static final int ID_LENGTH = 22;
 	
 	public LoadData() throws RemoteException {
 		super();
@@ -104,7 +110,9 @@ public class LoadData extends UnicastRemoteObject implements LoadDataService {
 
 	@Override
 	public String createID(String institution, String date) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+
+		String id = new CreateID().createID("cash", ID_LENGTH, institution + date);
+		
+		return id;
 	}
 }

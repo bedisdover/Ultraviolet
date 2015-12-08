@@ -40,8 +40,8 @@ public interface OrderDataService extends Remote {
 	
 	/**
 	 * 在数据库中查找指定机构最新的记录，并直接生成ID
-	 * @param institution 机构编号
+	 * @param date 日期
 	 * @return 记录ID
 	 */
-	public String createID(String institution) throws RemoteException;
+	public String createID(String date) throws RemoteException;
 }

@@ -62,7 +62,6 @@ public class ReceiptRecord extends AddOrder implements ReceiptRecordService {
 	}
 	
 	private String createID() {
-		return null;
 	}
 	
 	private ReceiptRecordDataService getDataService() {

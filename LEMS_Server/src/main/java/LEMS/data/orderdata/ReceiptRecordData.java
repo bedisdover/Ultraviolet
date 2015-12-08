@@ -25,6 +25,12 @@ public class ReceiptRecordData extends UnicastRemoteObject implements ReceiptRec
 	 */
 	private TransferID transferID;
 	
+	/**
+	 * ID长度
+	 * 营业厅编号+20150921日期+00000编码 、五位数字
+	 */
+	private final int ID_LENGTH = 20;
+	
 	public ReceiptRecordData() throws RemoteException {
 		super();
 		
@@ -98,5 +104,14 @@ public class ReceiptRecordData extends UnicastRemoteObject implements ReceiptRec
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public String createID(String institution, String date) throws RemoteException {
+
+		String id = new CreateID().createID("cash", ID_LENGTH, institution + date);
+		
+		return id;
+	
 	}
 }
