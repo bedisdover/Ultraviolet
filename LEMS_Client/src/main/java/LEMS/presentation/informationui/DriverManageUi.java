@@ -88,7 +88,6 @@ public class DriverManageUi extends JPanel {
 		// 添加事件监听器
 		this.addListener();
 	}
-
 	
 	/**
 	 * 初始化
