@@ -30,5 +30,6 @@ public interface InformationFindDataService extends Remote{
 	public ArrayList<VehiclePO> findVehicle(String businessid) throws RemoteException;
 	public VehiclePO findTheVehicle(String id) throws RemoteException;
 	public ArrayList<InstitutionPO> findInstitution() throws RemoteException;
+	public InstitutionPO findTheInstitution(String id) throws RemoteException;
 	public UserPO findStaff(String i) throws RemoteException;
 }

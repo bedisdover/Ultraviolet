@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -11,11 +12,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import LEMS.businesslogic.informationbl.InformationAdd;
 import LEMS.businesslogic.informationbl.InformationDelete;
 import LEMS.businesslogic.informationbl.InformationFind;
+import LEMS.businesslogic.informationbl.InformationUpdate;
+import LEMS.po.informationpo.InstitutionPO;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
+import LEMS.vo.informationvo.InstitutionVO;
 import LEMS.vo.uservo.UserVO;
 
 /**
@@ -48,9 +53,10 @@ public class InstitutionManageUi extends JPanel {
 
 	private boolean isAdd;
 	private boolean isUpdate;
-	
-
-	public InstitutionManageUi(final MainFrame mainFrame) {
+	private UserVO user;
+	private String originalID;
+	public InstitutionManageUi(final MainFrame mainFrame,UserVO uvo) {
+		user=uvo;
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
@@ -74,9 +80,9 @@ public class InstitutionManageUi extends JPanel {
 		OK = new JButton("确定");
 		cancel = new JButton("取消");
 		
-		labelID = new JLabel("* 员工ID:");
+		labelID = new JLabel("* 机构编号::");
 		textID = new JTextField();
-		labelLocation = new JLabel("* 所处机构编号:");
+		labelLocation = new JLabel("* 机构所处位置");
 		textLocation = new JTextField();
 	}
 	
@@ -111,13 +117,20 @@ public class InstitutionManageUi extends JPanel {
 		this.add(butFind);
 		this.add(butChange);
 		
-		String[] columnNames = { "机构所处城市", "机构编号" };
+		String[] columnNames = { "机构编号", "机构所处城市" };
 		int[] list = { 40, 272, 14, 30, 20, 384, 126-change, 561, 465 };
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
 		// *
 		table = new Table();
 		add(table.drawTable(columnNames, list));
+		
+		InformationFind findInfo=new InformationFind();
+		ArrayList<InstitutionVO> ins=findInfo.findInstitution();
+		for(int i=0;i<ins.size();i++){
+			table.setValueAt(i, 1, ins.get(i).getLocation());
+			table.setValueAt(i, 0, ins.get(i).getID());
+		}
 		
 	}
 	
@@ -159,12 +172,11 @@ public class InstitutionManageUi extends JPanel {
 					int i = table.numOfEmpty();	
 					
 					InformationDelete dele=new InformationDelete();
-					dele.deleteStaff(table.getValueAt(currentLine, 0).trim());
+					dele.deleteInstitution(table.getValueAt(currentLine, 0).trim());
 										
 					for(int j=currentLine;j<i;j++){
 						table.setValueAt(j, 0, table.getValueAt(j+1, 0));
 						table.setValueAt(j, 1, table.getValueAt(j+1, 1));
-						table.setValueAt(j, 2, table.getValueAt(j+1, 2));
 					}
 					
 					
@@ -174,7 +186,7 @@ public class InstitutionManageUi extends JPanel {
 
 		butFind.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				String inputValue=JOptionPane.showInputDialog("请输入用户账号：");
+				String inputValue=JOptionPane.showInputDialog(InstitutionManageUi.this,"请输入机构编号：");
 				int i = table.numOfEmpty();
 				for(i=i-1;i>=0;i--){
 					if(table.table.getValueAt(i, 0).equals(inputValue)){
@@ -186,7 +198,7 @@ public class InstitutionManageUi extends JPanel {
 				}
 				else{
 					if(inputValue!=null){
-						JOptionPane.showMessageDialog(InstitutionManageUi.this, "未找到该用户");
+						JOptionPane.showMessageDialog(InstitutionManageUi.this, "未找到该机构!");
 					}
 				}
 			}
@@ -198,12 +210,13 @@ public class InstitutionManageUi extends JPanel {
 				setTestState(true);
 				isUpdate=true;
 				
-				//将被选中人员的详细信息显示出来
+				//将被选中机构的详细信息显示出来
 				int currentLine=table.table.getSelectedRow();
 				InformationFind find=new InformationFind();
-				UserVO theStaff=find.findStaff(table.getValueAt(currentLine, 0));
-				textID.setText(theStaff.getId());
-				textLocation.setText(theStaff.getInstitution().getLocation());
+				InstitutionVO inst=find.findTheInstitution(table.getValueAt(currentLine, 0));
+				textID.setText(inst.getID());
+				textLocation.setText(inst.getLocation());
+				originalID=textID.getText();
 			}
 		});
 		OK.addMouseListener(new MouseAdapter() {
@@ -212,16 +225,15 @@ public class InstitutionManageUi extends JPanel {
 					if(isComplete()){
 						// 获得第几行为空
 					int i = table.numOfEmpty();
-					// 确定按钮的具体实现
+					// 在界面上显示新增机构信息
 					table.setValueAt(i, 0, textID.getText());
 					table.setValueAt(i, 1, textLocation.getText());
-//					InstitutionPO ipo = new InstitutionPO(textInstitutionID
-//							.getText(), textLocation.getText());
-//					UserVO uvo = new UserVO(textID.getText(), textPassword
-//							.getText(), UserRole.exchange((String) comboBox
-//							.getSelectedItem()), textName.getText(), ipo);
-//					InformationAdd add = new InformationAdd();
-//					add.addStaff(uvo);
+					
+					//在数据库中存入新增机构信息
+					InstitutionVO ivo = new InstitutionVO(textID
+							.getText(), textLocation.getText());				
+					InformationAdd add = new InformationAdd();
+					add.addInstitution(ivo);
 					// 清空输入框
 					empty();
 					// 使输入框不可编辑
@@ -235,19 +247,17 @@ public class InstitutionManageUi extends JPanel {
 				
 				if(isUpdate){
 					int currentLine=table.table.getSelectedRow();
-					//在数据库中修改该人员信息
-//					InstitutionPO ipo = new InstitutionPO(textInstitutionID
-//							.getText(), textLocation.getText());
-//					UserVO uvo = new UserVO(textID.getText(), textPassword
-//							.getText(), UserRole.exchange((String) comboBox
-//							.getSelectedItem()), textName.getText(), ipo);
-//					if(!originalID.equals(textID.getText())){
-//						InformationDelete de=new InformationDelete();
-//						de.deleteStaff(originalID);
-//					}
-//					InformationUpdate update = new InformationUpdate();
-//					update.updateStaff(uvo);
-					//在界面上修改该人员信息
+					//在数据库中修改该机构信息
+					InstitutionVO ivo = new InstitutionVO(textID
+							.getText(), textLocation.getText());
+					
+					if(!originalID.equals(textID.getText())){
+						InformationDelete de=new InformationDelete();
+						de.deleteInstitution(originalID);
+					}
+					InformationUpdate update = new InformationUpdate();
+					update.updateInstitution(ivo);
+					//在界面上修改该机构信息
 					table.setValueAt(currentLine, 0, textID.getText());
 					table.setValueAt(currentLine, 1, textLocation.getText());
 					
@@ -276,6 +286,10 @@ public class InstitutionManageUi extends JPanel {
 		this.repaint();
 	}
 	
+	/**
+	 * @return boolean
+	 * 判断信息是否填写完整
+	 */
 	private boolean isComplete(){
 		if(!textID.getText().equals("")&&!textLocation.getText().equals("")){
 			return true;

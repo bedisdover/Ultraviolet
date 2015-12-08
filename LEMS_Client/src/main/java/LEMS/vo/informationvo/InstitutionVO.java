@@ -18,6 +18,9 @@ public class InstitutionVO implements Serializable{
 	 * 机构所在地
 	 */
 	String location;
+	public InstitutionVO(){
+		
+	}
 	public InstitutionVO(String id,String location){
 		this.id = id;
 		this.location = location;
@@ -29,6 +32,12 @@ public class InstitutionVO implements Serializable{
 	
 	public String getLocation(){
 		return location;
+	}
+	public void setID(String id){
+		this.id=id;
+	}
+	public void setLocation(String l){
+		this.location=l;
 	}
 }
 

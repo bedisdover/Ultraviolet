@@ -57,8 +57,9 @@ public class StuffManageUi extends JPanel  {
 
 	private boolean isAdd;
 	private boolean isUpdate;
-	
-	public StuffManageUi(final MainFrame mainFrame){
+	private UserVO user;
+	public StuffManageUi(final MainFrame mainFrame,UserVO uvo){
+		user=uvo;
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);

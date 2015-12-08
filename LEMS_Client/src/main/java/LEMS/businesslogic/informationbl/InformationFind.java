@@ -121,7 +121,7 @@ public class InformationFind implements InformationFindService{
 		return vvo;
 	}
 	/**
-	 * 查找机构信息
+	 * 查找所有机构信息
 	 */
 	public ArrayList<InstitutionVO> findInstitution(){
 		ArrayList<InstitutionVO> institutionvo=new ArrayList<InstitutionVO>();
@@ -142,6 +142,30 @@ public class InformationFind implements InformationFindService{
 			e1.printStackTrace();
 		}
 		return institutionvo;
+	}
+	
+	/**
+	 * @param s
+	 * @return InstitutionVO
+	 * 根据指定编号查找机构信息
+	 */
+	public InstitutionVO findTheInstitution(String s){
+		InstitutionVO institution=new InstitutionVO();
+		try {
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup(RMIConnect.RMI);
+			InformationFactory findFac=database.getInformationFactory();
+			InformationFindDataService infofind = findFac.getInformationFindData();
+			InstitutionPO theinstitution=infofind.findTheInstitution(s);
+			institution.setID(theinstitution.getID());
+			institution.setLocation(theinstitution.getLocation());
+		} catch (MalformedURLException e1) {
+			e1.printStackTrace();
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		} catch (NotBoundException e1) {
+			e1.printStackTrace();
+		}
+		return institution;
 	}
 	/**
 	 * 查找所有人员信息

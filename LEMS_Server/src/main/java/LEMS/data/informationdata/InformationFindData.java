@@ -125,7 +125,24 @@ public class InformationFindData extends UnicastRemoteObject implements Informat
 		}
 		return institutions;
 	}
-	
+	//根据指定编号查找机构信息
+	public InstitutionPO findTheInstitution(String id) throws RemoteException{
+		InstitutionPO ipo=null;
+		Connect co=new Connect();
+		String sql="SELECT * FROM institution";
+		ResultSet result=co.getResultSet(sql);
+		try {
+			while(result.next()){
+				if(result.getString(1).equals(id)){
+					ipo=new InstitutionPO(result.getString(1),result.getString(2));
+					break;
+				}				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ipo;
+	}
 	//查找对应id的人员信息
 	public UserPO findStaff(String id) throws RemoteException{
 		UserRole role=null;

@@ -13,9 +13,12 @@ import javax.swing.JButton;
 
 
 
+
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
+import LEMS.vo.uservo.UserVO;
+
 import javax.swing.*;
 
 import java.awt.event.*;
@@ -38,11 +41,12 @@ public class DiaryUi extends JPanel{
 	private JButton butOut;
 	
 	private Table table;
-	
+	private UserVO user;
 	/**
 	 * Create the panel.
 	 */
-	public DiaryUi(MainFrame mainFrame) {
+	public DiaryUi(MainFrame mainFrame,UserVO uvo) {
+		user=uvo;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH-288, MainFrame.JFRAME_HEIGHT);
 		

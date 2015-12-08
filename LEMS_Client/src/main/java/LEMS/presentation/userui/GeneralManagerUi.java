@@ -43,9 +43,9 @@ public class GeneralManagerUi extends JPanel {
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
 		
 		examDocumentUi = new ExamDocumentUi(this.mainFrame);
-		institutionManageUi = new InstitutionManageUi(this.mainFrame);
-		diaryUi = new DiaryUi(this.mainFrame);
-		stuffManageUi = new StuffManageUi(this.mainFrame);
+		institutionManageUi = new InstitutionManageUi(this.mainFrame,user);
+		diaryUi = new DiaryUi(this.mainFrame,user);
+		stuffManageUi = new StuffManageUi(this.mainFrame,user);
 		statisticsReportUi = new StatisticsReportUi(this.mainFrame);
 		SettingPriceUi = new LEMS.presentation.financeui.SettingPriceUi(this.mainFrame);
 		init();
