@@ -26,6 +26,11 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 
 	private Connect connect;
 	
+	/**
+	 * ID长度
+	 */
+	private static final int ID_LENGTH = 10;
+	
 	public OrderData() throws RemoteException {
 		super();
 		
@@ -125,43 +130,13 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 	
 	@Override
 	public ArrayList<String> findAll(String institution) throws RemoteException {
-		ArrayList<String> orders = new ArrayList<String>();
-		
-		String sql = "SELECT * FROM dingdan";
-		
-		ResultSet result = connect.getResultSet(sql);
-		
-		try {
-			while (result.next()) {
-				if (result.getString(1).substring(0, 3).equals(institution)) {
-					orders.add(result.getString(1));
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return orders;
+		//TODO 可能没用的方法
+		return null;
 	}
 
 	@Override
-	public String createID(String institution) throws RemoteException {
-		String id = "";
-		
-		ArrayList<String> orders = this.findAll(institution);
-		
-		if (orders.isEmpty()) {
-			id = institution + "0000001";
-			return id;
-		}
-		
-		for (String string : orders) {
-			if (string.compareTo(id) > 0) {
-				id = string;
-			}
-		}
-		
-		id = Long.parseLong(id) + 1 + "";
+	public String createID(String date) throws RemoteException {
+		String id = new CreateID().createID("dingdan", ID_LENGTH, date);
 		
 		return id;
 	}

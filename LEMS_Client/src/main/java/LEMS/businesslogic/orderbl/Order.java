@@ -58,8 +58,11 @@ public class Order implements OrderService {
 	
 	private Price price;
 	private Distance cityDistance;
+	private UserVO user;
 	
 	public Order(UserVO user) {
+		this.user = user;
+		
 		//新建订单
 		order = new OrderVO();
 		
@@ -99,10 +102,8 @@ public class Order implements OrderService {
 	
 	public String createID() {
 		try {
-			//TODO 
-			this.getDataService().createID(null);
+			this.getDataService().createID(user.getInstitution().getID());
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

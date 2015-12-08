@@ -1,5 +1,7 @@
 package LEMS.presentation;
 
+import java.util.ArrayList;
+
 import LEMS.presentation.orderui.LoadUi;
 import LEMS.presentation.orderui.ReceiptRecordUi;
 import LEMS.presentation.userui.BusinessClerkUi;
@@ -17,7 +19,6 @@ public class mainSongYiming {
 //		ManagerUi managerUi = new ManagerUi(mainFrame, null);
 //		mainFrame.setContentPane(managerUi);
 		mainFrame.setVisible(true);
-		
 	}
 
 }
