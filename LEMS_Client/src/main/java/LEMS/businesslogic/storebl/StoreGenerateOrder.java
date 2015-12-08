@@ -8,15 +8,13 @@ import java.util.ArrayList;
  *生成仓库出库入库单
  */
 import LEMS.businesslogicservice.storeblservice.StoreGenerateOrderService;
+import LEMS.po.orderpo.OrderPO;
 import LEMS.po.orderpo.TransportType;
 import LEMS.po.storepo.Area;
 import LEMS.po.storepo.Destination;
 import LEMS.po.storepo.GoodsPO;
-import LEMS.po.storepo.InboundOrderPO;
-import LEMS.po.storepo.OutboundOrderPO;
 import LEMS.vo.storevo.InboundOrderVO;
 import LEMS.vo.storevo.OutboundOrderVO;
-import LEMS.businesslogic.storebl.GoodsData;
 
 public class StoreGenerateOrder implements StoreGenerateOrderService {
 
@@ -57,6 +55,9 @@ public class StoreGenerateOrder implements StoreGenerateOrderService {
 	 */
 	public int generateInboundOrderPO(InboundOrderVO inboundOrderVO) {
 		int judge=0;
+		
+		
+		
 		try {
 			String id = inboundOrderVO.getId();
 			String inDate = inboundOrderVO.getInDate();
@@ -65,7 +66,11 @@ public class StoreGenerateOrder implements StoreGenerateOrderService {
 			int row = inboundOrderVO.getRow();
 			int stand = inboundOrderVO.getStand();
 			int pos = inboundOrderVO.getPosition();
-			GoodsPO goodsPO = new GoodsPO(id, inDate, "", des, area, row, stand, pos, TransportType.YetToKnow, "");
+			OrderPO orderpo=new OrderPO();
+			OrderData orderData =new OrderData();
+			orderpo=orderData.find(id);
+			Double money=orderpo.getAmount();
+			GoodsPO goodsPO = new GoodsPO(id, inDate, "", des, area, row, stand, pos, TransportType.YetToKnow, "", money);
 			GoodsData goodsData = new GoodsData();
 			judge = goodsData.insert(goodsPO);
 			if (judge == 0) {
@@ -224,7 +229,11 @@ public class StoreGenerateOrder implements StoreGenerateOrderService {
 				int row=iovo.getRow();
 				int stand=iovo.getStand();
 				int position=iovo.getPosition();
-				GoodsPO goodsPO=new GoodsPO(id,inDate,goodspo.getOutDate(),des,area,row,stand,position,goodspo.getTransportType(),goodspo.getTransferNum());
+				OrderPO orderpo=new OrderPO();
+				OrderData orderData =new OrderData();
+				orderpo=orderData.find(id);
+				Double money=orderpo.getAmount();
+				GoodsPO goodsPO=new GoodsPO(id,inDate,goodspo.getOutDate(),des,area,row,stand,position,goodspo.getTransportType(),goodspo.getTransferNum(),money);
 				judge=goodsData.update(goodsPO);
 			} catch (RemoteException e) {
 				e.printStackTrace();
@@ -246,7 +255,11 @@ public class StoreGenerateOrder implements StoreGenerateOrderService {
 				Destination des=oovo.getDestination();
 				TransportType tt=oovo.getTransportType();
 				String tn=oovo.getTransferNum();
-				GoodsPO goodsPO=new GoodsPO(id,goodspo.getInDate(),outDate,des,goodspo.getArea(),goodspo.getRow(),goodspo.getStand(),goodspo.getPosition(),tt,tn);
+				OrderPO orderpo=new OrderPO();
+				OrderData orderData =new OrderData();
+				orderpo=orderData.find(id);
+				Double money=orderpo.getAmount();
+				GoodsPO goodsPO=new GoodsPO(id,goodspo.getInDate(),outDate,des,goodspo.getArea(),goodspo.getRow(),goodspo.getStand(),goodspo.getPosition(),tt,tn,money);
 				judge=goodsData.update(goodsPO);
 			} catch (RemoteException e) {
 				e.printStackTrace();

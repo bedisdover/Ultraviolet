@@ -48,6 +48,10 @@ public class GoodsVO {
 	 * 中转单或汽运编号
 	 */
 	String transferNum;
+	/**
+	 * 运费
+	 */
+	double money;
 	public GoodsVO(String i,Area ar,int r,int s,int p){
 		id=i;
 		area=ar;
@@ -56,16 +60,19 @@ public class GoodsVO {
 		position=p;
 	}
 	
-//	public GoodsVO(String i,String inD,Destination des,Area ar,int r ,int s, int pos){
-//		id=i;
-//		inDate=inD;
-//		destination=des;
-//		area=ar;
-//		row=r;
-//		stand=s;
-//		position=pos;
-//		
-//	}
+	public GoodsVO(String i,String inD,String oD,Destination des,Area ar,int r ,int s, int pos,TransportType tt,String tn,double mon){
+		id=i;
+		inDate=inD;
+		outDate=oD;
+		destination=des;
+		area=ar;
+		row=r;
+		stand=s;
+		position=pos;
+		transportType=tt;
+		transferNum=tn;
+		money=mon;
+	}
 
 	public String getId() {
 		return id;
@@ -145,6 +152,14 @@ public class GoodsVO {
 
 	public void setTransferNum(String transferNum) {
 		this.transferNum = transferNum;
+	}
+
+	public double getMoney() {
+		return money;
+	}
+
+	public void setMoney(double money) {
+		this.money = money;
 	}
 	
 	

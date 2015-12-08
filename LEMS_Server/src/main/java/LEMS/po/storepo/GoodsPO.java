@@ -1,6 +1,7 @@
 package LEMS.po.storepo;
-
 import java.io.Serializable;
+
+
 /**
  * @author 周梦佳
  * 货物持久化对象
@@ -48,7 +49,11 @@ public class GoodsPO implements Serializable {
 	 * 中转单或汽运编号
 	 */
 	String transferNum;
-	public GoodsPO(String i,String iDate,String oDate,Destination des,Area ar,int r,int s,int p,TransportType tt,String tn){
+/**
+ * 运费
+ */
+	double money;
+	public GoodsPO(String i,String iDate,String oDate,Destination des,Area ar,int r,int s,int p,TransportType tt,String tn,double m){
 		id=i;
 		inDate=iDate;
 		outDate=oDate;
@@ -59,6 +64,7 @@ public class GoodsPO implements Serializable {
 		position=p;
 		transportType=tt;
 		transferNum=tn;
+		money=m;
 	}
 	
 	public GoodsPO(String i,Area ar,int r,int s,int p){
@@ -147,6 +153,14 @@ public class GoodsPO implements Serializable {
 
 	public void setTransferNum(String transferNum) {
 		this.transferNum = transferNum;
+	}
+
+	public double getMoney() {
+		return money;
+	}
+
+	public void setMoney(double money) {
+		this.money = money;
 	}
 	
 	

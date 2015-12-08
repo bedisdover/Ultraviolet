@@ -8,7 +8,7 @@ public interface GoodsDataService {
 
 	public GoodsPO find(String id);
 	
-	public GoodsPO find(String sTime,String eTime);
+	public ArrayList<GoodsPO> find(String sTime,String eTime);
 	
 	public int insert(GoodsPO goodsPO);
 	
