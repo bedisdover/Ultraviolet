@@ -12,6 +12,7 @@ public class Settlement implements SettlementService {
 
 	public IncomeBillVO getIncomeInfo(String id) {
 		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

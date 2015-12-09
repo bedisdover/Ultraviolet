@@ -23,7 +23,6 @@ import LEMS.vo.uservo.UserVO;
  * @author 周梦佳
  * 中转接收界面
  */
-@SuppressWarnings("serial")
 public class TransferUi extends JPanel {
 
 
@@ -44,17 +43,19 @@ public class TransferUi extends JPanel {
 	private JButton delete;
 	private JButton update;
 	private JButton inquire;
-	private JLabel labelInsititutionId;
+	private JLabel labelTransferID;
 	private JLabel labelDate;
 	private JLabel labelId;
 	private JLabel labelDeparture;
 	private JLabel labelStatus;
 	
-	private JTextField textInsititutionId;
+	private JTextField textTransferID;
 	private JTextField textId;
 	
 	private JComboBox<String> comboBox1;//departure
 	private JComboBox<String> comboBox2;//status
+	
+	private DateChooser dc;
 	
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);//标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);//其余字体格式
@@ -93,19 +94,19 @@ public class TransferUi extends JPanel {
 		delete=new JButton("删除");
 		update=new JButton("修改");
 		inquire=new JButton("查找");
-		labelInsititutionId = new JLabel("中转中心编号:");
+		labelTransferID = new JLabel("中转单编号:");
 		labelDate = new JLabel("到达日期:");
-		labelId = new JLabel("中转单编号:");
+		labelId = new JLabel("订单条形码:");
 		labelDeparture = new JLabel("出发地:");
 		labelStatus = new JLabel("货物到达状态：");
 		
-		textInsititutionId = new JTextField();
+		textTransferID = new JTextField();
 		textId = new JTextField();
 		
 		comboBox1 = new JComboBox<String>();
 		comboBox2 = new JComboBox<String>();
 		
-		DateChooser dc= new DateChooser(this,LOCATION_TEXT_X,LOCATION_TEXT_Y+80);
+		dc = new DateChooser(this, LOCATION_TEXT_X, LOCATION_TEXT_Y+70);
 	}
 
 	/**
@@ -114,20 +115,21 @@ public class TransferUi extends JPanel {
 	private void initComponents() {
 
 		title.setBounds(420, 27, 230, 39);
-		labelInsititutionId.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y, BOUND_X, BOUND_Y);
+		labelTransferID.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y, BOUND_X, BOUND_Y);
 		labelDate.setBounds(LOCATION_LABEL_X+15, LOCATION_LABEL_Y+70, BOUND_X, BOUND_Y);
-		labelId.setBounds(LOCATION_LABEL_X+9, LOCATION_LABEL_Y+140, BOUND_X, BOUND_Y);
-		labelDeparture.setBounds(LOCATION_LABEL_X+23, LOCATION_LABEL_Y+210, BOUND_X, BOUND_Y);
+		labelDeparture.setBounds(LOCATION_LABEL_X+23, LOCATION_LABEL_Y+140, BOUND_X, BOUND_Y);
+		labelId.setBounds(LOCATION_LABEL_X+9, LOCATION_LABEL_Y+210, BOUND_X, BOUND_Y);
 		labelStatus.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+280, BOUND_X, BOUND_Y);
-		textInsititutionId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y, BOUND_X, BOUND_Y-6);
-		textId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+140, BOUND_X, BOUND_Y-6);
-		comboBox1.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+210, BOUND_X, BOUND_Y-5);
+		textTransferID.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y, BOUND_X, BOUND_Y-6);
+		textId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+210, BOUND_X, BOUND_Y-5);
+		comboBox1.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+140, BOUND_X, BOUND_Y-6);
 		comboBox1.addItem("北京");
 		comboBox1.addItem("上海");
 		comboBox1.addItem("广州");
 		comboBox1.addItem("南京");
 		comboBox2.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+280, BOUND_X, BOUND_Y-5);
-		comboBox2.addItem("到达");
+		comboBox2.addItem("完整");
+		comboBox2.addItem("损坏");
 		comboBox2.addItem("丢失");
 		
 		OK.setBounds(LOCATION_LABEL_X+15, LOCATION_LABEL_Y+355, BOUND_X-40, BOUND_Y+10);
@@ -139,7 +141,7 @@ public class TransferUi extends JPanel {
 		inquire.setBounds(750, 590, 120, 40);
 
 		title.setFont(fnt1);
-		labelInsititutionId.setFont(fnt);
+		labelTransferID.setFont(fnt);
 		labelDate.setFont(fnt);
 		labelId.setFont(fnt);
 		labelDeparture.setFont(fnt);
@@ -152,18 +154,18 @@ public class TransferUi extends JPanel {
 		update.setFont(fnt2);
 		inquire.setFont(fnt2);
 		textId.setFont(fnt);
-		textInsititutionId.setFont(fnt);
+		textTransferID.setFont(fnt);
 		comboBox1.setFont(fnt);
 		comboBox2.setFont(fnt);
 		
 		this.add(title);
-		this.add(labelInsititutionId);
+		this.add(labelTransferID);
 		this.add(labelDate);
 		this.add(labelId);
 		this.add(labelDeparture);
 		this.add(labelStatus);
 		this.add(textId);
-		this.add(textInsititutionId);
+		this.add(textTransferID);
 		this.add(comboBox1);
 		this.add(comboBox2);
 		this.add(OK);
@@ -191,7 +193,7 @@ public class TransferUi extends JPanel {
 	private void setTestState(boolean state) {
 
 		textId.setEditable(state);
-		textInsititutionId.setEditable(state);
+		textTransferID.setEditable(state);
 		OK.setEnabled(state);
 		cancel.setEnabled(state);
 		//日期不可编辑
@@ -202,7 +204,7 @@ public class TransferUi extends JPanel {
 	 */
 	private void empty() {
 		textId.setText(null);
-		textInsititutionId.setText(null);
+		textTransferID.setText(null);
 		comboBox1.setSelectedIndex(0);
 		comboBox2.setSelectedIndex(0);
 		//日期
