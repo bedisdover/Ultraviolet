@@ -125,26 +125,40 @@ public class StatisticsReportUi extends JPanel {
 	private void addListener(){
 		but.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
+				//日期没有填写完整
 				if(textDate1.getText().equals("")||textDate2.getText().equals("")){
 					JOptionPane.showMessageDialog(StatisticsReportUi.this, "请将日期填写完整!");
 				}
+				//日期格式不符合要求
+				else if(textDate1.getText().length()!=10||textDate2.getText().length()!=10){
+					JOptionPane.showMessageDialog(StatisticsReportUi.this, "日期格式为:yyyy-mm-dd!");
+				}
 				else{
+					empty();
 					InquireBusinessList inquire=new InquireBusinessList();
 					BusinessListVO business=inquire.getBusinessList(textDate1.getText(),textDate2.getText());
+					
+					//显示付款单信息
 					ArrayList<PayBillVO> pays=business.getPayBill();
-					for(int i=0;i<pays.size();i++){
+					if(!pays.isEmpty()){
+						for(int i=0;i<pays.size();i++){
 						 table1.setValueAt(i, 0, pays.get(i).getDate());
 						 table1.setValueAt(i, 1, pays.get(i).getAmount()+"");
 						 table1.setValueAt(i, 2, pays.get(i).getInstitution());
 						 table1.setValueAt(i, 3, pays.get(i).getAccount());
+						}
 					}
+					
+					//显示收款单信息
 					ArrayList<IncomeBillVO> incomes=business.getIncomeBill();
-					for(int i=0;i<incomes.size();i++){
+					if(!incomes.isEmpty()){
+						for(int i=0;i<incomes.size();i++){
 						 table2.setValueAt(i, 0, incomes.get(i).getDate());
 						 table2.setValueAt(i, 1, incomes.get(i).getAmount()+"");
 						 table2.setValueAt(i, 2, incomes.get(i).getInstitution());
 						 table2.setValueAt(i, 3, incomes.get(i).getAccount());
-					}
+						}
+					}					
 				}
 				
 			}
@@ -160,5 +174,25 @@ public class StatisticsReportUi extends JPanel {
 	public void paintComponent(Graphics g) {
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
 		this.repaint();
+	}
+	 
+	/**
+	 * 清空上一次查询结果
+	 */
+	private void empty(){
+		int i=table1.numOfEmpty();
+		for(i=i-1;i>=0;i--){
+			 table1.setValueAt(i, 0, "");
+			 table1.setValueAt(i, 1, "");
+			 table1.setValueAt(i, 2, "");
+			 table1.setValueAt(i, 3, "");
+		}
+		int j=table2.numOfEmpty();
+		for(j=j-1;j>=0;j--){
+			 table2.setValueAt(j, 0, "");
+			 table2.setValueAt(j, 1, "");
+			 table2.setValueAt(j, 2, "");
+			 table2.setValueAt(j, 3, "");
+		}
 	}
 }
