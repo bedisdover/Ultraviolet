@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 import LEMS.businesslogic.storebl.StoreManagement;
+import LEMS.presentation.ExportExcel;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
@@ -45,6 +46,7 @@ public class StoreCheckUi extends JPanel {
 	private JTextField textTime;
 	
 	Table table;
+	String timeToTransfer="";
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);// 标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 18);// 其余字体格式
 	private Font fnt2 = new Font("宋体", Font.BOLD, 16);// 按钮字体格式
@@ -146,7 +148,35 @@ public class StoreCheckUi extends JPanel {
 	private void addListener() {
 		excel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				//TODO
+				StoreManagement storeManagement=new StoreManagement();
+				ArrayList<GoodsVO> alList=storeManagement.check(timeToTransfer);
+				ArrayList<Object> al=new ArrayList<Object>();
+				int length=alList.size();
+				for(int i=0;i<length-8;i++){
+					al.add(alList.get(i).getId());
+					al.add(alList.get(i).getInDate());
+					al.add(alList.get(i).getOutDate());
+					al.add(alList.get(i).getDestination());
+					al.add(alList.get(i).getArea());
+					al.add(alList.get(i).getRow());
+					al.add(alList.get(i).getStand());
+					al.add(alList.get(i).getPosition());
+					al.add(alList.get(i).getTransportType());
+					al.add(alList.get(i).getTransferNum());
+				}
+				ExportExcel operation=new ExportExcel();
+				String[] title=new String[7];
+				title[0]="快递单号";
+				title[1]="入库日期";
+				title[2]="出库日期";
+				title[3]="目的地";
+				title[4]="存储区域";
+				title[5]="架号";
+				title[6]="排号";
+				title[7]="位号";
+				title[8]="装运形式";
+				title[9]="单号";
+				operation.exportExcel("库存盘点", title, al);
 			}
 		});
 
@@ -161,7 +191,7 @@ public class StoreCheckUi extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHH:mm:ss");//设置日期格式
 				String time=df.format(new Date()).substring(8, 16);
-				String timeToTransfer=time.substring(0, 2)+time.substring(3,5)+time.substring(6, 8);
+				timeToTransfer=time.substring(0, 2)+time.substring(3,5)+time.substring(6, 8);
 				textTime.setText(time);
 				OK.setEnabled(false);
 				excel.setEnabled(true);
