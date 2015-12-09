@@ -1,33 +1,33 @@
 package LEMS.businesslogicservice.storeblservice;
 
-import java.util.ArrayList;
-
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 import LEMS.po.storepo.InboundOrderPO;
 import LEMS.po.storepo.OutboundOrderPO;
 import LEMS.vo.storevo.InboundOrderVO;
 import LEMS.vo.storevo.OutboundOrderVO;
 
-public interface StoreGenerateOrderService {
+public interface StoreGenerateOrderService extends Remote{
 
-	public InboundOrderVO generateInboundOrderVO(String id);	//生成单个入库单
+	public InboundOrderVO generateInboundOrderVO(String id)throws RemoteException;	//生成单个入库单
 	
-	public int generateInboundOrderPO(InboundOrderVO inboundOrderVO);
+	public int generateInboundOrderPO(InboundOrderVO inboundOrderVO)throws RemoteException;
 	
-	public OutboundOrderVO generateOutboundOrderVO(String id);//生成单个出库单
+	public OutboundOrderVO generateOutboundOrderVO(String id)throws RemoteException;//生成单个出库单
 	
-	public int generateOutboundOrderPO(OutboundOrderVO outboundOrderVO);
+	public int generateOutboundOrderPO(OutboundOrderVO outboundOrderVO)throws RemoteException;
 	
-	public InboundOrderVO inquireInboundOrderPO(String id);//查询
+	public InboundOrderVO inquireInboundOrderPO(String id)throws RemoteException;//查询
 	
-	public OutboundOrderVO inquireOutboundOrderPO(String id);//查询
+	public OutboundOrderVO inquireOutboundOrderPO(String id)throws RemoteException;//查询
 	
-	public int deleteInboundOrderPO(String id);//删除入库单
+	public int deleteInboundOrderPO(String id)throws RemoteException;//删除入库单
 	
-	public int deleteOutboundOrderPO(String id);//删除出库单
+	public int deleteOutboundOrderPO(String id)throws RemoteException;//删除出库单
 	
-	public int updateInboundOrderPO(InboundOrderVO inboundOrderVO);//修改入库单
+	public int updateInboundOrderPO(InboundOrderVO inboundOrderVO)throws RemoteException;//修改入库单
 	
-	public int updateOutboundOrderPO(OutboundOrderVO outboundOrderVO);//修改出库单
+	public int updateOutboundOrderPO(OutboundOrderVO outboundOrderVO)throws RemoteException;//修改出库单
 	
 
 

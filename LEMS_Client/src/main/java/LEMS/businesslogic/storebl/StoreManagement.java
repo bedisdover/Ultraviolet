@@ -1,5 +1,8 @@
 package LEMS.businesslogic.storebl;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -10,6 +13,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import LEMS.businesslogic.utility.RMIConnect;
+import LEMS.dataservice.factory.DatabaseFactory;
+import LEMS.dataservice.factory.StoreFactory;
+import LEMS.dataservice.storedataservice.GoodsDataService;
 import LEMS.po.orderpo.TransportType;
 import LEMS.po.storepo.Area;
 import LEMS.po.storepo.Destination;
@@ -31,7 +38,6 @@ public class StoreManagement {
 	//库存查看 设定一个时间段，查看此时间段内的出/入库数量
 	//金额，存储位置，库存数量要有合计
 	public ArrayList<GoodsVO> inquire(String startTime,String endTime){
-		GoodsData goodsData;
 		ArrayList<GoodsPO> al=new ArrayList<GoodsPO>();
 		ArrayList<GoodsVO> alInbound=new ArrayList<GoodsVO>();
 		ArrayList<GoodsVO> alOutbound=new ArrayList<GoodsVO>();
@@ -47,8 +53,7 @@ public class StoreManagement {
 		
 		
 		try {
-			goodsData = new GoodsData();
-			al=goodsData.find(startTime, endTime);
+			al=getData().find(startTime, endTime);
 			int number=al.size();
 			for(int i=0;i<number;i++){
 				GoodsPO gpo=al.get(i);
@@ -159,6 +164,25 @@ public class StoreManagement {
 //		int presentNum = al.size();
 //		if (presentNum >= standardNum)
 //			System.out.println("Warning!");
+	}
+	
+	private GoodsDataService getData() {
+		GoodsDataService goodsDataService = null;
+		
+		try {
+			//获得数据库的引用
+			DatabaseFactory databaseFactory = (DatabaseFactory) Naming.lookup(RMIConnect.RMI);
+			StoreFactory storeFactory = databaseFactory.getStoreFactory();
+			goodsDataService =storeFactory.getGoodsData();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+		
+		return goodsDataService;
 	}
 
 }
