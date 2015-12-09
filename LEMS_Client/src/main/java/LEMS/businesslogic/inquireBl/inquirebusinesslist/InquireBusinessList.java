@@ -10,8 +10,9 @@ import LEMS.vo.inquirevo.BusinessListVO;
 public class InquireBusinessList implements InquireBusinessListService {
 
 	public BusinessListVO getBusinessList(String startTime, String endTime) {
-		// TODO Auto-generated method stub
-		return null;
+		BusinessList bl=new BusinessList(startTime,endTime);
+		BusinessListVO bvo=new BusinessListVO(startTime,endTime,bl.getPayBill(),bl.getIncomeBill());
+		return bvo;
 	}
 
 }

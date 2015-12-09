@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -119,9 +120,12 @@ public class StatisticsReportUi extends JPanel {
 	private void addListener(){
 		but.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				textDate1.setText(null);
-				textDate2.setText(null);
-				
+				if(textDate1.getText().equals("")||textDate2.getText().equals("")){
+					JOptionPane.showMessageDialog(StatisticsReportUi.this, "请将日期填写完整!");
+				}
+				else{
+					
+				}
 				
 			}
 		});

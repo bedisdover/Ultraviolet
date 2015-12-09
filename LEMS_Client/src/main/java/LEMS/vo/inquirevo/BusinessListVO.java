@@ -3,7 +3,7 @@ package LEMS.vo.inquirevo;
 import java.util.ArrayList;
 
 import LEMS.vo.financevo.PayBillVO;
-import LEMS.vo.ordervo.IncomeBillVO;
+import LEMS.vo.financevo.IncomeBillVO;
 
 /**
  * @author 章承尧
@@ -27,11 +27,11 @@ public class BusinessListVO {
 	 */
 	ArrayList<IncomeBillVO> income;
 	
-	public BusinessListVO(String s,String e,ArrayList<PayBillVO> ap,ArrayList<IncomeBillVO> ai){
+	public BusinessListVO(String s,String e,ArrayList<PayBillVO> ap,ArrayList<IncomeBillVO> arrayList){
 		startTime=s;
 		endTime=e;
 		pay=ap;
-		income=ai;
+		income=arrayList;
 	}
 	public String getStartTime(){
 		return startTime;

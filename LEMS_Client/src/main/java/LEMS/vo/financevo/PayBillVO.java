@@ -28,11 +28,11 @@ public class PayBillVO {
 	/**
 	 * 付款人
 	 */
-	private UserPO payer;
+	private String payer;
 	/**
 	 * 付款账号
 	 */
-	private AccountVO account;
+	private String account;
 	/**
 	 * 付款条目
 	 */
@@ -46,12 +46,13 @@ public class PayBillVO {
 		// TODO 默认构造函数
 	}
 	
-	public PayBillVO(String date, String id, String institution, double amount, AccountVO account, String item,
+	public PayBillVO(String date, String id, String institution, double amount, String payer, String account, String item,
 			String remark) {
 		this.date = date;
-		this.id = id;
+		this.id=id;
 		this.institution = institution;
 		this.amount = amount;
+		this.payer = payer;
 		this.account = account;
 		this.item = item;
 		this.remark = remark;
@@ -73,7 +74,7 @@ public class PayBillVO {
 		return amount;
 	}
 
-	public AccountVO getAccount() {
+	public String getAccount() {
 		return account;
 	}
 
@@ -85,7 +86,8 @@ public class PayBillVO {
 		return remark;
 	}
 
-	public UserPO getPayer() {
+	public String getPayer() {
 		return payer;
 	}
+	
 }

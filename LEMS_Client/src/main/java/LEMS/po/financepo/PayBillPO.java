@@ -14,6 +14,10 @@ public class PayBillPO implements Serializable {
 	 */
 	private String date;
 	/**
+	 * 付款单编号
+	 */
+	private String id;
+	/**
 	 * 付款单位
 	 */
 	private String institution;
@@ -38,10 +42,11 @@ public class PayBillPO implements Serializable {
 	 */
 	private String remark;
 
-	public PayBillPO(String date, String institution, double amount,
+	public PayBillPO(String date, String id,String institution, double amount,
 			String payer, String account, String item, String remark) {
 		// TODO 根据付款单值对象生成持久化对象
 		this.date = date;
+		this.id=id;
 		this.institution = institution;
 		this.amount = amount;
 		this.payer = payer;
@@ -76,5 +81,8 @@ public class PayBillPO implements Serializable {
 
 	public String getRemark() {
 		return remark;
+	}
+	public String getId(){
+		return id;
 	}
 }

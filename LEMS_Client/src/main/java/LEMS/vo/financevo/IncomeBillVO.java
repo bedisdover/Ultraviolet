@@ -23,9 +23,9 @@ public class IncomeBillVO {
 	/**
 	 * 收款账户
 	 */
-	private AccountPO account;
+	private String account;
 
-	public IncomeBillVO(String date, String institution, AccountPO account, double amount) {
+	public IncomeBillVO(String date, String institution, double amount, String account) {
 		this.date = date;
 		this.institution = institution;
 		this.account = account;
@@ -44,7 +44,7 @@ public class IncomeBillVO {
 		return amount;
 	}
 	
-	public AccountPO getAccount() {
+	public String getAccount() {
 		return account;
 	}
 }
