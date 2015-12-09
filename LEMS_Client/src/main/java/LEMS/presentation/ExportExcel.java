@@ -1,20 +1,5 @@
 package LEMS.presentation;
 
-import java.io.OutputStream;  
-import java.util.List;  
-import java.lang.reflect.Field;  
-  
-import jxl.Workbook;  
-import jxl.format.Alignment;  
-import jxl.format.Border;  
-import jxl.format.BorderLineStyle;  
-import jxl.format.VerticalAlignment;  
-import jxl.write.Label;  
-import jxl.write.WritableCellFormat;  
-import jxl.write.WritableFont;  
-import jxl.write.WritableSheet;  
-import jxl.write.WritableWorkbook;  
-
 public class ExportExcel {  
 // /*************************************************************************** 
 //  * @param fileName EXCEL文件名称 
