@@ -20,5 +20,4 @@ public class BusinessListData extends UnicastRemoteObject implements BusinessLis
 	public BusinessListPO findBusinessList(String startTime, String endTime) throws RemoteException {
 		return null;
 	}
-
 }

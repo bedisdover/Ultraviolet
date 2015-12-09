@@ -29,37 +29,37 @@ public class ExportExcel {
   /**
    * 创建工作簿
    */
-   WritableWorkbook workbook = Workbook.createWorkbook(os);  
+//   WritableWorkbook workbook = Workbook.createWorkbook(os);  
   /**
    * 创建工作表
    */
-   WritableSheet sheet = workbook.createSheet("Sheet1", 0);  
+//   WritableSheet sheet = workbook.createSheet("Sheet1", 0);  
   /**
    * 设置纵横打印（默认为纵打）、打印纸
    */
-   jxl.SheetSettings sheetset = sheet.getSettings();  
-   sheetset.setProtected(false);  
+//   jxl.SheetSettings sheetset = sheet.getSettings();  
+//   sheetset.setProtected(false);  
   /**
    * 设置单元格字体
    */
-   WritableFont NormalFont = new WritableFont(WritableFont.ARIAL, 10);  
-   WritableFont BoldFont = new WritableFont(WritableFont.ARIAL, 10,WritableFont.BOLD);  
+//   WritableFont NormalFont = new WritableFont(WritableFont.ARIAL, 10);  
+//   WritableFont BoldFont = new WritableFont(WritableFont.ARIAL, 10,WritableFont.BOLD);  
   /**
    * 以下设置三种单元格样式，灵活备用
    */
    // 用于标题居中  
-   WritableCellFormat wcf_center = new WritableCellFormat(BoldFont);  
-   wcf_center.setBorder(Border.ALL, BorderLineStyle.THIN); // 线条  
-   wcf_center.setVerticalAlignment(VerticalAlignment.CENTRE); // 文字垂直对齐  
-   wcf_center.setAlignment(Alignment.CENTRE); // 文字水平对齐  
-   wcf_center.setWrap(false); // 文字是否换行  
+//   WritableCellFormat wcf_center = new WritableCellFormat(BoldFont);  
+//   wcf_center.setBorder(Border.ALL, BorderLineStyle.THIN); // 线条  
+//   wcf_center.setVerticalAlignment(VerticalAlignment.CENTRE); // 文字垂直对齐  
+//   wcf_center.setAlignment(Alignment.CENTRE); // 文字水平对齐  
+//   wcf_center.setWrap(false); // 文字是否换行  
      
    // 用于正文居左  
-   WritableCellFormat wcf_left = new WritableCellFormat(NormalFont);  
-   wcf_left.setBorder(Border.NONE, BorderLineStyle.THIN); // 线条  
-   wcf_left.setVerticalAlignment(VerticalAlignment.CENTRE); // 文字垂直对齐  
-   wcf_left.setAlignment(Alignment.LEFT); // 文字水平对齐  
-   wcf_left.setWrap(false); // 文字是否换行     
+//   WritableCellFormat wcf_left = new WritableCellFormat(NormalFont);  
+//   wcf_left.setBorder(Border.NONE, BorderLineStyle.THIN); // 线条  
+//   wcf_left.setVerticalAlignment(VerticalAlignment.CENTRE); // 文字垂直对齐  
+//   wcf_left.setAlignment(Alignment.LEFT); // 文字水平对齐  
+//   wcf_left.setWrap(false); // 文字是否换行     
    
   /**
    * 以下是EXCEL开头大标题，暂时省略
@@ -70,7 +70,7 @@ public class ExportExcel {
     * 以下是EXCEL第一行列标题
     */
    for (int i = 0; i < Title.length; i++) {  
-    sheet.addCell(new Label(i, 0,Title[i],wcf_center));  
+//    sheet.addCell(new Label(i, 0,Title[i],wcf_center));  
    }     
    /**
     * 以下是EXCEL正文数据
@@ -86,7 +86,7 @@ public class ExportExcel {
            if(va==null){  
                va="";  
            }  
-           sheet.addCell(new Label(j, i,va.toString(),wcf_left));  
+//           sheet.addCell(new Label(j, i,va.toString(),wcf_left));  
            j++;  
        }  
        i++;  
@@ -94,11 +94,11 @@ public class ExportExcel {
    /**
     * 将以上缓存中的内容写到EXCEL文件中
     */
-   workbook.write();  
+//   workbook.write();  
    /**
     * 关闭文件
     */
-   workbook.close();     
+//   workbook.close();     
   
   } catch (Exception e) {  
    result="系统提示：Excel文件导出失败，原因："+ e.toString();  
