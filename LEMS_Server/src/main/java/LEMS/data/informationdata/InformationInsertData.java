@@ -9,6 +9,7 @@ import java.sql.SQLException;
 
 import LEMS.data.Connect;
 import LEMS.dataservice.informationdataservice.InformationInsertDataService;
+import LEMS.po.financepo.SalaryPO;
 import LEMS.po.informationpo.AccountPO;
 import LEMS.po.informationpo.DriverPO;
 import LEMS.po.informationpo.InstitutionPO;
@@ -130,6 +131,24 @@ public class InformationInsertData extends UnicastRemoteObject implements Inform
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	//存储员工薪水信息
+	public void insert(SalaryPO po) throws RemoteException {
+		Connect co=new Connect();
+		String sql="INSERT INTO salary VALUES (?,?,?,?)";
+		PreparedStatement pstmt=co.getPreparedStatement(sql);
+		try {
+			pstmt.setString(1,po.getId());
+			pstmt.setString(2,po.getInstitution());
+			pstmt.setString(3,po.getName());
+			pstmt.setDouble(4,po.getSalary());
+			pstmt.executeUpdate();
+			co.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	

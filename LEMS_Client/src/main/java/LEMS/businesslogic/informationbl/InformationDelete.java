@@ -97,4 +97,18 @@ public class InformationDelete implements InformationDeleteService{
 			e.printStackTrace();
 		}
 	}
+	public void deleteSalary(String id){
+		try {
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup(RMIConnect.RMI);
+			InformationFactory infof=database.getInformationFactory();
+			InformationDeleteDataService infod=infof.getInformationDeleteData();
+			infod.deleteSalary(id);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+	}
 }

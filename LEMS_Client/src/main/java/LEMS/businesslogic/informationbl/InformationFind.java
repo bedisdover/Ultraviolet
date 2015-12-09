@@ -14,12 +14,14 @@ import LEMS.dataservice.factory.UserFactory;
 import LEMS.dataservice.informationdataservice.InformationFindDataService;
 import LEMS.dataservice.informationdataservice.InformationInsertDataService;
 import LEMS.dataservice.userdataservice.UserDataService;
+import LEMS.po.financepo.SalaryPO;
 import LEMS.po.informationpo.AccountPO;
 import LEMS.po.informationpo.DriverPO;
 import LEMS.po.informationpo.InstitutionPO;
 import LEMS.po.informationpo.VehiclePO;
 import LEMS.po.userpo.UserPO;
 import LEMS.po.userpo.UserRole;
+import LEMS.vo.financevo.SalaryVO;
 import LEMS.vo.informationvo.AccountVO;
 import LEMS.vo.informationvo.DriverVO;
 import LEMS.vo.informationvo.InstitutionVO;
@@ -252,5 +254,50 @@ public class InformationFind implements InformationFindService{
 			e1.printStackTrace();
 		}
 		return account;
+	}
+	
+	/**
+	 * 查找所有人员薪水信息
+	 */
+	public ArrayList<SalaryVO> findSalary(){
+		ArrayList<SalaryVO> salavo=new ArrayList<SalaryVO>();
+		try {
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup(RMIConnect.RMI);
+			InformationFactory findFac=database.getInformationFactory();
+			InformationFindDataService infofind = findFac.getInformationFindData();
+			ArrayList<SalaryPO> salas=infofind.findSalary();
+			for(int i=0;i<salas.size();i++){
+				SalaryVO svo=new SalaryVO(salas.get(i).getId(),salas.get(i).getInstitution(),salas.get(i).getName(),salas.get(i).getSalary());
+				salavo.add(svo);
+			}			
+		} catch (MalformedURLException e1) {
+			e1.printStackTrace();
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		} catch (NotBoundException e1) {
+			e1.printStackTrace();
+		}
+		return salavo;
+	}
+	
+	/**
+	 * 根据id查找某一人员薪水信息
+	 */
+	public SalaryVO findTheSalary(String id){
+		SalaryVO sala=null;
+		try {
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup(RMIConnect.RMI);
+			InformationFactory findFac=database.getInformationFactory();
+			InformationFindDataService infofind = findFac.getInformationFindData();
+			SalaryPO thesala=infofind.findTheSalary(id);
+			sala=new SalaryVO(thesala.getId(),thesala.getInstitution(),thesala.getName(),thesala.getSalary());
+		} catch (MalformedURLException e1) {
+			e1.printStackTrace();
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		} catch (NotBoundException e1) {
+			e1.printStackTrace();
+		}
+		return sala;
 	}
 }

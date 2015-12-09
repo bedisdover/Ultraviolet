@@ -9,6 +9,7 @@ import java.sql.SQLException;
 
 import LEMS.data.Connect;
 import LEMS.dataservice.informationdataservice.InformationUpdateDataService;
+import LEMS.po.financepo.SalaryPO;
 import LEMS.po.informationpo.AccountPO;
 import LEMS.po.informationpo.DriverPO;
 import LEMS.po.informationpo.InstitutionPO;
@@ -65,6 +66,14 @@ public class InformationUpdateData extends UnicastRemoteObject implements Inform
 		delete.deleteAccount(apo.getId());
 		InformationInsertData insert=new InformationInsertData();
 		insert.insert(apo);
+	}
+
+	//更新一项人员薪水信息
+	public void updateSalary(SalaryPO spo) throws RemoteException {
+		InformationDeleteData delete=new InformationDeleteData();
+		delete.deleteSalary(spo.getId());
+		InformationInsertData insert=new InformationInsertData();
+		insert.insert(spo);
 	}
 	
 }

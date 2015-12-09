@@ -95,5 +95,20 @@ public class InformationDeleteData extends UnicastRemoteObject implements Inform
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	//删除对应id的人员薪水信息
+	public void deleteSalary(String id) throws RemoteException {
+		Connect co=new Connect();
+		String sql="DELETE FROM salary WHERE id = ?";
+		PreparedStatement pstmt=co.getPreparedStatement(sql);
+		try {
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+			co.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}	
 }

@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -15,12 +16,14 @@ import LEMS.businesslogic.informationbl.InformationAdd;
 import LEMS.businesslogic.informationbl.InformationDelete;
 import LEMS.businesslogic.informationbl.InformationFind;
 import LEMS.businesslogic.informationbl.InformationUpdate;
+import LEMS.po.financepo.SalaryPO;
 import LEMS.po.informationpo.InstitutionPO;
 import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
 import LEMS.presentation.userui.ManagerUi;
+import LEMS.vo.financevo.SalaryVO;
 import LEMS.vo.uservo.UserVO;
 
 /**
@@ -57,8 +60,6 @@ public class StuffManageUi extends JPanel  {
 
 	Table table;
 
-	private boolean isAdd;
-	private boolean isUpdate;
 	private UserVO user;
 	public StuffManageUi(final MainFrame mainFrame,UserVO uvo){
 		user=uvo;
@@ -132,7 +133,7 @@ public class StuffManageUi extends JPanel  {
 		this.add(labelSalary);
 		this.add(textSalary);
 		
-		String[] columnNames = { "姓名", "员工ID", "所处机构编号" ,"工资"};
+		String[] columnNames = { "员工ID","姓名", "所处机构编号" ,"工资"};
 		int[] list = { 40, 136, 14, 30, 20, 384, 126-change, 561, 465 };
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
@@ -140,6 +141,15 @@ public class StuffManageUi extends JPanel  {
 		table = new Table();
 		add(table.drawTable(columnNames, list));
 		
+		InformationFind findInfo=new InformationFind();
+		ArrayList<SalaryVO> sa=findInfo.findSalary();
+		for(int i=0;i<sa.size();i++){
+			table.setValueAt(i, 0, sa.get(i).getId());
+			table.setValueAt(i, 1, sa.get(i).getName());
+			table.setValueAt(i, 2, sa.get(i).getInstitution());
+			table.setValueAt(i, 3, sa.get(i).getSalary()+"");
+			
+		}
 	}
 	
 	private void setTestState(boolean state) {
@@ -166,40 +176,10 @@ public class StuffManageUi extends JPanel  {
 			}
 		});
 
-//		butAdd.addMouseListener(new MouseAdapter() {
-//			public void mouseClicked(MouseEvent e) {
-//				// 设置输入框可编辑
-//				setTestState(true);
-//				isAdd=true;
-//			}
-//		});
-//
-//		butDel.addMouseListener(new MouseAdapter() {
-//			public void mouseClicked(MouseEvent e) {
-//				int currentLine = table.table.getSelectedRow();
-//				if (currentLine == -1) {
-//					JOptionPane.showMessageDialog(StuffManageUi.this, "请选择要删除的行!");
-//				}
-//				else {
-//					int i = table.numOfEmpty();	
-//					
-//					InformationDelete dele=new InformationDelete();
-//					dele.deleteStaff(table.getValueAt(currentLine, 0).trim());
-//										
-//					for(int j=currentLine;j<i;j++){
-//						table.setValueAt(j, 0, table.getValueAt(j+1, 0));
-//						table.setValueAt(j, 1, table.getValueAt(j+1, 1));
-//						table.setValueAt(j, 2, table.getValueAt(j+1, 2));
-//					}
-//					
-//					
-//				}
-//			}
-//		});
 
 		butFind.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				String inputValue=JOptionPane.showInputDialog("请输入用户账号：");
+				String inputValue=JOptionPane.showInputDialog(StuffManageUi.this,"请输入人员账号：");
 				int i = table.numOfEmpty();
 				for(i=i-1;i>=0;i--){
 					if(table.table.getValueAt(i, 0).equals(inputValue)){
@@ -211,7 +191,7 @@ public class StuffManageUi extends JPanel  {
 				}
 				else{
 					if(inputValue!=null){
-						JOptionPane.showMessageDialog(StuffManageUi.this, "未找到该用户");
+						JOptionPane.showMessageDialog(StuffManageUi.this, "未找到该人员");
 					}
 				}
 			}
@@ -221,70 +201,36 @@ public class StuffManageUi extends JPanel  {
 			public void mouseClicked(MouseEvent e) {
 				// 设置输入框可编辑
 				setTestState(true);
-				isUpdate=true;
-				
+				textID.setEditable(false);
+				textName.setEditable(false);
+				textInstitution.setEditable(false);
 				//将被选中人员的详细信息显示出来
 				int currentLine=table.table.getSelectedRow();
 				InformationFind find=new InformationFind();
-				UserVO theStaff=find.findStaff(table.getValueAt(currentLine, 0));
-				textID.setText(theStaff.getId());
-				textInstitution.setText(theStaff.getInstitution().getID());
-				textName.setText(theStaff.getName());
+				SalaryVO theSala=find.findTheSalary(table.getValueAt(currentLine, 0));
+				textID.setText(theSala.getId());
+				textInstitution.setText(theSala.getInstitution());
+				textName.setText(theSala.getName());
+				textSalary.setText(theSala.getSalary()+"");
 			}
 		});
 		OK.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				if(isAdd){
-					if(isComplete()){
-						// 获得第几行为空
-					int i = table.numOfEmpty();
-					// 确定按钮的具体实现
-					table.setValueAt(i, 0, textName.getText());
-					table.setValueAt(i, 1, textID.getText());
-					table.setValueAt(i, 2, textInstitution.getText());
-//					InstitutionPO ipo = new InstitutionPO(textInstitutionID
-//							.getText(), textLocation.getText());
-//					UserVO uvo = new UserVO(textID.getText(), textPassword
-//							.getText(), UserRole.exchange((String) comboBox
-//							.getSelectedItem()), textName.getText(), ipo);
-//					InformationAdd add = new InformationAdd();
-//					add.addStaff(uvo);
-					// 清空输入框
-					empty();
-					// 使输入框不可编辑
-					setTestState(false);
-					isAdd=false;
-					}
-					else{
-						JOptionPane.showMessageDialog(StuffManageUi.this, "请将必填信息填写完整");
-					}
-				}
-				
-				if(isUpdate){
+			public void mouseClicked(MouseEvent e) {												
 					int currentLine=table.table.getSelectedRow();
-					//在数据库中修改该人员信息
-//					InstitutionPO ipo = new InstitutionPO(textInstitutionID
-//							.getText(), textLocation.getText());
-//					UserVO uvo = new UserVO(textID.getText(), textPassword
-//							.getText(), UserRole.exchange((String) comboBox
-//							.getSelectedItem()), textName.getText(), ipo);
-//					if(!originalID.equals(textID.getText())){
-//						InformationDelete de=new InformationDelete();
-//						de.deleteStaff(originalID);
-//					}
-//					InformationUpdate update = new InformationUpdate();
-//					update.updateStaff(uvo);
-					//在界面上修改该人员信息
-					table.setValueAt(currentLine, 0, textName.getText());
-					table.setValueAt(currentLine, 1, textID.getText());
-					table.setValueAt(currentLine, 2, textInstitution.getText());
-					
+					//在数据库中修改该人员薪水信息
+					SalaryVO svo = new SalaryVO(textID.getText(),textInstitution.getText(),textName.getText(),Double.parseDouble(textSalary.getText()));
+					InformationUpdate update = new InformationUpdate();
+					update.updateSalary(svo);
+					//在界面上修改该人员薪水信息
+					table.setValueAt(currentLine, 0, textID.getText());
+					table.setValueAt(currentLine, 1, textName.getText());
+					table.setValueAt(currentLine, 2, textInstitution.getText());									
+					table.setValueAt(currentLine, 3, textSalary.getText()+"");
 					// 清空输入框
 					empty();
 					// 使输入框不可编辑
 					setTestState(false);
-					isUpdate=false;
-				}
+				
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {
@@ -304,12 +250,4 @@ public class StuffManageUi extends JPanel  {
 		this.repaint();
 	}
 	
-	private boolean isComplete(){
-		if(!textID.getText().equals("")&&!textInstitution.getText().equals("")&&!textName.getText().equals("")){
-			return true;
-		}
-		else{
-			return false;
-		}
-	}
 }

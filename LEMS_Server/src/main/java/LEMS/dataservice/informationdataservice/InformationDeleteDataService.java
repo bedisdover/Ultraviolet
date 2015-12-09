@@ -14,4 +14,5 @@ public interface InformationDeleteDataService extends Remote{
 	public void deleteInstitution(String id) throws RemoteException;
 	public void deleteStaff(String id) throws RemoteException;
 	public void deleteAccount(String id) throws RemoteException;
+	public void deleteSalary(String id) throws RemoteException;
 }

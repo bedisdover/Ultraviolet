@@ -3,6 +3,7 @@ package LEMS.dataservice.informationdataservice;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
+import LEMS.po.financepo.SalaryPO;
 import LEMS.po.informationpo.AccountPO;
 import LEMS.po.informationpo.DriverPO;
 import LEMS.po.informationpo.InstitutionPO;
@@ -21,4 +22,5 @@ public interface InformationInsertDataService extends Remote{
 	public void insert(InstitutionPO po) throws RemoteException;
 	public void insert(UserPO po) throws RemoteException;
 	public void insert(AccountPO po) throws RemoteException;
+	public void insert(SalaryPO po) throws RemoteException;
 }

@@ -11,11 +11,13 @@ import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.InformationFactory;
 import LEMS.dataservice.informationdataservice.InformationDeleteDataService;
 import LEMS.dataservice.informationdataservice.InformationUpdateDataService;
+import LEMS.po.financepo.SalaryPO;
 import LEMS.po.informationpo.AccountPO;
 import LEMS.po.informationpo.DriverPO;
 import LEMS.po.informationpo.InstitutionPO;
 import LEMS.po.informationpo.VehiclePO;
 import LEMS.po.userpo.UserPO;
+import LEMS.vo.financevo.SalaryVO;
 import LEMS.vo.informationvo.AccountVO;
 import LEMS.vo.informationvo.DriverVO;
 import LEMS.vo.informationvo.InstitutionVO;
@@ -107,5 +109,21 @@ public class InformationUpdate implements InformationUpdateService{
 				e.printStackTrace();
 			}
 		}
-
+		
+		//更新人员薪水
+		public void updateSalary(SalaryVO svo){
+			try {
+				DatabaseFactory database=(DatabaseFactory)Naming.lookup(RMIConnect.RMI);
+				InformationFactory infof=database.getInformationFactory();
+				InformationUpdateDataService infod=infof.getInformationUpdateData();
+				SalaryPO spo=new SalaryPO(svo.getId(),svo.getInstitution(),svo.getName(),svo.getSalary());
+				infod.updateSalary(spo);
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			} catch (NotBoundException e) {
+				e.printStackTrace();
+			}
+		}
 }

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import LEMS.data.Connect;
 import LEMS.dataservice.informationdataservice.InformationFindDataService;
+import LEMS.po.financepo.SalaryPO;
 import LEMS.po.informationpo.AccountPO;
 import LEMS.po.informationpo.DriverPO;
 import LEMS.po.informationpo.Gender;
@@ -225,5 +226,42 @@ public class InformationFindData extends UnicastRemoteObject implements Informat
 			e.printStackTrace();
 		}
 		return apo;
+	}
+
+	//查找所有人员薪水信息
+	public ArrayList<SalaryPO> findSalary() throws RemoteException {
+		ArrayList<SalaryPO> salas=new ArrayList<SalaryPO>();
+		SalaryPO s=null;
+		Connect co=new Connect();
+		String sql="SELECT * FROM salary";
+		ResultSet result=co.getResultSet(sql);
+		try {
+			while(result.next()){
+				s=new SalaryPO(result.getString(1),result.getString(2),result.getString(3),result.getDouble(4));
+				salas.add(s);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return salas;
+	}
+
+	//根据id查找某个人员薪水信息
+	public SalaryPO findTheSalary(String id) throws RemoteException {
+		SalaryPO spo=null;
+		Connect co=new Connect();
+		String sql="SELECT * FROM salary";
+		ResultSet result=co.getResultSet(sql);
+		try {
+			while(result.next()){
+				if(result.getString(1).equals(id)){
+					spo=new SalaryPO(result.getString(1),result.getString(2),result.getString(3),result.getDouble(4));
+					break;
+				}				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return spo;
 	}
 }
