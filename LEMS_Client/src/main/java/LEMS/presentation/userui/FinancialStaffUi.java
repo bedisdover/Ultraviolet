@@ -35,7 +35,7 @@ public class FinancialStaffUi extends JPanel {
 		
 		statisticsReportUi = new StatisticsReportUi(this.mainFrame);
 		costPanel = new CostUi(this.mainFrame);
-		diaryUi = new DiaryUi(this.mainFrame, uvo);
+//		diaryUi = new DiaryUi(this.mainFrame, uvo);
 		settlementPanel = new SettlementUi(this.mainFrame);
 		init();
 		initComponents();
@@ -51,7 +51,7 @@ public class FinancialStaffUi extends JPanel {
 		tabbedPane.addTab(null,image1,settlementPanel,"结算管理界面");  
         tabbedPane.addTab(null,image2,costPanel,"成本管理界面");
         tabbedPane.addTab(null,image3,statisticsReportUi,"统计报表界面"); 
-        tabbedPane.addTab(null,image4,diaryUi,"查询日志界面"); 
+//        tabbedPane.addTab(null,image4,diaryUi,"查询日志界面"); 
         
 	}
 	
