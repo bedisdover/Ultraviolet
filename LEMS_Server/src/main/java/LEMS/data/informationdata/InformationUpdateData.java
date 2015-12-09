@@ -9,6 +9,7 @@ import java.sql.SQLException;
 
 import LEMS.data.Connect;
 import LEMS.dataservice.informationdataservice.InformationUpdateDataService;
+import LEMS.po.informationpo.AccountPO;
 import LEMS.po.informationpo.DriverPO;
 import LEMS.po.informationpo.InstitutionPO;
 import LEMS.po.informationpo.VehiclePO;
@@ -58,14 +59,12 @@ public class InformationUpdateData extends UnicastRemoteObject implements Inform
 		insert.insert(upo);
 	}
 	
-	
-	public static void main(String[] args){
-		try {
-			InformationUpdateData o=new InformationUpdateData();
-			InstitutionPO ipo=new InstitutionPO("","");
-			o.updateStaff(new UserPO("m00000","123456",UserRole.Manager,"宋益明",ipo));
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+	//更新一项账户信息
+	public void updateAccount(AccountPO apo) throws RemoteException{
+		InformationDeleteData delete=new InformationDeleteData();
+		delete.deleteAccount(apo.getId());
+		InformationInsertData insert=new InformationInsertData();
+		insert.insert(apo);
 	}
+	
 }

@@ -23,6 +23,7 @@ import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
 import LEMS.presentation.userui.ManagerUi;
+import LEMS.vo.informationvo.AccountVO;
 import LEMS.vo.uservo.UserVO;
 
 /**
@@ -60,7 +61,7 @@ public class AccountManageUi extends JPanel{
 	private UserVO user;
 	private boolean isAdd;
 	private boolean isUpdate;
-	private String originalID;
+
 	public AccountManageUi(final MainFrame mainFrame,UserVO uvo){
 		user = uvo;
 		this.mainFrame = mainFrame;
@@ -80,7 +81,7 @@ public class AccountManageUi extends JPanel{
 	 * 初始化
 	 */
 	private void init() {
-		title = new JLabel("用户管理");
+		title = new JLabel("账户管理");
 		butOut = new JButton("登出");
 		butAdd = new JButton("新增");
 		butDel = new JButton("删除");
@@ -155,13 +156,13 @@ public class AccountManageUi extends JPanel{
 		add(label_2);
 		
 
-//		 InformationFind findInfo=new InformationFind();
-//		 ArrayList<UserVO> users=findInfo.findStaff();
-//		 for(int i=0;i<users.size();i++){
-//		 table.setValueAt(i, 0, users.get(i).getId());
-//		 table.setValueAt(i, 1, users.get(i).getPassword());
-//		 table.setValueAt(i, 2, users.get(i).getName());
-//		 }
+		 InformationFind findInfo=new InformationFind();
+		 ArrayList<AccountVO> accounts=findInfo.findAccount();
+		 for(int i=0;i<accounts.size();i++){
+			 table.setValueAt(i, 0, accounts.get(i).getId());
+			 table.setValueAt(i, 1, accounts.get(i).getPassword());
+			 table.setValueAt(i, 2, accounts.get(i).getBalance()+"");
+		 }
 	}
 
 	/**
@@ -216,23 +217,20 @@ public class AccountManageUi extends JPanel{
 					int i = table.numOfEmpty();	
 					
 					InformationDelete dele=new InformationDelete();
-					dele.deleteStaff(table.getValueAt(currentLine, 0).trim());
+					dele.deleteAccount(table.getValueAt(currentLine, 0).trim());
 										
 					for(int j=currentLine;j<i;j++){
 						table.setValueAt(j, 0, table.getValueAt(j+1, 0));
 						table.setValueAt(j, 1, table.getValueAt(j+1, 1));
 						table.setValueAt(j, 2, table.getValueAt(j+1, 2));
-						table.setValueAt(j, 3, table.getValueAt(j+1, 3));
-					}
-					
-					
+					}				
 				}
 			}
 		});
 
 		butFind.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				String inputValue=JOptionPane.showInputDialog(AccountManageUi.this,"请输入用户账号：");
+				String inputValue=JOptionPane.showInputDialog(AccountManageUi.this,"请输入卡号：");
 				int i = table.numOfEmpty();
 				for(i=i-1;i>=0;i--){
 					if(table.table.getValueAt(i, 0).equals(inputValue)){
@@ -244,7 +242,7 @@ public class AccountManageUi extends JPanel{
 				}
 				else{
 					if(inputValue!=null){
-						JOptionPane.showMessageDialog(AccountManageUi.this, "未找到该用户");
+						JOptionPane.showMessageDialog(AccountManageUi.this, "未找到该账户");
 					}
 				}
 			}
@@ -252,22 +250,25 @@ public class AccountManageUi extends JPanel{
 
 		butChange.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// 设置输入框可编辑
-				setTestState(true);
-				isUpdate=true;
+				if(table.getValueAt(table.table.getSelectedRow(), 0)==null){
+					JOptionPane.showMessageDialog(AccountManageUi.this, "请选择要修改的账户!");
+				}
+				else{
+					// 设置输入框可编辑
+					setTestState(true);
+					textID.setEditable(false);
+					textBalance.setEditable(false);
+					isUpdate=true;
+					
+					//将被选中账户的详细信息显示出来
+					int currentLine=table.table.getSelectedRow();
+					InformationFind find=new InformationFind();
+					AccountVO theAccount=find.findTheAccount(table.getValueAt(currentLine, 0));
+					textID.setText(theAccount.getId());
+					textPassword.setText(theAccount.getPassword());
+					textBalance.setText(theAccount.getBalance()+"");
+				}
 				
-				//将被选中人员的详细信息显示出来
-//				int currentLine=table.table.getSelectedRow();
-//				InformationFind find=new InformationFind();
-//				UserVO theStaff=find.findStaff(table.getValueAt(currentLine, 0));
-//				InstitutionPO ins=theStaff.getInstitution();
-//				textID.setText(theStaff.getId());
-//				textPassword.setText(theStaff.getPassword());
-//				textName.setText(theStaff.getName());
-//				textInstitutionID.setText(ins.getID());
-//				textLocation.setText(ins.getLocation());
-//				comboBox.setSelectedItem(UserRole.transfer(theStaff.getRole()));
-//				originalID=theStaff.getId();
 			}
 		});
 		OK.addMouseListener(new MouseAdapter() {
@@ -276,17 +277,16 @@ public class AccountManageUi extends JPanel{
 					if(isComplete()){
 						// 获得第几行为空
 					int i = table.numOfEmpty();
-					// 确定按钮的具体实现
-//					table.setValueAt(i, 0, textID.getText());
-//					table.setValueAt(i, 1, textPassword.getText());
-//					table.setValueAt(i, 2, textName.getText());
-//					InstitutionPO ipo = new InstitutionPO(textInstitutionID
-//							.getText(), textLocation.getText());
-//					UserVO uvo = new UserVO(textID.getText(), textPassword
-//							.getText(), UserRole.exchange((String) comboBox
-//							.getSelectedItem()), textName.getText(), ipo);
-//					InformationAdd add = new InformationAdd();
-//					add.addStaff(uvo);
+					// 在界面上显示新建账户信息
+					table.setValueAt(i, 0, textID.getText());
+					table.setValueAt(i, 1, textPassword.getText());
+					table.setValueAt(i, 2, textBalance.getText());
+
+					//向数据库中存入新建账户信息
+					AccountVO avo = new AccountVO(textID.getText(), textPassword
+							.getText(), Double.parseDouble(textBalance.getText()));
+					InformationAdd add = new InformationAdd();
+					add.addAccount(avo);
 					// 清空输入框
 					empty();
 					// 使输入框不可编辑
@@ -300,18 +300,11 @@ public class AccountManageUi extends JPanel{
 				
 				if(isUpdate){
 					int currentLine=table.table.getSelectedRow();
-					//在数据库中修改该人员信息
-//					InstitutionPO ipo = new InstitutionPO(textInstitutionID
-//							.getText(), textLocation.getText());
-//					UserVO uvo = new UserVO(textID.getText(), textPassword
-//							.getText(), UserRole.exchange((String) comboBox
-//							.getSelectedItem()), textName.getText(), ipo);
-//					if(!originalID.equals(textID.getText())){
-//						InformationDelete de=new InformationDelete();
-//						de.deleteStaff(originalID);
-//					}
-//					InformationUpdate update = new InformationUpdate();
-//					update.updateStaff(uvo);
+					//在数据库中修改该账户信息
+					AccountVO avo = new AccountVO(textID.getText(), textPassword
+							.getText(), Double.parseDouble(textBalance.getText()));
+					InformationUpdate update = new InformationUpdate();
+					update.updateAccount(avo);
 					//在界面上修改该人员信息
 					table.setValueAt(currentLine, 0, textID.getText());
 					table.setValueAt(currentLine, 1, textPassword.getText());

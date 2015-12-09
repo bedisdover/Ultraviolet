@@ -9,6 +9,7 @@ import javax.swing.JTabbedPane;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.financeui.CostUi;
 import LEMS.presentation.financeui.SettlementUi;
+import LEMS.presentation.informationui.AccountManageUi;
 import LEMS.presentation.inquireui.DiaryUi;
 import LEMS.presentation.inquireui.StatisticsReportUi;
 import LEMS.vo.uservo.UserVO;
@@ -25,6 +26,7 @@ public class FinancialStaffUi extends JPanel {
 	CostUi costPanel;
 	DiaryUi diaryUi;
 	SettlementUi settlementPanel;
+	AccountManageUi accountPanel;
 	/**
 	 * Create the panel.
 	 */
@@ -35,8 +37,9 @@ public class FinancialStaffUi extends JPanel {
 		
 		statisticsReportUi = new StatisticsReportUi(this.mainFrame);
 		costPanel = new CostUi(this.mainFrame);
-//		diaryUi = new DiaryUi(this.mainFrame, uvo);
+		diaryUi = new DiaryUi(this.mainFrame, uvo);
 		settlementPanel = new SettlementUi(this.mainFrame);
+		accountPanel=new AccountManageUi(this.mainFrame,uvo);
 		init();
 		initComponents();
 	}
@@ -47,12 +50,13 @@ public class FinancialStaffUi extends JPanel {
 		ImageIcon image2=new ImageIcon("source\\tabbedpanel\\成本管理.png");
 		ImageIcon image3=new ImageIcon("source\\tabbedpanel\\统计报表.png");
 		ImageIcon image4=new ImageIcon("source\\tabbedpanel\\查询日志.png");
+		ImageIcon image5=new ImageIcon("source\\tabbedpanel\\账户管理.png");
 		
 		tabbedPane.addTab(null,image1,settlementPanel,"结算管理界面");  
         tabbedPane.addTab(null,image2,costPanel,"成本管理界面");
         tabbedPane.addTab(null,image3,statisticsReportUi,"统计报表界面"); 
-//        tabbedPane.addTab(null,image4,diaryUi,"查询日志界面"); 
-        
+        tabbedPane.addTab(null,image4,diaryUi,"查询日志界面"); 
+        tabbedPane.addTab(null,image5,accountPanel,"账户管理界面"); 
 	}
 	
 	private void initComponents(){

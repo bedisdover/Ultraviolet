@@ -14,11 +14,13 @@ import LEMS.dataservice.factory.UserFactory;
 import LEMS.dataservice.informationdataservice.InformationFindDataService;
 import LEMS.dataservice.informationdataservice.InformationInsertDataService;
 import LEMS.dataservice.userdataservice.UserDataService;
+import LEMS.po.informationpo.AccountPO;
 import LEMS.po.informationpo.DriverPO;
 import LEMS.po.informationpo.InstitutionPO;
 import LEMS.po.informationpo.VehiclePO;
 import LEMS.po.userpo.UserPO;
 import LEMS.po.userpo.UserRole;
+import LEMS.vo.informationvo.AccountVO;
 import LEMS.vo.informationvo.DriverVO;
 import LEMS.vo.informationvo.InstitutionVO;
 import LEMS.vo.informationvo.StaffVO;
@@ -207,5 +209,48 @@ public class InformationFind implements InformationFindService{
 			e1.printStackTrace();
 		}
 		return uvo;
+	}
+	/**
+	 * 查找所有账户信息
+	 */
+	public ArrayList<AccountVO> findAccount(){
+		ArrayList<AccountVO> accountvo=new ArrayList<AccountVO>();
+		try {
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup(RMIConnect.RMI);
+			InformationFactory findFac=database.getInformationFactory();
+			InformationFindDataService infofind = findFac.getInformationFindData();
+			ArrayList<AccountPO> accounts=infofind.findAccount();
+			for(int i=0;i<accounts.size();i++){
+				AccountVO avo=new AccountVO(accounts.get(i).getId(),accounts.get(i).getPassword(),accounts.get(i).getBalance());
+				accountvo.add(avo);
+			}			
+		} catch (MalformedURLException e1) {
+			e1.printStackTrace();
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		} catch (NotBoundException e1) {
+			e1.printStackTrace();
+		}
+		return accountvo;
+	}
+	/**
+	 * 根据卡号查找账户信息
+	 */
+	public AccountVO findTheAccount(String id){
+		AccountVO account=null;
+		try {
+			DatabaseFactory database=(DatabaseFactory)Naming.lookup(RMIConnect.RMI);
+			InformationFactory findFac=database.getInformationFactory();
+			InformationFindDataService infofind = findFac.getInformationFindData();
+			AccountPO theaccount=infofind.findTheAccount(id);
+			account=new AccountVO(theaccount.getId(),theaccount.getPassword(),theaccount.getBalance());
+		} catch (MalformedURLException e1) {
+			e1.printStackTrace();
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		} catch (NotBoundException e1) {
+			e1.printStackTrace();
+		}
+		return account;
 	}
 }

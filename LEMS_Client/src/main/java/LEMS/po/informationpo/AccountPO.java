@@ -1,11 +1,14 @@
 package LEMS.po.informationpo;
 
+import java.io.Serializable;
+
 /**
  * @author 苏琰梓
  * 账户信息持久化对象
  * 2015年10月25日
  */
-public class AccountPO {
+@SuppressWarnings("serial")
+public class AccountPO implements Serializable{
 	/*
 	 * 账户名称
 	 */

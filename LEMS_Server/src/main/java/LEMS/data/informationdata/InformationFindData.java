@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import LEMS.data.Connect;
 import LEMS.dataservice.informationdataservice.InformationFindDataService;
+import LEMS.po.informationpo.AccountPO;
 import LEMS.po.informationpo.DriverPO;
 import LEMS.po.informationpo.Gender;
 import LEMS.po.informationpo.InstitutionPO;
@@ -187,5 +188,42 @@ public class InformationFindData extends UnicastRemoteObject implements Informat
 		}
 		co.closeConnection();
 		return spo;
+	}
+
+	//查找所有账户信息
+	public ArrayList<AccountPO> findAccount() throws RemoteException {
+		ArrayList<AccountPO> accounts=new ArrayList<AccountPO>();
+		AccountPO a=null;
+		Connect co=new Connect();
+		String sql="SELECT * FROM account";
+		ResultSet result=co.getResultSet(sql);
+		try {
+			while(result.next()){
+				a=new AccountPO(result.getString(1),result.getString(2),result.getDouble(3));
+				accounts.add(a);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return accounts;
+	}
+
+	//根据卡号查找账户信息
+	public AccountPO findTheAccount(String id) throws RemoteException {
+		AccountPO apo=null;
+		Connect co=new Connect();
+		String sql="SELECT * FROM account";
+		ResultSet result=co.getResultSet(sql);
+		try {
+			while(result.next()){
+				if(result.getString(1).equals(id)){
+					apo=new AccountPO(result.getString(1),result.getString(2),result.getDouble(3));
+					break;
+				}				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return apo;
 	}
 }
