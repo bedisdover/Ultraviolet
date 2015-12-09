@@ -45,7 +45,6 @@ public class AddOrder implements AddOrderService {
 	
 	public void addOrder(String id) {
 		// TODO 似乎不需要的方法，但是考虑到需求变更，就暂且放在这里了
-		
 	}
 	
 	/**

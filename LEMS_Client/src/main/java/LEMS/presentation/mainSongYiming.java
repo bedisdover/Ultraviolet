@@ -1,15 +1,6 @@
 package LEMS.presentation;
 
-import java.util.ArrayList;
-
-import LEMS.businesslogic.orderbl.AddOrder;
-import LEMS.presentation.orderui.LoadUi;
-import LEMS.presentation.orderui.ReceiptRecordUi;
-import LEMS.presentation.orderui.ReceiveUi;
-import LEMS.presentation.userui.BusinessClerkUi;
 import LEMS.presentation.userui.FinancialStaffUi;
-import LEMS.presentation.userui.ManagerUi;
-import LEMS.presentation.userui.TransferClerkUi;
 
 public class mainSongYiming {
 
