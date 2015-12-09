@@ -26,7 +26,11 @@ import LEMS.po.storepo.Destination;
 import LEMS.po.storepo.GoodsPO;
 import LEMS.vo.storevo.InboundOrderVO;
 import LEMS.vo.storevo.OutboundOrderVO;
-
+/**
+ * 
+ * @author 周梦佳
+ *
+ */
 public class StoreGenerateOrder implements StoreGenerateOrderService {
 
 	ArrayList<InboundOrderVO> addInboundOrder = new ArrayList<InboundOrderVO>();
@@ -37,12 +41,8 @@ public class StoreGenerateOrder implements StoreGenerateOrderService {
 	 * 生成入库单
 	 */
 	public InboundOrderVO generateInboundOrderVO(String id) throws RemoteException{
-	//	GoodsData goodsData;
-		
 		InboundOrderVO inboundOrderVO = new InboundOrderVO("", "", Destination.Beijing, Area.Airline, 1, 1, 1);
 		try {
-	//		goodsData = new GoodsData();
-		
 			GoodsPO goodsPO =getData().find(id);
 			inboundOrderVO.setId(goodsPO.getId());
 			inboundOrderVO.setInDate(goodsPO.getInDate());
@@ -64,13 +64,9 @@ public class StoreGenerateOrder implements StoreGenerateOrderService {
 	/**
 	 * 界面->逻辑->数据
 	 * 更新数据库
-	 * 
 	 */
 	public int generateInboundOrderPO(InboundOrderVO inboundOrderVO) {
 		int judge=0;
-		
-		
-		
 		try {
 			String id = inboundOrderVO.getId();
 			String inDate = inboundOrderVO.getInDate();
@@ -112,7 +108,6 @@ public class StoreGenerateOrder implements StoreGenerateOrderService {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		// addOutboundOrder.add(outboundOrderVO);
 		return outboundOrderVO;
 
 	}

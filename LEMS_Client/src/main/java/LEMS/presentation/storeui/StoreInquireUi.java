@@ -84,7 +84,7 @@ public class StoreInquireUi extends JPanel {
 		// 设置输入框不可编辑
 		// this.setTestState(false);
 		// 添加事件监听器
-		// this.addListener();
+		 this.addListener();
 
 	}
 

@@ -22,7 +22,11 @@ import LEMS.po.storepo.Area;
 import LEMS.po.storepo.Destination;
 import LEMS.po.storepo.GoodsPO;
 import LEMS.vo.storevo.GoodsVO;
-
+/**
+ * 
+ * @author 周梦佳
+ *
+ */
 public class StoreManagement {
 	String startTime;
 	String endTime;
@@ -60,13 +64,11 @@ public class StoreManagement {
 				String in=gpo.getInDate();
 				String out=gpo.getOutDate();
 				if(in.compareTo(startTime)>=0 && in.compareTo(endTime)<=0){
-					//totalInbound++;
 					GoodsVO gvo=getGoodsVOInfo(gpo);
 					alInbound.add(gvo);
 					
 				}
 				if((out.compareTo(startTime)>=0 )&& (out.compareTo(endTime)<=0)){
-					//totalOutbound++;
 					GoodsVO gvo=getGoodsVOInfo(gpo);
 					alOutbound.add(gvo);
 				}

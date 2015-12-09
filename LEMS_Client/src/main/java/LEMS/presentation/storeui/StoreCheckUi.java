@@ -60,9 +60,9 @@ public class StoreCheckUi extends JPanel {
 		// 初始化组件
 		this.initComponents();
 		// 设置输入框不可编辑
-		// this.setTestState(false);
+		 //this.setTestState(false);
 		// 添加事件监听器
-		// this.addListener();
+		 this.addListener();
 
 	}
 
