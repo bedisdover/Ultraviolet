@@ -20,22 +20,26 @@ public class InquireFactoryImpl extends UnicastRemoteObject implements
 	public InquireFactoryImpl() throws RemoteException {
 		super();
 	}
-
+	
+	//获得BusinessListDataService的引用
 	public BusinessListDataService getBusinessListData() throws RemoteException {
 		BusinessListDataService bld = new BusinessListData();
 		return bld;
 	}
 
+	//获得CostBenefitListDataService的引用
 	public CostBenefitListDataService getCostBenefitList() throws RemoteException {
 		CostBenefitListDataService cbfd=new CostBenefitListData();
 		return cbfd;
 	}
 
+	//获得DiaryDataService的引用
 	public DiaryDataService getDiaryData() throws RemoteException {
 		DiaryData diary=new DiaryData();
 		return diary;
 	}
 
+	//获得LogisticsDataService的引用
 	public LogisticsInfoDataService getLogisticsInfo() throws RemoteException {
 		LogisticsInfoDataService lid=new LogisticsInfoData();
 		return lid;

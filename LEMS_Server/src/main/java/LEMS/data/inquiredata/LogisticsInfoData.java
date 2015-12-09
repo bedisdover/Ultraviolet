@@ -21,10 +21,14 @@ public class LogisticsInfoData extends UnicastRemoteObject implements LogisticsI
 	public  LogisticsInfoData() throws RemoteException {
 		super();
 	}
+	
+	//更新物流信息
 	public void update(LogisticsInfoPO lpo) throws RemoteException {
 		this.deleteLogisticsInfo(lpo.getId());
 		this.insertLogisticsInfo(lpo);
 	}
+	
+	//根据id查找对应订单的物流信息
 	public LogisticsInfoPO findLogisticsInfo(String id) throws RemoteException {
 		LogisticsInfoPO lipo=null;
 		ArrayList<String> trace=new ArrayList<String>();
@@ -49,6 +53,8 @@ public class LogisticsInfoData extends UnicastRemoteObject implements LogisticsI
 		co.closeConnection();
 		return lipo;
 	}
+	
+	//删除某个订单的物流信息
 	public void deleteLogisticsInfo(String id) throws RemoteException{
 		Connect co=new Connect();
 		String sql="DELETE FROM logistics WHERE id = ?";
@@ -61,6 +67,8 @@ public class LogisticsInfoData extends UnicastRemoteObject implements LogisticsI
 			e.printStackTrace();
 		}
 	}
+	
+	//插入一条物流信息
 	public void insertLogisticsInfo(LogisticsInfoPO lpo) throws RemoteException{
 		String trace="";
 		for(int i=0;i<lpo.getTrace().size();i++){

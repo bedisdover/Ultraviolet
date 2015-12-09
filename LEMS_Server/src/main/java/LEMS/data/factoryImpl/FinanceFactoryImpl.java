@@ -18,16 +18,19 @@ public class FinanceFactoryImpl extends UnicastRemoteObject implements FinanceFa
 		super();
 	}
 
+	//获得PriceDataService的引用
 	public PriceDataService getPriceDataService() throws RemoteException {
 		PriceDataService pd=new PriceData();
 		return pd;
 	}
-
+	
+	//获得IncomeBillDataService的引用
 	public IncomeBillDataService getIncomeBillData() throws RemoteException {
 		IncomeBillDataService in=new IncomeBillData();
 		return in;
 	}
 
+	//获得PayBilleDataService的引用
 	public PayBillDataService getPayBillData() throws RemoteException {
 		PayBillDataService pa=new PayBillData();
 		return pa;

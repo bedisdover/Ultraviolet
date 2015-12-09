@@ -28,47 +28,49 @@ public class OrderFactoryImpl extends UnicastRemoteObject implements OrderFactor
 		super();
 	}
 
+	//获得OrderDataService的引用
 	public OrderDataService getOrderData() throws RemoteException {
 		OrderDataService dataService = new OrderData();
 		return dataService;
 	}
 
+	//获得LoadDataService的引用
 	public LoadDataService getLoadData() throws RemoteException {
 		LoadDataService loadDataService = new LoadData();
 		return loadDataService;
 	}
 	
-	@Override
+	//获得DistanceDataService的引用
 	public DistanceDataService getDistanceData() throws RemoteException {
 		DistanceDataService distanceDataService = new DistanceData();
 		return distanceDataService;
 	}
 
-	@Override
+	//获得SendingDataService的引用
 	public SendingDataService getSendingData() throws RemoteException {
 		SendingDataService sendingDataService = new SendingData();
 		return sendingDataService;
 	}
 
-	@Override
+	//获得VehicleLoadDataService的引用
 	public VehicleLoadDataService getVehicleLoadData() throws RemoteException {
 		VehicleLoadDataService vehicleLoadDataService = new VehicleLoadData();
 		return vehicleLoadDataService;
 	}
 
-	@Override
+	//获得ReceiptDataService的引用
 	public ReceiptDataService getReceiptData() throws RemoteException {
 		ReceiptDataService receiptDataService = new ReceiptData();
 		return receiptDataService;
 	}
 
-	@Override
+	//获得ReceiptRecordDataService的引用
 	public ReceiptRecordDataService getReceiptRecordData() throws RemoteException {
 		ReceiptRecordDataService recordDataService = new ReceiptRecordData();
 		return recordDataService;
 	}
 
-	@Override
+	//获得TransferDataService的引用
 	public TransferDataService getTransferData() throws RemoteException {
 		TransferDataService transferDataService = new TransferData();
 		return transferDataService;

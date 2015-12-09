@@ -21,6 +21,7 @@ public class PayBillData extends UnicastRemoteObject implements PayBillDataServi
 		super();
 	}
 
+	//从数据库中读出所有付款单
 	public ArrayList<PayBillPO> getPayBill() throws RemoteException {
 		ArrayList<PayBillPO> pa=new ArrayList<PayBillPO>();
 		Connection conn = null;

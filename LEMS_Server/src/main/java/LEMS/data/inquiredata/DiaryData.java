@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import LEMS.data.Connect;
 import LEMS.dataservice.inquiredataservice.DiaryDataService;
 import LEMS.po.inquirepo.DiaryPO;
 /**
@@ -17,14 +18,12 @@ import LEMS.po.inquirepo.DiaryPO;
  */
 @SuppressWarnings("serial")
 public class DiaryData extends UnicastRemoteObject implements DiaryDataService {
-	public static final String DBDRIVER="org.gjt.mm.mysql.Driver";
-	public static final String DBURL="jdbc:mysql://localhost:3306/mldn";
-	public static final String DBUSER="root";
-	public static final String DBPASS="admin";
+
 	public DiaryData() throws RemoteException {
 		super();
 	}
 
+	//从数据库中读出当天的日志信息
 	public ArrayList<DiaryPO> findDiary(String date) throws RemoteException{
 		ArrayList<DiaryPO> uu = new ArrayList<DiaryPO>();
 		DiaryPO dpo;
@@ -33,8 +32,8 @@ public class DiaryData extends UnicastRemoteObject implements DiaryDataService {
 		ResultSet result = null;
 		String sql = "SELECT date,operation FROM diary";
 		try {
-			Class.forName(DBDRIVER);
-			conn = DriverManager.getConnection(DBURL, DBUSER, DBPASS);
+			Class.forName(Connect.DBDRIVER);
+			conn = DriverManager.getConnection(Connect.DBURL, Connect.DBUSER, Connect.DBPASS);
 			pstmt = conn.prepareStatement(sql);
 			result = pstmt.executeQuery();
 			while (result.next()) {
@@ -48,21 +47,21 @@ public class DiaryData extends UnicastRemoteObject implements DiaryDataService {
 			pstmt.close();
 			conn.close();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return uu;
 	}
+	
+	//记录日志（对系统的主要操作）
 	public void recordDiary(DiaryPO dpo) throws RemoteException{
 		Connection conn=null;
 		PreparedStatement pstmt = null; 
 		String sql="INSERT INTO diary(date,operation) VALUES (?,?) ";
 		try {
-			Class.forName(DBDRIVER);
-			conn = DriverManager.getConnection(DBURL, DBUSER, DBPASS);
+			Class.forName(Connect.DBDRIVER);
+			conn = DriverManager.getConnection(Connect.DBURL, Connect.DBUSER, Connect.DBPASS);
 			pstmt = conn.prepareStatement(sql) ;
 			pstmt.setString(1,dpo.getDate());
 			pstmt.setString(2,dpo.getOperation());			
@@ -70,10 +69,8 @@ public class DiaryData extends UnicastRemoteObject implements DiaryDataService {
 			pstmt.close() ;
 			conn.close();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

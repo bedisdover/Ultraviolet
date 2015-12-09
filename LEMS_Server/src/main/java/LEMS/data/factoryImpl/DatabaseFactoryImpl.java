@@ -26,30 +26,36 @@ public class DatabaseFactoryImpl extends UnicastRemoteObject implements
 
 	}
 
+	//获得FinanceFactory的引用
 	public FinanceFactory getFinanceFactory() throws RemoteException {
 		FinanceFactory ff=new FinanceFactoryImpl();
 		return ff;
 	}
-
+	
+	//获得InformtionFactory的引用
 	public InformationFactory getInformationFactory() throws RemoteException {
 		InformationFactoryImpl info = new InformationFactoryImpl();
 		return info;
 	}
 
+	//获得InquireFactory的引用
 	public InquireFactory getInquireFactory() throws RemoteException {
 		InquireFactoryImpl inquire=new InquireFactoryImpl();
 		return inquire;
 	}
-
+	
+	//获得OrderFactory的引用
 	public OrderFactory getOrderFactory() throws RemoteException {
 		OrderFactory order=new OrderFactoryImpl();
 		return order;
 	}
 
+	//获得StoreFactory的引用
 	public StoreFactory getStoreFactory() throws RemoteException {
 		return null;
 	}
-
+	
+	//获得UserFactory的引用
 	public UserFactory getUserFactory() throws RemoteException {
 		UserFactoryImpl us = new UserFactoryImpl();
 		return us;

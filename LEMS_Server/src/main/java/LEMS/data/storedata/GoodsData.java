@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import LEMS.po.storepo.Area;
 import LEMS.po.storepo.Destination;
 import LEMS.po.storepo.GoodsPO;
@@ -12,6 +13,7 @@ import LEMS.po.storepo.TransportType;
 import LEMS.data.Connect;
 import LEMS.dataservice.storedataservice.GoodsDataService;
 
+@SuppressWarnings("serial")
 public class GoodsData extends UnicastRemoteObject implements GoodsDataService {
 
 	private Connect connect;

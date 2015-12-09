@@ -22,6 +22,7 @@ public class IncomeBillData extends UnicastRemoteObject implements IncomeBillDat
 		super();
 	}
 
+	//从数据库中读出所有的收款单
 	public ArrayList<IncomeBillPO> getIncomeBill() throws RemoteException {
 		ArrayList<IncomeBillPO> in=new ArrayList<IncomeBillPO>();
 		Connection conn = null;

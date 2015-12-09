@@ -15,6 +15,10 @@ import LEMS.po.informationpo.InstitutionPO;
 import LEMS.po.userpo.UserPO;
 import LEMS.po.userpo.UserRole;
 
+/**
+ * @author 章承尧
+ * 用户登录
+ */
 @SuppressWarnings("serial")
 public class UserData extends UnicastRemoteObject implements UserDataService {
 	public UserData() throws RemoteException {

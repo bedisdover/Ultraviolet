@@ -12,11 +12,10 @@ public class UserFactoryImpl extends UnicastRemoteObject implements UserFactory 
 
 	public UserFactoryImpl() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
+	//获得UserDataService的引用
 	public UserDataService getUserData() throws RemoteException {
-		// TODO Auto-generated method stub
 		UserDataService user=new UserData();
 		return (UserData)user;
 	}
