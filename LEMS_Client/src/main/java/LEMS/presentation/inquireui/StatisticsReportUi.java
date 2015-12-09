@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -11,9 +12,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import LEMS.businesslogic.inquirebl.inquirebusinesslist.InquireBusinessList;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.Table;
+import LEMS.vo.financevo.PayBillVO;
+import LEMS.vo.inquirevo.BusinessListVO;
+import LEMS.vo.financevo.IncomeBillVO;
 
 /**
  * @author 苏琰梓
@@ -124,7 +129,22 @@ public class StatisticsReportUi extends JPanel {
 					JOptionPane.showMessageDialog(StatisticsReportUi.this, "请将日期填写完整!");
 				}
 				else{
-					
+					InquireBusinessList inquire=new InquireBusinessList();
+					BusinessListVO business=inquire.getBusinessList(textDate1.getText(),textDate2.getText());
+					ArrayList<PayBillVO> pays=business.getPayBill();
+					for(int i=0;i<pays.size();i++){
+						 table1.setValueAt(i, 0, pays.get(i).getDate());
+						 table1.setValueAt(i, 1, pays.get(i).getAmount()+"");
+						 table1.setValueAt(i, 2, pays.get(i).getInstitution());
+						 table1.setValueAt(i, 3, pays.get(i).getAccount());
+					}
+					ArrayList<IncomeBillVO> incomes=business.getIncomeBill();
+					for(int i=0;i<incomes.size();i++){
+						 table2.setValueAt(i, 0, incomes.get(i).getDate());
+						 table2.setValueAt(i, 1, incomes.get(i).getAmount()+"");
+						 table2.setValueAt(i, 2, incomes.get(i).getInstitution());
+						 table2.setValueAt(i, 3, incomes.get(i).getAccount());
+					}
 				}
 				
 			}

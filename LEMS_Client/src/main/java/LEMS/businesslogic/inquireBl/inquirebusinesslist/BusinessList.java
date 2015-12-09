@@ -35,7 +35,7 @@ public class BusinessList {
 		income=cfl.getIncomeBill(startTime, endTime);
 		ArrayList<IncomeBillVO> iv=new ArrayList<IncomeBillVO>();
 		for(int i=0;i<income.size();i++){
-			IncomeBillVO ivo=new IncomeBillVO(iv.get(i).getDate(),iv.get(i).getInstitution(),iv.get(i).getAmount(),iv.get(i).getAccount());
+			IncomeBillVO ivo=new IncomeBillVO(income.get(i).getDate(),income.get(i).getInstitution(),income.get(i).getAmount(),income.get(i).getAccount());
 			iv.add(ivo);
 		}
 		return iv;

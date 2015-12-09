@@ -19,6 +19,6 @@ public interface FinanceFactory extends Remote {
 	public PriceDataService getPriceDataService() throws RemoteException;
 	public IncomeBillDataService getIncomeBillData() throws RemoteException;
 	public PayBillDataService getPayBillData() throws RemoteException;
-	public FinanceInsertDataService getInsertData() throws RemoteException;
-	public FinanceDeleteDataService getDeleteData() throws RemoteException;
+//	public FinanceInsertDataService getInsertData() throws RemoteException;
+//	public FinanceDeleteDataService getDeleteData() throws RemoteException;
 }

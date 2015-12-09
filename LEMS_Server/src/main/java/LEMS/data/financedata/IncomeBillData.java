@@ -22,7 +22,7 @@ public class IncomeBillData extends UnicastRemoteObject implements IncomeBillDat
 		super();
 	}
 
-	public ArrayList<IncomeBillPO> getIncomeBill(String start, String end) throws RemoteException {
+	public ArrayList<IncomeBillPO> getIncomeBill() throws RemoteException {
 		ArrayList<IncomeBillPO> in=new ArrayList<IncomeBillPO>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;

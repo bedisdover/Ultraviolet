@@ -7,5 +7,5 @@ import java.util.ArrayList;
 import LEMS.po.financepo.IncomeBillPO;
 
 public interface IncomeBillDataService extends Remote{
-	public ArrayList<IncomeBillPO> getIncomeBill(String start,String end) throws RemoteException;
+	public ArrayList<IncomeBillPO> getIncomeBill() throws RemoteException;
 }

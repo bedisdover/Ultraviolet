@@ -21,19 +21,19 @@ public class PayBillData extends UnicastRemoteObject implements PayBillDataServi
 		super();
 	}
 
-	public ArrayList<PayBillPO> getPayBill(String start, String end) throws RemoteException {
+	public ArrayList<PayBillPO> getPayBill() throws RemoteException {
 		ArrayList<PayBillPO> pa=new ArrayList<PayBillPO>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet result = null;
-		String sql="SELECT date,institution,amount,payer,account,item,remark FROM paybill";
+		String sql="SELECT * FROM paybill";
 		try {
 			Class.forName(Connect.DBDRIVER);
 			conn = DriverManager.getConnection(Connect.DBURL, Connect.DBUSER, Connect.DBPASS);
 			pstmt = conn.prepareStatement(sql);
 			result = pstmt.executeQuery();
 			while (result.next()) {
-				pa.add(new PayBillPO(result.getString(1),result.getString(2),result.getDouble(3),result.getString(4),result.getString(5),result.getString(6),result.getString(7)));
+				pa.add(new PayBillPO(result.getString(1),result.getString(2),result.getString(3),result.getDouble(4),result.getString(5),result.getString(6),result.getString(7),result.getString(8)));
 			}
 			result.close();
 			pstmt.close();

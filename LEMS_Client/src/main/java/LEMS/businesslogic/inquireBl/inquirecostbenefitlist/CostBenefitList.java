@@ -9,11 +9,8 @@ import java.util.ArrayList;
 import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.FinanceFactory;
-import LEMS.dataservice.factory.InquireFactory;
-import LEMS.dataservice.factory.UserFactory;
 import LEMS.dataservice.financedataservice.IncomeBillDataService;
 import LEMS.dataservice.financedataservice.PayBillDataService;
-import LEMS.dataservice.userdataservice.UserDataService;
 import LEMS.po.financepo.IncomeBillPO;
 import LEMS.po.financepo.PayBillPO;
 
@@ -96,7 +93,7 @@ public class CostBenefitList {
 			DatabaseFactory database = (DatabaseFactory) Naming.lookup(RMIConnect.RMI);
 			FinanceFactory ff = database.getFinanceFactory();
 			IncomeBillDataService in = ff.getIncomeBillData();
-			incomeBills = in.getIncomeBill(startTime, endTime);
+			incomeBills = in.getIncomeBill();
 			for (int i = 0; i < incomeBills.size(); i++) {
 				if (!isValid(incomeBills.get(i).getDate())) {
 					incomeBills.remove(i);
@@ -118,7 +115,7 @@ public class CostBenefitList {
 			DatabaseFactory database = (DatabaseFactory) Naming.lookup(RMIConnect.RMI);
 			FinanceFactory ff = database.getFinanceFactory();
 			PayBillDataService in = ff.getPayBillData();
-			payBills = in.getPayBill(startTime, endTime);
+			payBills = in.getPayBill();
 			for (int i = 0; i < payBills.size(); i++) {
 				if (!isValid(payBills.get(i).getDate())) {
 					incomeBills.remove(i);
@@ -205,5 +202,5 @@ public class CostBenefitList {
 			return false;
 		}		
 	}
-	
+
 }
