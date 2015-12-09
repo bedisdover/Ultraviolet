@@ -99,7 +99,7 @@ public class StatisticsReportUi extends JPanel {
 		this.add(butOut);
 		
 		
-		String[] columnNames1 = { "付款单", "收款单", "审批单据", "账户管理" };
+		String[] columnNames1 = { "付款日期", "付款金额", "付款机构", "付款账户" };
 		int[] list1 = { 30, 148, 14, 30, 20, 202, 198-change, 611, 220 };
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
@@ -107,7 +107,7 @@ public class StatisticsReportUi extends JPanel {
 		table1 = new Table();
 		add(table1.drawTable(columnNames1, list1));
 		
-		String[] columnNames2 = { "付款单", "收款单", "审批单据", "账户管理" };
+		String[] columnNames2 = { "收款日期", "收款金额", "收款机构", "收款账户" };
 		int[] list2 = { 30, 148, 14, 30, 20, 202, 462-change, 611, 220};
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
