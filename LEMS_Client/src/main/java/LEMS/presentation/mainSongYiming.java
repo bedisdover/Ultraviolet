@@ -15,7 +15,6 @@ public class mainSongYiming {
 		TransferClerkUi transferClerkUi = new TransferClerkUi(mainFrame, null);
 		mainFrame.setContentPane(transferClerkUi);
 //		ManagerUi managerUi = new ManagerUi(mainFrame, null);
-		
 //		mainFrame.setContentPane(managerUi);
 //		FinancialStaffUi financialStaffUi = new FinancialStaffUi(mainFrame, null);
 //		mainFrame.setContentPane(financialStaffUi);
