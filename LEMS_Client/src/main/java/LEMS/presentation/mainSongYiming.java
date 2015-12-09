@@ -1,5 +1,6 @@
 package LEMS.presentation;
 
+import LEMS.presentation.financeui.SettlementUi;
 import LEMS.presentation.userui.FinancialStaffUi;
 
 public class mainSongYiming {
@@ -15,9 +16,12 @@ public class mainSongYiming {
 //		mainFrame.setContentPane(transferClerkUi);
 //		ManagerUi managerUi = new ManagerUi(mainFrame, null);
 //		mainFrame.setContentPane(managerUi);
-		FinancialStaffUi financialStaffUi = new FinancialStaffUi(mainFrame, null);
-		mainFrame.setContentPane(financialStaffUi);
+//		FinancialStaffUi financialStaffUi = new FinancialStaffUi(mainFrame, null);
+//		mainFrame.setContentPane(financialStaffUi);
+		SettlementUi settlementUi = new SettlementUi(mainFrame);
+		mainFrame.setContentPane(settlementUi);
 		mainFrame.setVisible(true);
+		
 		
 //		AddOrder addOrder = new AddOrder();
 //		addOrder.findOrder("1234567890");
