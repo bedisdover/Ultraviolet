@@ -184,7 +184,7 @@ public class SendUi extends JPanel {
 		});
 		delete.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO 返回按钮的具体实现
+				table.removeLine(table.getSelectedRow());
 			}
 		});
 		update.addMouseListener(new MouseAdapter() {
@@ -207,9 +207,9 @@ public class SendUi extends JPanel {
 
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				if (isLegal()) {
+//				if (isLegal()) {
 					OKOperation();
-				}
+//				}
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {
@@ -246,12 +246,15 @@ public class SendUi extends JPanel {
 	 * 按下确定按钮后的动作
 	 */
 	private void OKOperation() {
-		System.out.println(table.numOfEmpty());
-		deliveryVO.setDate(dc.getTime());
+		String[] values = {"1", dc.getTime(), textId.getText(), textStaff.getText()};
+		table.setValueAt(table.numOfEmpty(), values);
 		sending.addOrder(textId.getText(), textStaff.getText());
+		
+		textId.setText(null);
 	}
 	
 	private void finishOperation() {
+		deliveryVO.setDate(dc.getTime());
 		setTestState(true);
 		sending.createDeliveryNote();
 	}
