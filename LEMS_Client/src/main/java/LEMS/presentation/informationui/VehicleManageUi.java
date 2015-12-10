@@ -254,6 +254,7 @@ public class VehicleManageUi extends JPanel {
 				int currentLine=table.table.getSelectedRow();
 				InformationFind find=new InformationFind();
 				VehicleVO vehicle=find.findTheVehicle(table.getValueAt(currentLine).get(0));
+				//TODO 方法太传奇……
 				textId.setText(vehicle.getId());
 				textNum.setText(vehicle.getPlateNumber());
 				textTime.setText(vehicle.getWorkTime());

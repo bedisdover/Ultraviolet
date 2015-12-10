@@ -111,6 +111,7 @@ public class Table extends JTable {
 		currentRow++;
 	}
 	
+	//迫于形势保留的方法
 	public void setValueAt(int row, int column, String value) {
 		rowData[row][column] = value;
 	}
