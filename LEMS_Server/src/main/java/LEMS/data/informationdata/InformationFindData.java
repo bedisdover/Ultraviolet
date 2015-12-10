@@ -47,6 +47,7 @@ public class InformationFindData extends UnicastRemoteObject implements Informat
 					drivers.add(d);
 				}				
 			}
+			co.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -66,6 +67,7 @@ public class InformationFindData extends UnicastRemoteObject implements Informat
 					break;
 				}				
 			}
+			co.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -86,6 +88,7 @@ public class InformationFindData extends UnicastRemoteObject implements Informat
 					vehicles.add(v);
 				}				
 			}
+			co.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -105,6 +108,7 @@ public class InformationFindData extends UnicastRemoteObject implements Informat
 					break;
 				}				
 			}
+			co.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -122,6 +126,7 @@ public class InformationFindData extends UnicastRemoteObject implements Informat
 				i=new InstitutionPO(result.getString(1),result.getString(2));
 				institutions.add(i);
 			}
+			co.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -140,6 +145,7 @@ public class InformationFindData extends UnicastRemoteObject implements Informat
 					break;
 				}				
 			}
+			co.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -203,6 +209,7 @@ public class InformationFindData extends UnicastRemoteObject implements Informat
 				a=new AccountPO(result.getString(1),result.getString(2),result.getDouble(3));
 				accounts.add(a);
 			}
+			co.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -222,6 +229,7 @@ public class InformationFindData extends UnicastRemoteObject implements Informat
 					break;
 				}				
 			}
+			co.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -240,6 +248,7 @@ public class InformationFindData extends UnicastRemoteObject implements Informat
 				s=new SalaryPO(result.getString(1),result.getString(2),result.getString(3),result.getDouble(4));
 				salas.add(s);
 			}
+			co.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -259,6 +268,7 @@ public class InformationFindData extends UnicastRemoteObject implements Informat
 					break;
 				}				
 			}
+			co.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
