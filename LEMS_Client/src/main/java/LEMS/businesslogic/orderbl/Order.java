@@ -127,8 +127,13 @@ public class Order implements OrderService {
 	}
 
 	public String getTime() {
-		String time = this.getDataService().getTime(sender.getAddress(), 
-									receiver.getAddress(), expressType);
+		String time = null;
+		try {
+			time = this.getDataService().getTime(sender.getAddress(), 
+										receiver.getAddress(), expressType);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		
 		return time;
 	}

@@ -114,4 +114,9 @@ public class LoadData extends UnicastRemoteObject implements LoadDataService {
 		
 		return id;
 	}
+	
+	public static void main(String[] args) {
+		//TODO Load表创建
+		
+	}
 }
