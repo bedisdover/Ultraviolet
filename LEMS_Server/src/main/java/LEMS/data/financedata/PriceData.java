@@ -31,7 +31,7 @@ public class PriceData extends UnicastRemoteObject implements PriceDataService {
 
 	public PricePO getPrice() throws RemoteException {
 		// 创建并初始化快递类型价格表
-		List<String> expressList = new ArrayList<>();
+		List<String> expressList = new ArrayList<String>();
 		Express[] expresses = Express.values();
 		for (int i = 0; i < expresses.length; i++) {
 			expressList.add(expresses[i] + "");

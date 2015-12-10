@@ -207,7 +207,7 @@ public class StuffManageUi extends JPanel  {
 				//将被选中人员的详细信息显示出来
 				int currentLine=table.table.getSelectedRow();
 				InformationFind find=new InformationFind();
-				SalaryVO theSala=find.findTheSalary(table.getValueAt(currentLine, 0));
+				SalaryVO theSala=find.findTheSalary(table.getValueAt(currentLine).get(0));
 				textID.setText(theSala.getId());
 				textInstitution.setText(theSala.getInstitution());
 				textName.setText(theSala.getName());

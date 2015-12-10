@@ -159,9 +159,12 @@ public class AccountManageUi extends JPanel{
 		 InformationFind findInfo=new InformationFind();
 		 ArrayList<AccountVO> accounts=findInfo.findAccount();
 		 for(int i=0;i<accounts.size();i++){
-			 table.setValueAt(i, 0, accounts.get(i).getId());
-			 table.setValueAt(i, 1, accounts.get(i).getPassword());
-			 table.setValueAt(i, 2, accounts.get(i).getBalance()+"");
+			 String[] values = {accounts.get(i).getId(), 
+					 			accounts.get(i).getPassword(),
+					 			accounts.get(i).getBalance() + ""
+					 			};
+
+			 table.setValueAt(i, values);
 		 }
 	}
 
@@ -209,21 +212,12 @@ public class AccountManageUi extends JPanel{
 
 		butDel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				int currentLine = table.table.getSelectedRow();
+				int currentLine = table.getSelectedRow();
 				if (currentLine == -1) {
 					JOptionPane.showMessageDialog(AccountManageUi.this, "请选择要删除的行!");
 				}
 				else {
-					int i = table.numOfEmpty();	
-					
-					InformationDelete dele=new InformationDelete();
-					dele.deleteAccount(table.getValueAt(currentLine, 0).trim());
-										
-					for(int j=currentLine;j<i;j++){
-						table.setValueAt(j, 0, table.getValueAt(j+1, 0));
-						table.setValueAt(j, 1, table.getValueAt(j+1, 1));
-						table.setValueAt(j, 2, table.getValueAt(j+1, 2));
-					}				
+					table.remove(currentLine);			
 				}
 			}
 		});
@@ -233,12 +227,12 @@ public class AccountManageUi extends JPanel{
 				String inputValue=JOptionPane.showInputDialog(AccountManageUi.this,"请输入卡号：");
 				int i = table.numOfEmpty();
 				for(i=i-1;i>=0;i--){
-					if(table.table.getValueAt(i, 0).equals(inputValue)){
+					if(table.getValueAt(i, 0).equals(inputValue)){
 						break;
 					}
 				}
 				if(i>=0){
-					table.table.setRowSelectionInterval(i, i);
+					table.setRowSelectionInterval(i, i);
 				}
 				else{
 					if(inputValue!=null){
@@ -250,7 +244,7 @@ public class AccountManageUi extends JPanel{
 
 		butChange.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				if(table.getValueAt(table.table.getSelectedRow(), 0)==null){
+				if(table.getValueAt(table.getSelectedRow(), 0)==null){
 					JOptionPane.showMessageDialog(AccountManageUi.this, "请选择要修改的账户!");
 				}
 				else{
@@ -261,9 +255,9 @@ public class AccountManageUi extends JPanel{
 					isUpdate=true;
 					
 					//将被选中账户的详细信息显示出来
-					int currentLine=table.table.getSelectedRow();
+					int currentLine=table.getSelectedRow();
 					InformationFind find=new InformationFind();
-					AccountVO theAccount=find.findTheAccount(table.getValueAt(currentLine, 0));
+					AccountVO theAccount=find.findTheAccount(table.getValueAt(currentLine).get(0));
 					textID.setText(theAccount.getId());
 					textPassword.setText(theAccount.getPassword());
 					textBalance.setText(theAccount.getBalance()+"");
@@ -278,10 +272,13 @@ public class AccountManageUi extends JPanel{
 						// 获得第几行为空
 					int i = table.numOfEmpty();
 					// 在界面上显示新建账户信息
-					table.setValueAt(i, 0, textID.getText());
-					table.setValueAt(i, 1, textPassword.getText());
-					table.setValueAt(i, 2, textBalance.getText());
-
+					String[] values = {
+							textID.getText(),
+							textPassword.getText(),
+							textBalance.getText()
+					};
+					table.setValueAt(i, values);
+					
 					//向数据库中存入新建账户信息
 					AccountVO avo = new AccountVO(textID.getText(), textPassword
 							.getText(), Double.parseDouble(textBalance.getText()));
@@ -299,16 +296,19 @@ public class AccountManageUi extends JPanel{
 				}
 				
 				if(isUpdate){
-					int currentLine=table.table.getSelectedRow();
+					int currentLine=table.getSelectedRow();
 					//在数据库中修改该账户信息
 					AccountVO avo = new AccountVO(textID.getText(), textPassword
 							.getText(), Double.parseDouble(textBalance.getText()));
 					InformationUpdate update = new InformationUpdate();
 					update.updateAccount(avo);
 					//在界面上修改该人员信息
-					table.setValueAt(currentLine, 0, textID.getText());
-					table.setValueAt(currentLine, 1, textPassword.getText());
-					table.setValueAt(currentLine, 2, textBalance.getText());
+					String[] values = {
+							textID.getText(),
+							textPassword.getText(),
+							textBalance.getText()
+					};
+					table.setValueAt(currentLine, values);
 					
 					// 清空输入框
 					empty();

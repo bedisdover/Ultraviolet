@@ -164,22 +164,13 @@ public class InstitutionManageUi extends JPanel {
 
 		butDel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				int currentLine = table.table.getSelectedRow();
+				int currentLine = table.getSelectedRow();
 				if (currentLine == -1) {
 					JOptionPane.showMessageDialog(InstitutionManageUi.this, "请选择要删除的行!");
 				}
 				else {
 					int i = table.numOfEmpty();	
-					
-					InformationDelete dele=new InformationDelete();
-					dele.deleteInstitution(table.getValueAt(currentLine, 0).trim());
-										
-					for(int j=currentLine;j<i;j++){
-						table.setValueAt(j, 0, table.getValueAt(j+1, 0));
-						table.setValueAt(j, 1, table.getValueAt(j+1, 1));
-					}
-					
-					
+					table.remove(i);
 				}
 			}
 		});
@@ -189,7 +180,7 @@ public class InstitutionManageUi extends JPanel {
 				String inputValue=JOptionPane.showInputDialog(InstitutionManageUi.this,"请输入机构编号：");
 				int i = table.numOfEmpty();
 				for(i=i-1;i>=0;i--){
-					if(table.table.getValueAt(i, 0).equals(inputValue)){
+					if(table.getValueAt(i, 0).equals(inputValue)){
 						break;
 					}
 				}
@@ -213,7 +204,7 @@ public class InstitutionManageUi extends JPanel {
 				//将被选中机构的详细信息显示出来
 				int currentLine=table.table.getSelectedRow();
 				InformationFind find=new InformationFind();
-				InstitutionVO inst=find.findTheInstitution(table.getValueAt(currentLine, 0));
+				InstitutionVO inst=find.findTheInstitution(table.getValueAt(currentLine).get(0));
 				textID.setText(inst.getID());
 				textLocation.setText(inst.getLocation());
 				originalID=textID.getText();

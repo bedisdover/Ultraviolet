@@ -240,15 +240,7 @@ public class VehicleManageUi extends JPanel {
 				}
 				else {
 					int i = table.numOfEmpty();	
-						
-					InformationDelete dele=new InformationDelete();
-					dele.deleteVehicle(table.getValueAt(currentLine, 0).trim());
-											
-					for(int j=currentLine;j<i;j++){
-						table.setValueAt(j, 0, table.getValueAt(j+1, 0));
-						table.setValueAt(j, 1, table.getValueAt(j+1, 1));
-						table.setValueAt(j, 2, table.getValueAt(j+1, 2));							
-					}						
+					table.remove(i);
 				}				
 			}
 		});
@@ -261,7 +253,7 @@ public class VehicleManageUi extends JPanel {
 				//将被选中车辆的详细信息显示出来
 				int currentLine=table.table.getSelectedRow();
 				InformationFind find=new InformationFind();
-				VehicleVO vehicle=find.findTheVehicle(table.getValueAt(currentLine, 0));
+				VehicleVO vehicle=find.findTheVehicle(table.getValueAt(currentLine).get(0));
 				textId.setText(vehicle.getId());
 				textNum.setText(vehicle.getPlateNumber());
 				textTime.setText(vehicle.getWorkTime());
