@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 import LEMS.businesslogic.orderbl.ReceiptRecord;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
-import LEMS.presentation.Table;
+import LEMS.presentation.method.Table;
 import LEMS.vo.ordervo.IncomeBillVO;
 import LEMS.vo.uservo.UserVO;
 

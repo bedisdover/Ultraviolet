@@ -9,7 +9,7 @@ import javax.swing.*;
 
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
-import LEMS.presentation.Table;
+import LEMS.presentation.method.Table;
 
 /**
  * @author 苏琰梓

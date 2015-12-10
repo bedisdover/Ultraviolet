@@ -20,7 +20,7 @@ import LEMS.businesslogic.informationbl.InformationUpdate;
 import LEMS.po.informationpo.Gender;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
-import LEMS.presentation.Table;
+import LEMS.presentation.method.Table;
 import LEMS.vo.informationvo.DriverVO;
 import LEMS.vo.uservo.UserVO;
 

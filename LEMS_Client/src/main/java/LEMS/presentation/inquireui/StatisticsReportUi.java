@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 import LEMS.businesslogic.inquirebl.inquirebusinesslist.InquireBusinessList;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
-import LEMS.presentation.Table;
+import LEMS.presentation.method.Table;
 import LEMS.vo.financevo.PayBillVO;
 import LEMS.vo.inquirevo.BusinessListVO;
 import LEMS.vo.financevo.IncomeBillVO;

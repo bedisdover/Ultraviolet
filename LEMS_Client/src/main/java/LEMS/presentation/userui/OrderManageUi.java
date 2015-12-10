@@ -20,7 +20,7 @@ import LEMS.po.orderpo.City;
 import LEMS.po.orderpo.Express;
 import LEMS.po.orderpo.Packing;
 import LEMS.presentation.MainFrame;
-import LEMS.presentation.Table;
+import LEMS.presentation.method.Table;
 import LEMS.vo.uservo.UserVO;
 
 /**

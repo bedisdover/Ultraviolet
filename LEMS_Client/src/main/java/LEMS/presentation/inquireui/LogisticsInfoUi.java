@@ -21,7 +21,7 @@ import java.awt.Toolkit;
 import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
-import LEMS.presentation.Table;
+import LEMS.presentation.method.Table;
 import LEMS.vo.inquirevo.DiaryVO;
 import LEMS.vo.uservo.UserVO;
 

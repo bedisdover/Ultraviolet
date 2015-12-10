@@ -7,8 +7,8 @@ import LEMS.businesslogic.orderbl.load.Load;
 import LEMS.po.orderpo.LoadNotePO;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
-import LEMS.presentation.Table;
-import LEMS.presentation.storeui.DateChooser;
+import LEMS.presentation.method.Table;
+import LEMS.presentation.method.DateChooser;
 
 import java.awt.Font;
 import java.awt.Graphics;

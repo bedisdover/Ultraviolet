@@ -15,8 +15,9 @@ import javax.swing.JTextField;
 import LEMS.businesslogic.storebl.StoreManagement;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
-import LEMS.presentation.Table;
+import LEMS.presentation.method.Table;
 import LEMS.vo.storevo.GoodsVO;
+import LEMS.presentation.method.DateChooser;
 
 /**
  * 

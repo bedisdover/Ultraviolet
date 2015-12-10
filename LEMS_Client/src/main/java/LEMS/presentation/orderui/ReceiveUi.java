@@ -16,8 +16,8 @@ import javax.swing.JTextField;
 import LEMS.businesslogic.orderbl.Receipt;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
-import LEMS.presentation.Table;
-import LEMS.presentation.storeui.DateChooser;
+import LEMS.presentation.method.Table;
+import LEMS.presentation.method.DateChooser;
 import LEMS.vo.ordervo.ArrivalVO;
 import LEMS.vo.uservo.UserVO;
 /**

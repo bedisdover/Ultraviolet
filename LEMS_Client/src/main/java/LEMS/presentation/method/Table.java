@@ -1,4 +1,4 @@
-package LEMS.presentation;
+package LEMS.presentation.method;
 
 import java.awt.Dimension;
 import java.awt.Font;
