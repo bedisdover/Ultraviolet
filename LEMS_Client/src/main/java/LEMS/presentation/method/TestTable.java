@@ -14,8 +14,6 @@ import javax.swing.JTextField;
 import LEMS.businesslogic.orderbl.Sending;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
-import LEMS.presentation.Table;
-import LEMS.presentation.storeui.DateChooser;
 import LEMS.vo.ordervo.DeliveryVO;
 import LEMS.vo.uservo.UserVO;
 

@@ -119,4 +119,28 @@ public class ReceiptData extends UnicastRemoteObject implements ReceiptDataServi
 		
 		return id;
 	}
+	
+	public static void main(String[] args) {
+		ArrivalNotePO arrivalNotePO = new ArrivalNotePO();
+		//TODO 按照这个顺序建表就可以了
+		arrivalNotePO.setId("02501012015120800001");
+		arrivalNotePO.setState(DocumentState.waiting);
+		arrivalNotePO.setDate("20151208");
+		arrivalNotePO.setDeparture("南京市仙林大道");
+		arrivalNotePO.setOrders(null);
+		arrivalNotePO.setInstitution("南京市仙林营业厅");
+		arrivalNotePO.setTransferNoteId("13241341531341");
+		
+		try {
+			ReceiptData receiptData = new ReceiptData();
+			receiptData.insert(arrivalNotePO);
+			System.out.println("done");
+			
+			ArrivalNotePO arrivalNotePO2 = receiptData.find("02501012015120800001");
+			System.out.println(arrivalNotePO2.getDeparture());
+			System.out.println(arrivalNotePO2.getInstitution());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
 }
