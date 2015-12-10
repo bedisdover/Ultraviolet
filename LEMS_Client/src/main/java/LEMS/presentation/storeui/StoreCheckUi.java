@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.List;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
@@ -19,6 +20,9 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 import LEMS.businesslogic.storebl.StoreManagement;
+import LEMS.po.orderpo.TransportType;
+import LEMS.po.storepo.Area;
+import LEMS.po.storepo.Destination;
 import LEMS.presentation.ExportExcel;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
@@ -148,35 +152,28 @@ public class StoreCheckUi extends JPanel {
 	private void addListener() {
 		excel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				StoreManagement storeManagement=new StoreManagement();
-				ArrayList<GoodsVO> alList=storeManagement.check(timeToTransfer);
+//				StoreManagement storeManagement=new StoreManagement();
+//				ArrayList<GoodsVO> alList=storeManagement.check(timeToTransfer);
+//				ArrayList<Object> al=new ArrayList<Object>();
+//				int length=alList.size();
+//				for(int i=0;i<length-8;i++){
+//					al.add(alList.get(i).getId());
+//					al.add(alList.get(i).getInDate());
+//					al.add(alList.get(i).getOutDate());
+//					al.add(alList.get(i).getDestination());
+//					al.add(alList.get(i).getArea());
+//					al.add(alList.get(i).getRow());
+//					al.add(alList.get(i).getStand());
+//					al.add(alList.get(i).getPosition());
+//					al.add(alList.get(i).getTransportType());
+//					al.add(alList.get(i).getTransferNum());
+//				}
 				ArrayList<Object> al=new ArrayList<Object>();
-				int length=alList.size();
-				for(int i=0;i<length-8;i++){
-					al.add(alList.get(i).getId());
-					al.add(alList.get(i).getInDate());
-					al.add(alList.get(i).getOutDate());
-					al.add(alList.get(i).getDestination());
-					al.add(alList.get(i).getArea());
-					al.add(alList.get(i).getRow());
-					al.add(alList.get(i).getStand());
-					al.add(alList.get(i).getPosition());
-					al.add(alList.get(i).getTransportType());
-					al.add(alList.get(i).getTransferNum());
-				}
-				ExportExcel operation=new ExportExcel();
-				String[] title=new String[7];
-				title[0]="快递单号";
-				title[1]="入库日期";
-				title[2]="出库日期";
-				title[3]="目的地";
-				title[4]="存储区域";
-				title[5]="架号";
-				title[6]="排号";
-				title[7]="位号";
-				title[8]="装运形式";
-				title[9]="单号";
-				operation.exportExcel("库存盘点", title, al);
+				GoodsVO gvo=new GoodsVO("1100110011", "1", "1", Destination.Beijing, Area.Airline, 1, 1, 1, TransportType.Airplane, "1",1);
+				al.add(gvo);
+				ExportExcel excel=new ExportExcel();
+				String[] title={"快递单号","入库日期","出库日期","目的地","存储区域","架号","排号","位号","装运形式","单号","运费"};
+				excel.exportExcel("f:/text.xls","库存盘点", title, al);
 			}
 		});
 
