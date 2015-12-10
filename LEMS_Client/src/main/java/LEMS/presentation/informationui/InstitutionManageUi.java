@@ -19,7 +19,7 @@ import LEMS.businesslogic.informationbl.InformationUpdate;
 import LEMS.po.informationpo.InstitutionPO;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
-import LEMS.presentation.method.Table;
+import LEMS.presentation.Table;
 import LEMS.vo.informationvo.InstitutionVO;
 import LEMS.vo.uservo.UserVO;
 

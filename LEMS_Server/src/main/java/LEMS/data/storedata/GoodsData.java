@@ -48,6 +48,7 @@ public class GoodsData extends UnicastRemoteObject implements GoodsDataService {
 				goodsPO.setTransportType(TransportType.valueOf(result.getString(9)));
 				goodsPO.setTransferNum(result.getString(10));
 				goodsPO.setMoney(Double.parseDouble(result.getString(11)));
+				pstmt.executeUpdate();
 				connect.closeConnection();
 			}
 
