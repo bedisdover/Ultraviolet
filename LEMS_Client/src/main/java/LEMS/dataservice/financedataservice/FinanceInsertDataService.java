@@ -1,6 +1,7 @@
 package LEMS.dataservice.financedataservice;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 import LEMS.po.financepo.PayBillPO;
 
@@ -10,5 +11,5 @@ import LEMS.po.financepo.PayBillPO;
  * 2015年12月8日
  */
 public interface FinanceInsertDataService extends Remote{
-	public void Insert(PayBillPO payPO);
+	public void Insert(PayBillPO payPO) throws RemoteException;
 }
