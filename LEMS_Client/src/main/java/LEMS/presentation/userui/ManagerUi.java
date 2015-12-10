@@ -250,13 +250,24 @@ public class ManagerUi extends JPanel {
 
 		butDel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				int currentLine = table.getSelectedRow();
+				int currentLine = table.table.getSelectedRow();
 				if (currentLine == -1) {
 					JOptionPane.showMessageDialog(ManagerUi.this, "请选择要删除的行!");
 				}
 				else {
 					int i = table.numOfEmpty();	
-					table.remove(i);
+					
+					InformationDelete dele=new InformationDelete();
+					dele.deleteStaff(table.getValueAt(currentLine, 0).trim());
+										
+					for(int j=currentLine;j<i;j++){
+						table.setValueAt(j, 0, table.getValueAt(j+1, 0));
+						table.setValueAt(j, 1, table.getValueAt(j+1, 1));
+						table.setValueAt(j, 2, table.getValueAt(j+1, 2));
+						table.setValueAt(j, 3, table.getValueAt(j+1, 3));
+					}
+					
+					
 				}
 			}
 		});
@@ -266,12 +277,12 @@ public class ManagerUi extends JPanel {
 				String inputValue=JOptionPane.showInputDialog(ManagerUi.this,"请输入用户账号：");
 				int i = table.numOfEmpty();
 				for(i=i-1;i>=0;i--){
-					if(table.getValueAt(i, 0).equals(inputValue)){
+					if(table.table.getValueAt(i, 0).equals(inputValue)){
 						break;
 					}
 				}
 				if(i>=0){
-					table.setRowSelectionInterval(i, i);
+					table.table.setRowSelectionInterval(i, i);
 				}
 				else{
 					if(inputValue!=null){
@@ -288,9 +299,9 @@ public class ManagerUi extends JPanel {
 				isUpdate=true;
 				
 				//将被选中人员的详细信息显示出来
-				int currentLine=table.getSelectedRow();
+				int currentLine=table.table.getSelectedRow();
 				InformationFind find=new InformationFind();
-				UserVO theStaff=find.findStaff(table.getValueAt(currentLine).get(0));
+				UserVO theStaff=find.findStaff(table.getValueAt(currentLine, 0));
 				InstitutionPO ins=theStaff.getInstitution();
 				textID.setText(theStaff.getId());
 				textPassword.setText(theStaff.getPassword());
@@ -331,7 +342,7 @@ public class ManagerUi extends JPanel {
 				}
 				
 				if(isUpdate){
-					int currentLine=table.getSelectedRow();
+					int currentLine=table.table.getSelectedRow();
 					//在数据库中修改该人员信息
 					InstitutionPO ipo = new InstitutionPO(textInstitutionID
 							.getText(), textLocation.getText());

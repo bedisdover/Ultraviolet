@@ -2,8 +2,6 @@ package LEMS.presentation;
 
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JScrollPane;
@@ -12,32 +10,18 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 
-public class Table extends JTable {
-	private static final long serialVersionUID = 1L;
-
-	/**
-	 * 表中存储的数据
-	 */
-	private String[][] rowData;
+public class Table extends JTable{
 	
 	/**
-	 * 表的列数
+	 * 
 	 */
-	private int columnNum = 0;
+	private static final long serialVersionUID = 1302577670244342772L;
 	
-	/**
-	 * 总行数
-	 */
-	private int rowNum = 0;
-	
-	/**
-	 * 表中最后一行
-	 */
-	private int currentRow = 0;
-
+	Object[][] obj;
 	public JTable table;
-
-	public JScrollPane drawTable(String[] name, int[] bounds) {
+	int columns=0;
+	int rows=0;
+	public JScrollPane drawTable(String[] name, int[] list) {
 		/**
 		 * list里面参数分别为需要的行数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		 * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
@@ -45,10 +29,11 @@ public class Table extends JTable {
 		 * 调用的时候在你的panel构造函数里 Table table=new Table(); add(table.drawTable(name,
 		 * list));
 		 */
-		columnNum = name.length;
-		rowNum = bounds[0];
-		rowData = new String[rowNum][columnNum];
-		table = new JTable(rowData, name);
+
+		 columns = name.length;
+		 rows=list[0];
+		obj = new Object[rows][columns];
+		table = new JTable(obj, name);
 		/**
 		 * 设置表格不能编辑但能选中一行
 		 */
@@ -57,18 +42,21 @@ public class Table extends JTable {
 		/*
 		 * 设置JTable的列默认的宽度和高度
 		 */
+
 		TableColumn column = null;
 		int colunms = table.getColumnCount();
 		for (int i = 0; i < colunms; i++) {
 			column = table.getColumnModel().getColumn(i);
+
 			// 将每一列的默认宽度设置为
-			column.setPreferredWidth(bounds[1]);
+
+			column.setPreferredWidth(list[1]);
 		}
 
-		Font fnt2 = new Font("Courier", Font.PLAIN, bounds[2]);
+		Font fnt2 = new Font("Courier", Font.PLAIN, list[2]);
 		table.getTableHeader().setFont(fnt2);
-		table.getTableHeader().setPreferredSize(new Dimension(table.getTableHeader().getWidth(), bounds[3]));
-		table.setRowHeight(bounds[4]);
+		table.getTableHeader().setPreferredSize(new Dimension(table.getTableHeader().getWidth(), list[3]));
+		table.setRowHeight(list[4]);
 
 		/*
 		 * 设置JTable自动调整列表的状态，此处设置为关闭
@@ -84,58 +72,47 @@ public class Table extends JTable {
 		 * 用JScrollPane装载JTable
 		 */
 		JScrollPane scroll = new JScrollPane(table);
-		scroll.setBounds(bounds[5], bounds[6], bounds[7], bounds[8]);
-
+		scroll.setBounds(list[5], list[6], list[7], list[8]);
 		return scroll;
-	}
 
-	public int numOfEmpty() {
-		return currentRow;
-	}
-
-	public int getSelectedRow() {
-		return table.getSelectedRow();
 	}
 	
-	public ArrayList<String> getValueAt(int r) {
-		ArrayList<String> al = new ArrayList<String>();
-		for (int i = 0; i < columnNum; i++) {
-			al.add(rowData[r][i].toString());
+	public void setValueAt(int r,int c,String value){
+		obj[r][c] = value;
+	}
+	
+	public String getValueAt(int r,int c){
+		return (String)obj[r][c];
+	}
+
+	public int numOfEmpty(){
+		int count = 0;
+		while(obj[count][0]!=null){
+			count++;
+		}
+		return count;
+	}
+	
+	public ArrayList<String> getValueAt(int r){
+		ArrayList<String> al=new ArrayList<String>();
+		for(int i=0;i<columns;i++){
+			al.add(obj[r][i].toString());
 		}
 		return al;
 	}
-
-	public void setValueAt(int row, String[] values) {
-		for (int column = 0; column < values.length; column++) {
-			rowData[row][column] = values[column];
-		}
-		
-		currentRow++;
-	}
 	
-	//迫于形势保留的方法
-	public void setValueAt(int row, int column, String value) {
-		rowData[row][column] = value;
+	public int columnNum(){
+		return columns;
 	}
-	
-	public void remove(int row) {
-		for (int i = row; i < numOfEmpty(); i++) {
-			for (int j = 0; j < columnNum; j++) {
-				rowData[i][j] = rowData[i + 1][j];
+	//删除某一行
+	public void remove(int r){
+		for(int i=r;i<rows-1;i++){
+			for(int j=0;j<columns;j++){
+				setValueAt(i,j,obj[i+1][j].toString());
 			}
 		}
-		
-		currentRow--;
-	}
-	
-	private void addListener() {
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				super.mouseClicked(e);
-				getValueAt(table.getSelectedRow());
-			}
-		});
+		for(int k=0;k<columns;k++){
+		setValueAt(rows-1,k,"");
+		}
 	}
 }
