@@ -1,6 +1,7 @@
 package LEMS.presentation;
 
 import LEMS.presentation.orderui.ReceiveUi;
+import LEMS.presentation.orderui.SendUi;
 import LEMS.presentation.userui.TransferClerkUi;
 
 public class mainSongYiming {
@@ -20,9 +21,8 @@ public class mainSongYiming {
 //		mainFrame.setContentPane(financialStaffUi);
 //		SettlementUi settlementUi = new SettlementUi(mainFrame);
 //		mainFrame.setContentPane(settlementUi);
-		
-		TestTable table = new TestTable(mainFrame, null);
-		mainFrame.setContentPane(table);
+		SendUi sendUi = new SendUi(mainFrame, null);
+		mainFrame.setContentPane(sendUi);
 		mainFrame.setVisible(true);
 		
 //		AddOrder addOrder = new AddOrder();

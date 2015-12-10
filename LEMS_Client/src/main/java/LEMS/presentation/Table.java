@@ -2,6 +2,8 @@ package LEMS.presentation;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JScrollPane;
@@ -124,5 +126,16 @@ public class Table extends JTable {
 		}
 		
 		currentRow--;
+	}
+	
+	private void addListener() {
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				super.mouseClicked(e);
+				getValueAt(table.getSelectedRow());
+			}
+		});
 	}
 }
