@@ -57,11 +57,6 @@ public class SendUi extends JPanel {
 	
 	private DeliveryVO deliveryVO;
 	
-	/**
-	 * 输入域订单的个数
-	 */
-	private int number = 0;
-	
 	public SendUi(final MainFrame mainFrame, UserVO userVO) {
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
@@ -175,6 +170,7 @@ public class SendUi extends JPanel {
 	private void empty() {
 		textId.setText(null);
 		textStaff.setText(null);
+
 	}
 
 	/**
@@ -188,7 +184,7 @@ public class SendUi extends JPanel {
 		});
 		delete.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				table.remove(table.getSelectedRow());
+				// TODO 返回按钮的具体实现
 			}
 		});
 		update.addMouseListener(new MouseAdapter() {
@@ -211,9 +207,9 @@ public class SendUi extends JPanel {
 
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-//				if (isLegal()) {
+				if (isLegal()) {
 					OKOperation();
-//				}
+				}
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {
@@ -250,23 +246,13 @@ public class SendUi extends JPanel {
 	 * 按下确定按钮后的动作
 	 */
 	private void OKOperation() {
-//		sending.addOrder(textId.getText(), textStaff.getText());
-		number++;
-		
-		String[] values = {
-				number + "",
-				dc.getTime(),
-				textId.getText(),
-				textStaff.getText()
-		};
-		table.setValueAt(table.numOfEmpty(), values);
-		
-		textId.setText(null);
+		System.out.println(table.numOfEmpty());
+		deliveryVO.setDate(dc.getTime());
+		sending.addOrder(textId.getText(), textStaff.getText());
 	}
 	
 	private void finishOperation() {
 		setTestState(true);
-		deliveryVO.setDate(dc.getTime());
 		sending.createDeliveryNote();
 	}
 }

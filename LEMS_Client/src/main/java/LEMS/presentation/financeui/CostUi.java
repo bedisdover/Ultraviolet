@@ -154,9 +154,12 @@ public class CostUi extends JPanel {
 			public void mouseClicked(MouseEvent e){
 				//TODO 获得第几行为空
 				int i = table.numOfEmpty();
+				// TODO 确定按钮的具体实现
+				table.setValueAt(i, 0, text[0].getText());
+				table.setValueAt(i, 1, text[1].getText());
+				table.setValueAt(i, 2, text[2].getText());
 				
-				String[] values = {text[0].getText(), text[1].getText(), text[2].getText()};
-				table.setValueAt(i, values);
+				
 				
 				// 清空输入框
 				empty();
