@@ -55,5 +55,5 @@ public interface OrderDataService extends Remote {
 	 * @param type 快递类型
 	 * @return 预估时间
 	 */
-	public String getTime(String departure, String destination, Express type);
+	public String getTime(String departure, String destination, Express type) throws RemoteException;
 }

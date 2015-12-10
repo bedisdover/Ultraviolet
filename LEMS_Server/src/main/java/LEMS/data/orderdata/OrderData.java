@@ -64,7 +64,6 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 			orderPO.setTime(result.getString(15));
 			//设置实际收件人
 			orderPO.setReceiver(result.getString(16));
-			
 			connect.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -141,7 +140,7 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 	}
 
 	@Override
-	public String getTime(String departure, String destination, Express type) {
+	public String getTime(String departure, String destination, Express type) throws RemoteException{
 		String time = "";
 		
 		String sql = "SELECT * FROM dingdan";

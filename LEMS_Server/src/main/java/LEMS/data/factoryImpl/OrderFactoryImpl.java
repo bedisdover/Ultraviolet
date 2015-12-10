@@ -30,6 +30,7 @@ public class OrderFactoryImpl extends UnicastRemoteObject implements OrderFactor
 
 	//获得OrderDataService的引用
 	public OrderDataService getOrderData() throws RemoteException {
+		System.out.println(3);
 		OrderDataService dataService = new OrderData();
 		return dataService;
 	}

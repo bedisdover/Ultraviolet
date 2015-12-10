@@ -106,7 +106,7 @@ public class AddOrder implements AddOrderService {
 		OrderDataService orderDataService = null;
 		
 		try {
-			//获得数据库的引用
+			//获得数据库的引用			
 			DatabaseFactory databaseFactory = (DatabaseFactory) Naming.lookup(RMIConnect.RMI);
 			OrderFactory orderFactory = databaseFactory.getOrderFactory();
 			orderDataService = orderFactory.getOrderData();

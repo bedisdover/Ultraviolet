@@ -31,7 +31,7 @@ public class Distance {
 		try {
 			//连接数据库
 			DatabaseFactory databaseFactory = (DatabaseFactory) Naming.lookup("rmi://localhost:1099/data");
-			OrderFactory orderFactory = databaseFactory.getOrderFactory();System.out.println(databaseFactory);
+			OrderFactory orderFactory = databaseFactory.getOrderFactory();
 			DistanceDataService distanceDataService = orderFactory.getDistanceData();
 			//获得距离数据
 			distancePO = distanceDataService.getDistance();
