@@ -52,7 +52,8 @@ public class DatabaseFactoryImpl extends UnicastRemoteObject implements
 
 	//获得StoreFactory的引用
 	public StoreFactory getStoreFactory() throws RemoteException {
-		return null;
+		StoreFactory store=new StoreFactoryImpl();
+		return store;
 	}
 	
 	//获得UserFactory的引用
