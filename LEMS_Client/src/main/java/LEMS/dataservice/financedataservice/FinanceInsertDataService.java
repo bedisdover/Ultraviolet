@@ -11,5 +11,5 @@ import LEMS.po.financepo.PayBillPO;
  * 2015年12月8日
  */
 public interface FinanceInsertDataService extends Remote{
-	public void Insert(PayBillPO payPO) throws RemoteException;
+	public void insertCost(PayBillPO payPO) throws RemoteException;
 }

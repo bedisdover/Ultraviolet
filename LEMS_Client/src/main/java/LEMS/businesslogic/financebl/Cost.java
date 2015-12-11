@@ -1,11 +1,15 @@
 package LEMS.businesslogic.financebl;
 
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 
 import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.businesslogicservice.financeblservice.CostService;
 import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.FinanceFactory;
+import LEMS.dataservice.financedataservice.FinanceDeleteDataService;
 import LEMS.dataservice.financedataservice.FinanceInsertDataService;
 import LEMS.po.financepo.PayBillPO;
 import LEMS.vo.financevo.CostProfitVO;
@@ -34,19 +38,33 @@ public class Cost implements CostService {
 	}
 
 	public void addCost(PayBillVO pay) {
-		try{
-			DatabaseFactory database=(DatabaseFactory)Naming.lookup(RMIConnect.RMI);
+		try {
+			DatabaseFactory database = (DatabaseFactory) Naming
+					.lookup(RMIConnect.RMI);
 			FinanceFactory fif = database.getFinanceFactory();
-			//TODO 注释
-//			FinanceInsertDataService financeInsert = fif.getInsertData();
-//			PayBillPO p = new PayBillPO(pay.getDate(),pay.getId(),pay.getInstitution(),pay.g)
-		}catch(Exception e){
+			FinanceInsertDataService financeInsert = fif.getInsertData();
+			PayBillPO p = new PayBillPO(pay.getDate(), pay.getId(),
+					pay.getInstitution(), pay.getAmount(), pay.getPayer(),
+					pay.getAccount(), pay.getItem(), pay.getRemark());
+			financeInsert.insertCost(p);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	public void deleteCost(String id) {
+		try {
+			DatabaseFactory database = (DatabaseFactory) Naming.lookup(RMIConnect.RMI);
+			FinanceFactory fif = database.getFinanceFactory();
+			FinanceDeleteDataService financeDelete = fif.getDeleteData();
+			financeDelete.deleteCost(id);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
 		
 	}
-
 }
