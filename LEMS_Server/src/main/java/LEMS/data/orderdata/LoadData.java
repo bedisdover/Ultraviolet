@@ -23,7 +23,7 @@ public class LoadData extends UnicastRemoteObject implements LoadDataService {
 	 * ID长度
 	 * 营业厅编号+20150921日期+00000编码 、五位数字
 	 */
-	private static final int ID_LENGTH = 22;
+	private static final int ID_LENGTH = 20;
 	
 	public LoadData() throws RemoteException {
 		super();
@@ -116,7 +116,21 @@ public class LoadData extends UnicastRemoteObject implements LoadDataService {
 	}
 	
 	public static void main(String[] args) {
-		//TODO Load表创建
+
+		LoadNotePO loadNotePO = new LoadNotePO();
+		loadNotePO.setId("0251022015092100001");
+		loadNotePO.setState(DocumentState.waiting);
+		loadNotePO.setDate("20150912");
+		loadNotePO.setVehicle("");
+		loadNotePO.setDeparture("南京市仙林中转中心");
+		
+		
+		try {
+			LoadData loadData = new LoadData();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
 		
 	}
 }

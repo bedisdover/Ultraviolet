@@ -110,10 +110,12 @@ public class VehicleLoadData extends UnicastRemoteObject implements VehicleLoadD
 
 	@Override
 	public String createID(String institution, String date) throws RemoteException {
-
-		String id = new CreateID().createID("cash", ID_LENGTH, institution + date);
+		String id = new CreateID().createID("vehicleloadnote", ID_LENGTH, institution + date);
 		
 		return id;
+	}
 	
+	public static void main(String[] args) {
+		
 	}
 }

@@ -87,39 +87,40 @@ public class DistanceData extends UnicastRemoteObject implements DistanceDataSer
 		connect.closeConnection();
 	}
 
-	public static void main(String[] args) {
-
-		DistanceData distanceData = null;
-		DistancePO distancePO = new DistancePO();
-		
-		HashMap<String, Double> distance = new HashMap<>();
-		//相同城市间距离
-		distance.put("sameCity", 30.0);
-		distance.put("北京上海", 1064.7);
-		distance.put("北京广州", 1888.8);
-		distance.put("北京南京", 900.0);
-		distance.put("上海广州", 1213.0);
-		distance.put("上海南京", 266.0);
-		distance.put("广州南京", 1132.0);
-		distancePO.setCityDistance(distance);
-		//测试写入
-		try {
-			distanceData = new DistanceData();
-			distanceData.setDistance(distancePO);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		//测试读取数据
-		try {
-			DistancePO distancePO2 = distanceData.getDistance();
-			System.out.println(distancePO2.getDistance("北京", "北京"));
-			System.out.println(distancePO2.getDistance("北京", "上海"));
-			System.out.println(distancePO2.getDistance("北京", "广州"));
-			System.out.println(distancePO2.getDistance("上海", "南京"));
-			System.out.println(distancePO2.getDistance("广州", "南京"));
-			System.out.println(distancePO2.getDistance("广州", "广州"));
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-	}
+	//TODO 待删除
+//	public static void main(String[] args) {
+//
+//		DistanceData distanceData = null;
+//		DistancePO distancePO = new DistancePO();
+//		
+//		HashMap<String, Double> distance = new HashMap<>();
+//		//相同城市间距离
+//		distance.put("sameCity", 30.0);
+//		distance.put("北京上海", 1064.7);
+//		distance.put("北京广州", 1888.8);
+//		distance.put("北京南京", 900.0);
+//		distance.put("上海广州", 1213.0);
+//		distance.put("上海南京", 266.0);
+//		distance.put("广州南京", 1132.0);
+//		distancePO.setCityDistance(distance);
+//		//测试写入
+//		try {
+//			distanceData = new DistanceData();
+//			distanceData.setDistance(distancePO);
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//		}
+//		//测试读取数据
+//		try {
+//			DistancePO distancePO2 = distanceData.getDistance();
+//			System.out.println(distancePO2.getDistance("北京", "北京"));
+//			System.out.println(distancePO2.getDistance("北京", "上海"));
+//			System.out.println(distancePO2.getDistance("北京", "广州"));
+//			System.out.println(distancePO2.getDistance("上海", "南京"));
+//			System.out.println(distancePO2.getDistance("广州", "南京"));
+//			System.out.println(distancePO2.getDistance("广州", "广州"));
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//		}
+//	}
 }
