@@ -5,12 +5,14 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import LEMS.data.Connect;
 import LEMS.data.TransferID;
 import LEMS.dataservice.orderdataservice.LoadDataService;
 import LEMS.po.financepo.DocumentState;
 import LEMS.po.orderpo.LoadNotePO;
+import LEMS.po.orderpo.OrderPO;
 
 public class LoadData extends UnicastRemoteObject implements LoadDataService {
 	private static final long serialVersionUID = 1L;
@@ -118,19 +120,25 @@ public class LoadData extends UnicastRemoteObject implements LoadDataService {
 	public static void main(String[] args) {
 
 		LoadNotePO loadNotePO = new LoadNotePO();
-		loadNotePO.setId("0251022015092100001");
+		loadNotePO.setId("02511022015092100001");
 		loadNotePO.setState(DocumentState.waiting);
 		loadNotePO.setDate("20150912");
-		loadNotePO.setVehicle("");
+		loadNotePO.setVehicle("025102033");
 		loadNotePO.setDeparture("南京市仙林中转中心");
-		
+		loadNotePO.setDestination("上海市闵行区");
+		loadNotePO.setOrders(new ArrayList<OrderPO>());
+		loadNotePO.setSuperVision("0251102032");
+		loadNotePO.setSuperCargo("0251102100");
+		loadNotePO.setPassage(300);
 		
 		try {
 			LoadData loadData = new LoadData();
+			loadData.insert(loadNotePO);
+			LoadNotePO loadNotePO2 = loadData.find(loadNotePO.getId());
+			System.out.println(loadNotePO2.getPassage());
+			System.out.println(loadNotePO2.getVehicle());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		
-		
 	}
 }

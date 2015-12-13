@@ -5,11 +5,13 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import LEMS.data.Connect;
 import LEMS.data.TransferID;
 import LEMS.dataservice.orderdataservice.VehicleLoadDataService;
 import LEMS.po.financepo.DocumentState;
+import LEMS.po.orderpo.OrderPO;
 import LEMS.po.orderpo.VehicleLoadNotePO;
 
 public class VehicleLoadData extends UnicastRemoteObject implements VehicleLoadDataService {
@@ -116,6 +118,26 @@ public class VehicleLoadData extends UnicastRemoteObject implements VehicleLoadD
 	}
 	
 	public static void main(String[] args) {
+		VehicleLoadNotePO po = new VehicleLoadNotePO();
+		po.setId("02502012015121300001");
+		po.setState(DocumentState.waiting);
+		po.setVehicle("025201001");
+		po.setDate("20151213");
+		po.setDeparture("南京市仙林大道");
+		po.setDestination("北京市海淀区");
+		po.setSuperVision("0250201143");
+		po.setSuperCargo("0250201154");
+		po.setOrders(new ArrayList<OrderPO>());
+		po.setPassage(400);
 		
+		try {
+			VehicleLoadData data = new VehicleLoadData();
+			data.insert(po);
+			VehicleLoadNotePO vehicleLoadNotePO = data.find(po.getId());
+			System.out.println(vehicleLoadNotePO.getPassage());
+			System.out.println(vehicleLoadNotePO.getDeparture());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 }
