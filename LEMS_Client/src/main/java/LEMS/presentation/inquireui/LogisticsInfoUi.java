@@ -18,11 +18,13 @@ import java.awt.Toolkit;
 import javax.swing.JButton;
 
 import LEMS.businesslogic.inquirebl.inquirediary.InquireDiary;
+import LEMS.businesslogic.inquirebl.inquirelogisticsinfo.InquireLogisticsInfo;
 import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.Table;
 import LEMS.vo.inquirevo.DiaryVO;
+import LEMS.vo.inquirevo.LogisticsInfoVO;
 import LEMS.vo.uservo.UserVO;
 
 import java.util.ArrayList;
@@ -83,7 +85,7 @@ public class LogisticsInfoUi extends JPanel {
 		this.add(textField);
 		this.add(butOut);
 
-		String[] columnNames = { "" };
+		String[] columnNames = { "物流轨迹" };
 		int[] list = { 15, 464, 14, 30, 20, 260, 172, 482, 520 };
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
@@ -104,9 +106,9 @@ public class LogisticsInfoUi extends JPanel {
 				for (; k >= 0; k--) {
 					table.setValueAt(k, 0, "");
 				}
-				InquireDiary ind = new InquireDiary();
-				DiaryVO diary = ind.getDiary(textField.getText());
-				ArrayList<String> operations = diary.getOperation();
+				InquireLogisticsInfo inquirel = new InquireLogisticsInfo();
+				LogisticsInfoVO logistics = inquirel.getLogisticsInfo(textField.getText());
+				ArrayList<String> operations = logistics.getTrace();
 				for (int i = 0; i < operations.size(); i++) {
 					table.setValueAt(i, 0, operations.get(i));
 				}

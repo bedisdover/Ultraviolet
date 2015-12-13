@@ -8,6 +8,7 @@ import javax.swing.*;
 import LEMS.businesslogic.userbl.UserLogin;
 import LEMS.po.userpo.UserRole;
 import LEMS.presentation.userui.BusinessClerkUi;
+import LEMS.presentation.userui.CourierUi;
 //import LEMS.presentation.userui.CourierUi;
 import LEMS.presentation.userui.FinancialStaffUi;
 import LEMS.presentation.userui.GeneralManagerUi;
@@ -129,10 +130,10 @@ public class LoginUi extends JPanel {
 						repaint();
 						break;
 					//登录后跳转到快递员界面
-//					case Courier:
-//						mainFrame.setContentPane(new CourierUi(mainFrame));
-//						repaint();
-//						break;
+					case Courier:
+						mainFrame.setContentPane(new CourierUi(mainFrame));
+						repaint();
+						break;
 					//登录后跳转到营业厅业务员界面
 					case BusinessClerk:
 						mainFrame.setContentPane(new BusinessClerkUi(mainFrame,userVO));
