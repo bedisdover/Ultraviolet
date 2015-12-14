@@ -14,7 +14,7 @@ import LEMS.vo.ordervo.LoadVO;
  * 
  * 装运管理任务
  */
-public abstract class Load extends AddOrder implements LoadService {
+public class Load extends AddOrder implements LoadService {
 	/**
 	 * 订单列表
 	 */
@@ -59,11 +59,4 @@ public abstract class Load extends AddOrder implements LoadService {
 	public ArrayList<OrderPO> getOrders() {
 		return orders;
 	}
-	
-	/**
-	 * 计算运费
-	 * 
-	 * @param 距离
-	 */
-	public abstract double calculateMessage(double distance);
 }

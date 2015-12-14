@@ -5,12 +5,18 @@ package LEMS.businesslogic.orderbl.load;
  * 
  * 负责货运功能的具体实现
  */
-public class RailwayLoad extends Load {
+public class RailwayLoad implements Passage {
+
+//	@Override
+//	public double calculateMessage(double distance) {
+//		double sum = sumWeight(orders);
+//		return sum * distance * 0.2;
+//	}
 
 	@Override
-	public double calculateMessage(double distance) {
-		double sum = sumWeight(orders);
-		return sum * distance * 0.2;
+	public double calculateMessage(String departure, String destination) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

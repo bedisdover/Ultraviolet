@@ -5,12 +5,18 @@ package LEMS.businesslogic.orderbl.load;
  * 
  * 负责航运功能的具体实现
  */
-public class AirplaneLoad extends Load {
+public class AirplaneLoad implements Passage {
+//
+//	@Override
+//	public double calculateMessage(double distance) {
+//		double sum = sumWeight(orders);
+//		return sum * distance * 20;
+//	}
 
 	@Override
-	public double calculateMessage(double distance) {
-		double sum = sumWeight(orders);
-		return sum * distance * 20;
+	public double calculateMessage(String departure, String destination) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

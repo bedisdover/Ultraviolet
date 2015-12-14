@@ -8,9 +8,9 @@ public class Factory {
 	 * 
 	 * @param type 运输类型
 	 */
-	public Load createLoad(TransportType type) {
+	public Passage createLoad(TransportType type) {
 		
-		Load load = null;
+		Passage load = null;
 		
 		switch (type) {
 		case Airplane:
@@ -22,8 +22,9 @@ public class Factory {
 		case Landway:
 			load = new LandwayLoad();
 			break;
+		default:
+			break;
 		}
-		
 		return load;
 	}
 }
