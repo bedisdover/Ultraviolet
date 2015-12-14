@@ -26,6 +26,9 @@ public class IncomeBillPO implements Serializable {
 	 */
 	private String account;
 
+	public IncomeBillPO() {
+	}
+	
 	public IncomeBillPO(String date, String institution, double amount,String account) {
 		this.date = date;
 		this.institution = institution;
@@ -47,5 +50,21 @@ public class IncomeBillPO implements Serializable {
 
 	public String getAccount() {
 		return account;
+	}
+	
+	public void setAccount(String account) {
+		this.account = account;
+	}
+	
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+	
+	public void setDate(String date) {
+		this.date = date;
+	}
+	
+	public void setInstitution(String institution) {
+		this.institution = institution;
 	}
 }

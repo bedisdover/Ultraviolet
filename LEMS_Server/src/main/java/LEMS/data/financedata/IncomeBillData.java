@@ -12,8 +12,6 @@ import java.util.ArrayList;
 import LEMS.data.Connect;
 import LEMS.dataservice.financedataservice.IncomeBillDataService;
 import LEMS.po.financepo.IncomeBillPO;
-import LEMS.po.informationpo.InstitutionPO;
-import LEMS.po.userpo.UserPO;
 
 @SuppressWarnings("serial")
 public class IncomeBillData extends UnicastRemoteObject implements IncomeBillDataService {
@@ -46,6 +44,24 @@ public class IncomeBillData extends UnicastRemoteObject implements IncomeBillDat
 			e.printStackTrace();
 		}
 		return in;
+	}
+
+	@Override
+	public ArrayList<IncomeBillPO> getIncomeByDate(String date) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<IncomeBillPO> getIncomeByIns(String institution) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addIncomeBill(IncomeBillPO incomeBillPO) throws RemoteException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
