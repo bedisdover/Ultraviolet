@@ -4,6 +4,7 @@ import LEMS.businesslogic.orderbl.AddOrder;
 import LEMS.po.orderpo.OrderPO;
 import LEMS.presentation.orderui.ReceiveUi;
 import LEMS.presentation.orderui.SendUi;
+import LEMS.presentation.userui.CourierUi;
 import LEMS.presentation.userui.TransferClerkUi;
 
 public class mainSongYiming {
@@ -23,8 +24,10 @@ public class mainSongYiming {
 //		mainFrame.setContentPane(financialStaffUi);
 //		SettlementUi settlementUi = new SettlementUi(mainFrame);
 //		mainFrame.setContentPane(settlementUi);
-		SendUi sendUi = new SendUi(mainFrame, null);
-		mainFrame.setContentPane(sendUi);
+//		SendUi sendUi = new SendUi(mainFrame, null);
+//		mainFrame.setContentPane(sendUi);
+		CourierUi courierUi = new CourierUi(mainFrame);
+		mainFrame.setContentPane(courierUi);
 		mainFrame.setVisible(true);
 		
 		
