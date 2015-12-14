@@ -10,10 +10,10 @@ import LEMS.po.orderpo.TransportType;
  * 装运管理值对象
  */
 public class LoadVO {
-//	/**
-//	 * 装运日期
-//	 */
-//	private String date;
+	/**
+	 * 装运日期
+	 */
+	private String date;
 //	/**
 //	 * 装运编号
 //	 */
@@ -49,6 +49,10 @@ public class LoadVO {
 		return type;
 	}
 	
+	public String getDate() {
+		return date;
+	}
+	
 	public void setDestination(String destination) {
 		this.destination = destination;
 	}
@@ -59,5 +63,9 @@ public class LoadVO {
 	
 	public void setType(TransportType type) {
 		this.type = type;
+	}
+	
+	public void setDate(String date) {
+		this.date = date;
 	}
 }

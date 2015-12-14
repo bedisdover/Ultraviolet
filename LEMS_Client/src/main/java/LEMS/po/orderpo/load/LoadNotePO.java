@@ -2,6 +2,7 @@ package LEMS.po.orderpo.load;
 
 import java.util.ArrayList;
 
+import LEMS.po.financepo.DocumentState;
 import LEMS.po.orderpo.OrderPO;
 import LEMS.po.userpo.UserPO;
 
@@ -16,6 +17,10 @@ public class LoadNotePO {
 	 * 装运单ID
 	 */
 	private String id;
+	/**
+	 * 装车单状态
+	 */
+	private DocumentState state;
 	/**
 	 * （航运、货运、汽运）编号
 	 */
@@ -107,5 +112,13 @@ public class LoadNotePO {
 
 	public void setPassage(double passage) {
 		this.passage = passage;
+	}
+	
+	public DocumentState getState() {
+		return state;
+	}
+
+	public void setState(DocumentState state) {
+		this.state = state;
 	}
 }
