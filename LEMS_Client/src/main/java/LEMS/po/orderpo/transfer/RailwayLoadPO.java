@@ -1,11 +1,12 @@
-package LEMS.po.orderpo.load;
+package LEMS.po.orderpo.transfer;
 
 /**
  * @author 宋益明
  * 
  * 货运单持久化对象
  */
-public class RailwayLoadPO extends LoadNotePO {
+public class RailwayLoadPO extends TransferNotePO {
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * 车次号

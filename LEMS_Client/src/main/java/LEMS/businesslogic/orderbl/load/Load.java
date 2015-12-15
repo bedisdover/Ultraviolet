@@ -1,14 +1,22 @@
 package LEMS.businesslogic.orderbl.load;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import LEMS.businesslogic.orderbl.AddOrder;
+import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.businesslogicservice.orderblservice.LoadService;
+import LEMS.dataservice.factory.DatabaseFactory;
+import LEMS.dataservice.factory.OrderFactory;
+import LEMS.dataservice.orderdataservice.LoadDataService;
 import LEMS.po.financepo.DocumentState;
+import LEMS.po.orderpo.LoadNotePO;
 import LEMS.po.orderpo.OrderPO;
-import LEMS.po.orderpo.load.LoadNotePO;
-import LEMS.po.userpo.UserPO;
 import LEMS.vo.ordervo.LoadVO;
+import LEMS.vo.uservo.UserVO;
 
 /**
  * @author 宋益明
@@ -31,8 +39,11 @@ public class Load extends AddOrder implements LoadService {
 	
 	private LoadVO loadVO;
 	
-	public Load(LoadVO loadVO) {
+	private UserVO user;
+	
+	public Load(LoadVO loadVO, UserVO user) {
 		this.loadVO = loadVO;
+		this.user = user;
 		//新建订单列表
 		orders = new ArrayList<OrderPO>();
 	}
@@ -43,31 +54,74 @@ public class Load extends AddOrder implements LoadService {
 
 	public void createLoadNote() {
 		LoadNotePO loadNote = new LoadNotePO();
-		loadNote.setDate(loadVO.getDate());
+		loadNote.setId(this.createID());
 		loadNote.setState(DocumentState.waiting);
+		loadNote.setDate(loadVO.getDate());
+		loadNote.setDeparture(user.getInstitution().getID());
+		loadNote.setDestination(loadVO.getDestination());
+		loadNote.setSuperVision(loadVO.getSuperVision());
+		loadNote.setSuperCargo(loadVO.getSuperCargo());
+		loadNote.setOrders(orders);
+		loadNote.setPassage(this.calculatePassage());
+		
+		try {
+			this.getDataService().insert(loadNote);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private String createID() {
+		String id = "";
+		
+		try {
+			id = this.getDataService().createID(user.getInstitution().getID(), loadVO.getDate());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		return id;
+	}
+	
+	private double calculatePassage() {
+		return 0;
+	}
+	
+	private LoadDataService getDataService() {
+		LoadDataService dataService = null;
+		
+		try {
+			DatabaseFactory databaseFactory = (DatabaseFactory) Naming.lookup(RMIConnect.RMI);
+			OrderFactory orderFactory = databaseFactory.getOrderFactory();
+			dataService = orderFactory.getLoadData();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+		
+		return dataService;
 	}
 	
 	public void setDate() {
 		
 	}
-	
-	public void setNumber(String number) {
-		
-	}
-	
-	public void setDeparture(String departure) {
-		
-	}
-	
-	public void setDestination(String destination) {
-		
-	}
-	
-	public void setSuperVision(UserPO superVision) {
-		
-	}
-	
-	public ArrayList<OrderPO> getOrders() {
-		return orders;
-	}
+//	
+//	public void setNumber(String number) {
+//		
+//	}
+//	
+//	public void setDeparture(String departure) {
+//		
+//	}
+//	
+//	public void setDestination(String destination) {
+//		
+//	}
+//	
+//	public void setSuperVision(UserPO superVision) {
+//		
+//	}
 }

@@ -1,13 +1,12 @@
-package LEMS.po.orderpo.load;
-
-import LEMS.po.userpo.UserPO;
+package LEMS.po.orderpo.transfer;
 
 /**
  * @author 宋益明
  *
  * 汽运单持久化对象
  */
-public class LandwayLoadPO extends LoadNotePO {
+public class LandwayLoadPO extends TransferNotePO {
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * 车次号
@@ -17,13 +16,13 @@ public class LandwayLoadPO extends LoadNotePO {
 	/**
 	 * 押运员
 	 */
-	private UserPO superCargo;
+	private String superCargo;
 
 	public String getCarNum() {
 		return carNum;
 	}
 
-	public UserPO getSuperCargo() {
+	public String getSuperCargo() {
 		return superCargo;
 	}
 
@@ -31,7 +30,7 @@ public class LandwayLoadPO extends LoadNotePO {
 		this.carNum = carNum;
 	}
 
-	public void setSuperCargo(UserPO superCargo) {
+	public void setSuperCargo(String superCargo) {
 		this.superCargo = superCargo;
 	}
 }

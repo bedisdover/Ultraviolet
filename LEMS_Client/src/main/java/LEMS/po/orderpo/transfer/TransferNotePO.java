@@ -1,9 +1,10 @@
-package LEMS.po.orderpo;
+package LEMS.po.orderpo.transfer;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 import LEMS.po.financepo.DocumentState;
+import LEMS.po.orderpo.OrderPO;
 
 /**
  * @author 宋益明

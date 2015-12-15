@@ -31,6 +31,15 @@ public class LoadVO {
 	 */
 	private TransportType type;
 	
+	/**
+	 * 监装员
+	 */
+	private String superVision;
+	/**
+	 * 押运员
+	 */
+	private String superCargo;
+	
 	
 //	/**
 //	 * 运费
@@ -39,6 +48,22 @@ public class LoadVO {
 
 	public ArrayList<String> getOrders() {
 		return orders;
+	}
+
+	public String getSuperVision() {
+		return superVision;
+	}
+
+	public String getSuperCargo() {
+		return superCargo;
+	}
+
+	public void setSuperVision(String superVision) {
+		this.superVision = superVision;
+	}
+
+	public void setSuperCargo(String superCargo) {
+		this.superCargo = superCargo;
 	}
 
 	public String getDestination() {

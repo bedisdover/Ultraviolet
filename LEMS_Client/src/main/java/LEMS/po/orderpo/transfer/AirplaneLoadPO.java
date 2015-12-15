@@ -1,11 +1,13 @@
-package LEMS.po.orderpo.load;
+package LEMS.po.orderpo.transfer;
 
 /**
  * @author 宋益明
  * 
  * 航运单持久化对象
  */
-public class AirplaneLoadPO extends LoadNotePO {
+public class AirplaneLoadPO extends TransferNotePO {
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * 航班号
 	 */
