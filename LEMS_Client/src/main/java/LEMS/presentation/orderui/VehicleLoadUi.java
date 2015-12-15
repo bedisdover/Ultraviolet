@@ -60,8 +60,8 @@ public class VehicleLoadUi extends JPanel {
 	private JTextField textGoodsGravity;
 	private JTextField textMoney;
 	private JTextField textID;
-	DateChooser dc;
-
+	private DateChooser dc;
+	private Table table;
 	
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);//标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);//其余字体格式
@@ -70,6 +70,8 @@ public class VehicleLoadUi extends JPanel {
 	private VehicleLoad vehicleLoad;
 	
 	private VehicleLoadVO vehicleLoadVO;
+	
+	private int number = 0;
 	
 	public VehicleLoadUi(final MainFrame mainFrame, UserVO userVO) {
 		this.mainFrame = mainFrame;
@@ -214,7 +216,7 @@ public class VehicleLoadUi extends JPanel {
 		String[] columnNames = {"序号","订单ID","名称","重量" };  
 		int[] list={40,120,14,30,20,425,110,498,440};
 
-	    Table table=new Table();
+	    table=new Table();
 		add(table.drawTable(columnNames, list));
 	    	
 	}
@@ -277,8 +279,7 @@ public class VehicleLoadUi extends JPanel {
 		});
 		finish.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				setTestState(true);
-				// TODO 返回按钮的具体实现
+				finishOperation();
 			}
 		});
 		
@@ -312,8 +313,27 @@ public class VehicleLoadUi extends JPanel {
 	}
 	
 	private void OKOperation() {
+		String id = textID.getText();
+		String name = vehicleLoad.getName(id);
+		double weight = vehicleLoad.getWeight(id);
+		
+		vehicleLoad.addOrder(id);
+		
+		String[] values = {number + "", id, name, weight + ""};
+		table.setValueAt(++number, values);
+		
+		textID.setText(null);
+	}
+	
+	private void finishOperation() {
+		vehicleLoadVO.setDate(dc.getTime());
+		vehicleLoadVO.setDestination(textDestination.getText());
+		vehicleLoadVO.setVehicle(textVehicleId.getText());
+		vehicleLoadVO.setSuperCargo(textDeliverStaff.getText());
+		vehicleLoadVO.setSuperVision(textGuard.getText());
+		
+		vehicleLoad.createVehicleLoadNote();
+		
 		this.empty();
-		//TODO 目的地应该是具体营业厅
-		vehicleLoad.addOrder(textID.getText());
 	}
 }

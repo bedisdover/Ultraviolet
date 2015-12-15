@@ -405,6 +405,7 @@ public class OrderManageUi extends JPanel {
 			JOptionPane.showMessageDialog(mainFrame, "输入手机号无效!" + "\n或\n" +"手机号不存在！", "Error", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
+		//TODO 判断数量，重量等是否合法
 		
 		return true;
 	}

@@ -1,11 +1,8 @@
 package LEMS.presentation;
 
-import LEMS.businesslogic.orderbl.AddOrder;
-import LEMS.po.orderpo.OrderPO;
 import LEMS.presentation.orderui.ReceiveUi;
-import LEMS.presentation.orderui.SendUi;
-import LEMS.presentation.userui.CourierUi;
-import LEMS.presentation.userui.TransferClerkUi;
+import LEMS.presentation.orderui.VehicleLoadUi;
+import LEMS.presentation.userui.BusinessClerkUi;
 
 public class mainSongYiming {
 
@@ -16,8 +13,8 @@ public class mainSongYiming {
 //		mainFrame.setContentPane(businessClerkUi);
 //		ReceiveUi receiveUi = new ReceiveUi(mainFrame, null);
 //		mainFrame.setContentPane(receiveUi);
-		TransferClerkUi transferClerkUi = new TransferClerkUi(mainFrame, null);
-		mainFrame.setContentPane(transferClerkUi);
+//		TransferClerkUi transferClerkUi = new TransferClerkUi(mainFrame, null);
+//		mainFrame.setContentPane(transferClerkUi);
 //		ManagerUi managerUi = new ManagerUi(mainFrame, null);
 //		mainFrame.setContentPane(managerUi);
 //		FinancialStaffUi financialStaffUi = new FinancialStaffUi(mainFrame, null);
@@ -28,6 +25,8 @@ public class mainSongYiming {
 //		mainFrame.setContentPane(sendUi);
 //		CourierUi courierUi = new CourierUi(mainFrame);
 //		mainFrame.setContentPane(courierUi);
+		VehicleLoadUi vehicleLoadUi = new VehicleLoadUi(mainFrame, null);
+		mainFrame.setContentPane(vehicleLoadUi);
 		mainFrame.setVisible(true);
 		
 		

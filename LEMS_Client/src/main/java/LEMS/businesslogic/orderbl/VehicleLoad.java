@@ -49,6 +49,14 @@ public class VehicleLoad extends AddOrder implements VehicleLoadService {
 		orders.add(findOrder(id));
 	}
 	
+	public String getName(String id) {
+		return findOrder(id).getName();
+	}
+	
+	public double getWeight(String id) {
+		return findOrder(id).getWeight();
+	}
+	
 	@Override
 	public void createVehicleLoadNote() {
 		
@@ -60,8 +68,7 @@ public class VehicleLoad extends AddOrder implements VehicleLoadService {
 		vehicleLoadPO.setOrders(orders);
 		vehicleLoadPO.setDeparture(user.getInstitution().getLocation());
 		vehicleLoadPO.setDestination(vehicleLoadVO.getDestination());
-		//TODO 获得车辆信息
-		vehicleLoadPO.setVehicle(null);
+		vehicleLoadPO.setVehicle(vehicleLoadVO.getVehicle());
 		vehicleLoadPO.setSuperCargo(vehicleLoadVO.getSuperCargo());
 		vehicleLoadPO.setSuperVision(vehicleLoadVO.getSuperVision());
 		vehicleLoadPO.setPassage(this.calculatePassage());
