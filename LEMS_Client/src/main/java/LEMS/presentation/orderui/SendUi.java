@@ -249,7 +249,7 @@ public class SendUi extends JPanel {
 		String[] values = {"1", dc.getTime(), textId.getText(), textStaff.getText()};
 		table.setValueAt(table.numOfEmpty(), values);
 		sending.addOrder(textId.getText(), textStaff.getText());
-		
+
 		textId.setText(null);
 	}
 	

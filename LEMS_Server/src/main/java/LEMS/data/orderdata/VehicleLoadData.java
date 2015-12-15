@@ -42,8 +42,8 @@ public class VehicleLoadData extends UnicastRemoteObject implements VehicleLoadD
 		String sql = "SELECT * FROM vehicleloadnote WHERE id = " + id;
 		
 		ResultSet result = connect.getResultSet(sql);
-		
 		try {
+			result.next();
 			vehicleLoadNotePO.setId(id);
 			vehicleLoadNotePO.setState(DocumentState.valueOf(result.getString(2)));
 			vehicleLoadNotePO.setDate(result.getString(3));
@@ -127,7 +127,11 @@ public class VehicleLoadData extends UnicastRemoteObject implements VehicleLoadD
 		po.setDestination("北京市海淀区");
 		po.setSuperVision("0250201143");
 		po.setSuperCargo("0250201154");
-		po.setOrders(new ArrayList<OrderPO>());
+		ArrayList<OrderPO> o=new ArrayList<OrderPO>();
+		OrderPO opo=new OrderPO();
+		opo.setId("1234567890");
+		o.add(opo);
+		po.setOrders(o);
 		po.setPassage(400);
 		
 		try {

@@ -41,7 +41,7 @@ public class TransferID {
 	public ArrayList<OrderPO> transferOrder(String id) {
 		ArrayList<OrderPO> orders = new ArrayList<OrderPO>();
 		
-		String temp[] = id.split(" ");
+		String temp[] = id.split(" ");			
 		
 		try {
 			OrderData orderData = new OrderData();

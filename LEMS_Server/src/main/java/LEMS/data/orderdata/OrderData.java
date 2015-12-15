@@ -42,7 +42,6 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 		ResultSet result = connect.getResultSet(sql);
 
 		OrderPO orderPO = new OrderPO();
-		
 		try {
 			result.next();
 			//设置寄件人信息
