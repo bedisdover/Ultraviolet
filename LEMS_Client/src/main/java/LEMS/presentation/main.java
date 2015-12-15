@@ -12,5 +12,4 @@ public class main {
 		StartUi jPanelStart = new StartUi(mainFrame);
 		mainFrame.setContentPane(jPanelStart);
 	}
-
 }
