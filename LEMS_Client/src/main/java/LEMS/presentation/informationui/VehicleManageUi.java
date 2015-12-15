@@ -99,7 +99,7 @@ public class VehicleManageUi extends JPanel {
 		inquire=new JButton("查找");
 		labelId = new JLabel("车辆代号:");
 		labelNum = new JLabel("车牌号:");
-		labelTime = new JLabel("服役状态：");
+		labelTime = new JLabel("服役时间：");
 		type=new JLabel("车辆型号: ");			
 		
 		textId = new JTextField();
