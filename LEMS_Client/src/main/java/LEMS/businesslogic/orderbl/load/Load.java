@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import LEMS.businesslogic.orderbl.AddOrder;
+import LEMS.businesslogic.orderbl.Distance;
 import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.businesslogicservice.orderblservice.LoadService;
 import LEMS.dataservice.factory.DatabaseFactory;
@@ -22,14 +23,9 @@ import LEMS.vo.uservo.UserVO;
  * @author 宋益明
  * 
  * 装运管理任务
- * TODO 自从我把transfer和load分离出来后，就发现这个类和车辆装车管理真的好像……
- * 	装车单（记录装车日期、本中转中心汽运编号（中转中心编号+日期+0000000七位数字）、到达地（营业厅）、
- * 	车辆代号、监装员、押运员、本次装箱所有订单条形码号）、运费（运费根据出发地和目的地自动生成）。
- * 	
- * 以下为车辆装车管理内容（营业厅）
- * 	装车单（记录装车日期、本营业厅编号（025城市编码+1营业厅+0000鼓楼营业厅）、
- * 	汽运编号 （营业厅编号+20150921日期+00000编码 、五位数字）、到达地（本地中转中心或者其它营业厅）、
- * 	车辆代号、监装员、押运员、本次装箱所有订单条形码号）、运费（运费根据出发地和目的地自动生成）
+ * 
+ * 目的地中转中心业务员负责出库、装车，并在系统中录入装车单
+ * 发往各个营业厅
  */
 public class Load extends AddOrder implements LoadService {
 	/**
@@ -40,6 +36,11 @@ public class Load extends AddOrder implements LoadService {
 	private LoadVO loadVO;
 	
 	private UserVO user;
+	
+	/**
+	 * 汽车2元每公里每吨
+	 */
+	private final int PRICE = 2;
 	
 	public Load(LoadVO loadVO, UserVO user) {
 		this.loadVO = loadVO;
@@ -84,7 +85,10 @@ public class Load extends AddOrder implements LoadService {
 	}
 	
 	private double calculatePassage() {
-		return 0;
+		//货物总重（单位kg）
+		double weight = sumWeight(orders);
+		double ditance = new Distance().getDistance(user.getInstitution().getLocation(), loadVO.getDestination());
+		return PRICE * ditance * weight / 1000;
 	}
 	
 	private LoadDataService getDataService() {
@@ -104,24 +108,4 @@ public class Load extends AddOrder implements LoadService {
 		
 		return dataService;
 	}
-	
-	public void setDate() {
-		
-	}
-//	
-//	public void setNumber(String number) {
-//		
-//	}
-//	
-//	public void setDeparture(String departure) {
-//		
-//	}
-//	
-//	public void setDestination(String destination) {
-//		
-//	}
-//	
-//	public void setSuperVision(UserPO superVision) {
-//		
-//	}
 }

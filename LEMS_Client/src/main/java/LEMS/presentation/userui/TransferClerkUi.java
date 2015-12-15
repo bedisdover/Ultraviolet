@@ -26,7 +26,7 @@ public class TransferClerkUi extends JPanel {
 
 	public TransferClerkUi(final MainFrame mainFrame, UserVO user) {
 		transferUi = new TransferUi(mainFrame, user);
-		loadUi = new LoadUi(mainFrame);
+		loadUi = new LoadUi(mainFrame, user);
 		receiveUi = new ReceiveUi(mainFrame, user);
 
 		this.setLayout(new BorderLayout());

@@ -2,8 +2,6 @@ package LEMS.vo.ordervo;
 
 import java.util.ArrayList;
 
-import LEMS.po.orderpo.TransportType;
-
 /**
  * @author 宋益明
  * 
@@ -14,10 +12,6 @@ public class LoadVO {
 	 * 装运日期
 	 */
 	private String date;
-//	/**
-//	 * 装运编号
-//	 */
-//	private String id;
 	/**
 	 * 订单列表
 	 */
@@ -26,10 +20,6 @@ public class LoadVO {
 	 * 目的地
 	 */
 	private String destination;
-	/**
-	 * 运输方式
-	 */
-	private TransportType type;
 	
 	/**
 	 * 监装员
@@ -39,12 +29,6 @@ public class LoadVO {
 	 * 押运员
 	 */
 	private String superCargo;
-	
-	
-//	/**
-//	 * 运费
-//	 */
-//	private double passage;
 
 	public ArrayList<String> getOrders() {
 		return orders;
@@ -69,10 +53,6 @@ public class LoadVO {
 	public String getDestination() {
 		return destination;
 	}
-
-	public TransportType getType() {
-		return type;
-	}
 	
 	public String getDate() {
 		return date;
@@ -84,10 +64,6 @@ public class LoadVO {
 	
 	public void setOrders(ArrayList<String> orders) {
 		this.orders = orders;
-	}
-	
-	public void setType(TransportType type) {
-		this.type = type;
 	}
 	
 	public void setDate(String date) {
