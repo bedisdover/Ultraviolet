@@ -299,6 +299,7 @@ public class LoadUi extends JPanel {
 		//TODO 日期格式
 		loadVO.setDate(dc.getTime());
 		loadVO.setDestination(textInstitutionId.getText());
+		
 		setTestState(false);
 	}
 	
