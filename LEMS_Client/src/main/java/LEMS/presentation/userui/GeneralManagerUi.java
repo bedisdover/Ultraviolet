@@ -42,7 +42,7 @@ public class GeneralManagerUi extends JPanel {
 		this.setLayout(new BorderLayout());
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
 		
-		examDocumentUi = new ExamDocumentUi(this.mainFrame);
+		examDocumentUi = new ExamDocumentUi(this.mainFrame,user);
 		institutionManageUi = new InstitutionManageUi(this.mainFrame,user);
 		diaryUi = new DiaryUi(this.mainFrame,user);
 		stuffManageUi = new StuffManageUi(this.mainFrame,user);
