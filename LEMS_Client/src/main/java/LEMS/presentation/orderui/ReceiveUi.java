@@ -2,8 +2,10 @@ package LEMS.presentation.orderui;
 
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.TextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -16,8 +18,8 @@ import javax.swing.JTextField;
 import LEMS.businesslogic.orderbl.Receipt;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
-import LEMS.presentation.method.Table;
 import LEMS.presentation.method.DateChooser;
+import LEMS.presentation.method.Table;
 import LEMS.vo.ordervo.ArrivalVO;
 import LEMS.vo.uservo.UserVO;
 /**
@@ -49,9 +51,12 @@ public class ReceiveUi extends JPanel {
 	private JLabel labelStatus;
 	private JTextField textId;
 
-	private JComboBox<String> comboBoxDeparture;//departure
+	private JTextField textDeparture;//departure
 	private JComboBox<String> comboBoxStatus;//status
-	DateChooser dc;
+	
+	private DateChooser dc;
+	private Table table;
+	
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);//标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);//其余字体格式
 	private Font fnt2 = new Font("宋体", Font.BOLD, 16);//按钮字体格式
@@ -99,7 +104,7 @@ public class ReceiveUi extends JPanel {
 		labelDeparture = new JLabel("出发地:");
 		labelStatus = new JLabel("货物到达状态：");
 		textId = new JTextField();
-		comboBoxDeparture = new JComboBox<String>();
+		textDeparture = new JTextField();
 		comboBoxStatus = new JComboBox<String>();
 		dc= new DateChooser(this,LOCATION_TEXT_X,LOCATION_TEXT_Y);
 	}
@@ -116,11 +121,7 @@ public class ReceiveUi extends JPanel {
 		labelId.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+170, BOUND_X, BOUND_Y);
 		labelStatus.setBounds(LOCATION_LABEL_X-15, LOCATION_LABEL_Y+240, BOUND_X, BOUND_Y);
 		textId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+170, BOUND_X, BOUND_Y-5);
-		comboBoxDeparture.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+60, BOUND_X, BOUND_Y-6);
-		comboBoxDeparture.addItem("北京");
-		comboBoxDeparture.addItem("上海");
-		comboBoxDeparture.addItem("广州");
-		comboBoxDeparture.addItem("南京");
+		textDeparture.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+60, BOUND_X, BOUND_Y-6);
 		comboBoxStatus.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+240, BOUND_X, BOUND_Y-5);
 		comboBoxStatus.addItem("完整");
 		comboBoxStatus.addItem("损坏");
@@ -139,7 +140,7 @@ public class ReceiveUi extends JPanel {
 		labelDeparture.setFont(fnt);
 		labelStatus.setFont(fnt);
 		textId.setFont(fnt);
-		comboBoxDeparture.setFont(fnt);
+		textDeparture.setFont(fnt);
 		comboBoxStatus.setFont(fnt);
 		cancel.setFont(fnt2);
 		OK.setFont(fnt2);
@@ -156,7 +157,7 @@ public class ReceiveUi extends JPanel {
 		this.add(labelStatus);
 		
 		this.add(textId);
-		this.add(comboBoxDeparture);
+		this.add(textDeparture);
 		this.add(comboBoxStatus);
 		this.add(OK);
 		this.add(cancel);
@@ -169,7 +170,7 @@ public class ReceiveUi extends JPanel {
 		String[] columnNames = { "序号","到达日期", "订单编号", "出发地","货物到达状态"};  
 		int[] list={40,108,14,30,20,388,125,558,430};
 
-	    Table table=new Table();
+	    table=new Table();
 		add(table.drawTable(columnNames, list));
 		
 		JLayeredPane j=new JLayeredPane();
@@ -186,7 +187,7 @@ public class ReceiveUi extends JPanel {
 	private void setTextState(boolean state) {
 
 		textId.setEditable(state);
-		comboBoxDeparture.setEditable(state);
+		textDeparture.setEditable(state);
 		comboBoxStatus.setEditable(state);
 		OK.setEnabled(state);
 		cancel.setEnabled(state);
@@ -197,9 +198,9 @@ public class ReceiveUi extends JPanel {
 	 */
 	private void empty() {
 		textId.setText(null);
-		comboBoxDeparture.setSelectedIndex(0);
+		textDeparture.setText(null);
+		
 		comboBoxStatus.setSelectedIndex(0);
-		//TODO 日期不能设置
 	}
 
 	/**
@@ -210,17 +211,18 @@ public class ReceiveUi extends JPanel {
 		add.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				setTextState(true);
-				// TODO 返回按钮的具体实现
 			}
 		});
 		delete.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO 返回按钮的具体实现
+				table.removeLine(table.getSelectedRow());
 			}
 		});
 		update.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO 返回按钮的具体实现
+				if (table.getValueAt(table.getSelectedRow()) != null) {
+					updateOperation();
+				}
 			}
 		});
 		finish.addMouseListener(new MouseAdapter() {
@@ -238,10 +240,9 @@ public class ReceiveUi extends JPanel {
 		
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				//TODO 
-//				if (isLegal()) {
+				if (!isEmpty() && isLegal()) {
 					OKOperation();
-//				}
+				}
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {
@@ -263,21 +264,52 @@ public class ReceiveUi extends JPanel {
 	 * 确认按钮按下后的操作
 	 */
 	private void OKOperation() {
-
-		arrivalVO.setDate(dc.getTime());
-		arrivalVO.setDepature((String) comboBoxDeparture.getSelectedItem());
-
-		receipt.addOrder(textId.getText());
-		this.empty();
+//		receipt.addOrder(textId.getText());
+		
+		String[] values = {"1", dc.getTime(), textId.getText(), textDeparture.getText(), comboBoxStatus.getSelectedItem() + ""};
+		table.setValueAt(table.numOfEmpty(), values);
+		
+		textId.setText(null);
 	}
 	
 	/**
 	 * 完成按钮按下后的操作
 	 */
 	private void finishOperation() {
-		setTextState(false);
+		arrivalVO.setDate(dc.getTime());
+		arrivalVO.setDepature(textDeparture.getText());
 		//生成到达单
 		receipt.createArrivalNote();
+		
+		this.setTextState(false);
+		this.empty();
+	}
+	
+	/**
+	 * 修改按钮按下的操作
+	 */
+	private void updateOperation() {
+		ArrayList<String> values = table.getValueAt(table.getSelectedRow());
+		dc.setTime(values.get(1));
+		textId.setText(values.get(2));
+		textDeparture.setText(values.get(3));
+		comboBoxStatus.setSelectedItem(values.get(4));
+	}
+	
+	/**
+	 * 判断输入是否为空 
+	 */
+	private boolean isEmpty() {
+		if (textDeparture.getText() == null) {
+			JOptionPane.showMessageDialog(mainFrame, "出发地为空！", "Error", JOptionPane.ERROR_MESSAGE);
+			return true;
+		}
+		if (textId.getText() == null) {
+			JOptionPane.showMessageDialog(mainFrame, "条形码为空！", "Error", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		
+		return true;
 	}
 	
 	/**

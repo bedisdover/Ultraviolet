@@ -10,31 +10,31 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 
-public class Table extends JTable{
-	
+public class Table extends JTable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1302577670244342772L;
-	
+
 	private Object[][] rowData;
 	public JTable table;
-	
+
 	/**
 	 * 表的列数
 	 */
 	private int columnNum = 0;
-	
+
 	/**
 	 * 总行数
 	 */
 	private int rowNum = 0;
-	
+
 	/**
 	 * 表中最后一行
 	 */
 	private int currentRow = 0;
-	
+
 	public JScrollPane drawTable(String[] name, int[] list) {
 		/**
 		 * list里面参数分别为需要的行数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
@@ -44,8 +44,8 @@ public class Table extends JTable{
 		 * list));
 		 */
 
-		 columnNum = name.length;
-		 rowNum=list[0];
+		columnNum = name.length;
+		rowNum = list[0];
 		rowData = new Object[rowNum][columnNum];
 		table = new JTable(rowData, name);
 		/**
@@ -90,65 +90,69 @@ public class Table extends JTable{
 		return scroll;
 
 	}
-	
-	public void setValueAt(int r,int c,String value){
+
+	public void setValueAt(int r, int c, String value) {
 		rowData[r][c] = value;
 	}
-	
+
 	public void setValueAt(int row, String[] values) {
 		for (int column = 0; column < values.length; column++) {
 			rowData[row][column] = values[column];
 		}
-		
+
 		currentRow++;
 	}
-	
-	public String getValueAt(int r,int c){
-		return (String)rowData[r][c];
+
+	public String getValueAt(int r, int c) {
+		return (String) rowData[r][c];
 	}
 
 	public int getSelectedRow() {
 		return table.getSelectedRow();
 	}
-	
-	public int numOfEmpty(){
+
+	public int numOfEmpty() {
 		int count = 0;
-		while(rowData[count][0]!=null){
+		while (rowData[count][0] != null) {
 			count++;
 		}
 		return count;
 	}
-	
-	public ArrayList<String> getValueAt(int r){
-		ArrayList<String> al=new ArrayList<String>();
-		for(int i=0;i<columnNum;i++){
+
+	public ArrayList<String> getValueAt(int r) {
+		ArrayList<String> al = new ArrayList<String>();
+		for (int i = 0; i < columnNum; i++) {
+			if (rowData[r][i] == null) {
+				return null;
+			}
 			al.add(rowData[r][i].toString());
 		}
 		return al;
 	}
-	
-	public int columnNum(){
+
+	public int columnNum() {
 		return columnNum;
 	}
-	//删除某一行
-	public void remove(int r){
-		for(int i=r;i<rowNum-1;i++){
-			for(int j=0;j<columnNum;j++){
-				setValueAt(i,j,rowData[i+1][j].toString());
+
+	// 删除某一行
+	public void remove(int r) {
+		for (int i = r; i < rowNum - 1; i++) {
+			for (int j = 0; j < columnNum; j++) {
+				setValueAt(i, j, rowData[i + 1][j].toString());
 			}
 		}
-		for(int k=0;k<columnNum;k++){
-		setValueAt(rowNum-1,k,"");
+		for (int k = 0; k < columnNum; k++) {
+			setValueAt(rowNum - 1, k, "");
 		}
 	}
-	
+
 	public void removeLine(int row) {
 		for (int i = row; i < numOfEmpty(); i++) {
 			for (int j = 0; j < columnNum; j++) {
 				rowData[i][j] = rowData[i + 1][j];
 			}
 		}
-		
+
 		currentRow--;
 	}
 }

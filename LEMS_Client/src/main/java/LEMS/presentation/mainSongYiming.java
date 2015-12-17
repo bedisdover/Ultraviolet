@@ -1,9 +1,6 @@
 package LEMS.presentation;
 
-import LEMS.presentation.orderui.LoadUi;
-import LEMS.presentation.orderui.ReceiveUi;
-import LEMS.presentation.orderui.VehicleLoadUi;
-import LEMS.presentation.userui.BusinessClerkUi;
+import LEMS.presentation.userui.TransferClerkUi;
 
 public class mainSongYiming {
 
@@ -14,8 +11,8 @@ public class mainSongYiming {
 //		mainFrame.setContentPane(businessClerkUi);
 //		ReceiveUi receiveUi = new ReceiveUi(mainFrame, null);
 //		mainFrame.setContentPane(receiveUi);
-//		TransferClerkUi transferClerkUi = new TransferClerkUi(mainFrame, null);
-//		mainFrame.setContentPane(transferClerkUi);
+		TransferClerkUi transferClerkUi = new TransferClerkUi(mainFrame, null);
+		mainFrame.setContentPane(transferClerkUi);
 //		ManagerUi managerUi = new ManagerUi(mainFrame, null);
 //		mainFrame.setContentPane(managerUi);
 //		FinancialStaffUi financialStaffUi = new FinancialStaffUi(mainFrame, null);
@@ -28,8 +25,10 @@ public class mainSongYiming {
 //		mainFrame.setContentPane(courierUi);
 //		LoadUi loadUi = new LoadUi(mainFrame, null);
 //		mainFrame.setContentPane(loadUi);
-		VehicleLoadUi vehicleLoadUi = new VehicleLoadUi(mainFrame, null);
-		mainFrame.setContentPane(vehicleLoadUi);
+//		VehicleLoadUi vehicleLoadUi = new VehicleLoadUi(mainFrame, null);
+//		mainFrame.setContentPane(vehicleLoadUi);
+//		TransferUi transferUi = new TransferUi(mainFrame, null);
+//		mainFrame.setContentPane(transferUi);
 		mainFrame.setVisible(true);
 		
 		
