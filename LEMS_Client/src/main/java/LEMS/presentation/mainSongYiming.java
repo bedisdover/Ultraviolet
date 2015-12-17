@@ -1,5 +1,6 @@
 package LEMS.presentation;
 
+import LEMS.presentation.orderui.LoadUi;
 import LEMS.presentation.orderui.ReceiveUi;
 import LEMS.presentation.orderui.VehicleLoadUi;
 import LEMS.presentation.userui.BusinessClerkUi;
@@ -25,6 +26,8 @@ public class mainSongYiming {
 //		mainFrame.setContentPane(sendUi);
 //		CourierUi courierUi = new CourierUi(mainFrame);
 //		mainFrame.setContentPane(courierUi);
+//		LoadUi loadUi = new LoadUi(mainFrame, null);
+//		mainFrame.setContentPane(loadUi);
 		VehicleLoadUi vehicleLoadUi = new VehicleLoadUi(mainFrame, null);
 		mainFrame.setContentPane(vehicleLoadUi);
 		mainFrame.setVisible(true);

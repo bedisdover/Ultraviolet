@@ -52,6 +52,14 @@ public class Load extends AddOrder implements LoadService {
 	public void addOrder(String id) {
 		orders.add(findOrder(id));
 	}
+	
+	public String getName(String id) {
+		return findOrder(id).getName();
+	}
+	
+	public double getWeight(String id) {
+		return findOrder(id).getWeight();
+	}
 
 	public void createLoadNote() {
 		LoadNotePO loadNote = new LoadNotePO();

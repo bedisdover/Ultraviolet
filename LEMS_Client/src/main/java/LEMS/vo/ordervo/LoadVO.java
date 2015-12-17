@@ -22,6 +22,11 @@ public class LoadVO {
 	private String destination;
 	
 	/**
+	 * 车辆代号
+	 */
+	private String vehicle;
+	
+	/**
 	 * 监装员
 	 */
 	private String superVision;
@@ -40,6 +45,14 @@ public class LoadVO {
 
 	public String getSuperCargo() {
 		return superCargo;
+	}
+	
+	public void setVehicle(String vehicle) {
+		this.vehicle = vehicle;
+	}
+	
+	public String getVehicle() {
+		return vehicle;
 	}
 
 	public void setSuperVision(String superVision) {
