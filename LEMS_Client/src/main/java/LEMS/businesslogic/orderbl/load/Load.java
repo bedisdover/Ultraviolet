@@ -49,15 +49,15 @@ public class Load extends AddOrder implements LoadService {
 		orders = new ArrayList<OrderPO>();
 	}
 	
-	public void addOrder(String id) {
+	public void addOrder(String id) throws RemoteException {
 		orders.add(findOrder(id));
 	}
 	
-	public String getName(String id) {
+	public String getName(String id) throws RemoteException {
 		return findOrder(id).getName();
 	}
 	
-	public double getWeight(String id) {
+	public double getWeight(String id) throws RemoteException {
 		return findOrder(id).getWeight();
 	}
 

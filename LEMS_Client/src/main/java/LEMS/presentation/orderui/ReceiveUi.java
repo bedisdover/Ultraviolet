@@ -69,6 +69,11 @@ public class ReceiveUi extends JPanel {
 	 */
 	private ArrivalVO arrivalVO;
 	
+	/**
+	 * 标记是否在修改状态（按下修改按钮）
+	 */
+	private boolean isUpdate = false;
+	
 	public ReceiveUi(final MainFrame mainFrame, UserVO userVO) {
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
@@ -222,6 +227,7 @@ public class ReceiveUi extends JPanel {
 		update.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (table.getValueAt(table.getSelectedRow()) != null) {
+					isUpdate = true;
 					updateOperation();
 				}
 			}
@@ -243,6 +249,7 @@ public class ReceiveUi extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				if (!isEmpty() && isLegal()) {
 					OKOperation();
+					isUpdate = false;
 				}
 			}
 		});
@@ -266,15 +273,19 @@ public class ReceiveUi extends JPanel {
 	 */
 	private void OKOperation() {
 		//TODO 添加异常捕获
-		try {
-			receipt.addOrder(textId.getText());
+//		try {
+//			receipt.addOrder(textId.getText());
 			String[] values = {dc.getTime(), textId.getText(), textDeparture.getText(), comboBoxStatus.getSelectedItem() + ""};
-			table.setValueAt(table.numOfEmpty(), values);
+			if (isUpdate) {
+				table.setValueAt(table.getSelectedRow(), values);
+			} else {
+				table.setValueAt(table.numOfEmpty(), values);
+			}
 			
 			textId.setText(null);
-		} catch (RemoteException e) {
-			JOptionPane.showMessageDialog(mainFrame, "请检查网络连接！", "Error", JOptionPane.ERROR_MESSAGE);
-		}
+//		} catch (RemoteException e) {
+//			JOptionPane.showMessageDialog(mainFrame, "请检查网络连接！", "Error", JOptionPane.ERROR_MESSAGE);
+//		}
 	}
 	
 	/**
@@ -328,6 +339,10 @@ public class ReceiveUi extends JPanel {
 		
 		if (!isNumer || textId.getText().length() != 10) {
 			JOptionPane.showMessageDialog(mainFrame, "条形码输入错误！", "Error", JOptionPane.ERROR_MESSAGE);
+			return false;
+		} 
+		if (!isUpdate && table.alreadyExisted(3, textId.getText()) != -1) {
+			JOptionPane.showMessageDialog(mainFrame, "订单已存在！", "Error", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 		return true;

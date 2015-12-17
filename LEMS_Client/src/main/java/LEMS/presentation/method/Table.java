@@ -99,8 +99,10 @@ public class Table extends JTable {
 		for (int column = 0; column < values.length; column++) {
 			rowData[row][column + 1] = values[column];
 		}
-
-		currentRow++;
+		
+		if (row != table.getSelectedRow()) {
+			currentRow++;
+		}
 		
 		this.identify();
 	}
@@ -158,6 +160,22 @@ public class Table extends JTable {
 		currentRow--;
 		
 		this.identify();
+	}
+	
+	/**
+	 * 判断表中是否已存在指定内容（data）
+	 * 
+	 * @param column 列数（参数中从1开始计数）
+	 * @param data 指定内容
+	 * @return 返回指定内容所在行数，若不存在，返回-1
+	 */
+	public int alreadyExisted(int column, String data) {
+		for (int i = 0; i < currentRow; i++) {
+			if (rowData[i][column - 1].toString().equals(data)) {
+				return i;
+			}
+		}
+		return -1;
 	}
 	
 	/**

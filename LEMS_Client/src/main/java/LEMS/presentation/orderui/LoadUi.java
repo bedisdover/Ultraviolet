@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.rmi.RemoteException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -319,18 +320,22 @@ public class LoadUi extends JPanel {
 	}
 	
 	private void OKOperation() {
-		String id = textID.getText();
-		String name = load.getName(id);
-		double weight = load.getWeight(id);
-		
-		load.addOrder(id);
-		textGoodsNum.setText(++number + "");
-		textGoodsWeight.setText(Double.parseDouble(textGoodsWeight.getText()) + weight + "");
-		
-		String[] values = {number + "", id, name, weight + ""};
-		table.setValueAt(table.numOfEmpty(), values);
-		
-		textID.setText(null);
+		try {
+			String id = textID.getText();
+			String name = load.getName(id);
+			double weight = load.getWeight(id);
+			
+			load.addOrder(id);
+			textGoodsNum.setText(++number + "");
+			textGoodsWeight.setText(Double.parseDouble(textGoodsWeight.getText()) + weight + "");
+			
+			String[] values = {number + "", id, name, weight + ""};
+			table.setValueAt(table.numOfEmpty(), values);
+			
+			textID.setText(null);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void finishOperation() {
