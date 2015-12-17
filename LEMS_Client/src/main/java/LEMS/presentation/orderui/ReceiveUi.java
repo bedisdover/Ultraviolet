@@ -265,9 +265,9 @@ public class ReceiveUi extends JPanel {
 	 */
 	private void OKOperation() {
 		//TODO 添加异常捕获
-		receipt.addOrder(textId.getText());
-		System.out.println("tianjia");
-		String[] values = {"1", dc.getTime(), textId.getText(), textDeparture.getText(), comboBoxStatus.getSelectedItem() + ""};
+//		receipt.addOrder(textId.getText());
+//		System.out.println("tianjia");
+		String[] values = {dc.getTime(), textId.getText(), textDeparture.getText(), comboBoxStatus.getSelectedItem() + ""};
 		table.setValueAt(table.numOfEmpty(), values);
 		
 		textId.setText(null);
@@ -307,14 +307,16 @@ public class ReceiveUi extends JPanel {
 		}
 		if (textId.getText() == null) {
 			JOptionPane.showMessageDialog(mainFrame, "条形码为空！", "Error", JOptionPane.ERROR_MESSAGE);
-			return false;
+			return true;
 		}
 		
-		return true;
+		return false;
 	}
 	
 	/**
-	 * 判断输入是否合法 
+	 * 判断输入是否合法
+	 * 具体包括：条形码是否为10位数字、
+	 * TODO 是否已存在 
 	 */
 	private boolean isLegal() {
 		//条形码全部为数字

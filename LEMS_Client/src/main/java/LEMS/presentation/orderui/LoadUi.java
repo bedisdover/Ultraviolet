@@ -265,17 +265,18 @@ public class LoadUi extends JPanel {
 		add.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				setTestState(true);
-				// TODO 返回按钮的具体实现
 			}
 		});
 		delete.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO 返回按钮的具体实现
+				table.removeLine(table.getSelectedRow());
 			}
 		});
 		update.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO 返回按钮的具体实现
+				if (table.getValueAt(table.getSelectedRow()) != null) {
+					
+				}
 			}
 		});
 		finish.addMouseListener(new MouseAdapter() {
@@ -311,6 +312,10 @@ public class LoadUi extends JPanel {
 		g.draw3DRect(80, 393, 305, 100, false);  //输入框外框
 		g.draw3DRect(80, 505, 305, 55, false);  //输入框外框
 		this.repaint();
+	}
+	
+	private void updateOperation() {
+		//TODO 
 	}
 	
 	private void OKOperation() {

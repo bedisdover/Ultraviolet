@@ -97,12 +97,14 @@ public class Table extends JTable {
 
 	public void setValueAt(int row, String[] values) {
 		for (int column = 0; column < values.length; column++) {
-			rowData[row][column] = values[column];
+			rowData[row][column + 1] = values[column];
 		}
 
 		currentRow++;
+		
+		this.identify();
 	}
-
+	
 	public String getValueAt(int r, int c) {
 		return (String) rowData[r][c];
 	}
@@ -154,5 +156,16 @@ public class Table extends JTable {
 		}
 
 		currentRow--;
+		
+		this.identify();
+	}
+	
+	/**
+	 * 给表格中的项编号
+	 */
+	private void identify() {
+		for (int i = 0; i < currentRow; i++) {
+			rowData[i][0] = i + 1;
+		}
 	}
 }
