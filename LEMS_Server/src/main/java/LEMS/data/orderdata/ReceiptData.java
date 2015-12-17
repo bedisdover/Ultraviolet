@@ -5,12 +5,14 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import LEMS.data.Connect;
 import LEMS.data.TransferID;
 import LEMS.dataservice.orderdataservice.ReceiptDataService;
 import LEMS.po.financepo.DocumentState;
 import LEMS.po.orderpo.ArrivalNotePO;
+import LEMS.po.orderpo.OrderPO;
 
 /**
  * @author 宋益明
@@ -51,6 +53,7 @@ public class ReceiptData extends UnicastRemoteObject implements ReceiptDataServi
 		ResultSet result = connect.getResultSet(sql);
 		
 		try {
+			result.next();
 			arrivalNotePO.setId(id);
 			arrivalNotePO.setState(DocumentState.valueOf(result.getString(2)));
 			arrivalNotePO.setDate(result.getString(3));
@@ -127,7 +130,11 @@ public class ReceiptData extends UnicastRemoteObject implements ReceiptDataServi
 		arrivalNotePO.setState(DocumentState.waiting);
 		arrivalNotePO.setDate("20151208");
 		arrivalNotePO.setDeparture("南京市仙林大道");
-		arrivalNotePO.setOrders(null);
+		ArrayList<OrderPO> o=new ArrayList<OrderPO>();
+		OrderPO opo=new OrderPO();
+		opo.setId("1234567890");
+		o.add(opo);
+		arrivalNotePO.setOrders(o);
 		arrivalNotePO.setInstitution("南京市仙林营业厅");
 		arrivalNotePO.setTransferNoteId("13241341531341");
 		

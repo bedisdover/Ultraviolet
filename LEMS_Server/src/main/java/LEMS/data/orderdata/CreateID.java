@@ -18,7 +18,7 @@ public class CreateID implements IdDataService {
 		ArrayList<String> orders = new ArrayList<String>();
 		
 		String sql = "SELECT * FROM" + table;
-		
+
 		ResultSet result = connect.getResultSet(sql);
 		
 		try {
