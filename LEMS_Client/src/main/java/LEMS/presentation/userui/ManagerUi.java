@@ -17,11 +17,14 @@ import LEMS.businesslogic.informationbl.InformationAdd;
 import LEMS.businesslogic.informationbl.InformationDelete;
 import LEMS.businesslogic.informationbl.InformationFind;
 import LEMS.businesslogic.informationbl.InformationUpdate;
+import LEMS.po.financepo.Salary;
+import LEMS.po.financepo.SalaryPO;
 import LEMS.po.informationpo.InstitutionPO;
 import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.Table;
+import LEMS.vo.financevo.SalaryVO;
 import LEMS.vo.uservo.UserVO;
 
 /**
@@ -256,18 +259,21 @@ public class ManagerUi extends JPanel {
 				}
 				else {
 					int i = table.numOfEmpty();	
-					
+					//删除该人员信息
 					InformationDelete dele=new InformationDelete();
 					dele.deleteStaff(table.getValueAt(currentLine, 0).trim());
-										
+					
+					//删除该人员的薪水信息
+					dele.deleteSalary(table.getValueAt(currentLine, 0).trim());
+					
+					//界面上修改表格中的信息
 					for(int j=currentLine;j<i;j++){
 						table.setValueAt(j, 0, table.getValueAt(j+1, 0));
 						table.setValueAt(j, 1, table.getValueAt(j+1, 1));
 						table.setValueAt(j, 2, table.getValueAt(j+1, 2));
 						table.setValueAt(j, 3, table.getValueAt(j+1, 3));
 					}
-					
-					
+									
 				}
 			}
 		});
@@ -330,6 +336,11 @@ public class ManagerUi extends JPanel {
 							.getSelectedItem()), textName.getText(), ipo);
 					InformationAdd add = new InformationAdd();
 					add.addStaff(uvo);
+					
+					//新建该人员的薪水信息
+					SalaryVO sa=new SalaryVO(textID.getText(),textInstitutionID.getText(),textName.getText(),Salary.getDefaultSalary((String) comboBox.getSelectedItem()));
+					add.addSalary(sa);
+					
 					// 清空输入框
 					empty();
 					// 使输入框不可编辑
