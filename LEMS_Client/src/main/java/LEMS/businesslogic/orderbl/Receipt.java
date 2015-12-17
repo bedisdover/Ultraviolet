@@ -77,7 +77,7 @@ public class Receipt extends AddOrder implements ReceiptService {
 		arrivalNotePO.setOrders(orders);
 		arrivalNotePO.setId(createId());
 		
-		try {
+		try {		
 			getDataService().insert(arrivalNotePO);
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -89,8 +89,8 @@ public class Receipt extends AddOrder implements ReceiptService {
 	 */
 	private String createId() {
 		String id = "";
-		try {
-			id = this.getDataService().createID(user.getInstitution().getLocation(), arrivalVO.getDate());
+		try {		
+			id = this.getDataService().createID(user.getInstitution().getID(), arrivalVO.getDate());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

@@ -12,12 +12,15 @@ public class CreateID implements IdDataService {
 
 	private Connect connect;
 	
+	public CreateID(){
+		connect = new Connect();
+	}
 	@Override
 	public ArrayList<String> findAll(String table, String pre) {
 
 		ArrayList<String> orders = new ArrayList<String>();
-		
-		String sql = "SELECT * FROM" + table;
+
+		String sql = "SELECT * FROM " + table;
 
 		ResultSet result = connect.getResultSet(sql);
 		
@@ -62,5 +65,10 @@ public class CreateID implements IdDataService {
 		id = temp.toString();
 		
 		return id;
+	}
+	public static void main(String[] args){
+		CreateID i=new CreateID();
+		System.out.println(i.createID("arrivalnote", 20,"025010120151208"));
+		
 	}
 }
