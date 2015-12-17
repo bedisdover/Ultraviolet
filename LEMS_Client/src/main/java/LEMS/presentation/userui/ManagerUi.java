@@ -28,9 +28,7 @@ import LEMS.vo.uservo.UserVO;
  * @author 苏琰梓 管理员界面 2015年11月18日
  */
 public class ManagerUi extends JPanel {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	private MainFrame mainFrame;

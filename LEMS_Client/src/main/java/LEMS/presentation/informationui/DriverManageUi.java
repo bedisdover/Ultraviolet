@@ -17,10 +17,12 @@ import LEMS.businesslogic.informationbl.InformationAdd;
 import LEMS.businesslogic.informationbl.InformationDelete;
 import LEMS.businesslogic.informationbl.InformationFind;
 import LEMS.businesslogic.informationbl.InformationUpdate;
+import LEMS.po.financepo.Salary;
 import LEMS.po.informationpo.Gender;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.Table;
+import LEMS.vo.financevo.SalaryVO;
 import LEMS.vo.informationvo.DriverVO;
 import LEMS.vo.uservo.UserVO;
 
@@ -285,10 +287,14 @@ public class DriverManageUi extends JPanel {
 				}
 				else {
 					int i = table.numOfEmpty();	
-					
+					//在数据库中删除该司机信息
 					InformationDelete dele=new InformationDelete();
 					dele.deleteDriver(table.getValueAt(currentLine, 0).trim());
-										
+					
+					//在数据库中删除该司机的薪水信息
+					dele.deleteSalary(table.getValueAt(currentLine, 0).trim());
+					
+					//在界面的表格中修改司机信息
 					for(int j=currentLine;j<i;j++){
 						table.setValueAt(j, 0, table.getValueAt(j+1, 0));
 						table.setValueAt(j, 1, table.getValueAt(j+1, 1));
@@ -353,21 +359,34 @@ public class DriverManageUi extends JPanel {
 				//新建司机信息
 				if(isAdd){
 					if(isComplete()){
-						int i = table.numOfEmpty();
-						table.setValueAt(i, 0, textId.getText());
-						table.setValueAt(i, 1, textName.getText());
-						table.setValueAt(i, 2, textTime.getText());
-						table.setValueAt(i, 3, (String)comboBox.getSelectedItem());
-						table.setValueAt(i, 4, textCard.getText());
-						table.setValueAt(i, 5, textMobile.getText());
-						
-						DriverVO dvo=new DriverVO(textId.getText(),textName.getText(),textYear.getText()+"年"+textMonth.getText()+"月"+textDay.getText()+"日",textCard.getText(),textMobile.getText(),textTime.getText(),Gender.exchange((String)comboBox.getSelectedItem()));
-						InformationAdd add = new InformationAdd();
-						add.addDriver(dvo);
-						
-						empty();
-						setTestState(false);
-						isAdd=false;
+						if(textCard.getText().length()!=18){
+							JOptionPane.showMessageDialog(DriverManageUi.this, "请输入有效的身份证号码！");
+						}
+						else if(textMobile.getText().length()!=11){
+							JOptionPane.showMessageDialog(DriverManageUi.this, "请输入有效的手机号码！");
+						}
+						else{
+							int i = table.numOfEmpty();
+							table.setValueAt(i, 0, textId.getText());
+							table.setValueAt(i, 1, textName.getText());
+							table.setValueAt(i, 2, textTime.getText());
+							table.setValueAt(i, 3, (String)comboBox.getSelectedItem());
+							table.setValueAt(i, 4, textCard.getText());
+							table.setValueAt(i, 5, textMobile.getText());
+							
+							//在数据库中新增司机信息
+							DriverVO dvo=new DriverVO(textId.getText(),textName.getText(),textYear.getText()+"年"+textMonth.getText()+"月"+textDay.getText()+"日",textCard.getText(),textMobile.getText(),textTime.getText(),Gender.exchange((String)comboBox.getSelectedItem()));
+							InformationAdd add = new InformationAdd();
+							add.addDriver(dvo);
+							
+							//在数据库中新增该司机薪水信息
+							SalaryVO sa=new SalaryVO(textId.getText(),textId.getText().substring(0, 6),textName.getText(),Salary.getDefaultSalary((String) comboBox.getSelectedItem()));
+							add.addSalary(sa);
+							
+							empty();
+							setTestState(false);
+							isAdd=false;
+						}			
 					}
 					else{
 						JOptionPane.showMessageDialog(DriverManageUi.this, "请将信息填写完整");

@@ -177,9 +177,7 @@ public class InstitutionManageUi extends JPanel {
 					for(int j=currentLine;j<i;j++){
 						table.setValueAt(j, 0, table.getValueAt(j+1, 0));
 						table.setValueAt(j, 1, table.getValueAt(j+1, 1));
-					}
-					
-					
+					}		
 				}
 			}
 		});
