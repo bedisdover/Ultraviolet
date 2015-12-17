@@ -217,7 +217,7 @@ public class TransferUi extends JPanel {
 		this.add(innerPanelAir);
 		this.add(innerPanelTrain);
 		this.add(innerPanelBus);
-		String[] columnNames = { "中转中心编号", "到达日期", "中转单编号", "出发地", "货物到达状态" };
+		String[] columnNames = {"序号", "到达日期", "中转单编号", "出发地", "货物到达状态" };
 		int[] list = { 40, 116, 14, 30, 20, 355, 125, 598, 435 };
 
 		Table table = new Table();
@@ -357,7 +357,6 @@ public class TransferUi extends JPanel {
 			labelDeskNum.setBounds(30, 55, BOUND_X, BOUND_Y);
 			textAirlineNum.setBounds(125, 8, BOUND_X, BOUND_Y-5);
 			textDeskNum.setBounds(125, 63, BOUND_X, BOUND_Y-5);
-			
 			labelAirlineNum.setFont(fnt);
 			labelDeskNum.setFont(fnt);
 			textAirlineNum.setFont(fnt);
@@ -392,12 +391,10 @@ public class TransferUi extends JPanel {
 			labelCarNum = new JLabel("车厢号：");
 			textVehicleNum = new JTextField();
 			textCarNum = new JTextField();
-		
 			labelVehicleNum.setBounds(30, 3, BOUND_X, BOUND_Y);
 			labelCarNum.setBounds(30, 55, BOUND_X, BOUND_Y);
 			textVehicleNum.setBounds(125, 8, BOUND_X, BOUND_Y-5);
 			textCarNum.setBounds(125, 63, BOUND_X, BOUND_Y-5);
-			
 			labelVehicleNum.setFont(fnt);
 			labelCarNum.setFont(fnt);
 			textVehicleNum.setFont(fnt);
@@ -432,12 +429,10 @@ public class TransferUi extends JPanel {
 			labelDeliverStaff = new JLabel("押运员：");
 			textVehicleNum = new JTextField();
 			textDeliverStaff = new JTextField();
-
 			labelVehicleNum.setBounds(30, 3, BOUND_X, BOUND_Y);
 			labelDeliverStaff.setBounds(30, 55, BOUND_X, BOUND_Y);
 			textVehicleNum.setBounds(125, 8, BOUND_X, BOUND_Y-5);
 			textDeliverStaff.setBounds(125, 63, BOUND_X, BOUND_Y-5);
-			
 			labelVehicleNum.setFont(fnt);
 			labelDeliverStaff.setFont(fnt);
 			textVehicleNum.setFont(fnt);

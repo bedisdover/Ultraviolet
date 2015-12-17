@@ -30,9 +30,9 @@ public class ReceiveUi extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 	private static final int LOCATION_LABEL_X=95;
-	private static final int LOCATION_LABEL_Y=155;
+	private static final int LOCATION_LABEL_Y=145;
 	private static final int LOCATION_TEXT_X=205;
-	private static final int LOCATION_TEXT_Y=160;
+	private static final int LOCATION_TEXT_Y=150;
 	private static final int BOUND_X=130;
 	private static final int BOUND_Y=30;
 
@@ -49,6 +49,8 @@ public class ReceiveUi extends JPanel {
 	private JLabel labelId;
 	private JLabel labelDeparture;
 	private JLabel labelStatus;
+	private JLabel labelTransferId;
+	private JTextField textTransferId;
 	private JTextField textId;
 
 	private JTextField textDeparture;//departure
@@ -108,6 +110,8 @@ public class ReceiveUi extends JPanel {
 		labelId = new JLabel("订单编号:");
 		labelDeparture = new JLabel("出发地:");
 		labelStatus = new JLabel("货物到达状态：");
+		labelTransferId=new JLabel("中转单号：");
+		textTransferId=new JTextField();
 		textId = new JTextField();
 		textDeparture = new JTextField();
 		comboBoxStatus = new JComboBox<String>();
@@ -122,12 +126,14 @@ public class ReceiveUi extends JPanel {
 		title.setBounds(450, 27, 230, 39);
 		
 		labelDate.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y, BOUND_X, BOUND_Y);
-		labelDeparture.setBounds(LOCATION_LABEL_X+5, LOCATION_LABEL_Y+60, BOUND_X, BOUND_Y);
-		labelId.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+170, BOUND_X, BOUND_Y);
-		labelStatus.setBounds(LOCATION_LABEL_X-15, LOCATION_LABEL_Y+240, BOUND_X, BOUND_Y);
-		textId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+170, BOUND_X, BOUND_Y-5);
+		labelDeparture.setBounds(LOCATION_LABEL_X+7, LOCATION_LABEL_Y+60, BOUND_X, BOUND_Y);
+		labelTransferId.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+120, BOUND_X, BOUND_Y);
+		labelId.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+200, BOUND_X, BOUND_Y);
+		labelStatus.setBounds(LOCATION_LABEL_X-15, LOCATION_LABEL_Y+260, BOUND_X, BOUND_Y);
+		textTransferId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+120, BOUND_X, BOUND_Y-5);
+		textId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+200, BOUND_X, BOUND_Y-5);
 		textDeparture.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+60, BOUND_X, BOUND_Y-6);
-		comboBoxStatus.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+240, BOUND_X, BOUND_Y-5);
+		comboBoxStatus.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+260, BOUND_X, BOUND_Y-5);
 		comboBoxStatus.addItem("完整");
 		comboBoxStatus.addItem("损坏");
 		comboBoxStatus.addItem("丢失");
@@ -144,6 +150,8 @@ public class ReceiveUi extends JPanel {
 		labelId.setFont(fnt);
 		labelDeparture.setFont(fnt);
 		labelStatus.setFont(fnt);
+		labelTransferId.setFont(fnt);
+		textTransferId.setFont(fnt);
 		textId.setFont(fnt);
 		textDeparture.setFont(fnt);
 		comboBoxStatus.setFont(fnt);
@@ -160,7 +168,8 @@ public class ReceiveUi extends JPanel {
 		this.add(labelId);
 		this.add(labelDeparture);
 		this.add(labelStatus);
-		
+		this.add(labelTransferId);
+		this.add(textTransferId);
 		this.add(textId);
 		this.add(textDeparture);
 		this.add(comboBoxStatus);
@@ -190,7 +199,7 @@ public class ReceiveUi extends JPanel {
 	 *            输入框状态（是否可编辑）
 	 */
 	private void setTextState(boolean state) {
-
+		textTransferId.setEditable(state);
 		textId.setEditable(state);
 		textDeparture.setEditable(state);
 		comboBoxStatus.setEditable(state);
@@ -204,7 +213,7 @@ public class ReceiveUi extends JPanel {
 	private void empty() {
 		textId.setText(null);
 		textDeparture.setText(null);
-		
+		textTransferId.setText(null);
 		comboBoxStatus.setSelectedIndex(0);
 	}
 
@@ -262,8 +271,8 @@ public class ReceiveUi extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
-		g.drawRect(60, 125, 305, 155);  //输入框外框
-		g.drawRect(60, 300, 305, 250);  //输入框外框
+		g.drawRect(60, 125, 305, 190);  //输入框外框
+		g.drawRect(60, 330, 305, 225);  //输入框外框
 		this.repaint();
 	}
 

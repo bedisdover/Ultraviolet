@@ -22,7 +22,7 @@ public class TransferClerkUi extends JPanel {
 	private JTabbedPane tabbedPane;
 	private TransferUi transferUi;
 	private LoadUi loadUi;
-	private ReceiveUi receiveUi;
+	private ReceiveUi receiveUi;   
 
 	public TransferClerkUi(final MainFrame mainFrame, UserVO user) {
 		transferUi = new TransferUi(mainFrame, user);
