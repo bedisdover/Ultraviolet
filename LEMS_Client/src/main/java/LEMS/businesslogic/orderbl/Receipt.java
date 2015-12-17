@@ -15,6 +15,7 @@ import LEMS.businesslogicservice.orderblservice.ReceiptService;
 import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.OrderFactory;
 import LEMS.dataservice.orderdataservice.ReceiptDataService;
+import LEMS.po.financepo.DocumentState;
 import LEMS.po.orderpo.ArrivalNotePO;
 import LEMS.po.orderpo.OrderPO;
 import LEMS.presentation.MainFrame;
@@ -76,6 +77,10 @@ public class Receipt extends AddOrder implements ReceiptService {
 		arrivalNotePO.setDeparture(arrivalVO.getDepature());
 		arrivalNotePO.setOrders(orders);
 		arrivalNotePO.setId(createId());
+		arrivalNotePO.setState(DocumentState.waiting);
+		arrivalNotePO.setInstitution(user.getInstitution().getID());
+		//TODO 
+		arrivalNotePO.setTransferNoteId("123134313414");
 		
 		try {		
 			getDataService().insert(arrivalNotePO);

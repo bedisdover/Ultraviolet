@@ -140,7 +140,8 @@ public class ReceiptData extends UnicastRemoteObject implements ReceiptDataServi
 		
 		try {
 			ReceiptData receiptData = new ReceiptData();
-			receiptData.insert(arrivalNotePO);
+//			receiptData.insert(arrivalNotePO);
+			System.out.println(receiptData.createID("0250101", "20151208"));
 			System.out.println("done");
 			
 			ArrivalNotePO arrivalNotePO2 = receiptData.find("02501012015120800001");

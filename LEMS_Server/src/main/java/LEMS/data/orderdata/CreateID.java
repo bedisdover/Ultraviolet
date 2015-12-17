@@ -42,7 +42,7 @@ public class CreateID implements IdDataService {
 	@Override
 	public String createID(String table, int length, String pre) {
 		String id = "";
-		
+
 		ArrayList<String> orders = this.findAll(table, pre);
 		
 		for (String string : orders) {
@@ -62,8 +62,12 @@ public class CreateID implements IdDataService {
 		BigInteger temp = new BigInteger(id);
 		temp = temp.add(new BigInteger("1"));
 		
-		id = temp.toString();
-		
+		if (id.charAt(0) == '0') {
+			id = "0" + temp.toString();
+		} else {
+			id = temp.toString();
+		}
+
 		return id;
 	}
 	public static void main(String[] args){

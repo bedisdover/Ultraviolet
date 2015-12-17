@@ -293,6 +293,7 @@ public class ReceiveUi extends JPanel {
 	private void finishOperation() {
 		arrivalVO.setDate(dc.getTime());
 		arrivalVO.setDepature(textDeparture.getText());
+		
 		//生成到达单
 		receipt.createArrivalNote();
 		
