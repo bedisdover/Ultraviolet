@@ -2,7 +2,6 @@ package LEMS.presentation.orderui;
 
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.TextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
@@ -273,8 +272,8 @@ public class ReceiveUi extends JPanel {
 	 */
 	private void OKOperation() {
 		//TODO 添加异常捕获
-//		try {
-//			receipt.addOrder(textId.getText());
+		try {
+			receipt.addOrder(textId.getText());
 			String[] values = {dc.getTime(), textId.getText(), textDeparture.getText(), comboBoxStatus.getSelectedItem() + ""};
 			if (isUpdate) {
 				table.setValueAt(table.getSelectedRow(), values);
@@ -283,9 +282,9 @@ public class ReceiveUi extends JPanel {
 			}
 			
 			textId.setText(null);
-//		} catch (RemoteException e) {
-//			JOptionPane.showMessageDialog(mainFrame, "请检查网络连接！", "Error", JOptionPane.ERROR_MESSAGE);
-//		}
+		} catch (RemoteException e) {
+			JOptionPane.showMessageDialog(mainFrame, "请检查网络连接！", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 	/**
