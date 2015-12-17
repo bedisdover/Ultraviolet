@@ -168,7 +168,7 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 	
 	public static void main(String[] args){
 		OrderPO opo=new OrderPO();
-		opo.setId("1234567890");
+		opo.setId("1234567892");
 		opo.setSenderName("章承尧");
 		opo.setSenderPhone("12345511111");
 		opo.setSenderAddress("南京市栖霞区123号");
@@ -186,7 +186,7 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 		opo.setTime("10");
 		try {
 			OrderData od=new OrderData();
-//			od.insert(opo);
+			od.insert(opo);
 			OrderPO orderPO = od.find("1234567890");
 			System.out.println(orderPO.getAmount());
 			System.out.println(orderPO.getReceiver());

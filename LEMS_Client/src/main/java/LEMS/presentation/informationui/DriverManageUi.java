@@ -380,7 +380,7 @@ public class DriverManageUi extends JPanel {
 							add.addDriver(dvo);
 							
 							//在数据库中新增该司机薪水信息
-							SalaryVO sa=new SalaryVO(textId.getText(),textId.getText().substring(0, 6),textName.getText(),Salary.getDefaultSalary((String) comboBox.getSelectedItem()));
+							SalaryVO sa=new SalaryVO(textId.getText(),textId.getText().substring(0, 6),textName.getText(),Salary.getDefaultSalary(""));
 							add.addSalary(sa);
 							
 							empty();
