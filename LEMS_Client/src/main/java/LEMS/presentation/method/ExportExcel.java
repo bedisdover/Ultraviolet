@@ -26,8 +26,8 @@ excel.exportExcel("f:/text.xls","库存盘点", title, al);
  */
 
 public class ExportExcel { 
-	/**
-@@ -13,98 +34,102 @@ public class ExportExcel {
+	/**filename 文件名
+	 * head EXCEL标题
 	 * listTitle EXCEL文件第一行列标题集合 
 	 * listContent EXCEL文件正文数据集合 
 	 */
