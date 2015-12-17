@@ -43,7 +43,7 @@ public class Sending extends AddOrder implements SendingService {
 		this.deliveryVO = deliveryVO;
 	}
 	
-	public void addOrder(String id, String deliver) {
+	public void addOrder(String id, String deliver) throws RemoteException {
 		OrderPO orderPO = findOrder(id);
 		orderPO.setDeliver(deliver);
 

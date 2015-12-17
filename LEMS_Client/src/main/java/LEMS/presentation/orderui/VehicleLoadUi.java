@@ -4,9 +4,11 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.rmi.RemoteException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -315,17 +317,23 @@ public class VehicleLoadUi extends JPanel {
 	
 	private void OKOperation() {
 		String id = textID.getText();
-		String name = vehicleLoad.getName(id);
-		double weight = vehicleLoad.getWeight(id);
 		
-		vehicleLoad.addOrder(id);
-		textGoodsNum.setText(++number + "");
-		textGoodsWeight.setText(Double.parseDouble(textGoodsWeight.getText()) + weight + "");
-		
-		String[] values = {number + "", id, name, weight + ""};
-		table.setValueAt(table.numOfEmpty(), values);
-		
-		textID.setText(null);
+		try {
+			vehicleLoad.addOrder(id);
+
+			String name = vehicleLoad.getName(id);
+			double weight = vehicleLoad.getWeight(id);
+			
+			textGoodsNum.setText(++number + "");
+			textGoodsWeight.setText(Double.parseDouble(textGoodsWeight.getText()) + weight + "");
+			
+			String[] values = {number + "", id, name, weight + ""};
+			table.setValueAt(table.numOfEmpty(), values);
+
+			textID.setText(null);
+		} catch (RemoteException e) {
+			JOptionPane.showMessageDialog(mainFrame, "请检查网络连接！", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 	private void finishOperation() {

@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.rmi.RemoteException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -246,9 +247,13 @@ public class SendUi extends JPanel {
 	 * 按下确定按钮后的动作
 	 */
 	private void OKOperation() {
-		String[] values = {"1", dc.getTime(), textId.getText(), textStaff.getText()};
-		table.setValueAt(table.numOfEmpty(), values);
-		sending.addOrder(textId.getText(), textStaff.getText());
+		try {
+			sending.addOrder(textId.getText(), textStaff.getText());
+			String[] values = {"1", dc.getTime(), textId.getText(), textStaff.getText()};
+			table.setValueAt(table.numOfEmpty(), values);
+		} catch (RemoteException e) {
+			JOptionPane.showMessageDialog(mainFrame, "请检查网络连接！", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 
 		textId.setText(null);
 	}

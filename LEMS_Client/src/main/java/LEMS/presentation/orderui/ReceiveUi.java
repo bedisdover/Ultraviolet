@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.TextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -83,7 +84,7 @@ public class ReceiveUi extends JPanel {
 		this.addListener();
 
 		arrivalVO = new ArrivalVO();
-		receipt = new Receipt(mainFrame, userVO, arrivalVO);
+		receipt = new Receipt(userVO, arrivalVO);
 	}
 
 	/**
@@ -265,12 +266,15 @@ public class ReceiveUi extends JPanel {
 	 */
 	private void OKOperation() {
 		//TODO 添加异常捕获
-//		receipt.addOrder(textId.getText());
-//		System.out.println("tianjia");
-		String[] values = {dc.getTime(), textId.getText(), textDeparture.getText(), comboBoxStatus.getSelectedItem() + ""};
-		table.setValueAt(table.numOfEmpty(), values);
-		
-		textId.setText(null);
+		try {
+			receipt.addOrder(textId.getText());
+			String[] values = {dc.getTime(), textId.getText(), textDeparture.getText(), comboBoxStatus.getSelectedItem() + ""};
+			table.setValueAt(table.numOfEmpty(), values);
+			
+			textId.setText(null);
+		} catch (RemoteException e) {
+			JOptionPane.showMessageDialog(mainFrame, "请检查网络连接！", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 	/**
@@ -316,7 +320,7 @@ public class ReceiveUi extends JPanel {
 	/**
 	 * 判断输入是否合法
 	 * 具体包括：条形码是否为10位数字、
-	 * TODO 是否已存在 
+	 * TODO 是否已存在
 	 */
 	private boolean isLegal() {
 		//条形码全部为数字

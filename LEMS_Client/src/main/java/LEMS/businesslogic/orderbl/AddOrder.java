@@ -31,22 +31,23 @@ public class AddOrder implements AddOrderService {
 	 * @return 订单持久化对象
 	 * @throws RemoteException 
 	 */
-	public OrderPO findOrder(String id) {
+	public OrderPO findOrder(String id) throws RemoteException {
 		OrderPO order = null;
 		
-		try {
-			//获得订单信息
-			order = this.getDataService().find(id);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			//获得订单信息
+//			order = this.getDataService().find(id);
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//		}
+		order = this.getDataService().find(id);
 		
 		return order;
 	}
 	
-	public void addOrder(String id) {
-		// TODO 似乎不需要的方法，但是考虑到需求变更，就暂且放在这里了
-	}
+//	public void addOrder(String id) {
+//		// TODO 似乎不需要的方法，但是考虑到需求变更，就暂且放在这里了
+//	}
 	
 	/**
 	 * 根据ID查找物流信息
@@ -101,8 +102,9 @@ public class AddOrder implements AddOrderService {
 	 * 获得数据库的引用
 	 * 
 	 * @return Order数据服务
+	 * @throws RemoteException 
 	 */
-	private OrderDataService getDataService() {
+	private OrderDataService getDataService() throws RemoteException {
 		
 		OrderDataService orderDataService = null;
 		
@@ -114,7 +116,7 @@ public class AddOrder implements AddOrderService {
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {
-			e.printStackTrace();
+			throw e;
 		} catch (NotBoundException e) {
 			e.printStackTrace();
 		}

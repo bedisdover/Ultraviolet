@@ -41,7 +41,7 @@ public class ReceiptRecord extends AddOrder implements ReceiptRecordService {
 		orders = new ArrayList<OrderPO>();
 	}
 	
-	public void addOrder(String id, String collector) {
+	public void addOrder(String id, String collector) throws RemoteException {
 		OrderPO order = findOrder(id);
 		orders.add(order);
 		order.setCollector(collector);

@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.rmi.RemoteException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -257,7 +258,11 @@ public class ReceiptRecordUi extends JPanel {
 		// 清空输入框
 		empty();
 		
-		receiptRecord.addOrder(textId.getText(), textStaff.getText());
+		try {
+			receiptRecord.addOrder(textId.getText(), textStaff.getText());
+		} catch (RemoteException e) {
+			JOptionPane.showMessageDialog(mainFrame, "请检查网络连接！", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 		textMoney.setText(incomeBillVO.getAmount() + "");
 	}
 	
