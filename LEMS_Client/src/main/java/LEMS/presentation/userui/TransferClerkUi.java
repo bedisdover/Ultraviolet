@@ -45,9 +45,9 @@ public class TransferClerkUi extends JPanel {
 		// tabbedPane.addTab(title, icon, component, tip);
 		// 添加由 title 和/或 icon 表示的 component 和 tip，其中任意一个都可以为 null。
 
-		tabbedPane.addTab(null, image1, transferUi, "中转接收");
-		tabbedPane.addTab(null, image2, loadUi, "装运管理");
 		tabbedPane.addTab(null, image3, receiveUi, "接收");
+		tabbedPane.addTab(null, image2, loadUi, "装运管理");
+		tabbedPane.addTab(null, image1, transferUi, "中转接收");
 	}
 
 	private void initComponents() {

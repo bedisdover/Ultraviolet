@@ -29,6 +29,7 @@ public class AddOrder implements AddOrderService {
 	 * 
 	 * @param id 
 	 * @return 订单持久化对象
+	 * @throws RemoteException 
 	 */
 	public OrderPO findOrder(String id) {
 		OrderPO order = null;

@@ -83,7 +83,7 @@ public class ReceiveUi extends JPanel {
 		this.addListener();
 
 		arrivalVO = new ArrivalVO();
-		receipt = new Receipt(userVO, arrivalVO);
+		receipt = new Receipt(mainFrame, userVO, arrivalVO);
 	}
 
 	/**
@@ -264,8 +264,9 @@ public class ReceiveUi extends JPanel {
 	 * 确认按钮按下后的操作
 	 */
 	private void OKOperation() {
-//		receipt.addOrder(textId.getText());
-		
+		//TODO 添加异常捕获
+		receipt.addOrder(textId.getText());
+		System.out.println("tianjia");
 		String[] values = {"1", dc.getTime(), textId.getText(), textDeparture.getText(), comboBoxStatus.getSelectedItem() + ""};
 		table.setValueAt(table.numOfEmpty(), values);
 		

@@ -6,6 +6,10 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.businesslogicservice.orderblservice.ReceiptService;
 import LEMS.dataservice.factory.DatabaseFactory;
@@ -13,6 +17,8 @@ import LEMS.dataservice.factory.OrderFactory;
 import LEMS.dataservice.orderdataservice.ReceiptDataService;
 import LEMS.po.orderpo.ArrivalNotePO;
 import LEMS.po.orderpo.OrderPO;
+import LEMS.presentation.MainFrame;
+import LEMS.presentation.orderui.ReceiveUi;
 import LEMS.vo.inquirevo.LogisticsInfoVO;
 import LEMS.vo.ordervo.ArrivalVO;
 import LEMS.vo.uservo.UserVO;
@@ -29,6 +35,8 @@ public class Receipt extends AddOrder implements ReceiptService {
 	 */
 	private ArrayList<OrderPO> orders;
 	
+	private MainFrame mainFrame;
+	
 	/**
 	 * 营业厅业务员
 	 */
@@ -39,10 +47,11 @@ public class Receipt extends AddOrder implements ReceiptService {
 	 */
 	private ArrivalVO arrivalVO;
 	
-	public Receipt(UserVO user, ArrivalVO arrivalVO) {
+	public Receipt(MainFrame mainFrame, UserVO user, ArrivalVO arrivalVO) {
 		//新建订单列表
 		orders = new ArrayList<OrderPO>();
 		
+		this.mainFrame = mainFrame;
 		this.user = user;
 		this.arrivalVO = arrivalVO;
 	}
@@ -50,16 +59,19 @@ public class Receipt extends AddOrder implements ReceiptService {
 	public void addOrder(String id) {
 		//获得物流信息
 		LogisticsInfoVO logistics = getLogistics(id);
-		System.out.println(logistics.getId());
 		//更新物流信息
 		logistics.setTrace("到达" + user.getInstitution().getLocation() + "营业厅");
 		logistics.setInstitution(user.getInstitution().getLocation());
 		updateLogistics(logistics);
 		
 		//添加订单到订单列表中
-		orders.add(findOrder(id));
-		System.out.println(findOrder(id).getAmount());
-		System.out.println(orders);
+		//TODO
+//		try {
+			orders.add(findOrder(id));
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//			JOptionPane.showMessageDialog(mainFrame, "订单不存在！", "Error", JOptionPane.ERROR_MESSAGE);
+//		}
 	}
 
 	public void createArrivalNote() {
