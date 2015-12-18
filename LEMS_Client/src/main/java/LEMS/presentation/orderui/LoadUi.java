@@ -52,14 +52,12 @@ public class LoadUi extends JPanel {
 	private JLabel labelDeliverStaff;
 	private JLabel labelGoodsNum;
 	private JLabel labelGoodsWeight;
-	private JLabel labelBarcode;
 
 	private JTextField textTransferNum;
 	private JTextField textDestination;
 	private JTextField textVehicleId;
 	private JTextField textGuard;
 	private JTextField textDeliverStaff;
-	private JTextField textGoodsNum;
 	private JTextField textGoodsWeight;
 	private JTextField textID;
 	private DateChooser dc;
@@ -74,7 +72,6 @@ public class LoadUi extends JPanel {
 	private LoadVO loadVO;
 	
 	private int number = 0;
-	
 	
 	public LoadUi(final MainFrame mainFrame, UserVO userVO) {
 		this.mainFrame = mainFrame;
@@ -108,33 +105,28 @@ public class LoadUi extends JPanel {
 		
 		labelDate = new JLabel("装车日期:");
 		labelDestination = new JLabel("目的地:");
-		labelBarcode = new JLabel("订单条形码号:");
 		labelTransferNum = new JLabel("汽运编号:");
 		labelVehicleId = new JLabel("车辆代号：");
 		labelDeliverStaff = new JLabel("押运员:");
 		labelGuard = new JLabel("监装员:");
-		labelGoodsNum = new JLabel("货物总数:");
-		labelGoodsWeight= new JLabel("总重量：");
+		labelGoodsNum = new JLabel("货物总重量:");
+		labelGoodsWeight= new JLabel("订单条形码号：");
 		textDestination=new JTextField();
 		textTransferNum = new JTextField();
 		textVehicleId = new JTextField();
 		textDeliverStaff = new JTextField();
 		textGuard = new JTextField();
-		textGoodsNum = new JTextField();
-		textID = new JTextField();
-		textGoodsWeight=new JTextField();
+		textGoodsWeight = new JTextField();
+		textID=new JTextField();
 		
 		dc=new DateChooser(this, LOCATION_TEXT_X+2, LOCATION_TEXT_Y-90);
-		
 	}
 
 	/**
 	 * 初始化各组件
 	 */
 	private void initComponents() {
-
 		title.setBounds(420, 27, 230, 39);
-		
 		
 		labelDate.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y, BOUND_X, BOUND_Y);
 		labelDestination.setBounds(LOCATION_LABEL_X+7, LOCATION_LABEL_Y+45, BOUND_X, BOUND_Y);
@@ -144,21 +136,18 @@ public class LoadUi extends JPanel {
 		labelDeliverStaff.setBounds(LOCATION_LABEL_X+7, LOCATION_LABEL_Y+225, BOUND_X, BOUND_Y);
 		labelGoodsNum.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+285, BOUND_X, BOUND_Y);
 		labelGoodsWeight.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+330, BOUND_X+40, BOUND_Y);
-		labelBarcode.setBounds(LOCATION_LABEL_X-15, LOCATION_LABEL_Y+400, BOUND_X, BOUND_Y);
 		
 		textTransferNum.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y, BOUND_X, BOUND_Y-6);
 		textVehicleId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+45, BOUND_X, BOUND_Y-6);
 		textGuard.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+90, BOUND_X, BOUND_Y-6);
 		textDeliverStaff.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+135, BOUND_X, BOUND_Y-6);
-		textGoodsNum.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+195, BOUND_X, BOUND_Y-6);
-		textGoodsWeight.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+240, BOUND_X, BOUND_Y-6);
-		textID.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+310, BOUND_X, BOUND_Y-6);
+		textGoodsWeight.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+195, BOUND_X, BOUND_Y-6);
+		textID.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+240, BOUND_X, BOUND_Y-6);
 		
 		textDestination.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y-45, BOUND_X, BOUND_Y-5);
-	
 		
-		OK.setBounds(LOCATION_LABEL_X-50, LOCATION_LABEL_Y+475, BOUND_X-10, BOUND_Y+10);
-		cancel.setBounds(LOCATION_LABEL_X+100, LOCATION_LABEL_Y+475, BOUND_X-10, BOUND_Y+10);
+		OK.setBounds(100, 513, BOUND_X-10, BOUND_Y+10);
+		cancel.setBounds(250, 513, BOUND_X-10, BOUND_Y+10);
 		exit.setBounds(80, 50, 100, 40);
 		add.setBounds(370, 590, 120, 40);
 		delete.setBounds(520, 590, 120,40);
@@ -166,7 +155,6 @@ public class LoadUi extends JPanel {
 		finish.setBounds(820, 590, 120, 40);
 		
 		title.setFont(fnt1);
-		labelBarcode.setFont(fnt);
 		labelDate.setFont(fnt);
 		labelDestination.setFont(fnt);
 		labelTransferNum.setFont(fnt);
@@ -179,7 +167,6 @@ public class LoadUi extends JPanel {
 		textVehicleId.setFont(fnt);
 		textGuard.setFont(fnt);
 		textDeliverStaff.setFont(fnt);
-		textGoodsNum.setFont(fnt);
 		textGoodsWeight.setFont(fnt);
 		textID.setFont(fnt);
 		textDestination.setFont(fnt);
@@ -191,11 +178,10 @@ public class LoadUi extends JPanel {
 		update.setFont(fnt2);
 		finish.setFont(fnt2);
 		
-		textGoodsNum.setEditable(false);
 		textGoodsWeight.setEditable(false);
+		textID.setEditable(false);
 		
 		this.add(title);
-		this.add(labelBarcode);
 		this.add(labelDate);
 		this.add(labelDestination);
 		this.add(labelTransferNum);
@@ -208,9 +194,8 @@ public class LoadUi extends JPanel {
 		this.add(textVehicleId);
 		this.add(textGuard);
 		this.add(textDeliverStaff);
-		this.add(textGoodsNum);
-		this.add(textID);
 		this.add(textGoodsWeight);
+		this.add(textID);
 		this.add(textDestination);
 		this.add(OK);
 		this.add(cancel);
@@ -224,7 +209,6 @@ public class LoadUi extends JPanel {
 
 	    table=new Table();
 		add(table.drawTable(columnNames, list));
-	    	
 	}
 
 	/**
@@ -234,16 +218,13 @@ public class LoadUi extends JPanel {
 	 *            输入框状态（是否可编辑）
 	 */
 	private void setTestState(boolean state) {
-
 		textTransferNum.setEditable(state);
 		textVehicleId.setEditable(state);
 		textDeliverStaff.setEditable(state);
 		textGuard.setEditable(state);
-		textID.setEnabled(state);
 		textDestination.setEnabled(state);
 		OK.setEnabled(state);
 		cancel.setEnabled(state);
-		//日期
 	}
 
 	/**
@@ -254,11 +235,10 @@ public class LoadUi extends JPanel {
 		textVehicleId.setText(null);
 		textDeliverStaff.setText(null);
 		textGuard.setText(null);
-		textGoodsNum.setText(null);
-		textID.setText(null);
 		textGoodsWeight.setText(null);
+		textID.setText(null);
+		textID.setText(null);
 		textDestination.setText(null);
-		//日期
 	}
 
 	/**
@@ -306,7 +286,6 @@ public class LoadUi extends JPanel {
 				setTestState(false);
 			}
 		});
-		
 	}
 
 	public void paintComponent(Graphics g) {
@@ -328,8 +307,8 @@ public class LoadUi extends JPanel {
 			double weight = load.getWeight(id);
 			
 			load.addOrder(id);
-			textGoodsNum.setText(++number + "");
-			textGoodsWeight.setText(Double.parseDouble(textGoodsWeight.getText()) + weight + "");
+			textGoodsWeight.setText(++number + "");
+			textID.setText(Double.parseDouble(textID.getText()) + weight + "");
 			
 			String[] values = {number + "", id, name, weight + ""};
 			table.setValueAt(table.numOfEmpty(), values);
