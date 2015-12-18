@@ -61,7 +61,7 @@ public class Load extends AddOrder implements LoadService {
 		return findOrder(id).getWeight();
 	}
 
-	public void createLoadNote() {
+	public void createLoadNote() throws RemoteException {
 		LoadNotePO loadNote = new LoadNotePO();
 		loadNote.setId(this.createID());
 		loadNote.setState(DocumentState.waiting);
@@ -73,11 +73,7 @@ public class Load extends AddOrder implements LoadService {
 		loadNote.setOrders(orders);
 		loadNote.setPassage(this.calculatePassage());
 		
-		try {
-			this.getDataService().insert(loadNote);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+		this.getDataService().insert(loadNote);
 	}
 	
 	private String createID() {

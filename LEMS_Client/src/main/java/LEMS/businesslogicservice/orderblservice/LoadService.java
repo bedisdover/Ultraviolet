@@ -1,5 +1,7 @@
 package LEMS.businesslogicservice.orderblservice;
 
+import java.rmi.RemoteException;
+
 /**
  * @author 宋益明
  * 
@@ -8,6 +10,7 @@ package LEMS.businesslogicservice.orderblservice;
 public interface LoadService extends AddOrderService {
 	/**
 	 * 生成装车单
+	 * @throws RemoteException 
 	 */
-	public void createLoadNote();
+	public void createLoadNote() throws RemoteException;
 }
