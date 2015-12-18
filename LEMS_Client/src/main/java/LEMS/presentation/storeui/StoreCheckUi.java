@@ -1,7 +1,5 @@
 package LEMS.presentation.storeui;
 
-import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
@@ -10,20 +8,17 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
-import javax.swing.border.LineBorder;
 
 import LEMS.businesslogic.storebl.StoreManagement;
-import LEMS.presentation.method.ExportExcel;
-import LEMS.presentation.method.DateChooser;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
+import LEMS.presentation.method.ExportExcel;
 import LEMS.presentation.method.Table;
+import LEMS.presentation.ultraSwing.UltraButton;
 import LEMS.vo.storevo.GoodsVO;
 
 /**
@@ -40,10 +35,10 @@ public class StoreCheckUi extends JPanel {
 	private MainFrame mainFrame;
 	private JLabel title;
 	private JLabel labelTime;
-	private JButton exit;
-	private JButton OK;
-	private JButton cancel;
-	private JButton excel;
+	private UltraButton exit;
+	private UltraButton OK;
+	private UltraButton cancel;
+	private UltraButton excel;
 	private JTextField textTime;
 	
 	Table table;
@@ -72,10 +67,10 @@ public class StoreCheckUi extends JPanel {
 	 */
 	private void init() {
 		title = new JLabel("库存盘点");
-		exit = new JButton("返回");
-		OK = new JButton("开始盘点");
-		excel = new JButton("导出表格");
-		cancel = new JButton("取消盘点");
+		exit = new UltraButton("返回");
+		OK = new UltraButton("开始盘点");
+		excel = new UltraButton("导出表格");
+		cancel = new UltraButton("取消盘点");
 		labelTime = new JLabel("盘点截止时间：");
 		textTime = new JTextField();
 	}
@@ -85,20 +80,16 @@ public class StoreCheckUi extends JPanel {
 	 */
 	private void initComponents() {
 		title.setBounds(LOCATION_X, LOCATION_Y, 230, 39);
-		OK.setBounds(LOCATION_X - 80, LOCATION_Y + 130, 120, 40);
-		cancel.setBounds(LOCATION_X + 65, LOCATION_Y + 130, 120, 40);
+		OK.setBounds(LOCATION_X - 110, LOCATION_Y + 120, 180, 60);
+		cancel.setBounds(LOCATION_X + 35, LOCATION_Y + 120, 180, 60);
 		exit.setBounds(90, 60, 100, 40);
 		labelTime.setBounds(LOCATION_X-70, LOCATION_Y+65, 140, 40);
 		textTime.setBounds(LOCATION_X+60, LOCATION_Y+75, 100, 25);
 		excel.setBounds(LOCATION_X+320, LOCATION_Y+80, 120, 40);
 
 		title.setFont(fnt1);
-		cancel.setFont(fnt2);
-		OK.setFont(fnt2);
-		exit.setFont(fnt2);
 		labelTime.setFont(fnt);
 		textTime.setFont(fnt);
-		excel.setFont(fnt2);
 		
 		//textTime.setEditable(false);
 		excel.setEnabled(false);
@@ -177,7 +168,7 @@ public class StoreCheckUi extends JPanel {
 				title[7]="位号";
 				title[8]="装运形式";
 				title[9]="单号";
-				operation.exportExcel("库存盘点", title, al);
+				operation.exportExcel("f:/text.xls","库存盘点", title, al);
 			}
 		});
 

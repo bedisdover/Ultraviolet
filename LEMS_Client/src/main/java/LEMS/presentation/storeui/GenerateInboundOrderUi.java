@@ -4,31 +4,24 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import LEMS.businesslogic.storebl.StoreGenerateOrder;
-import LEMS.po.orderpo.TransportType;
 import LEMS.po.storepo.Area;
 import LEMS.po.storepo.Destination;
-import LEMS.po.storepo.GoodsPO;
-import LEMS.po.storepo.InboundOrderPO;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.DateChooser;
 import LEMS.presentation.method.Table;
-import LEMS.vo.storevo.GoodsVO;
+import LEMS.presentation.ultraSwing.UltraButton;
+import LEMS.presentation.ultraSwing.UltraComboBox;
+import LEMS.presentation.ultraSwing.UltraTextField;
 import LEMS.vo.storevo.InboundOrderVO;
 
 /**
@@ -47,13 +40,13 @@ public class GenerateInboundOrderUi extends JPanel {
 
 	private MainFrame mainFrame;
 	private JLabel title;
-	private JButton exit;
-	private JButton OK;
-	private JButton cancel;
-	private JButton add;
-	private JButton delete;
-	private JButton update;
-	private JButton inquire;
+	private UltraButton exit;
+	private UltraButton OK;
+	private UltraButton cancel;
+	private UltraButton add;
+	private UltraButton delete;
+	private UltraButton update;
+	private UltraButton inquire;
 	private JLabel labelId;
 	private JLabel labelInDate;
 	private JLabel labelDestination;
@@ -61,14 +54,14 @@ public class GenerateInboundOrderUi extends JPanel {
 	private JLabel labelRow;
 	private JLabel labelStand;
 	private JLabel labelPosition;
-	private JTextField textId;
-	private JTextField textRow;
-	private JTextField textStand;
-	private JTextField textPosition;
-	private JTextField textTime;
+	private UltraTextField textId;
+	private UltraTextField textRow;
+	private UltraTextField textStand;
+	private UltraTextField textPosition;
+	private UltraTextField textTime;
 	private DateChooser dc;
-	private JComboBox<String> comboBoxDestination;
-	private JComboBox<String> comboBoxArea;
+	private UltraComboBox comboBoxDestination;
+	private UltraComboBox comboBoxArea;
 
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);// 标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);// 其余字体格式
@@ -103,13 +96,13 @@ public class GenerateInboundOrderUi extends JPanel {
 	 */
 	private void init() {
 		title = new JLabel("仓库管理（入库）");
-		exit = new JButton("返回");
-		OK = new JButton("确定");
-		cancel = new JButton("取消");
-		add = new JButton("新增");
-		delete = new JButton("删除");
-		update = new JButton("修改");
-		inquire = new JButton("查找");
+		exit = new UltraButton("返回");
+		OK = new UltraButton("确定");
+		cancel = new UltraButton("取消");
+		add = new UltraButton("新增");
+		delete = new UltraButton("删除");
+		update = new UltraButton("修改");
+		inquire = new UltraButton("查找");
 		labelId = new JLabel("快递单号:");
 		labelInDate = new JLabel("入库日期:");
 		labelDestination = new JLabel("目的地:");
@@ -117,13 +110,13 @@ public class GenerateInboundOrderUi extends JPanel {
 		labelRow = new JLabel("排号:");
 		labelStand = new JLabel("架号:");
 		labelPosition = new JLabel("位号:");
-		textId = new JTextField();
-		textRow = new JTextField();
-		textStand = new JTextField();
-		textPosition = new JTextField();
-		textTime = new JTextField();
-		comboBoxDestination = new JComboBox<String>();
-		comboBoxArea = new JComboBox<String>();
+		textId = new UltraTextField(15);
+		textRow = new UltraTextField(15);
+		textStand = new UltraTextField(15);
+		textPosition = new UltraTextField(15);
+		textTime = new UltraTextField(15);
+		comboBoxDestination = new UltraComboBox();
+		comboBoxArea = new UltraComboBox();
 		dc=new DateChooser(this,LOCATION_TEXT_X,LOCATION_TEXT_Y + 51);
 	}
 
@@ -158,16 +151,7 @@ public class GenerateInboundOrderUi extends JPanel {
 		textStand.setFont(fnt);
 		textPosition.setFont(fnt);
 		textTime.setFont(fnt);
-		comboBoxArea.setFont(fnt);
-		comboBoxDestination.setFont(fnt);
-		cancel.setFont(fnt2);
-		OK.setFont(fnt2);
-		exit.setFont(fnt2);
-		add.setFont(fnt2);
-		delete.setFont(fnt2);
-		update.setFont(fnt2);
-		inquire.setFont(fnt2);
-
+		
 		comboBoxDestination.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 129, BOUND_X, BOUND_Y - 5);
 		comboBoxDestination.addItem("北京");
 		comboBoxDestination.addItem("上海");
@@ -178,8 +162,8 @@ public class GenerateInboundOrderUi extends JPanel {
 		comboBoxArea.addItem("铁运区");
 		comboBoxArea.addItem("汽运区");
 		comboBoxArea.addItem("机动区");
-		OK.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y + 390, BOUND_X - 40, BOUND_Y + 10);
-		cancel.setBounds(LOCATION_LABEL_X + 120, LOCATION_LABEL_Y + 390, BOUND_X - 40, BOUND_Y + 10);
+		OK.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y + 390, BOUND_X - 10, BOUND_Y + 10);
+		cancel.setBounds(LOCATION_LABEL_X + 120, LOCATION_LABEL_Y + 390, BOUND_X - 10, BOUND_Y + 10);
 		exit.setBounds(90, 60, 100, 40);
 		add.setBounds(150, 610, 120, 40);
 		delete.setBounds(350, 610, 120, 40);

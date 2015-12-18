@@ -6,7 +6,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,9 +14,10 @@ import javax.swing.JTextField;
 import LEMS.businesslogic.storebl.StoreManagement;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
-import LEMS.presentation.method.Table;
-import LEMS.vo.storevo.GoodsVO;
 import LEMS.presentation.method.DateChooser;
+import LEMS.presentation.method.Table;
+import LEMS.presentation.ultraSwing.UltraButton;
+import LEMS.vo.storevo.GoodsVO;
 
 /**
  * 
@@ -32,9 +32,9 @@ public class StoreInquireUi extends JPanel {
 
 	private MainFrame mainFrame;
 	private JLabel title;
-	private JButton exit;
-	private JButton OK;
-	private JButton cancel;
+	private UltraButton exit;
+	private UltraButton OK;
+	private UltraButton cancel;
 	private JLabel labelInboundNum;
 	private JLabel labelOutboundNum;
 	private JLabel labelMoney;
@@ -94,9 +94,9 @@ public class StoreInquireUi extends JPanel {
 	 */
 	private void init() {
 		title = new JLabel("库存查看");
-		exit = new JButton("返回");
-		OK = new JButton("确定");
-		cancel = new JButton("取消");
+		exit = new UltraButton("返回");
+		OK = new UltraButton("确定");
+		cancel = new UltraButton("取消");
 		startTime = new JLabel("开始时间：");
 		endTime = new JLabel("结束时间：");
 		labelInboundNum = new JLabel("入库数量：");
@@ -215,9 +215,7 @@ public class StoreInquireUi extends JPanel {
 		eHour.setFont(fnt);
 		eMin.setFont(fnt);
 		eSec.setFont(fnt);
-		cancel.setFont(fnt2);
-		OK.setFont(fnt2);
-		exit.setFont(fnt2);
+		
 		textInboundNum.setEditable(false);
 		textOutboundNum.setEditable(false);
 		textMoney.setEditable(false);

@@ -1,7 +1,5 @@
 package LEMS.presentation.storeui;
 
-import java.awt.Color;
-import java.awt.Container;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
@@ -10,26 +8,21 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 import LEMS.businesslogic.storebl.StoreGenerateOrder;
 import LEMS.po.orderpo.TransportType;
-import LEMS.po.storepo.Area;
 import LEMS.po.storepo.Destination;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
-import LEMS.presentation.method.Table;
-import LEMS.vo.storevo.InboundOrderVO;
-import LEMS.vo.storevo.OutboundOrderVO;
 import LEMS.presentation.method.DateChooser;
+import LEMS.presentation.method.Table;
+import LEMS.presentation.ultraSwing.UltraButton;
+import LEMS.vo.storevo.OutboundOrderVO;
 
 /**
  * 
@@ -49,13 +42,13 @@ public class GenerateOutboundOrderUi extends JPanel{
 
 	private MainFrame mainFrame;
 	private JLabel title;
-	private JButton exit;
-	private JButton OK;
-	private JButton cancel;
-	private JButton add;
-	private JButton delete;
-	private JButton update;
-	private JButton inquire;
+	private UltraButton exit;
+	private UltraButton OK;
+	private UltraButton cancel;
+	private UltraButton add;
+	private UltraButton delete;
+	private UltraButton update;
+	private UltraButton inquire;
 	private JLabel labelId;
 	private JLabel labelOutDate;
 	private JLabel labelDestination;
@@ -105,13 +98,13 @@ public class GenerateOutboundOrderUi extends JPanel{
 	 */
 	private void init() {
 		title = new JLabel("仓库管理（出库）");
-		exit = new JButton("返回");
-		OK = new JButton("确定");
-		cancel = new JButton("取消");
-		add=new JButton("新增");
-		delete=new JButton("删除");
-		update=new JButton("修改");
-		inquire=new JButton("查找");
+		exit = new UltraButton("返回");
+		OK = new UltraButton("确定");
+		cancel = new UltraButton("取消");
+		add=new UltraButton("新增");
+		delete=new UltraButton("删除");
+		update=new UltraButton("修改");
+		inquire=new UltraButton("查找");
 		labelId = new JLabel("快递单号:");
 		labelOutDate = new JLabel("出库日期:");
 		labelDestination = new JLabel("目的地:");
@@ -156,13 +149,7 @@ public class GenerateOutboundOrderUi extends JPanel{
 		textTime.setFont(fnt);
 		comboBoxDestination.setFont(fnt);
 		comboBoxTransportType.setFont(fnt);
-		cancel.setFont(fnt2);
-		OK.setFont(fnt2);
-		exit.setFont(fnt2);
-		add.setFont(fnt2);
-		delete.setFont(fnt2);
-		update.setFont(fnt2);
-		inquire.setFont(fnt2);
+
 		
 		comboBoxDestination.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+155, BOUND_X, BOUND_Y-5);
 		comboBoxDestination.addItem("北京");
@@ -175,8 +162,8 @@ public class GenerateOutboundOrderUi extends JPanel{
 		comboBoxTransportType.addItem("火车");
 		comboBoxTransportType.addItem("汽车");
 		
-		OK.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+360, BOUND_X-40, BOUND_Y+10);
-		cancel.setBounds(LOCATION_TEXT_X+40, LOCATION_LABEL_Y+360, BOUND_X-40, BOUND_Y+10);
+		OK.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+360, BOUND_X-10, BOUND_Y+10);
+		cancel.setBounds(LOCATION_TEXT_X+40, LOCATION_LABEL_Y+360, BOUND_X-10, BOUND_Y+10);
 		exit.setBounds(90, 60, 100, 40);
 		add.setBounds(150, 600, 120, 40);
 		delete.setBounds(350, 600, 120,40);
