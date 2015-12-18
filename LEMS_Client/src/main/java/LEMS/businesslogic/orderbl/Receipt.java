@@ -36,8 +36,6 @@ public class Receipt extends AddOrder implements ReceiptService {
 	 */
 	private ArrayList<OrderPO> orders;
 	
-	private MainFrame mainFrame;
-	
 	/**
 	 * 营业厅业务员
 	 */

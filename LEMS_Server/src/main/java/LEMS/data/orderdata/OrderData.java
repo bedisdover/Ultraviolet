@@ -36,7 +36,7 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 
 	
 	public OrderPO find(String id) throws RemoteException {
-		//TODO 待检验
+		System.out.println(1);
 		String sql = "SELECT * FROM dingdan WHERE id = " + id;
 
 		ResultSet result = connect.getResultSet(sql);
@@ -186,7 +186,7 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 		opo.setTime("10");
 		try {
 			OrderData od=new OrderData();
-			od.insert(opo);
+//			od.insert(opo);
 			OrderPO orderPO = od.find("1234567890");
 			System.out.println(orderPO.getAmount());
 			System.out.println(orderPO.getReceiver());

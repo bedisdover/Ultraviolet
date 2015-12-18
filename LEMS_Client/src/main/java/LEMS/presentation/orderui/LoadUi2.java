@@ -24,7 +24,7 @@ import LEMS.vo.uservo.UserVO;
  * @author 周梦佳
  * 装运管理界面
  */
-public class LoadUi extends JPanel {
+public class LoadUi2 extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private static final int LOCATION_LABEL_X=120;
@@ -73,7 +73,7 @@ public class LoadUi extends JPanel {
 	
 	private int number = 0;
 	
-	public LoadUi(final MainFrame mainFrame, UserVO userVO) {
+	public LoadUi2(final MainFrame mainFrame, UserVO userVO) {
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
