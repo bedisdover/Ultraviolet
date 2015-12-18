@@ -37,6 +37,8 @@ public class AddOrder implements AddOrderService {
 //		try {
 //			//获得订单信息
 //			order = this.getDataService().find(id);
+//			System.out.println(id);
+//			System.out.println(order.getId());
 //		} catch (RemoteException e) {
 //			e.printStackTrace();
 //		}

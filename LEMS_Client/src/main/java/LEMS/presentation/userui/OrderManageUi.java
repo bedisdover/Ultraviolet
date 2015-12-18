@@ -245,29 +245,7 @@ public class OrderManageUi extends JPanel {
 		this.add(butOut);
 		this.add(OK);
 		this.add(cancel);
-		
-//		JPanel jPanel = new JPanel();
-//		jPanel.setForeground(Color.RED);
-//		jPanel.setLayout(new GridLayout(20, 5));
-//		jPanel.setBounds(420, 51, 561, 672);
-//		JTextField tabulation[] = new JTextField[100];
-//		Font fnt2 = new Font("Courier", Font.PLAIN, 20);
-//		for (int i = 0; i < 100; i++) {
-//			tabulation[i] = new JTextField();
-//			tabulation[i].setSize(200, 200);
-//			tabulation[i].setEnabled(false);
-//			tabulation[i].setDisabledTextColor(Color.BLACK);
-//			tabulation[i].setFont(fnt2);
-//			// 居中
-//			tabulation[i].setHorizontalAlignment(JTextField.CENTER);
-//			jPanel.add(tabulation[i]);
-//		}
-//		tabulation[0].setText("日期");
-//		tabulation[1].setText("名称");
-//		tabulation[2].setText("条形码号");
-//		tabulation[3].setText("报价");
-//		tabulation[4].setText("预估时间");
-//		this.add(jPanel);
+
 		String strings[] = {"编号", "日期", "名称", "条形码号", "报价", "预估时间"};
 		int nums[] = {300, 93, 20, 30, 20, 420, 55, 576, 650}; 
 		JScrollPane pane = new Table().drawTable(strings, nums);
@@ -284,7 +262,7 @@ public class OrderManageUi extends JPanel {
 		
 		OK.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				okOperation();
+				OKOperation();
 			}
 		});
 		
@@ -295,19 +273,16 @@ public class OrderManageUi extends JPanel {
 			}
 		});
 		
-		
 		//TODO 添加到MainFrame中
 		mainFrame.addKeyListener(new KeyAdapter() {
-
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 					System.exit(0);
 				} else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					okOperation();
+					OKOperation();
 				}
 			}
-			
 		});
 	}
 	
@@ -317,40 +292,38 @@ public class OrderManageUi extends JPanel {
 		g.draw3DRect(70, 63, 284, 133, false);
 		g.draw3DRect(70, 209, 284, 139, false);
 		g.draw3DRect(70, 359, 284, 286, false);
-		//TODO 添加圆角矩形
-//		g.drawRoundRect(51, 53, 325, 667, 20, 20);
-		//TODO 消除锯齿
-//		RenderingHints renderingHints = new RenderingHints(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_ANTIALIAS_ON);
-//		renderingHints.
+
 		this.repaint();
 	}
 	
 	/**
 	 * 按下“确定”按钮后执行的动作
 	 */
-	private void okOperation() {
+	private void OKOperation() {
 		//判断输入是否为空
 		if (isEmpty()) {
 			JOptionPane.showMessageDialog(null, "输入内容为空！", "Error", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-		
-		//判断输入是否合法
-		if (!isLegal()) {
-			return;
-		}
-		
 		//判断目标城市是否在服务范围内
 		if (!legalCity()) {
 			//TODO 很丑的对话框
 			JOptionPane.showMessageDialog(mainFrame, "输入地址无效" + "\n或\n" +"目标城市不在服务范围内！", "Error", JOptionPane.ERROR_MESSAGE);
 			return;
-		} 
+		}
+		//判断手机号是否合法（全为7位或11位数字）
+		if (!legalPhone()) {
+			JOptionPane.showMessageDialog(mainFrame, "输入手机号无效!" + "\n或\n" +"手机号不存在！", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+		//判断输入是否合法
+		if (!isLegal()) {
+			JOptionPane.showMessageDialog(mainFrame, "请输入正确数值！", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 		
 		// 生成订单
-		createOrder();
+		this.createOrder();
 		// 清空输入框
-		empty();
+		this.empty();
 	}
 	
 	/**
@@ -378,36 +351,56 @@ public class OrderManageUi extends JPanel {
 	 * @return 若在服务范围内，返回true，否则返回false
 	 */
 	private boolean legalCity() {
-		
-		if (sAddress.getText().length() < 3 || sAddress.getText().length() < 3) {
-			return false;
-		}
-		
-		String sCity = sAddress.getText().substring(0, 2);
-		String aCity = aAddress.getText().substring(0, 2);
-		
-		if (City.legalCity(sCity) && City.legalCity(aCity)) {
+		if (City.legalCity(sAddress.getText()) && City.legalCity(aAddress.getText())) {
 			return true;
 		}
 		
 		return false;
 	}
 	
+	private boolean legalPhone() {
+		// 判断手机号是否合法（全为数字、共7位或11位）
+		if (sPhone.getText().length() != 7 && sPhone.getText().length() != 11) {
+			return false;
+		}
+		if (aPhone.getText().length() != 7 && aPhone.getText().length() != 11) {
+			return false;
+		}
+		
+		if (!isNumber(sPhone.getText()) || !isNumber(aPhone.getText())) {
+			return false;
+		}
+		
+		return true;
+	}
+	
 	/**
-	 * 判断输入是否合法
+	 * 判断输入（数量、尺寸、重量）是否合法
 	 * 
 	 * @return
 	 */
 	private boolean isLegal() {
-		
-		//TODO 利用正则表达式判断输入是否合法
-		if (!sPhone.getText().matches("\\d+") || aPhone.getText().matches("\\d+")) {
-			JOptionPane.showMessageDialog(mainFrame, "输入手机号无效!" + "\n或\n" +"手机号不存在！", "Error", JOptionPane.ERROR_MESSAGE);
+		try {
+			Integer.parseInt(cNumber.getText());
+			Double.parseDouble(cWeight.getText());
+			Double.parseDouble(cLength.getText());
+			Double.parseDouble(cWidth.getText());
+			Double.parseDouble(cHeight.getText());
+		} catch (NumberFormatException e) {
 			return false;
 		}
-		//TODO 判断数量，重量等是否合法
-		
+
 		return true;
+	}
+	
+	/**
+	 * 判断输入是否为数字（手机号）
+	 * 
+	 * @param string 输入内容
+	 * @return 若全为数字，返回true，否则返回false
+	 */
+	private boolean isNumber(String string) {
+		return string.matches("\\d+");
 	}
 	
 	/**

@@ -13,6 +13,7 @@ public class City implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	//TODO enum还是class，哪个更好
+	//TODO 存储到数据库
 //	北京,
 //	上海,
 //	南京,
@@ -29,12 +30,18 @@ public class City implements Serializable {
 	/**
 	 * 判断城市是否在服务范围内
 	 * 
-	 * @param city 城市
+	 * @param address 目的地
 	 * @return 若在城市范围内，返回true，否则返回false
 	 */
-	public static boolean legalCity(String city) {
-		if (cityList.contains(city)) {
-			return true;
+	public static boolean legalCity(String address) {
+		if (address.length() < 3) {
+			return false;
+		}
+		
+		for (String city : cityList) {
+			if (address.startsWith(city)) {
+				return true;
+			}
 		}
 		
 		return false;
