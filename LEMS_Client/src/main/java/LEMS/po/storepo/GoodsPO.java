@@ -1,8 +1,6 @@
 package LEMS.po.storepo;
 //更新过
 import java.io.Serializable;
-
-import LEMS.po.orderpo.TransportType;
 /**
  * @author 周梦佳
  * 货物持久化对象

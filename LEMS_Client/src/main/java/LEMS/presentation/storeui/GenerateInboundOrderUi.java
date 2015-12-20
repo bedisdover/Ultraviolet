@@ -213,7 +213,12 @@ public class GenerateInboundOrderUi extends JPanel {
 		cancel.setEnabled(state);
 		textTime.setEditable(state);
 	}
-
+private void buttonAllTrue(){
+	add.setEnabled(true);
+	delete.setEnabled(true);
+	update.setEnabled(true);
+	inquire.setEnabled(true);
+}
 	/**
 	 * 清空输入框
 	 */
@@ -318,20 +323,42 @@ public class GenerateInboundOrderUi extends JPanel {
 					if (judge == 0) {
 						// 新建失败，跳出提示
 					} else {
-						Table table = new Table();
 						table.setValueAt(showRow, showColumn, iovo.getId());
-						table.setValueAt(showRow, showColumn + 1, iovo.getInDate());
-						table.setValueAt(showRow, showColumn + 2,iovo.getDestination().name());
-						table.setValueAt(showRow, showColumn + 3, iovo.getArea().name());
+						table.setValueAt(showRow, showColumn + 1, iovo.getInDate().substring(0, 8));
+						switch(iovo.getDestination().name()){
+						case "Beijing":
+							table.setValueAt(showRow, showColumn + 2,"北京");
+						case "Shanghai":
+							table.setValueAt(showRow, showColumn + 2,"上海");
+						case "Guangzhou":
+							table.setValueAt(showRow, showColumn + 2,"广州");
+						case "Nanjing":
+							table.setValueAt(showRow, showColumn + 2,"南京");
+						}
+						switch(iovo.getArea().name()){
+						case "Airline":
+							table.setValueAt(showRow, showColumn + 3,"航运区");
+						case "Trainline":
+							table.setValueAt(showRow, showColumn + 3,"铁运区");
+						case "Busline":
+							table.setValueAt(showRow, showColumn + 3,"汽运区");
+						case "Motoline":
+							table.setValueAt(showRow, showColumn + 3,"机动区");
+						}
+						
 						table.setValueAt(showRow, showColumn + 4, iovo.getRow()+ "");
 						table.setValueAt(showRow, showColumn + 5, iovo.getStand() + "");
 						table.setValueAt(showRow, showColumn + 6, iovo.getPosition() + "");
 						showRow++;
-
+						buttonAllTrue();
+						empty();
 					}
+					
+				
 				} // 删除的确定
 				else if (whichButton == 2) {
 					currentLine = table.table.getSelectedRow();
+					System.out.println(currentLine+"aaa");
 					//告诉逻辑层通知数据库修改
 					String id=(String) table.table.getValueAt(currentLine, 0);
 					
@@ -339,9 +366,11 @@ public class GenerateInboundOrderUi extends JPanel {
 					int judge=storeGenerateOrder.deleteInboundOrderPO(id);
 					if(judge==0)
 						//删除失败 跳出提示
+						System.out.println("删除数据库失败!");
 					if(judge>0){
 							//右边表格删除这一行
-						table.table.remove(currentLine);
+						System.out.println("删除数据库成功！");
+						table.removeLine(currentLine);
 						repaint();
 					}
 				
@@ -355,7 +384,6 @@ public class GenerateInboundOrderUi extends JPanel {
 					if (judge == 0) {
 						// 修改失败，跳出提示
 					} else {
-						Table table = new Table();
 						table.setValueAt(currentLine, 0, iovo.getId());
 						table.setValueAt(currentLine, 1, iovo.getInDate());
 						table.setValueAt(currentLine, 2,iovo.getDestination().name());

@@ -3,8 +3,6 @@ package LEMS.po.storepo;
 
 import java.io.Serializable;
 
-import LEMS.po.orderpo.TransportType;
-
 /**
  * @author 周梦佳
  * 出库单持久化对象

@@ -20,10 +20,10 @@ import LEMS.dataservice.factory.StoreFactory;
 import LEMS.dataservice.orderdataservice.OrderDataService;
 import LEMS.dataservice.storedataservice.GoodsDataService;
 import LEMS.po.orderpo.OrderPO;
-import LEMS.po.orderpo.TransportType;
 import LEMS.po.storepo.Area;
 import LEMS.po.storepo.Destination;
 import LEMS.po.storepo.GoodsPO;
+import LEMS.po.storepo.TransportType;
 import LEMS.vo.storevo.InboundOrderVO;
 import LEMS.vo.storevo.OutboundOrderVO;
 /**

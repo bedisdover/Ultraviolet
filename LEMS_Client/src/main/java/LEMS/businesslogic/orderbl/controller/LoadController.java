@@ -5,8 +5,8 @@ import java.util.Date;
 import LEMS.businesslogic.orderbl.load.Factory;
 import LEMS.businesslogic.orderbl.load.Load;
 import LEMS.po.orderpo.OrderPO;
-import LEMS.po.orderpo.TransportType;
 import LEMS.po.orderpo.transfer.LoadNotePO;
+import LEMS.po.storepo.TransportType;
 import LEMS.po.userpo.UserPO;
 import LEMS.vo.uservo.UserVO;
 

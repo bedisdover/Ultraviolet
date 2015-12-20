@@ -17,10 +17,10 @@ import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.StoreFactory;
 import LEMS.dataservice.storedataservice.GoodsDataService;
-import LEMS.po.orderpo.TransportType;
 import LEMS.po.storepo.Area;
 import LEMS.po.storepo.Destination;
 import LEMS.po.storepo.GoodsPO;
+import LEMS.po.storepo.TransportType;
 import LEMS.vo.storevo.GoodsVO;
 /**
  * 

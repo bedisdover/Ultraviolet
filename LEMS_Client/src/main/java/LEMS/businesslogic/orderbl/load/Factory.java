@@ -1,6 +1,6 @@
 package LEMS.businesslogic.orderbl.load;
 
-import LEMS.po.orderpo.TransportType;
+import LEMS.po.storepo.TransportType;
 
 public class Factory {
 	/**

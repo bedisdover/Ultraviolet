@@ -2,8 +2,8 @@ package LEMS.vo.storevo;
 
 import java.util.ArrayList;
 
-import LEMS.po.orderpo.TransportType;
 import LEMS.po.storepo.Destination;
+import LEMS.po.storepo.TransportType;
 /**
  * @author 周梦佳
  * OutboundOrder的值对象

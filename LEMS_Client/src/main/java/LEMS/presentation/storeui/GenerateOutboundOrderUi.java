@@ -15,8 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import LEMS.businesslogic.storebl.StoreGenerateOrder;
-import LEMS.po.orderpo.TransportType;
 import LEMS.po.storepo.Destination;
+import LEMS.po.storepo.TransportType;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.DateChooser;

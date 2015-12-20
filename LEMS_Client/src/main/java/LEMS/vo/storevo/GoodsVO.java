@@ -1,8 +1,8 @@
 package LEMS.vo.storevo;
 
-import LEMS.po.orderpo.TransportType;
 import LEMS.po.storepo.Area;
 import LEMS.po.storepo.Destination;
+import LEMS.po.storepo.TransportType;
 /**
  * @author 周梦佳
  * Goods的值对象
