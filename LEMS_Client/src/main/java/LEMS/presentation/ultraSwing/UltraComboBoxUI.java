@@ -38,6 +38,9 @@ public class UltraComboBoxUI extends BasicComboBoxUI {
 	  arrow.setRolloverEnabled(true);
 	  arrow.setRolloverIcon(icon);
 	  arrow.setBorder(null);
+	  /**
+	   * 
+	   */
 	  arrow.setBackground(Color.gray);
 	  arrow.setOpaque(false);
 	  arrow.setContentAreaFilled(false);

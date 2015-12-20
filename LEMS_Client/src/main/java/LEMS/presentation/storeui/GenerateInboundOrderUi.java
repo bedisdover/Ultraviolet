@@ -10,7 +10,6 @@ import java.util.Date;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import LEMS.businesslogic.storebl.StoreGenerateOrder;
 import LEMS.po.storepo.Area;
@@ -146,11 +145,7 @@ public class GenerateInboundOrderUi extends JPanel {
 		labelRow.setFont(fnt);
 		labelStand.setFont(fnt);
 		labelPosition.setFont(fnt);
-		textId.setFont(fnt);
-		textRow.setFont(fnt);
-		textStand.setFont(fnt);
-		textPosition.setFont(fnt);
-		textTime.setFont(fnt);
+		
 		
 		comboBoxDestination.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 129, BOUND_X, BOUND_Y - 5);
 		comboBoxDestination.addItem("北京");

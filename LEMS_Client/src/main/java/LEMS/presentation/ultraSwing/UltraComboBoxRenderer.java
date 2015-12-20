@@ -26,13 +26,13 @@ public class UltraComboBoxRenderer implements ListCellRenderer {
 			  /**
 			   * 
 			   */
-		   renderer.setBackground(Color.gray.darker());
-		   renderer.setForeground(Color.gray.brighter());
+		   renderer.setBackground(Color.gray.brighter());
+		   renderer.setForeground(Color.black.darker());
 		  }else{
 			  /**
 			   * 下拉框的背景色
 			   */
-		   renderer.setBackground(Color.gray.brighter());
+		   renderer.setBackground(Color.white.brighter());
 		  }
 		  
 		  /**

@@ -7,8 +7,8 @@ import java.io.Serializable;
  * 货物持久化对象
  */
 
-@SuppressWarnings("serial")
 public class GoodsPO implements Serializable {
+	private static final long serialVersionUID = 1L;
 	/**
 	 * 快递单号
 	 */

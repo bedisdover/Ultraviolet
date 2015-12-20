@@ -12,7 +12,7 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.text.IconView;
 
-import org.apache.poi.hpsf.Constants;
+
 
 public class UltraButton extends JButton{
 

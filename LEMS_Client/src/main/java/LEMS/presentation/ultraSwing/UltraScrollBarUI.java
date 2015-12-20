@@ -29,9 +29,14 @@ public class UltraScrollBarUI extends BasicScrollBarUI{
 		          RenderingHints.VALUE_ANTIALIAS_ON);
 		  
 		  g2.translate(thumbBounds.x, thumbBounds.y);
+		  /**
+		   * 
+		   */
 		  g2.setColor(Color.gray);
 		  g2.drawRoundRect(1,1,width-2, height-2,5,5);
-		  
+		  /**
+		   * 
+		   */
 		  g2.setColor(Color.ORANGE);
 		  g2.drawLine(3,height/2,width-4,height/2);
 		  g2.drawLine(3,height/2+3,width-4,height/2+3);
