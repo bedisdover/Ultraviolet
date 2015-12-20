@@ -2,7 +2,6 @@ package LEMS.vo.ordervo;
 
 import LEMS.po.inquirepo.LogisticsInfoPO;
 import LEMS.po.orderpo.Express;
-import LEMS.po.orderpo.OrderPO;
 import LEMS.po.orderpo.Packing;
 
 /**
@@ -48,50 +47,7 @@ public class OrderVO {
 	 * 物流信息
 	 */
 	private LogisticsInfoPO logistics;
-	
-	//TODO 极有可能不用的构造函数
-//	public OrderVO(SenderVO sender, ReceiverVO receiver, GoodsVO goodsInfo, Express expressType, long amount,
-//			String time, String id) {
-//		this.sender = sender;
-//		this.receiver = receiver;
-//		this.goodsInfo = goodsInfo;
-//		this.expressType = expressType;
-//		this.amount = amount;
-//		this.time = time;
-//		this.id = id;
-//	}
 
-	/**
-	 * 将订单值对象转换为持久化对象
-	 * 
-	 * @return 订单持久化对象
-	 */
-	public OrderPO transferToPO() {
-		OrderPO orderPO = new OrderPO();
-		
-		orderPO.setId(id);
-		orderPO.setExpressType(expressType);
-		orderPO.setPackageType(packageType);
-		orderPO.setAmount(amount);
-		orderPO.setTime(time);
-		orderPO.setLogisticsInfoPO(logistics);
-		
-		orderPO.setSenderName(sender.getName());
-		orderPO.setSenderPhone(sender.getPhone());
-		orderPO.setSenderAddress(sender.getAddress());
-		
-		orderPO.setReceiverName(receiver.getName());
-		orderPO.setReceiverPhone(receiver.getPhone());
-		orderPO.setReceiverAddress(receiver.getAddress());
-
-		orderPO.setName(goodsInfo.getName());
-		orderPO.setQuantity(goodsInfo.getQuantity());
-		orderPO.setWeight(goodsInfo.getWeight());
-		orderPO.setVolumn(goodsInfo.getVolumn());
-		
-		return orderPO;
-	}
-	
 	public CustomerVO getSender() {
 		return sender;
 	}

@@ -21,6 +21,10 @@ public class OrderPO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	/**
+	 * 订单ID
+	 */
+	private String id;
+	/**
 	 * 寄件人姓名
 	 */
 	private String senderName;
@@ -79,10 +83,6 @@ public class OrderPO implements Serializable {
 	 * 预估时间
 	 */
 	private String time;
-	/**
-	 * 订单ID
-	 */
-	private String id;
 	/**
 	 * 实际收件人
 	 */

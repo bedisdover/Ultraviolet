@@ -13,6 +13,7 @@ import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.OrderFactory;
 import LEMS.dataservice.orderdataservice.OrderDataService;
 import LEMS.po.orderpo.Express;
+import LEMS.po.orderpo.OrderPO;
 import LEMS.po.orderpo.Packing;
 import LEMS.vo.inquirevo.LogisticsInfoVO;
 import LEMS.vo.ordervo.CustomerVO;
@@ -31,72 +32,31 @@ public class Order implements OrderService {
 	 * 订单值对象
 	 */
 	private OrderVO order;
-	/**
-	 * 寄件人
-	 */
-	private CustomerVO sender;
-	/**
-	 * 收件人
-	 */
-	private CustomerVO receiver;
-	/**
-	 * 快递类型
-	 */
-	private Express expressType;
-	/**
-	 * 包装类型
-	 */
-	private Packing packageType;
-	/**
-	 * 货物信息
-	 */
-	private GoodsVO goods;
-	/**
-	 * 邮寄距离
-	 */
-	private double distance;
 	
-	private Price price;
-	private Distance cityDistance;
 	private UserVO user;
 	
-	public Order(UserVO user) {
+	public Order(OrderVO order, UserVO user) {
 		this.user = user;
-		
-		//新建订单
-		order = new OrderVO();
-		
-		price = new Price();
-		cityDistance = new Distance();
+		this.order = order;
 	}
 	
 	public void addSender(CustomerVO sender) {
-		this.sender = sender;
-		
 		order.setSender(sender);
 	}
 
 	public void addReceiver(CustomerVO receiver) {
-		this.receiver = receiver;
-		
 		order.setReceiver(receiver);
 	}
 
 	public void addGoodsInfo(GoodsVO goods) {
-		this.goods = goods;
-		
 		order.setGoodsInfo(goods);
 	}
 
 	public void chooseExpress(Express type) {
-		this.expressType = type;
-		
 		order.setExpressType(type);
 	}
 
 	public void choosePack(Packing type) {
-		this.packageType = type;
-		
 		order.setPackingType(type);
 	}
 	
@@ -112,16 +72,17 @@ public class Order implements OrderService {
 
 	public double getMoney() {
 		//获得距离
-		distance = cityDistance.getDistance(sender.getAddress().substring(0, 2), receiver.getAddress().substring(0, 2));
+		double distance = new Distance().getDistance(order.getSender().getAddress().substring(0, 2), 
+													 order.getReceiver().getAddress().substring(0, 2));
 		//获得单价
-		double temp = price.getPrice(expressType);
+		double temp = new Price().getPrice(order.getExpressType());
 		
-		return distance / 1000 * temp * goods.getWeight();
+		return distance / 1000 * temp * order.getGoodsInfo().getWeight();
 	}
 
 	public double getTotal() {
 		
-		order.setAmount(price.getPrice(packageType) + getMoney()) ;
+		order.setAmount(new Price().getPrice(order.getPackingType()) + getMoney()) ;
 		
 		return order.getAmount();
 	}
@@ -129,8 +90,8 @@ public class Order implements OrderService {
 	public String getTime() {
 		String time = null;
 		try {
-			time = this.getDataService().getTime(sender.getAddress(), 
-										receiver.getAddress(), expressType);
+			time = this.getDataService().getTime(order.getSender().getAddress(), 
+										order.getReceiver().getAddress(), order.getExpressType());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -139,9 +100,30 @@ public class Order implements OrderService {
 	}
 
 	public void endOrder() {
+		OrderPO orderPO = new OrderPO();
+		CustomerVO sender = order.getSender();
+		CustomerVO receiver = order.getReceiver();
+		GoodsVO goodsVO = order.getGoodsInfo();
+		orderPO.setId(this.createID());
+		orderPO.setSenderName(sender.getName());
+		orderPO.setSenderAddress(sender.getAddress());
+		orderPO.setSenderPhone(sender.getPhone());
+		orderPO.setReceiverName(receiver.getName());
+		orderPO.setReceiverAddress(receiver.getAddress());
+		orderPO.setReceiverPhone(receiver.getPhone());
+		orderPO.setName(goodsVO.getName());
+		orderPO.setQuantity(goodsVO.getQuantity());
+		orderPO.setWeight(goodsVO.getWeight());
+		orderPO.setVolumn(goodsVO.getVolumn());
+		orderPO.setExpressType(order.getExpressType());
+		orderPO.setPackageType(order.getPackingType());
+		orderPO.setAmount(this.getTotal());
+		orderPO.setTime(this.getTime());
+		orderPO.setCollector(user.getId());
+		
 		//写入数据
 		try {
-			this.getDataService().insert(order.transferToPO());
+			this.getDataService().insert(orderPO);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
