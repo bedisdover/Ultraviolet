@@ -15,12 +15,14 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-import LEMS.businesslogic.orderbl.controller.OrderController;
+import LEMS.businesslogic.orderbl.Order;
 import LEMS.po.orderpo.City;
 import LEMS.po.orderpo.Express;
 import LEMS.po.orderpo.Packing;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.Table;
+import LEMS.vo.ordervo.CustomerVO;
+import LEMS.vo.ordervo.OrderVO;
 import LEMS.vo.uservo.UserVO;
 
 /**
@@ -79,9 +81,11 @@ public class OrderManageUi extends JPanel {
 
 	private Font fnt1 = new Font("Courier", Font.PLAIN, 26);
 	
-	private OrderController controller;
+	private MainFrame mainFrame;
 	
-	MainFrame mainFrame;
+	private OrderVO orderVO;
+	
+	private Order order;
 	
 	/**
 	 * Create the panel.
@@ -99,7 +103,8 @@ public class OrderManageUi extends JPanel {
 		//添加监听事件
 		this.addListener();
 
-		controller = new OrderController(user);
+		orderVO = new OrderVO();
+		order = new Order(orderVO, user);
 	}
 
 	/**
@@ -427,17 +432,25 @@ public class OrderManageUi extends JPanel {
 	 */
 	private void createOrder() {
 		//添加寄件人信息
-		controller.addSender(sName.getText(), sPhone.getText(), sAddress.getText());
+		CustomerVO sender = new CustomerVO();
+		sender.setName(sName.getText());
+		sender.setPhone(sPhone.getText());
+		sender.setAddress(sAddress.getText());
+		order.addSender(sender);
 		//添加收件人信息
-		controller.addReceiver(aName.getText(), aPhone.getText(), aAddress.getText());
+		CustomerVO receiver = new CustomerVO();
+		receiver.setName(aName.getText());
+		receiver.setPhone(aPhone.getText());
+		receiver.setAddress(aAddress.getText());
+		order.addReceiver(receiver);
 		//添加货物信息
-		controller.addGoodsInfo(cName.getText(),  cNumber.getText(), cWeight.getText(), cLength.getText(), cWidth.getText(), cHeight.getText());
+		order.addGoodsInfo(cName.getText(),  cNumber.getText(), cWeight.getText(), cLength.getText(), cWidth.getText(), cHeight.getText());
 		//选择快递类型
-		controller.chooseType((Express) cExpress.getSelectedItem());
+		order.chooseExpress((Express) cExpress.getSelectedItem());
 		//选择包装类型
-		controller.choosePack((Packing) cPackage.getSelectedItem());
+		order.choosePack((Packing) cPackage.getSelectedItem());
 		//TODO 添加对话框显示价格与时间
-		JOptionPane.showMessageDialog(mainFrame, "运费：" + controller.getMoney() 
-		+ "\n总计：" + controller.getTotal() + "\n预计时间：" + controller.getTime());
+		JOptionPane.showMessageDialog(mainFrame, "运费：" + order.getMoney() 
+		+ "\n总计：" + order.getTotal() + "\n预计时间：" + order.getTime());
 	}
 }
