@@ -13,8 +13,8 @@ public class mainSongYiming {
 //		mainFrame.setContentPane(businessClerkUi);
 //		ReceiveUi receiveUi = new ReceiveUi(mainFrame, null);
 //		mainFrame.setContentPane(receiveUi);
-//		TransferClerkUi transferClerkUi = new TransferClerkUi(mainFrame, null);
-//		mainFrame.setContentPane(transferClerkUi);
+		TransferClerkUi transferClerkUi = new TransferClerkUi(mainFrame, null);
+		mainFrame.setContentPane(transferClerkUi);
 //		ManagerUi managerUi = new ManagerUi(mainFrame, null);
 //		mainFrame.setContentPane(managerUi);
 //		FinancialStaffUi financialStaffUi = new FinancialStaffUi(mainFrame, null);
@@ -33,8 +33,8 @@ public class mainSongYiming {
 //		mainFrame.setContentPane(transferUi);
 //		OrderManageUi orderManageUi = new OrderManageUi(mainFrame, null);
 //		mainFrame.setContentPane(orderManageUi);
-		LoadUi2 loadUi2 = new LoadUi2(mainFrame, null);
-		mainFrame.setContentPane(loadUi2);
+//		LoadUi2 loadUi2 = new LoadUi2(mainFrame, null);
+//		mainFrame.setContentPane(loadUi2);
 		mainFrame.setVisible(true);
 		
 		
