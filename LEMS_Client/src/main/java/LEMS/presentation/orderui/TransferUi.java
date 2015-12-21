@@ -9,7 +9,6 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -19,8 +18,8 @@ import javax.swing.JTextField;
 import LEMS.businesslogic.orderbl.Transfer;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
-import LEMS.presentation.method.Table;
 import LEMS.presentation.method.DateChooser;
+import LEMS.presentation.method.Table;
 import LEMS.vo.ordervo.TransferVO;
 import LEMS.vo.uservo.UserVO;
 
@@ -45,7 +44,7 @@ public class TransferUi extends JPanel {
 	private JButton add;
 	private JButton delete;
 	private JButton update;
-	private JButton inquire;
+	private JButton finish;
 
 	private JLabel labelDate;
 	private JLabel labelDestination;
@@ -54,7 +53,7 @@ public class TransferUi extends JPanel {
 	private JLabel labelFormat;
 
 	private JTextField textDestination;
-	private JTextField textAllId;
+	private JTextField textId;
 	private JTextField textGuard;
 
 	private JComboBox<String> comboBoxFormat;
@@ -73,6 +72,7 @@ public class TransferUi extends JPanel {
 	private InnerPanelTrain innerPanelTrain;
 	private InnerPanelBus innerPanelBus;
 	
+	private Table table;
 	
 	public TransferUi(final MainFrame mainFrame, UserVO user) {
 		this.mainFrame = mainFrame;
@@ -95,20 +95,21 @@ public class TransferUi extends JPanel {
 	 * 初始化
 	 */
 	private void init() {
-		title = new JLabel("中转接收");
+		//TODO 改标签名
+		title = new JLabel("中  转");
 		exit = new JButton("返回");
 		OK = new JButton("确定");
 		cancel = new JButton("取消");
 		add = new JButton("新增");
 		delete = new JButton("删除");
 		update = new JButton("修改");
-		inquire = new JButton("查找");
+		finish = new JButton("查找");
 		labelDate = new JLabel("中转日期:");
 		labelDestination = new JLabel("到达地:");
 		labelGuard = new JLabel("监装员:");
-		labelAllId = new JLabel("所有托运单号:");
+		labelAllId = new JLabel("订单编号:");
 		labelFormat = new JLabel("装运形式：");
-		textAllId = new JTextField();
+		textId = new JTextField();
 		textGuard = new JTextField();
 		textDestination = new JTextField();
 		comboBoxFormat = new JComboBox<String>();
@@ -132,7 +133,7 @@ public class TransferUi extends JPanel {
 		labelGuard.setBounds(LOCATION_LABEL_X + 7, LOCATION_LABEL_Y + 150, BOUND_X, BOUND_Y);
 		labelFormat.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y + 200, BOUND_X, BOUND_Y);
 
-		textAllId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 100, BOUND_X, BOUND_Y - 5);
+		textId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 100, BOUND_X, BOUND_Y - 5);
 		textGuard.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 150, BOUND_X, BOUND_Y - 5);
 		textDestination.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 50, BOUND_X, BOUND_Y - 6);
 
@@ -153,19 +154,14 @@ public class TransferUi extends JPanel {
     	        if(e.getStateChange() == ItemEvent.SELECTED) {
     	            if(e.getSource() == comboBoxFormat) {
     	                int index = comboBoxFormat.getSelectedIndex();
-    	                System.out.println(index+"aaaaa");
     	                if(index==0){
     	                	setPanelAir();
-
-    	                }if(index==1){
+    	                } else if(index==1){
     	                	setPanelTrain();
-
-    	                }if(index==2){
+    	                } else if(index==2){
     	                	setPanelBus();
-
     	                }
     	            } 
-    	        
     	        }
             }  
         };  
@@ -177,7 +173,7 @@ public class TransferUi extends JPanel {
 		add.setBounds(150, 590, 120, 40);
 		delete.setBounds(350, 590, 120, 40);
 		update.setBounds(550, 590, 120, 40);
-		inquire.setBounds(750, 590, 120, 40);
+		finish.setBounds(750, 590, 120, 40);
 
 		title.setFont(fnt1);
 		labelDate.setFont(fnt);
@@ -191,9 +187,9 @@ public class TransferUi extends JPanel {
 		add.setFont(fnt2);
 		delete.setFont(fnt2);
 		update.setFont(fnt2);
-		inquire.setFont(fnt2);
+		finish.setFont(fnt2);
 		textGuard.setFont(fnt);
-		textAllId.setFont(fnt);
+		textId.setFont(fnt);
 		textDestination.setFont(fnt);
 		comboBoxFormat.setFont(fnt);
 
@@ -204,7 +200,7 @@ public class TransferUi extends JPanel {
 		this.add(labelAllId);
 		this.add(labelFormat);
 		this.add(textGuard);
-		this.add(textAllId);
+		this.add(textId);
 		this.add(textDestination);
 		this.add(comboBoxFormat);
 		this.add(OK);
@@ -213,16 +209,15 @@ public class TransferUi extends JPanel {
 		this.add(add);
 		this.add(delete);
 		this.add(update);
-		this.add(inquire);
+		this.add(finish);
 		this.add(innerPanelAir);
 		this.add(innerPanelTrain);
 		this.add(innerPanelBus);
 		String[] columnNames = {"序号", "到达日期", "中转单编号", "出发地", "货物到达状态" };
 		int[] list = { 40, 116, 14, 30, 20, 355, 125, 598, 435 };
 
-		Table table = new Table();
+		table = new Table();
 		add(table.drawTable(columnNames, list));
-
 	}
 
 	/**
@@ -234,7 +229,7 @@ public class TransferUi extends JPanel {
 	private void setTestState(boolean state) {
 		textDestination.setEditable(state);
 		textGuard.setEditable(state);
-		textAllId.setEditable(state);
+		textId.setEditable(state);
 		innerPanelAir.textAirlineNum.setEditable(state);
 		innerPanelAir.textDeskNum.setEditable(state);
 		innerPanelTrain.textCarNum.setEditable(state);
@@ -243,26 +238,22 @@ public class TransferUi extends JPanel {
 		innerPanelBus.textVehicleNum.setEditable(state);
 		OK.setEnabled(state);
 		cancel.setEnabled(state);
-		// 日期不可编辑
 	}
 	
 	private void setPanelAir(){
 		innerPanelAir.setVisible(true);
 		innerPanelTrain.setVisible(false);
 		innerPanelBus.setVisible(false);
-		
 	}
 	private void setPanelTrain(){
 		innerPanelAir.setVisible(false);
 		innerPanelTrain.setVisible(true);
 		innerPanelBus.setVisible(false);
-		
 	}
 	private void setPanelBus(){
 		innerPanelAir.setVisible(false);
 		innerPanelTrain.setVisible(false);
 		innerPanelBus.setVisible(true);
-		
 	}
 	/**
 	 * 清空输入框
@@ -270,7 +261,7 @@ public class TransferUi extends JPanel {
 	private void empty() {
 		textDestination.setText(null);
 		textGuard.setText(null);
-		textAllId.setText(null);
+		textId.setText(null);
 		innerPanelAir.textAirlineNum.setText(null);
 		innerPanelAir.textDeskNum.setText(null);
 		innerPanelTrain.textCarNum.setText(null);
@@ -278,44 +269,37 @@ public class TransferUi extends JPanel {
 		innerPanelBus.textDeliverStaff.setText(null);
 		innerPanelBus.textVehicleNum.setText(null);
 		comboBoxFormat.setSelectedIndex(0);
-		// 日期
 	}
 
 
 	/**
 	 * 为按钮添加事件监听器
 	 */
-
-	
 	private void addListener() {
-		
 		add.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				setTestState(true);
-				// TODO 返回按钮的具体实现
 			}
 		});
 		delete.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO 返回按钮的具体实现
+				table.removeLine(table.getSelectedRow());
 			}
 		});
 		update.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO 返回按钮的具体实现
+				updateOperation();
 			}
 		});
-		inquire.addMouseListener(new MouseAdapter() {
+		finish.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				setTestState(true);
-				// TODO 返回按钮的具体实现
+				finishOperation();
 			}
 		});
 
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO 确定按钮的具体实现
-				empty();
+				OKOperation();
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {
@@ -332,12 +316,31 @@ public class TransferUi extends JPanel {
 		});
 	}
 
+	private void OKOperation() {
+		transfer.addOrder(textId.getText());
+		textId.setText(null);
+	}
+	
+	private void finishOperation() {
+		transferVO.setDate(dc.getTime());
+		transferVO.setDestination(textDestination.getText());
+		transferVO.setSuperVision(textGuard.getText());
+		//TODO 改变、适应
+//		transferVO.setFlight();
+		this.empty();
+		this.setTestState(false);
+	}
+	
+	private void updateOperation() {
+		
+	}
+	
 	public void paintComponent(Graphics g) {
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
 		g.draw3DRect(50, 125, 280, 435, false); // 输入框外框
 		this.repaint();
 	}
-
+	
 	class InnerPanelAir extends JPanel {
 		private static final long serialVersionUID = 1L;
 		private JLabel labelAirlineNum;
@@ -382,7 +385,6 @@ public class TransferUi extends JPanel {
 		private JTextField textVehicleNum;
 		private JTextField textCarNum;
 		
-
 		private InnerPanelTrain() {
 			this.setBounds(55, 390, 270, 100);
 			this.setLayout(null);
@@ -405,14 +407,13 @@ public class TransferUi extends JPanel {
 			this.add(textCarNum);
 			this.add(textVehicleNum);
 		}
+		
 		public void paintComponent(Graphics g) {
 			Image backGround=Toolkit.getDefaultToolkit().getImage("background1.png");
 			g.drawImage(backGround, 0, 0, this.getWidth(), this.getHeight(), null);
 			this.repaint();
 		}
-
 	}
-	
 	
 	class InnerPanelBus extends JPanel {
 		private static final long serialVersionUID = 1L;
@@ -443,11 +444,11 @@ public class TransferUi extends JPanel {
 			this.add(textDeliverStaff);
 			this.add(textVehicleNum);
 		}
+		
 		public void paintComponent(Graphics g) {
 			Image backGround=Toolkit.getDefaultToolkit().getImage("background1.png");
 			g.drawImage(backGround, 0, 0, this.getWidth(), this.getHeight(), null);
 			this.repaint();
 		}
 	}
-
 }

@@ -11,6 +11,6 @@ import java.io.Serializable;
 public enum TransportType implements Serializable {
 	Airplane,//飞机
 	Railway,//火车
-	Landway//汽车
-, YetToKnow
+	Landway,//汽车
+	YetToKnow
 }

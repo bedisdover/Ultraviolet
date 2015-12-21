@@ -1,17 +1,15 @@
 package LEMS.vo.ordervo;
 
-import java.util.ArrayList;
-
-import LEMS.po.orderpo.OrderPO;
+import LEMS.po.storepo.TransportType;
 
 /**
  * @author 宋益明
  * 
  * 中转单值对象
- * 包括：	中转日期、到达地、
+ * 包括：	中转日期、到达地、运输方式
  * 		航班号（飞机）或车次号（火车、汽车）、
  * 		货柜号（飞机）或车厢号（火车）或押运员（汽车）、
- * 		监装员、所有托运单号
+ * 		监装员
  */
 public class TransferVO {
 	
@@ -24,6 +22,11 @@ public class TransferVO {
 	 * 到达地
 	 */
 	private String destination;
+	
+	/**
+	 * 运输方式
+	 */
+	private TransportType type;
 	
 	/**
 	 * 航班号（或车次号）
@@ -39,11 +42,6 @@ public class TransferVO {
 	 * 监装员
 	 */
 	private String superVision;
-	
-	/**
-	 * 订单列表
-	 */
-	private ArrayList<OrderPO> orders;
 
 	public String getDate() {
 		return date;
@@ -65,10 +63,14 @@ public class TransferVO {
 		return superVision;
 	}
 
-	public ArrayList<OrderPO> getOrders() {
-		return orders;
+	public TransportType getType() {
+		return type;
 	}
-
+	
+	public void setType(TransportType type) {
+		this.type = type;
+	}
+	
 	public void setDate(String date) {
 		this.date = date;
 	}
@@ -87,9 +89,5 @@ public class TransferVO {
 
 	public void setSuperVision(String superVision) {
 		this.superVision = superVision;
-	}
-
-	public void setOrders(ArrayList<OrderPO> orders) {
-		this.orders = orders;
 	}
 }
