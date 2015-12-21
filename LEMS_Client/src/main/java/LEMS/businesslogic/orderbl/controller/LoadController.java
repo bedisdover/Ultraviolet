@@ -2,8 +2,8 @@ package LEMS.businesslogic.orderbl.controller;
 
 import java.util.Date;
 
-import LEMS.businesslogic.orderbl.load.Factory;
-import LEMS.businesslogic.orderbl.load.Load;
+import LEMS.businesslogic.orderbl.transfer.Factory;
+import LEMS.businesslogic.orderbl.transfer.Transfer;
 import LEMS.po.orderpo.OrderPO;
 import LEMS.po.orderpo.transfer.LoadNotePO;
 import LEMS.po.storepo.TransportType;
@@ -12,7 +12,7 @@ import LEMS.vo.uservo.UserVO;
 
 public class LoadController extends Controller {
 
-	private Load load;
+	private Transfer load;
 
 	private UserVO user;
 

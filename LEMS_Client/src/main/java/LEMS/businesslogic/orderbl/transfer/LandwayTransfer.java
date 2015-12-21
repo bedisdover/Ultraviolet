@@ -1,16 +1,16 @@
-package LEMS.businesslogic.orderbl.load;
+package LEMS.businesslogic.orderbl.transfer;
 
 /**
  * @author 宋益明
  * 
- * 负责航运功能的具体实现
+ * 负责汽运功能的具体实现
  */
-public class AirplaneLoad implements Passage {
+public class LandwayTransfer implements Passage {
 //
 //	@Override
 //	public double calculateMessage(double distance) {
 //		double sum = sumWeight(orders);
-//		return sum * distance * 20;
+//		return sum * distance * 2;
 //	}
 
 	@Override
@@ -18,5 +18,4 @@ public class AirplaneLoad implements Passage {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 }

@@ -1,11 +1,11 @@
-package LEMS.businesslogic.orderbl.load;
+package LEMS.businesslogic.orderbl.transfer;
 
 /**
  * @author 宋益明
  * 
  * 负责货运功能的具体实现
  */
-public class RailwayLoad implements Passage {
+public class RailwayTransfer implements Passage {
 
 //	@Override
 //	public double calculateMessage(double distance) {

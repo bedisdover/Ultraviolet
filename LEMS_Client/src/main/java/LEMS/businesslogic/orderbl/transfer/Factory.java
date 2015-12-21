@@ -1,4 +1,4 @@
-package LEMS.businesslogic.orderbl.load;
+package LEMS.businesslogic.orderbl.transfer;
 
 import LEMS.po.storepo.TransportType;
 
@@ -14,13 +14,13 @@ public class Factory {
 		
 		switch (type) {
 		case Airplane:
-			load = new AirplaneLoad();
+			load = new AirplaneTransfer();
 			break;
 		case Railway:
-			load = new RailwayLoad();
+			load = new RailwayTransfer();
 			break;
 		case Landway:
-			load = new LandwayLoad();
+			load = new LandwayTransfer();
 			break;
 		default:
 			break;

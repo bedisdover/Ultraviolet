@@ -1,4 +1,4 @@
-package LEMS.businesslogic.orderbl.load;
+package LEMS.businesslogic.orderbl.transfer;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -27,7 +27,7 @@ import LEMS.vo.uservo.UserVO;
  * 目的地中转中心业务员负责出库、装车，并在系统中录入装车单
  * 发往各个营业厅
  */
-public class Load extends AddOrder implements LoadService {
+public class Transfer extends AddOrder implements LoadService {
 	/**
 	 * 订单列表
 	 */
@@ -42,7 +42,7 @@ public class Load extends AddOrder implements LoadService {
 	 */
 	private final int PRICE = 2;
 	
-	public Load(LoadVO loadVO, UserVO user) {
+	public Transfer(LoadVO loadVO, UserVO user) {
 		this.loadVO = loadVO;
 		this.user = user;
 		//新建订单列表
