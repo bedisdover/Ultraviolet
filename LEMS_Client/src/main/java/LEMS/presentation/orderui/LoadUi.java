@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -71,7 +72,7 @@ public class LoadUi extends JPanel {
 	
 	private LoadVO loadVO;
 	
-	private int number = 0;
+	private boolean isUpdate;
 	
 	public LoadUi(final MainFrame mainFrame, UserVO userVO) {
 		this.mainFrame = mainFrame;
@@ -88,6 +89,8 @@ public class LoadUi extends JPanel {
 
 		loadVO = new LoadVO();
 		load = new Transfer(loadVO, userVO);
+		
+		isUpdate = false;
 	}
 
 	/**
@@ -223,6 +226,7 @@ public class LoadUi extends JPanel {
 		textDeliverStaff.setEditable(state);
 		textGuard.setEditable(state);
 		textDestination.setEnabled(state);
+		textID.setEditable(state);
 		OK.setEnabled(state);
 		cancel.setEnabled(state);
 	}
@@ -258,7 +262,8 @@ public class LoadUi extends JPanel {
 		update.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (table.getValueAt(table.getSelectedRow()) != null) {
-					
+					updateOperation();
+					isUpdate = true;
 				}
 			}
 		});
@@ -278,6 +283,7 @@ public class LoadUi extends JPanel {
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				OKOperation();
+				isUpdate = false;
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {
@@ -297,7 +303,8 @@ public class LoadUi extends JPanel {
 	}
 	
 	private void updateOperation() {
-		//TODO 
+		ArrayList<String> values = table.getValueAt(table.getSelectedRow());
+		textID.setText(values.get(1));
 	}
 	
 	private void OKOperation() {
@@ -307,11 +314,18 @@ public class LoadUi extends JPanel {
 			double weight = load.getWeight(id);
 			
 			load.addOrder(id);
-			textGoodsWeight.setText(++number + "");
-			textID.setText(Double.parseDouble(textID.getText()) + weight + "");
+			if (!textGoodsWeight.getText().equals("")) {
+				textGoodsWeight.setText(Double.parseDouble(textGoodsWeight.getText()) + weight + "");
+			} else {
+				textGoodsWeight.setText(weight + "");
+			}
 			
-			String[] values = {number + "", id, name, weight + ""};
-			table.setValueAt(table.numOfEmpty(), values);
+			String[] values = {id, name, weight + ""};
+			if (isUpdate) {
+				table.setValueAt(table.getSelectedRow(), values);
+			} else {
+				table.setValueAt(table.numOfEmpty(), values);
+			}
 			
 			textID.setText(null);
 		} catch (RemoteException e) {
