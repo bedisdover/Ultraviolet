@@ -8,23 +8,23 @@ public class Factory {
 	 * 
 	 * @param type 运输类型
 	 */
-	public Passage createLoad(TransportType type) {
+	public Passage createPassage(TransportType type) {
 		
-		Passage load = null;
+		Passage transfer = null;
 		
 		switch (type) {
 		case Airplane:
-			load = new AirplaneTransfer();
+			transfer = new AirplaneTransfer();
 			break;
 		case Railway:
-			load = new RailwayTransfer();
+			transfer = new RailwayTransfer();
 			break;
 		case Landway:
-			load = new LandwayTransfer();
+			transfer = new LandwayTransfer();
 			break;
 		default:
 			break;
 		}
-		return load;
+		return transfer;
 	}
 }

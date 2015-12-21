@@ -1,25 +1,18 @@
-package LEMS.businesslogic.orderbl.controller;
+package LEMS.businesslogic.orderbl.transfer;
 
-import java.util.Date;
-
-import LEMS.businesslogic.orderbl.transfer.Factory;
-import LEMS.businesslogic.orderbl.transfer.Transfer;
 import LEMS.po.orderpo.OrderPO;
-import LEMS.po.orderpo.transfer.LoadNotePO;
 import LEMS.po.storepo.TransportType;
 import LEMS.po.userpo.UserPO;
 import LEMS.vo.uservo.UserVO;
 
-public class LoadController extends Controller {
+public class TransferController {
 
-	private Transfer load;
+	private Transfer transfer;
 
 	private UserVO user;
 
-	public LoadController(UserVO user, TransportType type) {
+	public TransferController(UserVO user, TransportType type) {
 		this.user = user;
-
-		load = new Factory().createLoad(type);
 	}
 	
 	public void setDeparture(String departure) {
@@ -36,7 +29,7 @@ public class LoadController extends Controller {
 	
 	
 	public void addOrder(OrderPO order) {
-		load.addOrder(order.getId());
+
 	}
 
 	public void createLoadNote() {
