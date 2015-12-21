@@ -65,7 +65,7 @@ public class SettlementUi extends JPanel {
 		this.add(butOut);
 		
 		String[] columnNames = { "收款日期", "收款单位", "收款人","收款地点","收款金额"};
-		int[] list = { 40, 138, 14, 30, 20, 174, 115-30, 707, 497 };
+		int[] list = { 40, 138, 14, 30, 20, 174, 115-30, 708, 497 };
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
 		// *

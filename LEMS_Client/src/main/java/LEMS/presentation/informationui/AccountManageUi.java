@@ -102,23 +102,24 @@ public class AccountManageUi extends JPanel{
 	 * 初始化各组件
 	 */
 	private void initComponents() {
-
+		int up = 30;//整体上移量 
+		
 		title.setBounds(449, 37, 148, 39);
 		title.setFont(fnt1);
-		labelID.setBounds(86, 140, 131, 30);
-		textID.setBounds(206, 144, 144, 24);
-		labelPassword.setBounds(96, 240, 131, 30);
-		textPassword.setBounds(206, 243, 144, 24);
-		labelBalance.setBounds(81, 339, 131, 30);
-		textBalance.setBounds(206, 342, 144, 24);
+		labelID.setBounds(86, 140-up, 131, 30);
+		textID.setBounds(206, 144-up, 144, 24);
+		labelPassword.setBounds(96, 240-up, 131, 30);
+		textPassword.setBounds(206, 243-up , 144, 24);
+		labelBalance.setBounds(81, 339-up, 131, 30);
+		textBalance.setBounds(206, 342-up, 144, 24);
 
-		OK.setBounds(86, 533, 120, 40);
-		cancel.setBounds(230, 533, 120, 40);
+		OK.setBounds(86, 533-up, 120, 40);
+		cancel.setBounds(230, 533-up, 120, 40);
 		butOut.setBounds(52, 36, 120, 40);
-		butAdd.setBounds(114, 632, 120, 40);
-		butDel.setBounds(336, 632, 120, 40);
-		butFind.setBounds(557, 632, 120, 40);
-		butChange.setBounds(779, 632, 120, 40);
+		butAdd.setBounds(114, 632-up, 120, 40);
+		butDel.setBounds(336, 632-up, 120, 40);
+		butFind.setBounds(557, 632-up, 120, 40);
+		butChange.setBounds(779, 632-up, 120, 40);
 
 		this.add(title);
 		this.add(labelID);
@@ -136,7 +137,7 @@ public class AccountManageUi extends JPanel{
 		this.add(butChange);
 
 		String[] columnNames = { "账户ID", "密码", "账户余额"};
-		int[] list = { 40, 181, 14, 30, 20, 384, 126, 561, 465 };
+		int[] list = { 40, 181, 14, 30, 20, 384, 126-up, 561, 465 };
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
 		// *
@@ -144,15 +145,15 @@ public class AccountManageUi extends JPanel{
 		add(table.drawTable(columnNames, list));
 		
 		JLabel label = new JLabel("*");
-		label.setBounds(75, 148, 21, 15);
+		label.setBounds(75, 148-up, 21, 15);
 		add(label);
 		
 		JLabel label_1 = new JLabel("*");
-		label_1.setBounds(85, 245, 21, 15);
+		label_1.setBounds(85, 245-up, 21, 15);
 		add(label_1);
 		
 		JLabel label_2 = new JLabel("*");
-		label_2.setBounds(73, 347, 21, 15);
+		label_2.setBounds(73, 347-up, 21, 15);
 		add(label_2);
 		
 
@@ -331,7 +332,7 @@ public class AccountManageUi extends JPanel{
 	public void paintComponent(Graphics g) {
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(),
 				this.getHeight(), null);
-		g.draw3DRect(63, 126, 306, 465, false);
+		g.draw3DRect(63, 126-30, 306, 465, false);
 		this.repaint();
 	}
 	

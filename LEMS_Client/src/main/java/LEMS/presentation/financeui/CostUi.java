@@ -64,18 +64,18 @@ public class CostUi extends JPanel {
 		font = new Font("Courier", Font.PLAIN, 26);
 		button = new JButton[5];
 		butOut = new JButton("登出");
-		dc = new DateChooser(this, 304, 205 - 29);
+		dc = new DateChooser(this, 304-50, 205 - 29);
 	}
 
 	public void initComponents() {
-		int b = 70;// 整体左移量
+		int b = 120;// 整体左移量
 		int change = 30;// 整体上移量
 
 		title.setBounds(454, 26, 249, 45);
 		title.setFont(font);
 		name.setBounds(800, 25, 135, 28);
 		statue.setBounds(800, 60, 183, 28);
-		textArea.setBounds(304, 427 - change, 119, 90);
+		textArea.setBounds(304-50, 427 - change, 119, 90);
 		butOut.setBounds(52, 36, 120, 40);
 		this.add(butOut);
 
@@ -126,7 +126,7 @@ public class CostUi extends JPanel {
 		this.add(textArea);
 
 		String[] columnNames = { "付款账号", "付款日期", "付款金额" };
-		int[] list = { 40, 148, 14, 30, 20, 523 - 40, 123 - change, 462, 489 };
+		int[] list = { 40, 158, 14, 30, 20, 523 - 70, 123 - change, 492, 489 };
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
 		// *
@@ -229,7 +229,7 @@ public class CostUi extends JPanel {
 	public void paintComponent(Graphics g) {
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(),
 				this.getHeight(), null);
-		g.draw3DRect(163, 124 - 30, 294, 489, false);
+		g.draw3DRect(163-50, 124 - 30, 294, 489, false);
 		this.repaint();
 	}
 
