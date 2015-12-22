@@ -118,7 +118,7 @@ public class CostBenefitList {
 			payBills = in.getPayBill();
 			for (int i = 0; i < payBills.size(); i++) {
 				if (!isValid(payBills.get(i).getDate())) {
-					incomeBills.remove(i);
+					payBills.remove(i);
 				}
 			}
 		} catch (MalformedURLException e) {

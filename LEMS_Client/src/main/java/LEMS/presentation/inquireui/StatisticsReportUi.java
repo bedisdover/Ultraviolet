@@ -163,7 +163,10 @@ public class StatisticsReportUi extends JPanel {
 						 table2.setValueAt(i, 2, incomes.get(i).getInstitution());
 						 table2.setValueAt(i, 3, incomes.get(i).getAccount());
 						}
-					}					
+					}
+					if(pays.isEmpty()&&incomes.isEmpty()){
+						JOptionPane.showMessageDialog(StatisticsReportUi.this, "未找到任何收款单和付款单！ ");
+					}
 				}
 				
 			}
