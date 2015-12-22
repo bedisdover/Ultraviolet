@@ -11,6 +11,7 @@ import LEMS.businesslogic.inquirebl.inquirediary.InquireDiary;
 import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
+import LEMS.presentation.method.DateChooser;
 import LEMS.presentation.method.Table;
 import LEMS.vo.inquirevo.DiaryVO;
 import LEMS.vo.uservo.UserVO;
@@ -36,7 +37,7 @@ public class DiaryUi extends JPanel{
 	private JLabel statue;
 	private JButton but;
 	private JButton butOut;
-	
+	private DateChooser dc;
 	private Table table;
 	private UserVO user;
 	/**
@@ -65,6 +66,7 @@ public class DiaryUi extends JPanel{
 		textField = new JTextField();
 		font = new Font("Courier", Font.PLAIN, 26);
 		butOut = new JButton("登出");
+		dc = new DateChooser(this, 515-80, 152 - 29);
 	}
 	
 	private void initComponent(){
@@ -74,9 +76,9 @@ public class DiaryUi extends JPanel{
 		name.setBounds(355,75,135,28);
 		statue.setBounds(528,75,183,28);
 		but.setBounds(692,119,120,30);
-		textField.setBounds(415,122,160,25);
+//		textField.setBounds(415,122,160,25);
 		butOut.setBounds(52, 36, 120, 40);
-		
+		textField=dc.showDate;
 		this.add(date);
 		this.add(title);
 		this.add(name);
@@ -86,14 +88,13 @@ public class DiaryUi extends JPanel{
 		this.add(butOut);
 		
 		
-		String[] columnNames = {""};
+		String[] columnNames = {"历史操作"};
 		int[] list = { 40, 414, 14, 30, 20, 290, 172, 432, 470 };
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
 		// *
 		table = new Table();
 		add(table.drawTable(columnNames, list));
-		
 		
 	}
 	
@@ -104,8 +105,9 @@ public class DiaryUi extends JPanel{
 				for(;k>=0;k--){
 					table.setValueAt(k, 0, "");
 				}
+				String date=textField.getText().substring(0, 4)+"-"+textField.getText().substring(5, 7)+"-"+textField.getText().substring(8, 10);
 				InquireDiary ind=new InquireDiary();
-				DiaryVO diary=ind.getDiary(textField.getText());
+				DiaryVO diary=ind.getDiary(date);
 				ArrayList<String> operations=diary.getOperation();
 				for(int i=0;i<operations.size();i++){
 					table.setValueAt(i, 0, operations.get(i));
