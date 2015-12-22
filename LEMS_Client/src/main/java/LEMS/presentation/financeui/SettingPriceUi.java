@@ -10,6 +10,7 @@ import javax.swing.*;
 
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
+import LEMS.vo.uservo.UserVO;
 
 /**
  * @author 苏琰梓 制定价格界面 2015年12月4日
@@ -19,10 +20,10 @@ public class SettingPriceUi extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	private UserVO user;
 	MainFrame mainFrame;
 	JLabel title = new JLabel("制定价格");
-	JLabel name = new JLabel("账号：   xxx");
+	JLabel name = new JLabel("账号："+user.getId());
 	JLabel statue = new JLabel("身份：    总经理");
 	JLabel lab1 = new JLabel("系统当前价格：    	 ___________    元每公里");
 	JLabel lab2 = new JLabel("请输入新价格：	");
@@ -35,11 +36,12 @@ public class SettingPriceUi extends JPanel {
 	
 	
 
-	public SettingPriceUi(final MainFrame mainFrame) {
+	public SettingPriceUi(final MainFrame mainFrame,UserVO uvo) {
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH ,
 				MainFrame.JFRAME_HEIGHT);
 		this.setLayout(null);
 		this.mainFrame = mainFrame;
+		user=uvo;
 		
 		title.setBounds(456,26,249,45);
 		title.setFont(font);
