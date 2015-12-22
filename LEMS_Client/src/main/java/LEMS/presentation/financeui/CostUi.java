@@ -16,6 +16,7 @@ import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.DateChooser;
 import LEMS.presentation.method.Table;
+import LEMS.vo.uservo.UserVO;
 
 /**
  * @author 苏琰梓 成本管理界面 2015年11月25日
@@ -34,13 +35,15 @@ public class CostUi extends JPanel {
 	private Table table;
 	private JButton butOut;
 	private DateChooser dc;
+	private UserVO user;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public CostUi(final MainFrame mainFrame) {
+	public CostUi(final MainFrame mainFrame,UserVO uvo) {
 		this.mainFrame = mainFrame;
+		user=uvo;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
 		// 初始化
@@ -56,7 +59,7 @@ public class CostUi extends JPanel {
 	public void init() {
 		label = new JLabel[6];
 		title = new JLabel("成本管理");
-		name = new JLabel("账号：   xxx");
+		name = new JLabel("账号："+user.getId());
 		statue = new JLabel("身份：    财务人员");
 		text = new JTextField[5];
 		textArea = new JTextArea();

@@ -36,7 +36,7 @@ public class FinancialStaffUi extends JPanel {
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
 		
 		statisticsReportUi = new StatisticsReportUi(this.mainFrame);
-		costPanel = new CostUi(this.mainFrame);
+		costPanel = new CostUi(this.mainFrame,uvo);
 		diaryUi = new DiaryUi(this.mainFrame, uvo);
 		settlementPanel = new SettlementUi(this.mainFrame);
 		accountPanel=new AccountManageUi(this.mainFrame,uvo);
