@@ -54,8 +54,8 @@ public class ExamDocumentUi extends JPanel {
 	private void init(){
 		date = new JLabel("单据类型：");
 		title = new JLabel("审批单据");
-		name = new JLabel("账号：  "/*+user.getId()*/);
-		statue = new JLabel("身份： "/*+UserRole.transfer(user.getRole())*/);
+		name = new JLabel("账号：  "+user.getId());
+		statue = new JLabel("身份： "+UserRole.transfer(user.getRole()));
 		but = new JButton("查找");
 		box = new JComboBox<String>();
 		font = new Font("Courier", Font.PLAIN, 26);

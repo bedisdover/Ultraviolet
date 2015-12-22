@@ -23,8 +23,7 @@ public class SettingPriceUi extends JPanel {
 	private UserVO user;
 	MainFrame mainFrame;
 	JLabel title = new JLabel("制定价格");
-	JLabel name = new JLabel("账号："+user.getId());
-	JLabel statue = new JLabel("身份：    总经理");
+	
 	JLabel lab1 = new JLabel("系统当前价格：    	 ___________    元每公里");
 	JLabel lab2 = new JLabel("请输入新价格：	");
 	JLabel lab3 = new JLabel("元每公里");
@@ -42,7 +41,8 @@ public class SettingPriceUi extends JPanel {
 		this.setLayout(null);
 		this.mainFrame = mainFrame;
 		user=uvo;
-		
+		JLabel name = new JLabel("账号："+user.getId());
+		JLabel statue = new JLabel("身份：    总经理");
 		title.setBounds(456,26,249,45);
 		title.setFont(font);
 		name.setBounds(375,75,135,28);
