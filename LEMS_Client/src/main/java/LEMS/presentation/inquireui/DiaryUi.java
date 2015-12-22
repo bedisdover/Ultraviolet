@@ -66,7 +66,7 @@ public class DiaryUi extends JPanel{
 		textField = new JTextField();
 		font = new Font("Courier", Font.PLAIN, 26);
 		butOut = new JButton("登出");
-		dc = new DateChooser(this, 515-80, 152 - 29);
+		dc = new DateChooser(this, 435, 123);
 	}
 	
 	private void initComponent(){

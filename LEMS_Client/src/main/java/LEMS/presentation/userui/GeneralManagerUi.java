@@ -46,7 +46,7 @@ public class GeneralManagerUi extends JPanel {
 		institutionManageUi = new InstitutionManageUi(this.mainFrame,user);
 		diaryUi = new DiaryUi(this.mainFrame,user);
 		stuffManageUi = new StuffManageUi(this.mainFrame,user);
-		statisticsReportUi = new StatisticsReportUi(this.mainFrame);
+		statisticsReportUi = new StatisticsReportUi(this.mainFrame,user);
 		SettingPriceUi = new LEMS.presentation.financeui.SettingPriceUi(this.mainFrame);
 		init();
 		initComponents();

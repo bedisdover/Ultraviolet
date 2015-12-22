@@ -13,11 +13,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import LEMS.businesslogic.inquirebl.inquirebusinesslist.InquireBusinessList;
+import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
+import LEMS.presentation.method.DateChooser;
 import LEMS.presentation.method.Table;
 import LEMS.vo.financevo.PayBillVO;
 import LEMS.vo.inquirevo.BusinessListVO;
+import LEMS.vo.uservo.UserVO;
 import LEMS.vo.financevo.IncomeBillVO;
 
 /**
@@ -42,17 +45,19 @@ public class StatisticsReportUi extends JPanel {
 	private JTextField textDate2;
 	private JButton but;
 	private JButton butOut;
-	
+	private DateChooser dc1;
+	private DateChooser dc2;
 	private Font font;
 	private Font subfont;
-	
+	private UserVO user;
 	Table table1;
 	Table table2;
 	
-	public StatisticsReportUi(final MainFrame mainFrame) {
+	public StatisticsReportUi(final MainFrame mainFrame,UserVO uvo) {
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH-288, MainFrame.JFRAME_HEIGHT);
 		this.setLayout(null);
 		this.mainFrame = mainFrame;
+		user=uvo;
 		this.init();
 		this.initComponent();
 		this.addListener();
@@ -62,8 +67,8 @@ public class StatisticsReportUi extends JPanel {
 		title = new JLabel("查看统计分析");
 		labelDate1 = new JLabel("日期：");
 		labelDate2 = new JLabel("至");
-		name = new JLabel("账号：   ");
-		statue = new JLabel("身份：    ");
+		name = new JLabel("账号：  "+user.getId());
+		statue = new JLabel("身份： "+UserRole.transfer(user.getRole()));
 		textDate1 = new JTextField();
 		textDate2 = new JTextField();
 		font = new Font("Courier", Font.PLAIN, 26);
@@ -72,6 +77,8 @@ public class StatisticsReportUi extends JPanel {
 		subtitle1 = new JLabel("付款单信息");
 		subtitle2 = new JLabel("收款单信息");
 		butOut = new JButton("登出");
+		dc1 = new DateChooser(this, 290, 102);
+		dc2 = new DateChooser(this, 540, 102); 
 	}
 	
 	private void initComponent(){
@@ -84,8 +91,8 @@ public class StatisticsReportUi extends JPanel {
 		but.setBounds(740,119-change,120,30);
 		labelDate1.setBounds(217,122-change,80,25);
 		labelDate2.setBounds(490,122-change,80,25);
-		textDate1.setBounds(290,122-change,160,25);
-		textDate2.setBounds(540,122-change,160,25);
+		textDate1=dc1.showDate;
+		textDate2=dc2.showDate;
 		subtitle1.setBounds(456,156-change,169,39);
 		subtitle2.setBounds(456,423-change-15,169,39);
 		subtitle1.setFont(subfont);
@@ -129,14 +136,12 @@ public class StatisticsReportUi extends JPanel {
 				if(textDate1.getText().equals("")||textDate2.getText().equals("")){
 					JOptionPane.showMessageDialog(StatisticsReportUi.this, "请将日期填写完整!");
 				}
-				//日期格式不符合要求
-				else if(textDate1.getText().length()!=10||textDate2.getText().length()!=10){
-					JOptionPane.showMessageDialog(StatisticsReportUi.this, "日期格式为:yyyy-mm-dd!");
-				}
 				else{
 					empty();
 					InquireBusinessList inquire=new InquireBusinessList();
-					BusinessListVO business=inquire.getBusinessList(textDate1.getText(),textDate2.getText());
+					String date1=textDate1.getText().substring(0, 4)+"-"+textDate1.getText().substring(5, 7)+"-"+textDate1.getText().substring(8, 10);
+					String date2=textDate2.getText().substring(0, 4)+"-"+textDate2.getText().substring(5, 7)+"-"+textDate2.getText().substring(8, 10);
+					BusinessListVO business=inquire.getBusinessList(date1,date2);
 					
 					//显示付款单信息
 					ArrayList<PayBillVO> pays=business.getPayBill();
