@@ -61,6 +61,9 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 			orderPO.setTime(result.getString(15));
 			//设置实际收件人
 			orderPO.setReceiver(result.getString(16));
+			orderPO.setCollector(result.getString(17));
+			orderPO.setDeliver(result.getString(18));
+			
 			connect.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -94,6 +97,8 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 			pstmt.setString(15, orderPO.getTime());
 			//实际收件人
 			pstmt.setString(16, orderPO.getReceiver());
+			pstmt.setString(17, orderPO.getCollector());
+			pstmt.setString(18, orderPO.getDeliver());
 			
 			pstmt.executeUpdate();
 			
@@ -132,7 +137,9 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 		
 		try {
 			while (result.next()) {
-				
+				if (result.getString(15).startsWith(date)) {
+					
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -193,7 +200,9 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 		opo.setWeight(3.1);
 		opo.setVolumn(5.3);
 		opo.setReceiver("宋一鸣");
-		opo.setTime("10");
+		opo.setTime("2015121304");
+		opo.setCollector("0250121012");
+		opo.setDeliver("0100121012");
 		try {
 			OrderData od=new OrderData();
 //			od.insert(opo);

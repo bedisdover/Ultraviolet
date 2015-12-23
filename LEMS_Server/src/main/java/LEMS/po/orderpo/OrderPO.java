@@ -9,13 +9,13 @@ import LEMS.po.inquirepo.LogisticsInfoPO;
  * 
  * 订单持久化对象
  * 订单包括：
- * 		订单ID、物流信息
+ * 		订单ID、物流信息（单独存入数据库）
  * 		寄件人姓名、电话、地址
  * 		收件人姓名、电话、地址
  * 		货物名称、数量、质量、体积
  * 		快递类型、包装类型
  * 		时间、金额、实际收件人、
- * 		揽件员、收件员
+ * 		揽件员、派件员
  */
 public class OrderPO implements Serializable {
 	private static final long serialVersionUID = 1L;
