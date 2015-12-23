@@ -2,6 +2,7 @@ package LEMS.dataservice.orderdataservice;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import LEMS.po.orderpo.IncomeBillPO;
 
@@ -22,4 +23,14 @@ public interface ReceiptRecordDataService extends Remote {
 	 * @return 记录ID
 	 */
 	public String createID(String institution, String date) throws RemoteException;
+	
+	/**
+	 * 根据揽件员及日期获得所有订单
+	 * 
+	 * @param collector 揽件员ID
+	 * @param date 日期
+	 * @return 所有订单编号（String）
+	 * @throws RemoteException 连接异常，发现异常后，抛出到逻辑层
+	 */
+	public ArrayList<String> getOrders(String collector, String date) throws RemoteException;
 }

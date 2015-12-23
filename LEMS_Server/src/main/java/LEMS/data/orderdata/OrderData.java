@@ -33,10 +33,8 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 		
 		connect = new Connect();
 	}
-
 	
 	public OrderPO find(String id) throws RemoteException {
-		System.out.println(1);
 		String sql = "SELECT * FROM dingdan WHERE id = " + id;
 
 		ResultSet result = connect.getResultSet(sql);
@@ -72,7 +70,6 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 	}
 
 	public void insert(OrderPO orderPO) throws RemoteException {
-		
 		String sql = "INSERT INTO dingdan VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		PreparedStatement pstmt = connect.getPreparedStatement(sql);
@@ -126,9 +123,22 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 	}
 	
 	@Override
-	public ArrayList<String> findAll(String institution) throws RemoteException {
-		//TODO 可能没用的方法
-		return null;
+	public ArrayList<OrderPO> findAll(String collector, String date) throws RemoteException {
+		//为记录收款单任务服务
+		ArrayList<OrderPO> orders = new ArrayList<OrderPO>();
+		String sql = "SELECT * FROM dingdan";
+
+		ResultSet result = connect.getResultSet(sql);
+		
+		try {
+			while (result.next()) {
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return orders;
 	}
 
 	@Override

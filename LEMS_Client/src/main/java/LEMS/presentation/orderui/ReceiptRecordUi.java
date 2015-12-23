@@ -40,8 +40,8 @@ public class ReceiptRecordUi extends JPanel {
 	private JButton OK;
 	private JButton cancel;
 	private JButton add;
-	private JButton delete;
-	private JButton update;
+//	private JButton delete;
+//	private JButton update;
 	private JButton finish;
 	private JLabel labelDate;
 	private JLabel labelStaff;
@@ -53,9 +53,8 @@ public class ReceiptRecordUi extends JPanel {
 	 * 实收金额
 	 */
 	private JLabel labelMoney;
-//	private JTextField textDate;
 	private JTextField textStaff;
-	private JTextField textId;
+	private JTextField textNeeded;
 	private JTextField textMoney;
 
 	private JSeparator separator1;
@@ -71,9 +70,12 @@ public class ReceiptRecordUi extends JPanel {
 	private IncomeBillVO incomeBillVO;
 	
 	private ReceiptRecord receiptRecord;
+	
+	private UserVO user;
 
 	public ReceiptRecordUi(final MainFrame mainFrame, UserVO userVO) {
 		this.mainFrame = mainFrame;
+		this.user = userVO;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
 		// 初始化
@@ -98,17 +100,16 @@ public class ReceiptRecordUi extends JPanel {
 		OK = new JButton("确定");
 		cancel = new JButton("取消");
 		add=new JButton("新增");
-		delete=new JButton("删除");
-		update=new JButton("修改");
+//		delete=new JButton("删除");
+//		update=new JButton("修改");
 		finish=new JButton("完成");
 		labelDate=new JLabel("日期：");
 		labelStaff=new JLabel("揽件员：");
 		labelMoney = new JLabel("实收金额:");
 		labelneeded = new JLabel("应收金额:");
-//		textDate= new JTextField();
 		textStaff= new JTextField();
 		textMoney = new JTextField();
-		textId = new JTextField();
+		textNeeded = new JTextField();
 		
 		separator1 = new JSeparator();
 		separator2 = new JSeparator();
@@ -118,22 +119,20 @@ public class ReceiptRecordUi extends JPanel {
 	 * 初始化各组件
 	 */
 	private void initComponents() {
-
 		title.setBounds(420, 27, 230, 39);
 		labelDate.setBounds(90, 132, BOUND_X, BOUND_Y);
 		labelStaff.setBounds(90, 207, BOUND_X, BOUND_Y);
 		labelneeded.setBounds(90, 375, BOUND_X, BOUND_Y);
 		labelMoney.setBounds(90, 275, BOUND_X, BOUND_Y);
-//		textDate.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y, BOUND_X, BOUND_Y - 6);
 		textStaff.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+75, BOUND_X, BOUND_Y - 6);
-		textId.setBounds(188, 380, BOUND_X, BOUND_Y - 6);
+		textNeeded.setBounds(188, 380, BOUND_X, BOUND_Y - 6);
 		textMoney.setBounds(188, 278, BOUND_X, BOUND_Y - 6);
 		OK.setBounds(103, 468, BOUND_X - 40, BOUND_Y + 10);
 		cancel.setBounds(225, 468, BOUND_X - 40, BOUND_Y + 10);
 		exit.setBounds(80, 50, 100, 40);
 		add.setBounds(150, 590, 120, 40);
-		delete.setBounds(350, 590, 120,40);
-		update.setBounds(550, 590, 120, 40);
+//		delete.setBounds(350, 590, 120,40);
+//		update.setBounds(550, 590, 120, 40);
 		finish.setBounds(750, 590, 120, 40);
 		
 		separator1.setBounds(90, 343, 239, 2);
@@ -144,13 +143,12 @@ public class ReceiptRecordUi extends JPanel {
 		labelMoney.setFont(fnt);
 		labelDate.setFont(fnt);
 		labelStaff.setFont(fnt);
-//		textDate.setFont(fnt);
 		textStaff.setFont(fnt);
-		textId.setFont(fnt);
+		textNeeded.setFont(fnt);
 		textMoney.setFont(fnt);
 		add.setFont(fnt2);
-		delete.setFont(fnt2);
-		update.setFont(fnt2);
+//		delete.setFont(fnt2);
+//		update.setFont(fnt2);
 		finish.setFont(fnt2);
 		cancel.setFont(fnt2);
 		OK.setFont(fnt2);
@@ -160,22 +158,21 @@ public class ReceiptRecordUi extends JPanel {
 		this.add(labelStaff);
 		this.add(labelneeded);
 		this.add(labelMoney);
-//		this.add(textDate);
 		this.add(textStaff);
-		this.add(textId);
+		this.add(textNeeded);
 		this.add(textMoney);
 		this.add(OK);
 		this.add(cancel);
 		this.add(exit);
 		this.add(add);
-		this.add(delete);
-		this.add(update);
+//		this.add(delete);
+//		this.add(update);
 		this.add(finish);
 		this.add(separator1);
 		this.add(separator2);
 
-		String[] columnNames = { "序号","日期","订单条形码号", "订单金额" };
-		int[] list = { 40, 130, 14, 30, 20, 385, 115, 538, 430 };
+		String[] columnNames = { "序号", "订单条形码号", "订单金额" };
+		int[] list = {40, 130, 14, 30, 20, 485, 115, 408, 430};
 
 		table = new Table();
 		add(table.drawTable(columnNames, list));
@@ -190,9 +187,8 @@ public class ReceiptRecordUi extends JPanel {
 	 *            输入框状态（是否可编辑）
 	 */
 	private void setTextState(boolean state) {
-//		textDate.setEditable(state);
 		textStaff.setEditable(state);
-		textId.setEditable(state);
+		textNeeded.setEditable(state);
 		textMoney.setEditable(state);
 		OK.setEnabled(state);
 		cancel.setEnabled(state);
@@ -202,9 +198,8 @@ public class ReceiptRecordUi extends JPanel {
 	 * 清空输入框
 	 */
 	private void empty() {
-		textId.setText(null);
+		textNeeded.setText(null);
 		textMoney.setText(null);
-//		textDate.setText(null);
 		textStaff.setText(null);
 	}
 
@@ -217,16 +212,16 @@ public class ReceiptRecordUi extends JPanel {
 				setTextState(true);
 			}
 		});
-		delete.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				// TODO 不需要的功能
-			}
-		});
-		update.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				// TODO 不需要的功能
-			}
-		});
+//		delete.addMouseListener(new MouseAdapter() {
+//			public void mouseClicked(MouseEvent e) {
+//				// TODO 不需要的功能
+//			}
+//		});
+//		update.addMouseListener(new MouseAdapter() {
+//			public void mouseClicked(MouseEvent e) {
+//				// TODO 不需要的功能
+//			}
+//		});
 		finish.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				finishOperation();
@@ -266,6 +261,16 @@ public class ReceiptRecordUi extends JPanel {
 	 * 判断输入快递员编号是否合法 
 	 */
 	private boolean isLegal() {
+		String stuff = textStaff.getText();
+		
+		if (stuff.length() != 10 || stuff.matches("\\d+")) {
+			JOptionPane.showMessageDialog(mainFrame, "快递员编号输入错误！", "Error", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		if (stuff.startsWith(user.getId().substring(0, 7))) {
+			JOptionPane.showMessageDialog(mainFrame, "快递员编号输入错误！", "Error", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
 		return true;
 	}
 	
@@ -274,7 +279,7 @@ public class ReceiptRecordUi extends JPanel {
 		empty();
 		
 		try {
-			receiptRecord.addOrder(textId.getText(), textStaff.getText());
+			
 		} catch (RemoteException e) {
 			JOptionPane.showMessageDialog(mainFrame, "请检查网络连接！", "Error", JOptionPane.ERROR_MESSAGE);
 		}

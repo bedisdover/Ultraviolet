@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import LEMS.data.Connect;
 import LEMS.data.TransferID;
@@ -111,5 +112,11 @@ public class ReceiptRecordData extends UnicastRemoteObject implements ReceiptRec
 		String id = new CreateID().createID("cash", ID_LENGTH, institution + date);
 		
 		return id;
+	}
+
+	@Override
+	public ArrayList<String> getOrders(String collector, String date) throws RemoteException {
+		
+		return null;
 	}
 }

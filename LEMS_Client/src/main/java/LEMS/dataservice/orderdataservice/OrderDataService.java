@@ -35,9 +35,13 @@ public interface OrderDataService extends Remote {
 	public void update(OrderPO po) throws RemoteException;
 	
 	/**
-	 * 在数据库中查询指定机构的所有订单
+	 * 根据揽件员及日期获得所有订单
+	 * 
+	 * @param collector 揽件员ID
+	 * @param date 日期
+	 * @return 所有订单，需要订单金额信息
 	 */
-	public ArrayList<String> findAll(String institution) throws RemoteException;
+	public ArrayList<OrderPO> findAll(String collector, String id) throws RemoteException;
 	
 	/**
 	 * 在数据库中查找指定机构最新的记录，并直接生成ID

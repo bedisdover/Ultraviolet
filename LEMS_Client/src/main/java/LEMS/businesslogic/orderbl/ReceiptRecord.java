@@ -22,7 +22,7 @@ import LEMS.vo.uservo.UserVO;
  * 
  * 记录收款单任务
  */
-public class ReceiptRecord extends AddOrder implements ReceiptRecordService {
+public class ReceiptRecord implements ReceiptRecordService {
 
 	/**
 	 * 订单列表
@@ -41,15 +41,13 @@ public class ReceiptRecord extends AddOrder implements ReceiptRecordService {
 		//新建订单列表
 		orders = new ArrayList<OrderPO>();
 	}
-	
-	public void addOrder(String id, String collector) throws RemoteException {
-		OrderPO order = findOrder(id);
-		orders.add(order);
-		order.setCollector(collector);
-		
-		incomeBillVO.setAmount(incomeBillVO.getAmount() + order.getAmount());
-	}
 
+	@Override
+	public ArrayList<String> getOrders(String collector, String date) throws RemoteException {
+		
+		return null;
+	}
+	
 	public void createIncomeBill() {
 		IncomeBillPO incomeBillPO = new IncomeBillPO();
 		
