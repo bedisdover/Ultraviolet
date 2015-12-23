@@ -208,9 +208,9 @@ public class SendUi extends JPanel {
 
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-//				if (isLegal()) {
+				if (isLegal()) {
 					OKOperation();
-//				}
+				}
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {

@@ -315,10 +315,10 @@ public class TransferUi extends JPanel {
 
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-//				if (!isEmpty() && isLegal()) {
+				if (!isEmpty() && isLegal()) {
 					OKOperation();
 					isUpdate = false;
-//				}
+				}
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {
