@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import LEMS.businesslogic.orderbl.ReceiptRecord;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
+import LEMS.presentation.method.DateChooser;
 import LEMS.presentation.method.Table;
 import LEMS.vo.ordervo.IncomeBillVO;
 import LEMS.vo.uservo.UserVO;
@@ -44,13 +45,25 @@ public class ReceiptRecordUi extends JPanel {
 	private JButton finish;
 	private JLabel labelDate;
 	private JLabel labelStaff;
-	private JLabel labelId;
+	/**
+	 * 应收金额
+	 */
+	private JLabel labelneeded;
+	/**
+	 * 实收金额
+	 */
 	private JLabel labelMoney;
-	private JTextField textDate;
+//	private JTextField textDate;
 	private JTextField textStaff;
 	private JTextField textId;
 	private JTextField textMoney;
 
+	private JSeparator separator1;
+	private JSeparator separator2;
+
+	private DateChooser dc;
+	private Table table;
+	
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);// 标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);// 其余字体格式
 	private Font fnt2 = new Font("宋体", Font.BOLD, 16);// 按钮字体格式
@@ -90,12 +103,15 @@ public class ReceiptRecordUi extends JPanel {
 		finish=new JButton("完成");
 		labelDate=new JLabel("日期：");
 		labelStaff=new JLabel("揽件员：");
-		labelId = new JLabel("条形码号:");
-		labelMoney = new JLabel("总金额:");
-		textDate= new JTextField();
+		labelMoney = new JLabel("实收金额:");
+		labelneeded = new JLabel("应收金额:");
+//		textDate= new JTextField();
 		textStaff= new JTextField();
 		textMoney = new JTextField();
 		textId = new JTextField();
+		
+		separator1 = new JSeparator();
+		separator2 = new JSeparator();
 	}
 
 	/**
@@ -104,28 +120,31 @@ public class ReceiptRecordUi extends JPanel {
 	private void initComponents() {
 
 		title.setBounds(420, 27, 230, 39);
-		labelDate.setBounds(LOCATION_LABEL_X+13, LOCATION_LABEL_Y, BOUND_X, BOUND_Y);
-		labelStaff.setBounds(LOCATION_LABEL_X+7, LOCATION_LABEL_Y+75, BOUND_X, BOUND_Y);
-		labelId.setBounds(103, 304, BOUND_X, BOUND_Y);
-		labelMoney.setBounds(103, 237, BOUND_X, BOUND_Y);
-		textDate.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y, BOUND_X, BOUND_Y - 6);
+		labelDate.setBounds(90, 132, BOUND_X, BOUND_Y);
+		labelStaff.setBounds(90, 207, BOUND_X, BOUND_Y);
+		labelneeded.setBounds(90, 375, BOUND_X, BOUND_Y);
+		labelMoney.setBounds(90, 275, BOUND_X, BOUND_Y);
+//		textDate.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y, BOUND_X, BOUND_Y - 6);
 		textStaff.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+75, BOUND_X, BOUND_Y - 6);
-		textId.setBounds(201, 309, BOUND_X, BOUND_Y - 6);
-		textMoney.setBounds(188, 242, BOUND_X, BOUND_Y - 6);
-		OK.setBounds(103, 460, BOUND_X - 40, BOUND_Y + 10);
-		cancel.setBounds(225, 460, BOUND_X - 40, BOUND_Y + 10);
+		textId.setBounds(188, 380, BOUND_X, BOUND_Y - 6);
+		textMoney.setBounds(188, 278, BOUND_X, BOUND_Y - 6);
+		OK.setBounds(103, 468, BOUND_X - 40, BOUND_Y + 10);
+		cancel.setBounds(225, 468, BOUND_X - 40, BOUND_Y + 10);
 		exit.setBounds(80, 50, 100, 40);
 		add.setBounds(150, 590, 120, 40);
 		delete.setBounds(350, 590, 120,40);
 		update.setBounds(550, 590, 120, 40);
 		finish.setBounds(750, 590, 120, 40);
+		
+		separator1.setBounds(90, 343, 239, 2);
+		separator2.setBounds(90, 431, 234, 2);
 
 		title.setFont(fnt1);
-		labelId.setFont(fnt);
+		labelneeded.setFont(fnt);
 		labelMoney.setFont(fnt);
 		labelDate.setFont(fnt);
 		labelStaff.setFont(fnt);
-		textDate.setFont(fnt);
+//		textDate.setFont(fnt);
 		textStaff.setFont(fnt);
 		textId.setFont(fnt);
 		textMoney.setFont(fnt);
@@ -139,9 +158,9 @@ public class ReceiptRecordUi extends JPanel {
 		this.add(title);
 		this.add(labelDate);
 		this.add(labelStaff);
-		this.add(labelId);
+		this.add(labelneeded);
 		this.add(labelMoney);
-		this.add(textDate);
+//		this.add(textDate);
 		this.add(textStaff);
 		this.add(textId);
 		this.add(textMoney);
@@ -152,17 +171,16 @@ public class ReceiptRecordUi extends JPanel {
 		this.add(delete);
 		this.add(update);
 		this.add(finish);
+		this.add(separator1);
+		this.add(separator2);
 
-		String[] columnNames = { "序号","揽件员","订单条形码号", "订单金额" };
+		String[] columnNames = { "序号","日期","订单条形码号", "订单金额" };
 		int[] list = { 40, 130, 14, 30, 20, 385, 115, 538, 430 };
 
-		Table table = new Table();
+		table = new Table();
 		add(table.drawTable(columnNames, list));
 		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(103, 277, 215, 2);
-		this.add(separator);
-
+		dc = new DateChooser(this, LOCATION_TEXT_X, LOCATION_TEXT_Y);
 	}
 
 	/**
@@ -172,7 +190,7 @@ public class ReceiptRecordUi extends JPanel {
 	 *            输入框状态（是否可编辑）
 	 */
 	private void setTextState(boolean state) {
-		textDate.setEditable(state);
+//		textDate.setEditable(state);
 		textStaff.setEditable(state);
 		textId.setEditable(state);
 		textMoney.setEditable(state);
@@ -186,7 +204,7 @@ public class ReceiptRecordUi extends JPanel {
 	private void empty() {
 		textId.setText(null);
 		textMoney.setText(null);
-		textDate.setText(null);
+//		textDate.setText(null);
 		textStaff.setText(null);
 	}
 
@@ -197,17 +215,16 @@ public class ReceiptRecordUi extends JPanel {
 		add.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				setTextState(true);
-				// TODO 返回按钮的具体实现
 			}
 		});
 		delete.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO 返回按钮的具体实现
+				// TODO 不需要的功能
 			}
 		});
 		update.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// TODO 返回按钮的具体实现
+				// TODO 不需要的功能
 			}
 		});
 		finish.addMouseListener(new MouseAdapter() {
@@ -246,16 +263,9 @@ public class ReceiptRecordUi extends JPanel {
 	}
 	
 	/**
-	 * 判断输入是否合法 
+	 * 判断输入快递员编号是否合法 
 	 */
 	private boolean isLegal() {
-		//条形码全部为数字
-		boolean isNumer = textId.getText().matches("\\d+");
-		
-		if (!isNumer || textId.getText().length() != 10) {
-			JOptionPane.showMessageDialog(mainFrame, "条形码输入错误！", "Error", JOptionPane.ERROR_MESSAGE);
-			return false;
-		}
 		return true;
 	}
 	
@@ -273,8 +283,7 @@ public class ReceiptRecordUi extends JPanel {
 	
 	private void finishOperation() {
 		setTextState(true);
-		//TODO 日期怎么回事啊？
-		incomeBillVO.setDate(textDate.getText());
+		incomeBillVO.setDate(dc.getTime());
 		
 		receiptRecord.createIncomeBill();
 	}

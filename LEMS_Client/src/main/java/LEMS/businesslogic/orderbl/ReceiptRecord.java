@@ -11,6 +11,7 @@ import LEMS.businesslogicservice.orderblservice.ReceiptRecordService;
 import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.OrderFactory;
 import LEMS.dataservice.orderdataservice.ReceiptRecordDataService;
+import LEMS.po.financepo.DocumentState;
 import LEMS.po.orderpo.IncomeBillPO;
 import LEMS.po.orderpo.OrderPO;
 import LEMS.vo.ordervo.IncomeBillVO;
@@ -52,11 +53,12 @@ public class ReceiptRecord extends AddOrder implements ReceiptRecordService {
 	public void createIncomeBill() {
 		IncomeBillPO incomeBillPO = new IncomeBillPO();
 		
+		incomeBillPO.setId(this.createID());
+		incomeBillPO.setState(DocumentState.waiting);
 		incomeBillPO.setDate(incomeBillVO.getDate());
 		incomeBillPO.setAmount(incomeBillVO.getAmount());
 		incomeBillPO.setCollector(incomeBillVO.getCollector());
 		incomeBillPO.setOrders(orders);
-		incomeBillPO.setId(this.createID());
 		
 		try {
 			this.getDataService().insert(incomeBillPO);
