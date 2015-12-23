@@ -6,9 +6,7 @@ import java.util.ArrayList;
 import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.UserFactory;
-import LEMS.dataservice.informationdataservice.InformationInsertDataService;
 import LEMS.dataservice.userdataservice.UserDataService;
-import LEMS.po.informationpo.StaffPO;
 import LEMS.po.userpo.UserPO;
 import LEMS.po.userpo.UserRole;
 import LEMS.vo.uservo.UserVO;
@@ -38,6 +36,7 @@ public class User {
 			}
 			
 		} catch (Exception e) {
+			//TODO 无需catch
 			throw e;
 		}
 		return null;
