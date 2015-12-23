@@ -1,17 +1,19 @@
 package LEMS.businesslogicservice.orderblservice;
 
-import LEMS.vo.ordervo.TransferVO;
+import java.rmi.RemoteException;
+
+import LEMS.po.storepo.TransportType;
 
 /**
  * @author 宋益明
  * 
- * 中转接收任务接口
+ * 中转任务接口
  */
 public interface TransferService extends AddOrderService {
 	/**
-	 * 生成中转接收单
+	 * 根据运输方式不同，生成中转单
 	 * 
-	 * @param transferInfo 中转接收信息
+	 * @param type 运输方式
 	 */
-	public void createTransferNote();
+	public void createTransferNote(TransportType type) throws RemoteException;
 }

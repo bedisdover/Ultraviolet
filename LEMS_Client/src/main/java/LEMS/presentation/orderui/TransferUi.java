@@ -6,14 +6,18 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import LEMS.businesslogic.orderbl.Transfer;
+import LEMS.po.storepo.TransportType;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.DateChooser;
@@ -84,6 +88,8 @@ public class TransferUi extends JPanel {
 	
 	private Table table;
 	
+	private boolean isUpdate = false;
+	
 	public TransferUi(final MainFrame mainFrame, UserVO user) {
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
@@ -114,13 +120,13 @@ public class TransferUi extends JPanel {
 		delete = new JButton("删除");
 		update = new JButton("修改");
 		finish = new JButton("查找");
-		labelDate = new JLabel("中转日期:");
-		labelDestination = new JLabel("到达地:");
-		labelGuard = new JLabel("监装员:");
-		labelAllId = new JLabel("订单编号:");
-		labelFormat = new JLabel("装运形式：");
-		labelFlight = new JLabel("航班号：");
-		labelContainer = new JLabel("货柜号：");
+		labelDate = new JLabel("中转日期");
+		labelDestination = new JLabel("目的地");
+		labelGuard = new JLabel("监装员");
+		labelAllId = new JLabel("订单编号");
+		labelFormat = new JLabel("装运形式");
+		labelFlight = new JLabel("航班号");
+		labelContainer = new JLabel("货柜号");
 		textId = new JTextField();
 		textGuard = new JTextField();
 		textDestination = new JTextField();
@@ -231,7 +237,7 @@ public class TransferUi extends JPanel {
 		this.add(update);
 		this.add(finish);
 
-		String[] columnNames = {"序号", "到达日期", "中转单编号", "出发地", "货物到达状态" };
+		String[] columnNames = {"序号", labelAllId.getText(), labelFlight.getText(), labelContainer.getText(), labelDestination.getText()};
 		int[] list = { 40, 116, 14, 30, 20, 355, 125, 598, 435 };
 
 		table = new Table();
@@ -255,16 +261,16 @@ public class TransferUi extends JPanel {
 	}
 	
 	private void setPanelAir(){
-		labelFlight.setText("航班号：");
-		labelContainer.setText("货柜号：");
+		labelFlight.setText("航班号");
+		labelContainer.setText("货柜号");
 	}
 	private void setPanelTrain(){
-		labelFlight.setText("车次号：");
-		labelContainer.setText("车厢号：");
+		labelFlight.setText("车次号");
+		labelContainer.setText("车厢号");
 	}
 	private void setPanelBus(){
-		labelFlight.setText("车次号：");
-		labelContainer.setText("押运员：");
+		labelFlight.setText("车次号");
+		labelContainer.setText("押运员");
 	}
 	/**
 	 * 清空输入框
@@ -295,7 +301,10 @@ public class TransferUi extends JPanel {
 		});
 		update.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				updateOperation();
+				if (table.getValueAt(table.getSelectedRow()) != null) {
+					isUpdate = true;
+					updateOperation();
+				}
 			}
 		});
 		finish.addMouseListener(new MouseAdapter() {
@@ -306,7 +315,10 @@ public class TransferUi extends JPanel {
 
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				OKOperation();
+				if (!isEmpty() && isLegal()) {
+					OKOperation();
+					isUpdate = false;
+				}
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {
@@ -324,8 +336,20 @@ public class TransferUi extends JPanel {
 	}
 
 	private void OKOperation() {
-		transfer.addOrder(textId.getText());
-		textId.setText(null);
+		try {
+			transfer.addOrder(textId.getText());
+
+			String[] values = {textId.getText(), textFlight.getText(), textContainer.getText(), textDestination.getText()};
+			if (isUpdate) {
+				table.setValueAt(table.getSelectedRow(), values);
+			} else {
+				table.setValueAt(table.numOfEmpty(), values);
+			}
+
+			textId.setText(null);
+		} catch (RemoteException e) {
+			JOptionPane.showMessageDialog(mainFrame, "请检查网络连接！", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 	private void finishOperation() {
@@ -335,14 +359,51 @@ public class TransferUi extends JPanel {
 		transferVO.setFlight(textFlight.getText());
 		transferVO.setContainer(textContainer.getText());
 		
-		transfer.createTransferNote();
-		
-		this.empty();
-		this.setTestState(false);
+		try {
+			transfer.createTransferNote(TransportType.getType(
+					(String) comboBoxFormat.getSelectedItem()) );
+			
+			this.empty();
+			this.setTestState(false);
+		} catch (RemoteException e) {
+			JOptionPane.showMessageDialog(mainFrame, "请检查网络连接！", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 	private void updateOperation() {
-		
+		ArrayList<String> values = table.getValueAt(table.getSelectedRow());
+		textId.setText(values.get(1));
+		textFlight.setText(values.get(2));
+		textContainer.setText(values.get(3));
+		textDestination.setText(values.get(4));
+	}
+	
+	private boolean isEmpty() {
+		if (textDestination.getText() == null || textGuard.getText() == null) {
+			JOptionPane.showMessageDialog(mainFrame, "输入为空！", "Error", JOptionPane.ERROR_MESSAGE);
+			return true;
+		}
+		if (textFlight.getText() == null || textContainer.getText() == null) {
+			JOptionPane.showMessageDialog(mainFrame, "输入为空！", "Error", JOptionPane.ERROR_MESSAGE);
+			return true;
+		}
+		if (textId.getText() == null) {
+			JOptionPane.showMessageDialog(mainFrame, "订单编号为空！", "Error", JOptionPane.ERROR_MESSAGE);
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean isLegal() {
+		if (textId.getText().length() != 10) {
+			JOptionPane.showMessageDialog(mainFrame, "订单编号长度错误！", "Error", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		if (!textId.getText().matches("\\d+")) {
+			JOptionPane.showMessageDialog(mainFrame, "订单编号输入错误！", "Error", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		return true;
 	}
 	
 	public void paintComponent(Graphics g) {

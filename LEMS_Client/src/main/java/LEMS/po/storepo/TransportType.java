@@ -13,4 +13,20 @@ public enum TransportType implements Serializable {
 	Railway,//火车
 	Landway,//汽车
 	YetToKnow
+	;
+	
+	public static TransportType getType(String type) {
+		switch (type) {
+		case "飞机":
+			return Airplane;
+		case "火车":
+			return Railway;
+		case "汽车":
+			return Landway;
+		default:
+			break;
+		}
+		
+		return YetToKnow;
+	}
 }
