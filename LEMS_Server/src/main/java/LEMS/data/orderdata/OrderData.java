@@ -137,8 +137,9 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 		
 		try {
 			while (result.next()) {
-				if (result.getString(15).startsWith(date)) {
-					
+				if (result.getString(15).startsWith(date) && result.getString(17).equals(collector)) {
+					OrderPO order = this.find(result.getString(1));
+					orders.add(order);
 				}
 			}
 		} catch (SQLException e) {

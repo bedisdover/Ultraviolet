@@ -5,21 +5,23 @@ import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
 import LEMS.businesslogic.orderbl.ReceiptRecord;
+import LEMS.po.orderpo.OrderPO;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.DateChooser;
 import LEMS.presentation.method.Table;
 import LEMS.vo.ordervo.IncomeBillVO;
 import LEMS.vo.uservo.UserVO;
-import javax.swing.JSeparator;
 
 /**
  * @author 周梦佳 记录收款单界面
@@ -27,8 +29,8 @@ import javax.swing.JSeparator;
 public class ReceiptRecordUi extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private static final int LOCATION_LABEL_X = 90;
-	private static final int LOCATION_LABEL_Y = 130;
+//	private static final int LOCATION_LABEL_X = 90;
+//	private static final int LOCATION_LABEL_Y = 130;
 	private static final int LOCATION_TEXT_X = 188;
 	private static final int LOCATION_TEXT_Y = 135;
 	private static final int BOUND_X = 130;
@@ -195,15 +197,6 @@ public class ReceiptRecordUi extends JPanel {
 	}
 
 	/**
-	 * 清空输入框
-	 */
-	private void empty() {
-		textNeeded.setText(null);
-		textMoney.setText(null);
-		textStaff.setText(null);
-	}
-
-	/**
 	 * 为按钮添加事件监听器
 	 */
 	private void addListener() {
@@ -224,7 +217,10 @@ public class ReceiptRecordUi extends JPanel {
 //		});
 		finish.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				finishOperation();
+				//若订单列表为空，操作无效
+				if (table.numOfEmpty() != 0) {
+					finishOperation();
+				}
 			}
 		});
 		exit.addMouseListener(new MouseAdapter() {
@@ -243,8 +239,6 @@ public class ReceiptRecordUi extends JPanel {
 		});
 		cancel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// 清空输入框
-				empty();
 				// 设置输入框不可编辑
 				setTextState(false);
 			}
@@ -275,20 +269,32 @@ public class ReceiptRecordUi extends JPanel {
 	}
 	
 	private void OKOperation() {
-		// 清空输入框
-		empty();
-		
+		ArrayList<OrderPO> orders = null;
 		try {
-			
+			orders = receiptRecord.getOrders(textStaff.getText(), dc.getTime());
 		} catch (RemoteException e) {
 			JOptionPane.showMessageDialog(mainFrame, "请检查网络连接！", "Error", JOptionPane.ERROR_MESSAGE);
 		}
-		textMoney.setText(incomeBillVO.getAmount() + "");
+		
+		String[] values = new String[2]; 
+		for (OrderPO order : orders) {
+			values[0] = order.getId();
+			values[1] = order.getAmount() + "";
+			table.setValueAt(table.numOfEmpty(), values);
+			
+			if (textNeeded.getText().equals("")) {
+				textNeeded.setText(order.getAmount() + "");
+			} else {
+				textNeeded.setText(Double.parseDouble(textNeeded.getText()) + order.getAmount() + "");
+			}
+		}
 	}
 	
 	private void finishOperation() {
-		setTextState(true);
+		setTextState(false);
 		incomeBillVO.setDate(dc.getTime());
+		incomeBillVO.setCollector(textStaff.getText());
+		incomeBillVO.setAmount(Double.parseDouble(textNeeded.getText()));
 		
 		receiptRecord.createIncomeBill();
 	}

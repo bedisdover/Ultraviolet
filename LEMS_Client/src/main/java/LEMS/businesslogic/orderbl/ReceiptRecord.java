@@ -43,9 +43,9 @@ public class ReceiptRecord implements ReceiptRecordService {
 	}
 
 	@Override
-	public ArrayList<String> getOrders(String collector, String date) throws RemoteException {
-		
-		return null;
+	public ArrayList<OrderPO> getOrders(String collector, String date) throws RemoteException {
+		orders = this.getDataService().getOrders(collector, date);
+		return orders;
 	}
 	
 	public void createIncomeBill() {

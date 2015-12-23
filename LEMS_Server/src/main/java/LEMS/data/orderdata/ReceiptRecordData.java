@@ -12,6 +12,7 @@ import LEMS.data.TransferID;
 import LEMS.dataservice.orderdataservice.ReceiptRecordDataService;
 import LEMS.po.financepo.DocumentState;
 import LEMS.po.orderpo.IncomeBillPO;
+import LEMS.po.orderpo.OrderPO;
 
 public class ReceiptRecordData extends UnicastRemoteObject implements ReceiptRecordDataService {
 	private static final long serialVersionUID = 1L;
@@ -115,8 +116,9 @@ public class ReceiptRecordData extends UnicastRemoteObject implements ReceiptRec
 	}
 
 	@Override
-	public ArrayList<String> getOrders(String collector, String date) throws RemoteException {
-		
-		return null;
+	public ArrayList<OrderPO> getOrders(String collector, String date) throws RemoteException {
+		//从order表中获取所有符合条件的订单
+		ArrayList<OrderPO> orders = new OrderData().findAll(collector, date);
+		return orders;
 	}
 }
