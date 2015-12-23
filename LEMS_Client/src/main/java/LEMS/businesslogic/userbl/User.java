@@ -24,7 +24,7 @@ public class User {
 		this.password=password;
 		this.role=r;
 	}
-	public UserVO getUser(){
+	public UserVO getUser() throws Exception {
 		try {
 			DatabaseFactory database=(DatabaseFactory)Naming.lookup(RMIConnect.RMI);
 			UserFactory uf=database.getUserFactory();
@@ -38,7 +38,7 @@ public class User {
 			}
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw e;
 		}
 		return null;
 	}

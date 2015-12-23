@@ -21,7 +21,8 @@ import LEMS.vo.uservo.UserVO;
  * @author 苏琰梓 登陆界面 2015年11月18日
  */
 public class LoginUi extends JPanel {
-
+	private static final long serialVersionUID = 1L;
+	
 	MainFrame mainFrame;
 	Image im;
 	JButton but1 = new JButton("登录");
@@ -81,6 +82,7 @@ public class LoginUi extends JPanel {
 				UserLogin ul = new UserLogin();
 				UserVO userVO = null;
 				switch (role) {
+				//TODO 更改选项，添加提示“网络连接”
 				case "管理员":
 					userVO = ul.login(name, password, UserRole.Manager);
 					break;

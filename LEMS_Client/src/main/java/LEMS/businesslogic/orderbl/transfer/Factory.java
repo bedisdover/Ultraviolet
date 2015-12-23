@@ -8,7 +8,7 @@ public class Factory {
 	 * 
 	 * @param type 运输类型
 	 */
-	public Passage createPassage(TransportType type) {
+	public static Passage createPassage(TransportType type) {
 		
 		Passage transfer = null;
 		
