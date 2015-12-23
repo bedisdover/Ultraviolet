@@ -102,7 +102,6 @@ public class ReceiptData extends UnicastRemoteObject implements ReceiptDataServi
 
 	@Override
 	public void delete(String id) throws RemoteException {
-
 		String sql = "DELETE FROM arrivalnote WHERE id = " + id;
 		
 		PreparedStatement pstm = connect.getPreparedStatement(sql);

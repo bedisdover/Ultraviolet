@@ -18,6 +18,7 @@ import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.Table;
 import LEMS.vo.ordervo.IncomeBillVO;
 import LEMS.vo.uservo.UserVO;
+import javax.swing.JSeparator;
 
 /**
  * @author 周梦佳 记录收款单界面
@@ -105,14 +106,14 @@ public class ReceiptRecordUi extends JPanel {
 		title.setBounds(420, 27, 230, 39);
 		labelDate.setBounds(LOCATION_LABEL_X+13, LOCATION_LABEL_Y, BOUND_X, BOUND_Y);
 		labelStaff.setBounds(LOCATION_LABEL_X+7, LOCATION_LABEL_Y+75, BOUND_X, BOUND_Y);
-		labelId.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+150, BOUND_X, BOUND_Y);
-		labelMoney.setBounds(LOCATION_LABEL_X + 13, LOCATION_LABEL_Y + 225, BOUND_X, BOUND_Y);
+		labelId.setBounds(103, 304, BOUND_X, BOUND_Y);
+		labelMoney.setBounds(103, 237, BOUND_X, BOUND_Y);
 		textDate.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y, BOUND_X, BOUND_Y - 6);
 		textStaff.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+75, BOUND_X, BOUND_Y - 6);
-		textId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+150, BOUND_X, BOUND_Y - 6);
-		textMoney.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 225, BOUND_X, BOUND_Y - 6);
-		OK.setBounds(LOCATION_LABEL_X + 15, LOCATION_LABEL_Y + 310, BOUND_X - 40, BOUND_Y + 10);
-		cancel.setBounds(LOCATION_LABEL_X + 135, LOCATION_LABEL_Y + 310, BOUND_X - 40, BOUND_Y + 10);
+		textId.setBounds(201, 309, BOUND_X, BOUND_Y - 6);
+		textMoney.setBounds(188, 242, BOUND_X, BOUND_Y - 6);
+		OK.setBounds(103, 460, BOUND_X - 40, BOUND_Y + 10);
+		cancel.setBounds(225, 460, BOUND_X - 40, BOUND_Y + 10);
 		exit.setBounds(80, 50, 100, 40);
 		add.setBounds(150, 590, 120, 40);
 		delete.setBounds(350, 590, 120,40);
@@ -157,6 +158,10 @@ public class ReceiptRecordUi extends JPanel {
 
 		Table table = new Table();
 		add(table.drawTable(columnNames, list));
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(103, 277, 215, 2);
+		this.add(separator);
 
 	}
 

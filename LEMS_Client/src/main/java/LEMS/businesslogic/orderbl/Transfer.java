@@ -53,7 +53,7 @@ public class Transfer extends AddOrder implements TransferService {
 
 	public void createTransferNote(TransportType type) throws RemoteException {
 		TransferNotePO transferNotePO = new TransferNotePO();
-		
+		//TODO 测试运费计算
 //		transferNotePO.setId(this.getDataService().createID(user.getInstitution().getID(), transferVO.getDate()));
 //		transferNotePO.setState(DocumentState.waiting);
 //		transferNotePO.setDate(transferVO.getDate());

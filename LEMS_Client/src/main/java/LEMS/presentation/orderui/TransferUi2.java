@@ -317,7 +317,7 @@ public class TransferUi2 extends JPanel {
 	}
 
 	private void OKOperation() {
-		transfer.addOrder(textId.getText());
+//		transfer.addOrder(textId.getText());
 		textId.setText(null);
 	}
 	
