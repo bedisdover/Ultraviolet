@@ -77,6 +77,9 @@ public class DistancePO implements Serializable {
 	 * @return 可识别字符串（地址表中存储的字符串）
 	 */
 	private String transfer(String former, String latter) {
+		former = former.substring(0, 2);
+		latter = latter.substring(0, 2);
+		
 		String temp = "";
 
 		if (former.equals(latter)) {

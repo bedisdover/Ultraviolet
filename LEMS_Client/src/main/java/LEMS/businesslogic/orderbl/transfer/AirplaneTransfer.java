@@ -1,22 +1,20 @@
 package LEMS.businesslogic.orderbl.transfer;
 
+import LEMS.businesslogic.orderbl.Distance;
+
 /**
  * @author 宋益明
  * 
  * 负责航运功能的具体实现
  */
 public class AirplaneTransfer implements Passage {
-//
-//	@Override
-//	public double calculateMessage(double distance) {
-//		double sum = sumWeight(orders);
-//		return sum * distance * 20;
-//	}
-
+	
+	private static final double PRICE = 20;
+	private static final double WEIGHT = 50;
+	
 	@Override
 	public double calculateMessage(String departure, String destination) {
-		// TODO Auto-generated method stub
-		return 0;
+		double distance = new Distance().getDistance(departure, destination);
+		return PRICE * WEIGHT * distance;
 	}
-
 }

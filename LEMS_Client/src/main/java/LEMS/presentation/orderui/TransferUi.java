@@ -119,7 +119,7 @@ public class TransferUi extends JPanel {
 		add = new JButton("新增");
 		delete = new JButton("删除");
 		update = new JButton("修改");
-		finish = new JButton("查找");
+		finish = new JButton("完成");
 		labelDate = new JLabel("中转日期");
 		labelDestination = new JLabel("目的地");
 		labelGuard = new JLabel("监装员");
@@ -315,10 +315,10 @@ public class TransferUi extends JPanel {
 
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				if (!isEmpty() && isLegal()) {
+//				if (!isEmpty() && isLegal()) {
 					OKOperation();
 					isUpdate = false;
-				}
+//				}
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {
