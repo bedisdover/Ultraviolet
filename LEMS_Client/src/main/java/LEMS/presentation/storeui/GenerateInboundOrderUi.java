@@ -57,7 +57,6 @@ public class GenerateInboundOrderUi extends JPanel {
 	private UltraTextField textRow;
 	private UltraTextField textStand;
 	private UltraTextField textPosition;
-	private UltraTextField textTime;
 	private DateChooser dc;
 	private UltraComboBox comboBoxDestination;
 	private UltraComboBox comboBoxArea;
@@ -113,10 +112,9 @@ public class GenerateInboundOrderUi extends JPanel {
 		textRow = new UltraTextField(15);
 		textStand = new UltraTextField(15);
 		textPosition = new UltraTextField(15);
-		textTime = new UltraTextField(15);
 		comboBoxDestination = new UltraComboBox();
 		comboBoxArea = new UltraComboBox();
-		dc=new DateChooser(this,LOCATION_TEXT_X,LOCATION_TEXT_Y + 51);
+		dc=new DateChooser(this,LOCATION_TEXT_X,LOCATION_TEXT_Y + 55);
 	}
 
 	/**
@@ -126,17 +124,16 @@ public class GenerateInboundOrderUi extends JPanel {
 
 		title.setBounds(420, 37, 230, 39);
 		labelId.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y, BOUND_X, BOUND_Y);
-		labelInDate.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y + 70, BOUND_X, BOUND_Y);
-		labelDestination.setBounds(LOCATION_LABEL_X + 5, LOCATION_LABEL_Y + 129, BOUND_X, BOUND_Y);
-		labelArea.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y + 179, BOUND_X, BOUND_Y);
-		labelRow.setBounds(LOCATION_LABEL_X + 15, LOCATION_LABEL_Y + 229, BOUND_X, BOUND_Y);
-		labelStand.setBounds(LOCATION_LABEL_X + 15, LOCATION_LABEL_Y + 279, BOUND_X, BOUND_Y);
-		labelPosition.setBounds(LOCATION_LABEL_X + 15, LOCATION_LABEL_Y + 329, BOUND_X, BOUND_Y);
+		labelInDate.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y + 55, BOUND_X, BOUND_Y);
+		labelDestination.setBounds(LOCATION_LABEL_X + 5, LOCATION_LABEL_Y + 110, BOUND_X, BOUND_Y);
+		labelArea.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y + 165, BOUND_X, BOUND_Y);
+		labelRow.setBounds(LOCATION_LABEL_X + 15, LOCATION_LABEL_Y + 220, BOUND_X, BOUND_Y);
+		labelStand.setBounds(LOCATION_LABEL_X + 15, LOCATION_LABEL_Y + 275, BOUND_X, BOUND_Y);
+		labelPosition.setBounds(LOCATION_LABEL_X + 15, LOCATION_LABEL_Y + 330, BOUND_X, BOUND_Y);
 		textId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y, BOUND_X, BOUND_Y - 6);
-		textRow.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 229, BOUND_X, BOUND_Y - 6);
-		textStand.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 279, BOUND_X, BOUND_Y - 6);
-		textPosition.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 329, BOUND_X, BOUND_Y - 6);
-		textTime.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+78, BOUND_X, BOUND_Y-6);
+		textRow.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 220, BOUND_X, BOUND_Y - 6);
+		textStand.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 275, BOUND_X, BOUND_Y - 6);
+		textPosition.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 330, BOUND_X, BOUND_Y - 6);
 		title.setFont(fnt1);
 		labelId.setFont(fnt);
 		labelInDate.setFont(fnt);
@@ -147,12 +144,12 @@ public class GenerateInboundOrderUi extends JPanel {
 		labelPosition.setFont(fnt);
 		
 		
-		comboBoxDestination.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 129, BOUND_X, BOUND_Y - 5);
+		comboBoxDestination.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 110, BOUND_X, BOUND_Y - 5);
 		comboBoxDestination.addItem("北京");
 		comboBoxDestination.addItem("上海");
 		comboBoxDestination.addItem("广州");
 		comboBoxDestination.addItem("南京");
-		comboBoxArea.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 179, BOUND_X, BOUND_Y - 5);
+		comboBoxArea.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 165, BOUND_X, BOUND_Y - 5);
 		comboBoxArea.addItem("航运区");
 		comboBoxArea.addItem("铁运区");
 		comboBoxArea.addItem("汽运区");
@@ -173,7 +170,6 @@ public class GenerateInboundOrderUi extends JPanel {
 		this.add(labelRow);
 		this.add(labelStand);
 		this.add(labelPosition);
-		this.add(textTime);
 		this.add(textId);
 		this.add(textRow);
 		this.add(textStand);
@@ -211,7 +207,6 @@ public class GenerateInboundOrderUi extends JPanel {
 		comboBoxArea.setEnabled(state);
 		OK.setEnabled(state);
 		cancel.setEnabled(state);
-		textTime.setEditable(state);
 	}
 private void buttonAllTrue(){
 	add.setEnabled(true);
@@ -227,7 +222,6 @@ private void buttonAllTrue(){
 		textRow.setText(null);
 		textStand.setText(null);
 		textPosition.setText(null);
-		textTime.setText(null);
 		comboBoxDestination.setSelectedIndex(0);
 		comboBoxArea.setSelectedIndex(0);
 	}
@@ -268,30 +262,36 @@ private void buttonAllTrue(){
 				ArrayList<String> al=table.getValueAt(currentLine);
 				textId.setText(al.get(0));
 				//日期
-				textTime.setText(al.get(1).substring(8, 16));
+				
+//				textTime.setText(al.get(1).substring(8, 16));
 				textRow.setText(al.get(4));
 				textStand.setText(al.get(5));
 				textPosition.setText(al.get(6));
+				System.out.println(al.get(2)+"这尼玛是南京");
+				
+				/**
+				 * 哎呀尼玛这switch是对的 set就要默认最后一个。。。哭
+				 */
 				switch(al.get(2)){
-				case "Beijing":
+				case "北京":
 					comboBoxDestination.setSelectedIndex(0);
-				case "Shanghai":
+				case "上海":
 					comboBoxDestination.setSelectedIndex(1);
-				case "Guangzhou":
+				case "广州":
 					comboBoxDestination.setSelectedIndex(2);
-				case "Nanjing":
+				case "南京":
 					comboBoxDestination.setSelectedIndex(3);
 				}
 			
 				switch(al.get(3)){
-				case "Airline":
-					comboBoxDestination.setSelectedIndex(0);
-				case "Trainline":
-					comboBoxDestination.setSelectedIndex(1);
-				case "Busline":
-					comboBoxDestination.setSelectedIndex(2);
-				case "Motoline":
-					comboBoxDestination.setSelectedIndex(3);
+				case "航运区":
+					comboBoxArea.setSelectedIndex(0);
+				case "铁运区":
+					comboBoxArea.setSelectedIndex(1);
+				case "汽运区":
+					comboBoxArea.setSelectedIndex(2);
+				case "机动区":
+					comboBoxArea.setSelectedIndex(3);
 				}
 			}
 		});
@@ -314,10 +314,9 @@ private void buttonAllTrue(){
 				if (whichButton == 1) {
 					SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHH:mm:ss");//设置日期格式
 					String time=df.format(new Date()).substring(8, 16);// new Date()为获取当前系统时间
-					textTime.setText(time);
 					int showRow = 0;
 					int showColumn = 0;
-					InboundOrderVO iovo=getInfo();
+					InboundOrderVO iovo=getInfo(time);
 					StoreGenerateOrder storeGenerateOrder = new StoreGenerateOrder();
 					int judge = storeGenerateOrder.generateInboundOrderPO(iovo);
 					if (judge == 0) {
@@ -328,22 +327,30 @@ private void buttonAllTrue(){
 						switch(iovo.getDestination().name()){
 						case "Beijing":
 							table.setValueAt(showRow, showColumn + 2,"北京");
+							break;
 						case "Shanghai":
 							table.setValueAt(showRow, showColumn + 2,"上海");
+							break;
 						case "Guangzhou":
 							table.setValueAt(showRow, showColumn + 2,"广州");
+							break;
 						case "Nanjing":
 							table.setValueAt(showRow, showColumn + 2,"南京");
+							break;
 						}
 						switch(iovo.getArea().name()){
 						case "Airline":
 							table.setValueAt(showRow, showColumn + 3,"航运区");
+							break;
 						case "Trainline":
 							table.setValueAt(showRow, showColumn + 3,"铁运区");
+							break;
 						case "Busline":
-							table.setValueAt(showRow, showColumn + 3,"汽运区");
+							table.setValueAt(showRow, showColumn + 3,"汽运区");	
+							break;
 						case "Motoline":
 							table.setValueAt(showRow, showColumn + 3,"机动区");
+							break;
 						}
 						
 						table.setValueAt(showRow, showColumn + 4, iovo.getRow()+ "");
@@ -358,7 +365,6 @@ private void buttonAllTrue(){
 				} // 删除的确定
 				else if (whichButton == 2) {
 					currentLine = table.table.getSelectedRow();
-					System.out.println(currentLine+"aaa");
 					//告诉逻辑层通知数据库修改
 					String id=(String) table.table.getValueAt(currentLine, 0);
 					
@@ -378,7 +384,9 @@ private void buttonAllTrue(){
 				} // 修改的确定
 				else if (whichButton == 3) {
 					currentLine = table.table.getSelectedRow();
-					InboundOrderVO iovo=getInfo();
+					SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHH:mm:ss");//设置日期格式
+					String time=df.format(new Date()).substring(8, 16);// new Date()为获取当前系统时间
+					InboundOrderVO iovo=getInfo(time);
 					StoreGenerateOrder storeGenerateOrder = new StoreGenerateOrder();
 					int judge = storeGenerateOrder.updateInboundOrderPO(iovo);
 					if (judge == 0) {
@@ -386,8 +394,35 @@ private void buttonAllTrue(){
 					} else {
 						table.setValueAt(currentLine, 0, iovo.getId());
 						table.setValueAt(currentLine, 1, iovo.getInDate());
-						table.setValueAt(currentLine, 2,iovo.getDestination().name());
-						table.setValueAt(currentLine, 3, iovo.getArea().name());
+						System.out.println(iovo.getDestination().name()+"这是啥");
+						switch(iovo.getDestination().name()){
+						case "Beijing":
+							table.setValueAt(currentLine, 2,"北京");
+							break;
+						case "Shanghai":
+							table.setValueAt(currentLine, 2,"上海");
+							break;
+						case "Guangzhou":
+							table.setValueAt(currentLine, 2,"广州");
+							break;
+						case "Nanjing":
+							table.setValueAt(currentLine, 2,"南京");
+							break;
+						}
+						switch(iovo.getArea().name()){
+						case "Airline":
+							table.setValueAt(currentLine, 3,"航运区");
+							break;
+						case "Trainline":
+							table.setValueAt(currentLine, 3,"铁运区");
+							break;
+						case "Busline":
+							table.setValueAt(currentLine, 3,"汽运区");
+							break;
+						case "Motoline":
+							table.setValueAt(currentLine, 3,"机动区");
+							break;
+						}
 						table.setValueAt(currentLine, 4, iovo.getRow()+ "");
 						table.setValueAt(currentLine, 5, iovo.getStand() + "");
 						table.setValueAt(currentLine, 6, iovo.getPosition() + "");
@@ -402,7 +437,6 @@ private void buttonAllTrue(){
 					textId.setText(id);
 					//日期
 					iovo.getInDate();
-					textTime.setText(iovo.getInDate().substring(8, 16));
 					textRow.setText(iovo.getRow() + "");
 					textStand.setText(iovo.getStand() + "");
 					textPosition.setText(iovo.getPosition() + "");
@@ -464,9 +498,9 @@ private void buttonAllTrue(){
 		this.repaint();
 	}
 	
-	public InboundOrderVO getInfo(){
+	public InboundOrderVO getInfo(String time){
 		String id = textId.getText();
-		String inDate =dc.getTime()+textTime.getText();
+		String inDate =dc.getTime()+time;
 		//getTime全是数字2015120714:33:33
 		int row = Integer.parseInt(textRow.getText());
 		int stand = Integer.parseInt(textStand.getText());
@@ -476,23 +510,31 @@ private void buttonAllTrue(){
 		switch (comboBoxDestination.getSelectedItem().toString()) {
 		case "北京":
 			des = Destination.valueOf("Beijing");
+			break;
 		case "上海":
 			des = Destination.valueOf("Shanghai");
+			break;
 		case "广州":
 			des = Destination.valueOf("Guangzhou");
+			break;
 		case "南京":
 			des = Destination.valueOf("Nanjing");
+			break;
 
 		}
 		switch (comboBoxArea.getSelectedItem().toString()) {
 		case "航运区":
 			area = Area.valueOf("Airline");
+			break;
 		case "铁运区":
 			area = Area.valueOf("Trainline");
+			break;
 		case "汽运区":
 			area = Area.valueOf("Busline");
+			break;
 		case "机动区":
 			area = Area.valueOf("Motoline");
+			break;
 
 		}
 		InboundOrderVO inboundOrderVO = new InboundOrderVO(id, inDate, des, area, row, stand, position);

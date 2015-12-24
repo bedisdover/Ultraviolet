@@ -581,4 +581,13 @@ public class DateChooser extends JPanel {
 		Date time = new Date(year, month, day);
 		new DateChooser(time, this.panel, this.x, this.y);
 	}
+	
+	public void setTimePartTwo(String date){
+		int year = Integer.parseInt(date.substring(0, 4));
+		int month = Integer.parseInt(date.substring(4, 6));
+		int day = Integer.parseInt(date.substring(6,8));
+		@SuppressWarnings("deprecation")
+		Date time = new Date(year, month, day);
+		new DateChooser(time, this.panel, this.x, this.y);
+	}
 }
