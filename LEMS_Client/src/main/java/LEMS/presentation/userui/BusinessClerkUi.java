@@ -1,7 +1,6 @@
 package LEMS.presentation.userui;
 
 import java.awt.BorderLayout;
-import java.awt.Font;
 import java.awt.Graphics;
 
 import javax.swing.ImageIcon;
