@@ -8,6 +8,7 @@ import LEMS.dataservice.financedataservice.FinanceInsertDataService;
 import LEMS.dataservice.financedataservice.IncomeBillDataService;
 import LEMS.dataservice.financedataservice.PayBillDataService;
 import LEMS.dataservice.financedataservice.PriceDataService;
+import LEMS.dataservice.financedataservice.SettlementDataService;
 
 public interface FinanceFactory extends Remote {
 	/**
@@ -21,4 +22,10 @@ public interface FinanceFactory extends Remote {
 	public PayBillDataService getPayBillData() throws RemoteException;
 	public FinanceInsertDataService getInsertData() throws RemoteException;
 	public FinanceDeleteDataService getDeleteData() throws RemoteException;
+	
+	/**
+	 * @return
+	 * @throws RemoteException
+	 */
+	public SettlementDataService getSettlementDataService() throws RemoteException;
 }

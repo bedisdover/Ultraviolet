@@ -6,6 +6,7 @@ import java.rmi.RemoteException;
 import LEMS.dataservice.financedataservice.IncomeBillDataService;
 import LEMS.dataservice.financedataservice.PayBillDataService;
 import LEMS.dataservice.financedataservice.PriceDataService;
+import LEMS.dataservice.financedataservice.SettlementDataService;
 
 public interface FinanceFactory extends Remote {
 	/**
@@ -15,6 +16,24 @@ public interface FinanceFactory extends Remote {
 	 * @throws RemoteException
 	 */
 	public PriceDataService getPriceDataService() throws RemoteException;
+	
+	/**
+	 * 
+	 * 
+	 * @return
+	 * @throws RemoteException
+	 */
 	public IncomeBillDataService getIncomeBillData() throws RemoteException;
+	
+	/**
+	 * @return
+	 * @throws RemoteException
+	 */
 	public PayBillDataService getPayBillData() throws RemoteException;
+	
+	/**
+	 * @return
+	 * @throws RemoteException
+	 */
+	public SettlementDataService getSettlementDataService() throws RemoteException;
 }
