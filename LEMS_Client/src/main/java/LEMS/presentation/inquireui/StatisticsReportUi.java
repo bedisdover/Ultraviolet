@@ -67,8 +67,8 @@ public class StatisticsReportUi extends JPanel {
 		title = new JLabel("查看统计分析");
 		labelDate1 = new JLabel("日期：");
 		labelDate2 = new JLabel("至");
-		name = new JLabel("账号：  "+user.getId());
-		statue = new JLabel("身份： "+UserRole.transfer(user.getRole()));
+		name = new JLabel("账号："+user.getId());
+		statue = new JLabel("身份："+UserRole.transfer(user.getRole()));
 		textDate1 = new JTextField();
 		textDate2 = new JTextField();
 		font = new Font("Courier", Font.PLAIN, 26);
@@ -86,7 +86,7 @@ public class StatisticsReportUi extends JPanel {
 		
 		title.setBounds(424,26,249,45);
 		title.setFont(font);
-		name.setBounds(800,25,135,28);
+		name.setBounds(800,25,183,28);
 		statue.setBounds(800,60,183,28);
 		but.setBounds(740,119-change,120,30);
 		labelDate1.setBounds(217,122-change,80,25);

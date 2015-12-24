@@ -7,8 +7,8 @@ import java.io.Serializable;
  * 
  *         付款单持久化对象
  */
+@SuppressWarnings("serial")
 public class PayBillPO implements Serializable {
-	private static final long serialVersionUID = 1L;
 	
 	/**
 	 * 付款日期
