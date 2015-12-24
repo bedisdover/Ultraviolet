@@ -117,7 +117,7 @@ public class LoginUi extends JPanel {
 						}
 
 					}
-				} catch (Exception e) {
+				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(LoginUi.this, "请检查网络连接！");
 				}
 			
