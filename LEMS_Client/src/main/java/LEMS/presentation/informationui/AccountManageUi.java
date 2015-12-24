@@ -53,7 +53,8 @@ public class AccountManageUi extends JPanel{
 	private JTextField textPassword;
 	private JLabel labelBalance;
 	private JTextField textBalance;
-
+	private JLabel userId;
+	private JLabel userRole;
 	private Font fnt1 = new Font("Courier", Font.PLAIN, 26);
 	
 	Table table;
@@ -96,6 +97,13 @@ public class AccountManageUi extends JPanel{
 		textPassword = new JTextField();
 		labelBalance = new JLabel("账户余额:");
 		textBalance = new JTextField();
+		
+		userId = new JLabel(" 账号： "+user.getId());
+		userId.setLocation(802, 36);
+		userId.setSize(180, 25);
+		userRole = new JLabel("身份： "+UserRole.transfer(user.getRole()));
+		userRole.setLocation(812, 62);
+		userRole.setSize(180, 25);
 	}
 
 	/**
@@ -135,7 +143,9 @@ public class AccountManageUi extends JPanel{
 		this.add(butDel);
 		this.add(butFind);
 		this.add(butChange);
-
+		this.add(userId);
+		this.add(userRole);
+		
 		String[] columnNames = { "账户ID", "密码", "账户余额"};
 		int[] list = { 40, 181, 14, 30, 20, 384, 126-up, 561, 465 };
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
