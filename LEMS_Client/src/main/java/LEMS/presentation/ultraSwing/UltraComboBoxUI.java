@@ -38,9 +38,6 @@ public class UltraComboBoxUI extends BasicComboBoxUI {
 	  arrow.setRolloverEnabled(true);
 	  arrow.setRolloverIcon(icon);
 	  arrow.setBorder(null);
-	  /**
-	   * 
-	   */
 	  arrow.setBackground(Color.gray);
 	  arrow.setOpaque(false);
 	  arrow.setContentAreaFilled(false);
@@ -52,9 +49,11 @@ public class UltraComboBoxUI extends BasicComboBoxUI {
 	  Graphics2D g2 = (Graphics2D)g;
 	  if (!comboBox.isEditable()) {
 	   Rectangle r = rectangleForCurrentValue();
-	   //重点:JComboBox的textfield 的绘制 并不是靠Renderer来控制 这点让我很吃惊.
+	  
+	   //重点:JComboBox的textfield 的绘制 并不是靠Renderer来控制
 	   //它会通过paintCurrentValueBackground来绘制背景
 	   //然后通过paintCurrentValue();去绘制JComboBox里显示的值
+	   //paintCurrentValueBackground是basiccomboboxui中方法
 	   paintCurrentValueBackground(g2, r, hasFocus);
 	   paintCurrentValue(g2, r, hasFocus);
 	  }
@@ -114,6 +113,7 @@ public class UltraComboBoxUI extends BasicComboBoxUI {
 	    return sp;
 	   }
 	   //重载paintBorder方法 来画出我们想要的边框..
+	   //下拉之后的边框
 	   public void paintBorder(Graphics g){
 	    Graphics2D g2 = (Graphics2D) g;
 	    g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,

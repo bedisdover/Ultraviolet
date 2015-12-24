@@ -168,7 +168,7 @@ public class DateChooser extends JPanel {
 		// toSelect=new JLabel(sdf.format(initDate));
 		// toSelect.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		// toSelect.setRequestFocusEnabled(true);
-		this.setBackground(Color.WHITE);
+		this.setBackground(Color.ORANGE);
 		this.add(showDate, BorderLayout.CENTER);
 		// this.add(toSelect,BorderLayout.EAST);
 		this.setPreferredSize(new Dimension(90, 25));
@@ -247,7 +247,7 @@ public class DateChooser extends JPanel {
 
 		public JP1() {
 			super(new BorderLayout());
-			this.setBackground(new Color(147, 210, 233));
+			this.setBackground(Color.GRAY.brighter());
 			initJP1();
 		}
 
@@ -403,7 +403,8 @@ public class DateChooser extends JPanel {
 		protected void paintComponent(Graphics g) {
 			if (day == select.get(Calendar.DAY_OF_MONTH) && month == select.get(Calendar.MONTH)) {
 				// 如果当前日期是选择日期,则高亮显示
-				g.setColor(new Color(147, 210, 233));
+				g.setColor(Color.GRAY.brighter());
+				//g.setColor(new Color(147, 210, 233));
 				g.fillRect(0, 0, getWidth(), getHeight());
 			}
 			if (year == now.get(Calendar.YEAR) && month == now.get(Calendar.MONTH)
@@ -553,7 +554,7 @@ public class DateChooser extends JPanel {
 		public JP4() {
 			super(new BorderLayout());
 			this.setPreferredSize(new Dimension(295, 20));
-			this.setBackground(new Color(147, 210, 233));
+			this.setBackground(Color.GRAY.brighter());
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
 			final JLabel jl = new JLabel("今天: " + sdf.format(new Date()));
 			jl.setToolTipText("点击回到今天日期");

@@ -114,7 +114,7 @@ public class GenerateInboundOrderUi extends JPanel {
 		textPosition = new UltraTextField(15);
 		comboBoxDestination = new UltraComboBox();
 		comboBoxArea = new UltraComboBox();
-		dc=new DateChooser(this,LOCATION_TEXT_X,LOCATION_TEXT_Y + 55,200,200);
+		dc=new DateChooser(this,LOCATION_TEXT_X,LOCATION_TEXT_Y + 55);
 	
 	}
 

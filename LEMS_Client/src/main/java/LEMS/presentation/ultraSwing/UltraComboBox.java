@@ -2,6 +2,8 @@ package LEMS.presentation.ultraSwing;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.geom.RoundRectangle2D;
 import java.util.Vector;
 
 import javax.swing.ComboBoxModel;
@@ -37,6 +39,17 @@ public class UltraComboBox extends JComboBox {
 		 public Dimension getPreferredSize(){
 		  return super.getPreferredSize();
 		 }
+		 protected void paintComponent(Graphics g) {
+				
+			   g.setColor(Color.white);
+			   g.fillRoundRect(0, 0, getWidth()-1, getHeight()-1, 15, 15);
+			   super.paintComponent(g);
+			 }
+			 protected void paintBorder(Graphics g) {
+			   g.setColor(Color.gray.brighter());
+			   g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 15, 15);
+			 }
+
 		}
 	
 	

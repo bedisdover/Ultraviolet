@@ -133,7 +133,7 @@ public class GenerateOutboundOrderUi extends JPanel{
 		
 		textId.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y, BOUND_X, BOUND_Y-6);
 		textTransferNum.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+282, BOUND_X, BOUND_Y-6);
-		
+
 		title.setFont(fnt1);
 		labelId.setFont(fnt);
 		labelOutDate.setFont(fnt);
@@ -141,12 +141,7 @@ public class GenerateOutboundOrderUi extends JPanel{
 		labelTransportType.setFont(fnt);
 		labelTransferNum1.setFont(fnt);
 		labelTransferNum2.setFont(fnt);
-		textId.setFont(fnt);
-		textTransferNum.setFont(fnt);
-		comboBoxDestination.setFont(fnt);
-		comboBoxTransportType.setFont(fnt);
 
-		
 		comboBoxDestination.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+136, BOUND_X, BOUND_Y-5);
 		comboBoxDestination.addItem("北京");
 		comboBoxDestination.addItem("上海");
@@ -249,7 +244,6 @@ public class GenerateOutboundOrderUi extends JPanel{
 				inquire.setEnabled(false);
 				OK.setEnabled(true);
 				cancel.setEnabled(true);
-				// TODO 返回按钮的具体实现
 			}
 		});
 		update.addMouseListener(new MouseAdapter() {
