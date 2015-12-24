@@ -73,7 +73,7 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 	}
 
 	public void insert(OrderPO orderPO) throws RemoteException {
-		String sql = "INSERT INTO dingdan VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO dingdan VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		PreparedStatement pstmt = connect.getPreparedStatement(sql);
 		
