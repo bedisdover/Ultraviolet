@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 
 import LEMS.businesslogic.orderbl.ReceiptRecord;
 import LEMS.po.orderpo.OrderPO;
+import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.DateChooser;
@@ -74,7 +75,9 @@ public class ReceiptRecordUi extends JPanel {
 	private ReceiptRecord receiptRecord;
 	
 	private UserVO user;
-
+	private JLabel userId;
+	private JLabel userRole;
+	
 	public ReceiptRecordUi(final MainFrame mainFrame, UserVO userVO) {
 		this.mainFrame = mainFrame;
 		this.user = userVO;
@@ -115,6 +118,12 @@ public class ReceiptRecordUi extends JPanel {
 		
 		separator1 = new JSeparator();
 		separator2 = new JSeparator();
+		userId = new JLabel("账号： "+user.getId());
+		userId.setLocation(363, 69);
+		userId.setSize(150, 25);
+		userRole = new JLabel("身份： "+UserRole.transfer(user.getRole()));
+		userRole.setLocation(528, 69);
+		userRole.setSize(150, 25);
 	}
 
 	/**
@@ -172,7 +181,9 @@ public class ReceiptRecordUi extends JPanel {
 		this.add(finish);
 		this.add(separator1);
 		this.add(separator2);
-
+		this.add(userId);
+		this.add(userRole);
+		
 		String[] columnNames = { "序号", "订单条形码号", "订单金额" };
 		int[] list = {40, 130, 14, 30, 20, 485, 115, 408, 430};
 

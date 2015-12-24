@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import LEMS.businesslogic.orderbl.Sending;
+import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.Table;
@@ -34,6 +35,7 @@ public class SendUi extends JPanel {
 	private static final int BOUND_Y = 30;
 
 	private MainFrame mainFrame;
+	private UserVO user;
 	private JLabel title;
 	private JButton exit;
 	private JButton OK;
@@ -53,13 +55,15 @@ public class SendUi extends JPanel {
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);// 标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);// 其余字体格式
 	private Font fnt2 = new Font("宋体", Font.BOLD, 16);// 按钮字体格式
-
+	private JLabel userId;
+	private JLabel userRole;
 	private Sending sending;
 	
 	private DeliveryVO deliveryVO;
 	
 	public SendUi(final MainFrame mainFrame, UserVO userVO) {
 		this.mainFrame = mainFrame;
+		user=userVO;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
 		// 初始化
@@ -93,6 +97,12 @@ public class SendUi extends JPanel {
 		labelStaff = new JLabel("派送员:");
 		textStaff = new JTextField();
 		textId = new JTextField();
+		userId = new JLabel("账号： "+user.getId());
+		userId.setLocation(363, 69);
+		userId.setSize(150, 25);
+		userRole = new JLabel("身份： "+UserRole.transfer(user.getRole()));
+		userRole.setLocation(528, 69);
+		userRole.setSize(150, 25);
 		dc = new DateChooser(this, LOCATION_TEXT_X, LOCATION_TEXT_Y);
 	}
 
@@ -142,7 +152,9 @@ public class SendUi extends JPanel {
 		this.add(delete);
 		this.add(update);
 		this.add(finish);
-
+		this.add(userId);
+		this.add(userRole);
+		
 		String[] columnNames = {"序号", "货物派送日期", "订单条形码", "派送员" };
 		int[] list = { 40, 133, 14, 30, 20, 383, 125, 550, 420 };
 

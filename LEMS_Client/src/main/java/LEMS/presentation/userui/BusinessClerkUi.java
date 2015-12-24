@@ -21,6 +21,7 @@ import LEMS.vo.uservo.UserVO;
  * @author 周梦佳
  * 营业厅业务员界面
  */
+@SuppressWarnings("serial")
 public class BusinessClerkUi extends JPanel {
 	
 	MainFrame mainFrame;
