@@ -56,10 +56,10 @@ public class SettlementUi extends JPanel {
 		font = new Font("宋体", Font.PLAIN, 26);
 		butOut = new JButton("登出");
 		userId = new JLabel(" 账号： "+user.getId());
-		userId.setLocation(788, 15);
+		userId.setLocation(788, 25);
 		userId.setSize(180, 25);
 		userRole = new JLabel("身份： "+UserRole.transfer(user.getRole()));
-		userRole.setLocation(798, 44);
+		userRole.setLocation(788, 54);
 		userRole.setSize(180, 25);
 	}
 

@@ -102,7 +102,7 @@ public class AccountManageUi extends JPanel{
 		userId.setLocation(802, 36);
 		userId.setSize(180, 25);
 		userRole = new JLabel("身份： "+UserRole.transfer(user.getRole()));
-		userRole.setLocation(812, 62);
+		userRole.setLocation(802, 62);
 		userRole.setSize(180, 25);
 	}
 
