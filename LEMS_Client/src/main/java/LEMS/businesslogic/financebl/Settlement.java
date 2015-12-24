@@ -10,7 +10,7 @@ import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.businesslogicservice.financeblservice.SettlementService;
 import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.FinanceFactory;
-import LEMS.dataservice.financedataservice.IncomeBillDataService;
+import LEMS.dataservice.financedataservice.SettlementDataService;
 import LEMS.po.orderpo.IncomePO;
 import LEMS.vo.ordervo.IncomeVO;
 
@@ -26,7 +26,7 @@ public class Settlement implements SettlementService {
 		ArrayList<IncomePO> incomeBills = null;
 
 		try {
-			incomeBills = this.getDataService().getIncomeByDateAndIns(date, institution);
+			incomeBills = this.getDataService().getIncomePO(date, institution);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -78,12 +78,12 @@ public class Settlement implements SettlementService {
 
 	}
 
-	private IncomeBillDataService getDataService() {
-		IncomeBillDataService dataService = null;
+	private SettlementDataService getDataService() {
+		SettlementDataService dataService = null;
 		try {
 			DatabaseFactory databaseFactory = (DatabaseFactory) Naming.lookup(RMIConnect.RMI);
 			FinanceFactory financeFactory = databaseFactory.getFinanceFactory();
-			dataService = financeFactory.getIncomeBillData();
+			dataService = financeFactory.getSettlementData();
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {

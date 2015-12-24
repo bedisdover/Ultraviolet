@@ -6,10 +6,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import LEMS.businesslogic.financebl.Settlement;
-import LEMS.po.financepo.IncomeBillPO;
+import LEMS.po.orderpo.IncomePO;
 import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
@@ -43,6 +46,8 @@ public class SettlementUi extends JPanel {
 	private JLabel label;
 
 	private Settlement settlement;
+	private JLabel labelTotal;
+	private JTextField textTotal;
 
 	public SettlementUi(final MainFrame mainFrame, UserVO uvo) {
 		this.mainFrame = mainFrame;
@@ -76,8 +81,8 @@ public class SettlementUi extends JPanel {
 	}
 
 	public void initComponents() {
-		but1.setBounds(52, 373, 120, 40);
-		but2.setBounds(195, 373, 120, 40);
+		but1.setBounds(52, 415, 120, 40);
+		but2.setBounds(194, 415, 120, 40);
 		title.setBounds(454, 26, 249, 45);
 		title.setFont(font);
 		butOut.setBounds(52, 36, 120, 40);
@@ -109,6 +114,16 @@ public class SettlementUi extends JPanel {
 		textField.setBounds(152, 272, 163, 21);
 		add(textField);
 		textField.setColumns(10);
+		
+		labelTotal = new JLabel("总金额：");
+		labelTotal.setBounds(74, 349, 54, 15);
+		add(labelTotal);
+		
+		textTotal = new JTextField();
+		textTotal.setEditable(false);
+		textTotal.setBounds(152, 346, 163, 21);
+		add(textTotal);
+		textTotal.setColumns(10);
 	}
 
 	public void addListener() {
@@ -135,19 +150,28 @@ public class SettlementUi extends JPanel {
 	}
 
 	private void findOperation() {
-		ArrayList<IncomeBillPO> incomes = settlement.getIncomeByDateAndIns(dc.getTime(), textField.getText());
+		ArrayList<IncomePO> incomes = settlement.getIncomeByDateAndIns(dc.getTime(), textField.getText());
 		
 		String [] values = {};
-		for (IncomeBillPO incomeBillPO : incomes) {
-			values[0] = incomeBillPO.getDate();
-			values[1] = incomeBillPO.getInstitution();
-			values[2] = incomeBillPO.getAccount();
+		for (IncomePO incomePO : incomes) {
+			//TODO 添加非编号
+			values[0] = incomePO.getDate();
+			values[1] = textField.getText();
+			values[2] = incomePO.getCollector();
+			values[3] = incomePO.getAmount() + "";
 			table.setValueAt(table.numOfEmpty(), values);
+			
+			if (textTotal.getText().equals("")) {
+				textTotal.setText(incomePO.getAmount() + "");
+			} else {
+				textTotal.setText(Double.parseDouble(textTotal.getText())
+							+ incomePO.getAmount() + "");
+			}
 		}
 	}
 
 	private void addOperation() {
-
+		
 	}
 
 	public void paintComponent(Graphics g) {

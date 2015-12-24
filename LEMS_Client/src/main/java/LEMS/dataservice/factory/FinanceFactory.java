@@ -27,5 +27,5 @@ public interface FinanceFactory extends Remote {
 	 * @return
 	 * @throws RemoteException
 	 */
-	public SettlementDataService getSettlementDataService() throws RemoteException;
+	public SettlementDataService getSettlementData() throws RemoteException;
 }

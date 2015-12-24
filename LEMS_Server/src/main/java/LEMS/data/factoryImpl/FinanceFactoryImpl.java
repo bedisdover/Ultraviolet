@@ -6,10 +6,12 @@ import java.rmi.server.UnicastRemoteObject;
 import LEMS.data.financedata.IncomeBillData;
 import LEMS.data.financedata.PayBillData;
 import LEMS.data.financedata.PriceData;
+import LEMS.data.financedata.SettlementData;
 import LEMS.dataservice.factory.FinanceFactory;
 import LEMS.dataservice.financedataservice.IncomeBillDataService;
 import LEMS.dataservice.financedataservice.PayBillDataService;
 import LEMS.dataservice.financedataservice.PriceDataService;
+import LEMS.dataservice.financedataservice.SettlementDataService;
 
 @SuppressWarnings("serial")
 public class FinanceFactoryImpl extends UnicastRemoteObject implements FinanceFactory {
@@ -36,4 +38,8 @@ public class FinanceFactoryImpl extends UnicastRemoteObject implements FinanceFa
 		return pa;
 	}
 
+	@Override
+	public SettlementDataService getSettlementData() throws RemoteException {
+		return new SettlementData();
+	}
 }
