@@ -28,16 +28,16 @@ public class mainSongYiming {
 //		mainFrame.setContentPane(loadUi);
 //		VehicleLoadUi vehicleLoadUi = new VehicleLoadUi(mainFrame, null);
 //		mainFrame.setContentPane(vehicleLoadUi);
-//		TransferUi transferUi = new TransferUi(mainFrame, null);
-//		mainFrame.setContentPane(transferUi);
+		TransferUi transferUi = new TransferUi(mainFrame, null);
+		mainFrame.setContentPane(transferUi);
 //		OrderManageUi orderManageUi = new OrderManageUi(mainFrame, null);
 //		mainFrame.setContentPane(orderManageUi);
 //		CourierUi courierUi = new CourierUi(mainFrame);
 //		mainFrame.setContentPane(courierUi);
 //		LoadUi2 loadUi2 = new LoadUi2(mainFrame, null);
 //		mainFrame.setContentPane(loadUi2);
-		ReceiptRecordUi receiptRecordUi = new ReceiptRecordUi(mainFrame, null);
-		mainFrame.setContentPane(receiptRecordUi);
+//		ReceiptRecordUi receiptRecordUi = new ReceiptRecordUi(mainFrame, null);
+//		mainFrame.setContentPane(receiptRecordUi);
 		mainFrame.setVisible(true);
 		
 		
