@@ -125,7 +125,7 @@ public class LoginUi extends JPanel {
 						break;
 					//登录后跳转到快递员界面
 					case Courier:
-						mainFrame.setContentPane(new CourierUi(mainFrame));
+						mainFrame.setContentPane(new CourierUi(mainFrame,userVO));
 						repaint();
 						break;
 					//登录后跳转到营业厅业务员界面

@@ -12,8 +12,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
+import LEMS.vo.uservo.UserVO;
 
 /**
  * @author 苏琰梓 快递员界面（订单管理界面） 2015年12月12日
@@ -53,9 +55,13 @@ public class CourierUi extends JPanel {
 
 	private JButton butOut;
 	private JButton butOK;
-
-	public CourierUi(final MainFrame mainFrame) {
+	private JLabel userId;
+	private JLabel userRole;
+	private UserVO user;
+	
+	public CourierUi(final MainFrame mainFrame,UserVO uvo) {
 		this.mainFrame = mainFrame;
+		user=uvo;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
 
@@ -94,6 +100,13 @@ public class CourierUi extends JPanel {
 
 		butOut = new JButton("返回");
 		butOK = new JButton("生成");
+		
+		userId = new JLabel("账号： "+user.getId());
+		userId.setLocation(770, 25);
+		userId.setSize(150, 25);
+		userRole = new JLabel("身份： "+UserRole.transfer(user.getRole()));
+		userRole.setLocation(770, 60);
+		userRole.setSize(150, 25);
 	}
 
 	private void initComponent() {
@@ -169,6 +182,8 @@ public class CourierUi extends JPanel {
 		this.add(Price);
 		this.add(butOK);
 		this.add(butOut);
+		this.add(userId);
+		this.add(userRole);
 	}
 
 	private void addListener() {
