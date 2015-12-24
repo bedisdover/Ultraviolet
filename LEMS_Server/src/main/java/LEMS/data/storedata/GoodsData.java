@@ -29,8 +29,10 @@ public class GoodsData extends UnicastRemoteObject implements GoodsDataService {
 
 	public GoodsPO find(String id) {
 		ArrayList<String> al = new ArrayList<String>();
-		String sql = "SELECT id,inDate,outDate,destination,area,row,stand,position,transportType,transferNum,money FROM goods where id ='"
-				+ id + "'";
+//		String sql = "SELECT id,inDate,outDate,destination,area,row,stand,position,transportType,transferNum,money FROM goods where id ='"
+//				+ id + "'";
+		String sql = "SELECT id,inDate,outDate,destination,area,row,stand,position,transportType,transferNum,money FROM goods where id = "
+				+ id ;
 		ResultSet result = connect.getResultSet(sql);
 		PreparedStatement pstmt = connect.getPreparedStatement(sql);
 		GoodsPO goodsPO = new GoodsPO("", "", "", Destination.Beijing, Area.Airline, 1, 1, 1, TransportType.Airplane,
