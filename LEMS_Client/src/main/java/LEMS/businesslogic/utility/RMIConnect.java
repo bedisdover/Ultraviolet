@@ -17,8 +17,9 @@ public class RMIConnect {
 			//读取
 			Document document = reader.read("config.xml");
 			//获取根目录
-			Element connect = document.getRootElement();
-			
+			Element system = document.getRootElement();
+			Element connect = system.element("Connect");
+
 			RMI = connect.attributeValue("IP");
 		} catch (DocumentException e) {
 			e.printStackTrace();
