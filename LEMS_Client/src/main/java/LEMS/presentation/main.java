@@ -9,8 +9,8 @@ public class main {
 
 	public static void main(String[] args) {
 		MainFrame mainFrame = new MainFrame();
-		StartUi jPanelStart = new StartUi(mainFrame);
-		mainFrame.setContentPane(jPanelStart);
+		LoginUi jPanelLogin = new LoginUi(mainFrame);
+		mainFrame.setContentPane(jPanelLogin);
 	}
 }
 //所有用户的账号、密码、身份

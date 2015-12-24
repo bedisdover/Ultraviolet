@@ -209,7 +209,6 @@ public class CostUi extends JPanel {
 						table.setValueAt(j, 0, table.getValueAt(j + 1, 0));
 						table.setValueAt(j, 1, table.getValueAt(j + 1, 1));
 						table.setValueAt(j, 2, table.getValueAt(j + 1, 2));
-						table.setValueAt(j, 3, table.getValueAt(j + 1, 3));
 					}
 				}
 			}

@@ -133,14 +133,12 @@ public class OrderManageUi extends JPanel {
 		//货物信息
 		cargo = new JLabel("货物信息");
 		theCargoName = new JLabel("名称：");
-		theCargoType = new JLabel("类型：");
 		theCargoNumber = new JLabel("数量：");
 		theCargoWeight = new JLabel("重量：");
 		theCargoVolume = new JLabel("体积：");
 		theCargoPackage = new JLabel("包装类型：");
 		theCargoExpress = new JLabel("快递类型：");
 		cName = new JTextField();
-		cType = new JTextField();
 		cNumber = new JTextField();
 		cWeight = new JTextField();
 		cLength = new JTextField();
@@ -180,38 +178,37 @@ public class OrderManageUi extends JPanel {
 		sPhone.setBounds(191,125,146,27);
 		sAddress.setBounds(191,157,146,27);
 		//收件人
-		addressee.setBounds(74,199,118,57);
-		theAddresseeName.setBounds(90,239,107,27);
-		theAddresseePhone.setBounds(90,271,107,27);
-		theAddresseeAddress.setBounds(90,305,107,27);
-		aName.setBounds(191,239,146,27);
-		aPhone.setBounds(191,271,146,27);
-		aAddress.setBounds(191,305,146,27);
+		addressee.setBounds(74,199-15,118,57);
+		theAddresseeName.setBounds(90,239-15,107,27);
+		theAddresseePhone.setBounds(90,271-15,107,27);
+		theAddresseeAddress.setBounds(90,305-15,107,27);
+		aName.setBounds(191,239-15,146,27);
+		aPhone.setBounds(191,271-15,146,27);
+		aAddress.setBounds(191,305-15,146,27);
 		//货物信息
-		cargo.setBounds(74,351,118,57);
-		theCargoName.setBounds(90,392,107,27);
-		theCargoType.setBounds(90,423,107,27);
-		theCargoNumber.setBounds(90,457,107,27);
-		theCargoWeight.setBounds(90,495,107,27);
-		theCargoVolume.setBounds(90,527,107,27);
-		theCargoPackage.setBounds(90,567,107,27);
-		theCargoExpress.setBounds(90,601,107,27);
-		cName.setBounds(191,389,146,27);
-		cType.setBounds(191,423,146,27);
-		cNumber.setBounds(191,457,146,27);
-		cWeight.setBounds(191,495,146,27);
-		cLength.setBounds(191,527,40,27);
-		cWidth.setBounds(244,527,40,27);
-		cHeight.setBounds(297, 527, 40, 27);
-		cPackage.setBounds(191,567,146,27);
-		cExpress.setBounds(191,601,146,27);
-		mul.setBounds(232, 527, 10, 27);
-		mul2.setBounds(287, 527, 10, 27);
+		int shang = 20;
+		cargo.setBounds(74,351-shang,118,57);
+		theCargoName.setBounds(90,392-shang,107,27);
+		theCargoNumber.setBounds(90,423-shang,107,27);
+		theCargoWeight.setBounds(90,457-shang,107,27);
+		theCargoVolume.setBounds(90,495-shang,107,27);
+		theCargoPackage.setBounds(90,527-shang,107,27);
+		theCargoExpress.setBounds(90,567-shang,107,27);
+		cName.setBounds(191,389-shang,146,27);
+		cNumber.setBounds(191,423-shang,146,27);
+		cWeight.setBounds(191,457-shang,146,27);
+		cLength.setBounds(191,495-shang,40,27);
+		cWidth.setBounds(244,495-shang,40,27);
+		cHeight.setBounds(297, 495-shang, 40, 27);
+		cPackage.setBounds(191,527-shang,146,27);
+		cExpress.setBounds(191,567-shang,146,27);
+		mul.setBounds(232, 527-shang, 10, 27);
+		mul2.setBounds(287, 527-shang, 10, 27);
 		
 		//按钮
-		butOut.setBounds(26,10,120,40);
-		OK.setBounds(74,663,120,40);
-		cancel.setBounds(229,663,120,40);
+		butOut.setBounds(26,15,100,30);
+		OK.setBounds(74,593,120,40);
+		cancel.setBounds(229,593,120,40);
 		
 		this.add(title);
 		this.add(sender);
@@ -230,14 +227,12 @@ public class OrderManageUi extends JPanel {
 		this.add(aAddress);
 		this.add(cargo);
 		this.add(theCargoName);
-		this.add(theCargoType);
 		this.add(theCargoNumber);
 		this.add(theCargoWeight);
 		this.add(theCargoVolume);
 		this.add(theCargoPackage);
 		this.add(theCargoExpress);
 		this.add(cName);
-		this.add(cType);
 		this.add(cNumber);
 		this.add(cWeight);
 		this.add(cLength);
@@ -294,10 +289,9 @@ public class OrderManageUi extends JPanel {
 	
 	public void paintComponent(Graphics g){
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
-		g.draw3DRect(51, 53, 325, 657, false);
-		g.draw3DRect(70, 63, 284, 133, false);
-		g.draw3DRect(70, 209, 284, 139, false);
-		g.draw3DRect(70, 359, 284, 286, false);
+		g.draw3DRect(51, 53, 325, 557, false);
+		g.draw3DRect(70, 63, 284, 270, false);
+		g.draw3DRect(70, 369-20, 284, 246, false);
 
 		this.repaint();
 	}

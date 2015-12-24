@@ -3,6 +3,7 @@ package LEMS.presentation.financeui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -49,6 +50,8 @@ public class SettingPriceUi extends JPanel {
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH ,
 				MainFrame.JFRAME_HEIGHT);
 		this.setLayout(null);
+		//设置界面为白色
+//		this.setBackground(SystemColor.inactiveCaptionBorder);
 		this.mainFrame = mainFrame;
 		user=uvo;
 		//		JLabel name = new JLabel("账号："+user.getId());
@@ -181,8 +184,8 @@ public class SettingPriceUi extends JPanel {
 
 	}
 
-//	public void paintComponent(Graphics g) {
-//		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
-//		this.repaint();
-//	}
+	public void paintComponent(Graphics g) {
+		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
+		this.repaint();
+	}
 }

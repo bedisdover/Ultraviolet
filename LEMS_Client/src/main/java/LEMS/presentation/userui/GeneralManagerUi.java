@@ -1,13 +1,15 @@
 package LEMS.presentation.userui;
 
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 import java.awt.BorderLayout;
 import java.awt.Font;
 
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.financeui.ExamDocumentUi;
+import LEMS.presentation.financeui.SettingPriceUi;
 import LEMS.presentation.informationui.InstitutionManageUi;
 import LEMS.presentation.informationui.StuffManageUi;
 import LEMS.presentation.inquireui.DiaryUi;
@@ -30,7 +32,7 @@ public class GeneralManagerUi extends JPanel {
 	InstitutionManageUi institutionManageUi;
 	StuffManageUi stuffManageUi;
 	StatisticsReportUi statisticsReportUi;
-	LEMS.presentation.financeui.SettingPriceUi SettingPriceUi;
+	SettingPriceUi SettingPriceUi;
 	Font font = new Font("宋体", Font.PLAIN, 12);
 
 	/**
@@ -47,7 +49,7 @@ public class GeneralManagerUi extends JPanel {
 		diaryUi = new DiaryUi(this.mainFrame,user);
 		stuffManageUi = new StuffManageUi(this.mainFrame,user);
 		statisticsReportUi = new StatisticsReportUi(this.mainFrame,user);
-		SettingPriceUi = new LEMS.presentation.financeui.SettingPriceUi(this.mainFrame,user);
+		SettingPriceUi = new SettingPriceUi(this.mainFrame,user);
 		init();
 		initComponents();
 

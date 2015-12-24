@@ -4,6 +4,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -38,6 +39,7 @@ public class MainFrame extends JFrame{
 		this.setLayout(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(JFRAME_WIDTH, JFRAME_HEIGHT);
+//		this.setBackground(SystemColor.inactiveCaptionBorder);
 		//不能自由改变大小
 		this.setResizable(false);
 		//下面为居中

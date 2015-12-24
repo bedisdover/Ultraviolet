@@ -7,6 +7,7 @@ import javax.swing.*;
 
 import LEMS.businesslogic.userbl.UserLogin;
 import LEMS.po.userpo.UserRole;
+import LEMS.presentation.inquireui.LogisticsInfoUi;
 import LEMS.presentation.userui.BusinessClerkUi;
 import LEMS.presentation.userui.CourierUi;
 //import LEMS.presentation.userui.CourierUi;
@@ -25,8 +26,9 @@ public class LoginUi extends JPanel {
 	
 	MainFrame mainFrame;
 	Image im;
-	JButton but1 = new JButton("登录");
-	JButton but2 = new JButton("返回");
+	JButton but1 = new JButton("登  录");
+	JButton but2 = new JButton("查询物流信息");
+	JButton but3 = new JButton("关于我们");
 	JLabel labName = new JLabel("账号：");
 	JLabel labPassword = new JLabel("密码：");
 	JTextField textName = new JTextField();
@@ -37,14 +39,15 @@ public class LoginUi extends JPanel {
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
 		mainFrame.setDragable(this);
-		labName.setBounds(313, 249, 193, 56);
-		labPassword.setBounds(313, 378, 193, 56);
+		labName.setBounds(313, 239, 193, 56);
+		labPassword.setBounds(313, 348, 193, 56);
 
-		textName.setBounds(482, 249, 251, 56);
-		textPassword.setBounds(482, 378, 251, 56);
+		textName.setBounds(482, 239, 251, 56);
+		textPassword.setBounds(482, 348, 251, 56);
 
-		but1.setBounds(280, 543, 150, 45);
-		but2.setBounds(655, 543, 150, 45);
+		but1.setBounds(620, 443, 150, 45);
+		but2.setBounds(785, 563, 150, 45);
+		but3.setBounds(785, 643, 150, 45);
 
 		Font fnt = new Font("Serief", Font.BOLD, 24);
 		labName.setFont(fnt);
@@ -55,13 +58,14 @@ public class LoginUi extends JPanel {
 
 		this.add(but1);
 		this.add(but2);
+		this.add(but3);
 		this.add(labName);
 		this.add(labPassword);
 		this.add(textName);
 		this.add(textPassword);
 
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
-		im = Toolkit.getDefaultToolkit().getImage("01.jpg");
+		im = Toolkit.getDefaultToolkit().getImage("backGround.png");
 
 		// 点击登陆按钮
 		but1.addMouseListener(new MouseAdapter() {
@@ -125,6 +129,12 @@ public class LoginUi extends JPanel {
 		});
 		// 点击返回按钮
 		but2.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				mainFrame.setContentPane(new LogisticsInfoUi(mainFrame));
+				mainFrame.setVisible(true);
+			}
+		});
+		but3.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 
 				mainFrame.setContentPane(new StartUi(mainFrame));
