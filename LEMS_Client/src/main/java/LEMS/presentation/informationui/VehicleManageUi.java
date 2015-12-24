@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import LEMS.businesslogic.informationbl.InformationAdd;
 import LEMS.businesslogic.informationbl.InformationDelete;
 import LEMS.businesslogic.informationbl.InformationFind;
+import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.Table;
@@ -39,6 +40,7 @@ public class VehicleManageUi extends JPanel {
 	private static final int BOUND_Y = 30;
 
 	private MainFrame mainFrame;
+	private UserVO user;
 	private Table table;
 	private JLabel title;
 	private JButton exit;
@@ -65,10 +67,12 @@ public class VehicleManageUi extends JPanel {
 	private ImageIcon image;
 	private boolean isAdd;
 	private boolean isUpdate;
-	private UserVO uvo;
+	private JLabel userId;
+	private JLabel userRole;
+	
 	public VehicleManageUi(final MainFrame mainFrame, UserVO userVO) {
 		this.mainFrame = mainFrame;
-		uvo=userVO;
+		user=userVO;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
 		// 初始化
@@ -112,6 +116,12 @@ public class VehicleManageUi extends JPanel {
 		image = new ImageIcon("init.jpg");
 		picture = new JLabel(image);
 		
+		userId = new JLabel("账号： "+user.getId());
+		userId.setLocation(363, 69);
+		userId.setSize(150, 25);
+		userRole = new JLabel("身份： "+UserRole.transfer(user.getRole()));
+		userRole.setLocation(528, 69);
+		userRole.setSize(150, 25);
 
 	}
 
@@ -176,6 +186,8 @@ public class VehicleManageUi extends JPanel {
 		this.add(inquire);
 		this.add(comboBox);
 		this.add(type);
+		this.add(userId);
+		this.add(userRole);
 		
 		String[] columnNames = { "车辆代号", "车牌号", "服役时间" };
 		int[] list = { 40, 170, 14, 30, 20, 400, 110, 528, 450 };
@@ -184,7 +196,7 @@ public class VehicleManageUi extends JPanel {
 		add(table.drawTable(columnNames, list));
 		
 		InformationFind find=new InformationFind();
-		ArrayList<VehicleVO> vehicles=find.findVehicle(uvo.getId().substring(6, 9));
+		ArrayList<VehicleVO> vehicles=find.findVehicle(user.getId().substring(6, 9));
 		for(int i=0;i<vehicles.size();i++){
 			table.setValueAt(i, 0, vehicles.get(i).getId());
 			table.setValueAt(i, 1, vehicles.get(i).getPlateNumber());

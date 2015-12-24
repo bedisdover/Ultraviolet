@@ -19,6 +19,7 @@ import LEMS.businesslogic.informationbl.InformationFind;
 import LEMS.businesslogic.informationbl.InformationUpdate;
 import LEMS.po.financepo.Salary;
 import LEMS.po.informationpo.Gender;
+import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.Table;
@@ -75,6 +76,8 @@ public class DriverManageUi extends JPanel {
 	private UserVO uvo;
 	private boolean isAdd;
 	private boolean isUpdate;
+	private JLabel userId;
+	private JLabel userRole;
 	
 	public DriverManageUi(final MainFrame mainFrame,UserVO uvo) {
 		this.uvo=uvo;
@@ -122,6 +125,13 @@ public class DriverManageUi extends JPanel {
 		textMonth= new JTextField();
 		textDay= new JTextField();
 		comboBox = new JComboBox<String>();
+		
+		userId = new JLabel("账号： "+uvo.getId());
+		userId.setLocation(363, 69);
+		userId.setSize(150, 25);
+		userRole = new JLabel("身份： "+UserRole.transfer(uvo.getRole()));
+		userRole.setLocation(528, 69);
+		userRole.setSize(150, 25);
 	}
 
 	/**
@@ -214,7 +224,9 @@ public class DriverManageUi extends JPanel {
 		this.add(delete);
 		this.add(update);
 		this.add(inquire);
-
+		this.add(userId);
+		this.add(userRole);
+		
 		String[] columnNames = { "司机编号", "姓名", "行驶证期限", "性别", "身份证号", "手机号" };
 		int[] list = { 40, 96, 14, 30, 20, 362, 105, 594, 460 };
 
