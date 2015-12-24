@@ -17,6 +17,13 @@ public class UltraTextField extends JTextField{
 	  Font fnt = new Font("Courier", Font.PLAIN, 15);// 其余字体格式
 		 setFont(fnt);
 	 }
+	 public UltraTextField(String text) {
+		  super(text);
+		  setOpaque(false);
+		  Font fnt = new Font("Courier", Font.PLAIN, 13);// 其余字体格式
+			 setFont(fnt);
+			 setText(text);
+		 }
 	 protected void paintComponent(Graphics g) {
 		
 	   g.setColor(getBackground());

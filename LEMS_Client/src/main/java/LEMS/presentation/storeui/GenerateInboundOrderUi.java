@@ -114,7 +114,8 @@ public class GenerateInboundOrderUi extends JPanel {
 		textPosition = new UltraTextField(15);
 		comboBoxDestination = new UltraComboBox();
 		comboBoxArea = new UltraComboBox();
-		dc=new DateChooser(this,LOCATION_TEXT_X,LOCATION_TEXT_Y + 55);
+		dc=new DateChooser(this,LOCATION_TEXT_X,LOCATION_TEXT_Y + 55,200,200);
+	
 	}
 
 	/**
@@ -207,6 +208,7 @@ public class GenerateInboundOrderUi extends JPanel {
 		comboBoxArea.setEnabled(state);
 		OK.setEnabled(state);
 		cancel.setEnabled(state);
+		dc.setEnabled(state);
 	}
 private void buttonAllTrue(){
 	add.setEnabled(true);
@@ -261,17 +263,9 @@ private void buttonAllTrue(){
 				currentLine = table.table.getSelectedRow();
 				ArrayList<String> al=table.getValueAt(currentLine);
 				textId.setText(al.get(0));
-				//日期
-				
-//				textTime.setText(al.get(1).substring(8, 16));
 				textRow.setText(al.get(4));
 				textStand.setText(al.get(5));
 				textPosition.setText(al.get(6));
-				System.out.println(al.get(2)+"这尼玛是南京");
-				
-				/**
-				 * 哎呀尼玛这switch是对的 set就要默认最后一个。。。哭
-				 */
 				switch(al.get(2)){
 				case "北京":
 					comboBoxDestination.setSelectedIndex(0);
@@ -373,9 +367,7 @@ private void buttonAllTrue(){
 				} // 删除的确定
 				else if (whichButton == 2) {
 					currentLine = table.table.getSelectedRow();
-					//告诉逻辑层通知数据库修改
 					String id=(String) table.table.getValueAt(currentLine, 0);
-					
 					StoreGenerateOrder storeGenerateOrder=new StoreGenerateOrder();
 					int judge=storeGenerateOrder.deleteInboundOrderPO(id);
 					if(judge==0)

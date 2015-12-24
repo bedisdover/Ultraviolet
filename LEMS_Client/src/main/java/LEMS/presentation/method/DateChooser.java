@@ -39,6 +39,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 
+import LEMS.presentation.ultraSwing.UltraTextField;
+
 /**
  * public DateChooser(JPanel panel,int x,int y) panel为当前panel; (x,y)为组件嵌入位置
  */
@@ -53,15 +55,15 @@ public class DateChooser extends JPanel {
 	private JP4 jp4;
 	private Font font = new Font("宋体", Font.PLAIN, 12);
 	private final LabelManager lm = new LabelManager();
-	public JTextField showDate;// ,toSelect;
+	public UltraTextField showDate;
 	private JButton choose;
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
 	private boolean isShow = false;
 	private Popup pop;
 	private int x;
 	private int y;
-	private int width = 100;
-	private int length = 24;
+	public int width = 100;
+	public int length = 24;
 	private JPanel panel;
 
 	/**
@@ -76,6 +78,26 @@ public class DateChooser extends JPanel {
 		this.panel = panel;
 		this.x = x;
 		this.y = y;
+		initDate = date;
+		select = Calendar.getInstance();
+		select.setTime(initDate);
+		initPanel();
+		initLabel();
+		panel.add(showDate);
+
+	}
+	
+	public DateChooser(JPanel panel, int x, int y,int w,int h) {
+
+		this(new Date(), panel, x, y,w,h);
+	}
+
+	public DateChooser(Date date, JPanel panel, int x, int y,int w,int h) {
+		this.panel = panel;
+		this.x = x;
+		this.y = y;
+		this.width=w;
+		this.length=h;
 		initDate = date;
 		select = Calendar.getInstance();
 		select.setTime(initDate);
@@ -100,7 +122,7 @@ public class DateChooser extends JPanel {
 	// 根据初始化的日期,初始化面板
 	private void initPanel() {
 		monthPanel = new JPanel(new BorderLayout());
-		monthPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+		monthPanel.setBorder(BorderFactory.createLineBorder(Color.gray.brighter()));
 		JPanel up = new JPanel(new BorderLayout());
 		up.add(jp1 = new JP1(), BorderLayout.NORTH);
 		up.add(jp2 = new JP2(), BorderLayout.CENTER);
@@ -123,10 +145,12 @@ public class DateChooser extends JPanel {
 
 		});
 	}
+	
 
 	// 初始化标签
 	private void initLabel() {
-		showDate = new JTextField(sdf.format(initDate));
+		showDate = new UltraTextField(sdf.format(initDate));
+		showDate.setBorder(null);
 		showDate.setRequestFocusEnabled(true);
 		showDate.setVisible(true);
 		showDate.setBounds(x, y, width, length);
@@ -385,6 +409,8 @@ public class DateChooser extends JPanel {
 			if (year == now.get(Calendar.YEAR) && month == now.get(Calendar.MONTH)
 					&& day == now.get(Calendar.DAY_OF_MONTH)) {
 				// 如果日期和当前日期一样,则用红框
+
+
 				Graphics2D gd = (Graphics2D) g;
 				gd.setColor(Color.DARK_GRAY);
 				Polygon p = new Polygon();
@@ -581,5 +607,12 @@ public class DateChooser extends JPanel {
 		new DateChooser(time, this.panel, this.x, this.y);
 	}
 	
+	public void setWidth(int w){
+		this.width=x;
+	}
 	
+	public void setHeight(int h){
+		this.length=h;
+	}
+
 }
