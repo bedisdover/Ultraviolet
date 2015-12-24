@@ -206,8 +206,8 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 		opo.setDeliver("0100121012");
 		try {
 			OrderData od=new OrderData();
-//			od.insert(opo);
-			OrderPO orderPO = od.find("1234567890");
+			od.insert(opo);
+			OrderPO orderPO = od.find("1234567892");
 			System.out.println(orderPO.getAmount());
 			System.out.println(orderPO.getReceiver());
 		} catch (RemoteException e) {
