@@ -306,24 +306,24 @@ public class OrderManageUi extends JPanel {
 	 */
 	private void OKOperation() {
 		//判断输入是否为空
-		if (isEmpty()) {
-			JOptionPane.showMessageDialog(null, "输入内容为空！", "Error", JOptionPane.ERROR_MESSAGE);
-			return;
-		}
+//		if (isEmpty()) {
+//			JOptionPane.showMessageDialog(null, "输入内容为空！", "Error", JOptionPane.ERROR_MESSAGE);
+//			return;
+//		}
 		//判断目标城市是否在服务范围内
-		if (!legalCity()) {
-			//TODO 很丑的对话框
-			JOptionPane.showMessageDialog(mainFrame, "输入地址无效" + "\n或\n" +"目标城市不在服务范围内！", "Error", JOptionPane.ERROR_MESSAGE);
-			return;
-		}
+//		if (!legalCity()) {
+//			//TODO 很丑的对话框
+//			JOptionPane.showMessageDialog(mainFrame, "输入地址无效" + "\n或\n" +"目标城市不在服务范围内！", "Error", JOptionPane.ERROR_MESSAGE);
+//			return;
+//		}
 		//判断手机号是否合法（全为7位或11位数字）
-		if (!legalPhone()) {
-			JOptionPane.showMessageDialog(mainFrame, "输入手机号无效!" + "\n或\n" +"手机号不存在！", "Error", JOptionPane.ERROR_MESSAGE);
-		}
+//		if (!legalPhone()) {
+//			JOptionPane.showMessageDialog(mainFrame, "输入手机号无效!" + "\n或\n" +"手机号不存在！", "Error", JOptionPane.ERROR_MESSAGE);
+//		}
 		//判断输入是否合法
-		if (!isLegal()) {
-			JOptionPane.showMessageDialog(mainFrame, "请输入正确数值！", "Error", JOptionPane.ERROR_MESSAGE);
-		}
+//		if (!isLegal()) {
+//			JOptionPane.showMessageDialog(mainFrame, "请输入正确数值！", "Error", JOptionPane.ERROR_MESSAGE);
+//		}
 		
 		// 生成订单
 		this.createOrder();

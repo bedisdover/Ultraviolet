@@ -1,11 +1,15 @@
 package LEMS.po.financepo;
 
+import java.io.Serializable;
+
 /**
  * @author 宋益明
  *
  * Finance包中PO类的基类
  */
-public class FinancePO {
+public class FinancePO implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * 创建日期
 	 */

@@ -1,12 +1,15 @@
 package LEMS.po.financepo;
 
+import java.io.Serializable;
+
 /**
  * @author 宋益明
  *
  * 单据的持久化对象基类
  */
-public class DocumentPO {
-
+public class DocumentPO implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * 单据生成日期
 	 */

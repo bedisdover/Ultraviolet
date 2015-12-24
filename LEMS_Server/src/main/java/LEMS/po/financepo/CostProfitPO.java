@@ -1,12 +1,15 @@
 package LEMS.po.financepo;
 
+import java.io.Serializable;
 
 /**
  * @author 宋益明
  * 
  * 成本收益表持久化对象
  */
-public class CostProfitPO {
+public class CostProfitPO implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * 截止日期
 	 */

@@ -1,5 +1,7 @@
 package LEMS.po.financepo;
 
+import java.io.Serializable;
+
 import LEMS.vo.financevo.CostProfitVO;
 
 /**
@@ -7,7 +9,9 @@ import LEMS.vo.financevo.CostProfitVO;
  * 
  * 成本收益表持久化对象
  */
-public class CostProfitPO {
+public class CostProfitPO implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * 截止日期
 	 */
