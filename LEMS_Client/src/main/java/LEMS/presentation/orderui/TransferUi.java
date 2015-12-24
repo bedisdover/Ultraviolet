@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 
 import LEMS.businesslogic.orderbl.Transfer;
 import LEMS.po.storepo.TransportType;
+import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.DateChooser;
@@ -39,6 +40,7 @@ public class TransferUi extends JPanel {
 	private static final int BOUND_Y = 30;
 
 	private MainFrame mainFrame;
+	private UserVO user;
 	private JLabel title;
 	private JButton exit;
 	private JButton OK;
@@ -87,11 +89,13 @@ public class TransferUi extends JPanel {
 	private TransferVO transferVO;
 	
 	private Table table;
-	
+	private JLabel userId;
+	private JLabel userRole;
 	private boolean isUpdate = false;
 	
 	public TransferUi(final MainFrame mainFrame, UserVO user) {
 		this.mainFrame = mainFrame;
+		this.user=user;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
 		// 初始化
@@ -133,7 +137,13 @@ public class TransferUi extends JPanel {
 		textFlight = new JTextField();
 		textContainer = new JTextField();
 		comboBoxFormat = new JComboBox<String>();
-
+		
+		userId = new JLabel("账号： "+user.getId());
+		userId.setLocation(350, 68);
+		userId.setSize(150, 25);
+		userRole = new JLabel("身份： "+UserRole.transfer(user.getRole()));
+		userRole.setLocation(515, 68);
+		userRole.setSize(150, 25);
 		dc = new DateChooser(this, LOCATION_TEXT_X, LOCATION_TEXT_Y);
 	}
 
@@ -141,7 +151,7 @@ public class TransferUi extends JPanel {
 	 * 初始化各组件
 	 */
 	private void initComponents() {
-		title.setBounds(420, 27, 230, 39);
+		title.setBounds(465, 26, 230, 39);
 		labelDate.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y, BOUND_X, BOUND_Y);
 		labelDestination.setBounds(LOCATION_LABEL_X + 7, LOCATION_LABEL_Y + 50, BOUND_X, BOUND_Y);
 		labelAllId.setBounds(80, 440, BOUND_X, BOUND_Y);
@@ -236,7 +246,9 @@ public class TransferUi extends JPanel {
 		this.add(delete);
 		this.add(update);
 		this.add(finish);
-
+		this.add(userId);
+		this.add(userRole);
+		
 		String[] columnNames = {"序号", labelAllId.getText(), labelFlight.getText(), labelContainer.getText(), labelDestination.getText()};
 		int[] list = { 40, 116, 14, 30, 20, 355, 125, 598, 435 };
 

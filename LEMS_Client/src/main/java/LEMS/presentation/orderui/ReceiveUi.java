@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import LEMS.businesslogic.orderbl.Receipt;
+import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.DateChooser;
@@ -37,6 +38,7 @@ public class ReceiveUi extends JPanel {
 	private static final int BOUND_Y=30;
 
 	private MainFrame mainFrame;
+	private UserVO user;
 	private JLabel title;
 	private JButton exit;
 	private JButton OK;
@@ -58,6 +60,8 @@ public class ReceiveUi extends JPanel {
 	
 	private DateChooser dc;
 	private Table table;
+	private JLabel userId;
+	private JLabel userRole;
 	
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);//标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);//其余字体格式
@@ -77,6 +81,7 @@ public class ReceiveUi extends JPanel {
 	
 	public ReceiveUi(final MainFrame mainFrame, UserVO userVO) {
 		this.mainFrame = mainFrame;
+		user=userVO;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
 		
@@ -116,6 +121,12 @@ public class ReceiveUi extends JPanel {
 		textDeparture = new JTextField();
 		comboBoxStatus = new JComboBox<String>();
 		dc= new DateChooser(this,LOCATION_TEXT_X,LOCATION_TEXT_Y);
+		userId = new JLabel("账号： "+user.getId());
+		userId.setLocation(350, 81);
+		userId.setSize(150, 25);
+		userRole = new JLabel("身份： "+UserRole.transfer(user.getRole()));
+		userRole.setLocation(515, 81);
+		userRole.setSize(150, 25);
 	}
 
 	/**
@@ -180,7 +191,9 @@ public class ReceiveUi extends JPanel {
 		this.add(delete);
 		this.add(update);
 		this.add(finish);
-
+		this.add(userId);
+		this.add(userRole);
+		
 		String[] columnNames = { "序号","到达日期", "订单编号", "出发地","货物到达状态"};  
 		int[] list={40,108,14,30,20,388,125,558,430};
 
