@@ -17,6 +17,7 @@ import LEMS.businesslogic.informationbl.InformationDelete;
 import LEMS.businesslogic.informationbl.InformationFind;
 import LEMS.businesslogic.informationbl.InformationUpdate;
 import LEMS.po.informationpo.InstitutionPO;
+import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.Table;
@@ -46,6 +47,8 @@ public class InstitutionManageUi extends JPanel {
 	private JTextField textID;
 	private JLabel labelLocation;
 	private JTextField textLocation;
+	private JLabel userId;
+	private JLabel userRole;
 	
 	private Font fnt1 = new Font("Courier", Font.PLAIN, 26);
 
@@ -80,6 +83,11 @@ public class InstitutionManageUi extends JPanel {
 		OK = new JButton("确定");
 		cancel = new JButton("取消");
 		
+		userId = new JLabel(" 账号： "+user.getId());
+		
+		userRole = new JLabel("身份： "+UserRole.transfer(user.getRole()));
+		
+		
 		labelID = new JLabel("* 机构编号::");
 		textID = new JTextField();
 		labelLocation = new JLabel("* 机构所处位置");
@@ -95,6 +103,11 @@ public class InstitutionManageUi extends JPanel {
 		textID.setBounds(206, 184-change, 144, 24);
 		labelLocation.setBounds(86, 300-change, 131, 30);
 		textLocation.setBounds(206, 303-change, 144, 24);
+		
+		userId.setLocation(389, 62);
+		userId.setSize(180, 25);
+		userRole.setLocation(514, 62);
+		userRole.setSize(180, 25);
 		
 		OK.setBounds(86, 533-change, 120, 40);
 		cancel.setBounds(230, 533-change, 120, 40);
@@ -116,6 +129,8 @@ public class InstitutionManageUi extends JPanel {
 		this.add(butDel);
 		this.add(butFind);
 		this.add(butChange);
+		this.add(userId);
+		this.add(userRole);
 		
 		String[] columnNames = { "机构编号", "机构所处城市" };
 		int[] list = { 40, 272, 14, 30, 20, 384, 126-change, 561, 465 };

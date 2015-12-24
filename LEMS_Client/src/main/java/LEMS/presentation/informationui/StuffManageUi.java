@@ -55,7 +55,8 @@ public class StuffManageUi extends JPanel  {
 	private JTextField textInstitution;
 	private JLabel labelSalary;
 	private JTextField textSalary;
-	
+	private JLabel userId;
+	private JLabel userRole;
 	private Font fnt1 = new Font("Courier", Font.PLAIN, 26);
 
 	Table table;
@@ -86,11 +87,17 @@ public class StuffManageUi extends JPanel  {
 		OK = new JButton("确定");
 		cancel = new JButton("取消");
 		
-		labelID = new JLabel("* 员工ID:");
+		userId = new JLabel(" 账号： "+user.getId());
+		userId.setLocation(389, 62);
+		userId.setSize(180, 25);
+		userRole = new JLabel("身份： "+UserRole.transfer(user.getRole()));
+		userRole.setLocation(514, 62);
+		userRole.setSize(180, 25);
+		labelID = new JLabel("  员工ID:");
 		textID = new JTextField();
-		labelInstitution = new JLabel("* 所处机构编号:");
+		labelInstitution = new JLabel("  所处机构编号:");
 		textInstitution = new JTextField();
-		labelName = new JLabel("* 姓名:");
+		labelName = new JLabel("  姓名:");
 		textName = new JTextField();
 		labelSalary = new JLabel("* 工资:(月)");
 		textSalary = new JTextField();
@@ -132,6 +139,8 @@ public class StuffManageUi extends JPanel  {
 		this.add(butChange);
 		this.add(labelSalary);
 		this.add(textSalary);
+		this.add(userId);
+		this.add(userRole);
 		
 		String[] columnNames = { "员工ID","姓名", "所处机构编号" ,"工资"};
 		int[] list = { 40, 136, 14, 30, 20, 384, 126-change, 561, 465 };
