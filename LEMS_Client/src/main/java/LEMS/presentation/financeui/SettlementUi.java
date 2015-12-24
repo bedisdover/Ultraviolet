@@ -7,9 +7,11 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 
+import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.Table;
+import LEMS.vo.uservo.UserVO;
 
 /**
  * @author 苏琰梓
@@ -18,7 +20,7 @@ import LEMS.presentation.method.Table;
  */
 public class SettlementUi extends JPanel {
 	MainFrame mainFrame;
-
+	private UserVO user;
 	/**
 	 * 
 	 */
@@ -30,9 +32,12 @@ public class SettlementUi extends JPanel {
 	private JLabel title;
 	private Font font;
 	private JButton butOut;
-
-	public SettlementUi(final MainFrame mainFrame) {
+	private JLabel userId;
+	private JLabel userRole;
+	
+	public SettlementUi(final MainFrame mainFrame,UserVO uvo) {
 		this.mainFrame = mainFrame;
+		user=uvo;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
 		// 初始化
@@ -50,6 +55,12 @@ public class SettlementUi extends JPanel {
 		title = new JLabel("结算管理");
 		font = new Font("宋体", Font.PLAIN, 26);
 		butOut = new JButton("登出");
+		userId = new JLabel(" 账号： "+user.getId());
+		userId.setLocation(788, 15);
+		userId.setSize(180, 25);
+		userRole = new JLabel("身份： "+UserRole.transfer(user.getRole()));
+		userRole.setLocation(798, 44);
+		userRole.setSize(180, 25);
 	}
 
 	public void initComponents() {
@@ -63,6 +74,8 @@ public class SettlementUi extends JPanel {
 		this.add(but2);
 		this.add(title);
 		this.add(butOut);
+		this.add(userId);
+		this.add(userRole);
 		
 		String[] columnNames = { "收款日期", "收款单位", "收款人","收款地点","收款金额"};
 		int[] list = { 40, 138, 14, 30, 20, 174, 115-30, 708, 497 };
