@@ -9,11 +9,11 @@ public class LogisticsInfoVO {
 	/**
 	 * 订单编号
 	 */
-	String id;
+	private String id;
 	/**
 	 * 快递的物流轨迹
 	 */
-	ArrayList<String> trace;
+	private ArrayList<String> trace;
 	/**
 	 * 机构名称（用于获得各种单据中的出发地）
 	 */
@@ -23,8 +23,9 @@ public class LogisticsInfoVO {
 		id = i;
 		trace = t;
 	}
+	
 	public LogisticsInfoVO(){
-		
+		trace = new ArrayList<String>();
 	}
 	
 	/**
@@ -35,6 +36,10 @@ public class LogisticsInfoVO {
 		return id;
 	}
 
+	public void setId(String id) {
+		this.id = id;
+	}
+	
 	/**
 	 * 返回最新物流信息（列表中最后一条）
 	 * 

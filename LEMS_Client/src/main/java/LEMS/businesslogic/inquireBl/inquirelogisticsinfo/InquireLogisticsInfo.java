@@ -17,45 +17,46 @@ import LEMS.vo.inquirevo.LogisticsInfoVO;
 public class InquireLogisticsInfo implements InquireLogisticsInfoService {
 
 	public LogisticsInfoVO getLogisticsInfo(String id) {
-		LogisticsInfoVO lvo=null;
+		LogisticsInfoVO lvo = null;
 		try {
-			LogisticsInfoPO lpo=getLogisticsInfoData().findLogisticsInfo(id);
-			if(lpo!=null){
-				lvo=new LogisticsInfoVO(lpo.getId(),lpo.getTrace());				
-			}						
+			LogisticsInfoPO lpo = getLogisticsInfoData().findLogisticsInfo(id);
+			if (lpo != null) {
+				lvo = new LogisticsInfoVO(lpo.getId(), lpo.getTrace());
+			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 		return lvo;
-		
+
 	}
-	
-	public void updateLogisticsInfo(LogisticsInfoVO lvo){
-		LogisticsInfoDataService logicsdata=getLogisticsInfoData();
-		LogisticsInfoPO lpo=new LogisticsInfoPO(lvo.getId(),lvo.getTrace());
+
+	public void updateLogisticsInfo(LogisticsInfoVO lvo) {
+		LogisticsInfoDataService logicsdata = getLogisticsInfoData();
+		LogisticsInfoPO lpo = new LogisticsInfoPO(lvo.getId(), lvo.getTrace());
 		try {
 			logicsdata.update(lpo);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void createLogistics(LogisticsInfoVO logisticsInfoVO) {
-		LogisticsInfoDataService logicsdata=getLogisticsInfoData();
-		LogisticsInfoPO lpo=new LogisticsInfoPO(logisticsInfoVO.getId(),logisticsInfoVO.getTrace());
+		LogisticsInfoDataService logicsdata = getLogisticsInfoData();
+		
+		LogisticsInfoPO lpo = new LogisticsInfoPO(logisticsInfoVO.getId(), logisticsInfoVO.getTrace());
 		lpo.setInstitution(logisticsInfoVO.getInstitution());
+		
 		try {
 			logicsdata.insertLogisticsInfo(lpo);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private static LogisticsInfoDataService getLogisticsInfoData() {
 		LogisticsInfoDataService lo = null;
 		try {
-			DatabaseFactory database = (DatabaseFactory) Naming
-					.lookup(RMIConnect.RMI);
+			DatabaseFactory database = (DatabaseFactory) Naming.lookup(RMIConnect.RMI);
 			InquireFactory inquire = database.getInquireFactory();
 			lo = inquire.getLogisticsInfo();
 
@@ -64,5 +65,5 @@ public class InquireLogisticsInfo implements InquireLogisticsInfoService {
 		}
 		return lo;
 	}
-	
+
 }

@@ -325,7 +325,8 @@ public class OrderManageUi extends JPanel {
 //		if (!isLegal()) {
 //			JOptionPane.showMessageDialog(mainFrame, "请输入正确数值！", "Error", JOptionPane.ERROR_MESSAGE);
 //		}
-		String[] values = {"1", cName.getText(), };
+		//TODO 添加
+		String[] values = {"1", cName.getText(), "2"};
 		table.setValueAt(table.numOfEmpty(), values);
 		
 		// 生成订单
@@ -452,8 +453,10 @@ public class OrderManageUi extends JPanel {
 		order.chooseExpress((Express) cExpress.getSelectedItem());
 		//选择包装类型
 		order.choosePack((Packing) cPackage.getSelectedItem());
-		//TODO 添加对话框显示价格与时间
+
 		JOptionPane.showMessageDialog(mainFrame, "运费：" + order.getMoney() 
 		+ "\n总计：" + order.getTotal() + "\n预计时间：" + order.getTime());
+		
+		order.endOrder();
 	}
 }

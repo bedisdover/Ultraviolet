@@ -152,6 +152,10 @@ public class Order implements OrderService {
 	 */
 	private void createLogistics() {
 		LogisticsInfoVO logistics = new LogisticsInfoVO();
+		
+		logistics.setId(this.createID());
+		logistics.setTrace("待发货");
+		
 		new InquireLogisticsInfo().createLogistics(logistics);
 	}
 	

@@ -12,38 +12,37 @@ import LEMS.dataservice.inquiredataservice.LogisticsInfoDataService;
 import LEMS.po.inquirepo.LogisticsInfoPO;
 
 /**
- * @author 章承尧
- * LogisticsInfoDataService的实现
+ * @author 章承尧 LogisticsInfoDataService的实现
  */
 @SuppressWarnings("serial")
 public class LogisticsInfoData extends UnicastRemoteObject implements LogisticsInfoDataService {
 
-	public  LogisticsInfoData() throws RemoteException {
+	public LogisticsInfoData() throws RemoteException {
 		super();
 	}
-	
-	//更新物流信息
+
+	// 更新物流信息
 	public void update(LogisticsInfoPO lpo) throws RemoteException {
 		this.deleteLogisticsInfo(lpo.getId());
 		this.insertLogisticsInfo(lpo);
 	}
-	
-	//根据id查找对应订单的物流信息
+
+	// 根据id查找对应订单的物流信息
 	public LogisticsInfoPO findLogisticsInfo(String id) throws RemoteException {
-		LogisticsInfoPO lipo=null;
-		ArrayList<String> trace=new ArrayList<String>();
-		Connect co=new Connect();
-		String sql="SELECT id,trace FROM logistics";
-		ResultSet result=co.getResultSet(sql);
+		LogisticsInfoPO lipo = null;
+		ArrayList<String> trace = new ArrayList<String>();
+		Connect co = new Connect();
+		String sql = "SELECT id,trace FROM logistics";
+		ResultSet result = co.getResultSet(sql);
 		try {
-			while(result.next()){
-				if(result.getString(1).equals(id)){
-					String[] str=result.getString(2).split(" ");
-					int i=0;
-					for(;i<str.length;i++){
+			while (result.next()) {
+				if (result.getString(1).equals(id)) {
+					String[] str = result.getString(2).split(" ");
+					int i = 0;
+					for (; i < str.length; i++) {
 						trace.add(str[i]);
 					}
-					lipo=new LogisticsInfoPO(id,trace);
+					lipo = new LogisticsInfoPO(id, trace);
 					break;
 				}
 			}
@@ -53,12 +52,12 @@ public class LogisticsInfoData extends UnicastRemoteObject implements LogisticsI
 		co.closeConnection();
 		return lipo;
 	}
-	
-	//删除某个订单的物流信息
-	public void deleteLogisticsInfo(String id) throws RemoteException{
-		Connect co=new Connect();
-		String sql="DELETE FROM logistics WHERE id = ?";
-		PreparedStatement pstmt=co.getPreparedStatement(sql);
+
+	// 删除某个订单的物流信息
+	public void deleteLogisticsInfo(String id) throws RemoteException {
+		Connect co = new Connect();
+		String sql = "DELETE FROM logistics WHERE id = ?";
+		PreparedStatement pstmt = co.getPreparedStatement(sql);
 		try {
 			pstmt.setString(1, id);
 			pstmt.executeUpdate();
@@ -67,19 +66,20 @@ public class LogisticsInfoData extends UnicastRemoteObject implements LogisticsI
 			e.printStackTrace();
 		}
 	}
-	
-	//插入一条物流信息
-	public void insertLogisticsInfo(LogisticsInfoPO lpo) throws RemoteException{
-		String trace="";
-		for(int i=0;i<lpo.getTrace().size();i++){
-			trace+=(lpo.getTrace().get(i)+" ");
+
+	// 插入一条物流信息
+	public void insertLogisticsInfo(LogisticsInfoPO lpo) throws RemoteException {
+		String trace = "";
+		
+		for (int i = 0; i < lpo.getTrace().size(); i++) {
+			trace += (lpo.getTrace().get(i) + " ");
 		}
-		Connect co=new Connect();
-		String sql="INSERT INTO logistics VALUES (?,?,?)";
-		PreparedStatement pstmt=co.getPreparedStatement(sql);
+		Connect co = new Connect();
+		String sql = "INSERT INTO logistics VALUES (?,?,?)";
+		PreparedStatement pstmt = co.getPreparedStatement(sql);
 		try {
-			pstmt.setString(1,lpo.getId());
-			pstmt.setString(2,trace);
+			pstmt.setString(1, lpo.getId());
+			pstmt.setString(2, trace);
 			pstmt.setString(3, lpo.getInstitution());
 			pstmt.executeUpdate();
 			co.closeConnection();
@@ -87,5 +87,5 @@ public class LogisticsInfoData extends UnicastRemoteObject implements LogisticsI
 			e.printStackTrace();
 		}
 	}
-	
+
 }
