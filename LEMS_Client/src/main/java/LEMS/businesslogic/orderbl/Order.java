@@ -84,8 +84,7 @@ public class Order implements OrderService {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		//TODO
-		System.out.println(id);
+
 		return id;
 	}
 
@@ -100,7 +99,6 @@ public class Order implements OrderService {
 	}
 
 	public double getTotal() {
-		
 		order.setAmount(new Price().getPrice(order.getPackingType()) + getMoney()) ;
 		
 		return order.getAmount();
@@ -138,9 +136,9 @@ public class Order implements OrderService {
 		orderPO.setPackageType(order.getPackingType());
 		orderPO.setAmount(this.getTotal());
 		orderPO.setTime(this.getTime());
-		orderPO.setCollector(user.getId());
-		orderPO.setDeliver(null);
 		orderPO.setReceiver("张五");
+		orderPO.setDeliver("0102020");
+		orderPO.setCollector(user.getId());
 		
 		//写入数据
 		try {
