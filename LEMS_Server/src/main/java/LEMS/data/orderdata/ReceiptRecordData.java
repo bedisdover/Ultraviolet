@@ -11,7 +11,7 @@ import LEMS.data.Connect;
 import LEMS.data.TransferID;
 import LEMS.dataservice.orderdataservice.ReceiptRecordDataService;
 import LEMS.po.financepo.DocumentState;
-import LEMS.po.orderpo.IncomeBillPO;
+import LEMS.po.orderpo.IncomePO;
 import LEMS.po.orderpo.OrderPO;
 
 public class ReceiptRecordData extends UnicastRemoteObject implements ReceiptRecordDataService {
@@ -41,11 +41,11 @@ public class ReceiptRecordData extends UnicastRemoteObject implements ReceiptRec
 	}
 
 	@Override
-	public IncomeBillPO find(String id) throws RemoteException {
+	public IncomePO find(String id) throws RemoteException {
 		//收款单表名设为cash，以便与财务管理中的收款单混淆
 		String sql = "SELECT * FROM cash WHERE id = " + id;
 		
-		IncomeBillPO incomeBillPO = new IncomeBillPO();
+		IncomePO incomeBillPO = new IncomePO();
 		
 		ResultSet result = connect.getResultSet(sql);
 		
@@ -66,7 +66,7 @@ public class ReceiptRecordData extends UnicastRemoteObject implements ReceiptRec
 	}
 
 	@Override
-	public void insert(IncomeBillPO incomeBillPO) throws RemoteException {
+	public void insert(IncomePO incomeBillPO) throws RemoteException {
 		String sql = "INSERT INTO cash VALUES (?, ?, ?, ?, ?, ?)";
 		
 		PreparedStatement pstm = connect.getPreparedStatement(sql);
@@ -88,7 +88,7 @@ public class ReceiptRecordData extends UnicastRemoteObject implements ReceiptRec
 	}
 
 	@Override
-	public void update(IncomeBillPO incomeBillPO) throws RemoteException {
+	public void update(IncomePO incomeBillPO) throws RemoteException {
 		this.delete(incomeBillPO.getId());
 		this.insert(incomeBillPO);
 	}

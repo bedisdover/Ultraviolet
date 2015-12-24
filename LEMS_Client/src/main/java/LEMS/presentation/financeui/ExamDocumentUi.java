@@ -24,7 +24,7 @@ public class ExamDocumentUi extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	MainFrame mainFrame;
 	private JComboBox<String> box;
 	private Font font;
@@ -34,42 +34,43 @@ public class ExamDocumentUi extends JPanel {
 	private JLabel statue;
 	private JButton but;
 	private JButton butOut;
-	
+
 	private Table table;
 	private UserVO user;
+
 	/**
 	 * Create the panel.
-	 * */
-	public ExamDocumentUi(final MainFrame mainFrame,UserVO uvo) {
-		this.mainFrame=mainFrame;
-		user=uvo;
+	 */
+	public ExamDocumentUi(final MainFrame mainFrame, UserVO uvo) {
+		this.mainFrame = mainFrame;
+		user = uvo;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
-		
+
 		this.init();
 		this.initComponent();
 		this.addListener();
 	}
 
-	private void init(){
+	private void init() {
 		date = new JLabel("单据类型：");
 		title = new JLabel("审批单据");
-		name = new JLabel("账号：  "+user.getId());
-		statue = new JLabel("身份： "+UserRole.transfer(user.getRole()));
+		name = new JLabel("账号：  " + user.getId());
+		statue = new JLabel("身份： " + UserRole.transfer(user.getRole()));
 		but = new JButton("查找");
 		box = new JComboBox<String>();
 		font = new Font("Courier", Font.PLAIN, 26);
 		butOut = new JButton("登出");
 	}
-	
-	private void initComponent(){
-		date.setBounds(237,122,80,25);
-		title.setBounds(444,26,249,45);
+
+	private void initComponent() {
+		date.setBounds(237, 122, 80, 25);
+		title.setBounds(444, 26, 249, 45);
 		title.setFont(font);
-		name.setBounds(355,75,135,28);
-		statue.setBounds(528,75,183,28);
-		but.setBounds(692,119,120,30);
-		box.setBounds(415,122,160,25);
+		name.setBounds(355, 75, 135, 28);
+		statue.setBounds(528, 75, 183, 28);
+		but.setBounds(692, 119, 120, 30);
+		box.setBounds(415, 122, 160, 25);
 		box.addItem("付款单");
 		box.addItem("收款单");
 		box.addItem("派件单");
@@ -77,7 +78,7 @@ public class ExamDocumentUi extends JPanel {
 		box.addItem("装车单");
 		box.addItem("装运单");
 		butOut.setBounds(52, 36, 120, 40);
-		
+
 		this.add(date);
 		this.add(title);
 		this.add(name);
@@ -85,37 +86,30 @@ public class ExamDocumentUi extends JPanel {
 		this.add(but);
 		this.add(box);
 		this.add(butOut);
-		
-		
-		String[] columnNames = {""};
+
+		String[] columnNames = { "" };
 		int[] list = { 40, 414, 14, 30, 20, 290, 172, 432, 470 };
-		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
-		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
-		// *
 		table = new Table();
 		add(table.drawTable(columnNames, list));
-		
-		
+
 	}
-	
-	private void addListener(){
-		but.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
-				
-				
+
+	private void addListener() {
+		but.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+
 			}
 		});
-		
-		butOut.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
+
+		butOut.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
 				mainFrame.setContentPane(new LoginUi(mainFrame));
 			}
 		});
 	}
-	
+
 	public void paintComponent(Graphics g) {
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
 		this.repaint();
 	}
 }
-

@@ -20,7 +20,7 @@ import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.DateChooser;
 import LEMS.presentation.method.Table;
-import LEMS.vo.ordervo.IncomeBillVO;
+import LEMS.vo.ordervo.IncomeVO;
 import LEMS.vo.uservo.UserVO;
 
 /**
@@ -69,7 +69,7 @@ public class ReceiptRecordUi extends JPanel {
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);// 其余字体格式
 	private Font fnt2 = new Font("宋体", Font.BOLD, 16);// 按钮字体格式
 	
-	private IncomeBillVO incomeBillVO;
+	private IncomeVO incomeBillVO;
 	
 	private ReceiptRecord receiptRecord;
 	
@@ -89,7 +89,7 @@ public class ReceiptRecordUi extends JPanel {
 		// 添加事件监听器
 		this.addListener();
 		
-		incomeBillVO = new IncomeBillVO();
+		incomeBillVO = new IncomeVO();
 		receiptRecord = new ReceiptRecord(userVO, incomeBillVO);
 	}
 

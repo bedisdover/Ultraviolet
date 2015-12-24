@@ -1,8 +1,7 @@
 package LEMS.presentation;
 
-import LEMS.po.informationpo.InstitutionPO;
 import LEMS.po.userpo.UserRole;
-import LEMS.presentation.userui.OrderManageUi;
+import LEMS.presentation.financeui.SettlementUi;
 import LEMS.vo.uservo.UserVO;
 
 public class mainSongYiming {
@@ -20,8 +19,8 @@ public class mainSongYiming {
 //		mainFrame.setContentPane(managerUi);
 //		FinancialStaffUi financialStaffUi = new FinancialStaffUi(mainFrame, null);
 //		mainFrame.setContentPane(financialStaffUi);
-//		SettlementUi settlementUi = new SettlementUi(mainFrame);
-//		mainFrame.setContentPane(settlementUi);
+		SettlementUi settlementUi = new SettlementUi(mainFrame, new UserVO("bc0211000000", "123456", UserRole.FinanceClerk, "", null));
+		mainFrame.setContentPane(settlementUi);
 //		SendUi sendUi = new SendUi(mainFrame, null);
 //		mainFrame.setContentPane(sendUi);
 //		CourierUi courierUi = new CourierUi(mainFrame);
@@ -32,8 +31,10 @@ public class mainSongYiming {
 //		mainFrame.setContentPane(vehicleLoadUi);
 //		TransferUi transferUi = new TransferUi(mainFrame, null);
 //		mainFrame.setContentPane(transferUi);
-		OrderManageUi orderManageUi = new OrderManageUi(mainFrame, new UserVO("c0210000000", "123456", UserRole.Courier, "米拉娜", new InstitutionPO("0210000", "上海市浦东新区23号")));
-		mainFrame.setContentPane(orderManageUi);
+//		OrderManageUi orderManageUi = new OrderManageUi(mainFrame, new UserVO("c0210000000", "123456", UserRole.Courier, "米拉娜", new InstitutionPO("0210000", "上海市浦东新区23号")));
+//		mainFrame.setContentPane(orderManageUi);
+//		ExamDocumentUi examDocumentUi = new ExamDocumentUi(mainFrame, new UserVO("bc0211000000", "123456", UserRole.Manager, "", null));
+//		mainFrame.setContentPane(examDocumentUi);
 //		CourierUi courierUi = new CourierUi(mainFrame);
 //		mainFrame.setContentPane(courierUi);
 //		LoadUi2 loadUi2 = new LoadUi2(mainFrame, null);

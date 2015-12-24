@@ -5,7 +5,7 @@ package LEMS.vo.ordervo;
  *
  * 收款单值对象（记录收款单）
  */
-public class IncomeBillVO {
+public class IncomeVO {
 	/**
 	 * 收款日期
 	 */

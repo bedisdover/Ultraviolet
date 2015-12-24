@@ -13,7 +13,7 @@ import LEMS.po.financepo.DocumentState;
  * 		收款单ID、收款单状态、收款日期、收款金额、
  * 		收款快递员、对应的所有快递订单条形码号
  */
-public class IncomeBillPO implements Serializable {
+public class IncomePO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -46,7 +46,7 @@ public class IncomeBillPO implements Serializable {
 	 */
 	private ArrayList<OrderPO> orders;
 	
-	public IncomeBillPO() {
+	public IncomePO() {
 		state = DocumentState.waiting;
 	}
 

@@ -4,12 +4,16 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
+import LEMS.businesslogic.financebl.Settlement;
+import LEMS.po.financepo.IncomeBillPO;
 import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
+import LEMS.presentation.method.DateChooser;
 import LEMS.presentation.method.Table;
 import LEMS.vo.uservo.UserVO;
 
@@ -19,12 +23,10 @@ import LEMS.vo.uservo.UserVO;
  *         结算管理界面
  */
 public class SettlementUi extends JPanel {
-	MainFrame mainFrame;
-	private UserVO user;
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+
+	private MainFrame mainFrame;
+	private UserVO user;
 
 	private JButton but1;
 	private JButton but2;
@@ -34,10 +36,17 @@ public class SettlementUi extends JPanel {
 	private JButton butOut;
 	private JLabel userId;
 	private JLabel userRole;
-	
-	public SettlementUi(final MainFrame mainFrame,UserVO uvo) {
+
+	private DateChooser dc;
+	private JTextField textField;
+	private JLabel labelDate;
+	private JLabel label;
+
+	private Settlement settlement;
+
+	public SettlementUi(final MainFrame mainFrame, UserVO uvo) {
 		this.mainFrame = mainFrame;
-		user=uvo;
+		this.user = uvo;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
 		// 初始化
@@ -47,6 +56,7 @@ public class SettlementUi extends JPanel {
 		// 添加事件监听器
 		this.addListener();
 
+		settlement = new Settlement();
 	}
 
 	public void init() {
@@ -55,62 +65,94 @@ public class SettlementUi extends JPanel {
 		title = new JLabel("结算管理");
 		font = new Font("宋体", Font.PLAIN, 26);
 		butOut = new JButton("登出");
-		userId = new JLabel(" 账号： "+user.getId());
+		userId = new JLabel(" 账号： " + user.getId());
 		userId.setLocation(788, 25);
 		userId.setSize(180, 25);
-		userRole = new JLabel("身份： "+UserRole.transfer(user.getRole()));
+		userRole = new JLabel("身份： " + UserRole.transfer(user.getRole()));
 		userRole.setLocation(788, 54);
 		userRole.setSize(180, 25);
+
+		dc = new DateChooser(this, 180, 180);
 	}
 
 	public void initComponents() {
-		but1.setBounds(234,638-30,120,40);
-		but2.setBounds(670,638-30,120,40);
-		title.setBounds(454,26,249,45);
+		but1.setBounds(52, 373, 120, 40);
+		but2.setBounds(195, 373, 120, 40);
+		title.setBounds(454, 26, 249, 45);
 		title.setFont(font);
 		butOut.setBounds(52, 36, 120, 40);
-		
+
 		this.add(but1);
 		this.add(but2);
 		this.add(title);
 		this.add(butOut);
 		this.add(userId);
 		this.add(userRole);
-		
-		String[] columnNames = { "收款日期", "收款单位", "收款人","收款地点","收款金额"};
-		int[] list = { 40, 138, 14, 30, 20, 174, 115-30, 708, 497 };
+
+		String[] columnNames = { "序号", "收款日期", "收款单位", "收款人", "收款金额" };
+		int[] list = { 40, 125, 14, 30, 20, 350, 120, 643, 497 };
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
 		// *
 		table = new Table();
 		add(table.drawTable(columnNames, list));
+
+		labelDate = new JLabel("日期：");
+		labelDate.setBounds(74, 182, 54, 15);
+		add(labelDate);
+
+		label = new JLabel("营业厅：");
+		label.setBounds(74, 270, 54, 25);
+		add(label);
+
+		textField = new JTextField();
+		textField.setBounds(152, 272, 163, 21);
+		add(textField);
+		textField.setColumns(10);
 	}
 
 	public void addListener() {
-		//“查看收款信息”按钮增加监听
-		but1.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
-
-			
+		// “查看收款信息”按钮增加监听
+		but1.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				findOperation();
 			}
 		});
-		//“添加到收款单”按钮增加监听
-		but2.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
-
-			
+		// “添加到收款单”按钮增加监听
+		but2.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				if (table.numOfEmpty() != 0) {
+					addOperation();
+				}
 			}
 		});
-		
-		butOut.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
+
+		butOut.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
 				mainFrame.setContentPane(new LoginUi(mainFrame));
 			}
 		});
 	}
-	
+
+	private void findOperation() {
+		ArrayList<IncomeBillPO> incomes = settlement.getIncomeByDateAndIns(dc.getTime(), textField.getText());
+		
+		String [] values = {};
+		for (IncomeBillPO incomeBillPO : incomes) {
+			values[0] = incomeBillPO.getDate();
+			values[1] = incomeBillPO.getInstitution();
+			values[2] = incomeBillPO.getAccount();
+			table.setValueAt(table.numOfEmpty(), values);
+		}
+	}
+
+	private void addOperation() {
+
+	}
+
 	public void paintComponent(Graphics g) {
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
+		g.draw3DRect(50, 135, 275, 430, false); // 输入框外框
 		this.repaint();
 	}
 }

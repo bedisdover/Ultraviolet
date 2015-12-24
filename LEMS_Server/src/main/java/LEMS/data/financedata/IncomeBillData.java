@@ -64,4 +64,10 @@ public class IncomeBillData extends UnicastRemoteObject implements IncomeBillDat
 		
 	}
 
+	@Override
+	public ArrayList<IncomeBillPO> getIncomeByDateAndIns(String date, String institution) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

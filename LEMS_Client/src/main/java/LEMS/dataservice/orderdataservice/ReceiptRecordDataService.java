@@ -4,15 +4,15 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import LEMS.po.orderpo.IncomeBillPO;
+import LEMS.po.orderpo.IncomePO;
 import LEMS.po.orderpo.OrderPO;
 
 public interface ReceiptRecordDataService extends Remote {
-	public IncomeBillPO find(String id) throws RemoteException;
+	public IncomePO find(String id) throws RemoteException;
 	
-	public void insert(IncomeBillPO incomeBillPO) throws RemoteException;
+	public void insert(IncomePO incomeBillPO) throws RemoteException;
 	
-	public void update(IncomeBillPO incomeBillPO) throws RemoteException;
+	public void update(IncomePO incomeBillPO) throws RemoteException;
 	
 	public void delete(String id) throws RemoteException;
 	

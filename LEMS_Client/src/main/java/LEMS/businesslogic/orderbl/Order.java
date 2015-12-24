@@ -137,7 +137,7 @@ public class Order implements OrderService {
 		orderPO.setAmount(this.getTotal());
 		orderPO.setTime(this.getTime());
 		orderPO.setReceiver("张五");
-		orderPO.setDeliver("0102020");
+		orderPO.setDeliver("");
 		orderPO.setCollector(user.getId());
 		
 		//写入数据

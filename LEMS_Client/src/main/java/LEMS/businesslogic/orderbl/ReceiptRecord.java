@@ -12,9 +12,9 @@ import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.OrderFactory;
 import LEMS.dataservice.orderdataservice.ReceiptRecordDataService;
 import LEMS.po.financepo.DocumentState;
-import LEMS.po.orderpo.IncomeBillPO;
+import LEMS.po.orderpo.IncomePO;
 import LEMS.po.orderpo.OrderPO;
-import LEMS.vo.ordervo.IncomeBillVO;
+import LEMS.vo.ordervo.IncomeVO;
 import LEMS.vo.uservo.UserVO;
 
 /**
@@ -29,11 +29,11 @@ public class ReceiptRecord implements ReceiptRecordService {
 	 */
 	private ArrayList<OrderPO> orders;
 	
-	private IncomeBillVO incomeBillVO;
+	private IncomeVO incomeBillVO;
 	
 	private UserVO userVO;
 	
-	public ReceiptRecord(UserVO uservo, IncomeBillVO incomeBillVO) {
+	public ReceiptRecord(UserVO uservo, IncomeVO incomeBillVO) {
 		
 		this.userVO = uservo;
 		this.incomeBillVO = incomeBillVO;
@@ -49,7 +49,7 @@ public class ReceiptRecord implements ReceiptRecordService {
 	}
 	
 	public void createIncomeBill() {
-		IncomeBillPO incomeBillPO = new IncomeBillPO();
+		IncomePO incomeBillPO = new IncomePO();
 		
 		incomeBillPO.setId(this.createID());
 		incomeBillPO.setState(DocumentState.waiting);
