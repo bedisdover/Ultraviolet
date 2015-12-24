@@ -5,6 +5,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.OrderFactory;
 import LEMS.dataservice.orderdataservice.DistanceDataService;
@@ -30,7 +31,7 @@ public class Distance {
 	private void init() {
 		try {
 			//连接数据库
-			DatabaseFactory databaseFactory = (DatabaseFactory) Naming.lookup("rmi://localhost:1099/data");
+			DatabaseFactory databaseFactory = (DatabaseFactory) Naming.lookup(RMIConnect.RMI);
 			OrderFactory orderFactory = databaseFactory.getOrderFactory();
 			DistanceDataService distanceDataService = orderFactory.getDistanceData();
 			//获得距离数据

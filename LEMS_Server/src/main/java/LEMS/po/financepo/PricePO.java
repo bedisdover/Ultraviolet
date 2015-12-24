@@ -1,5 +1,6 @@
 package LEMS.po.financepo;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 import LEMS.po.orderpo.Express;
@@ -11,7 +12,8 @@ import LEMS.po.orderpo.Packing;
  * 价格持久化对象
  * 使用前必须初始化
  */
-public class PricePO {
+public class PricePO implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	/**
 	 * 用于记录不同快递类型价格
