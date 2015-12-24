@@ -17,17 +17,16 @@ public class User {
 	UserRole role;
 	ArrayList<UserPO> ap;
 	UserVO uv=null;
-	public User(String id,String password,UserRole r){
+	public User(String id,String password){
 		this.id=id;
 		this.password=password;
-		this.role=r;
 	}
 	public UserVO getUser() throws Exception {
 		try {
 			DatabaseFactory database=(DatabaseFactory)Naming.lookup(RMIConnect.RMI);
 			UserFactory uf=database.getUserFactory();
 			UserDataService u=uf.getUserData();
-			ap=u.find(role);
+			ap=u.findAll();
 			for(UserPO user:ap){
 				if(user.getId().equals(id)&&user.getPassword().equals(password)){
 					uv=new UserVO(user.getId(),user.getPassword(),user.getRole(),user.getName(),user.getInstitution());

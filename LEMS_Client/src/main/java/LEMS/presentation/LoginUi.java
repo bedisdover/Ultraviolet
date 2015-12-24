@@ -31,7 +31,7 @@ public class LoginUi extends JPanel {
 	JLabel labPassword = new JLabel("密码：");
 	JTextField textName = new JTextField();
 	JPasswordField textPassword = new JPasswordField();
-	JComboBox<String> comboBox = new JComboBox<String>();
+
 
 	public LoginUi(final MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
@@ -52,16 +52,7 @@ public class LoginUi extends JPanel {
 		textName.setFont(fnt);
 		textPassword.setFont(fnt);
 
-		comboBox.setBounds(470, 480, 116, 32);
-		comboBox.addItem("管理员");
-		comboBox.addItem("总经理");
-		comboBox.addItem("财务人员");
-		comboBox.addItem("快递员");
-		comboBox.addItem("营业厅业务员");
-		comboBox.addItem("中转中心业务员");
-		comboBox.addItem("仓库管理人员");
 
-		this.add(comboBox);
 		this.add(but1);
 		this.add(but2);
 		this.add(labName);
@@ -78,35 +69,36 @@ public class LoginUi extends JPanel {
 				final String name = textName.getText();
 				@SuppressWarnings("deprecation")
 				final String password = textPassword.getText();
-				String role = (String) comboBox.getSelectedItem();
 				UserLogin ul = new UserLogin();
 				UserVO userVO = null;
-				switch (role) {
+				userVO=ul.login(name, password);
+//				switch (role) {
 				//TODO 更改选项，添加提示“网络连接”
-				case "管理员":
-					userVO = ul.login(name, password, UserRole.Manager);
-					break;
-				case "总经理":
-					userVO = ul.login(name, password, UserRole.GeneralManager);
-					break;
-				case "仓库管理人员":
-					userVO = ul.login(name, password, UserRole.StoreManager);
-					break;
-				case "财务人员":
-					userVO = ul.login(name, password, UserRole.FinanceClerk);
-					break;
-				case "快递员":
-					userVO = ul.login(name, password, UserRole.Courier);
-					break;
-				case "营业厅业务员":
-					userVO = ul.login(name, password, UserRole.BusinessClerk);
-					break;
-				case "中转中心业务员":
-					userVO = ul.login(name, password, UserRole.TransferClerk);
-					break;
-				default:
-					break;
-				}
+//				case "管理员":
+//					userVO = ul.login(name, password, UserRole.Manager);
+//					break;
+//				case "总经理":
+//					userVO = ul.login(name, password, UserRole.GeneralManager);
+//					break;
+//				case "仓库管理人员":
+//					userVO = ul.login(name, password, UserRole.StoreManager);
+//					break;
+//				case "财务人员":
+//					userVO = ul.login(name, password, UserRole.FinanceClerk);
+//					break;
+//				case "快递员":
+//					userVO = ul.login(name, password, UserRole.Courier);
+//					break;
+//				case "营业厅业务员":
+//					userVO = ul.login(name, password, UserRole.BusinessClerk);
+//					break;
+//				case "中转中心业务员":
+//					userVO = ul.login(name, password, UserRole.TransferClerk);
+//					break;
+//				default:
+//					break;
+//				}
+				
 				if (userVO == null) {
 					JOptionPane.showMessageDialog(LoginUi.this, "账号或密码错误！");
 				} else {
