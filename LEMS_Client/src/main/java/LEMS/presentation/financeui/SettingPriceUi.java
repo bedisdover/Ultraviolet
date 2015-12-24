@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 
+import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.Table;
@@ -23,11 +24,13 @@ public class SettingPriceUi extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private UserVO user;
+	
 	MainFrame mainFrame;
 	JLabel title = new JLabel("制定价格");
 	Table table1;
 	Table table2;
-
+	private JLabel userId;
+	private JLabel userRole;
 	//	JLabel lab1 = new JLabel("系统当前价格：    	 ___________    元每公里");
 	//	JLabel lab2 = new JLabel("请输入新价格：	");
 	//	JLabel lab3 = new JLabel("元每公里");
@@ -63,6 +66,13 @@ public class SettingPriceUi extends JPanel {
 		//		text.setBounds(486,442,100,30);
 		//		text.setForeground(Color.RED);
 
+		userId = new JLabel(" 账号： "+user.getId());
+		userId.setLocation(389, 82);
+		userId.setSize(180, 25);
+		userRole = new JLabel("身份： "+UserRole.transfer(user.getRole()));
+		userRole.setLocation(514, 82);
+		userRole.setSize(180, 25);
+		
 		this.add(title);
 		//		this.add(name);
 		//		this.add(statue);
@@ -73,6 +83,8 @@ public class SettingPriceUi extends JPanel {
 		this.add(butOut);
 		this.add(change1);
 		this.add(change2);
+		this.add(userId);
+		this.add(userRole);
 		//		this.add(text);
 		this.initComponents();
 		this.addListener();
@@ -108,7 +120,7 @@ public class SettingPriceUi extends JPanel {
 		// 将每一列的默认宽度设置为
 		table1.table.setRowHeight(40);
 		table2.table.setRowHeight(40);
-
+				
 	}
 
 	private void addListener(){
