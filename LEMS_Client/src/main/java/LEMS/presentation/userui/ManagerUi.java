@@ -54,7 +54,8 @@ public class ManagerUi extends JPanel {
 	private JTextField textInstitutionID;
 	private JLabel labelLocation;
 	private JTextField textLocation;
-
+	private JLabel userId;
+	private JLabel userRole;
 	private JComboBox<String> comboBox;
 
 	private Font fnt1 = new Font("Courier", Font.PLAIN, 26);
@@ -105,7 +106,12 @@ public class ManagerUi extends JPanel {
 		labelLocation = new JLabel("机构所在地:");
 		textLocation = new JTextField();
 		labelStatue = new JLabel("身份:");
-
+		userId = new JLabel("账号： "+user.getId());
+		userId.setLocation(363, 80);
+		userId.setSize(150, 25);
+		userRole = new JLabel("身份： "+UserRole.transfer(user.getRole()));
+		userRole.setLocation(528, 80);
+		userRole.setSize(150, 25);
 		comboBox = new JComboBox<String>();
 	}
 
@@ -165,7 +171,8 @@ public class ManagerUi extends JPanel {
 		this.add(butDel);
 		this.add(butFind);
 		this.add(butChange);
-
+		this.add(userId);
+		this.add(userRole);
 		String[] columnNames = { "用户名", "密码", "用户姓名", "用户身份" };
 		int[] list = { 40, 135, 14, 30, 20, 384, 126, 561, 465 };
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
