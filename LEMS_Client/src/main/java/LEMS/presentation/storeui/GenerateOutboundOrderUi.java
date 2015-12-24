@@ -260,37 +260,36 @@ public class GenerateOutboundOrderUi extends JPanel{
 				delete.setEnabled(false);
 				inquire.setEnabled(false);
 				
-				
 				currentLine = table.table.getSelectedRow();
 				ArrayList<String> al=table.getValueAt(currentLine);
 				textId.setText(al.get(0));
-				//日期
-				
 				textTransferNum.setText(al.get(4));
+				System.out.println("哎哟喂"+al.get(2));
+				System.out.println("哎哟喂"+al.get(3));
 				switch(al.get(2)){
-				case "Beijing":
+				case "北京":
 					comboBoxDestination.setSelectedIndex(0);
 					break;
-				case "Shanghai":
+				case "上海":
 					comboBoxDestination.setSelectedIndex(1);
 					break;
-				case "Guangzhou":
+				case "广州":
 					comboBoxDestination.setSelectedIndex(2);
 					break;
-				case "Nanjing":
+				case "南京":
 					comboBoxDestination.setSelectedIndex(3);
 					break;
 				}
 			
 				switch(al.get(3)){
-				case "Airplane":
-					comboBoxDestination.setSelectedIndex(0);
+				case "飞机":
+					comboBoxTransportType.setSelectedIndex(0);
 					break;
-				case "Railway":
-					comboBoxDestination.setSelectedIndex(1);
+				case "火车":
+					comboBoxTransportType.setSelectedIndex(1);
 					break;
-				case "Landway":
-					comboBoxDestination.setSelectedIndex(2);
+				case "汽车":
+					comboBoxTransportType.setSelectedIndex(2);
 					break;
 				}
 			
@@ -328,7 +327,7 @@ public class GenerateOutboundOrderUi extends JPanel{
 					} else {
 				
 						table.setValueAt(showRow, showColumn, oovo.getId());
-						table.setValueAt(showRow, showColumn + 1, oovo.getOutDate());
+						table.setValueAt(showRow, showColumn + 1, oovo.getOutDate().substring(0, 8));
 						switch(oovo.getDestination().name()){
 						case "Beijing":
 							table.setValueAt(showRow, showColumn + 2, "北京");
@@ -397,9 +396,32 @@ public class GenerateOutboundOrderUi extends JPanel{
 						// 修改失败，跳出提示
 					} else {
 						table.setValueAt(currentLine, 0, oovo.getId());
-						table.setValueAt(currentLine, 1, oovo.getOutDate());
-						table.setValueAt(currentLine, 2,oovo.getDestination().name());
-						table.setValueAt(currentLine, 3, oovo.getTransportType().name());
+						table.setValueAt(currentLine, 1, oovo.getOutDate().substring(0, 8));
+						switch(oovo.getDestination().name()){
+						case "Beijing":
+							table.setValueAt(currentLine, 2, "北京");
+							break;
+						case "Shanghai":
+							table.setValueAt(currentLine, 2, "上海");
+							break;
+						case "Guangzhou":
+							table.setValueAt(currentLine, 2, "广州");
+							break;
+						case "Nanjing":
+							table.setValueAt(currentLine, 2, "南京");
+							break;
+						}
+						switch(oovo.getTransportType().name()){
+						case "Airplane":
+							table.setValueAt(currentLine, 3, "飞机");
+							break;
+						case "Railway":
+							table.setValueAt(currentLine, 3, "火车");
+							break;
+						case "Landway":
+							table.setValueAt(currentLine,  3, "汽车");
+							break;
+						}
 						table.setValueAt(currentLine, 4, oovo.getTransferNum());
 
 					}
@@ -407,11 +429,13 @@ public class GenerateOutboundOrderUi extends JPanel{
 				
 				}
 				else{
+					/**
+					 * 搞定
+					 */
 					String id = textId.getText();
 					StoreGenerateOrder sgo = new StoreGenerateOrder();
 					OutboundOrderVO oovo = sgo.inquireOutboundOrderPO(id);
 					textId.setText(id);
-					dc.setTimePartTwo(oovo.getOutDate().substring(0, 8));
 					oovo.getOutDate();
 					textTransferNum.setText(oovo.getTransferNum());
 					String des = oovo.getDestination().toString();

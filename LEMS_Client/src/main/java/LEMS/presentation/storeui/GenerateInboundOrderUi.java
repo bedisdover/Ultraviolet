@@ -275,23 +275,31 @@ private void buttonAllTrue(){
 				switch(al.get(2)){
 				case "北京":
 					comboBoxDestination.setSelectedIndex(0);
+					break;
 				case "上海":
 					comboBoxDestination.setSelectedIndex(1);
+					break;
 				case "广州":
 					comboBoxDestination.setSelectedIndex(2);
+					break;
 				case "南京":
 					comboBoxDestination.setSelectedIndex(3);
+					break;
 				}
 			
 				switch(al.get(3)){
 				case "航运区":
 					comboBoxArea.setSelectedIndex(0);
+					break;
 				case "铁运区":
 					comboBoxArea.setSelectedIndex(1);
+					break;
 				case "汽运区":
 					comboBoxArea.setSelectedIndex(2);
+					break;
 				case "机动区":
 					comboBoxArea.setSelectedIndex(3);
+					break;
 				}
 			}
 		});

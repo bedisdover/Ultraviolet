@@ -182,7 +182,6 @@ public class DateChooser extends JPanel {
 
 	// 提交日期
 	private void commit() {
-		System.out.println("选中的日期是：" + sdf.format(select.getTime()));
 		showDate.setText(sdf.format(select.getTime()));
 		hidePanel();
 	}
@@ -582,12 +581,5 @@ public class DateChooser extends JPanel {
 		new DateChooser(time, this.panel, this.x, this.y);
 	}
 	
-	public void setTimePartTwo(String date){
-		int year = Integer.parseInt(date.substring(0, 4));
-		int month = Integer.parseInt(date.substring(4, 6));
-		int day = Integer.parseInt(date.substring(6,8));
-		@SuppressWarnings("deprecation")
-		Date time = new Date(year, month, day);
-		new DateChooser(time, this.panel, this.x, this.y);
-	}
+	
 }
