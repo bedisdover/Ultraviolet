@@ -77,13 +77,16 @@ public class Order implements OrderService {
 	}
 	
 	public String createID() {
+		String id = null;
+		
 		try {
-			this.getDataService().createID(user.getInstitution().getID());
+			id = this.getDataService().createID(user.getInstitution().getID());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		
-		return null;
+		//TODO
+		System.out.println(id);
+		return id;
 	}
 
 	public double getMoney() {
@@ -136,6 +139,8 @@ public class Order implements OrderService {
 		orderPO.setAmount(this.getTotal());
 		orderPO.setTime(this.getTime());
 		orderPO.setCollector(user.getId());
+		orderPO.setDeliver(null);
+		orderPO.setReceiver("张五");
 		
 		//写入数据
 		try {
@@ -155,6 +160,7 @@ public class Order implements OrderService {
 		
 		logistics.setId(this.createID());
 		logistics.setTrace("待发货");
+		logistics.setInstitution("021000");
 		
 		new InquireLogisticsInfo().createLogistics(logistics);
 	}
