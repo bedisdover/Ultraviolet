@@ -162,7 +162,7 @@ public class GoodsData extends UnicastRemoteObject implements GoodsDataService {
 		al.add(moneyTarget);
 		String sql = "UPDATE goods set inDate=?,outDate=?,destination=?,area=?, row=?,"
 				+ "stand=?,position=?,transportType=?,transferNum=?,money=? WHERE id=?";
-		ResultSet result = connect.getResultSet(sql);
+//		ResultSet result = connect.getResultSet(sql);
 		PreparedStatement pstmt = null;
 		pstmt = connect.getPreparedStatement(sql);
 		try {
