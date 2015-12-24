@@ -2,8 +2,8 @@ package LEMS.po.financepo;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class SalaryPO implements Serializable {
-	private static final long serialVersionUID = 1L;
 
 	private String id;
 	private String institution;

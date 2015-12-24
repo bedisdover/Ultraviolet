@@ -78,6 +78,8 @@ public class OrderManageUi extends JPanel {
 	private JButton butOut;
 	private JButton OK;
 	private JButton cancel;
+	
+	private Table table;
 
 	private Font fnt1 = new Font("Courier", Font.PLAIN, 26);
 	
@@ -211,8 +213,6 @@ public class OrderManageUi extends JPanel {
 		OK.setBounds(74,663,120,40);
 		cancel.setBounds(229,663,120,40);
 		
-		//TODO 默认选中第一个输入框
-		
 		this.add(title);
 		this.add(sender);
 		this.add(theSenderName);
@@ -251,9 +251,10 @@ public class OrderManageUi extends JPanel {
 		this.add(OK);
 		this.add(cancel);
 
-		String strings[] = {"编号", "日期", "名称", "条形码号", "报价", "预估时间"};
-		int nums[] = {300, 93, 20, 30, 20, 420, 55, 576, 650}; 
-		JScrollPane pane = new Table().drawTable(strings, nums);
+		String strings[] = {"编号", "条形码号", "名称", "报价"};
+		int nums[] = {300, 140, 20, 30, 20, 420, 55, 578, 650}; 
+		table = new Table();
+		JScrollPane pane = table.drawTable(strings, nums);
 		this.add(pane);
 	}
 
@@ -324,6 +325,8 @@ public class OrderManageUi extends JPanel {
 //		if (!isLegal()) {
 //			JOptionPane.showMessageDialog(mainFrame, "请输入正确数值！", "Error", JOptionPane.ERROR_MESSAGE);
 //		}
+		String[] values = {"1", cName.getText(), };
+		table.setValueAt(table.numOfEmpty(), values);
 		
 		// 生成订单
 		this.createOrder();
