@@ -15,7 +15,7 @@ public class LaunchServer {
 		 try {
 			  DatabaseFactory data=new DatabaseFactoryImpl();
 			  LocateRegistry.createRegistry(PORT); 
-			  java.rmi.Naming.rebind("rmi://192.168.253.2:1099/data",  data);
+			  java.rmi.Naming.rebind("rmi://114.212.42.237:1099/data",  data);
 	          System.out.println("ready...");
 	       } catch (Exception e) {
 	            e.printStackTrace();
