@@ -95,7 +95,7 @@ public class GoodsData extends UnicastRemoteObject implements GoodsDataService {
 	public int insert(GoodsPO goodsPO) {
 		int judge = 0;
 		String sql = "INSERT INTO goods(id,inDate,outDate,destination,area,row,stand,position,transportType,transferNum,money) VALUES (?,?,?,?,?,?,?,?,?,?,?) ";
-		ResultSet result = connect.getResultSet(sql);
+//		ResultSet result = connect.getResultSet(sql);
 		PreparedStatement pstmt = connect.getPreparedStatement(sql);
 		try {
 
