@@ -33,15 +33,18 @@ public class LoginUi extends JPanel {
 	JLabel labPassword = new JLabel("密码：");
 	JTextField textName = new JTextField();
 	JPasswordField textPassword = new JPasswordField();
-
+	JLabel Return = new JLabel(new ImageIcon("Close.png"));
 
 	public LoginUi(final MainFrame mainFrame) {
+		Icon i = new ImageIcon("Return.png");
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
 		mainFrame.setDragable(this);
 		labName.setBounds(313, 239, 193, 56);
 		labPassword.setBounds(313, 348, 193, 56);
 
+		Return.setBounds(920, 10, 100, 100);
+		
 		textName.setBounds(482, 239, 251, 56);
 		textPassword.setBounds(482, 348, 251, 56);
 
@@ -63,6 +66,7 @@ public class LoginUi extends JPanel {
 		this.add(labPassword);
 		this.add(textName);
 		this.add(textPassword);
+		this.add(Return);
 
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
 		im = Toolkit.getDefaultToolkit().getImage("backGround.png");
@@ -127,17 +131,23 @@ public class LoginUi extends JPanel {
 			
 			}
 		});
-		// 点击返回按钮
+		// 点击查询物流信息按钮
 		but2.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				mainFrame.setContentPane(new LogisticsInfoUi(mainFrame));
 				mainFrame.setVisible(true);
 			}
 		});
+		// 点击关于我们按钮
 		but3.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 
 				mainFrame.setContentPane(new StartUi(mainFrame));
+			}
+		});
+		Return.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				System.exit(1);
 			}
 		});
 	}
