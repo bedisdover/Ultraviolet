@@ -60,7 +60,7 @@ public class CostUi extends JPanel {
 		label = new JLabel[6];
 		title = new JLabel("成本管理");
 		name = new JLabel("账号："+user.getId());
-		statue = new JLabel("身份：    财务人员");
+		statue = new JLabel("身份：财务人员");
 		text = new JTextField[5];
 		textArea = new JTextArea();
 		button = new JButton[5];
