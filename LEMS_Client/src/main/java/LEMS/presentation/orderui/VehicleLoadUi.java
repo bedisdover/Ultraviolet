@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import LEMS.businesslogic.orderbl.VehicleLoad;
+import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.Table;
@@ -35,6 +36,7 @@ public class VehicleLoadUi extends JPanel {
 	private static final int BOUND_Y=30;
 
 	private MainFrame mainFrame;
+	private UserVO user;
 	private JLabel title;
 	private JButton exit;
 	private JButton OK;
@@ -64,6 +66,8 @@ public class VehicleLoadUi extends JPanel {
 	private JTextField textID;
 	private DateChooser dc;
 	private Table table;
+	private JLabel userId;
+	private JLabel userRole;
 	
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);//标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);//其余字体格式
@@ -77,6 +81,7 @@ public class VehicleLoadUi extends JPanel {
 	
 	public VehicleLoadUi(final MainFrame mainFrame, UserVO userVO) {
 		this.mainFrame = mainFrame;
+		user=userVO;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
 		// 初始化
@@ -123,6 +128,12 @@ public class VehicleLoadUi extends JPanel {
 		textID = new JTextField();
 		textGoodsWeight=new JTextField();
 		
+		userId = new JLabel("账号： "+user.getId());
+		userId.setLocation(363, 69);
+		userId.setSize(150, 25);
+		userRole = new JLabel("身份： "+UserRole.transfer(user.getRole()));
+		userRole.setLocation(528, 69);
+		userRole.setSize(150, 25);
 		dc=new DateChooser(this, LOCATION_TEXT_X+2, LOCATION_TEXT_Y-90);
 		
 	}
@@ -218,6 +229,9 @@ public class VehicleLoadUi extends JPanel {
 		this.add(delete);
 		this.add(update);
 		this.add(finish);
+		this.add(userId);
+		this.add(userRole);
+		
 		String[] columnNames = {"序号","订单ID","名称","重量" };  
 		int[] list={40,120,14,30,20,425,110,498,440};
 
