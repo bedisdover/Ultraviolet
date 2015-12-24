@@ -29,8 +29,10 @@ public class SettingPriceUi extends JPanel {
 	JLabel title = new JLabel("制定价格");
 	Table table1;
 	Table table2;
-	private JLabel userId;
-	private JLabel userRole;
+	JButton butAdd = new JButton("修改城市");
+	
+//	private JLabel userId;
+//	private JLabel userRole;
 	//	JLabel lab1 = new JLabel("系统当前价格：    	 ___________    元每公里");
 	//	JLabel lab2 = new JLabel("请输入新价格：	");
 	//	JLabel lab3 = new JLabel("元每公里");
@@ -40,7 +42,7 @@ public class SettingPriceUi extends JPanel {
 	JButton change2 = new JButton("修改");
 	//	JTextField text = new JTextField();
 	Font font = new Font("Courier", Font.PLAIN, 26);
-
+	String[] add;
 
 
 	public SettingPriceUi(final MainFrame mainFrame,UserVO uvo) {
@@ -61,17 +63,18 @@ public class SettingPriceUi extends JPanel {
 		//		price.setBounds(526,225,100,41);
 		//		price.setForeground(Color.RED);
 		butOut.setBounds(60,41,120,40);
+		butAdd.setBounds(860,41,120,40);
 		change1.setBounds(830,350,120,40);
 		change2.setBounds(830,550,120,40);
 		//		text.setBounds(486,442,100,30);
 		//		text.setForeground(Color.RED);
 
-		userId = new JLabel(" 账号： "+user.getId());
-		userId.setLocation(389, 82);
-		userId.setSize(180, 25);
-		userRole = new JLabel("身份： "+UserRole.transfer(user.getRole()));
-		userRole.setLocation(514, 82);
-		userRole.setSize(180, 25);
+//		userId = new JLabel(" 账号： "+user.getId());
+//		userId.setLocation(389, 82);
+//		userId.setSize(180, 25);
+		//userRole = new JLabel("身份： "+UserRole.transfer(user.getRole()));
+//		userRole.setLocation(514, 82);
+//		userRole.setSize(180, 25);
 		
 		this.add(title);
 		//		this.add(name);
@@ -83,8 +86,9 @@ public class SettingPriceUi extends JPanel {
 		this.add(butOut);
 		this.add(change1);
 		this.add(change2);
-		this.add(userId);
-		this.add(userRole);
+		this.add(butAdd);
+//		this.add(userId);
+//		this.add(userRole);
 		//		this.add(text);
 		this.initComponents();
 		this.addListener();
@@ -93,6 +97,7 @@ public class SettingPriceUi extends JPanel {
 
 	public void initComponents(){
 		String[] columnNames1 = { "价格/元每km", "北京", "上海", "广州","南京" };
+		add = columnNames1;
 		int[] list1 = { 4, 119, 14, 40, 20, 202, 198-20, 598, 203 };
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
@@ -154,11 +159,30 @@ public class SettingPriceUi extends JPanel {
 				}
 			}
 		});
+		butAdd.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				String now = "";
+				for(int i = 1;i<add.length;i++){
+					now=now+add[i]+" ";
+				}
+				String future = JOptionPane.showInputDialog(SettingPriceUi.this,"修改城市：（请添加或删除已有城市，添加城市用空格隔开）",now);
+				System.out.println(future);
+				table1.table.setVisible(false);
+				table1.setVisible(false);
+				table1.disable();
+				String[] newCity = future.split(" ");
+				int[] list1 = { 4, 119, 14, 40, 20, 202, 198-20, 598, 203 };
+				Table table3 = new Table();
+				add(table3.drawTable(newCity, list1));
+				
+				System.out.println("执行完毕");
+			}
+		});
 
 	}
 
-	public void paintComponent(Graphics g) {
-		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
-		this.repaint();
-	}
+//	public void paintComponent(Graphics g) {
+//		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
+//		this.repaint();
+//	}
 }
