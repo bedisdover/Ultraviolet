@@ -6,7 +6,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -23,6 +22,7 @@ import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.Table;
+import LEMS.presentation.ultraSwing.UltraButton;
 import LEMS.vo.financevo.SalaryVO;
 import LEMS.vo.informationvo.DriverVO;
 import LEMS.vo.uservo.UserVO;
@@ -43,13 +43,13 @@ public class DriverManageUi extends JPanel {
 	private MainFrame mainFrame;
 	private Table table;
 	private JLabel title;
-	private JButton exit;
-	private JButton OK;
-	private JButton cancel;
-	private JButton add;
-	private JButton delete;
-	private JButton update;
-	private JButton inquire;
+	private UltraButton exit;
+	private UltraButton OK;
+	private UltraButton cancel;
+	private UltraButton add;
+	private UltraButton delete;
+	private UltraButton update;
+	private UltraButton inquire;
 	private JLabel labelId;
 	private JLabel labelName;
 	private JLabel labelTime;
@@ -99,13 +99,13 @@ public class DriverManageUi extends JPanel {
 	 */
 	private void init() {
 		title = new JLabel("司机信息管理");
-		exit = new JButton("返回");
-		OK = new JButton("确定");
-		cancel = new JButton("取消");
-		add=new JButton("新增");
-		delete=new JButton("删除");
-		update=new JButton("修改");
-		inquire=new JButton("查找");
+		exit = new UltraButton("返回");
+		OK = new UltraButton("确定");
+		cancel = new UltraButton("取消");
+		add=new UltraButton("新增");
+		delete=new UltraButton("删除");
+		update=new UltraButton("修改");
+		inquire=new UltraButton("查找");
 		labelId = new JLabel("司机编号:");
 		labelName = new JLabel("姓名:");
 		labelTime = new JLabel("行驶证期限:");

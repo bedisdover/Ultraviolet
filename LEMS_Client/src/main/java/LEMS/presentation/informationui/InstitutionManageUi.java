@@ -16,11 +16,11 @@ import LEMS.businesslogic.informationbl.InformationAdd;
 import LEMS.businesslogic.informationbl.InformationDelete;
 import LEMS.businesslogic.informationbl.InformationFind;
 import LEMS.businesslogic.informationbl.InformationUpdate;
-import LEMS.po.informationpo.InstitutionPO;
 import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.Table;
+import LEMS.presentation.ultraSwing.UltraButton;
 import LEMS.vo.informationvo.InstitutionVO;
 import LEMS.vo.uservo.UserVO;
 
@@ -35,13 +35,13 @@ public class InstitutionManageUi extends JPanel {
 
 	private MainFrame mainFrame;
 	private JLabel title;
-	private JButton butOut;
-	private JButton butAdd;
-	private JButton butDel;
-	private JButton butFind;
-	private JButton butChange;
-	private JButton OK;
-	private JButton cancel;
+	private UltraButton butOut;
+	private UltraButton butAdd;
+	private UltraButton butDel;
+	private UltraButton butFind;
+	private UltraButton butChange;
+	private UltraButton OK;
+	private UltraButton cancel;
 	
 	private JLabel labelID;
 	private JTextField textID;
@@ -75,13 +75,13 @@ public class InstitutionManageUi extends JPanel {
 	
 	private void init() {
 		title = new JLabel("机构管理");
-		butOut = new JButton("登出");
-		butAdd = new JButton("新增");
-		butDel = new JButton("删除");
-		butFind = new JButton("查询");
-		butChange = new JButton("修改");
-		OK = new JButton("确定");
-		cancel = new JButton("取消");
+		butOut = new UltraButton("返回");
+		butAdd = new UltraButton("新增");
+		butDel = new UltraButton("删除");
+		butFind = new UltraButton("查找");
+		butChange = new UltraButton("修改");
+		OK = new UltraButton("确定");
+		cancel = new UltraButton("取消");
 		
 		userId = new JLabel(" 账号： "+user.getId());
 		
