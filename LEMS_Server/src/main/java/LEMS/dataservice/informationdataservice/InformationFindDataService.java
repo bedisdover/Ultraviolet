@@ -17,7 +17,6 @@ import LEMS.po.informationpo.DriverPO;
 import LEMS.po.informationpo.InstitutionPO;
 import LEMS.po.informationpo.VehiclePO;
 import LEMS.po.userpo.UserPO;
-import LEMS.po.userpo.UserRole;
 
 
 

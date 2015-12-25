@@ -9,7 +9,6 @@ import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.businesslogicservice.informationblservice.InformationUpdateService;
 import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.InformationFactory;
-import LEMS.dataservice.informationdataservice.InformationDeleteDataService;
 import LEMS.dataservice.informationdataservice.InformationUpdateDataService;
 import LEMS.po.financepo.SalaryPO;
 import LEMS.po.informationpo.AccountPO;
