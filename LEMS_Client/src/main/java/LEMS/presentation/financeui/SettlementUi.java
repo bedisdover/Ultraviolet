@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -111,7 +112,7 @@ public class SettlementUi extends JPanel {
 		add(label);
 
 		textField = new JTextField();
-		textField.setBounds(152, 272, 163, 21);
+		textField.setBounds(173, 272, 142, 21);
 		add(textField);
 		textField.setColumns(10);
 		
@@ -121,7 +122,7 @@ public class SettlementUi extends JPanel {
 		
 		textTotal = new JTextField();
 		textTotal.setEditable(false);
-		textTotal.setBounds(152, 346, 163, 21);
+		textTotal.setBounds(173, 346, 142, 21);
 		add(textTotal);
 		textTotal.setColumns(10);
 	}
@@ -151,6 +152,11 @@ public class SettlementUi extends JPanel {
 
 	private void findOperation() {
 		ArrayList<IncomePO> incomes = settlement.getIncomeByDateAndIns(dc.getTime(), textField.getText());
+		
+		System.out.println(incomes);
+		if (incomes.isEmpty()) {
+			JOptionPane.showMessageDialog(mainFrame, "暂无收款信息！", "error", JOptionPane.ERROR_MESSAGE);
+		}
 		
 		String [] values = {};
 		for (IncomePO incomePO : incomes) {

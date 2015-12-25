@@ -6,9 +6,7 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 public class RMIConnect {
-//	public static final String RMI="rmi://114.212.42.237:1099/data";
 	public static String RMI;
-	
 	
 	static {
 		try {
@@ -21,8 +19,6 @@ public class RMIConnect {
 			Element connect = system.element("Connect");
 
 			RMI = connect.attributeValue("IP");
-			
-			System.out.println(RMI);
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		}
