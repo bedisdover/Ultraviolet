@@ -1,6 +1,5 @@
 package LEMS.presentation.informationui;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
@@ -18,11 +17,12 @@ import javax.swing.JTextField;
 import LEMS.businesslogic.informationbl.InformationAdd;
 import LEMS.businesslogic.informationbl.InformationDelete;
 import LEMS.businesslogic.informationbl.InformationFind;
+import LEMS.businesslogic.informationbl.InformationUpdate;
 import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.Table;
-import LEMS.presentation.userui.ManagerUi;
+import LEMS.presentation.ultraSwing.UltraButton;
 import LEMS.vo.informationvo.VehicleVO;
 import LEMS.vo.uservo.UserVO;
 
@@ -43,13 +43,13 @@ public class VehicleManageUi extends JPanel {
 	private UserVO user;
 	private Table table;
 	private JLabel title;
-	private JButton exit;
-	private JButton OK;
-	private JButton cancel;
-	private JButton add;
-	private JButton delete;
-	private JButton update;
-	private JButton inquire;
+	private UltraButton exit;
+	private UltraButton OK;
+	private UltraButton cancel;
+	private UltraButton add;
+	private UltraButton delete;
+	private UltraButton update;
+	private UltraButton inquire;
 	private JButton look;
 	private JLabel labelId;
 	private JLabel labelNum;
@@ -91,16 +91,18 @@ public class VehicleManageUi extends JPanel {
 	 */
 	private void init() {
 		title = new JLabel("车辆信息管理");
-		exit = new JButton("返回");
-		OK = new JButton("确定");
-		cancel = new JButton("取消");
+		exit = new UltraButton("返回");
+		OK = new UltraButton("确定");
+		cancel = new UltraButton("取消");
+		
 		look=new JButton("查看");
 		look.setLocation(289, 384);
 		look.setSize(69, 50);
-		add=new JButton("新增");
-		delete=new JButton("删除");
-		update=new JButton("修改");
-		inquire=new JButton("查找");
+		
+		add=new UltraButton("新增");
+		delete=new UltraButton("删除");
+		update=new UltraButton("修改");
+		inquire=new UltraButton("查找");
 		labelId = new JLabel("车辆代号:");
 		labelNum = new JLabel("车牌号:");
 		labelTime = new JLabel("服役时间：");
@@ -332,7 +334,24 @@ public class VehicleManageUi extends JPanel {
 					setTestState(false);
 					isAdd=false;
 				}
-				
+				if(isUpdate){
+					int currentLine=table.table.getSelectedRow();
+					//在数据库中修改该车辆信息
+					VehicleVO vvo=new VehicleVO(textId.getText(),textNum.getText(),textTime.getText(),(String)comboBox.getSelectedItem());
+					InformationUpdate update=new InformationUpdate();
+					update.updateVehicle(vvo);
+					
+					//在界面上修改该车辆信息
+					table.setValueAt(currentLine, 0, textId.getText());
+					table.setValueAt(currentLine, 1, textNum.getText());
+					table.setValueAt(currentLine, 2, textTime.getText());
+					
+					// 清空输入框
+					empty();
+					// 使输入框不可编辑
+					setTestState(false);
+					isUpdate=false;
+				}
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {
