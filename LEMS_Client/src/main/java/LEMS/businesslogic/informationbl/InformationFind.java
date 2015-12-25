@@ -100,6 +100,9 @@ public class InformationFind implements InformationFindService{
 		}
 		return vehiclevo;
 	}
+	/**
+	 * 根据车辆编号查找车辆信息
+	 */
 	public VehicleVO findTheVehicle(String id){
 		VehicleVO vvo=new VehicleVO();
 		try {
