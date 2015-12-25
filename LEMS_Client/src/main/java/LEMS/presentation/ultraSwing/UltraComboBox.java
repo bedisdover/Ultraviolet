@@ -3,12 +3,12 @@ package LEMS.presentation.ultraSwing;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.geom.RoundRectangle2D;
 import java.util.Vector;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
 
+@SuppressWarnings({ "serial", "rawtypes" })
 public class UltraComboBox extends JComboBox {
 
 		 public UltraComboBox(){

@@ -5,14 +5,13 @@ import javax.swing.JPanel;
 import java.awt.Font;
 import java.awt.Graphics;
 
-import javax.swing.JButton;
-
 import LEMS.businesslogic.inquirebl.inquirediary.InquireDiary;
 import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.DateChooser;
 import LEMS.presentation.method.Table;
+import LEMS.presentation.ultraSwing.UltraButton;
 import LEMS.vo.inquirevo.DiaryVO;
 import LEMS.vo.uservo.UserVO;
 
@@ -35,8 +34,8 @@ public class DiaryUi extends JPanel{
 	private JLabel date;
 	private JLabel name;
 	private JLabel statue;
-	private JButton but;
-	private JButton butOut;
+	private UltraButton but;
+	private UltraButton butOut;
 	private DateChooser dc;
 	private Table table;
 	private UserVO user;
@@ -62,10 +61,10 @@ public class DiaryUi extends JPanel{
 		title = new JLabel("查询日志");
 		name = new JLabel("账号：  "+user.getId());
 		statue = new JLabel("身份： "+UserRole.transfer(user.getRole()));
-		but = new JButton("查找");
+		but = new UltraButton("查找");
 		textField = new JTextField();
 		font = new Font("Courier", Font.PLAIN, 26);
-		butOut = new JButton("登出");
+		butOut = new UltraButton("返回");
 		dc = new DateChooser(this, 395, 123, 200, 25);
 	}
 	

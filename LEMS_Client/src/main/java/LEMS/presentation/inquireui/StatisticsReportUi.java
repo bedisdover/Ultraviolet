@@ -6,7 +6,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -18,6 +17,7 @@ import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.DateChooser;
 import LEMS.presentation.method.Table;
+import LEMS.presentation.ultraSwing.UltraButton;
 import LEMS.vo.financevo.PayBillVO;
 import LEMS.vo.inquirevo.BusinessListVO;
 import LEMS.vo.uservo.UserVO;
@@ -43,8 +43,8 @@ public class StatisticsReportUi extends JPanel {
 	private JLabel subtitle2;
 	private JTextField textDate1;
 	private JTextField textDate2;
-	private JButton but;
-	private JButton butOut;
+	private UltraButton but;
+	private UltraButton butOut;
 	private DateChooser dc1;
 	private DateChooser dc2;
 	private Font font;
@@ -73,10 +73,10 @@ public class StatisticsReportUi extends JPanel {
 		textDate2 = new JTextField();
 		font = new Font("Courier", Font.PLAIN, 26);
 		subfont = new Font("Dialog", Font.PLAIN, 18);
-		but = new JButton("查看");
+		but = new UltraButton("查找");
 		subtitle1 = new JLabel("付款单信息");
 		subtitle2 = new JLabel("收款单信息");
-		butOut = new JButton("登出");
+		butOut = new UltraButton("返回");
 		dc1 = new DateChooser(this, 290, 102);
 		dc2 = new DateChooser(this, 540, 102); 
 	}
@@ -90,7 +90,7 @@ public class StatisticsReportUi extends JPanel {
 		statue.setBounds(800,60,183,28);
 		but.setBounds(740,119-change,120,30);
 		labelDate1.setBounds(217,122-change,80,25);
-		labelDate2.setBounds(490,122-change,80,25);
+		labelDate2.setBounds(473,102,80,25);
 		textDate1=dc1.showDate;
 		textDate2=dc2.showDate;
 		subtitle1.setBounds(456,156-change,169,39);

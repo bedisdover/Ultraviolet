@@ -2,7 +2,6 @@ package LEMS.presentation.inquireui;
 
 import javax.swing.*;
 
-import LEMS.presentation.StartUi;
 import LEMS.presentation.MainFrame;
 
 import java.awt.*;
@@ -15,19 +14,11 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 
-import javax.swing.JButton;
-
-import LEMS.businesslogic.inquirebl.inquirediary.InquireDiary;
 import LEMS.businesslogic.inquirebl.inquirelogisticsinfo.InquireLogisticsInfo;
-import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
-import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.Table;
 import LEMS.presentation.ultraSwing.UltraButton;
-import LEMS.vo.inquirevo.DiaryVO;
 import LEMS.vo.inquirevo.LogisticsInfoVO;
-import LEMS.vo.uservo.UserVO;
-
 import java.util.ArrayList;
 
 /**

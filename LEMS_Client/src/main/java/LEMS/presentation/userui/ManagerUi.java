@@ -6,7 +6,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,9 +25,6 @@ import LEMS.presentation.method.Table;
 import LEMS.presentation.ultraSwing.UltraButton;
 import LEMS.vo.financevo.SalaryVO;
 import LEMS.vo.uservo.UserVO;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 /**
  * @author 苏琰梓 管理员界面 2015年11月18日
