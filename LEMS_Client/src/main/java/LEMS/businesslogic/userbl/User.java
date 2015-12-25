@@ -16,26 +16,29 @@ public class User {
 	String password;
 	UserRole role;
 	ArrayList<UserPO> ap;
-	UserVO uv=null;
-	public User(String id,String password){
-		this.id=id;
-		this.password=password;
+	UserVO uv = null;
+
+	public User(String id, String password) {
+		this.id = id;
+		this.password = password;
 	}
+
 	public UserVO getUser() throws Exception {
 		try {
-			DatabaseFactory database=(DatabaseFactory)Naming.lookup(RMIConnect.RMI);
-			UserFactory uf=database.getUserFactory();
-			UserDataService u=uf.getUserData();
-			ap=u.findAll();
-			for(UserPO user:ap){
-				if(user.getId().equals(id)&&user.getPassword().equals(password)){
-					uv=new UserVO(user.getId(),user.getPassword(),user.getRole(),user.getName(),user.getInstitution());
+			DatabaseFactory database = (DatabaseFactory) Naming.lookup(RMIConnect.RMI);
+			UserFactory uf = database.getUserFactory();
+			UserDataService u = uf.getUserData();
+			ap = u.findAll();
+			for (UserPO user : ap) {
+				if (user.getId().equals(id) && user.getPassword().equals(password)) {
+					uv = new UserVO(user.getId(), user.getPassword(), user.getRole(), user.getName(),
+							user.getInstitution());
 					return uv;
 				}
 			}
-			
+
 		} catch (Exception e) {
-			//TODO 无需catch
+			// TODO 无需catch
 			throw e;
 		}
 		return null;
