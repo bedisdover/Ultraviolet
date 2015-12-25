@@ -8,10 +8,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import LEMS.businesslogic.storebl.StoreManagement;
 import LEMS.presentation.LoginUi;
@@ -19,6 +17,7 @@ import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.ExportExcel;
 import LEMS.presentation.method.Table;
 import LEMS.presentation.ultraSwing.UltraButton;
+import LEMS.presentation.ultraSwing.UltraTextField;
 import LEMS.vo.storevo.GoodsVO;
 
 /**
@@ -39,10 +38,10 @@ public class StoreCheckUi extends JPanel {
 	private UltraButton OK;
 	private UltraButton cancel;
 	private UltraButton excel;
-	private JTextField textTime;
-	
+	private UltraTextField textTime;
+
 	Table table;
-	String timeToTransfer="";
+	String timeToTransfer = "";
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);// 标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 18);// 其余字体格式
 	private Font fnt2 = new Font("宋体", Font.BOLD, 16);// 按钮字体格式
@@ -56,9 +55,9 @@ public class StoreCheckUi extends JPanel {
 		// 初始化组件
 		this.initComponents();
 		// 设置输入框不可编辑
-		 //this.setTestState(false);
+		// this.setTestState(false);
 		// 添加事件监听器
-		 this.addListener();
+		this.addListener();
 
 	}
 
@@ -72,7 +71,7 @@ public class StoreCheckUi extends JPanel {
 		excel = new UltraButton("导出表格");
 		cancel = new UltraButton("取消盘点");
 		labelTime = new JLabel("盘点截止时间：");
-		textTime = new JTextField();
+		textTime = new UltraTextField(15);
 	}
 
 	/**
@@ -83,19 +82,15 @@ public class StoreCheckUi extends JPanel {
 		OK.setBounds(LOCATION_X - 110, LOCATION_Y + 120, 180, 60);
 		cancel.setBounds(LOCATION_X + 35, LOCATION_Y + 120, 180, 60);
 		exit.setBounds(90, 60, 100, 40);
-		labelTime.setBounds(LOCATION_X-70, LOCATION_Y+65, 140, 40);
-		textTime.setBounds(LOCATION_X+60, LOCATION_Y+75, 100, 25);
-		excel.setBounds(LOCATION_X+320, LOCATION_Y+80, 120, 40);
+		labelTime.setBounds(LOCATION_X - 70, LOCATION_Y + 65, 140, 40);
+		textTime.setBounds(LOCATION_X + 60, LOCATION_Y + 75, 100, 25);
+		excel.setBounds(LOCATION_X + 320, LOCATION_Y + 80, 120, 40);
 
 		title.setFont(fnt1);
 		labelTime.setFont(fnt);
-		textTime.setFont(fnt);
-		
-		//textTime.setEditable(false);
+
 		excel.setEnabled(false);
-		//设置jtextfield透明
 		textTime.setOpaque(false);
-//		textTime.setBorder(new LineBorder(Color.lightBlue));
 		this.add(title);
 		this.add(OK);
 		this.add(cancel);
@@ -121,7 +116,6 @@ public class StoreCheckUi extends JPanel {
 	 *            输入框状态（是否可编辑）
 	 */
 	private void setTestState(boolean state) {
-
 		OK.setEnabled(state);
 		cancel.setEnabled(state);
 	}
@@ -131,7 +125,6 @@ public class StoreCheckUi extends JPanel {
 	 */
 	private void empty() {
 		textTime.setText(null);
-		
 	}
 
 	/**
@@ -140,11 +133,11 @@ public class StoreCheckUi extends JPanel {
 	private void addListener() {
 		excel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				StoreManagement storeManagement=new StoreManagement();
-				ArrayList<GoodsVO> alList=storeManagement.check(timeToTransfer);
-				ArrayList<Object> al=new ArrayList<Object>();
-				int length=alList.size();
-				for(int i=0;i<length-8;i++){
+				StoreManagement storeManagement = new StoreManagement();
+				ArrayList<GoodsVO> alList = storeManagement.check(timeToTransfer);
+				ArrayList<Object> al = new ArrayList<Object>();
+				int length = alList.size();
+				for (int i = 0; i < length - 8; i++) {
 					al.add(alList.get(i).getId());
 					al.add(alList.get(i).getInDate());
 					al.add(alList.get(i).getOutDate());
@@ -156,19 +149,19 @@ public class StoreCheckUi extends JPanel {
 					al.add(alList.get(i).getTransportType());
 					al.add(alList.get(i).getTransferNum());
 				}
-				ExportExcel operation=new ExportExcel();
-				String[] title=new String[7];
-				title[0]="快递单号";
-				title[1]="入库日期";
-				title[2]="出库日期";
-				title[3]="目的地";
-				title[4]="存储区域";
-				title[5]="架号";
-				title[6]="排号";
-				title[7]="位号";
-				title[8]="装运形式";
-				title[9]="单号";
-				operation.exportExcel("f:/text.xls","库存盘点", title, al);
+				ExportExcel operation = new ExportExcel();
+				String[] title = new String[7];
+				title[0] = "快递单号";
+				title[1] = "入库日期";
+				title[2] = "出库日期";
+				title[3] = "目的地";
+				title[4] = "存储区域";
+				title[5] = "架号";
+				title[6] = "排号";
+				title[7] = "位号";
+				title[8] = "装运形式";
+				title[9] = "单号";
+				operation.exportExcel("f:/text.xls", "库存盘点", title, al);
 			}
 		});
 
@@ -181,34 +174,59 @@ public class StoreCheckUi extends JPanel {
 
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHH:mm:ss");//设置日期格式
-				String time=df.format(new Date()).substring(8, 16);
-				timeToTransfer=time.substring(0, 2)+time.substring(3,5)+time.substring(6, 8);
+				SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHH:mm:ss");// 设置日期格式
+				String time = df.format(new Date()).substring(8, 16);
+				timeToTransfer = time.substring(0, 2) + time.substring(3, 5) + time.substring(6, 8);
 				textTime.setText(time);
 				OK.setEnabled(false);
 				excel.setEnabled(true);
-				StoreManagement storeManagement=new StoreManagement();
-				ArrayList<GoodsVO> al=storeManagement.check(timeToTransfer);
+				StoreManagement storeManagement = new StoreManagement();
+				ArrayList<GoodsVO> al = storeManagement.check(timeToTransfer);
 				int length = al.size();
-				int showRow=0;
-				for(int p=0;p<length-8;p++){
-					GoodsVO gvo=al.get(p);
+				int showRow = table.numOfEmpty();
+				for (int p = 0; p < length - 8; p++) {
+					GoodsVO gvo = al.get(p);
 					table.setValueAt(showRow, 0, gvo.getId());
-					table.setValueAt(showRow, 1, gvo.getInDate());
-					table.setValueAt(showRow, 2, gvo.getDestination().name());
-					table.setValueAt(showRow, 3, gvo.getArea().name());
-					table.setValueAt(showRow, 4, gvo.getRow());
-					table.setValueAt(showRow, 5, gvo.getStand());
-					table.setValueAt(showRow, 6, gvo.getPosition());
-					showRow++;
+					table.setValueAt(showRow, 1, gvo.getInDate().substring(0, 8));
+					switch (gvo.getDestination().name()) {
+					case "Beijing":
+						table.setValueAt(showRow, 2, "北京");
+						break;
+					case "Shanghai":
+						table.setValueAt(showRow, 2, "上海");
+						break;
+					case "Guangzhou":
+						table.setValueAt(showRow, 2, "广州");
+						break;
+					case "Nanjing":
+						table.setValueAt(showRow, 2, "南京");
+						break;
+					}
+					switch (gvo.getArea().name()) {
+					case "Airline":
+						table.setValueAt(showRow, 3, "航运区");
+						break;
+					case "Trainline":
+						table.setValueAt(showRow, 3, "铁运区");
+						break;
+					case "Busline":
+						table.setValueAt(showRow, 3, "汽运区");
+						break;
+					case "Motoline":
+						table.setValueAt(showRow, 3, "机动区");
+						break;
+					}
+					table.setValueAt(showRow, 4, gvo.getRow() + "");
+					table.setValueAt(showRow, 5, gvo.getStand() + "");
+					table.setValueAt(showRow, 6, gvo.getPosition() + "");
 				}
-			
+
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				empty();
-			
+
 			}
 		});
 	}

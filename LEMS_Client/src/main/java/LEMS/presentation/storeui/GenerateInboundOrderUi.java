@@ -63,7 +63,6 @@ public class GenerateInboundOrderUi extends JPanel {
 
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);// 标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);// 其余字体格式
-	private Font fnt2 = new Font("宋体", Font.BOLD, 16);// 按钮字体格式
 	/**
 	 * 判断是干什么的确定 1是新建 2是删除 3是修改 4是查找
 	 */
@@ -72,7 +71,7 @@ public class GenerateInboundOrderUi extends JPanel {
 	/**
 	 * 选中的行
 	 */
-	int currentLine=-1;
+	int currentLine = -1;
 
 	public GenerateInboundOrderUi(final MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
@@ -114,8 +113,8 @@ public class GenerateInboundOrderUi extends JPanel {
 		textPosition = new UltraTextField(15);
 		comboBoxDestination = new UltraComboBox();
 		comboBoxArea = new UltraComboBox();
-		dc=new DateChooser(this,LOCATION_TEXT_X,LOCATION_TEXT_Y + 55);
-	
+		dc = new DateChooser(this, LOCATION_TEXT_X, LOCATION_TEXT_Y + 55);
+
 	}
 
 	/**
@@ -143,8 +142,7 @@ public class GenerateInboundOrderUi extends JPanel {
 		labelRow.setFont(fnt);
 		labelStand.setFont(fnt);
 		labelPosition.setFont(fnt);
-		
-		
+
 		comboBoxDestination.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 110, BOUND_X, BOUND_Y - 5);
 		comboBoxDestination.addItem("北京");
 		comboBoxDestination.addItem("上海");
@@ -190,7 +188,7 @@ public class GenerateInboundOrderUi extends JPanel {
 
 		table = new Table();
 		add(table.drawTable(columnNames, list));
-	
+
 	}
 
 	/**
@@ -210,12 +208,14 @@ public class GenerateInboundOrderUi extends JPanel {
 		cancel.setEnabled(state);
 		dc.setEnabled(state);
 	}
-private void buttonAllTrue(){
-	add.setEnabled(true);
-	delete.setEnabled(true);
-	update.setEnabled(true);
-	inquire.setEnabled(true);
-}
+
+	private void buttonAllTrue() {
+		add.setEnabled(true);
+		delete.setEnabled(true);
+		update.setEnabled(true);
+		inquire.setEnabled(true);
+	}
+
 	/**
 	 * 清空输入框
 	 */
@@ -232,9 +232,10 @@ private void buttonAllTrue(){
 	 * 为按钮添加事件监听器
 	 */
 	private void addListener() {
-		
+
 		add.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				empty();
 				setTestState(true);
 				delete.setEnabled(false);
 				update.setEnabled(false);
@@ -244,7 +245,7 @@ private void buttonAllTrue(){
 		});
 		delete.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				
+
 				whichButton = 2;
 				add.setEnabled(false);
 				update.setEnabled(false);
@@ -261,12 +262,12 @@ private void buttonAllTrue(){
 				delete.setEnabled(false);
 				inquire.setEnabled(false);
 				currentLine = table.table.getSelectedRow();
-				ArrayList<String> al=table.getValueAt(currentLine);
+				ArrayList<String> al = table.getValueAt(currentLine);
 				textId.setText(al.get(0));
 				textRow.setText(al.get(4));
 				textStand.setText(al.get(5));
 				textPosition.setText(al.get(6));
-				switch(al.get(2)){
+				switch (al.get(2)) {
 				case "北京":
 					comboBoxDestination.setSelectedIndex(0);
 					break;
@@ -280,8 +281,8 @@ private void buttonAllTrue(){
 					comboBoxDestination.setSelectedIndex(3);
 					break;
 				}
-			
-				switch(al.get(3)){
+
+				switch (al.get(3)) {
 				case "航运区":
 					comboBoxArea.setSelectedIndex(0);
 					break;
@@ -310,15 +311,17 @@ private void buttonAllTrue(){
 		});
 
 		OK.addMouseListener(new MouseAdapter() {
+
 			public void mouseClicked(MouseEvent e) {
 				setTestState(false);
+				buttonAllTrue();
 				// 新建的确定
 				if (whichButton == 1) {
-					SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHH:mm:ss");//设置日期格式
-					String time=df.format(new Date()).substring(8, 16);// new Date()为获取当前系统时间
-					int showRow = 0;
+					SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHH:mm:ss");// 设置日期格式
+					String time = df.format(new Date()).substring(8, 16);// new Date()为获取当前系统时间
+					int showRow = table.numOfEmpty();
 					int showColumn = 0;
-					InboundOrderVO iovo=getInfo(time);
+					InboundOrderVO iovo = getInfo(time);
 					StoreGenerateOrder storeGenerateOrder = new StoreGenerateOrder();
 					int judge = storeGenerateOrder.generateInboundOrderPO(iovo);
 					if (judge == 0) {
@@ -326,116 +329,115 @@ private void buttonAllTrue(){
 					} else {
 						table.setValueAt(showRow, showColumn, iovo.getId());
 						table.setValueAt(showRow, showColumn + 1, iovo.getInDate().substring(0, 8));
-						switch(iovo.getDestination().name()){
+						switch (iovo.getDestination().name()) {
 						case "Beijing":
-							table.setValueAt(showRow, showColumn + 2,"北京");
+							table.setValueAt(showRow, showColumn + 2, "北京");
 							break;
 						case "Shanghai":
-							table.setValueAt(showRow, showColumn + 2,"上海");
+							table.setValueAt(showRow, showColumn + 2, "上海");
 							break;
 						case "Guangzhou":
-							table.setValueAt(showRow, showColumn + 2,"广州");
+							table.setValueAt(showRow, showColumn + 2, "广州");
 							break;
 						case "Nanjing":
-							table.setValueAt(showRow, showColumn + 2,"南京");
+							table.setValueAt(showRow, showColumn + 2, "南京");
 							break;
 						}
-						switch(iovo.getArea().name()){
+						switch (iovo.getArea().name()) {
 						case "Airline":
-							table.setValueAt(showRow, showColumn + 3,"航运区");
+							table.setValueAt(showRow, showColumn + 3, "航运区");
 							break;
 						case "Trainline":
-							table.setValueAt(showRow, showColumn + 3,"铁运区");
+							table.setValueAt(showRow, showColumn + 3, "铁运区");
 							break;
 						case "Busline":
-							table.setValueAt(showRow, showColumn + 3,"汽运区");	
+							table.setValueAt(showRow, showColumn + 3, "汽运区");
 							break;
 						case "Motoline":
-							table.setValueAt(showRow, showColumn + 3,"机动区");
+							table.setValueAt(showRow, showColumn + 3, "机动区");
 							break;
 						}
-						
-						table.setValueAt(showRow, showColumn + 4, iovo.getRow()+ "");
+
+						table.setValueAt(showRow, showColumn + 4, iovo.getRow() + "");
 						table.setValueAt(showRow, showColumn + 5, iovo.getStand() + "");
 						table.setValueAt(showRow, showColumn + 6, iovo.getPosition() + "");
-						showRow++;
-						buttonAllTrue();
+
 						empty();
 					}
-					
-				
+
 				} // 删除的确定
 				else if (whichButton == 2) {
 					currentLine = table.table.getSelectedRow();
-					String id=(String) table.table.getValueAt(currentLine, 0);
-					StoreGenerateOrder storeGenerateOrder=new StoreGenerateOrder();
-					int judge=storeGenerateOrder.deleteInboundOrderPO(id);
-					if(judge==0)
-						//删除失败 跳出提示
+					String id = (String) table.table.getValueAt(currentLine, 0);
+					StoreGenerateOrder storeGenerateOrder = new StoreGenerateOrder();
+					int judge = storeGenerateOrder.deleteInboundOrderPO(id);
+					if (judge == 0)
+						// 删除失败 跳出提示
 						System.out.println("删除数据库失败!");
-					if(judge>0){
-							//右边表格删除这一行
+					if (judge > 0) {
+						// 右边表格删除这一行
 						System.out.println("删除数据库成功！");
+						empty();
 						table.removeLine(currentLine);
 						repaint();
 					}
-				
-					
+
 				} // 修改的确定
 				else if (whichButton == 3) {
 					currentLine = table.table.getSelectedRow();
-					SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHH:mm:ss");//设置日期格式
-					String time=df.format(new Date()).substring(8, 16);// new Date()为获取当前系统时间
-					InboundOrderVO iovo=getInfo(time);
+					SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHH:mm:ss");// 设置日期格式
+					String time = df.format(new Date()).substring(8, 16);// new
+																			// Date()为获取当前系统时间
+					InboundOrderVO iovo = getInfo(time);
 					StoreGenerateOrder storeGenerateOrder = new StoreGenerateOrder();
 					int judge = storeGenerateOrder.updateInboundOrderPO(iovo);
 					if (judge == 0) {
 						// 修改失败，跳出提示
 					} else {
 						table.setValueAt(currentLine, 0, iovo.getId());
-						table.setValueAt(currentLine, 1, iovo.getInDate());
-						System.out.println(iovo.getDestination().name()+"这是啥");
-						switch(iovo.getDestination().name()){
+						table.setValueAt(currentLine, 1, iovo.getInDate().substring(0, 8));
+						System.out.println(iovo.getDestination().name() + "这是啥");
+						switch (iovo.getDestination().name()) {
 						case "Beijing":
-							table.setValueAt(currentLine, 2,"北京");
+							table.setValueAt(currentLine, 2, "北京");
 							break;
 						case "Shanghai":
-							table.setValueAt(currentLine, 2,"上海");
+							table.setValueAt(currentLine, 2, "上海");
 							break;
 						case "Guangzhou":
-							table.setValueAt(currentLine, 2,"广州");
+							table.setValueAt(currentLine, 2, "广州");
 							break;
 						case "Nanjing":
-							table.setValueAt(currentLine, 2,"南京");
+							table.setValueAt(currentLine, 2, "南京");
 							break;
 						}
-						switch(iovo.getArea().name()){
+						switch (iovo.getArea().name()) {
 						case "Airline":
-							table.setValueAt(currentLine, 3,"航运区");
+							table.setValueAt(currentLine, 3, "航运区");
 							break;
 						case "Trainline":
-							table.setValueAt(currentLine, 3,"铁运区");
+							table.setValueAt(currentLine, 3, "铁运区");
 							break;
 						case "Busline":
-							table.setValueAt(currentLine, 3,"汽运区");
+							table.setValueAt(currentLine, 3, "汽运区");
 							break;
 						case "Motoline":
-							table.setValueAt(currentLine, 3,"机动区");
+							table.setValueAt(currentLine, 3, "机动区");
 							break;
 						}
-						table.setValueAt(currentLine, 4, iovo.getRow()+ "");
+						table.setValueAt(currentLine, 4, iovo.getRow() + "");
 						table.setValueAt(currentLine, 5, iovo.getStand() + "");
 						table.setValueAt(currentLine, 6, iovo.getPosition() + "");
 
 					}
-					
+
 				} // 查找的确定
 				else {
 					String id = textId.getText();
 					StoreGenerateOrder sgo = new StoreGenerateOrder();
 					InboundOrderVO iovo = sgo.inquireInboundOrderPO(id);
 					textId.setText(id);
-					//日期
+					// 日期
 					iovo.getInDate();
 					textRow.setText(iovo.getRow() + "");
 					textStand.setText(iovo.getStand() + "");
@@ -497,11 +499,11 @@ private void buttonAllTrue(){
 		g.draw3DRect(50, 116, 270, 470, false); // 输入框外框
 		this.repaint();
 	}
-	
-	public InboundOrderVO getInfo(String time){
+
+	public InboundOrderVO getInfo(String time) {
 		String id = textId.getText();
-		String inDate =dc.getTime()+time;
-		//getTime全是数字2015120714:33:33
+		String inDate = dc.getTime() + time;
+		// getTime全是数字2015120714:33:33
 		int row = Integer.parseInt(textRow.getText());
 		int stand = Integer.parseInt(textStand.getText());
 		int position = Integer.parseInt(textPosition.getText());

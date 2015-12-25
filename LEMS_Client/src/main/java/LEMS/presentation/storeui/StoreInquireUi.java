@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import LEMS.businesslogic.storebl.StoreManagement;
 import LEMS.presentation.LoginUi;
@@ -17,6 +16,8 @@ import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.DateChooser;
 import LEMS.presentation.method.Table;
 import LEMS.presentation.ultraSwing.UltraButton;
+import LEMS.presentation.ultraSwing.UltraComboBox;
+import LEMS.presentation.ultraSwing.UltraTextField;
 import LEMS.vo.storevo.GoodsVO;
 
 /**
@@ -49,25 +50,25 @@ public class StoreInquireUi extends JPanel {
 	private JLabel hourEnd;
 	private JLabel minuteEnd;
 	private JLabel secondEnd;
-	private JTextField textInboundNum;
-	private JTextField textOutboundNum;
-	private JTextField textMoney;
-	private JTextField textStoreNum;
-	private JTextField textAirlineNum;
-	private JTextField textTrainlineNum;
-	private JTextField textBuslineNum;
-	private JTextField textMotolineNum;
+	private UltraTextField textInboundNum;
+	private UltraTextField textOutboundNum;
+	private UltraTextField textMoney;
+	private UltraTextField textStoreNum;
+	private UltraTextField textAirlineNum;
+	private UltraTextField textTrainlineNum;
+	private UltraTextField textBuslineNum;
+	private UltraTextField textMotolineNum;
 	private JLabel startTime;
 	private JLabel endTime;
 	private DateChooser dateChooserStart;
 	private DateChooser dateChooserEnd;
 
-	private JComboBox<Integer> sHour;
-	private JComboBox<Integer> sMin;
-	private JComboBox<Integer> sSec;
-	private JComboBox<Integer> eHour;
-	private JComboBox<Integer> eMin;
-	private JComboBox<Integer> eSec;
+	private UltraComboBox sHour;
+	private UltraComboBox sMin;
+	private UltraComboBox sSec;
+	private UltraComboBox eHour;
+	private UltraComboBox eMin;
+	private UltraComboBox eSec;
 
 	Table table;
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);// 标题字体格式
@@ -113,23 +114,23 @@ public class StoreInquireUi extends JPanel {
 		hourEnd=new JLabel("小时");
 		minuteEnd=new JLabel("分钟");
 		secondEnd=new JLabel("秒");
-		textInboundNum = new JTextField();
-		textOutboundNum = new JTextField();
-		textMoney = new JTextField();
-		textStoreNum = new JTextField();
-		textAirlineNum = new JTextField();
-		textTrainlineNum = new JTextField();
-		textBuslineNum = new JTextField();
-		textMotolineNum = new JTextField();
+		textInboundNum = new UltraTextField(15);
+		textOutboundNum = new UltraTextField(15);
+		textMoney = new UltraTextField(15);
+		textStoreNum = new UltraTextField(15);
+		textAirlineNum = new UltraTextField(15);
+		textTrainlineNum = new UltraTextField(15);
+		textBuslineNum = new UltraTextField(15);
+		textMotolineNum = new UltraTextField(15);
 		dateChooserStart = new DateChooser(this, 343, 86);
 		dateChooserEnd = new DateChooser(this, 343, 136);
 
-		sHour = new JComboBox<Integer>();
-		sMin = new JComboBox<Integer>();
-		sSec = new JComboBox<Integer>();
-		eHour = new JComboBox<Integer>();
-		eMin = new JComboBox<Integer>();
-		eSec = new JComboBox<Integer>();
+		sHour = new UltraComboBox();
+		sMin = new UltraComboBox();
+		sSec = new UltraComboBox();
+		eHour = new UltraComboBox();
+		eMin = new UltraComboBox();
+		eSec = new UltraComboBox();
 
 	}
 
@@ -201,21 +202,7 @@ public class StoreInquireUi extends JPanel {
 		hourEnd.setFont(fnt);
 		minuteEnd.setFont(fnt);
 		secondEnd.setFont(fnt);
-		textInboundNum.setFont(fnt);
-		textOutboundNum.setFont(fnt);
-		textMoney.setFont(fnt);
-		textStoreNum.setFont(fnt);
-		textAirlineNum.setFont(fnt);
-		textBuslineNum.setFont(fnt);
-		textMotolineNum.setFont(fnt);
-		textTrainlineNum.setFont(fnt);
-		sHour.setFont(fnt);
-		sMin.setFont(fnt);
-		sSec.setFont(fnt);
-		eHour.setFont(fnt);
-		eMin.setFont(fnt);
-		eSec.setFont(fnt);
-		
+
 		textInboundNum.setEditable(false);
 		textOutboundNum.setEditable(false);
 		textMoney.setEditable(false);
@@ -224,17 +211,6 @@ public class StoreInquireUi extends JPanel {
 		textBuslineNum.setEditable(false);
 		textMotolineNum.setEditable(false);
 		textTrainlineNum.setEditable(false);
-		// 设置jtextfield透明色
-		textInboundNum.setOpaque(false);
-		textOutboundNum.setOpaque(false);
-		textMoney.setOpaque(false);
-		textStoreNum.setOpaque(false);
-		textAirlineNum.setOpaque(false);
-		textBuslineNum.setOpaque(false);
-		textMotolineNum.setOpaque(false);
-		textTrainlineNum.setOpaque(false);
-
-		// textInboundNum.setBorder(new LineBorder(Color.DARK_GRAY));
 
 		this.add(title);
 		this.add(startTime);
@@ -273,8 +249,8 @@ public class StoreInquireUi extends JPanel {
 		this.add(eMin);
 		this.add(eSec);
 
-		String[] columnNames = { "快递单号", "入库日期", "出库日期", "目的地", "存储区域", "架号", "排号", "位号", "装运形式", "单号" };
-		int[] list = { 40, 85, 14, 30, 20, 70, 395, 868, 250 };
+		String[] columnNames = { "快递单号", "入库日期", "出库日期", "目的地", "存储区域", "架号", "排号", "位号", "装运形式", "单号","运费" };
+		int[] list = { 40, 77, 14, 30, 20, 72, 395, 865, 250 };
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
 		// *
@@ -330,7 +306,6 @@ public class StoreInquireUi extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				setTestState(false);
 				StoreManagement sm = new StoreManagement();
-
 				String startTime = sHour.getSelectedItem().toString() + sMin.getSelectedItem().toString()
 						+ sSec.getSelectedItem().toString();
 				String endTime = eHour.getSelectedItem().toString() + eMin.getSelectedItem().toString()
@@ -343,6 +318,7 @@ public class StoreInquireUi extends JPanel {
 				} else {
 					ArrayList<GoodsVO> al = sm.inquire(start, end);
 					int length = al.size();
+					System.out.println(length+"一共有多少出入库嘛");
 					textInboundNum.setText(al.get(length - 8).getId());
 					textOutboundNum.setText(al.get(length - 7).getId());
 					textStoreNum.setText(al.get(length - 6).getId());
@@ -351,22 +327,62 @@ public class StoreInquireUi extends JPanel {
 					textTrainlineNum.setText(al.get(length - 3).getId());
 					textBuslineNum.setText(al.get(length - 2).getId());
 					textMotolineNum.setText(al.get(length - 1).getId());
-					int showRow=0;
+				
 					
 					for(int p=0;p<length-8;p++){
 						GoodsVO gvo=al.get(p);
+						int showRow=table.numOfEmpty();
+						System.out.println(gvo.getId()+"啊啊啊");
 						table.setValueAt(showRow, 0, gvo.getId());
-						table.setValueAt(showRow, 1, gvo.getInDate());
-						table.setValueAt(showRow, 2, gvo.getOutDate());
-						table.setValueAt(showRow, 3, gvo.getDestination().name());
-						table.setValueAt(showRow, 4, gvo.getArea().name());
-						table.setValueAt(showRow, 5, gvo.getRow());
-						table.setValueAt(showRow, 6, gvo.getStand());
-						table.setValueAt(showRow, 7, gvo.getPosition());
-						table.setValueAt(showRow, 8, gvo.getTransportType().name());
+						table.setValueAt(showRow, 1, gvo.getInDate().substring(0, 8));
+						table.setValueAt(showRow, 2, gvo.getOutDate().substring(0, 8));
+						switch (gvo.getDestination().name()) {
+						case "Beijing":
+							table.setValueAt(showRow, 3, "北京");
+							break;
+						case "Shanghai":
+							table.setValueAt(showRow, 3, "上海");
+							break;
+						case "Guangzhou":
+							table.setValueAt(showRow, 3, "广州");
+							break;
+						case "Nanjing":
+							table.setValueAt(showRow, 3, "南京");
+							break;
+						}
+						switch (gvo.getArea().name()) {
+						case "Airline":
+							table.setValueAt(showRow, 4, "航运区");
+							break;
+						case "Trainline":
+							table.setValueAt(showRow,4, "铁运区");
+							break;
+						case "Busline":
+							table.setValueAt(showRow, 4, "汽运区");
+							break;
+						case "Motoline":
+							table.setValueAt(showRow, 4, "机动区");
+							break;
+						}
+						table.setValueAt(showRow, 5, gvo.getRow()+"");
+						table.setValueAt(showRow, 6, gvo.getStand()+"");
+						table.setValueAt(showRow, 7, gvo.getPosition()+"");
+						switch ( gvo.getTransportType().name()) {
+						case "Airplane":
+							table.setValueAt(showRow, 8, "飞机");
+							break;
+						case "Railway":
+							table.setValueAt(showRow, 8, "火车");
+							break;
+						case "Landway":
+							table.setValueAt(showRow, 8, "汽车");
+							break;
+						case "YetToKnow":
+							table.setValueAt(showRow, 8, "");
+							break;
+						}
 						table.setValueAt(showRow, 9, gvo.getTransferNum());
 						table.setValueAt(showRow, 10, gvo.getMoney()+"");
-						showRow++;
 					}
 				}
 
@@ -381,7 +397,6 @@ public class StoreInquireUi extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
-		// g.draw3DRect(140, 200, 740, 200, false); //输入框外框
 		this.repaint();
 	}
 

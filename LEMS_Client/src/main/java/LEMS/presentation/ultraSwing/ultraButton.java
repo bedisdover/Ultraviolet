@@ -16,6 +16,7 @@ public class UltraButton extends JButton {
 		this.setContentAreaFilled(false);
 		setBorderPainted(false);
 		setBorder(null);
+		setContentAreaFilled(false);
 
 		Image imageExit = Toolkit.getDefaultToolkit().getImage("source/exit.png");
 		Image imageAdd = Toolkit.getDefaultToolkit().getImage("source/add.png");

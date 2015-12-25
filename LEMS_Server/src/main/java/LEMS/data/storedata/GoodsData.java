@@ -69,10 +69,11 @@ public class GoodsData extends UnicastRemoteObject implements GoodsDataService {
 				"and (outDate > '" + startTime + "' )";
 		ResultSet result = connect.getResultSet(sql);
 		PreparedStatement pstmt = connect.getPreparedStatement(sql);
-		GoodsPO goodsPO = new GoodsPO("", "", "", Destination.Beijing, Area.Airline, -1, -1, -1,
-				TransportType.YetToKnow, "", -1);
+		
 		try {
 			while (result.next()) {
+				GoodsPO goodsPO = new GoodsPO("", "", "", Destination.Beijing, Area.Airline, -1, -1, -1,
+						TransportType.YetToKnow, "", -1);
 				goodsPO.setId(result.getString(1));
 				goodsPO.setInDate(result.getString(2));
 				goodsPO.setOutDate(result.getString(3));
