@@ -23,6 +23,7 @@ import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.Table;
+import LEMS.presentation.ultraSwing.UltraButton;
 import LEMS.vo.inquirevo.DiaryVO;
 import LEMS.vo.inquirevo.LogisticsInfoVO;
 import LEMS.vo.uservo.UserVO;
@@ -40,8 +41,8 @@ public class LogisticsInfoUi extends JPanel {
 	private Font font;
 	private JLabel title;
 	private JLabel date;
-	private JButton but;
-	private JButton butOut;
+	private UltraButton but;
+	private UltraButton butOut;
 
 	private Table table;
 	Image im = Toolkit.getDefaultToolkit().getImage("01.jpg");
@@ -62,10 +63,10 @@ public class LogisticsInfoUi extends JPanel {
 	private void init() {
 		date = new JLabel("订单号：");
 		title = new JLabel("物流信息查询");
-		but = new JButton("查找");
+		but = new UltraButton("查找");
 		textField = new JTextField();
 		font = new Font("Courier", Font.PLAIN, 26);
-		butOut = new JButton("返回");
+		butOut = new UltraButton("返回");
 	}
 
 	private void initComponent() {
@@ -75,9 +76,9 @@ public class LogisticsInfoUi extends JPanel {
 		title.setFont(font);
 		title.setForeground(Color.white);
 		date.setForeground(Color.white);
-		but.setBounds(692, 119, 120, 30);
+		but.setBounds(692, 119, 100, 40);
 		textField.setBounds(415, 122, 160, 25);
-		butOut.setBounds(52, 36, 120, 40);
+		butOut.setBounds(52, 36, 100, 40);
 
 		this.add(date);
 		this.add(title);
@@ -102,22 +103,28 @@ public class LogisticsInfoUi extends JPanel {
 	private void addListener() {
 		but.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				int k = table.numOfEmpty();
-				for (; k >= 0; k--) {
-					table.setValueAt(k, 0, "");
+				if(textField.getText().equals("")){
+					JOptionPane.showMessageDialog(LogisticsInfoUi.this, "请输入订单号！");
 				}
-				InquireLogisticsInfo inquirel = new InquireLogisticsInfo();
-				LogisticsInfoVO logistics = inquirel.getLogisticsInfo(textField.getText());
-				ArrayList<String> operations = logistics.getTrace();
-				for (int i = 0; i < operations.size(); i++) {
-					table.setValueAt(i, 0, operations.get(i));
+				else{
+					int k = table.numOfEmpty();
+					for (; k >= 0; k--) {
+						table.setValueAt(k, 0, "");
+					}
+					InquireLogisticsInfo inquirel = new InquireLogisticsInfo();
+					LogisticsInfoVO logistics = inquirel.getLogisticsInfo(textField.getText());
+					ArrayList<String> operations = logistics.getTrace();
+					for (int i = 0; i < operations.size(); i++) {
+						table.setValueAt(i, 0, operations.get(i));
+					}
 				}
+				
 			}
 		});
 
 		butOut.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				mainFrame.setContentPane(new StartUi(mainFrame));
+				mainFrame.setContentPane(new LoginUi(mainFrame));
 			}
 		});
 	}
