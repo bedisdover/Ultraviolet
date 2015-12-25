@@ -9,12 +9,13 @@ import LEMS.vo.inquirevo.LogisticsInfoVO;
 public interface InquireLogisticsInfoService {
 	/**
 	 * @param id
-	 * @return
+	 * @return LogisticsInfoVO
+	 * 根据订单号获得物流信息
 	 */
 	public LogisticsInfoVO getLogisticsInfo(String id);
-	//章承尧写注释啊！
 	/**
 	 * @param lvo
+	 * 更新物流信息
 	 */
 	public void updateLogisticsInfo(LogisticsInfoVO lvo);
 }
