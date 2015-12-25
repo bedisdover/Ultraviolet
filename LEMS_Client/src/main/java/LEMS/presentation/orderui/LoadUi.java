@@ -141,7 +141,7 @@ public class LoadUi extends JPanel {
 		title.setBounds(420, 27, 230, 39);
 		
 		labelDate.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y, BOUND_X, BOUND_Y);
-		labelDestination.setBounds(LOCATION_LABEL_X+7, LOCATION_LABEL_Y+45, BOUND_X, BOUND_Y);
+		labelDestination.setBounds(LOCATION_LABEL_X + 7, LOCATION_LABEL_Y + 45, BOUND_X, BOUND_Y);
 		labelTransferNum.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+90, BOUND_X, BOUND_Y);
 		labelVehicleId.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y+135, BOUND_X, BOUND_Y);
 		labelGuard.setBounds(LOCATION_LABEL_X+7, LOCATION_LABEL_Y+180, BOUND_X, BOUND_Y);
@@ -162,7 +162,7 @@ public class LoadUi extends JPanel {
 		cancel.setBounds(250, 513, BOUND_X-10, BOUND_Y+10);
 		exit.setBounds(80, 50, 100, 40);
 		add.setBounds(370, 590, 120, 40);
-		delete.setBounds(520, 590, 120,40);
+		delete.setBounds(520, 590, 120, 40);
 		update.setBounds(670, 590, 120, 40);
 		finish.setBounds(820, 590, 120, 40);
 		

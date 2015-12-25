@@ -21,6 +21,8 @@ public class RMIConnect {
 			Element connect = system.element("Connect");
 
 			RMI = connect.attributeValue("IP");
+			
+			System.out.println(RMI);
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		}
