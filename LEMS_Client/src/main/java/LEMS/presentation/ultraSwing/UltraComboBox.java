@@ -84,8 +84,8 @@ public class UltraComboBox extends JComboBox {
 			JLabel renderer = (JLabel) defaultCellRenderer.getListCellRendererComponent(list, value, index, isSelected,
 					cellHasFocus);
 			if (isSelected) {
-				 renderer.setBackground(Color.gray.brighter());
-				   renderer.setForeground(Color.black.darker());
+				 renderer.setBackground(Color.white.darker());
+				   renderer.setForeground(Color.white.brighter());
 			} else {
 				renderer.setBackground(Color.white.brighter());
 			}
@@ -149,7 +149,7 @@ public class UltraComboBox extends JComboBox {
 				arrow.setIcon(icon);
 			}
 			if (comboBox.isFocusable()) {
-				g2.setColor(new Color(150, 207, 254));
+				g2.setColor(Color.white);
 			}
 			g2.drawArc(0, 0, width, height + heightOffset, ARCWIDTH, ARCHEIGHT);
 		}

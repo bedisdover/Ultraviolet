@@ -4,11 +4,12 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.util.ArrayList;
 
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
+
+import LEMS.presentation.ultraSwing.UltraScrollPane;
 
 public class Table extends JTable {
 
@@ -35,7 +36,7 @@ public class Table extends JTable {
 	 */
 	private int currentRow = 0;
 
-	public JScrollPane drawTable(String[] name, int[] list) {
+	public UltraScrollPane drawTable(String[] name, int[] list) {
 		/**
 		 * list里面参数分别为需要的行数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		 * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
@@ -83,9 +84,9 @@ public class Table extends JTable {
 		tcr.setHorizontalAlignment(SwingConstants.CENTER);// 这句和上句作用一样
 		table.setDefaultRenderer(Object.class, tcr);
 		/**
-		 * 用JScrollPane装载JTable
+		 * 用UltraScrollPane装载JTable
 		 */
-		JScrollPane scroll = new JScrollPane(table);
+		UltraScrollPane scroll = new UltraScrollPane(table);
 		scroll.setBounds(list[5], list[6], list[7], list[8]);
 		return scroll;
 
