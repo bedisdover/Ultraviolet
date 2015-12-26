@@ -5,8 +5,6 @@ import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -14,6 +12,8 @@ import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.Table;
+import LEMS.presentation.ultraSwing.UltraButton;
+import LEMS.presentation.ultraSwing.UltraComboBox;
 import LEMS.vo.uservo.UserVO;
 
 /**
@@ -26,14 +26,14 @@ public class ExamDocumentUi extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	MainFrame mainFrame;
-	private JComboBox<String> box;
+	private UltraComboBox box;
 	private Font font;
 	private JLabel title;
 	private JLabel date;
 	private JLabel name;
 	private JLabel statue;
-	private JButton but;
-	private JButton butOut;
+	private UltraButton but;
+	private UltraButton butOut;
 
 	private Table table;
 	private UserVO user;
@@ -57,10 +57,10 @@ public class ExamDocumentUi extends JPanel {
 		title = new JLabel("审批单据");
 		name = new JLabel("账号：  " + user.getId());
 		statue = new JLabel("身份： " + UserRole.transfer(user.getRole()));
-		but = new JButton("查找");
-		box = new JComboBox<String>();
+		but = new UltraButton("查询");
+		box = new UltraComboBox();
 		font = new Font("Courier", Font.PLAIN, 26);
-		butOut = new JButton("登出");
+		butOut = new UltraButton("登出");
 	}
 
 	private void initComponent() {

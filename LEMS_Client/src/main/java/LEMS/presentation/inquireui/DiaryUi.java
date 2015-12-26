@@ -1,9 +1,14 @@
 package LEMS.presentation.inquireui;
 
-import javax.swing.JPanel;
-
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import LEMS.businesslogic.inquirebl.inquirediary.InquireDiary;
 import LEMS.po.userpo.UserRole;
@@ -12,13 +17,9 @@ import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.DateChooser;
 import LEMS.presentation.method.Table;
 import LEMS.presentation.ultraSwing.UltraButton;
+import LEMS.presentation.ultraSwing.UltraTextField;
 import LEMS.vo.inquirevo.DiaryVO;
 import LEMS.vo.uservo.UserVO;
-
-import javax.swing.*;
-
-import java.awt.event.*;
-import java.util.ArrayList;
 
 /**
  * @author 章承尧
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 public class DiaryUi extends JPanel{
 
 	private MainFrame mainFrame;
-	private JTextField textField;
+	private UltraTextField textField;
 	private Font font;
 	private JLabel title;
 	private JLabel date;
@@ -62,7 +63,7 @@ public class DiaryUi extends JPanel{
 		name = new JLabel("账号：  "+user.getId());
 		statue = new JLabel("身份： "+UserRole.transfer(user.getRole()));
 		but = new UltraButton("查找");
-		textField = new JTextField();
+		textField = new UltraTextField();
 		font = new Font("Courier", Font.PLAIN, 26);
 		butOut = new UltraButton("返回");
 		dc = new DateChooser(this, 395, 123, 200, 25);

@@ -30,7 +30,7 @@ public class SettingPriceUi extends JPanel {
 	JLabel title = new JLabel("制定价格");
 	Table table1;
 	Table table2;
-	JButton butAdd = new JButton("修改城市");
+	UltraButton butAdd = new UltraButton("修改城市");
 	
 //	private JLabel userId;
 //	private JLabel userRole;
@@ -38,9 +38,9 @@ public class SettingPriceUi extends JPanel {
 	//	JLabel lab2 = new JLabel("请输入新价格：	");
 	//	JLabel lab3 = new JLabel("元每公里");
 	//	JLabel price = new JLabel("0");
-	JButton butOut = new JButton("登出");
+	UltraButton butOut = new UltraButton("登出");
 	UltraButton change1 = new UltraButton("修改");
-	JButton change2 = new JButton("修改");
+	UltraButton change2 = new UltraButton("修改");
 	//	JTextField text = new JTextField();
 	Font font = new Font("Courier", Font.PLAIN, 26);
 	String[] add;

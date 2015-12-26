@@ -6,7 +6,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -19,6 +18,8 @@ import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.DateChooser;
 import LEMS.presentation.method.Table;
+import LEMS.presentation.ultraSwing.UltraButton;
+import LEMS.presentation.ultraSwing.UltraTextField;
 import LEMS.vo.uservo.UserVO;
 
 /**
@@ -32,23 +33,23 @@ public class SettlementUi extends JPanel {
 	private MainFrame mainFrame;
 	private UserVO user;
 
-	private JButton but1;
-	private JButton but2;
+	private UltraButton but1;
+	private UltraButton but2;
 	private Table table;
 	private JLabel title;
 	private Font font;
-	private JButton butOut;
+	private UltraButton butOut;
 	private JLabel userId;
 	private JLabel userRole;
 
 	private DateChooser dc;
-	private JTextField textField;
+	private UltraTextField textField;
 	private JLabel labelDate;
 	private JLabel label;
 
 	private Settlement settlement;
 	private JLabel labelTotal;
-	private JTextField textTotal;
+	private UltraTextField textTotal;
 
 	public SettlementUi(final MainFrame mainFrame, UserVO uvo) {
 		this.mainFrame = mainFrame;
@@ -66,11 +67,11 @@ public class SettlementUi extends JPanel {
 	}
 
 	public void init() {
-		but1 = new JButton("查看收款信息");
-		but2 = new JButton("添加到收款单");
+		but1 = new UltraButton("查看收款信息");
+		but2 = new UltraButton("添加到收款单");
 		title = new JLabel("结算管理");
 		font = new Font("宋体", Font.PLAIN, 26);
-		butOut = new JButton("登出");
+		butOut = new UltraButton("登出");
 		userId = new JLabel(" 账号： " + user.getId());
 		userId.setLocation(788, 25);
 		userId.setSize(180, 25);
@@ -111,7 +112,7 @@ public class SettlementUi extends JPanel {
 		label.setBounds(74, 270, 54, 25);
 		add(label);
 
-		textField = new JTextField();
+		textField = new UltraTextField();
 		textField.setBounds(173, 272, 142, 21);
 		add(textField);
 		textField.setColumns(10);
@@ -120,7 +121,7 @@ public class SettlementUi extends JPanel {
 		labelTotal.setBounds(74, 349, 54, 15);
 		add(labelTotal);
 		
-		textTotal = new JTextField();
+		textTotal = new UltraTextField();
 		textTotal.setEditable(false);
 		textTotal.setBounds(173, 346, 142, 21);
 		add(textTotal);

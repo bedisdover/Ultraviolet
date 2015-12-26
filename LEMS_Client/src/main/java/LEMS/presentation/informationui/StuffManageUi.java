@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import LEMS.businesslogic.informationbl.InformationFind;
 import LEMS.businesslogic.informationbl.InformationUpdate;
@@ -18,6 +17,7 @@ import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.Table;
 import LEMS.presentation.ultraSwing.UltraButton;
+import LEMS.presentation.ultraSwing.UltraTextField;
 import LEMS.vo.financevo.SalaryVO;
 import LEMS.vo.uservo.UserVO;
 
@@ -43,13 +43,13 @@ public class StuffManageUi extends JPanel  {
 	private UltraButton cancel;
 	
 	private JLabel labelName;
-	private JTextField textName;
+	private UltraTextField textName;
 	private JLabel labelID;
-	private JTextField textID;
+	private UltraTextField textID;
 	private JLabel labelInstitution;
-	private JTextField textInstitution;
+	private UltraTextField textInstitution;
 	private JLabel labelSalary;
-	private JTextField textSalary;
+	private UltraTextField textSalary;
 	private JLabel userId;
 	private JLabel userRole;
 	private Font fnt1 = new Font("Courier", Font.PLAIN, 26);
@@ -89,13 +89,13 @@ public class StuffManageUi extends JPanel  {
 		userRole.setLocation(514, 62);
 		userRole.setSize(180, 25);
 		labelID = new JLabel("  员工ID:");
-		textID = new JTextField();
+		textID = new UltraTextField();
 		labelInstitution = new JLabel("  所处机构编号:");
-		textInstitution = new JTextField();
+		textInstitution = new UltraTextField();
 		labelName = new JLabel("  姓名:");
-		textName = new JTextField();
+		textName = new UltraTextField();
 		labelSalary = new JLabel("* 工资:(月)");
-		textSalary = new JTextField();
+		textSalary = new UltraTextField();
 	}
 	
 	private void initComponents() {

@@ -16,6 +16,8 @@ import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.DateChooser;
 import LEMS.presentation.method.Table;
+import LEMS.presentation.ultraSwing.UltraButton;
+import LEMS.presentation.ultraSwing.UltraTextField;
 import LEMS.vo.uservo.UserVO;
 
 /**
@@ -28,12 +30,12 @@ public class CostUi extends JPanel {
 	private JLabel title;
 	private JLabel name;
 	private JLabel statue;
-	private JTextField text[];
+	private UltraTextField text[];
 	private JTextArea textArea;
-	private JButton button[];
+	private UltraButton button[];
 	private Font font;
 	private Table table;
-	private JButton butOut;
+	private UltraButton butOut;
 	private DateChooser dc;
 	private UserVO user;
 	/**
@@ -61,12 +63,12 @@ public class CostUi extends JPanel {
 		title = new JLabel("成本管理");
 		name = new JLabel("账号："+user.getId());
 		statue = new JLabel("身份：财务人员");
-		text = new JTextField[5];
+		text = new UltraTextField[5];
 		textArea = new JTextArea();
-		button = new JButton[5];
+		button = new UltraButton[5];
 		font = new Font("Courier", Font.PLAIN, 26);
-		button = new JButton[5];
-		butOut = new JButton("登出");
+		button = new UltraButton[5];
+		butOut = new UltraButton("登出");
 		dc = new DateChooser(this, 304-50, 205 - 29);
 	}
 
@@ -101,7 +103,7 @@ public class CostUi extends JPanel {
 		label[5].setBounds(261 - b, 141 + width * 5 + 10 - change, 108, 32);
 		this.add(label[5]);
 		for (int i = 0; i < 5; i++) {
-			text[i] = new JTextField();
+			text[i] = new UltraTextField();
 			text[i].setBounds(374 - b, 144 + (width + 1) * i - change, 119, 25);
 			if (i != 1)
 				this.add(text[i]);
@@ -109,15 +111,15 @@ public class CostUi extends JPanel {
 		text[1] = dc.showDate;
 		this.add(text[1]);
 		
-		button[0] = new JButton("确定");
+		button[0] = new UltraButton("确定");
 		button[0].setBounds(276 - b, 554 - change, 99, 42);
-		button[1] = new JButton("取消");
+		button[1] = new UltraButton("取消");
 		button[1].setBounds(394 - b, 554 - change, 99, 42);
-		button[2] = new JButton("新建");
+		button[2] = new UltraButton("新建");
 		button[2].setBounds(292 - b, 642 - change, 109, 40);
-		button[3] = new JButton("删除");
+		button[3] = new UltraButton("删除");
 		button[3].setBounds(558 - b, 642 - change, 109, 40);
-		button[4] = new JButton("生成成本收益表");
+		button[4] = new UltraButton("生成");
 		button[4].setBounds(823 - b, 642 - change, 153, 40);
 
 		for (int i = 0; i < 5; i++) {

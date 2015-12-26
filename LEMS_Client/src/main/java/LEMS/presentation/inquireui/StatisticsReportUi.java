@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import LEMS.businesslogic.inquirebl.inquirebusinesslist.InquireBusinessList;
 import LEMS.po.userpo.UserRole;
@@ -18,10 +17,11 @@ import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.DateChooser;
 import LEMS.presentation.method.Table;
 import LEMS.presentation.ultraSwing.UltraButton;
+import LEMS.presentation.ultraSwing.UltraTextField;
+import LEMS.vo.financevo.IncomeBillVO;
 import LEMS.vo.financevo.PayBillVO;
 import LEMS.vo.inquirevo.BusinessListVO;
 import LEMS.vo.uservo.UserVO;
-import LEMS.vo.financevo.IncomeBillVO;
 
 /**
  * @author 苏琰梓
@@ -41,8 +41,8 @@ public class StatisticsReportUi extends JPanel {
 	private JLabel statue;	
 	private JLabel subtitle1;
 	private JLabel subtitle2;
-	private JTextField textDate1;
-	private JTextField textDate2;
+	private UltraTextField textDate1;
+	private UltraTextField textDate2;
 	private UltraButton but;
 	private UltraButton butOut;
 	private DateChooser dc1;
@@ -69,8 +69,8 @@ public class StatisticsReportUi extends JPanel {
 		labelDate2 = new JLabel("至");
 		name = new JLabel("账号："+user.getId());
 		statue = new JLabel("身份："+UserRole.transfer(user.getRole()));
-		textDate1 = new JTextField();
-		textDate2 = new JTextField();
+		textDate1 = new UltraTextField();
+		textDate2 = new UltraTextField();
 		font = new Font("Courier", Font.PLAIN, 26);
 		subfont = new Font("Dialog", Font.PLAIN, 18);
 		but = new UltraButton("查找");

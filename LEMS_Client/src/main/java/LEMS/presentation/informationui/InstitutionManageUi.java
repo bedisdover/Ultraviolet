@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import LEMS.businesslogic.informationbl.InformationAdd;
 import LEMS.businesslogic.informationbl.InformationDelete;
@@ -20,6 +19,7 @@ import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.Table;
 import LEMS.presentation.ultraSwing.UltraButton;
+import LEMS.presentation.ultraSwing.UltraTextField;
 import LEMS.vo.informationvo.InstitutionVO;
 import LEMS.vo.uservo.UserVO;
 
@@ -43,9 +43,9 @@ public class InstitutionManageUi extends JPanel {
 	private UltraButton cancel;
 	
 	private JLabel labelID;
-	private JTextField textID;
+	private UltraTextField textID;
 	private JLabel labelLocation;
-	private JTextField textLocation;
+	private UltraTextField textLocation;
 	private JLabel userId;
 	private JLabel userRole;
 	
@@ -88,9 +88,9 @@ public class InstitutionManageUi extends JPanel {
 		
 		
 		labelID = new JLabel("* 机构编号::");
-		textID = new JTextField();
+		textID = new UltraTextField();
 		labelLocation = new JLabel("* 机构所处位置");
-		textLocation = new JTextField();
+		textLocation = new UltraTextField();
 	}
 	
 	private void initComponents() {

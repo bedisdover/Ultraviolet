@@ -6,11 +6,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import LEMS.businesslogic.informationbl.InformationAdd;
 import LEMS.businesslogic.informationbl.InformationDelete;
@@ -23,6 +21,8 @@ import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.Table;
 import LEMS.presentation.ultraSwing.UltraButton;
+import LEMS.presentation.ultraSwing.UltraComboBox;
+import LEMS.presentation.ultraSwing.UltraTextField;
 import LEMS.vo.financevo.SalaryVO;
 import LEMS.vo.informationvo.DriverVO;
 import LEMS.vo.uservo.UserVO;
@@ -60,15 +60,15 @@ public class DriverManageUi extends JPanel {
 	private JLabel labelYear;
 	private JLabel labelMonth;
 	private JLabel labelDay;
-	private JTextField textId;
-	private JTextField textName;
-	private JTextField textTime;
-	private JTextField textCard;
-	private JTextField textMobile;
-	private JTextField textYear;
-	private JTextField textMonth;
-	private JTextField textDay;
-	private JComboBox<String> comboBox;// sex
+	private UltraTextField textId;
+	private UltraTextField textName;
+	private UltraTextField textTime;
+	private UltraTextField textCard;
+	private UltraTextField textMobile;
+	private UltraTextField textYear;
+	private UltraTextField textMonth;
+	private UltraTextField textDay;
+	private UltraComboBox comboBox;// sex
 
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);// 标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);// 其余字体格式
@@ -116,15 +116,15 @@ public class DriverManageUi extends JPanel {
 		labelYear=new JLabel("年");
 		labelMonth=new JLabel("月");
 		labelDay=new JLabel("日");
-		textId = new JTextField();
-		textName = new JTextField();
-		textTime = new JTextField();
-		textCard = new JTextField();
-		textMobile = new JTextField();
-		textYear= new JTextField();
-		textMonth= new JTextField();
-		textDay= new JTextField();
-		comboBox = new JComboBox<String>();
+		textId = new UltraTextField();
+		textName = new UltraTextField();
+		textTime = new UltraTextField();
+		textCard = new UltraTextField();
+		textMobile = new UltraTextField();
+		textYear= new UltraTextField();
+		textMonth= new UltraTextField();
+		textDay= new UltraTextField();
+		comboBox = new UltraComboBox();
 		
 		userId = new JLabel("账号： "+uvo.getId());
 		userId.setLocation(363, 69);
@@ -180,22 +180,6 @@ public class DriverManageUi extends JPanel {
 		labelYear.setFont(fnt);
 		labelMonth.setFont(fnt);
 		labelDay.setFont(fnt);
-		textId.setFont(fnt);
-		textName.setFont(fnt);
-		textTime.setFont(fnt);
-		textCard.setFont(fnt);
-		textMobile.setFont(fnt);
-		textYear.setFont(fnt);
-		textMonth.setFont(fnt);
-		textDay.setFont(fnt);
-		comboBox.setFont(fnt);
-		cancel.setFont(fnt2);
-		OK.setFont(fnt2);
-		exit.setFont(fnt2);
-		add.setFont(fnt2);
-		delete.setFont(fnt2);
-		update.setFont(fnt2);
-		inquire.setFont(fnt2);
 
 		this.add(title);
 		this.add(labelId);

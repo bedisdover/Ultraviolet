@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import LEMS.businesslogic.informationbl.InformationAdd;
 import LEMS.businesslogic.informationbl.InformationDelete;
@@ -20,6 +19,7 @@ import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.Table;
 import LEMS.presentation.ultraSwing.UltraButton;
+import LEMS.presentation.ultraSwing.UltraTextField;
 import LEMS.vo.informationvo.AccountVO;
 import LEMS.vo.uservo.UserVO;
 
@@ -45,11 +45,11 @@ public class AccountManageUi extends JPanel{
 	private UltraButton cancel;
 
 	private JLabel labelID;
-	private JTextField textID;
+	private UltraTextField textID;
 	private JLabel labelPassword;
-	private JTextField textPassword;
+	private UltraTextField textPassword;
 	private JLabel labelBalance;
-	private JTextField textBalance;
+	private UltraTextField textBalance;
 	private JLabel userId;
 	private JLabel userRole;
 	private Font fnt1 = new Font("Courier", Font.PLAIN, 26);
@@ -89,11 +89,11 @@ public class AccountManageUi extends JPanel{
 		cancel = new UltraButton("取消");
 
 		labelID = new JLabel("账户ID:");
-		textID = new JTextField();
+		textID = new UltraTextField();
 		labelPassword = new JLabel("密码:");
-		textPassword = new JTextField();
+		textPassword = new UltraTextField();
 		labelBalance = new JLabel("账户余额:");
-		textBalance = new JTextField();
+		textBalance = new UltraTextField();
 		
 		userId = new JLabel(" 账号： "+user.getId());
 		userId.setLocation(802, 36);

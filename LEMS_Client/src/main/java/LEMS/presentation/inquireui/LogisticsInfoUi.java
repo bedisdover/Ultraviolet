@@ -1,25 +1,26 @@
 package LEMS.presentation.inquireui;
 
-import javax.swing.*;
-
-import LEMS.presentation.MainFrame;
-
-import java.awt.*;
-import java.awt.event.*;
-
-import javax.swing.JPanel;
-
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import LEMS.businesslogic.inquirebl.inquirelogisticsinfo.InquireLogisticsInfo;
 import LEMS.presentation.LoginUi;
+import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.Table;
 import LEMS.presentation.ultraSwing.UltraButton;
+import LEMS.presentation.ultraSwing.UltraTextField;
 import LEMS.vo.inquirevo.LogisticsInfoVO;
-import java.util.ArrayList;
 
 /**
  * 查询物流界面
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 public class LogisticsInfoUi extends JPanel {
 
 	private MainFrame mainFrame;
-	private JTextField textField;
+	private UltraTextField textField;
 	private Font font;
 	private JLabel title;
 	private JLabel date;
@@ -55,7 +56,7 @@ public class LogisticsInfoUi extends JPanel {
 		date = new JLabel("订单号：");
 		title = new JLabel("物流信息查询");
 		but = new UltraButton("查找");
-		textField = new JTextField();
+		textField = new UltraTextField();
 		font = new Font("Courier", Font.PLAIN, 26);
 		butOut = new UltraButton("返回");
 	}

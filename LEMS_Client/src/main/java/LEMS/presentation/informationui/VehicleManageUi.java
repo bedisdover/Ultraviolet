@@ -8,11 +8,9 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import LEMS.businesslogic.informationbl.InformationAdd;
 import LEMS.businesslogic.informationbl.InformationDelete;
@@ -23,6 +21,8 @@ import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.Table;
 import LEMS.presentation.ultraSwing.UltraButton;
+import LEMS.presentation.ultraSwing.UltraComboBox;
+import LEMS.presentation.ultraSwing.UltraTextField;
 import LEMS.vo.informationvo.VehicleVO;
 import LEMS.vo.uservo.UserVO;
 
@@ -56,14 +56,13 @@ public class VehicleManageUi extends JPanel {
 	private JLabel labelTime;
 	private JLabel picture;
 	private JLabel type;
-	private JTextField textId;
-	private JTextField textNum;
-	private JTextField textTime;
-	private JComboBox<String> comboBox;
+	private UltraTextField textId;
+	private UltraTextField textNum;
+	private UltraTextField textTime;
+	private UltraComboBox comboBox;
 	
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);// 标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);// 其余字体格式
-	private Font fnt2 = new Font("宋体", Font.BOLD, 16);// 按钮字体格式
 	private ImageIcon image;
 	private boolean isAdd;
 	private boolean isUpdate;
@@ -108,10 +107,10 @@ public class VehicleManageUi extends JPanel {
 		labelTime = new JLabel("服役时间：");
 		type=new JLabel("车辆型号: ");			
 		
-		textId = new JTextField();
-		textNum = new JTextField();
-		textTime = new JTextField();
-		comboBox=new JComboBox<String>();
+		textId = new UltraTextField();
+		textNum = new UltraTextField();
+		textTime = new UltraTextField();
+		comboBox=new UltraComboBox();
 		comboBox.addItem("type1");
 		comboBox.addItem("type2");
 		comboBox.setSelectedItem(null);
@@ -158,17 +157,6 @@ public class VehicleManageUi extends JPanel {
 		labelId.setFont(fnt);
 		labelNum.setFont(fnt);
 		labelTime.setFont(fnt);
-		cancel.setFont(fnt2);
-		OK.setFont(fnt2);
-		exit.setFont(fnt2);
-		textId.setFont(fnt);
-		textNum.setFont(fnt);
-		textTime.setFont(fnt);
-		type.setFont(fnt);
-		add.setFont(fnt2);
-		delete.setFont(fnt2);
-		update.setFont(fnt2);
-		inquire.setFont(fnt2);
 		
 		this.add(title);
 		this.add(labelId);
