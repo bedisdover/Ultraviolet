@@ -9,11 +9,7 @@ import LEMS.vo.storevo.OutboundOrderVO;
 
 public interface StoreGenerateOrderService extends Remote{
 
-	public InboundOrderVO generateInboundOrderVO(String id)throws RemoteException;	//生成单个入库单
-	
 	public int generateInboundOrderPO(InboundOrderVO inboundOrderVO)throws RemoteException;
-	
-	public OutboundOrderVO generateOutboundOrderVO(String id)throws RemoteException;//生成单个出库单
 	
 	public int generateOutboundOrderPO(OutboundOrderVO outboundOrderVO)throws RemoteException;
 	

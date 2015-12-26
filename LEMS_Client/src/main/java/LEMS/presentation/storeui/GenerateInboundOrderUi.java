@@ -11,7 +11,7 @@ import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import LEMS.businesslogic.storebl.StoreGenerateOrder;
+import LEMS.businesslogic.storebl.GenerateOrder;
 import LEMS.po.storepo.Area;
 import LEMS.po.storepo.Destination;
 import LEMS.presentation.LoginUi;
@@ -322,7 +322,7 @@ public class GenerateInboundOrderUi extends JPanel {
 					int showRow = table.numOfEmpty();
 					int showColumn = 0;
 					InboundOrderVO iovo = getInfo(time);
-					StoreGenerateOrder storeGenerateOrder = new StoreGenerateOrder();
+					GenerateOrder storeGenerateOrder = new GenerateOrder();
 					int judge = storeGenerateOrder.generateInboundOrderPO(iovo);
 					if (judge == 0) {
 						// 新建失败，跳出提示
@@ -369,7 +369,7 @@ public class GenerateInboundOrderUi extends JPanel {
 				else if (whichButton == 2) {
 					currentLine = table.table.getSelectedRow();
 					String id = (String) table.table.getValueAt(currentLine, 0);
-					StoreGenerateOrder storeGenerateOrder = new StoreGenerateOrder();
+					GenerateOrder storeGenerateOrder = new GenerateOrder();
 					int judge = storeGenerateOrder.deleteInboundOrderPO(id);
 					if (judge == 0)
 						// 删除失败 跳出提示
@@ -389,7 +389,7 @@ public class GenerateInboundOrderUi extends JPanel {
 					String time = df.format(new Date()).substring(8, 16);// new
 																			// Date()为获取当前系统时间
 					InboundOrderVO iovo = getInfo(time);
-					StoreGenerateOrder storeGenerateOrder = new StoreGenerateOrder();
+					GenerateOrder storeGenerateOrder = new GenerateOrder();
 					int judge = storeGenerateOrder.updateInboundOrderPO(iovo);
 					if (judge == 0) {
 						// 修改失败，跳出提示
@@ -434,7 +434,7 @@ public class GenerateInboundOrderUi extends JPanel {
 				} // 查找的确定
 				else {
 					String id = textId.getText();
-					StoreGenerateOrder sgo = new StoreGenerateOrder();
+					GenerateOrder sgo = new GenerateOrder();
 					InboundOrderVO iovo = sgo.inquireInboundOrderPO(id);
 					textId.setText(id);
 					// 日期

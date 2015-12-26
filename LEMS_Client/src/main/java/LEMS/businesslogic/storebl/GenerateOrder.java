@@ -31,34 +31,11 @@ import LEMS.vo.storevo.OutboundOrderVO;
  * @author 周梦佳
  *
  */
-public class StoreGenerateOrder implements StoreGenerateOrderService {
+public class GenerateOrder implements StoreGenerateOrderService {
 
 	ArrayList<InboundOrderVO> addInboundOrder = new ArrayList<InboundOrderVO>();
 	ArrayList<OutboundOrderVO> addOutboundOrder = new ArrayList<OutboundOrderVO>();
 	
-	/**
-	 * 数据->逻辑->界面
-	 * 生成入库单
-	 */
-	public InboundOrderVO generateInboundOrderVO(String id) throws RemoteException{
-		InboundOrderVO inboundOrderVO = new InboundOrderVO("", "", Destination.Beijing, Area.Airline, 1, 1, 1);
-		try {
-			GoodsPO goodsPO =getData().find(id);
-			inboundOrderVO.setId(goodsPO.getId());
-			inboundOrderVO.setInDate(goodsPO.getInDate());
-			inboundOrderVO.setDestination(goodsPO.getDestination());
-			inboundOrderVO.setArea(goodsPO.getArea());
-			inboundOrderVO.setRow(goodsPO.getRow());
-			inboundOrderVO.setStand(goodsPO.getStand());
-			inboundOrderVO.setPosition(goodsPO.getPosition());
-
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		addInboundOrder.add(inboundOrderVO);
-		return inboundOrderVO;
-
-	}
 
 	
 	/**
@@ -95,22 +72,7 @@ public class StoreGenerateOrder implements StoreGenerateOrderService {
 	 * 数据->逻辑->界面
 	 * 生成出库单
 	 */
-	public OutboundOrderVO generateOutboundOrderVO(String id) {
-		OutboundOrderVO outboundOrderVO = new OutboundOrderVO("", "", Destination.Beijing, TransportType.Airplane, "");
-		try {
-			GoodsPO goodsPO = getData().find(id);
-			outboundOrderVO.setId(goodsPO.getId());
-			outboundOrderVO.setOutDate(goodsPO.getOutDate());
-			outboundOrderVO.setDestination(goodsPO.getDestination());
-			outboundOrderVO.setTransportType(goodsPO.getTransportType());
-			outboundOrderVO.setTransferNum(goodsPO.getTransferNum());
 
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		return outboundOrderVO;
-
-	}
 	/**
 	 * 界面->逻辑->数据
 	 * 更新数据库
