@@ -6,18 +6,18 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import LEMS.businesslogic.orderbl.VehicleLoad;
 import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
-import LEMS.presentation.method.Table;
 import LEMS.presentation.method.DateChooser;
+import LEMS.presentation.method.Table;
+import LEMS.presentation.ultraSwing.UltraButton;
+import LEMS.presentation.ultraSwing.UltraTextField;
 import LEMS.vo.ordervo.VehicleLoadVO;
 import LEMS.vo.uservo.UserVO;
 
@@ -38,13 +38,13 @@ public class VehicleLoadUi extends JPanel {
 	private MainFrame mainFrame;
 	private UserVO user;
 	private JLabel title;
-	private JButton exit;
-	private JButton OK;
-	private JButton cancel;
-	private JButton add;
-	private JButton delete;
-	private JButton update;
-	private JButton finish;
+	private UltraButton exit;
+	private UltraButton OK;
+	private UltraButton cancel;
+	private UltraButton add;
+	private UltraButton delete;
+	private UltraButton update;
+	private UltraButton finish;
 	
 	private JLabel labelDate;
 	private JLabel labelDestination;
@@ -56,14 +56,14 @@ public class VehicleLoadUi extends JPanel {
 	private JLabel labelGoodsWeight;
 	private JLabel labelBarcode;
 
-	private JTextField textTransferNum;
-	private JTextField textDestination;
-	private JTextField textVehicleId;
-	private JTextField textGuard;
-	private JTextField textDeliverStaff;
-	private JTextField textGoodsNum;
-	private JTextField textGoodsWeight;
-	private JTextField textID;
+	private UltraTextField textTransferNum;
+	private UltraTextField textDestination;
+	private UltraTextField textVehicleId;
+	private UltraTextField textGuard;
+	private UltraTextField textDeliverStaff;
+	private UltraTextField textGoodsNum;
+	private UltraTextField textGoodsWeight;
+	private UltraTextField textID;
 	private DateChooser dc;
 	private Table table;
 	private JLabel userId;
@@ -102,13 +102,13 @@ public class VehicleLoadUi extends JPanel {
 	 */
 	private void init() {
 		title = new JLabel("装车管理");
-		exit = new JButton("返回");
-		OK = new JButton("确定");
-		cancel = new JButton("取消");
-		add=new JButton("新增");
-		delete=new JButton("删除");
-		update=new JButton("修改");
-		finish=new JButton("完成");
+		exit = new UltraButton("返回");
+		OK = new UltraButton("确定");
+		cancel = new UltraButton("取消");
+		add=new UltraButton("新增");
+		delete=new UltraButton("删除");
+		update=new UltraButton("修改");
+		finish=new UltraButton("完成");
 		
 		labelDate = new JLabel("装车日期:");
 		labelDestination = new JLabel("目的地:");
@@ -119,14 +119,14 @@ public class VehicleLoadUi extends JPanel {
 		labelGuard = new JLabel("监装员:");
 		labelGoodsNum = new JLabel("货物总数:");
 		labelGoodsWeight= new JLabel("总重量：");
-		textDestination=new JTextField();
-		textTransferNum = new JTextField();
-		textVehicleId = new JTextField();
-		textDeliverStaff = new JTextField();
-		textGuard = new JTextField();
-		textGoodsNum = new JTextField();
-		textID = new JTextField();
-		textGoodsWeight=new JTextField();
+		textDestination=new UltraTextField();
+		textTransferNum = new UltraTextField();
+		textVehicleId = new UltraTextField();
+		textDeliverStaff = new UltraTextField();
+		textGuard = new UltraTextField();
+		textGoodsNum = new UltraTextField();
+		textID = new UltraTextField();
+		textGoodsWeight=new UltraTextField();
 		
 		userId = new JLabel("账号： "+user.getId());
 		userId.setLocation(363, 69);
@@ -185,21 +185,6 @@ public class VehicleLoadUi extends JPanel {
 		labelGuard.setFont(fnt);
 		labelGoodsNum.setFont(fnt);
 		labelGoodsWeight.setFont(fnt);
-		textTransferNum.setFont(fnt);
-		textVehicleId.setFont(fnt);
-		textGuard.setFont(fnt);
-		textDeliverStaff.setFont(fnt);
-		textGoodsNum.setFont(fnt);
-		textGoodsWeight.setFont(fnt);
-		textID.setFont(fnt);
-		textDestination.setFont(fnt);
-		cancel.setFont(fnt2);
-		OK.setFont(fnt2);
-		exit.setFont(fnt2);
-		add.setFont(fnt2);
-		delete.setFont(fnt2);
-		update.setFont(fnt2);
-		finish.setFont(fnt2);
 		
 		textGoodsNum.setEditable(false);
 		textGoodsWeight.setEditable(false);

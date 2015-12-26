@@ -108,8 +108,8 @@ public class GenerateOutboundOrderUi extends JPanel {
 		labelTransportType = new JLabel("装运形式:");
 		labelTransferNum1 = new JLabel("中转单编号");
 		labelTransferNum2 = new JLabel("或汽运编号:");
-		textId = new UltraTextField(15);
-		textTransferNum = new UltraTextField(15);
+		textId = new UltraTextField();
+		textTransferNum = new UltraTextField();
 		dc = new DateChooser(this, LOCATION_TEXT_X, LOCATION_TEXT_Y + 68);
 		comboBoxDestination = new UltraComboBox();
 		comboBoxTransportType = new UltraComboBox();

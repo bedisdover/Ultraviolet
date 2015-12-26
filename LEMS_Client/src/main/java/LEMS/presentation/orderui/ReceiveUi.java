@@ -7,13 +7,11 @@ import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import LEMS.businesslogic.orderbl.Receipt;
 import LEMS.po.userpo.UserRole;
@@ -21,6 +19,9 @@ import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.DateChooser;
 import LEMS.presentation.method.Table;
+import LEMS.presentation.ultraSwing.UltraButton;
+import LEMS.presentation.ultraSwing.UltraComboBox;
+import LEMS.presentation.ultraSwing.UltraTextField;
 import LEMS.vo.ordervo.ArrivalVO;
 import LEMS.vo.uservo.UserVO;
 /**
@@ -40,23 +41,23 @@ public class ReceiveUi extends JPanel {
 	private MainFrame mainFrame;
 	private UserVO user;
 	private JLabel title;
-	private JButton exit;
-	private JButton OK;
-	private JButton cancel;
-	private JButton add;
-	private JButton delete;
-	private JButton update;
-	private JButton finish;
+	private UltraButton exit;
+	private UltraButton OK;
+	private UltraButton cancel;
+	private UltraButton add;
+	private UltraButton delete;
+	private UltraButton update;
+	private UltraButton finish;
 	private JLabel labelDate;
 	private JLabel labelId;
 	private JLabel labelDeparture;
 	private JLabel labelStatus;
 	private JLabel labelTransferId;
-	private JTextField textTransferId;
-	private JTextField textId;
+	private UltraTextField textTransferId;
+	private UltraTextField textId;
 
-	private JTextField textDeparture;//departure
-	private JComboBox<String> comboBoxStatus;//status
+	private UltraTextField textDeparture;//departure
+	private UltraComboBox comboBoxStatus;//status
 	
 	private DateChooser dc;
 	private Table table;
@@ -104,22 +105,22 @@ public class ReceiveUi extends JPanel {
 	private void init() {
 	
 		title = new JLabel("接收");
-		exit = new JButton("返回");
-		OK = new JButton("确定");
-		cancel = new JButton("取消");
-		add=new JButton("新增");
-		delete=new JButton("删除");
-		update=new JButton("修改");
-		finish=new JButton("生成");
+		exit = new UltraButton("返回");
+		OK = new UltraButton("确定");
+		cancel = new UltraButton("取消");
+		add=new UltraButton("新增");
+		delete=new UltraButton("删除");
+		update=new UltraButton("修改");
+		finish=new UltraButton("生成");
 		labelDate = new JLabel("到达日期:");
 		labelId = new JLabel("订单编号:");
 		labelDeparture = new JLabel("出发地:");
 		labelStatus = new JLabel("货物到达状态：");
 		labelTransferId=new JLabel("中转单号：");
-		textTransferId=new JTextField();
-		textId = new JTextField();
-		textDeparture = new JTextField();
-		comboBoxStatus = new JComboBox<String>();
+		textTransferId=new UltraTextField();
+		textId = new UltraTextField();
+		textDeparture = new UltraTextField();
+		comboBoxStatus = new UltraComboBox();
 		dc= new DateChooser(this,LOCATION_TEXT_X,LOCATION_TEXT_Y);
 		userId = new JLabel("账号： "+user.getId());
 		userId.setLocation(350, 81);
@@ -162,17 +163,6 @@ public class ReceiveUi extends JPanel {
 		labelDeparture.setFont(fnt);
 		labelStatus.setFont(fnt);
 		labelTransferId.setFont(fnt);
-		textTransferId.setFont(fnt);
-		textId.setFont(fnt);
-		textDeparture.setFont(fnt);
-		comboBoxStatus.setFont(fnt);
-		cancel.setFont(fnt2);
-		OK.setFont(fnt2);
-		exit.setFont(fnt2);
-		add.setFont(fnt2);
-		delete.setFont(fnt2);
-		update.setFont(fnt2);
-		finish.setFont(fnt2);
 		
 		this.add(title);
 		this.add(labelDate);

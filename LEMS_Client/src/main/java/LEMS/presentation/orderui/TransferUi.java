@@ -9,12 +9,9 @@ import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import LEMS.businesslogic.orderbl.Transfer;
 import LEMS.po.storepo.TransportType;
@@ -23,6 +20,9 @@ import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.DateChooser;
 import LEMS.presentation.method.Table;
+import LEMS.presentation.ultraSwing.UltraButton;
+import LEMS.presentation.ultraSwing.UltraComboBox;
+import LEMS.presentation.ultraSwing.UltraTextField;
 import LEMS.vo.ordervo.TransferVO;
 import LEMS.vo.uservo.UserVO;
 
@@ -42,13 +42,13 @@ public class TransferUi extends JPanel {
 	private MainFrame mainFrame;
 	private UserVO user;
 	private JLabel title;
-	private JButton exit;
-	private JButton OK;
-	private JButton cancel;
-	private JButton add;
-	private JButton delete;
-	private JButton update;
-	private JButton finish;
+	private UltraButton exit;
+	private UltraButton OK;
+	private UltraButton cancel;
+	private UltraButton add;
+	private UltraButton delete;
+	private UltraButton update;
+	private UltraButton finish;
 
 	private JLabel labelDate;
 	private JLabel labelDestination;
@@ -64,19 +64,19 @@ public class TransferUi extends JPanel {
 	 */
 	private JLabel labelContainer;
 
-	private JTextField textDestination;
-	private JTextField textId;
-	private JTextField textGuard;
+	private UltraTextField textDestination;
+	private UltraTextField textId;
+	private UltraTextField textGuard;
 	/**
 	 * 航班号（或车次号）
 	 */
-	private JTextField textFlight;
+	private UltraTextField textFlight;
 	/**
 	 * 货柜号（或车厢号、或押运员）
 	 */
-	private JTextField textContainer;
+	private UltraTextField textContainer;
 
-	private JComboBox<String> comboBoxFormat;
+	private UltraComboBox comboBoxFormat;
 
 	private DateChooser dc;
 
@@ -117,13 +117,13 @@ public class TransferUi extends JPanel {
 	private void init() {
 		//TODO 改标签名
 		title = new JLabel("中  转");
-		exit = new JButton("返回");
-		OK = new JButton("确定");
-		cancel = new JButton("取消");
-		add = new JButton("新增");
-		delete = new JButton("删除");
-		update = new JButton("修改");
-		finish = new JButton("完成");
+		exit = new UltraButton("返回");
+		OK = new UltraButton("确定");
+		cancel = new UltraButton("取消");
+		add = new UltraButton("新增");
+		delete = new UltraButton("删除");
+		update = new UltraButton("修改");
+		finish = new UltraButton("完成");
 		labelDate = new JLabel("中转日期");
 		labelDestination = new JLabel("目的地");
 		labelGuard = new JLabel("监装员");
@@ -131,12 +131,12 @@ public class TransferUi extends JPanel {
 		labelFormat = new JLabel("装运形式");
 		labelFlight = new JLabel("航班号");
 		labelContainer = new JLabel("货柜号");
-		textId = new JTextField();
-		textGuard = new JTextField();
-		textDestination = new JTextField();
-		textFlight = new JTextField();
-		textContainer = new JTextField();
-		comboBoxFormat = new JComboBox<String>();
+		textId = new UltraTextField();
+		textGuard = new UltraTextField();
+		textDestination = new UltraTextField();
+		textFlight = new UltraTextField();
+		textContainer = new UltraTextField();
+		comboBoxFormat = new UltraComboBox();
 		
 		userId = new JLabel("账号： "+user.getId());
 		userId.setLocation(350, 68);
@@ -211,19 +211,6 @@ public class TransferUi extends JPanel {
 		labelFormat.setFont(fnt);
 		labelFlight.setFont(fnt);
 		labelContainer.setFont(fnt);
-		cancel.setFont(fnt2);
-		OK.setFont(fnt2);
-		exit.setFont(fnt2);
-		add.setFont(fnt2);
-		delete.setFont(fnt2);
-		update.setFont(fnt2);
-		finish.setFont(fnt2);
-		textGuard.setFont(fnt);
-		textId.setFont(fnt);
-		textDestination.setFont(fnt);
-		textFlight.setFont(fnt);
-		textContainer.setFont(fnt);
-		comboBoxFormat.setFont(fnt);
 
 		this.add(title);
 		this.add(labelDate);

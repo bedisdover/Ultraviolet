@@ -107,10 +107,10 @@ public class GenerateInboundOrderUi extends JPanel {
 		labelRow = new JLabel("排号:");
 		labelStand = new JLabel("架号:");
 		labelPosition = new JLabel("位号:");
-		textId = new UltraTextField(15);
-		textRow = new UltraTextField(15);
-		textStand = new UltraTextField(15);
-		textPosition = new UltraTextField(15);
+		textId = new UltraTextField();
+		textRow = new UltraTextField();
+		textStand = new UltraTextField();
+		textPosition = new UltraTextField();
 		comboBoxDestination = new UltraComboBox();
 		comboBoxArea = new UltraComboBox();
 		dc = new DateChooser(this, LOCATION_TEXT_X, LOCATION_TEXT_Y + 55);

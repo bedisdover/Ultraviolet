@@ -6,7 +6,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -114,14 +113,14 @@ public class StoreInquireUi extends JPanel {
 		hourEnd=new JLabel("小时");
 		minuteEnd=new JLabel("分钟");
 		secondEnd=new JLabel("秒");
-		textInboundNum = new UltraTextField(15);
-		textOutboundNum = new UltraTextField(15);
-		textMoney = new UltraTextField(15);
-		textStoreNum = new UltraTextField(15);
-		textAirlineNum = new UltraTextField(15);
-		textTrainlineNum = new UltraTextField(15);
-		textBuslineNum = new UltraTextField(15);
-		textMotolineNum = new UltraTextField(15);
+		textInboundNum = new UltraTextField();
+		textOutboundNum = new UltraTextField();
+		textMoney = new UltraTextField();
+		textStoreNum = new UltraTextField();
+		textAirlineNum = new UltraTextField();
+		textTrainlineNum = new UltraTextField();
+		textBuslineNum = new UltraTextField();
+		textMotolineNum = new UltraTextField();
 		dateChooserStart = new DateChooser(this, 343, 86);
 		dateChooserEnd = new DateChooser(this, 343, 136);
 
@@ -250,7 +249,7 @@ public class StoreInquireUi extends JPanel {
 		this.add(eSec);
 
 		String[] columnNames = { "快递单号", "入库日期", "出库日期", "目的地", "存储区域", "架号", "排号", "位号", "装运形式", "单号","运费" };
-		int[] list = { 40, 77, 14, 30, 20, 72, 395, 865, 250 };
+		int[] list = { 40, 88, 14, 30, 20, 20, 395, 975, 250 };
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
 		// *
@@ -334,8 +333,8 @@ public class StoreInquireUi extends JPanel {
 						int showRow=table.numOfEmpty();
 						System.out.println(gvo.getId()+"啊啊啊");
 						table.setValueAt(showRow, 0, gvo.getId());
-						table.setValueAt(showRow, 1, gvo.getInDate().substring(0, 8));
-						table.setValueAt(showRow, 2, gvo.getOutDate().substring(0, 8));
+						table.setValueAt(showRow, 1, gvo.getInDate());
+						table.setValueAt(showRow, 2, gvo.getOutDate());
 						switch (gvo.getDestination().name()) {
 						case "Beijing":
 							table.setValueAt(showRow, 3, "北京");

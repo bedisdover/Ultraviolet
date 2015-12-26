@@ -7,7 +7,6 @@ import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -21,6 +20,8 @@ import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.DateChooser;
 import LEMS.presentation.method.Table;
+import LEMS.presentation.ultraSwing.UltraButton;
+import LEMS.presentation.ultraSwing.UltraTextField;
 import LEMS.vo.ordervo.IncomeVO;
 import LEMS.vo.uservo.UserVO;
 
@@ -39,13 +40,13 @@ public class ReceiptRecordUi extends JPanel {
 
 	private MainFrame mainFrame;
 	private JLabel title;
-	private JButton exit;
-	private JButton OK;
-	private JButton cancel;
-	private JButton add;
+	private UltraButton exit;
+	private UltraButton OK;
+	private UltraButton cancel;
+	private UltraButton add;
 //	private JButton delete;
 //	private JButton update;
-	private JButton finish;
+	private UltraButton finish;
 	private JLabel labelDate;
 	private JLabel labelStaff;
 	/**
@@ -56,9 +57,9 @@ public class ReceiptRecordUi extends JPanel {
 	 * 实收金额
 	 */
 	private JLabel labelMoney;
-	private JTextField textStaff;
-	private JTextField textNeeded;
-	private JTextField textMoney;
+	private UltraTextField textStaff;
+	private UltraTextField textNeeded;
+	private UltraTextField textMoney;
 
 	private JSeparator separator1;
 	private JSeparator separator2;
@@ -101,20 +102,20 @@ public class ReceiptRecordUi extends JPanel {
 	 */
 	private void init() {
 		title = new JLabel("记录收款单");
-		exit = new JButton("返回");
-		OK = new JButton("确定");
-		cancel = new JButton("取消");
-		add=new JButton("新增");
+		exit = new UltraButton("返回");
+		OK = new UltraButton("确定");
+		cancel = new UltraButton("取消");
+		add=new UltraButton("新增");
 //		delete=new JButton("删除");
 //		update=new JButton("修改");
-		finish=new JButton("完成");
+		finish=new UltraButton("完成");
 		labelDate=new JLabel("日期：");
 		labelStaff=new JLabel("揽件员：");
 		labelMoney = new JLabel("实收金额:");
 		labelneeded = new JLabel("应收金额:");
-		textStaff= new JTextField();
-		textMoney = new JTextField();
-		textNeeded = new JTextField();
+		textStaff= new UltraTextField();
+		textMoney = new UltraTextField();
+		textNeeded = new UltraTextField();
 		
 		separator1 = new JSeparator();
 		separator2 = new JSeparator();
@@ -154,16 +155,6 @@ public class ReceiptRecordUi extends JPanel {
 		labelMoney.setFont(fnt);
 		labelDate.setFont(fnt);
 		labelStaff.setFont(fnt);
-		textStaff.setFont(fnt);
-		textNeeded.setFont(fnt);
-		textMoney.setFont(fnt);
-		add.setFont(fnt2);
-//		delete.setFont(fnt2);
-//		update.setFont(fnt2);
-		finish.setFont(fnt2);
-		cancel.setFont(fnt2);
-		OK.setFont(fnt2);
-		exit.setFont(fnt2);
 		this.add(title);
 		this.add(labelDate);
 		this.add(labelStaff);

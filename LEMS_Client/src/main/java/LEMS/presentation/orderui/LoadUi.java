@@ -11,7 +11,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import LEMS.businesslogic.orderbl.transfer.Transfer;
 import LEMS.po.userpo.UserRole;
@@ -19,6 +18,8 @@ import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.DateChooser;
 import LEMS.presentation.method.Table;
+import LEMS.presentation.ultraSwing.UltraButton;
+import LEMS.presentation.ultraSwing.UltraTextField;
 import LEMS.vo.ordervo.LoadVO;
 import LEMS.vo.uservo.UserVO;
 
@@ -39,13 +40,13 @@ public class LoadUi extends JPanel {
 	private MainFrame mainFrame;
 	private UserVO user;
 	private JLabel title;
-	private JButton exit;
-	private JButton OK;
-	private JButton cancel;
-	private JButton add;
-	private JButton delete;
-	private JButton update;
-	private JButton finish;
+	private UltraButton exit;
+	private UltraButton OK;
+	private UltraButton cancel;
+	private UltraButton add;
+	private UltraButton delete;
+	private UltraButton update;
+	private UltraButton finish;
 	
 	private JLabel labelDate;
 	private JLabel labelDestination;
@@ -56,13 +57,13 @@ public class LoadUi extends JPanel {
 	private JLabel labelGoodsNum;
 	private JLabel labelGoodsWeight;
 
-	private JTextField textTransferNum;
-	private JTextField textDestination;
-	private JTextField textVehicleId;
-	private JTextField textGuard;
-	private JTextField textDeliverStaff;
-	private JTextField textGoodsWeight;
-	private JTextField textID;
+	private UltraTextField textTransferNum;
+	private UltraTextField textDestination;
+	private UltraTextField textVehicleId;
+	private UltraTextField textGuard;
+	private UltraTextField textDeliverStaff;
+	private UltraTextField textGoodsWeight;
+	private UltraTextField textID;
 	private DateChooser dc;
 	private Table table;
 	private JLabel userId;
@@ -102,13 +103,13 @@ public class LoadUi extends JPanel {
 	 */
 	private void init() {
 		title = new JLabel("装运管理");
-		exit = new JButton("返回");
-		OK = new JButton("确定");
-		cancel = new JButton("取消");
-		add=new JButton("新增");
-		delete=new JButton("删除");
-		update=new JButton("修改");
-		finish=new JButton("完成");
+		exit = new UltraButton("返回");
+		OK = new UltraButton("确定");
+		cancel = new UltraButton("取消");
+		add=new UltraButton("新增");
+		delete=new UltraButton("删除");
+		update=new UltraButton("修改");
+		finish=new UltraButton("完成");
 		
 		labelDate = new JLabel("装车日期:");
 		labelDestination = new JLabel("目的地:");
@@ -118,13 +119,13 @@ public class LoadUi extends JPanel {
 		labelGuard = new JLabel("监装员:");
 		labelGoodsNum = new JLabel("货物总重量:");
 		labelGoodsWeight= new JLabel("订单条形码号：");
-		textDestination=new JTextField();
-		textTransferNum = new JTextField();
-		textVehicleId = new JTextField();
-		textDeliverStaff = new JTextField();
-		textGuard = new JTextField();
-		textGoodsWeight = new JTextField();
-		textID=new JTextField();
+		textDestination=new UltraTextField();
+		textTransferNum = new UltraTextField();
+		textVehicleId = new UltraTextField();
+		textDeliverStaff = new UltraTextField();
+		textGuard = new UltraTextField();
+		textGoodsWeight = new UltraTextField();
+		textID=new UltraTextField();
 		userId = new JLabel("账号： "+user.getId());
 		userId.setLocation(352, 70);
 		userId.setSize(150, 25);
@@ -175,20 +176,6 @@ public class LoadUi extends JPanel {
 		labelGuard.setFont(fnt);
 		labelGoodsNum.setFont(fnt);
 		labelGoodsWeight.setFont(fnt);
-		textTransferNum.setFont(fnt);
-		textVehicleId.setFont(fnt);
-		textGuard.setFont(fnt);
-		textDeliverStaff.setFont(fnt);
-		textGoodsWeight.setFont(fnt);
-		textID.setFont(fnt);
-		textDestination.setFont(fnt);
-		cancel.setFont(fnt2);
-		OK.setFont(fnt2);
-		exit.setFont(fnt2);
-		add.setFont(fnt2);
-		delete.setFont(fnt2);
-		update.setFont(fnt2);
-		finish.setFont(fnt2);
 		
 		textGoodsWeight.setEditable(false);
 		textID.setEditable(false);

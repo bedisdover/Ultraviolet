@@ -6,18 +6,18 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import LEMS.businesslogic.orderbl.Sending;
 import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
-import LEMS.presentation.method.Table;
 import LEMS.presentation.method.DateChooser;
+import LEMS.presentation.method.Table;
+import LEMS.presentation.ultraSwing.UltraButton;
+import LEMS.presentation.ultraSwing.UltraTextField;
 import LEMS.vo.ordervo.DeliveryVO;
 import LEMS.vo.uservo.UserVO;
 
@@ -37,18 +37,18 @@ public class SendUi extends JPanel {
 	private MainFrame mainFrame;
 	private UserVO user;
 	private JLabel title;
-	private JButton exit;
-	private JButton OK;
-	private JButton cancel;
-	private JButton add;
-	private JButton delete;
-	private JButton update;
-	private JButton finish;
+	private UltraButton exit;
+	private UltraButton OK;
+	private UltraButton cancel;
+	private UltraButton add;
+	private UltraButton delete;
+	private UltraButton update;
+	private UltraButton finish;
 	private JLabel labelDate;
 	private JLabel labelId;
 	private JLabel labelStaff;
-	private JTextField textId;
-	private JTextField textStaff;
+	private UltraTextField textId;
+	private UltraTextField textStaff;
 	private DateChooser dc;
 	private Table table;
 	
@@ -85,18 +85,18 @@ public class SendUi extends JPanel {
 	 */
 	private void init() {
 		title = new JLabel("派件");
-		exit = new JButton("返回");
-		OK = new JButton("确定");
-		cancel = new JButton("取消");
-		add=new JButton("新增");
-		delete=new JButton("删除");
-		update=new JButton("修改");
-		finish=new JButton("完成");
+		exit = new UltraButton("返回");
+		OK = new UltraButton("确定");
+		cancel = new UltraButton("取消");
+		add=new UltraButton("新增");
+		delete=new UltraButton("删除");
+		update=new UltraButton("修改");
+		finish=new UltraButton("完成");
 		labelDate = new JLabel("派送日期:");
 		labelId = new JLabel("条形码:");
 		labelStaff = new JLabel("派送员:");
-		textStaff = new JTextField();
-		textId = new JTextField();
+		textStaff = new UltraTextField();
+		textId = new UltraTextField();
 		userId = new JLabel("账号： "+user.getId());
 		userId.setLocation(363, 69);
 		userId.setSize(150, 25);
@@ -129,15 +129,6 @@ public class SendUi extends JPanel {
 		labelStaff.setFont(fnt);
 		labelDate.setFont(fnt);
 		labelId.setFont(fnt);
-		cancel.setFont(fnt2);
-		OK.setFont(fnt2);
-		exit.setFont(fnt2);
-		textId.setFont(fnt);
-		textStaff.setFont(fnt);
-		add.setFont(fnt2);
-		delete.setFont(fnt2);
-		update.setFont(fnt2);
-		finish.setFont(fnt2);
 		
 		this.add(title);
 		this.add(labelStaff);

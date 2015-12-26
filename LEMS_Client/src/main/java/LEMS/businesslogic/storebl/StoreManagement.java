@@ -152,6 +152,7 @@ public class StoreManagement {
 		String start = today + "000000";
 		String end = today + time;
 		alvo = inquire(start, end);
+		System.out.println(alvo.size()+"啊喂喂喂这有几个呀");
 		return alvo;
 	}
 

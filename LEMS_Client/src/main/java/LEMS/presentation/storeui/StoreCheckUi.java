@@ -1,5 +1,6 @@
 package LEMS.presentation.storeui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
@@ -71,7 +72,7 @@ public class StoreCheckUi extends JPanel {
 		excel = new UltraButton("导出表格");
 		cancel = new UltraButton("取消盘点");
 		labelTime = new JLabel("盘点截止时间：");
-		textTime = new UltraTextField(15);
+		textTime = new UltraTextField();
 	}
 
 	/**
@@ -174,6 +175,8 @@ public class StoreCheckUi extends JPanel {
 
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				Color color=Color.white.darker();
+				System.out.println(color.getRed()+" "+color.getBlue()+" "+color.getGreen());
 				SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHH:mm:ss");// 设置日期格式
 				String time = df.format(new Date()).substring(8, 16);
 				timeToTransfer = time.substring(0, 2) + time.substring(3, 5) + time.substring(6, 8);

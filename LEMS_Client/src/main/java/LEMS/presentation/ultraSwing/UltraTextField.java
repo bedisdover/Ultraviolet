@@ -11,8 +11,8 @@ import javax.swing.JTextField;
 
 public class UltraTextField extends JTextField{
 	private Shape shape;
-	 public UltraTextField(int size) {
-	  super(size);
+	 public UltraTextField() {
+//	  super(size);
 	  setHorizontalAlignment(JTextField.CENTER);
 	  setOpaque(false);
 	  Font fnt = new Font("Courier", Font.PLAIN, 15);// 其余字体格式
