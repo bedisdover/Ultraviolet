@@ -5,19 +5,19 @@ import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
+import LEMS.businesslogic.financebl.Cost;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.DateChooser;
 import LEMS.presentation.method.Table;
 import LEMS.presentation.ultraSwing.UltraButton;
 import LEMS.presentation.ultraSwing.UltraTextField;
+import LEMS.vo.financevo.PayBillVO;
 import LEMS.vo.uservo.UserVO;
 
 /**
@@ -43,9 +43,9 @@ public class CostUi extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public CostUi(final MainFrame mainFrame,UserVO uvo) {
+	public CostUi(final MainFrame mainFrame, UserVO uvo) {
 		this.mainFrame = mainFrame;
-		user=uvo;
+		user = uvo;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
 		// 初始化
@@ -61,7 +61,7 @@ public class CostUi extends JPanel {
 	public void init() {
 		label = new JLabel[6];
 		title = new JLabel("成本管理");
-		name = new JLabel("账号："+user.getId());
+		name = new JLabel("账号：" + user.getId());
 		statue = new JLabel("身份：财务人员");
 		text = new UltraTextField[5];
 		textArea = new JTextArea();
@@ -69,7 +69,7 @@ public class CostUi extends JPanel {
 		font = new Font("Courier", Font.PLAIN, 26);
 		button = new UltraButton[5];
 		butOut = new UltraButton("登出");
-		dc = new DateChooser(this, 304-50, 205 - 29);
+		dc = new DateChooser(this, 304 - 50, 205 - 29);
 	}
 
 	public void initComponents() {
@@ -80,7 +80,7 @@ public class CostUi extends JPanel {
 		title.setFont(font);
 		name.setBounds(800, 25, 135, 28);
 		statue.setBounds(800, 60, 183, 28);
-		textArea.setBounds(304-50, 427 - change, 119, 90);
+		textArea.setBounds(304 - 50, 427 - change, 119, 90);
 		butOut.setBounds(52, 36, 120, 40);
 		this.add(butOut);
 
@@ -110,7 +110,7 @@ public class CostUi extends JPanel {
 		}
 		text[1] = dc.showDate;
 		this.add(text[1]);
-		
+
 		button[0] = new UltraButton("确定");
 		button[0].setBounds(276 - b, 554 - change, 99, 42);
 		button[1] = new UltraButton("取消");
@@ -165,18 +165,36 @@ public class CostUi extends JPanel {
 		button[0].addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (isComplete()) {
-					// TODO 获得第几行为空
-					int i = table.numOfEmpty();
-					// TODO 确定按钮的具体实现
-					table.setValueAt(i, 0, text[0].getText());
-					table.setValueAt(i, 1, text[1].getText());
-					table.setValueAt(i, 2, text[2].getText());
-					// 清空输入框
-					empty();
-					// 使输入框不可编辑
-					setTestState(false);
+					try {
+						String text2 = text[2].getText();
+						double t2 = Double.parseDouble(text2);
+						if (t2 >= 0) {
+							// TODO 获得第几行为空
+							int i = table.numOfEmpty();
+							// TODO 确定按钮的具体实现
+							table.setValueAt(i, 0, text[0].getText());
+							table.setValueAt(i, 1, text[1].getText());
+							table.setValueAt(i, 2, text[2].getText());
+							// 清空输入框
+							empty();
+							// 使输入框不可编辑
+							setTestState(false);
 
-					// PayBillVO pay = new PayBillVO("")
+							PayBillVO pay = new PayBillVO("",
+									text[0].getText(), "", t2,
+									text[3].getText(), text[0].getText(),
+									text[4].getText(), text[5].getText());
+							Cost cost = new Cost();
+							cost.addCost(pay);
+						} else {
+							JOptionPane.showMessageDialog(CostUi.this,
+									"请输入正确的付款金额");
+						}
+					} catch (Exception ee) {
+						JOptionPane
+								.showMessageDialog(CostUi.this, "请输入正确的付款金额");
+					}
+
 				} else {
 					JOptionPane.showMessageDialog(CostUi.this, "请将必填信息填写完整");
 				}
@@ -206,7 +224,10 @@ public class CostUi extends JPanel {
 					JOptionPane.showMessageDialog(CostUi.this, "请选择要删除的行!");
 				} else {
 					int i = table.numOfEmpty();
-
+					//从数据库中删除信息
+					Cost cost = new Cost();
+					cost.deleteCost(table.getValueAt(currentLine, 0).trim());
+					
 					for (int j = currentLine; j < i; j++) {
 						table.setValueAt(j, 0, table.getValueAt(j + 1, 0));
 						table.setValueAt(j, 1, table.getValueAt(j + 1, 1));
@@ -233,7 +254,7 @@ public class CostUi extends JPanel {
 	public void paintComponent(Graphics g) {
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(),
 				this.getHeight(), null);
-		g.draw3DRect(163-50, 124 - 30, 294, 489, false);
+		g.draw3DRect(163 - 50, 124 - 30, 294, 489, false);
 		this.repaint();
 	}
 
