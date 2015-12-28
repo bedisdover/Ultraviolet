@@ -34,6 +34,8 @@ public class LoginUi extends JPanel {
 	JTextField textName = new JTextField();
 	JPasswordField textPassword = new JPasswordField();
 	JLabel Return = new JLabel(new ImageIcon("Close.png"));
+	JLabel account = new JLabel(new ImageIcon("account.png"));
+	JLabel password = new JLabel(new ImageIcon("password.png"));
 
 	public LoginUi(final MainFrame mainFrame) {
 		Icon i = new ImageIcon("Return.png");
@@ -45,6 +47,8 @@ public class LoginUi extends JPanel {
 
 		Return.setBounds(920, 10, 100, 100);
 		
+		account.setBounds(400, 239, 40, 40);
+		password.setBounds(400, 348, 40, 200);
 		textName.setBounds(482, 239, 251, 56);
 		textPassword.setBounds(482, 348, 251, 56);
 
@@ -67,6 +71,8 @@ public class LoginUi extends JPanel {
 		this.add(textName);
 		this.add(textPassword);
 		this.add(Return);
+		this.add(account);
+		this.add(password);
 
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
 		im = Toolkit.getDefaultToolkit().getImage("backGround.png");
