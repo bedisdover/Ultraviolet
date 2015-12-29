@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import LEMS.businesslogic.storebl.GenerateOrder;
 import LEMS.po.storepo.Area;
 import LEMS.po.storepo.Destination;
+import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.DateChooser;
@@ -22,6 +23,7 @@ import LEMS.presentation.ultraSwing.UltraButton;
 import LEMS.presentation.ultraSwing.UltraComboBox;
 import LEMS.presentation.ultraSwing.UltraTextField;
 import LEMS.vo.storevo.InboundOrderVO;
+import LEMS.vo.uservo.UserVO;
 
 /**
  * 
@@ -36,7 +38,8 @@ public class GenerateInboundOrderUi extends JPanel {
 	private static final int LOCATION_TEXT_Y = 135;
 	private static final int BOUND_X = 130;
 	private static final int BOUND_Y = 30;
-
+	
+	private UserVO user;
 	private MainFrame mainFrame;
 	private JLabel title;
 	private UltraButton exit;
@@ -53,6 +56,9 @@ public class GenerateInboundOrderUi extends JPanel {
 	private JLabel labelRow;
 	private JLabel labelStand;
 	private JLabel labelPosition;
+	private JLabel userId;
+	private JLabel userRole;
+	
 	private UltraTextField textId;
 	private UltraTextField textRow;
 	private UltraTextField textStand;
@@ -73,8 +79,9 @@ public class GenerateInboundOrderUi extends JPanel {
 	 */
 	int currentLine = -1;
 
-	public GenerateInboundOrderUi(final MainFrame mainFrame) {
+	public GenerateInboundOrderUi(final MainFrame mainFrame,UserVO userVO) {
 		this.mainFrame = mainFrame;
+		user=userVO;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
 		// 初始化
@@ -114,7 +121,12 @@ public class GenerateInboundOrderUi extends JPanel {
 		comboBoxDestination = new UltraComboBox();
 		comboBoxArea = new UltraComboBox();
 		dc = new DateChooser(this, LOCATION_TEXT_X, LOCATION_TEXT_Y + 55);
-
+		userId = new JLabel("账号： "+user.getId());
+		userId.setLocation(350, 81);
+		userId.setSize(150, 25);
+		userRole = new JLabel("身份： "+UserRole.transfer(user.getRole()));
+		userRole.setLocation(515, 81);
+		userRole.setSize(150, 25);
 	}
 
 	/**
@@ -182,6 +194,8 @@ public class GenerateInboundOrderUi extends JPanel {
 		this.add(delete);
 		this.add(update);
 		this.add(inquire);
+		this.add(userId);
+		this.add(userRole);
 
 		String[] columnNames = { "快递单号", "入库日期", "目的地", "存放区域", "排号", "架号", "位号" };
 		int[] list = { 40, 87, 14, 30, 20, 350, 116, 627, 470 };

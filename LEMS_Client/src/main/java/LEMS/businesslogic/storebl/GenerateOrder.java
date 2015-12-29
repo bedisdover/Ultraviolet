@@ -55,7 +55,7 @@ public class GenerateOrder implements StoreGenerateOrderService {
 			AddOrder addOrder=new AddOrder();
 			OrderPO orderpo=addOrder.findOrder(id);
 			Double money=orderpo.getAmount();
-			GoodsPO goodsPO = new GoodsPO(id, inDate, "", des, area, row, stand, pos, TransportType.YetToKnow, "", money);
+			GoodsPO goodsPO = new GoodsPO(id, inDate, "9999999999:99:99", des, area, row, stand, pos, TransportType.YetToKnow, "", money);
 			judge = getData().insert(goodsPO);
 			if (judge == 0) {
 				System.out.println("插入数据库失败！");

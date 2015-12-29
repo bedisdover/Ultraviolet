@@ -1,6 +1,5 @@
 package LEMS.presentation.storeui;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
@@ -13,6 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import LEMS.businesslogic.storebl.StoreManagement;
+import LEMS.po.storepo.Area;
+import LEMS.po.storepo.Destination;
+import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.ExportExcel;
@@ -20,6 +22,8 @@ import LEMS.presentation.method.Table;
 import LEMS.presentation.ultraSwing.UltraButton;
 import LEMS.presentation.ultraSwing.UltraTextField;
 import LEMS.vo.storevo.GoodsVO;
+import LEMS.vo.storevo.GoodsVOExcel;
+import LEMS.vo.uservo.UserVO;
 
 /**
  * 
@@ -31,10 +35,13 @@ public class StoreCheckUi extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private static final int LOCATION_X = 440;
 	private static final int LOCATION_Y = 37;
-
+	
+	private UserVO user;
 	private MainFrame mainFrame;
 	private JLabel title;
 	private JLabel labelTime;
+	private JLabel userId;
+	private JLabel userRole;
 	private UltraButton exit;
 	private UltraButton OK;
 	private UltraButton cancel;
@@ -47,8 +54,9 @@ public class StoreCheckUi extends JPanel {
 	private Font fnt = new Font("Courier", Font.PLAIN, 18);// 其余字体格式
 	private Font fnt2 = new Font("宋体", Font.BOLD, 16);// 按钮字体格式
 
-	public StoreCheckUi(final MainFrame mainFrame) {
+	public StoreCheckUi(final MainFrame mainFrame,UserVO userVO) {
 		this.mainFrame = mainFrame;
+		user=userVO;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
 		// 初始化
@@ -73,6 +81,12 @@ public class StoreCheckUi extends JPanel {
 		cancel = new UltraButton("取消盘点");
 		labelTime = new JLabel("盘点截止时间：");
 		textTime = new UltraTextField();
+		userId = new JLabel("账号： "+user.getId());
+		userId.setLocation(350, 81);
+		userId.setSize(150, 25);
+		userRole = new JLabel("身份： "+UserRole.transfer(user.getRole()));
+		userRole.setLocation(515, 81);
+		userRole.setSize(150, 25);
 	}
 
 	/**
@@ -83,8 +97,8 @@ public class StoreCheckUi extends JPanel {
 		OK.setBounds(LOCATION_X - 110, LOCATION_Y + 120, 180, 60);
 		cancel.setBounds(LOCATION_X + 35, LOCATION_Y + 120, 180, 60);
 		exit.setBounds(90, 60, 100, 40);
-		labelTime.setBounds(LOCATION_X - 70, LOCATION_Y + 65, 140, 40);
-		textTime.setBounds(LOCATION_X + 60, LOCATION_Y + 75, 100, 25);
+		labelTime.setBounds(LOCATION_X - 70, LOCATION_Y + 70, 140, 40);
+		textTime.setBounds(LOCATION_X + 60, LOCATION_Y + 80, 100, 25);
 		excel.setBounds(LOCATION_X + 320, LOCATION_Y + 80, 120, 40);
 
 		title.setFont(fnt1);
@@ -99,9 +113,11 @@ public class StoreCheckUi extends JPanel {
 		this.add(labelTime);
 		this.add(textTime);
 		this.add(excel);
+		this.add(userId);
+		this.add(userRole);
 
 		String[] columnNames = { "快递单号", "入库日期", "目的地", "存储区域", "架号", "排号", "位号" };
-		int[] list = { 40, 118, 14, 30, 20, 85, 225, 844, 410 };
+		int[] list = { 40, 118, 14, 30, 20, 85, 225, 843, 410 };
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
 		// *
@@ -134,35 +150,57 @@ public class StoreCheckUi extends JPanel {
 	private void addListener() {
 		excel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				OK.setEnabled(true);
 				StoreManagement storeManagement = new StoreManagement();
 				ArrayList<GoodsVO> alList = storeManagement.check(timeToTransfer);
 				ArrayList<Object> al = new ArrayList<Object>();
 				int length = alList.size();
-				for (int i = 0; i < length - 8; i++) {
-					al.add(alList.get(i).getId());
-					al.add(alList.get(i).getInDate());
-					al.add(alList.get(i).getOutDate());
-					al.add(alList.get(i).getDestination());
-					al.add(alList.get(i).getArea());
-					al.add(alList.get(i).getRow());
-					al.add(alList.get(i).getStand());
-					al.add(alList.get(i).getPosition());
-					al.add(alList.get(i).getTransportType());
-					al.add(alList.get(i).getTransferNum());
+				for (int i = 0; i < length; i++) {
+					String id=alList.get(i).getId();
+					String inDate=alList.get(i).getInDate();
+					String des="";
+					String area = "";
+					
+					switch(alList.get(i).getDestination()){
+					case Beijing:
+						des="北京";
+						break;
+					case Shanghai:
+						des="上海";
+						break;
+					case Guangzhou:
+						des="广州";
+						break;
+					case Nanjing:
+						des="南京";
+						break;
+					}
+					
+					switch(alList.get(i).getArea()){
+					case Airline:
+						area="航运区";
+						break;
+					case Trainline:
+						area="铁运区";
+						break;
+					case Busline:
+						area= "汽运区";
+						break;
+					case Motoline:
+						area="机动区";
+						break;
+					}
+					int row=alList.get(i).getRow();
+					int stand=alList.get(i).getStand();
+					int position=alList.get(i).getPosition();
+					double money=alList.get(i).getMoney();
+					GoodsVOExcel gvo=new GoodsVOExcel(id,inDate,des,area,row,stand,position, money);
+					al.add(gvo);
 				}
 				ExportExcel operation = new ExportExcel();
-				String[] title = new String[7];
-				title[0] = "快递单号";
-				title[1] = "入库日期";
-				title[2] = "出库日期";
-				title[3] = "目的地";
-				title[4] = "存储区域";
-				title[5] = "架号";
-				title[6] = "排号";
-				title[7] = "位号";
-				title[8] = "装运形式";
-				title[9] = "单号";
-				operation.exportExcel("f:/text.xls", "库存盘点", title, al);
+				String[] title = {"快递单号","入库日期","目的地","存储区域","架号","排号","位号","运费"};
+				
+				operation.exportExcel("f:/库存盘点.xls", "库存盘点", title, al);
 			}
 		});
 
@@ -175,8 +213,6 @@ public class StoreCheckUi extends JPanel {
 
 		OK.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				Color color=Color.white.darker();
-				System.out.println(color.getRed()+" "+color.getBlue()+" "+color.getGreen());
 				SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHH:mm:ss");// 设置日期格式
 				String time = df.format(new Date()).substring(8, 16);
 				timeToTransfer = time.substring(0, 2) + time.substring(3, 5) + time.substring(6, 8);
@@ -186,8 +222,9 @@ public class StoreCheckUi extends JPanel {
 				StoreManagement storeManagement = new StoreManagement();
 				ArrayList<GoodsVO> al = storeManagement.check(timeToTransfer);
 				int length = al.size();
-				int showRow = table.numOfEmpty();
-				for (int p = 0; p < length - 8; p++) {
+		
+				for (int p = 0; p < length; p++) {
+					int showRow = table.numOfEmpty();
 					GoodsVO gvo = al.get(p);
 					table.setValueAt(showRow, 0, gvo.getId());
 					table.setValueAt(showRow, 1, gvo.getInDate().substring(0, 8));
