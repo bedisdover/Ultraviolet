@@ -30,7 +30,7 @@ public class MainFrame extends JFrame{
 	/**
 	 * 背景图片
 	 */
-	public static final Image background = Toolkit.getDefaultToolkit().getImage("02.jpg");
+	public static final Image background = Toolkit.getDefaultToolkit().getImage("source/02.jpg");
 
 	private int LocationX;
 	private int LocationY;
@@ -52,7 +52,7 @@ public class MainFrame extends JFrame{
 		this.setUndecorated(true);
 		//
 		Toolkit tk = Toolkit.getDefaultToolkit();
-		Image image = tk.createImage("I.png");
+		Image image = tk.createImage("source/I.png");
 		this.setIconImage(image);
 		this.setVisible(true);
 	}

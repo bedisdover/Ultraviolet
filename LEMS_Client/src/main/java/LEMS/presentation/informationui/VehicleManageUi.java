@@ -114,7 +114,7 @@ public class VehicleManageUi extends JPanel {
 		comboBox.addItem("type1");
 		comboBox.addItem("type2");
 		comboBox.setSelectedItem(null);
-		image = new ImageIcon("init.jpg");
+		image = new ImageIcon("source/init.jpg");
 		picture = new JLabel(image);
 		
 		userId = new JLabel("账号： "+user.getId());
@@ -218,7 +218,7 @@ public class VehicleManageUi extends JPanel {
 		textNum.setText(null);
 		textTime.setText(null);
 		comboBox.setSelectedItem(null);
-		image = new ImageIcon("init.jpg");
+		image = new ImageIcon("source/init.jpg");
 		picture.setIcon(image);
 	}
 
@@ -267,7 +267,7 @@ public class VehicleManageUi extends JPanel {
 				textNum.setText(vehicle.getPlateNumber());
 				textTime.setText(vehicle.getWorkTime());
 				comboBox.setSelectedItem(vehicle.getImage());
-				image=new ImageIcon(vehicle.getImage()+".jpg");
+				image=new ImageIcon("source/"+vehicle.getImage()+".jpg");
 				picture.setIcon(image);
 			}
 		});
@@ -353,7 +353,7 @@ public class VehicleManageUi extends JPanel {
 		
 		look.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				image = new ImageIcon((String)comboBox.getSelectedItem()+".jpg");
+				image = new ImageIcon("source/"+(String)comboBox.getSelectedItem()+".jpg");
 				picture.setIcon(image);				
 			}
 		});
