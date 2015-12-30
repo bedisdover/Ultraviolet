@@ -50,7 +50,7 @@ public class VehicleManageUi extends JPanel {
 	private UltraButton delete;
 	private UltraButton update;
 	private UltraButton inquire;
-	private JButton look;
+	private UltraButton look;
 	private JLabel labelId;
 	private JLabel labelNum;
 	private JLabel labelTime;
@@ -94,7 +94,7 @@ public class VehicleManageUi extends JPanel {
 		OK = new UltraButton("确定");
 		cancel = new UltraButton("取消");
 		
-		look=new JButton("查看");
+		look=new UltraButton("查看");
 		look.setLocation(289, 384);
 		look.setSize(69, 50);
 		

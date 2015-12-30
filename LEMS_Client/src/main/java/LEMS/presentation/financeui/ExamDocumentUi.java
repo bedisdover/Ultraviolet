@@ -60,7 +60,7 @@ public class ExamDocumentUi extends JPanel {
 		but = new UltraButton("查询");
 		box = new UltraComboBox();
 		font = new Font("Courier", Font.PLAIN, 26);
-		butOut = new UltraButton("登出");
+		butOut = new UltraButton("返回");
 	}
 
 	private void initComponent() {

@@ -196,6 +196,7 @@ public class ReceiptRecordUi extends JPanel {
 		textMoney.setEditable(state);
 		OK.setEnabled(state);
 		cancel.setEnabled(state);
+		dc.setEnabled(state);
 	}
 
 	/**

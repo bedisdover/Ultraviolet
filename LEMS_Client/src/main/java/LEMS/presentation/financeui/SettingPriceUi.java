@@ -39,7 +39,7 @@ public class SettingPriceUi extends JPanel {
 	//	JLabel lab2 = new JLabel("请输入新价格：	");
 	//	JLabel lab3 = new JLabel("元每公里");
 	//	JLabel price = new JLabel("0");
-	UltraButton butOut = new UltraButton("登出");
+	UltraButton butOut = new UltraButton("返回");
 	UltraButton chakan1 = new UltraButton("新增");
 	UltraButton chakan2 = new UltraButton("新增");
 	UltraButton change1 = new UltraButton("修改");
