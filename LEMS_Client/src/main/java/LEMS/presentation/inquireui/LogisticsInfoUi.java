@@ -37,7 +37,7 @@ public class LogisticsInfoUi extends JPanel {
 	private UltraButton butOut;
 
 	private Table table;
-	Image im = Toolkit.getDefaultToolkit().getImage("01.jpg");
+	Image im = Toolkit.getDefaultToolkit().getImage("source/01.jpg");
 
 	/**
 	 * Create the panel.
