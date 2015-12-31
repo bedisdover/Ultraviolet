@@ -54,7 +54,7 @@ public class AccountManageUi extends JPanel{
 	private JLabel userRole;
 	private Font fnt1 = new Font("Courier", Font.PLAIN, 26);
 	
-	Table table;
+	Table table = new Table();
 
 	private UserVO user;
 	private boolean isAdd;
@@ -148,7 +148,11 @@ public class AccountManageUi extends JPanel{
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
 		// *
-		table = new Table();
+		for(int i = 0;i<list[0];i++){
+			for(int j = 0;j<columnNames.length;j++){
+				table.isCellEditable(i, j);
+			}
+		}
 		add(table.drawTable(columnNames, list));
 		
 		JLabel label = new JLabel("*");

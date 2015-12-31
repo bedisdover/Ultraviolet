@@ -54,21 +54,19 @@ public class OrderManageUi extends JPanel {
 	// 货物信息
 	private JLabel cargo;
 	private JLabel theCargoName;
-	private JLabel theCargoType;
 	private JLabel theCargoNumber;
 	private JLabel theCargoWeight;
 	private JLabel theCargoVolume;
 	private JLabel theCargoPackage;
 	private JLabel theCargoExpress;
 	private JTextField cName;
-	private JTextField cType;
 	private JTextField cNumber;
 	private JTextField cWeight;
 	private JTextField cLength;
 	private JTextField cWidth;
 	private JTextField cHeight;
-	private JComboBox<Packing> cPackage;
-	private JComboBox<Express> cExpress;
+	private JComboBox<String> cPackage;
+	private JComboBox<String> cExpress;
 
 	//乘号
 	private JLabel mul;
@@ -144,15 +142,15 @@ public class OrderManageUi extends JPanel {
 		cLength = new JTextField();
 		cWidth = new JTextField();
 		cHeight = new JTextField();
-		cPackage = new JComboBox<Packing>();
-		cPackage.addItem(Packing.Wooden);
-		cPackage.addItem(Packing.Carton);
-		cPackage.addItem(Packing.Bag);
-		cPackage.addItem(Packing.Other);
-		cExpress = new JComboBox<Express>();
-		cExpress.addItem(Express.standard);
-		cExpress.addItem(Express.economy);
-		cExpress.addItem(Express.special);
+		cPackage = new JComboBox<String>();
+		cPackage.addItem("快递袋");
+		cPackage.addItem("纸箱");
+		cPackage.addItem("木箱");
+		cPackage.addItem("其它");
+		cExpress = new JComboBox<String>();
+		cExpress.addItem("标准");
+		cExpress.addItem("经济");
+		cExpress.addItem("特快");
 		//乘号
 		mul = new JLabel("X");
 		mul2 = new JLabel("X");
@@ -339,7 +337,7 @@ public class OrderManageUi extends JPanel {
 		if (aName.getText().equals("") || aPhone.getText().equals("") || aAddress.getText().equals("")) {
 			return true;
 		}
-		if (cName.getText().equals("") || cType.getText().equals("") || cNumber.getText().equals("") || cLength.getText().equals("") || cWeight.getText().equals("")) {
+		if (cName.getText().equals("") || cNumber.getText().equals("") || cLength.getText().equals("") || cWeight.getText().equals("")) {
 			return true;
 		}
 		
@@ -415,7 +413,6 @@ public class OrderManageUi extends JPanel {
 		aPhone.setText(null);
 		aAddress.setText(null);
 		cName.setText(null);
-		cType.setText(null);
 		cNumber.setText(null);
 		cLength.setText(null);
 		cWidth.setText(null);
@@ -442,9 +439,9 @@ public class OrderManageUi extends JPanel {
 		//添加货物信息
 		order.addGoodsInfo(cName.getText(),  cNumber.getText(), cWeight.getText(), cLength.getText(), cWidth.getText(), cHeight.getText());
 		//选择快递类型
-		order.chooseExpress((Express) cExpress.getSelectedItem());
+		order.chooseExpress(Express.transfer(cExpress.getSelectedItem() + ""));
 		//选择包装类型
-		order.choosePack((Packing) cPackage.getSelectedItem());
+		order.choosePack(Packing.transfer(cPackage.getSelectedItem() + ""));
 
 		JOptionPane.showMessageDialog(mainFrame, "运费：" + order.getMoney() 
 		+ "\n总计：" + order.getTotal() + "\n预计时间：" + order.getTime());

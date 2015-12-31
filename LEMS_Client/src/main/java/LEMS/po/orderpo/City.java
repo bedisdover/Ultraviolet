@@ -2,7 +2,13 @@ package LEMS.po.orderpo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
+
+import LEMS.businesslogic.orderbl.Distance;
+
+import java.util.Map.Entry;
 
 /**
  * @author 宋益明
@@ -12,12 +18,7 @@ import java.util.List;
 public class City implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	//TODO enum还是class，哪个更好
 	//TODO 存储到数据库
-//	北京,
-//	上海,
-//	南京,
-//	广州,
 	public static List<String> cityList = new ArrayList<String>();
 	
 	static {
@@ -25,6 +26,24 @@ public class City implements Serializable {
 		cityList.add("上海");
 		cityList.add("南京");
 		cityList.add("广州");
+	}
+	
+	/**
+	 * 添加新城市，需要给定与其他所有城市间的距离
+	 * 
+	 * @param city 城市名称
+	 * @param distance 与其他所有城市之间的距离
+	 */
+	public static void addCity(String city, HashMap<String, Double> distance) {
+		cityList.add(city);
+
+		Distance d = new Distance();
+		
+		Set<Entry<String, Double>> temp = distance.entrySet();
+		
+		for (Entry<String, Double> e : temp) {
+			d.setDistance(e.getKey(), city, e.getValue());
+		}
 	}
 	
 	/**

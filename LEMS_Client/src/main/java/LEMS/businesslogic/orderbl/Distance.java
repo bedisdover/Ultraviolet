@@ -25,17 +25,39 @@ public class Distance {
 		this.init();
 	}
 	
+	public double getDistance(String former, String latter) {
+		return distancePO.getDistance(former, latter);
+	}
+	
+	public void setDistance(String former, String latter, double distance) {
+		distancePO.setDistance(former, latter, distance);
+		
+		try {
+			this.getDataService().setDistance(distancePO);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * 初始化城市间距离持久化对象
 	 */
 	private void init() {
 		try {
+			distancePO = this.getDataService().getDistance();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}	
+	
+	private DistanceDataService getDataService() {
+		DistanceDataService distanceDataService = null;
+		
+		try {
 			//连接数据库
 			DatabaseFactory databaseFactory = (DatabaseFactory) Naming.lookup(RMIConnect.RMI);
 			OrderFactory orderFactory = databaseFactory.getOrderFactory();
-			DistanceDataService distanceDataService = orderFactory.getDistanceData();
-			//获得距离数据
-			distancePO = distanceDataService.getDistance();
+			distanceDataService = orderFactory.getDistanceData();
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {
@@ -43,14 +65,7 @@ public class Distance {
 		} catch (NotBoundException e) {
 			e.printStackTrace();
 		}
+		
+		return distanceDataService;
 	}
-	
-	public double getDistance(String former, String latter) {
-		return distancePO.getDistance(former, latter);
-	}
-	
-	public void setDistance(String former, String latter, double distance) {
-		distancePO.setDistance(former, latter, distance);
-	}
-	
 }

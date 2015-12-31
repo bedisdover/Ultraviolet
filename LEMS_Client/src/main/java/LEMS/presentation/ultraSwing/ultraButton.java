@@ -31,6 +31,8 @@ public class UltraButton extends JButton {
 		Image imageFinish = Toolkit.getDefaultToolkit().getImage("source/finish.png");
 		Image imageFinish1 = Toolkit.getDefaultToolkit().getImage("source/finish1.png");
 		Image imageLook = Toolkit.getDefaultToolkit().getImage("source/look.png");
+		Image imageAddToReceiptRecord = Toolkit.getDefaultToolkit().getImage("source/addtoreceiptrecord.png");
+		Image imageInquireInformation = Toolkit.getDefaultToolkit().getImage("source/inquireinformation.png");
 		
 		ImageIcon iconExit = new ImageIcon(imageExit);
 		ImageIcon iconAdd = new ImageIcon(imageAdd);
@@ -45,6 +47,8 @@ public class UltraButton extends JButton {
 		ImageIcon iconFinish = new ImageIcon(imageFinish);
 		ImageIcon iconFinish1 = new ImageIcon(imageFinish1);
 		ImageIcon iconLook = new ImageIcon(imageLook);
+		ImageIcon iconAddToReceiptRecord = new ImageIcon(imageAddToReceiptRecord);
+		ImageIcon iconInquireInformation = new ImageIcon(imageInquireInformation);
 		
 		if (text.equals("返回")) {
 			this.setIcon(iconExit);
@@ -84,6 +88,12 @@ public class UltraButton extends JButton {
 		}
 		if (text.equals("查看")) {
 			this.setIcon(iconLook);
+		}
+		if (text.equals("添加到收款单")) {
+			this.setIcon(iconAddToReceiptRecord);
+		}
+		if (text.equals("查看收款信息")) {
+			this.setIcon(iconInquireInformation);
 		}
 
 	}

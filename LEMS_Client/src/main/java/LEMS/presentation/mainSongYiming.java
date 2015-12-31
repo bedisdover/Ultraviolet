@@ -7,7 +7,6 @@ import LEMS.vo.uservo.UserVO;
 public class mainSongYiming {
 
 	public static void main(String[] args) {
-		//bc0211000001
 		MainFrame mainFrame = new MainFrame();
 //		BusinessClerkUi businessClerkUi = new BusinessClerkUi(mainFrame, null);
 //		mainFrame.setContentPane(businessClerkUi);

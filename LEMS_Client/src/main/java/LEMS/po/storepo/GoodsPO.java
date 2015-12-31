@@ -1,5 +1,5 @@
 package LEMS.po.storepo;
-//更新过
+
 import java.io.Serializable;
 /**
  * @author 周梦佳
