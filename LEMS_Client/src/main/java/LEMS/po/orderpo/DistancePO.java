@@ -11,34 +11,11 @@ import java.util.HashMap;
 @SuppressWarnings("serial")
 public class DistancePO implements Serializable {
 
-	// TODO 忽然发现总经理居然还可以制定城市间距离，我也是醉了
-
 	private HashMap<String, Double> cityDistance;
 
 	public DistancePO() {
 		cityDistance = new HashMap<String, Double>();
 	}
-
-	// /**
-	// * 存储距离常量
-	// */
-	// static Map<String, Double> distance;
-
-	// static {
-	// distance = new HashMap<String, Double>();
-	// distance.put("北京上海", 1064.7);
-	// distance.put("上海北京", 1064.7);
-	// distance.put("北京广州", 1888.8);
-	// distance.put("广州北京", 1888.8);
-	// distance.put("北京南京", 900.0);
-	// distance.put("南京北京", 900.0);
-	// distance.put("上海广州", 1213.0);
-	// distance.put("广州上海", 1213.0);
-	// distance.put("上海南京", 266.0);
-	// distance.put("南京上海", 266.0);
-	// distance.put("广州南京", 1132.0);
-	// distance.put("南京广州", 1132.0);
-	// }
 
 	/**
 	 * 返回城市间距离

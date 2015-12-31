@@ -21,7 +21,13 @@ public class City implements Serializable {
 		cityList.add("广州");
 	}
 	
-	public static void addCity(String city) {
+	/**
+	 * 添加新城市
+	 * 
+	 * @param city
+	 * @param distance
+	 */
+	public static void addCity(String city, ArrayList<Double> distance) {
 		cityList.add(city);
 	}
 	
