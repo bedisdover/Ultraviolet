@@ -79,12 +79,12 @@ public class SettlementUi extends JPanel {
 		userRole.setLocation(788, 54);
 		userRole.setSize(180, 25);
 
-		dc = new DateChooser(this, 180, 180);
+		dc = new DateChooser(this, 150, 180);
 	}
 
 	public void initComponents() {
-		but1.setBounds(52, 415, 120, 40);
-		but2.setBounds(194, 415, 120, 40);
+		but1.setBounds(95, 415, 170, 50);
+		but2.setBounds(95, 495, 170, 50);
 		title.setBounds(454, 26, 249, 45);
 		title.setFont(font);
 		butOut.setBounds(52, 36, 120, 40);
@@ -97,7 +97,7 @@ public class SettlementUi extends JPanel {
 		this.add(userRole);
 
 		String[] columnNames = { "序号", "收款日期", "收款单位", "收款人", "收款金额" };
-		int[] list = { 40, 125, 14, 30, 20, 350, 120, 643, 497 };
+		int[] list = { 40, 125, 14, 30, 20, 330, 120, 643, 497 };
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
 		// *
@@ -105,25 +105,25 @@ public class SettlementUi extends JPanel {
 		add(table.drawTable(columnNames, list));
 
 		labelDate = new JLabel("日期：");
-		labelDate.setBounds(74, 182, 54, 15);
+		labelDate.setBounds(74, 180, 54, 15);
 		add(labelDate);
 
 		label = new JLabel("营业厅：");
-		label.setBounds(74, 270, 54, 25);
+		label.setBounds(74, 260, 54, 25);
 		add(label);
 
 		textField = new UltraTextField();
-		textField.setBounds(173, 272, 142, 21);
+		textField.setBounds(143, 260, 142, 21);
 		add(textField);
 		textField.setColumns(10);
 		
 		labelTotal = new JLabel("总金额：");
-		labelTotal.setBounds(74, 349, 54, 15);
+		labelTotal.setBounds(74, 340, 54, 15);
 		add(labelTotal);
 		
 		textTotal = new UltraTextField();
 		textTotal.setEditable(false);
-		textTotal.setBounds(173, 346, 142, 21);
+		textTotal.setBounds(143, 340, 142, 21);
 		add(textTotal);
 		textTotal.setColumns(10);
 	}
@@ -183,7 +183,7 @@ public class SettlementUi extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
-		g.draw3DRect(50, 135, 275, 430, false); // 输入框外框
+		g.draw3DRect(50, 135, 255, 430, false); // 输入框外框
 		this.repaint();
 	}
 }

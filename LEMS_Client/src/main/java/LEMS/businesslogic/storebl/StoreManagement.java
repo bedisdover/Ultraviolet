@@ -181,13 +181,23 @@ public class StoreManagement {
 	
 	}
 
-	public void warning() {
-		// int standardNum = 10000;
-		// ArrayList<GoodsVO> al = new ArrayList<GoodsVO>();
-		// al = check();
-		// int presentNum = al.size();
-		// if (presentNum >= standardNum)
-		// System.out.println("Warning!");
+	public int warning(String startTime, String endTime) {
+		
+		int airlineStandard = 10000;
+		int trainlineStandard = 10000;
+		int buslineStandard = 10000;
+		int motolineStandard= 10000;
+		ArrayList<GoodsVO> al=inquire(startTime,endTime);
+		int size=al.size();
+		int air=Integer.parseInt(al.get(size-4).getId());
+		int train=Integer.parseInt(al.get(size-3).getId());
+		int bus=Integer.parseInt(al.get(size-2).getId());
+		int moto=Integer.parseInt(al.get(size-1).getId());
+		if(air>airlineStandard || train>trainlineStandard || bus>buslineStandard || moto>motolineStandard){
+			return 1;
+		}else{
+			return 0;
+		}
 	}
 
 	private GoodsDataService getData() {

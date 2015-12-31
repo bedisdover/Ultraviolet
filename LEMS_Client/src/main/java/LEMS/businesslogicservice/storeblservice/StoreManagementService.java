@@ -10,6 +10,6 @@ public interface StoreManagementService {
 	
 	public ArrayList<GoodsVO> check();
 	
-	public void warning();
+	public int warning();
 
 }
