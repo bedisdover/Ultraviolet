@@ -40,6 +40,7 @@ public class DiaryUi extends JPanel{
 	private DateChooser dc;
 	private Table table;
 	private UserVO user;
+	private Font fnt = new Font("Courier", Font.PLAIN, 15);// 其余字体格式
 	/**
 	 * Create the panel.
 	 */
@@ -79,6 +80,7 @@ public class DiaryUi extends JPanel{
 //		textField.setBounds(415,122,160,25);
 		butOut.setBounds(52, 36, 120, 40);
 		textField=dc.showDate;
+		date.setFont(fnt);
 		this.add(date);
 		this.add(title);
 		this.add(name);

@@ -60,6 +60,7 @@ public class StoreInquireUi extends JPanel {
 	private UltraTextField textTrainlineNum;
 	private UltraTextField textBuslineNum;
 	private UltraTextField textMotolineNum;
+	private UltraTextField textWarning;
 	private JLabel startTime;
 	private JLabel endTime;
 	private JLabel userId;
@@ -126,6 +127,7 @@ public class StoreInquireUi extends JPanel {
 		textTrainlineNum = new UltraTextField();
 		textBuslineNum = new UltraTextField();
 		textMotolineNum = new UltraTextField();
+		textWarning=new UltraTextField();
 		dateChooserStart = new DateChooser(this, 343, 111);
 		dateChooserEnd = new DateChooser(this, 343, 161);
 
@@ -179,6 +181,7 @@ public class StoreInquireUi extends JPanel {
 		eHour.setBounds(LOCATION_X+250, LOCATION_Y-78, BOUND_X-85, BOUND_Y-5);
 		eMin.setBounds(LOCATION_X+340, LOCATION_Y-78, BOUND_X-85, BOUND_Y-5);
 		eSec.setBounds(LOCATION_X+430, LOCATION_Y-78, BOUND_X-85, BOUND_Y-5);
+		textWarning.setBounds(LOCATION_X+390, LOCATION_Y-30, BOUND_X+80, BOUND_Y-5);
 		for (int i = 0; i < 24; i++) {
 			eHour.addItem(i);
 			sHour.addItem(i);
@@ -190,8 +193,8 @@ public class StoreInquireUi extends JPanel {
 			eSec.addItem(j);
 		}
 
-		OK.setBounds(390, 203, BOUND_X - 41, BOUND_Y + 10);
-		cancel.setBounds(510, 203, BOUND_X - 41, BOUND_Y + 10);
+		OK.setBounds(390, 203, BOUND_X - 31, BOUND_Y + 10);
+		cancel.setBounds(510, 203, BOUND_X - 31, BOUND_Y + 10);
 		exit.setBounds(90, 60, 100, 40);
 
 		title.setFont(fnt1);
@@ -220,6 +223,7 @@ public class StoreInquireUi extends JPanel {
 		textBuslineNum.setEditable(false);
 		textMotolineNum.setEditable(false);
 		textTrainlineNum.setEditable(false);
+		textWarning.setEditable(false);
 
 		this.add(title);
 		this.add(startTime);
@@ -251,6 +255,7 @@ public class StoreInquireUi extends JPanel {
 		this.add(textBuslineNum);
 		this.add(textMotolineNum);
 		this.add(textTrainlineNum);
+		this.add(textWarning);
 		this.add(sHour);
 		this.add(sMin);
 		this.add(sSec);
@@ -299,6 +304,7 @@ public class StoreInquireUi extends JPanel {
 		textBuslineNum.setText(null);
 		textMotolineNum.setText(null);
 		textTrainlineNum.setText(null);
+		textWarning.setText(null);
 
 	}
 
@@ -327,6 +333,13 @@ public class StoreInquireUi extends JPanel {
 				if (start.compareTo(end) >= 0) {
 					// 不合法 跳出提示
 				} else {
+					int warning=sm.warning(start, end);
+					if(warning==1){
+						textWarning.setText("库存警报！请手动调整！");
+					}
+					if(warning ==0){
+						textWarning.setText("库存安全。无须调整。");
+					}
 					ArrayList<GoodsVO> al = sm.inquire(start, end);
 					int length = al.size();
 					textInboundNum.setText(al.get(length - 8).getId());
@@ -399,6 +412,7 @@ public class StoreInquireUi extends JPanel {
 					}
 				}
 
+				
 			}
 		});
 		cancel.addMouseListener(new MouseAdapter() {
