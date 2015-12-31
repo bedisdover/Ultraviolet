@@ -35,6 +35,7 @@ public class LogisticsInfoUi extends JPanel {
 	private JLabel date;
 	private UltraButton but;
 	private UltraButton butOut;
+	
 
 	private Table table;
 	Image im = Toolkit.getDefaultToolkit().getImage("source/02.jpg");
