@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import LEMS.businesslogic.storebl.GenerateOrder;
 import LEMS.po.storepo.Destination;
 import LEMS.po.storepo.TransportType;
+import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.DateChooser;
@@ -23,6 +24,7 @@ import LEMS.presentation.ultraSwing.UltraButton;
 import LEMS.presentation.ultraSwing.UltraComboBox;
 import LEMS.presentation.ultraSwing.UltraTextField;
 import LEMS.vo.storevo.OutboundOrderVO;
+import LEMS.vo.uservo.UserVO;
 
 /**
  * 
@@ -37,7 +39,8 @@ public class GenerateOutboundOrderUi extends JPanel {
 	private static final int LOCATION_TEXT_Y = 145;
 	private static final int BOUND_X = 130;
 	private static final int BOUND_Y = 30;
-
+	
+	private UserVO user;
 	private MainFrame mainFrame;
 	private JLabel title;
 	private UltraButton exit;
@@ -53,6 +56,8 @@ public class GenerateOutboundOrderUi extends JPanel {
 	private JLabel labelTransportType;
 	private JLabel labelTransferNum1;
 	private JLabel labelTransferNum2;
+	private JLabel userId;
+	private JLabel userRole;
 	private UltraTextField textId;
 	private UltraTextField textTransferNum;
 
@@ -75,8 +80,9 @@ public class GenerateOutboundOrderUi extends JPanel {
 	 */
 	int currentLine = -1;
 
-	public GenerateOutboundOrderUi(final MainFrame mainFrame) {
+	public GenerateOutboundOrderUi(final MainFrame mainFrame,UserVO userVO) {
 		this.mainFrame = mainFrame;
+		user=userVO;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
 		// 初始化
@@ -113,6 +119,12 @@ public class GenerateOutboundOrderUi extends JPanel {
 		dc = new DateChooser(this, LOCATION_TEXT_X, LOCATION_TEXT_Y + 68);
 		comboBoxDestination = new UltraComboBox();
 		comboBoxTransportType = new UltraComboBox();
+		userId = new JLabel("账号： "+user.getId());
+		userId.setLocation(350, 81);
+		userId.setSize(150, 25);
+		userRole = new JLabel("身份： "+UserRole.transfer(user.getRole()));
+		userRole.setLocation(515, 81);
+		userRole.setSize(150, 25);
 	}
 
 	/**
@@ -177,6 +189,8 @@ public class GenerateOutboundOrderUi extends JPanel {
 		this.add(delete);
 		this.add(update);
 		this.add(inquire);
+		this.add(userId);
+		this.add(userRole);
 
 		String[] columnNames = { "快递单号", "出库日期", "目的地", "装运形式", "中转单/汽运编号" };
 		int[] list = { 40, 120, 14, 30, 20, 340, 125, 618, 450 };
@@ -195,7 +209,7 @@ public class GenerateOutboundOrderUi extends JPanel {
 	private void setTestState(boolean state) {
 		textId.setEditable(state);
 		textTransferNum.setEditable(state);
-		// 日期
+		dc.setEnabled(state);
 		comboBoxDestination.setEnabled(state);
 		comboBoxTransportType.setEnabled(state);
 		OK.setEnabled(state);
@@ -214,7 +228,6 @@ public class GenerateOutboundOrderUi extends JPanel {
 	 */
 	private void empty() {
 		textId.setText(null);
-		// 日期
 		textTransferNum.setText(null);
 		comboBoxDestination.setSelectedIndex(0);
 		comboBoxTransportType.setSelectedIndex(0);

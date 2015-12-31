@@ -68,7 +68,7 @@ public class CostUi extends JPanel {
 		button = new UltraButton[5];
 		font = new Font("Courier", Font.PLAIN, 26);
 		button = new UltraButton[5];
-		butOut = new UltraButton("登出");
+		butOut = new UltraButton("返回");
 		dc = new DateChooser(this, 304 - 50, 205 - 29);
 	}
 

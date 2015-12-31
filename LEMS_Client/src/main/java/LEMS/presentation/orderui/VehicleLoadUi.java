@@ -71,7 +71,6 @@ public class VehicleLoadUi extends JPanel {
 	
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);//标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);//其余字体格式
-	private Font fnt2 = new Font("宋体", Font.BOLD, 16);//按钮字体格式
 	
 	private VehicleLoad vehicleLoad;
 	
@@ -241,7 +240,7 @@ public class VehicleLoadUi extends JPanel {
 		textDestination.setEnabled(state);
 		OK.setEnabled(state);
 		cancel.setEnabled(state);
-		//日期
+		dc.setEnabled(state);
 	}
 
 	/**

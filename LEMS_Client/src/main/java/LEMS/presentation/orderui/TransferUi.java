@@ -257,6 +257,8 @@ public class TransferUi extends JPanel {
 		textContainer.setEditable(state);
 		OK.setEnabled(state);
 		cancel.setEnabled(state);
+		dc.setEnabled(state);
+		comboBoxFormat.setEnabled(state);
 	}
 	
 	private void setPanelAir(){

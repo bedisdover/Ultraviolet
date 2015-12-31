@@ -37,10 +37,6 @@ public class InboundOrderVO {
 	 * 位
 	 */
 	int position;	
-	/**
-	 * 操作
-	 */
-	ArrayList<String> operation;
 	
 	public InboundOrderVO(String identity,String d,Destination des,Area ar,int r,int s,int pos){
 		id=identity;
@@ -53,16 +49,6 @@ public class InboundOrderVO {
 		
 	}
 
-	public InboundOrderVO(String identity,String d,Destination des,Area ar,int r,int s,int pos,ArrayList<String> o){
-		id=identity;
-		inDate=d;
-		destination=des;
-		area=ar;
-		row=r;
-		stand=s;
-		position=pos;
-		operation=o;
-	}
 	
 	public String getId() {
 		return id;
@@ -107,8 +93,5 @@ public class InboundOrderVO {
 	public void setPosition(int position) {
 		this.position = position;
 	}
-	public ArrayList<String> getOperation(){
-		return operation;
 	}
 	
-}

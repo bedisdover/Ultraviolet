@@ -23,6 +23,8 @@ import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.Table;
 import LEMS.presentation.ultraSwing.UltraButton;
+import LEMS.presentation.ultraSwing.UltraComboBox;
+import LEMS.presentation.ultraSwing.UltraTextField;
 import LEMS.vo.financevo.SalaryVO;
 import LEMS.vo.uservo.UserVO;
 
@@ -44,19 +46,19 @@ public class ManagerUi extends JPanel {
 	private UltraButton cancel;
 
 	private JLabel labelID;
-	private JTextField textID;
+	private UltraTextField textID;
 	private JLabel labelPassword;
-	private JTextField textPassword;
+	private UltraTextField textPassword;
 	private JLabel labelName;
-	private JTextField textName;
+	private UltraTextField textName;
 	private JLabel labelStatue;
 	private JLabel labelInstitutionID;
-	private JTextField textInstitutionID;
+	private UltraTextField textInstitutionID;
 	private JLabel labelLocation;
-	private JTextField textLocation;
+	private UltraTextField textLocation;
 	private JLabel userId;
 	private JLabel userRole;
-	private JComboBox<String> comboBox;
+	private UltraComboBox comboBox;
 
 	private Font fnt1 = new Font("Courier", Font.PLAIN, 26);
 
@@ -96,15 +98,15 @@ public class ManagerUi extends JPanel {
 		cancel = new UltraButton("取消");
 
 		labelID = new JLabel("用户ID:");
-		textID = new JTextField();
+		textID = new UltraTextField();
 		labelPassword = new JLabel("密码:");
-		textPassword = new JTextField();
+		textPassword = new UltraTextField();
 		labelName = new JLabel("用户姓名:");
-		textName = new JTextField();
+		textName = new UltraTextField();
 		labelInstitutionID = new JLabel("所在机构编号:");
-		textInstitutionID = new JTextField();
+		textInstitutionID = new UltraTextField();
 		labelLocation = new JLabel("机构所在地:");
-		textLocation = new JTextField();
+		textLocation = new UltraTextField();
 		labelStatue = new JLabel("身份:");
 		userId = new JLabel("账号： "+user.getId());
 		userId.setLocation(363, 80);
@@ -112,7 +114,7 @@ public class ManagerUi extends JPanel {
 		userRole = new JLabel("身份： "+UserRole.transfer(user.getRole()));
 		userRole.setLocation(528, 80);
 		userRole.setSize(150, 25);
-		comboBox = new JComboBox<String>();
+		comboBox = new UltraComboBox();
 	}
 
 	/**

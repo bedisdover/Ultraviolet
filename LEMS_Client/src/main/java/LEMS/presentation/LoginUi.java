@@ -33,12 +33,12 @@ public class LoginUi extends JPanel {
 	JLabel labPassword = new JLabel("密码：");
 	JTextField textName = new JTextField();
 	JPasswordField textPassword = new JPasswordField();
-	JLabel Return = new JLabel(new ImageIcon("Close.png"));
-	JLabel account = new JLabel(new ImageIcon("account.png"));
-	JLabel password = new JLabel(new ImageIcon("password.png"));
+	JLabel Return = new JLabel(new ImageIcon("source/Close.png"));
+	JLabel account = new JLabel(new ImageIcon("source/account.png"));
+	JLabel password = new JLabel(new ImageIcon("source/password.png"));
 
 	public LoginUi(final MainFrame mainFrame) {
-		Icon i = new ImageIcon("Return.png");
+		Icon i = new ImageIcon("source/Return.png");
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
 		mainFrame.setDragable(this);
@@ -75,7 +75,7 @@ public class LoginUi extends JPanel {
 		this.add(password);
 
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
-		im = Toolkit.getDefaultToolkit().getImage("backGround.png");
+		im = Toolkit.getDefaultToolkit().getImage("source/backGround.png");
 
 		// 点击登陆按钮
 		but1.addMouseListener(new MouseAdapter() {

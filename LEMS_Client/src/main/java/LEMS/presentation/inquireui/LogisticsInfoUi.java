@@ -37,7 +37,7 @@ public class LogisticsInfoUi extends JPanel {
 	private UltraButton butOut;
 
 	private Table table;
-	Image im = Toolkit.getDefaultToolkit().getImage("01.jpg");
+	Image im = Toolkit.getDefaultToolkit().getImage("source/02.jpg");
 
 	/**
 	 * Create the panel.
@@ -66,8 +66,8 @@ public class LogisticsInfoUi extends JPanel {
 		date.setFont(new Font("Courier", Font.PLAIN, 22));
 		title.setBounds(444, 26, 249, 45);
 		title.setFont(font);
-		title.setForeground(Color.white);
-		date.setForeground(Color.white);
+		title.setForeground(Color.BLACK);
+		date.setForeground(Color.BLACK);
 		but.setBounds(692, 119, 100, 40);
 		textField.setBounds(415, 122, 160, 25);
 		butOut.setBounds(52, 36, 100, 40);

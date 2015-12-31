@@ -71,7 +71,7 @@ public class SettlementUi extends JPanel {
 		but2 = new UltraButton("添加到收款单");
 		title = new JLabel("结算管理");
 		font = new Font("宋体", Font.PLAIN, 26);
-		butOut = new UltraButton("登出");
+		butOut = new UltraButton("返回");
 		userId = new JLabel(" 账号： " + user.getId());
 		userId.setLocation(788, 25);
 		userId.setSize(180, 25);

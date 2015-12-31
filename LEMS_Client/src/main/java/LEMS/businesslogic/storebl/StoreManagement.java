@@ -58,6 +58,7 @@ public class StoreManagement {
 
 		try {
 			al = getData().find(startTime, endTime);
+			System.out.println(al.size() + "哟呵呵");
 			int number = al.size();
 			for (int i = 0; i < number; i++) {
 				GoodsPO gpo = al.get(i);
@@ -71,8 +72,25 @@ public class StoreManagement {
 					GoodsVO gvo = getGoodsVOInfo(gpo);
 					alOutbound.add(gvo);
 				}
-				Area area = gpo.getArea();
-				switch (area) {
+				
+
+			}
+			totalInbound = alInbound.size();
+			totalOutbound = alOutbound.size();
+
+			for (int j = 0; j < alOutbound.size(); j++) {
+				for (int i = 0; i < alInbound.size(); i++) {
+					if (alInbound.get(i).getId().equals(alOutbound.get(j).getId())) {
+						alInbound.remove(i);
+						i--;
+					}
+				}
+			}
+			alGoodsVO.addAll(alInbound);
+			alGoodsVO.addAll(alOutbound);
+			totalStock = alInbound.size();
+			for(int p=0;p<totalStock;p++){
+				switch(alInbound.get(p).getArea()){
 				case Airline:
 					airlineNum++;
 					break;
@@ -86,18 +104,11 @@ public class StoreManagement {
 					motolineNum++;
 					break;
 				}
-
+				
+				
+				
+				
 			}
-			totalInbound = alInbound.size();
-			totalOutbound = alOutbound.size();
-			totalStock = al.size();
-
-			// temp用来保存两者共有的数据
-			ArrayList<GoodsVO> temp = new ArrayList<GoodsVO>(alInbound);
-			temp.retainAll(alOutbound);
-			alInbound.removeAll(temp);
-			alGoodsVO.addAll(alInbound);
-			alGoodsVO.addAll(alOutbound);
 			int alGoodsVONum = alGoodsVO.size();
 			for (int k = 0; k < alGoodsVONum; k++) {
 				money = money + alGoodsVO.get(k).getMoney();
@@ -145,15 +156,29 @@ public class StoreManagement {
 
 	// 库存盘点（盘点的是当天的库存快照，包括当天的各区快递的信息
 	public ArrayList<GoodsVO> check(String time) {
-		ArrayList<GoodsVO> alvo = new ArrayList<GoodsVO>();
+		String timeNew = time.substring(0, 2) + ":" + time.substring(2, 4) + ":" + time.substring(4, 6);
+		ArrayList<GoodsVO> al = new ArrayList<GoodsVO>();
 		Date date = new Date(); // 获取当前系统时间
-		DateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+		DateFormat format = new SimpleDateFormat("yyyyMMddHH:mm:ss");
 		String today = format.format(date).substring(0, 8);
-		String start = today + "000000";
-		String end = today + time;
-		alvo = inquire(start, end);
-		System.out.println(alvo.size()+"啊喂喂喂这有几个呀");
-		return alvo;
+		String start = today + "00:00:00";
+		String end = today + timeNew;
+				al=inquire(start,end);
+				for(int p=0;p<al.size();p++){
+					System.out.println(al.get(p).getId()+"前");
+				}
+				for(int i=0;i<al.size();i++){
+					if(!"9999999999:99:99".equals(al.get(i).getOutDate())){
+						al.remove(i);
+						i--;
+					}
+				}
+				
+				for(int p=0;p<al.size();p++){
+					System.out.println(al.get(p).getId()+"后");
+				}
+				return al;
+	
 	}
 
 	public void warning() {

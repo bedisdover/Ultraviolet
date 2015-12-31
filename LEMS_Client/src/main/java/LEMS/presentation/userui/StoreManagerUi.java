@@ -28,15 +28,15 @@ public class StoreManagerUi extends JPanel {
 	StoreInquireUi inquireUi;
 	StoreCheckUi checkUi;
 	UserVO user;
-	public StoreManagerUi(final MainFrame mainFrame,UserVO uvo) {
-		user=uvo;
+	public StoreManagerUi(final MainFrame mainFrame,UserVO userVO) {
+		user=userVO;
 		this.mainFrame = mainFrame;
 		this.setLayout(new BorderLayout());
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
-		inboundUi = new GenerateInboundOrderUi(this.mainFrame);
-		outboundUi = new GenerateOutboundOrderUi(this.mainFrame);
-		inquireUi = new StoreInquireUi(this.mainFrame);
-		checkUi = new StoreCheckUi(this.mainFrame);
+		inboundUi = new GenerateInboundOrderUi(this.mainFrame,userVO);
+		outboundUi = new GenerateOutboundOrderUi(this.mainFrame,userVO);
+		inquireUi = new StoreInquireUi(this.mainFrame,userVO);
+		checkUi = new StoreCheckUi(this.mainFrame,userVO);
 		init();
 		initComponents();
 	}

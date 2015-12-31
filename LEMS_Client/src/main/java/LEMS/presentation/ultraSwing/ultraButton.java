@@ -29,6 +29,8 @@ public class UltraButton extends JButton {
 		Image imageStop = Toolkit.getDefaultToolkit().getImage("source/stop.png");
 		Image imageExcel = Toolkit.getDefaultToolkit().getImage("source/excel1.png");
 		Image imageFinish = Toolkit.getDefaultToolkit().getImage("source/finish.png");
+		Image imageFinish1 = Toolkit.getDefaultToolkit().getImage("source/finish1.png");
+		Image imageLook = Toolkit.getDefaultToolkit().getImage("source/look.png");
 		
 		ImageIcon iconExit = new ImageIcon(imageExit);
 		ImageIcon iconAdd = new ImageIcon(imageAdd);
@@ -41,6 +43,8 @@ public class UltraButton extends JButton {
 		ImageIcon iconStop = new ImageIcon(imageStop);
 		ImageIcon iconExcel = new ImageIcon(imageExcel);
 		ImageIcon iconFinish = new ImageIcon(imageFinish);
+		ImageIcon iconFinish1 = new ImageIcon(imageFinish1);
+		ImageIcon iconLook = new ImageIcon(imageLook);
 		
 		if (text.equals("返回")) {
 			this.setIcon(iconExit);
@@ -74,6 +78,12 @@ public class UltraButton extends JButton {
 		}
 		if (text.equals("生成")) {
 			this.setIcon(iconFinish);
+		}
+		if (text.equals("完成")) {
+			this.setIcon(iconFinish1);
+		}
+		if (text.equals("查看")) {
+			this.setIcon(iconLook);
 		}
 
 	}
