@@ -208,16 +208,6 @@ public class ReceiptRecordUi extends JPanel {
 				setTextState(true);
 			}
 		});
-//		delete.addMouseListener(new MouseAdapter() {
-//			public void mouseClicked(MouseEvent e) {
-//				// TODO 不需要的功能
-//			}
-//		});
-//		update.addMouseListener(new MouseAdapter() {
-//			public void mouseClicked(MouseEvent e) {
-//				// TODO 不需要的功能
-//			}
-//		});
 		finish.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				//若订单列表为空，操作无效

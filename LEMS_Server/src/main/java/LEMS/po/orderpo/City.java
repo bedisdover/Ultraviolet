@@ -12,11 +12,6 @@ import java.util.List;
 public class City implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	//TODO enum还是class，哪个更好
-//	北京,
-//	上海,
-//	南京,
-//	广州,
 	public static List<String> cityList = new ArrayList<String>();
 	
 	static {
@@ -24,6 +19,10 @@ public class City implements Serializable {
 		cityList.add("上海");
 		cityList.add("南京");
 		cityList.add("广州");
+	}
+	
+	public static void addCity(String city) {
+		cityList.add(city);
 	}
 	
 	/**

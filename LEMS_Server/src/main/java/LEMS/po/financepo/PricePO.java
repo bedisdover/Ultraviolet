@@ -29,19 +29,6 @@ public class PricePO implements Serializable {
 		packagePrice = new HashMap<Packing, Double>();
 	}
 	
-//	static {
-//		//TODO 测试用初始化
-//		pricePO = new PricePO();
-//		expressPrice.put(Express.economy, 0.0);
-//		expressPrice.put(Express.standard, 23.0);
-//		expressPrice.put(Express.special, 25.0);
-//		
-//		packagePrice.put(Packing.Carton, 5.0);
-//		packagePrice.put(Packing.Wooden, 10.0);
-//		packagePrice.put(Packing.Bag, 1.0);
-//		packagePrice.put(Packing.Other, 0.0);
-//	}
-	
 	public void pricing(Express type, double price) {
 		expressPrice.put(type, price);
 	}
