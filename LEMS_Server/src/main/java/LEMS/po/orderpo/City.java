@@ -22,16 +22,6 @@ public class City implements Serializable {
 	}
 	
 	/**
-	 * 添加新城市
-	 * 
-	 * @param city
-	 * @param distance
-	 */
-	public static void addCity(String city, ArrayList<Double> distance) {
-		cityList.add(city);
-	}
-	
-	/**
 	 * 判断城市是否在服务范围内
 	 * 
 	 * @param city 城市
