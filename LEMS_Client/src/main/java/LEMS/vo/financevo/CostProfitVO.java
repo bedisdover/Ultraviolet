@@ -24,7 +24,6 @@ public class CostProfitVO {
 	private double profit;
 	
 	public CostProfitVO(String date) {
-		// TODO Auto-generated constructor stub
 		//TODO 成本管理时新建成本收益信息
 	}
 	
