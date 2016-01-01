@@ -38,6 +38,7 @@ public class CostUi extends JPanel {
 	private UltraButton butOut;
 	private DateChooser dc;
 	private UserVO user;
+	private Font fnt = new Font("Courier", Font.PLAIN, 15);//其余字体格式
 	/**
 	 * 
 	 */
@@ -94,6 +95,10 @@ public class CostUi extends JPanel {
 		label[3].setText(" 付款人：");
 		label[4].setText(" 条目：");
 		label[5].setText(" 备注：");
+		
+		for(int i = 0;i<6;i++){
+			label[i].setFont(fnt);
+		}
 
 		int width = 60;// 间隔
 		for (int i = 0; i < 5; i++) {

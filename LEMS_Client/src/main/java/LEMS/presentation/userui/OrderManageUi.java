@@ -80,6 +80,7 @@ public class OrderManageUi extends JPanel {
 	private Table table;
 
 	private Font fnt1 = new Font("Courier", Font.PLAIN, 26);
+	private Font font = new Font("courier", Font.PLAIN, 15);
 	
 	private MainFrame mainFrame;
 	
@@ -202,6 +203,23 @@ public class OrderManageUi extends JPanel {
 		cExpress.setBounds(191,567-shang,146,27);
 		mul.setBounds(232, 527-shang, 10, 27);
 		mul2.setBounds(287, 527-shang, 10, 27);
+		
+		//设置标签字体
+		sender.setFont(font);
+		theSenderName.setFont(font);
+		theSenderPhone.setFont(font);
+		theSenderAddress.setFont(font);
+		addressee.setFont(font);
+		theAddresseeName.setFont(font);
+		theAddresseePhone.setFont(font);
+		theAddresseeAddress.setFont(font);
+		cargo.setFont(font);
+		theCargoName.setFont(font);
+		theCargoNumber.setFont(font);
+		theCargoWeight.setFont(font);
+		theCargoVolume.setFont(font);
+		theCargoPackage.setFont(font);
+		theCargoExpress.setFont(font);
 		
 		//按钮
 		butOut.setBounds(26,15,100,30);

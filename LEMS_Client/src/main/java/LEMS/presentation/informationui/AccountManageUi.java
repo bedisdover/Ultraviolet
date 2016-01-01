@@ -53,6 +53,7 @@ public class AccountManageUi extends JPanel{
 	private JLabel userId;
 	private JLabel userRole;
 	private Font fnt1 = new Font("Courier", Font.PLAIN, 26);
+	private Font fnt = new Font("Courier", Font.PLAIN, 15);//其余字体格式
 	
 	Table table = new Table();
 
@@ -125,6 +126,11 @@ public class AccountManageUi extends JPanel{
 		butDel.setBounds(336, 632-up, 120, 40);
 		butFind.setBounds(557, 632-up, 120, 40);
 		butChange.setBounds(779, 632-up, 120, 40);
+		
+		//设置字体
+		labelID.setFont(fnt);
+		labelPassword.setFont(fnt);
+		labelBalance.setFont(fnt);
 
 		this.add(title);
 		this.add(labelID);

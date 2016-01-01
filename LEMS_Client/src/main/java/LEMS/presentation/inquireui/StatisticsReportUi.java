@@ -52,6 +52,7 @@ public class StatisticsReportUi extends JPanel {
 	private UserVO user;
 	Table table1;
 	Table table2;
+	private Font fnt = new Font("Courier", Font.PLAIN, 15);//其余字体格式
 	
 	public StatisticsReportUi(final MainFrame mainFrame,UserVO uvo) {
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH-288, MainFrame.JFRAME_HEIGHT);
@@ -98,6 +99,10 @@ public class StatisticsReportUi extends JPanel {
 		subtitle1.setFont(subfont);
 		subtitle2.setFont(subfont);
 		butOut.setBounds(52, 36, 120, 40);
+		
+		//设置字体
+		labelDate1.setFont(fnt);
+		labelDate2.setFont(fnt);
 		
 		this.add(title);
 		this.add(labelDate1);

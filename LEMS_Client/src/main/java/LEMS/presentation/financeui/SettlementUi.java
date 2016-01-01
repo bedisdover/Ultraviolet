@@ -50,6 +50,8 @@ public class SettlementUi extends JPanel {
 	private Settlement settlement;
 	private JLabel labelTotal;
 	private UltraTextField textTotal;
+	
+	private Font fnt = new Font("Courier", Font.PLAIN, 15);//其余字体格式
 
 	public SettlementUi(final MainFrame mainFrame, UserVO uvo) {
 		this.mainFrame = mainFrame;
@@ -106,10 +108,12 @@ public class SettlementUi extends JPanel {
 
 		labelDate = new JLabel("日期：");
 		labelDate.setBounds(74, 180, 54, 15);
+		labelDate.setFont(fnt);
 		add(labelDate);
 
 		label = new JLabel("营业厅：");
 		label.setBounds(74, 260, 54, 25);
+		label.setFont(fnt);
 		add(label);
 
 		textField = new UltraTextField();
@@ -119,6 +123,7 @@ public class SettlementUi extends JPanel {
 		
 		labelTotal = new JLabel("总金额：");
 		labelTotal.setBounds(74, 340, 54, 15);
+		labelTotal.setFont(fnt);
 		add(labelTotal);
 		
 		textTotal = new UltraTextField();
@@ -126,6 +131,7 @@ public class SettlementUi extends JPanel {
 		textTotal.setBounds(143, 340, 142, 21);
 		add(textTotal);
 		textTotal.setColumns(10);
+		
 	}
 
 	public void addListener() {

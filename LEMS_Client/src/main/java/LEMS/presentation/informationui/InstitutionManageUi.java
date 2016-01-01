@@ -50,6 +50,7 @@ public class InstitutionManageUi extends JPanel {
 	private JLabel userRole;
 	
 	private Font fnt1 = new Font("Courier", Font.PLAIN, 26);
+	private Font fnt = new Font("Courier", Font.PLAIN, 15);
 
 	Table table;
 
@@ -102,6 +103,8 @@ public class InstitutionManageUi extends JPanel {
 		textID.setBounds(206, 184-change, 144, 24);
 		labelLocation.setBounds(86, 300-change, 131, 30);
 		textLocation.setBounds(206, 303-change, 144, 24);
+		labelID.setFont(fnt);
+		labelLocation.setFont(fnt);
 		
 		userId.setLocation(389, 62);
 		userId.setSize(180, 25);

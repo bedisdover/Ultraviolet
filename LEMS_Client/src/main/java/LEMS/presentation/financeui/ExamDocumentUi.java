@@ -37,7 +37,8 @@ public class ExamDocumentUi extends JPanel {
 
 	private Table table;
 	private UserVO user;
-
+	private Font fnt1 = new Font("Courier", Font.PLAIN, 26);
+	private Font fnt = new Font("Courier", Font.PLAIN, 15);//其余字体格式
 	/**
 	 * Create the panel.
 	 */
@@ -55,6 +56,7 @@ public class ExamDocumentUi extends JPanel {
 	private void init() {
 		date = new JLabel("单据类型：");
 		title = new JLabel("审批单据");
+		title.setFont(fnt1);
 		name = new JLabel("账号：  " + user.getId());
 		statue = new JLabel("身份： " + UserRole.transfer(user.getRole()));
 		but = new UltraButton("查询");
@@ -79,6 +81,9 @@ public class ExamDocumentUi extends JPanel {
 		box.addItem("装运单");
 		butOut.setBounds(52, 36, 120, 40);
 
+		//设置字体
+		date.setFont(fnt);
+		
 		this.add(date);
 		this.add(title);
 		this.add(name);

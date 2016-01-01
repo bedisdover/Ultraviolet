@@ -53,6 +53,7 @@ public class StuffManageUi extends JPanel  {
 	private JLabel userId;
 	private JLabel userRole;
 	private Font fnt1 = new Font("Courier", Font.PLAIN, 26);
+	private Font fnt = new Font("Courier", Font.PLAIN, 15);
 
 	Table table;
 
@@ -104,12 +105,16 @@ public class StuffManageUi extends JPanel  {
 		title.setBounds(449, 27, 148, 39);
 		title.setFont(fnt1);
 		labelName.setBounds(86, 140-change, 131, 30);
+		labelName.setFont(fnt);
 		textName.setBounds(206, 144-change, 144, 24);
 		labelID.setBounds(86, 240-change, 131, 30);
+		labelID.setFont(fnt);
 		textID.setBounds(206, 243-change, 144, 24);
 		labelInstitution.setBounds(81, 339-change, 131, 30);
+		labelInstitution.setFont(fnt);
 		textInstitution.setBounds(206, 342-change, 144, 24);
 		labelSalary.setBounds(88, 440-change, 131, 30);
+		labelSalary.setFont(fnt);
 		textSalary.setBounds(206, 442-change, 144, 24);
 		
 		OK.setBounds(86, 533-change, 120, 40);
