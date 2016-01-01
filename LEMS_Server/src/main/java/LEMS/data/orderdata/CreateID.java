@@ -15,8 +15,8 @@ public class CreateID implements IdDataService {
 	public CreateID(){
 		connect = new Connect();
 	}
-	@Override
-	public ArrayList<String> findAll(String table, String pre) {
+
+	private ArrayList<String> findAll(String table, String pre) {
 
 		ArrayList<String> orders = new ArrayList<String>();
 
