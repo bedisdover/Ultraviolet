@@ -6,9 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import LEMS.data.Connect;
-import LEMS.dataservice.orderdataservice.IdDataService;
 
-public class CreateID implements IdDataService {
+public class CreateID {
 
 	private Connect connect;
 	
@@ -17,7 +16,6 @@ public class CreateID implements IdDataService {
 	}
 
 	private ArrayList<String> findAll(String table, String pre) {
-
 		ArrayList<String> orders = new ArrayList<String>();
 
 		String sql = "SELECT * FROM " + table;
@@ -39,7 +37,6 @@ public class CreateID implements IdDataService {
 		return orders;
 	}
 
-	@Override
 	public String createID(String table, int length, String pre) {
 		String id = "";
 
@@ -69,10 +66,5 @@ public class CreateID implements IdDataService {
 		}
 
 		return id;
-	}
-	public static void main(String[] args){
-		CreateID i=new CreateID();
-		System.out.println(i.createID("arrivalnote", 20,"025010120151208"));
-		
 	}
 }
