@@ -24,23 +24,6 @@ public interface IncomeBillDataService extends Remote{
 	 */
 	public ArrayList<IncomeBillPO> getIncomeBill() throws RemoteException;
 	
-	//TODO 似乎没用的方法
-	/**
-	 * 根据日期获取收款信息
-	 * 
-	 * @param date 日期
-	 * @return 收款信息
-	 */
-	public ArrayList<IncomeBillPO> getIncomeByDate(String date) throws RemoteException;
-	//TODO 似乎没用的方法	
-	/**
-	 * 根据营业厅获取收款信息
-	 * 
-	 * @param institution 营业厅编号
-	 * @return 收款信息
-	 */
-	public ArrayList<IncomeBillPO> getIncomeByIns(String institution) throws RemoteException;
-	
 	/**
 	 * 按天、按营业厅查看收款单记录
 	 * 
