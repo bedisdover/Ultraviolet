@@ -6,7 +6,6 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import LEMS.presentation.MainFrame;
-import LEMS.presentation.orderui.ReceiveUi;
 import LEMS.vo.uservo.UserVO;
 
 /**
@@ -21,7 +20,7 @@ public class CourierUi extends JPanel {
 
 	private OrderManageUi orderManageUi;
 	private JTabbedPane tabbedPane;
-	private ReceiveUi receiveUi;
+	private OrderReceiveUi orderReceiveUi;
 	private UserVO user;
 
 	public CourierUi(final MainFrame mainFrame,UserVO uvo) {
@@ -31,7 +30,7 @@ public class CourierUi extends JPanel {
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
 		
 		orderManageUi = new OrderManageUi(mainFrame,user);
-		receiveUi = new ReceiveUi(mainFrame,user);
+		orderReceiveUi = new OrderReceiveUi(mainFrame,user);
 		this.init();
 		this.initComponent();
 	}
@@ -42,7 +41,7 @@ public class CourierUi extends JPanel {
 		ImageIcon image2=new ImageIcon("source\\tabbedpanel\\接收订单.png");
 		
 		tabbedPane.addTab(null,image1,orderManageUi,"订单管理");
-		tabbedPane.addTab(null,image2,receiveUi,"接收订单");
+		tabbedPane.addTab(null,image2,orderReceiveUi,"接收订单");
 
 	}
 

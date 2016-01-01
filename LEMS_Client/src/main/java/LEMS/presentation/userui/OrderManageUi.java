@@ -104,7 +104,7 @@ public class OrderManageUi extends JPanel {
 		this.addListener();
 
 		orderVO = new OrderVO();
-		order = new Order(orderVO, user);
+		//order = new Order(orderVO, user);
 	}
 
 	/**
@@ -205,8 +205,8 @@ public class OrderManageUi extends JPanel {
 		
 		//按钮
 		butOut.setBounds(26,15,100,30);
-		OK.setBounds(74,593,120,40);
-		cancel.setBounds(229,593,120,40);
+		OK.setBounds(74,615,120,40);
+		cancel.setBounds(229,615,120,40);
 		
 		this.add(title);
 		this.add(sender);
@@ -245,7 +245,7 @@ public class OrderManageUi extends JPanel {
 		this.add(cancel);
 
 		String strings[] = {"编号", "条形码号", "名称", "报价"};
-		int nums[] = {300, 140, 20, 30, 20, 420, 55, 578, 650}; 
+		int nums[] = {300, 140, 20, 30, 20, 395, 60, 578, 580}; 
 		table = new Table();
 		JScrollPane pane = table.drawTable(strings, nums);
 		this.add(pane);
@@ -287,7 +287,6 @@ public class OrderManageUi extends JPanel {
 	
 	public void paintComponent(Graphics g){
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
-		g.draw3DRect(51, 53, 325, 557, false);
 		g.draw3DRect(70, 63, 284, 270, false);
 		g.draw3DRect(70, 369-20, 284, 246, false);
 
