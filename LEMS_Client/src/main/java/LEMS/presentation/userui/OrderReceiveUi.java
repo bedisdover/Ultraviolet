@@ -4,7 +4,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
@@ -12,7 +11,6 @@ import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import LEMS.businesslogic.orderbl.Receipt;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.DateChooser;
@@ -20,7 +18,6 @@ import LEMS.presentation.method.Table;
 import LEMS.presentation.ultraSwing.UltraButton;
 import LEMS.presentation.ultraSwing.UltraComboBox;
 import LEMS.presentation.ultraSwing.UltraTextField;
-import LEMS.vo.ordervo.ArrivalVO;
 import LEMS.vo.uservo.UserVO;
 
 /**
@@ -47,8 +44,10 @@ public class OrderReceiveUi extends JPanel {
 	private UltraButton update;
 	private UltraButton finish;
 	private JLabel labelDate;
+	private JLabel labelID;
 	private JLabel labelName;
 	private JLabel labelStatus;
+	private UltraTextField textID;
 	private UltraTextField textName;
 
 	private UltraComboBox comboBoxStatus;// status
@@ -58,13 +57,6 @@ public class OrderReceiveUi extends JPanel {
 
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);// 标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);// 其余字体格式
-
-	private Receipt receipt;
-
-	/**
-	 * 到达单值对象
-	 */
-	private ArrivalVO arrivalVO;
 
 	/**
 	 * 标记是否在修改状态（按下修改按钮）
@@ -85,9 +77,6 @@ public class OrderReceiveUi extends JPanel {
 		this.setTextState(false);
 		// 添加事件监听器
 		this.addListener();
-
-		arrivalVO = new ArrivalVO();
-		receipt = new Receipt(userVO, arrivalVO);
 	}
 
 	/**
@@ -103,9 +92,11 @@ public class OrderReceiveUi extends JPanel {
 		delete = new UltraButton("删除");
 		update = new UltraButton("修改");
 		finish = new UltraButton("生成");
-		labelDate = new JLabel("送达日期:");
-		labelName = new JLabel("收件人姓名:");
+		labelDate = new JLabel("送达日期：");
+		labelID = new JLabel("快递单号：");
+		labelName = new JLabel("收件人姓名：");
 		labelStatus = new JLabel("货物到达状态：");
+		textID = new UltraTextField();
 		textName = new UltraTextField();
 		comboBoxStatus = new UltraComboBox();
 		dc = new DateChooser(this, LOCATION_TEXT_X, LOCATION_TEXT_Y);
@@ -114,15 +105,18 @@ public class OrderReceiveUi extends JPanel {
 	/**
 	 * 初始化各组件
 	 */
+	@SuppressWarnings("unchecked")
 	private void initComponents() {
 
 		title.setBounds(449, 20, 148, 39);
 		title.setFont(fnt1);
 
 		labelDate.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y, BOUND_X, BOUND_Y);
-		labelName.setBounds(LOCATION_LABEL_X - 5, LOCATION_LABEL_Y + 120, BOUND_X, BOUND_Y);
+		labelID.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y + 90, BOUND_X, BOUND_Y);
+		labelName.setBounds(LOCATION_LABEL_X - 5, LOCATION_LABEL_Y + 170, BOUND_X, BOUND_Y);
 		labelStatus.setBounds(LOCATION_LABEL_X - 15, LOCATION_LABEL_Y + 260, BOUND_X, BOUND_Y);
-		textName.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 120, BOUND_X, BOUND_Y - 5);
+		textID.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 90, BOUND_X, BOUND_Y - 5);
+		textName.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 170, BOUND_X, BOUND_Y - 5);
 		comboBoxStatus.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y + 260, BOUND_X, BOUND_Y - 5);
 		comboBoxStatus.addItem("完整");
 		comboBoxStatus.addItem("损坏");
@@ -137,13 +131,16 @@ public class OrderReceiveUi extends JPanel {
 
 		title.setFont(fnt1);
 		labelDate.setFont(fnt);
+		labelID.setFont(fnt);
 		labelName.setFont(fnt);
 		labelStatus.setFont(fnt);
 
 		this.add(title);
 		this.add(labelDate);
+		this.add(labelID);
 		this.add(labelName);
 		this.add(labelStatus);
+		this.add(textID);
 		this.add(textName);
 		this.add(comboBoxStatus);
 		this.add(OK);
@@ -171,6 +168,7 @@ public class OrderReceiveUi extends JPanel {
 	 *            输入框状态（是否可编辑）
 	 */
 	private void setTextState(boolean state) {
+		textID.setEditable(state);
 		textName.setEditable(state);
 		comboBoxStatus.setEnabled(state);
 		OK.setEnabled(state);
@@ -245,27 +243,26 @@ public class OrderReceiveUi extends JPanel {
 	 * 确认按钮按下后的操作
 	 */
 	private void OKOperation() {
-		// TODO 添加异常捕获
-		try {
-			receipt.addOrder(textName.getText());
-			String[] values = { dc.getTime(), textName.getText(), comboBoxStatus.getSelectedItem() + "" };
+//		try {
+			String[] values = { textID.getText(), textName.getText(), comboBoxStatus.getSelectedItem() + "" };
 			if (isUpdate) {
 				table.setValueAt(table.getSelectedRow(), values);
 			} else {
 				table.setValueAt(table.numOfEmpty(), values);
 			}
-
+			
+//			new Deliver().endDeliver(textID.getText(), textName.getText());
+			
 			textName.setText(null);
-		} catch (RemoteException e) {
-			JOptionPane.showMessageDialog(mainFrame, "请检查网络连接！", "Error", JOptionPane.ERROR_MESSAGE);
-		}
+//		} catch (RemoteException e) {
+//			JOptionPane.showMessageDialog(mainFrame, "请检查网络连接！", "Error", JOptionPane.ERROR_MESSAGE);
+//		}
 	}
 
 	/**
 	 * 完成按钮按下后的操作
 	 */
 	private void finishOperation() {
-		//TODO FINISH
 		this.setTextState(false);
 		this.empty();
 	}
@@ -275,9 +272,9 @@ public class OrderReceiveUi extends JPanel {
 	 */
 	private void updateOperation() {
 		ArrayList<String> values = table.getValueAt(table.getSelectedRow());
-		dc.setTime(values.get(1));
+		textID.setText(values.get(1));
 		textName.setText(values.get(2));
-		comboBoxStatus.setSelectedItem(values.get(4));
+		comboBoxStatus.setSelectedItem(values.get(3));
 	}
 
 	/**

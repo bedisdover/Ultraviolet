@@ -2,13 +2,10 @@ package LEMS.presentation.userui;
 
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -19,8 +16,11 @@ import LEMS.businesslogic.orderbl.Order;
 import LEMS.po.orderpo.City;
 import LEMS.po.orderpo.Express;
 import LEMS.po.orderpo.Packing;
+import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.Table;
+import LEMS.presentation.ultraSwing.UltraButton;
+import LEMS.presentation.ultraSwing.UltraComboBox;
 import LEMS.vo.ordervo.CustomerVO;
 import LEMS.vo.ordervo.OrderVO;
 import LEMS.vo.uservo.UserVO;
@@ -65,8 +65,8 @@ public class OrderManageUi extends JPanel {
 	private JTextField cLength;
 	private JTextField cWidth;
 	private JTextField cHeight;
-	private JComboBox<String> cPackage;
-	private JComboBox<String> cExpress;
+	private UltraComboBox cPackage;
+	private UltraComboBox cExpress;
 
 	//乘号
 	private JLabel mul;
@@ -105,12 +105,13 @@ public class OrderManageUi extends JPanel {
 		this.addListener();
 
 		orderVO = new OrderVO();
-		//order = new Order(orderVO, user);
+		order = new Order(orderVO, user);
 	}
 
 	/**
 	 * 初始化
 	 */
+	@SuppressWarnings("unchecked")
 	private void init() {
 		title = new JLabel("订单管理");
 		//寄件人
@@ -143,12 +144,12 @@ public class OrderManageUi extends JPanel {
 		cLength = new JTextField();
 		cWidth = new JTextField();
 		cHeight = new JTextField();
-		cPackage = new JComboBox<String>();
+		cPackage = new UltraComboBox();
 		cPackage.addItem("快递袋");
 		cPackage.addItem("纸箱");
 		cPackage.addItem("木箱");
 		cPackage.addItem("其它");
-		cExpress = new JComboBox<String>();
+		cExpress = new UltraComboBox();
 		cExpress.addItem("标准");
 		cExpress.addItem("经济");
 		cExpress.addItem("特快");
@@ -157,9 +158,9 @@ public class OrderManageUi extends JPanel {
 		mul2 = new JLabel("X");
 		
 		//按钮
-		butOut = new JButton("返回");
-		OK = new JButton("确定");
-		cancel = new JButton("取消");
+		butOut = new UltraButton("返回");
+		OK = new UltraButton("确定");
+		cancel = new UltraButton("取消");
 	}
 
 	/**
@@ -201,8 +202,8 @@ public class OrderManageUi extends JPanel {
 		cHeight.setBounds(297, 495-shang, 40, 27);
 		cPackage.setBounds(191,527-shang,146,27);
 		cExpress.setBounds(191,567-shang,146,27);
-		mul.setBounds(232, 527-shang, 10, 27);
-		mul2.setBounds(287, 527-shang, 10, 27);
+		mul.setBounds(232, 475, 10, 27);
+		mul2.setBounds(287, 475, 10, 27);
 		
 		//设置标签字体
 		sender.setFont(font);
@@ -272,8 +273,8 @@ public class OrderManageUi extends JPanel {
 	private void addListener() {
 		butOut.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				//TODO 返回主界面
-				System.exit(0);
+				LoginUi loginUi = new LoginUi(mainFrame);
+				mainFrame.setContentPane(loginUi);
 			}
 		});
 		
@@ -287,18 +288,6 @@ public class OrderManageUi extends JPanel {
 			public void mouseClicked(MouseEvent e){
 				//清空输入框
 				empty();
-			}
-		});
-		
-		//TODO 添加到MainFrame中
-		mainFrame.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-					System.exit(0);
-				} else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					OKOperation();
-				}
 			}
 		});
 	}
