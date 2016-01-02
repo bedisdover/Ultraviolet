@@ -106,7 +106,6 @@ public class OrderReceiveUi extends JPanel {
 	 */
 	@SuppressWarnings("unchecked")
 	private void initComponents() {
-
 		title.setBounds(449, 20, 148, 39);
 		title.setFont(fnt1);
 
