@@ -16,33 +16,28 @@ public class CourierUi extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	MainFrame mainFrame;
 
 	private OrderManageUi orderManageUi;
 	private JTabbedPane tabbedPane;
 	private OrderReceiveUi orderReceiveUi;
-	private UserVO user;
 
-	public CourierUi(final MainFrame mainFrame,UserVO uvo) {
-		user=uvo;
-		this.mainFrame = mainFrame;
+	public CourierUi(final MainFrame mainFrame, UserVO user) {
 		this.setLayout(new BorderLayout());
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
-		
-		orderManageUi = new OrderManageUi(mainFrame,user);
-		orderReceiveUi = new OrderReceiveUi(mainFrame,user);
+
+		orderManageUi = new OrderManageUi(mainFrame, user);
+		orderReceiveUi = new OrderReceiveUi(mainFrame, user);
 		this.init();
 		this.initComponent();
 	}
 
 	private void init() {
-		tabbedPane = new JTabbedPane(); 
-		ImageIcon image1=new ImageIcon("source\\tabbedpanel\\订单管理.png");
-		ImageIcon image2=new ImageIcon("source\\tabbedpanel\\接收订单.png");
-		
-		tabbedPane.addTab(null,image1,orderManageUi,"订单管理");
-		tabbedPane.addTab(null,image2,orderReceiveUi,"接收订单");
+		tabbedPane = new JTabbedPane();
+		ImageIcon image1 = new ImageIcon("source\\tabbedpanel\\订单管理.png");
+		ImageIcon image2 = new ImageIcon("source\\tabbedpanel\\接收订单.png");
 
+		tabbedPane.addTab(null, image1, orderManageUi, "订单管理");
+		tabbedPane.addTab(null, image2, orderReceiveUi, "接收订单");
 	}
 
 	private void initComponent() {

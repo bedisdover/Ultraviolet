@@ -99,34 +99,4 @@ public class Sending extends AddOrder implements SendingService {
 		
 		return sendingDataService;
 	}
-	
-//	//TODO 应该是快递员送达以后设置的送达时间，但是似乎没有这个功能
-//	/**
-//	 * 存储收件时间
-//	 */
-//	private void setTime(OrderPO orderPO) {
-//		String time = orderPO.getTime();
-//		try {
-//			Date sendDate = DateFormate.DATE_FORMAT.parse(time);
-//			Date receiveDate = new Date();
-//			long diff = receiveDate.getTime() - sendDate.getTime();
-//			//天数
-//			long day = diff / (1000 * 60 * 60 * 24);
-//			//小时数
-//			long hour = (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60);
-//			//时间（天数+小时数）
-//			time = day + "" + hour;
-//			//更新快递所需时间
-//			orderPO.setTime(time);
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		}
-//	}
-//	
-//	/**
-//	 * 存储收件人
-//	 */
-//	private void setReceiver(OrderPO orderPO) {
-//		//TODO 添加实际收件人
-//	}
 }

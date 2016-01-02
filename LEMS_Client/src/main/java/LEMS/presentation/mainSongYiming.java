@@ -1,7 +1,7 @@
 package LEMS.presentation;
 
 import LEMS.po.userpo.UserRole;
-import LEMS.presentation.financeui.SettlementUi;
+import LEMS.presentation.userui.CourierUi;
 import LEMS.vo.uservo.UserVO;
 
 public class mainSongYiming {
@@ -18,12 +18,12 @@ public class mainSongYiming {
 //		mainFrame.setContentPane(managerUi);
 //		FinancialStaffUi financialStaffUi = new FinancialStaffUi(mainFrame, null);
 //		mainFrame.setContentPane(financialStaffUi);
-		SettlementUi settlementUi = new SettlementUi(mainFrame, new UserVO("bc0211000000", "123456", UserRole.FinanceClerk, "", null));
-		mainFrame.setContentPane(settlementUi);
+//		SettlementUi settlementUi = new SettlementUi(mainFrame, new UserVO("bc0211000000", "123456", UserRole.FinanceClerk, "", null));
+//		mainFrame.setContentPane(settlementUi);
 //		SendUi sendUi = new SendUi(mainFrame, null);
 //		mainFrame.setContentPane(sendUi);
-//		CourierUi courierUi = new CourierUi(mainFrame);
-//		mainFrame.setContentPane(courierUi);
+		CourierUi courierUi = new CourierUi(mainFrame, new UserVO("bc0211000000", "123456", UserRole.FinanceClerk, "", null));
+		mainFrame.setContentPane(courierUi);
 //		LoadUi loadUi = new LoadUi(mainFrame, null);
 //		mainFrame.setContentPane(loadUi);
 //		VehicleLoadUi vehicleLoadUi = new VehicleLoadUi(mainFrame, null);

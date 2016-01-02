@@ -1,6 +1,5 @@
 package LEMS.presentation.ultraSwing;
 
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -13,7 +12,6 @@ import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.util.Vector;
 
-import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.Icon;
@@ -31,7 +29,6 @@ import javax.swing.plaf.basic.ComboPopup;
 
 public class UltraComboBox extends JComboBox {
 
-	
 	public UltraComboBox() {
 		super();
 		init();
@@ -58,17 +55,18 @@ public class UltraComboBox extends JComboBox {
 		setUI(new myComboBoxUI());
 
 	}
-	
+
 	protected void paintComponent(Graphics g) {
-		
-		   g.setColor(Color.white);
-		   g.fillRoundRect(0, 0, getWidth()-1, getHeight()-1, 15, 15);
-		   super.paintComponent(g);
-		 }
-		 protected void paintBorder(Graphics g) {
-		   g.setColor(Color.gray.brighter());
-		   g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 15, 15);
-		 }
+
+		g.setColor(Color.white);
+		g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 15, 15);
+		super.paintComponent(g);
+	}
+
+	protected void paintBorder(Graphics g) {
+		g.setColor(Color.gray.brighter());
+		g.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 15, 15);
+	}
 
 	public class myComboBoxRenderer implements ListCellRenderer {
 
@@ -84,24 +82,24 @@ public class UltraComboBox extends JComboBox {
 			JLabel renderer = (JLabel) defaultCellRenderer.getListCellRendererComponent(list, value, index, isSelected,
 					cellHasFocus);
 			if (isSelected) {
-				 renderer.setBackground(Color.white.darker());
-				   renderer.setForeground(Color.white.brighter());
+				renderer.setBackground(Color.white.darker());
+				renderer.setForeground(Color.white.brighter());
 			} else {
 				renderer.setBackground(Color.white.brighter());
 			}
 			list.setSelectionBackground(Color.white);
-			  list.setBorder(null);
-			  Font font = new Font("Courier", Font.PLAIN, 15);
-			  renderer.setFont(font);
-			  renderer.setHorizontalAlignment(JLabel.CENTER);
-			  return renderer;
+			list.setBorder(null);
+			Font font = new Font("Courier", Font.PLAIN, 15);
+			renderer.setFont(font);
+			renderer.setHorizontalAlignment(JLabel.CENTER);
+			return renderer;
 		}
 	}
 
 	public class myComboBoxUI extends BasicComboBoxUI {
-		 Image image=Toolkit.getDefaultToolkit().getImage("source\\arrow.png");
-		 Icon icon=new ImageIcon(image);
-		 private JButton arrow;
+		Image image = Toolkit.getDefaultToolkit().getImage("source\\arrow.png");
+		Icon icon = new ImageIcon(image);
+		private JButton arrow;
 		private boolean boundsLight = false;
 		private static final int ARCWIDTH = 15;
 		private static final int ARCHEIGHT = 15;
@@ -133,7 +131,6 @@ public class UltraComboBox extends JComboBox {
 				paintCurrentValueBackground(g2, r, hasFocus);
 				paintCurrentValue(g2, r, hasFocus);
 			}
-			
 
 			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			int width = (int) this.getPreferredSize(c).getWidth() + arrow.getWidth() - 2;
@@ -158,12 +155,12 @@ public class UltraComboBox extends JComboBox {
 			Font oldFont = comboBox.getFont();
 			comboBox.setFont(new Font("Courier", Font.PLAIN, 15));
 			comboBox.setForeground(Color.BLACK);
-			
+
 			super.paintCurrentValue(g, bounds, hasFocus);
-			//comboBox.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,1));
-			
+			// comboBox.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,1));
+
 		}
-		
+
 		public Dimension getPreferredSize(JComponent c) {
 			return super.getPreferredSize(c);
 		}
@@ -196,7 +193,4 @@ public class UltraComboBox extends JComboBox {
 		}
 	}
 
-
-	
 }
-
