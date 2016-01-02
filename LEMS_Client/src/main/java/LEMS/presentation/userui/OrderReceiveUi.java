@@ -36,7 +36,6 @@ public class OrderReceiveUi extends JPanel {
 	private static final int BOUND_Y = 30;
 
 	private MainFrame mainFrame;
-	private UserVO user;
 	private JLabel title;
 	private UltraButton exit;
 	private UltraButton OK;
@@ -67,7 +66,6 @@ public class OrderReceiveUi extends JPanel {
 
 	public OrderReceiveUi(final MainFrame mainFrame, UserVO userVO) {
 		this.mainFrame = mainFrame;
-		user = userVO;
 		this.setLayout(null);
 		this.setBounds(0, 0, MainFrame.JFRAME_WIDTH, MainFrame.JFRAME_HEIGHT);
 
@@ -85,7 +83,6 @@ public class OrderReceiveUi extends JPanel {
 	 * 初始化
 	 */
 	private void init() {
-
 		title = new JLabel("接收订单");
 		exit = new UltraButton("返回");
 		OK = new UltraButton("确定");
