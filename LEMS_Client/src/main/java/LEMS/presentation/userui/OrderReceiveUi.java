@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
@@ -11,6 +12,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import LEMS.businesslogic.orderbl.Deliver;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.DateChooser;
@@ -243,7 +245,7 @@ public class OrderReceiveUi extends JPanel {
 	 * 确认按钮按下后的操作
 	 */
 	private void OKOperation() {
-//		try {
+		try {
 			String[] values = { textID.getText(), textName.getText(), comboBoxStatus.getSelectedItem() + "" };
 			if (isUpdate) {
 				table.setValueAt(table.getSelectedRow(), values);
@@ -251,12 +253,12 @@ public class OrderReceiveUi extends JPanel {
 				table.setValueAt(table.numOfEmpty(), values);
 			}
 			
-//			new Deliver().endDeliver(textID.getText(), textName.getText());
+			new Deliver().endDeliver(textID.getText(), textName.getText());
 			
 			textName.setText(null);
-//		} catch (RemoteException e) {
-//			JOptionPane.showMessageDialog(mainFrame, "请检查网络连接！", "Error", JOptionPane.ERROR_MESSAGE);
-//		}
+		} catch (RemoteException e) {
+			JOptionPane.showMessageDialog(mainFrame, "订单不存在！", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	/**
@@ -281,7 +283,12 @@ public class OrderReceiveUi extends JPanel {
 	 * 判断输入是否为空
 	 */
 	private boolean isEmpty() {
-		if (textName.getText() == null) {
+		if (textID.getText().equals("")) {
+			JOptionPane.showMessageDialog(mainFrame, "快递单号为空！", "Error", JOptionPane.ERROR_MESSAGE);
+			return true;
+		}
+
+		if (textName.getText().equals("")) {
 			JOptionPane.showMessageDialog(mainFrame, "收件人姓名为空！", "Error", JOptionPane.ERROR_MESSAGE);
 			return true;
 		}
