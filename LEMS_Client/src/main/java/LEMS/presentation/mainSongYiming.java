@@ -1,13 +1,14 @@
 package LEMS.presentation;
 
 import LEMS.po.userpo.UserRole;
-import LEMS.presentation.userui.CourierUi;
+import LEMS.presentation.orderui.ReceiptRecordUi;
 import LEMS.vo.uservo.UserVO;
 
 public class mainSongYiming {
 
 	public static void main(String[] args) {
 		MainFrame mainFrame = new MainFrame();
+		UserVO userVO = new UserVO("bc0211000000", "123456", UserRole.FinanceClerk, "", null);
 //		BusinessClerkUi businessClerkUi = new BusinessClerkUi(mainFrame, null);
 //		mainFrame.setContentPane(businessClerkUi);
 //		ReceiveUi receiveUi = new ReceiveUi(mainFrame, null);
@@ -22,8 +23,8 @@ public class mainSongYiming {
 //		mainFrame.setContentPane(settlementUi);
 //		SendUi sendUi = new SendUi(mainFrame, null);
 //		mainFrame.setContentPane(sendUi);
-		CourierUi courierUi = new CourierUi(mainFrame, new UserVO("bc0211000000", "123456", UserRole.FinanceClerk, "", null));
-		mainFrame.setContentPane(courierUi);
+//		CourierUi courierUi = new CourierUi(mainFrame, new UserVO("bc0211000000", "123456", UserRole.FinanceClerk, "", null));
+//		mainFrame.setContentPane(courierUi);
 //		LoadUi loadUi = new LoadUi(mainFrame, null);
 //		mainFrame.setContentPane(loadUi);
 //		VehicleLoadUi vehicleLoadUi = new VehicleLoadUi(mainFrame, null);
@@ -38,8 +39,8 @@ public class mainSongYiming {
 //		mainFrame.setContentPane(courierUi);
 //		LoadUi2 loadUi2 = new LoadUi2(mainFrame, null);
 //		mainFrame.setContentPane(loadUi2);
-//		ReceiptRecordUi receiptRecordUi = new ReceiptRecordUi(mainFrame, null);
-//		mainFrame.setContentPane(receiptRecordUi);
+		ReceiptRecordUi receiptRecordUi = new ReceiptRecordUi(mainFrame, userVO);
+		mainFrame.setContentPane(receiptRecordUi);
 		mainFrame.setVisible(true);
 		
 		

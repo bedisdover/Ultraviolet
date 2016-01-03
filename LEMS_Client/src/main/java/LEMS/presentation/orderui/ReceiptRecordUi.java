@@ -11,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
-import javax.swing.JTextField;
 
 import LEMS.businesslogic.orderbl.ReceiptRecord;
 import LEMS.po.orderpo.OrderPO;
@@ -31,8 +30,6 @@ import LEMS.vo.uservo.UserVO;
 public class ReceiptRecordUi extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-//	private static final int LOCATION_LABEL_X = 90;
-//	private static final int LOCATION_LABEL_Y = 130;
 	private static final int LOCATION_TEXT_X = 188;
 	private static final int LOCATION_TEXT_Y = 135;
 	private static final int BOUND_X = 130;
@@ -44,8 +41,6 @@ public class ReceiptRecordUi extends JPanel {
 	private UltraButton OK;
 	private UltraButton cancel;
 	private UltraButton add;
-//	private JButton delete;
-//	private JButton update;
 	private UltraButton finish;
 	private JLabel labelDate;
 	private JLabel labelStaff;
@@ -69,7 +64,6 @@ public class ReceiptRecordUi extends JPanel {
 	
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);// 标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);// 其余字体格式
-	private Font fnt2 = new Font("宋体", Font.BOLD, 16);// 按钮字体格式
 	
 	private IncomeVO incomeBillVO;
 	
@@ -106,8 +100,6 @@ public class ReceiptRecordUi extends JPanel {
 		OK = new UltraButton("确定");
 		cancel = new UltraButton("取消");
 		add=new UltraButton("新增");
-//		delete=new JButton("删除");
-//		update=new JButton("修改");
 		finish=new UltraButton("完成");
 		labelDate=new JLabel("日期：");
 		labelStaff=new JLabel("揽件员：");
@@ -138,13 +130,12 @@ public class ReceiptRecordUi extends JPanel {
 		labelMoney.setBounds(90, 275, BOUND_X, BOUND_Y);
 		textStaff.setBounds(LOCATION_TEXT_X, LOCATION_TEXT_Y+75, BOUND_X, BOUND_Y - 6);
 		textNeeded.setBounds(188, 380, BOUND_X, BOUND_Y - 6);
+		textNeeded.setEditable(false);
 		textMoney.setBounds(188, 278, BOUND_X, BOUND_Y - 6);
 		OK.setBounds(103, 468, BOUND_X - 40, BOUND_Y + 10);
 		cancel.setBounds(225, 468, BOUND_X - 40, BOUND_Y + 10);
 		exit.setBounds(80, 50, 100, 40);
 		add.setBounds(150, 590, 120, 40);
-//		delete.setBounds(350, 590, 120,40);
-//		update.setBounds(550, 590, 120, 40);
 		finish.setBounds(750, 590, 120, 40);
 		
 		separator1.setBounds(90, 343, 239, 2);
@@ -167,8 +158,6 @@ public class ReceiptRecordUi extends JPanel {
 		this.add(cancel);
 		this.add(exit);
 		this.add(add);
-//		this.add(delete);
-//		this.add(update);
 		this.add(finish);
 		this.add(separator1);
 		this.add(separator2);
@@ -192,7 +181,6 @@ public class ReceiptRecordUi extends JPanel {
 	 */
 	private void setTextState(boolean state) {
 		textStaff.setEditable(state);
-		textNeeded.setEditable(state);
 		textMoney.setEditable(state);
 		OK.setEnabled(state);
 		cancel.setEnabled(state);
@@ -250,7 +238,7 @@ public class ReceiptRecordUi extends JPanel {
 	private boolean isLegal() {
 		String stuff = textStaff.getText();
 		
-		if (stuff.length() != 10 || stuff.matches("\\d+")) {
+		if (!stuff.startsWith("c") || stuff.length() != 11 || !stuff.substring(1).matches("\\d+")) {
 			JOptionPane.showMessageDialog(mainFrame, "快递员编号输入错误！", "Error", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
