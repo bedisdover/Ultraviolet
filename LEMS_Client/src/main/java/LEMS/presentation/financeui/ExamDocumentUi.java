@@ -92,8 +92,8 @@ public class ExamDocumentUi extends JPanel {
 		this.add(box);
 		this.add(butOut);
 
-		String[] columnNames = { "" };
-		int[] list = { 40, 414, 14, 30, 20, 290, 172, 432, 470 };
+		String[] columnNames = { "序号","单据类型","审批日期","单据状态" };
+		int[] list = { 40, 114, 14, 30, 20, 290, 172, 432, 470 };
 		table = new Table();
 		add(table.drawTable(columnNames, list));
 
