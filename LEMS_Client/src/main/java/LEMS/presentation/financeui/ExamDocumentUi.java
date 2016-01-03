@@ -18,6 +18,8 @@ import LEMS.presentation.method.Table;
 import LEMS.presentation.ultraSwing.UltraButton;
 import LEMS.presentation.ultraSwing.UltraComboBox;
 import LEMS.vo.uservo.UserVO;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  * @author 苏琰梓 审批单据界面 2015年12月4日
@@ -60,6 +62,8 @@ public class ExamDocumentUi extends JPanel {
 		this.init();
 		this.initComponent();
 		this.addListener();
+		
+		
 	}
 
 	private void init() {
@@ -68,7 +72,7 @@ public class ExamDocumentUi extends JPanel {
 		title.setFont(fnt1);
 		name = new JLabel("账号：  " + user.getId());
 		statue = new JLabel("身份： " + UserRole.transfer(user.getRole()));
-		but = new UltraButton("查询");
+		but = new UltraButton("查找");
 		box = new UltraComboBox();
 		
 		font = new Font("Courier", Font.PLAIN, 26);
@@ -80,13 +84,13 @@ public class ExamDocumentUi extends JPanel {
 
 	@SuppressWarnings("unchecked")
 	private void initComponent() {
-		date.setBounds(237+70, 122-25, 80, 25);
+		date.setBounds(289, 97, 80, 25);
 		title.setBounds(444, 26, 249, 45);
 		title.setFont(font);
 		name.setBounds(800,25, 389, 62);
 		statue.setBounds(800,60, 514, 62);
-		but.setBounds(692, 119, 120, 30);
-		box.setBounds(415+70, 122-25, 160, 25);
+		but.setBounds(588, 92, 120, 30);
+		box.setBounds(403, 97, 160, 25);
 		box.addItem("派件单");
 		box.addItem("中转单");
 		box.addItem("装车单");
@@ -126,7 +130,7 @@ public class ExamDocumentUi extends JPanel {
 		
 		but.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-
+				System.out.println(1234);
 			}
 		});
 

@@ -5,7 +5,7 @@ package LEMS.presentation;
  * @author 苏琰梓
  *
  */
-public class main {
+public class Client {
 
 	public static void main(String[] args) {
 		MainFrame mainFrame = new MainFrame();
