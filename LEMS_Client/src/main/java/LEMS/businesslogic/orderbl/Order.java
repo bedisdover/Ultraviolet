@@ -118,12 +118,12 @@ public class Order implements OrderService {
 		return time;
 	}
 
-	public void endOrder() {
+	public void endOrder(String id) {
 		OrderPO orderPO = new OrderPO();
 		CustomerVO sender = order.getSender();
 		CustomerVO receiver = order.getReceiver();
 		GoodsVO goodsVO = order.getGoodsInfo();
-		orderPO.setId(this.createID());
+		orderPO.setId(id);
 		orderPO.setSenderName(sender.getName());
 		orderPO.setSenderAddress(sender.getAddress());
 		orderPO.setSenderPhone(sender.getPhone());

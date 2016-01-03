@@ -324,10 +324,11 @@ public class OrderManageUi extends JPanel {
 		if (!isLegal()) {
 			JOptionPane.showMessageDialog(mainFrame, "请输入正确数值！", "Error", JOptionPane.ERROR_MESSAGE);
 		}
+		String id = order.createID();
 		// 生成订单
-		this.createOrder();
+		this.createOrder(id);
 		//添加到订单列表中
-		String[] values = {order.createID(), cName.getText(), order.getTotal() + ""};
+		String[] values = {id, cName.getText(), order.getTotal() + ""};
 		table.setValueAt(table.numOfEmpty(), values);
 		// 清空输入框
 		this.empty();
@@ -431,7 +432,7 @@ public class OrderManageUi extends JPanel {
 	/**
 	 * 生成订单
 	 */
-	private void createOrder() {
+	private void createOrder(String id) {
 		//添加寄件人信息
 		CustomerVO sender = new CustomerVO();
 		sender.setName(sName.getText());
@@ -454,6 +455,6 @@ public class OrderManageUi extends JPanel {
 		JOptionPane.showMessageDialog(mainFrame, "运费：" + order.getMoney() 
 		+ "\n总计：" + order.getTotal() + "\n预计时间：" + order.getTime());
 		
-		order.endOrder();
+		order.endOrder(id);
 	}
 }
