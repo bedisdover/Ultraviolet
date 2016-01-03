@@ -6,9 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import LEMS.businesslogic.orderbl.transfer.AirplaneTransfer;
 import LEMS.businesslogic.orderbl.transfer.Factory;
-import LEMS.businesslogic.orderbl.transfer.LandwayTransfer;
 import LEMS.businesslogic.orderbl.transfer.Passage;
 import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.businesslogicservice.orderblservice.TransferService;
@@ -53,25 +51,29 @@ public class Transfer extends AddOrder implements TransferService {
 
 	public void createTransferNote(TransportType type) throws RemoteException {
 		TransferNotePO transferNotePO = new TransferNotePO();
-		//TODO 测试运费计算
-//		transferNotePO.setId(this.getDataService().createID(user.getInstitution().getID(), transferVO.getDate()));
-//		transferNotePO.setState(DocumentState.waiting);
-//		transferNotePO.setDate(transferVO.getDate());
-//		transferNotePO.setFlight(transferVO.getFlight());
-//		transferNotePO.setDeparture(user.getInstitution().getLocation());
-//		transferNotePO.setDestination(transferVO.getDestination());
-//		transferNotePO.setContainer(transferVO.getContainer());
-//		transferNotePO.setSuperVision(transferVO.getSuperVision());
-//		transferNotePO.setOrders(orders);
+
+		transferNotePO.setId(this.getDataService().createID(user.getInstitution().getID(), transferVO.getDate()));
+		transferNotePO.setState(DocumentState.waiting);
+		transferNotePO.setDate(transferVO.getDate());
+		transferNotePO.setFlight(transferVO.getFlight());
+		transferNotePO.setDeparture(user.getInstitution().getLocation());
+		transferNotePO.setDestination(transferVO.getDestination());
+		transferNotePO.setContainer(transferVO.getContainer());
+		transferNotePO.setSuperVision(transferVO.getSuperVision());
+		transferNotePO.setOrders(orders);
 		transferNotePO.setPassage(this.calculatePassage(type));
 		
-		this.getDataService().insert(transferNotePO);
+		try {
+			this.getDataService().insert(transferNotePO);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private double calculatePassage(TransportType type) {
 		Passage passage = Factory.createPassage(type);
 		double result = passage.calculateMessage(user.getInstitution().getLocation(), transferVO.getDestination()); 
-		System.out.println(result);
+
 		return result;
 	}
 	

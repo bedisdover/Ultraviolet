@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import LEMS.businesslogic.orderbl.Transfer;
+import LEMS.po.orderpo.City;
 import LEMS.po.storepo.TransportType;
 import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
@@ -149,6 +150,7 @@ public class TransferUi extends JPanel {
 	/**
 	 * 初始化各组件
 	 */
+	@SuppressWarnings("unchecked")
 	private void initComponents() {
 		title.setBounds(465, 26, 230, 39);
 		labelDate.setBounds(LOCATION_LABEL_X, LOCATION_LABEL_Y, BOUND_X, BOUND_Y);
@@ -284,7 +286,6 @@ public class TransferUi extends JPanel {
 		comboBoxFormat.setSelectedIndex(0);
 	}
 
-
 	/**
 	 * 为按钮添加事件监听器
 	 */
@@ -379,15 +380,15 @@ public class TransferUi extends JPanel {
 	}
 	
 	private boolean isEmpty() {
-		if (textDestination.getText() == null || textGuard.getText() == null) {
+		if (textDestination.getText().matches("\\s+") || textGuard.getText().matches("\\s+")) {
 			JOptionPane.showMessageDialog(mainFrame, "输入为空！", "Error", JOptionPane.ERROR_MESSAGE);
 			return true;
 		}
-		if (textFlight.getText() == null || textContainer.getText() == null) {
+		if (textFlight.getText().matches("\\s+") || textContainer.getText().matches("\\s+")) {
 			JOptionPane.showMessageDialog(mainFrame, "输入为空！", "Error", JOptionPane.ERROR_MESSAGE);
 			return true;
 		}
-		if (textId.getText() == null) {
+		if (textId.getText().matches("\\s+") ) {
 			JOptionPane.showMessageDialog(mainFrame, "订单编号为空！", "Error", JOptionPane.ERROR_MESSAGE);
 			return true;
 		}
@@ -401,6 +402,11 @@ public class TransferUi extends JPanel {
 		}
 		if (!textId.getText().matches("\\d+")) {
 			JOptionPane.showMessageDialog(mainFrame, "订单编号输入错误！", "Error", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		
+		if (!City.legalCity(textDestination.getText())) {
+			JOptionPane.showMessageDialog(mainFrame, "目的地输入错误！", "Error", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 		return true;
