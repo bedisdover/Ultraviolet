@@ -90,6 +90,7 @@ public class Transfer extends AddOrder implements LoadService {
 	
 	private double calculatePassage() {
 		//货物总重（单位kg）
+		//TODO 价格计算
 		double weight = sumWeight(orders);
 		double ditance = new Distance().getDistance(user.getInstitution().getLocation(), loadVO.getDestination());
 		return PRICE * ditance * weight / 1000;

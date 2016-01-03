@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import LEMS.businesslogic.financebl.Approval;
 import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
@@ -44,6 +45,9 @@ public class ExamDocumentUi extends JPanel {
 	private UserVO user;
 	private Font fnt1 = new Font("Courier", Font.PLAIN, 26);
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);//其余字体格式
+	
+	private Approval approval;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -67,7 +71,6 @@ public class ExamDocumentUi extends JPanel {
 		but = new UltraButton("查询");
 		box = new UltraComboBox();
 		
-		box.addItemListener(new DocumentListener(box));
 		font = new Font("Courier", Font.PLAIN, 26);
 		butOut = new UltraButton("返回");
 		pass = new UltraButton("通过");
@@ -75,6 +78,7 @@ public class ExamDocumentUi extends JPanel {
 		allPass = new UltraButton("全部通过");
 	}
 
+	@SuppressWarnings("unchecked")
 	private void initComponent() {
 		date.setBounds(237+70, 122-25, 80, 25);
 		title.setBounds(444, 26, 249, 45);
@@ -110,7 +114,7 @@ public class ExamDocumentUi extends JPanel {
 		this.add(noPass);
 		this.add(allPass);
 
-		String[] columnNames = { "序号","单据类型","日期","单据状态" };
+		String[] columnNames = { "序号","ID","日期","单据状态" };
 		int[] list = { 40, 103, 14, 30, 20, 290, 152, 430, 440 };
 		table = new Table();
 		add(table.drawTable(columnNames, list));
@@ -118,6 +122,8 @@ public class ExamDocumentUi extends JPanel {
 	}
 
 	private void addListener() {
+		box.addItemListener(new DocumentListener(box));
+		
 		but.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 
@@ -132,7 +138,7 @@ public class ExamDocumentUi extends JPanel {
 		
 		pass.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-
+				
 			}
 		});
 		
@@ -165,16 +171,9 @@ public class ExamDocumentUi extends JPanel {
 		public void itemStateChanged(ItemEvent e) {
 			if(e.getStateChange() == ItemEvent.SELECTED) {
 	            if(e.getSource() == comboBox) {
-	            	comboBox.getSelectedItem();
-	                int index = comboBox.getSelectedIndex();
-	                System.out.println(index);
+	            	approval = new Approval(comboBox.getSelectedIndex());
 	            } 
 	        }
-		}
-		
-		public Object getInstance() {
-			//TODO 
-			return new Object();
 		}
 	}
 }

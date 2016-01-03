@@ -1,5 +1,7 @@
 package LEMS.businesslogic.financebl;
 
+import LEMS.businesslogic.utility.Approvalable;
+
 /**
  * @author 宋益明
  * 
@@ -15,4 +17,15 @@ public class Factory {
 	}
 	
 	private Factory() {}
+	
+	public Approvalable create(int index) {
+		Approvalable approvalable = null;
+		
+		switch (index) {
+		case 0:
+			
+		}
+		
+		return approvalable;
+	}
 }
