@@ -2,6 +2,8 @@ package LEMS.presentation.financeui;
 
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -64,6 +66,8 @@ public class ExamDocumentUi extends JPanel {
 		statue = new JLabel("身份： " + UserRole.transfer(user.getRole()));
 		but = new UltraButton("查询");
 		box = new UltraComboBox();
+		
+		box.addItemListener(new DocumentListener(box));
 		font = new Font("Courier", Font.PLAIN, 26);
 		butOut = new UltraButton("返回");
 		pass = new UltraButton("通过");
@@ -148,5 +152,29 @@ public class ExamDocumentUi extends JPanel {
 	public void paintComponent(Graphics g) {
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
 		this.repaint();
+	}
+	
+	class DocumentListener implements ItemListener {
+		private UltraComboBox comboBox;
+		
+		public DocumentListener(UltraComboBox comboBox) {
+			this.comboBox = comboBox;
+		}
+		
+		@Override
+		public void itemStateChanged(ItemEvent e) {
+			if(e.getStateChange() == ItemEvent.SELECTED) {
+	            if(e.getSource() == comboBox) {
+	            	comboBox.getSelectedItem();
+	                int index = comboBox.getSelectedIndex();
+	                System.out.println(index);
+	            } 
+	        }
+		}
+		
+		public Object getInstance() {
+			//TODO 
+			return new Object();
+		}
 	}
 }
