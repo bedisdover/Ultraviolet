@@ -149,7 +149,7 @@ public class OrderReceiveUi extends JPanel {
 		this.add(update);
 		this.add(finish);
 
-		String[] columnNames = { "序号", "到达日期", "收件人姓名", "货物到达状态" };
+		String[] columnNames = { "序号", "快递单号", "收件人姓名", "货物到达状态" };
 		int[] list = { 40, 135, 14, 30, 20, 388, 125, 558, 430 };
 
 		table = new Table();
@@ -249,7 +249,7 @@ public class OrderReceiveUi extends JPanel {
 				table.setValueAt(table.numOfEmpty(), values);
 			}
 			
-			new Deliver().endDeliver(textID.getText(), textName.getText());
+			new Deliver().endDeliver(textID.getText(), dc.getTime(), textName.getText());
 			
 			textName.setText(null);
 		} catch (RemoteException e) {

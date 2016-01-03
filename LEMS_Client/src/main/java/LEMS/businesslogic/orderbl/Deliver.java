@@ -14,26 +14,29 @@ import LEMS.po.orderpo.OrderPO;
  */
 public class Deliver extends AddOrder {
 	
-	public void endDeliver(String id, String receiver) throws RemoteException {
-		OrderPO order = findOrder(id);
+	private OrderPO order;
+	
+	public void endDeliver(String id, String time, String receiver) throws RemoteException {
+		order = findOrder(id);
 		
-		this.setReceiver(order, receiver);
-		this.setTime(order);
+		this.setReceiver(receiver);
+		this.setTime(time);
 		//更新订单信息
 		updateOrder(order);
+		System.out.println(order.getReceiver());
 	}
 	
-	private void setReceiver(OrderPO order, String name) {
+	private void setReceiver(String name) {
 		order.setReceiver(name);
 	}
 	
 	/**
 	 * 存储收件时间
 	 */
-	private void setTime(OrderPO orderPO) {
-		String time = orderPO.getTime();
+	private void setTime(String time) {
+		String orderTime = order.getTime();
 		try {
-			Date sendDate = DateFormate.DATE_FORMAT.parse(time);
+			Date sendDate = DateFormate.DATE_FORMAT.parse(orderTime);
 			Date receiveDate = new Date();
 			long diff = receiveDate.getTime() - sendDate.getTime();
 			//天数
@@ -41,9 +44,9 @@ public class Deliver extends AddOrder {
 			//小时数
 			long hour = (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60);
 			//时间（天数+小时数）
-			time = day + "" + hour;
+			orderTime = day + "" + hour;
 			//更新快递所需时间
-			orderPO.setTime(time);
+			order.setTime(orderTime);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

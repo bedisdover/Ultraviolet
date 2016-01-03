@@ -6,8 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import LEMS.data.userdata.UserData;
-
 public class Connect {
 	public static final String DBDRIVER = "org.gjt.mm.mysql.Driver";
 	public static final String DBURL = "jdbc:mysql://172.25.135.175:3306/mldn";

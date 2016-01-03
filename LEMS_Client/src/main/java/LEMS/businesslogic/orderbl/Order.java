@@ -4,9 +4,11 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.Date;
 
 import LEMS.businesslogic.financebl.Price;
 import LEMS.businesslogic.inquirebl.inquirelogisticsinfo.InquireLogisticsInfo;
+import LEMS.businesslogic.utility.DateFormate;
 import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.businesslogicservice.orderblservice.OrderService;
 import LEMS.dataservice.factory.DatabaseFactory;
@@ -135,8 +137,8 @@ public class Order implements OrderService {
 		orderPO.setExpressType(order.getExpressType());
 		orderPO.setPackageType(order.getPackingType());
 		orderPO.setAmount(this.getTotal());
-		orderPO.setTime(this.getTime());
-		orderPO.setReceiver("张五");
+		orderPO.setTime(DateFormate.DATE_FORMAT.format(new Date()));
+		orderPO.setReceiver("");
 		orderPO.setDeliver("");
 		orderPO.setCollector(user.getId());
 		
