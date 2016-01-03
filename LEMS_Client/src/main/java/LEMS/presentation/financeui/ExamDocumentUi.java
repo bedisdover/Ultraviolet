@@ -34,6 +34,9 @@ public class ExamDocumentUi extends JPanel {
 	private JLabel statue;
 	private UltraButton but;
 	private UltraButton butOut;
+	private UltraButton pass;
+	private UltraButton noPass;
+	private UltraButton allPass;
 
 	private Table table;
 	private UserVO user;
@@ -63,6 +66,9 @@ public class ExamDocumentUi extends JPanel {
 		box = new UltraComboBox();
 		font = new Font("Courier", Font.PLAIN, 26);
 		butOut = new UltraButton("返回");
+		pass = new UltraButton("通过");
+		noPass = new UltraButton("不通过");
+		allPass = new UltraButton("全部通过");
 	}
 
 	private void initComponent() {
@@ -80,6 +86,11 @@ public class ExamDocumentUi extends JPanel {
 		box.addItem("装车单");
 		box.addItem("装运单");
 		butOut.setBounds(52, 36, 120, 40);
+		int b = 120;// 整体左移量
+		int change = 30;// 整体上移量
+		pass.setBounds(292 - b, 642 - change, 109, 40);
+		noPass.setBounds(558 - b, 642 - change, 109, 40);
+		allPass.setBounds(823 - b, 642 - change, 153, 40);
 
 		//设置字体
 		date.setFont(fnt);
@@ -92,8 +103,8 @@ public class ExamDocumentUi extends JPanel {
 		this.add(box);
 		this.add(butOut);
 
-		String[] columnNames = { "序号","单据类型","审批日期","单据状态" };
-		int[] list = { 40, 114, 14, 30, 20, 290, 172, 432, 470 };
+		String[] columnNames = { "序号","单据类型","日期","单据状态" };
+		int[] list = { 40, 103, 14, 30, 20, 290, 172, 430, 460 };
 		table = new Table();
 		add(table.drawTable(columnNames, list));
 
@@ -109,6 +120,24 @@ public class ExamDocumentUi extends JPanel {
 		butOut.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				mainFrame.setContentPane(new LoginUi(mainFrame));
+			}
+		});
+		
+		pass.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+
+			}
+		});
+		
+		noPass.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+
+			}
+		});
+		
+		allPass.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+
 			}
 		});
 	}

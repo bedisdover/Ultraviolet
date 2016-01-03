@@ -2,7 +2,7 @@ package LEMS.presentation;
 
 import LEMS.po.informationpo.InstitutionPO;
 import LEMS.po.userpo.UserRole;
-import LEMS.presentation.financeui.SettingPriceUi;
+import LEMS.presentation.financeui.ExamDocumentUi;
 import LEMS.vo.uservo.UserVO;
 
 public class mainSuyanzi {
@@ -18,8 +18,9 @@ public class mainSuyanzi {
 //		AccountManageUi a = new AccountManageUi(mainFrame,user);
 //		TransferClerkUi a = new TransferClerkUi(mainFrame,user);
 //		ExamDocumentUi a = new ExamDocumentUi(mainFrame,user);
-		SettingPriceUi a = new SettingPriceUi(mainFrame,user);
+//		SettingPriceUi a = new SettingPriceUi(mainFrame,user);
 //		CourierUi a = new CourierUi(mainFrame,user);
+		ExamDocumentUi a = new ExamDocumentUi(mainFrame,user);
 		mainFrame.setContentPane(a);
 	}
 
