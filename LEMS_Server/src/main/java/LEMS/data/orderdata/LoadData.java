@@ -110,6 +110,30 @@ public class LoadData extends UnicastRemoteObject implements LoadDataService {
 		}
 	}
 
+
+	@Override
+	public ArrayList<LoadNotePO> findAll() throws RemoteException {
+		ArrayList<LoadNotePO> loadNotePOs = new ArrayList<>();
+		
+		String sql = "SELECT * FROM loadnote";
+		
+		ResultSet result = connect.getResultSet(sql);
+		
+		try {
+			while (result.next()) {
+				if (result.getString(2).equals("waiting")) {
+					loadNotePOs.add(find(result.getString(1)));
+				}
+			}
+			
+			connect.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return loadNotePOs;
+	}
+	
 	@Override
 	public String createID(String institution, String date) throws RemoteException {
 		String id = new CreateID().createID("cash", ID_LENGTH, institution + date);

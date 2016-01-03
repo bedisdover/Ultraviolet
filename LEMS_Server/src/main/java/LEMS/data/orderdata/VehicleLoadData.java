@@ -11,6 +11,7 @@ import LEMS.data.Connect;
 import LEMS.data.TransferID;
 import LEMS.dataservice.orderdataservice.VehicleLoadDataService;
 import LEMS.po.financepo.DocumentState;
+import LEMS.po.orderpo.LoadNotePO;
 import LEMS.po.orderpo.OrderPO;
 import LEMS.po.orderpo.VehicleLoadNotePO;
 
@@ -61,6 +62,29 @@ public class VehicleLoadData extends UnicastRemoteObject implements VehicleLoadD
 		}
 		
 		return vehicleLoadNotePO;
+	}
+	
+	@Override
+	public ArrayList<VehicleLoadNotePO> findAll() throws RemoteException {
+		ArrayList<VehicleLoadNotePO> vehicleLoadNotePOs = new ArrayList<>();
+		
+		String sql = "SELECT * FROM vehicleloadnote";
+		
+		ResultSet result = connect.getResultSet(sql);
+		
+		try {
+			while (result.next()) {
+				if (result.getString(2).equals("waiting")) {
+					vehicleLoadNotePOs.add(find(result.getString(1)));
+				}
+			}
+			
+			connect.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return vehicleLoadNotePOs;
 	}
 
 	@Override

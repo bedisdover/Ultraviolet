@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import LEMS.data.Connect;
 import LEMS.data.TransferID;
@@ -55,6 +56,29 @@ public class SendingData extends UnicastRemoteObject implements SendingDataServi
 		}
 		
 		return deliveryNotePO;
+	}
+	
+	@Override
+	public ArrayList<DeliveryNotePO> findAll() throws RemoteException {
+		ArrayList<DeliveryNotePO> deliveryNotePOs = new ArrayList<>();
+		
+		String sql = "SELECT * FROM deliverynote";
+		
+		ResultSet result = connect.getResultSet(sql);
+		
+		try {
+			while (result.next()) {
+				if (result.getString(2).equals("waiting")) {
+					deliveryNotePOs.add(find(result.getString(1)));
+				}
+			}
+			
+			connect.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return deliveryNotePOs;
 	}
 
 	@Override

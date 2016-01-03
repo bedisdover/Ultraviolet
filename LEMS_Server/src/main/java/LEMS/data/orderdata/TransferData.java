@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import LEMS.data.Connect;
 import LEMS.data.TransferID;
@@ -41,7 +42,7 @@ public class TransferData extends UnicastRemoteObject implements TransferDataSer
 	public TransferNotePO find(String id) throws RemoteException {
 		TransferNotePO transferNotePO = new TransferNotePO();
 		
-		String sql = "SELECT * FROM arrivalnote WHERE id = " + id;
+		String sql = "SELECT * FROM transfernote WHERE id = " + id;
 
 		ResultSet result = connect.getResultSet(sql);
 		
@@ -64,6 +65,29 @@ public class TransferData extends UnicastRemoteObject implements TransferDataSer
 		}
 		
 		return transferNotePO;
+	}
+	
+	@Override
+	public ArrayList<TransferNotePO> findAll() throws RemoteException {
+		ArrayList<TransferNotePO> transferNotePOs = new ArrayList<>();
+		
+		String sql = "SELECT * FROM transfernote";
+		
+		ResultSet result = connect.getResultSet(sql);
+		
+		try {
+			while (result.next()) {
+				if (result.getString(2).equals("waiting")) {
+					transferNotePOs.add(find(result.getString(1)));
+				}
+			}
+			
+			connect.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return transferNotePOs;
 	}
 
 	@Override

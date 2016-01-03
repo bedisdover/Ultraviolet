@@ -71,6 +71,29 @@ public class ReceiptData extends UnicastRemoteObject implements ReceiptDataServi
 	}
 
 	@Override
+	public ArrayList<ArrivalNotePO> findAll() throws RemoteException {
+		ArrayList<ArrivalNotePO> arrivalNotePOs = new ArrayList<>();
+		
+		String sql = "SELECT * FROM arrivalnote";
+		
+		ResultSet result = connect.getResultSet(sql);
+		
+		try {
+			while (result.next()) {
+				if (result.getString(2).equals("waiting")) {
+					arrivalNotePOs.add(find(result.getString(1)));
+				}
+			}
+			
+			connect.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return arrivalNotePOs;
+	}
+
+	@Override
 	public void insert(ArrivalNotePO arrivalNotePO) throws RemoteException {
 		String sql = "INSERT INTO arrivalnote VALUES (?, ?, ?, ?, ?, ?, ?)";
 		

@@ -66,6 +66,29 @@ public class ReceiptRecordData extends UnicastRemoteObject implements ReceiptRec
 	}
 
 	@Override
+	public ArrayList<IncomePO> findAll() throws RemoteException {
+		ArrayList<IncomePO> incomePOs = new ArrayList<>();
+		
+		String sql = "SELECT * FROM cash";
+		
+		ResultSet result = connect.getResultSet(sql);
+		
+		try {
+			while (result.next()) {
+				if (result.getString(2).equals("waiting")) {
+					incomePOs.add(find(result.getString(1)));
+				}
+			}
+			
+			connect.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return incomePOs;
+	}
+
+	@Override
 	public void insert(IncomePO incomeBillPO) throws RemoteException {
 		String sql = "INSERT INTO cash VALUES (?, ?, ?, ?, ?, ?)";
 		
