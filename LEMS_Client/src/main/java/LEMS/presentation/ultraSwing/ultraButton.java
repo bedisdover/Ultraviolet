@@ -33,6 +33,9 @@ public class UltraButton extends JButton {
 		Image imageLook = Toolkit.getDefaultToolkit().getImage("source/look.png");
 		Image imageAddToReceiptRecord = Toolkit.getDefaultToolkit().getImage("source/addtoreceiptrecord.png");
 		Image imageInquireInformation = Toolkit.getDefaultToolkit().getImage("source/inquireinformation.png");
+		Image imagePass = Toolkit.getDefaultToolkit().getImage("source/pass.png");
+		Image imageNoPass = Toolkit.getDefaultToolkit().getImage("source/NoPass.png");
+		Image imageAllPass = Toolkit.getDefaultToolkit().getImage("source/AllPass.png");
 		
 		ImageIcon iconExit = new ImageIcon(imageExit);
 		ImageIcon iconAdd = new ImageIcon(imageAdd);
@@ -49,6 +52,9 @@ public class UltraButton extends JButton {
 		ImageIcon iconLook = new ImageIcon(imageLook);
 		ImageIcon iconAddToReceiptRecord = new ImageIcon(imageAddToReceiptRecord);
 		ImageIcon iconInquireInformation = new ImageIcon(imageInquireInformation);
+		ImageIcon iconPass = new ImageIcon(imagePass);
+		ImageIcon iconNoPass = new ImageIcon(imageNoPass);
+		ImageIcon iconAllPass = new ImageIcon(imageAllPass);
 		
 		if (text.equals("返回")) {
 			this.setIcon(iconExit);
@@ -94,6 +100,12 @@ public class UltraButton extends JButton {
 		}
 		if (text.equals("查看收款信息")) {
 			this.setIcon(iconInquireInformation);
+		}if (text.equals("通过")) {
+			this.setIcon(iconPass);
+		}if (text.equals("不通过")) {
+			this.setIcon(iconNoPass);
+		}if (text.equals("全部通过")) {
+			this.setIcon(iconAllPass);
 		}
 
 	}

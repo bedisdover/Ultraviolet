@@ -72,13 +72,13 @@ public class ExamDocumentUi extends JPanel {
 	}
 
 	private void initComponent() {
-		date.setBounds(237, 122, 80, 25);
+		date.setBounds(237+70, 122-25, 80, 25);
 		title.setBounds(444, 26, 249, 45);
 		title.setFont(font);
-		name.setBounds(355, 75, 135, 28);
-		statue.setBounds(528, 75, 183, 28);
+		name.setBounds(800,25, 389, 62);
+		statue.setBounds(800,60, 514, 62);
 		but.setBounds(692, 119, 120, 30);
-		box.setBounds(415, 122, 160, 25);
+		box.setBounds(415+70, 122-25, 160, 25);
 		box.addItem("付款单");
 		box.addItem("收款单");
 		box.addItem("派件单");
@@ -102,9 +102,12 @@ public class ExamDocumentUi extends JPanel {
 		this.add(but);
 		this.add(box);
 		this.add(butOut);
+		this.add(pass);
+		this.add(noPass);
+		this.add(allPass);
 
 		String[] columnNames = { "序号","单据类型","日期","单据状态" };
-		int[] list = { 40, 103, 14, 30, 20, 290, 172, 430, 460 };
+		int[] list = { 40, 103, 14, 30, 20, 290, 152, 430, 440 };
 		table = new Table();
 		add(table.drawTable(columnNames, list));
 

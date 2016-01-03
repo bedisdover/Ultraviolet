@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
 import LEMS.presentation.method.Table;
@@ -39,6 +40,8 @@ public class SettingPriceUi extends JPanel {
 	Font font = new Font("Courier", Font.PLAIN, 26);
 	String[] add;
 
+	private JLabel name;
+	private JLabel statue;
 	JLabel xuanze = new JLabel("制定常量：");
 	JLabel city1 = new JLabel("城市：");
 	JLabel city2 = new JLabel("城市：");
@@ -61,13 +64,11 @@ public class SettingPriceUi extends JPanel {
 				MainFrame.JFRAME_HEIGHT);
 		this.setLayout(null);
 		this.mainFrame = mainFrame;
+		name = new JLabel("账号：  " + user.getId());
+		statue = new JLabel("身份： " + UserRole.transfer(user.getRole()));
 		user=uvo;
-		//		JLabel name = new JLabel("账号："+user.getId());
-		//		JLabel statue = new JLabel("身份：    总经理");
 		title.setBounds(456,26,249,45);
 		title.setFont(font);
-		//		name.setBounds(375,75,135,28);
-		//		statue.setBounds(548,75,183,28);
 		butOut.setBounds(60,41,120,40);
 		butAdd.setBounds(860,41,120,40);
 		
@@ -84,6 +85,8 @@ public class SettingPriceUi extends JPanel {
 		packageType.setBounds(135,220,120,30);
 		Transport.setBounds(406,220,80,30);
 		transportType.setBounds(465,220,120,30);
+		name.setBounds(355,75,135,28);
+		statue.setBounds(528,75,183,28);
 		
 		
 		xz.addItem("制定价格");
@@ -105,19 +108,8 @@ public class SettingPriceUi extends JPanel {
 		transportType.addItem("火车");
 		transportType.addItem("汽车");
 		transportType.addItem("飞机");
-		//		text.setBounds(486,442,100,30);
-		//		text.setForeground(Color.RED);
-
-//		userId = new JLabel(" 账号： "+user.getId());
-//		userId.setLocation(389, 82);
-//		userId.setSize(180, 25);
-		//userRole = new JLabel("身份： "+UserRole.transfer(user.getRole()));
-//		userRole.setLocation(514, 82);
-//		userRole.setSize(180, 25);
 		
 		this.add(title);
-		//		this.add(name);
-		//		this.add(statue);
 		this.add(butOut);
 		this.add(butAdd);
 		this.add(city1);
@@ -133,8 +125,8 @@ public class SettingPriceUi extends JPanel {
 		this.add(transportType);
 		this.add(xuanze);
 		this.add(xz);
-//		this.add(userId);
-//		this.add(userRole);
+		this.add(name);
+		this.add(statue);
 		this.initComponents();
 		this.addListener();
 
@@ -143,7 +135,7 @@ public class SettingPriceUi extends JPanel {
 	public void initComponents(){
 		String[] columnNames1 = { "" };
 		add = columnNames1;
-		int[] list1 = { 30, 781, 14, 1, 20, 102, 280, 798, 400 };
+		int[] list1 = { 30, 781, 14, 1, 20, 102, 280, 798, 360 };
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
 		// *
