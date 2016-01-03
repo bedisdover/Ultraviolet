@@ -103,6 +103,7 @@ public class LoginUi extends JPanel {
 							break;
 						//登录后跳转到总经理界面
 						case GeneralManager:
+							System.out.println("猪头1");
 							mainFrame.setContentPane(new GeneralManagerUi(mainFrame,userVO));
 							repaint();
 							break;

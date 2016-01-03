@@ -120,7 +120,7 @@ public class CostUi extends JPanel {
 		button[0].setBounds(276 - b, 554 - change, 99, 42);
 		button[1] = new UltraButton("取消");
 		button[1].setBounds(394 - b, 554 - change, 99, 42);
-		button[2] = new UltraButton("新建");
+		button[2] = new UltraButton("新增");
 		button[2].setBounds(292 - b, 642 - change, 109, 40);
 		button[3] = new UltraButton("删除");
 		button[3].setBounds(558 - b, 642 - change, 109, 40);
