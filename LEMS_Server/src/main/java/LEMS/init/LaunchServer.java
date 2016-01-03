@@ -27,7 +27,7 @@ public class LaunchServer {
 		field.setFont(new Font("宋体", Font.PLAIN, 40));
 		frame.getContentPane().add(field);
 		frame.setVisible(true);
-
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		 try {
 			  DatabaseFactory data=new DatabaseFactoryImpl();
 			  LocateRegistry.createRegistry(PORT); 
