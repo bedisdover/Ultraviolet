@@ -6,11 +6,13 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import LEMS.businesslogic.utility.Approvalable;
 import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.businesslogicservice.orderblservice.SendingService;
 import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.OrderFactory;
 import LEMS.dataservice.orderdataservice.SendingDataService;
+import LEMS.po.financepo.DocumentState;
 import LEMS.po.orderpo.DeliveryNotePO;
 import LEMS.po.orderpo.OrderPO;
 import LEMS.vo.ordervo.DeliveryVO;
@@ -21,7 +23,7 @@ import LEMS.vo.uservo.UserVO;
  * 
  * 派件任务
  */
-public class Sending extends AddOrder implements SendingService {
+public class Sending extends AddOrder implements SendingService, Approvalable {
 
 	/**
 	 * 订单列表
@@ -34,6 +36,8 @@ public class Sending extends AddOrder implements SendingService {
 	private DeliveryVO deliveryVO;
 	
 	private UserVO userVO;
+	
+	public Sending() {}
 	
 	public Sending(UserVO userVO, DeliveryVO deliveryVO) {
 		//新建订单列表
@@ -81,6 +85,15 @@ public class Sending extends AddOrder implements SendingService {
 		return id;
 	}
 	
+	@Override
+	public void approval(String id, DocumentState state) {
+		try {
+			this.getDataService().find(id).setState(state);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
+
 	private SendingDataService getDataService() {
 		
 		SendingDataService sendingDataService = null;

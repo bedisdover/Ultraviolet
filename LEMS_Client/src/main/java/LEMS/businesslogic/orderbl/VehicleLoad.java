@@ -6,6 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import LEMS.businesslogic.utility.Approvalable;
 import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.businesslogicservice.orderblservice.VehicleLoadService;
 import LEMS.dataservice.factory.DatabaseFactory;
@@ -22,7 +23,7 @@ import LEMS.vo.uservo.UserVO;
  * 
  * 车辆装车管理任务
  */
-public class VehicleLoad extends AddOrder implements VehicleLoadService {
+public class VehicleLoad extends AddOrder implements VehicleLoadService, Approvalable {
 
 	/**
 	 * 运费（单价）
@@ -36,6 +37,8 @@ public class VehicleLoad extends AddOrder implements VehicleLoadService {
 	private UserVO user;
 	
 	private VehicleLoadVO vehicleLoadVO;
+	
+	public VehicleLoad() {}
 	
 	public VehicleLoad(UserVO user, VehicleLoadVO vehicleLoadVO) {
 		this.user = user;
@@ -98,6 +101,15 @@ public class VehicleLoad extends AddOrder implements VehicleLoadService {
 		double weight = sumWeight(orders);
 		double distance = new Distance().getDistance(user.getInstitution().getLocation(), vehicleLoadVO.getDestination());
 		return PRICE * distance * weight / 1000;
+	}
+	
+	@Override
+	public void approval(String id, DocumentState state) {
+		try {
+			this.getDataService().find(id).setState(state);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private VehicleLoadDataService getDataService() {

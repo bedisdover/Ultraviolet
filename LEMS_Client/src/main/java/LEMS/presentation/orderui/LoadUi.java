@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import LEMS.businesslogic.orderbl.transfer.Transfer;
+import LEMS.businesslogic.orderbl.transfer.Load;
 import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
@@ -71,7 +71,7 @@ public class LoadUi extends JPanel {
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);//标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);//其余字体格式
 	
-	private Transfer load;
+	private Load load;
 	
 	private LoadVO loadVO;
 	
@@ -92,7 +92,7 @@ public class LoadUi extends JPanel {
 		this.addListener();
 
 		loadVO = new LoadVO();
-		load = new Transfer(loadVO, userVO);
+		load = new Load(loadVO, userVO);
 		
 		isUpdate = false;
 	}

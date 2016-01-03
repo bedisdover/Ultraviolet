@@ -87,12 +87,12 @@ public class ExamDocumentUi extends JPanel {
 		statue.setBounds(800,60, 514, 62);
 		but.setBounds(692, 119, 120, 30);
 		box.setBounds(415+70, 122-25, 160, 25);
-		box.addItem("付款单");
-		box.addItem("收款单");
 		box.addItem("派件单");
 		box.addItem("中转单");
 		box.addItem("装车单");
 		box.addItem("装运单");
+		box.addItem("付款单");
+		box.addItem("收款单");
 		butOut.setBounds(52, 36, 120, 40);
 		int b = 120;// 整体左移量
 		int change = 30;// 整体上移量

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import LEMS.businesslogic.orderbl.transfer.Factory;
 import LEMS.businesslogic.orderbl.transfer.Passage;
+import LEMS.businesslogic.utility.Approvalable;
 import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.businesslogicservice.orderblservice.TransferService;
 import LEMS.dataservice.factory.DatabaseFactory;
@@ -25,7 +26,7 @@ import LEMS.vo.uservo.UserVO;
  * 
  * 中转任务
  */
-public class Transfer extends AddOrder implements TransferService {
+public class Transfer extends AddOrder implements TransferService, Approvalable {
 
 	/**
 	 * 订单列表
@@ -35,6 +36,8 @@ public class Transfer extends AddOrder implements TransferService {
 	private UserVO user;
 	
 	private TransferVO transferVO;
+	
+	public Transfer() {}
 	
 	public Transfer(UserVO user, TransferVO transferVO) {
 		
@@ -75,6 +78,15 @@ public class Transfer extends AddOrder implements TransferService {
 		double result = passage.calculateMessage(user.getInstitution().getLocation(), transferVO.getDestination()); 
 
 		return result;
+	}
+	
+	@Override
+	public void approval(String id, DocumentState state) {
+		try {
+			this.getDataService().find(id).setState(state);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private TransferDataService getDataService() throws RemoteException {

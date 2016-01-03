@@ -3,7 +3,6 @@ package LEMS.businesslogic.financebl;
 import LEMS.businesslogic.utility.Approvalable;
 import LEMS.businesslogicservice.financeblservice.ApprovalService;
 import LEMS.po.financepo.DocumentState;
-import LEMS.vo.financevo.DocumentVO;
 
 /**
  * @author 宋益明
@@ -25,5 +24,4 @@ public class Approval implements ApprovalService {
 	public void unaccepted(String id) {
 		approvalable.approval(id, DocumentState.unaccepted);
 	}
-
 }
