@@ -18,6 +18,7 @@ import javax.swing.SwingConstants;
 public class LaunchServer {
 	public static final int PORT=1099;
 	public static void main(String[] args){
+		
 		JFrame frame=new JFrame();
 		frame.setBounds(new Rectangle(500, 400, 200, 150));
 		JTextField field=new JTextField();
@@ -30,7 +31,7 @@ public class LaunchServer {
 		 try {
 			  DatabaseFactory data=new DatabaseFactoryImpl();
 			  LocateRegistry.createRegistry(PORT); 
-			  java.rmi.Naming.rebind("rmi://172.25.135.175:1099/data",  data);
+			  java.rmi.Naming.rebind("rmi://"+GetIP.IP+":1099/data",  data);
 			  field.setText("Ready!");
 	          System.out.println("ready...");
 	       } catch (Exception e) {
