@@ -53,7 +53,7 @@ public class FinancialStaffUi extends JPanel {
 		ImageIcon image5=new ImageIcon("source\\tabbedpanel\\账户管理.png");
 		
 		tabbedPane.addTab(null,image1,settlementPanel,"结算管理界面");  
-        tabbedPane.addTab(null,image2,costPanel,"成本管理界面");
+        //tabbedPane.addTab(null,image2,costPanel,"成本管理界面");
         tabbedPane.addTab(null,image3,statisticsReportUi,"统计报表界面"); 
         tabbedPane.addTab(null,image4,diaryUi,"查询日志界面"); 
         tabbedPane.addTab(null,image5,accountPanel,"账户管理界面"); 

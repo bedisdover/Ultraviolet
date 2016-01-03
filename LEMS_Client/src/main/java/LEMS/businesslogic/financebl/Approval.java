@@ -1,8 +1,8 @@
 package LEMS.businesslogic.financebl;
 
+import LEMS.businesslogic.utility.Approvalable;
 import LEMS.businesslogicservice.financeblservice.ApprovalService;
 import LEMS.po.financepo.DocumentState;
-import LEMS.vo.financevo.DocumentVO;
 
 /**
  * @author 宋益明
@@ -11,12 +11,17 @@ import LEMS.vo.financevo.DocumentVO;
  */
 public class Approval implements ApprovalService {
 
-	public void accepted(DocumentVO document) {
-		document.setState(DocumentState.accepted);
+	private Approvalable approvalable;
+	
+	public Approval(int index) {
+		approvalable = Factory.factory.create(index);
+	}
+	
+	public void accepted(String id) {
+		approvalable.approval(id, DocumentState.accepted);
 	}
 
-	public void unaccepted(DocumentVO document) {
-		document.setState(DocumentState.unaccepted);		
+	public void unaccepted(String id) {
+		approvalable.approval(id, DocumentState.unaccepted);
 	}
-
 }

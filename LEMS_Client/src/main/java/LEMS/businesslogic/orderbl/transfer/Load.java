@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import LEMS.businesslogic.orderbl.AddOrder;
 import LEMS.businesslogic.orderbl.Distance;
+import LEMS.businesslogic.utility.Approvalable;
 import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.businesslogicservice.orderblservice.LoadService;
 import LEMS.dataservice.factory.DatabaseFactory;
@@ -27,7 +28,7 @@ import LEMS.vo.uservo.UserVO;
  * 目的地中转中心业务员负责出库、装车，并在系统中录入装车单
  * 发往各个营业厅
  */
-public class Transfer extends AddOrder implements LoadService {
+public class Load extends AddOrder implements LoadService, Approvalable {
 	/**
 	 * 订单列表
 	 */
@@ -42,7 +43,9 @@ public class Transfer extends AddOrder implements LoadService {
 	 */
 	private final int PRICE = 2;
 	
-	public Transfer(LoadVO loadVO, UserVO user) {
+	public Load(){};
+	
+	public Load(LoadVO loadVO, UserVO user) {
 		this.loadVO = loadVO;
 		this.user = user;
 		//新建订单列表
@@ -93,6 +96,15 @@ public class Transfer extends AddOrder implements LoadService {
 		double weight = sumWeight(orders);
 		double ditance = new Distance().getDistance(user.getInstitution().getLocation(), loadVO.getDestination());
 		return PRICE * ditance * weight / 1000;
+	}
+	
+	@Override
+	public void approval(String id, DocumentState state) {
+		try {
+			this.getDataService().find(id).setState(state);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private LoadDataService getDataService() {

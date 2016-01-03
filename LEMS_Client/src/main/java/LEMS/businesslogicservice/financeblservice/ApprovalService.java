@@ -1,7 +1,5 @@
 package LEMS.businesslogicservice.financeblservice;
 
-import LEMS.vo.financevo.DocumentVO;
-
 /**
  * @author 宋益明
  * 
@@ -13,11 +11,11 @@ public interface ApprovalService {
 	 * 
 	 * @param document 待审核单据
 	 */
-	public void accepted(DocumentVO document);
+	public void accepted(String id);
 	/**
 	 * 审批单据不通过
 	 * 
 	 * @param document 待审核单据
 	 */
-	public void unaccepted(DocumentVO document);
+	public void unaccepted(String id);
 }

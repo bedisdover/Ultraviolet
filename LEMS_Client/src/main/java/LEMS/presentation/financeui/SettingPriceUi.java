@@ -64,9 +64,9 @@ public class SettingPriceUi extends JPanel {
 				MainFrame.JFRAME_HEIGHT);
 		this.setLayout(null);
 		this.mainFrame = mainFrame;
+		user=uvo;
 		name = new JLabel("账号：  " + user.getId());
 		statue = new JLabel("身份： " + UserRole.transfer(user.getRole()));
-		user=uvo;
 		title.setBounds(456,26,249,45);
 		title.setFont(font);
 		butOut.setBounds(60,41,120,40);
