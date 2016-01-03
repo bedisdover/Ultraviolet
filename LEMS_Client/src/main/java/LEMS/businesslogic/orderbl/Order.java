@@ -160,7 +160,7 @@ public class Order implements OrderService {
 		
 		logistics.setId(this.createID());
 		logistics.setTrace("待发货");
-		logistics.setInstitution("021000");
+		logistics.setInstitution(user.getInstitution().getID());
 		
 		new InquireLogisticsInfo().createLogistics(logistics);
 	}

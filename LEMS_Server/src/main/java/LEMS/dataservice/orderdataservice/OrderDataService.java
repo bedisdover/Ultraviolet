@@ -45,10 +45,10 @@ public interface OrderDataService extends Remote {
 	
 	/**
 	 * 在数据库中查找指定机构最新的记录，并直接生成ID
-	 * @param date 日期
+	 * @param institution 机构编号
 	 * @return 记录ID
 	 */
-	public String createID(String date) throws RemoteException;
+	public String createID(String institution) throws RemoteException;
 	
 	/**
 	 * 根据已有快件在出发地和到达地之间送达的平均时间，预计时间
