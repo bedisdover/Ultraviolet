@@ -148,7 +148,6 @@ public class LoginUi extends JPanel {
 		but3.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 
-				mainFrame.setContentPane(new StartUi(mainFrame));
 			}
 		});
 		Return.addMouseListener(new MouseAdapter() {
