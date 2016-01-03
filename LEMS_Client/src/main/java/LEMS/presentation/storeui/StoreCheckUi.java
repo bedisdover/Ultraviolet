@@ -44,7 +44,6 @@ public class StoreCheckUi extends JPanel {
 	private JLabel userRole;
 	private UltraButton exit;
 	private UltraButton OK;
-	private UltraButton cancel;
 	private UltraButton excel;
 	private UltraTextField textTime;
 
@@ -78,7 +77,6 @@ public class StoreCheckUi extends JPanel {
 		exit = new UltraButton("返回");
 		OK = new UltraButton("开始盘点");
 		excel = new UltraButton("导出表格");
-		cancel = new UltraButton("取消盘点");
 		labelTime = new JLabel("盘点截止时间：");
 		textTime = new UltraTextField();
 		userId = new JLabel("账号： "+user.getId());
@@ -94,8 +92,7 @@ public class StoreCheckUi extends JPanel {
 	 */
 	private void initComponents() {
 		title.setBounds(LOCATION_X, LOCATION_Y, 230, 39);
-		OK.setBounds(LOCATION_X - 110, LOCATION_Y + 120, 180, 60);
-		cancel.setBounds(LOCATION_X + 35, LOCATION_Y + 120, 180, 60);
+		OK.setBounds(LOCATION_X - 50, LOCATION_Y + 120, 180, 60);
 		exit.setBounds(90, 60, 100, 40);
 		labelTime.setBounds(LOCATION_X - 70, LOCATION_Y + 70, 140, 40);
 		textTime.setBounds(LOCATION_X + 60, LOCATION_Y + 80, 100, 25);
@@ -108,7 +105,6 @@ public class StoreCheckUi extends JPanel {
 		textTime.setOpaque(false);
 		this.add(title);
 		this.add(OK);
-		this.add(cancel);
 		this.add(exit);
 		this.add(labelTime);
 		this.add(textTime);
@@ -134,7 +130,6 @@ public class StoreCheckUi extends JPanel {
 	 */
 	private void setTestState(boolean state) {
 		OK.setEnabled(state);
-		cancel.setEnabled(state);
 	}
 
 	/**
@@ -200,7 +195,7 @@ public class StoreCheckUi extends JPanel {
 				ExportExcel operation = new ExportExcel();
 				String[] title = {"快递单号","入库日期","目的地","存储区域","架号","排号","位号","运费"};
 				
-				operation.exportExcel("f:/库存盘点.xls", "库存盘点", title, al);
+				operation.exportExcel("d:/库存盘点.xls", "库存盘点", title, al);
 			}
 		});
 
@@ -263,12 +258,7 @@ public class StoreCheckUi extends JPanel {
 
 			}
 		});
-		cancel.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				empty();
-
-			}
-		});
+	
 	}
 
 	public void paintComponent(Graphics g) {

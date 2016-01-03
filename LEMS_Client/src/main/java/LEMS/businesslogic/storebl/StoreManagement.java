@@ -58,7 +58,6 @@ public class StoreManagement {
 
 		try {
 			al = getData().find(startTime, endTime);
-			System.out.println(al.size() + "哟呵呵");
 			int number = al.size();
 			for (int i = 0; i < number; i++) {
 				GoodsPO gpo = al.get(i);
@@ -113,7 +112,6 @@ public class StoreManagement {
 			for (int k = 0; k < alGoodsVONum; k++) {
 				money = money + alGoodsVO.get(k).getMoney();
 			}
-			// 最后八个的id就是各种数量 我好流氓。。。hhhh
 			GoodsVO gvo1 = new GoodsVO(totalInbound + "", Area.Airline, -1, -1, -1);
 			GoodsVO gvo2 = new GoodsVO(totalOutbound + "", Area.Airline, -1, -1, -1);
 			GoodsVO gvo3 = new GoodsVO(totalStock + "", Area.Airline, -1, -1, -1);
@@ -164,9 +162,6 @@ public class StoreManagement {
 		String start = today + "00:00:00";
 		String end = today + timeNew;
 				al=inquire(start,end);
-				for(int p=0;p<al.size();p++){
-					System.out.println(al.get(p).getId()+"前");
-				}
 				for(int i=0;i<al.size();i++){
 					if(!"9999999999:99:99".equals(al.get(i).getOutDate())){
 						al.remove(i);
@@ -174,9 +169,6 @@ public class StoreManagement {
 					}
 				}
 				
-				for(int p=0;p<al.size();p++){
-					System.out.println(al.get(p).getId()+"后");
-				}
 				return al;
 	
 	}
