@@ -2,6 +2,7 @@ package LEMS.dataservice.orderdataservice;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import LEMS.po.orderpo.TransferNotePO;
 
@@ -22,4 +23,9 @@ public interface TransferDataService extends Remote {
 	 * @return 记录ID
 	 */
 	public String createID(String institution, String date) throws RemoteException;
+	
+	/**
+	 * 在数据库中查找所有“待审批”的单据
+	 */
+	public ArrayList<TransferNotePO> findAll() throws RemoteException;
 }

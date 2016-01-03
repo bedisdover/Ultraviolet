@@ -15,7 +15,7 @@ import LEMS.dataservice.factory.OrderFactory;
 import LEMS.dataservice.orderdataservice.TransferDataService;
 import LEMS.po.financepo.DocumentState;
 import LEMS.po.orderpo.OrderPO;
-import LEMS.po.orderpo.transfer.TransferNotePO;
+import LEMS.po.orderpo.TransferNotePO;
 import LEMS.po.storepo.TransportType;
 import LEMS.vo.ordervo.TransferVO;
 import LEMS.vo.uservo.UserVO;

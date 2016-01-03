@@ -10,9 +10,9 @@ import LEMS.po.orderpo.OrderPO;
 public interface ReceiptRecordDataService extends Remote {
 	public IncomePO find(String id) throws RemoteException;
 	
-	public void insert(IncomePO incomeBillPO) throws RemoteException;
+	public void insert(IncomePO incomePO) throws RemoteException;
 	
-	public void update(IncomePO incomeBillPO) throws RemoteException;
+	public void update(IncomePO incomePO) throws RemoteException;
 	
 	public void delete(String id) throws RemoteException;
 	
@@ -34,4 +34,9 @@ public interface ReceiptRecordDataService extends Remote {
 	 * @throws RemoteException 连接异常，发现异常后，抛出到逻辑层
 	 */
 	public ArrayList<OrderPO> getOrders(String collector, String date) throws RemoteException;
+	
+	/**
+	 * 在数据库中查找所有“待审批”的单据
+	 */
+	public ArrayList<IncomePO> findAll() throws RemoteException;
 }
