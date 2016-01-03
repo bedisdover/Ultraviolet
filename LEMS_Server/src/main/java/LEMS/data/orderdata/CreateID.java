@@ -57,7 +57,7 @@ public class CreateID {
 		
 		//id+1
 		BigInteger temp = new BigInteger(id);
-//		temp = temp.add(new BigInteger("1"));
+		temp = temp.add(new BigInteger("1"));
 		
 		if (id.charAt(0) == '0') {
 			id = "0" + temp.toString();
