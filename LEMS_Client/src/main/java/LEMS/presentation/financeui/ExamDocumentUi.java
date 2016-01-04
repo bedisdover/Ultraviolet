@@ -90,7 +90,7 @@ public class ExamDocumentUi extends JPanel {
 		title.setFont(font);
 		name.setBounds(800,25, 389, 62);
 		statue.setBounds(800,60, 514, 62);
-		btnFind.setBounds(588, 92, 120, 30);
+		btnFind.setBounds(588, 92, 120, 40);
 		box.setBounds(403, 97, 160, 25);
 		box.addItem("派件单");
 		box.addItem("中转单");

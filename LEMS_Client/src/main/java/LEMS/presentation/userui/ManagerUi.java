@@ -59,7 +59,7 @@ public class ManagerUi extends JPanel {
 	private UltraComboBox comboBox;
 
 	private Font fnt1 = new Font("Courier", Font.PLAIN, 26);
-
+	private Font fnt = new Font("Courier", Font.PLAIN, 15);// 其余字体格式
 	Table table;
 
 	private UserVO user;
@@ -152,6 +152,13 @@ public class ManagerUi extends JPanel {
 		butFind.setBounds(557, 632, 120, 40);
 		butChange.setBounds(779, 632, 120, 40);
 
+		labelID.setFont(fnt);
+		labelPassword.setFont(fnt);
+		labelName.setFont(fnt);
+		labelStatue.setFont(fnt);
+		labelInstitutionID.setFont(fnt);
+		labelLocation.setFont(fnt);
+		
 		this.add(title);
 		this.add(labelID);
 		this.add(textID);

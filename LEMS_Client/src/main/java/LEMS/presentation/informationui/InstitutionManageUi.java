@@ -88,9 +88,9 @@ public class InstitutionManageUi extends JPanel {
 		userRole = new JLabel("身份： "+UserRole.transfer(user.getRole()));
 		
 		
-		labelID = new JLabel("* 机构编号::");
+		labelID = new JLabel("机构编号:");
 		textID = new UltraTextField();
-		labelLocation = new JLabel("* 机构所处位置");
+		labelLocation = new JLabel("机构所处位置:");
 		textLocation = new UltraTextField();
 	}
 	

@@ -112,15 +112,15 @@ public class AccountManageUi extends JPanel{
 		
 		title.setBounds(449, 37, 148, 39);
 		title.setFont(fnt1);
-		labelID.setBounds(86, 140-up, 131, 30);
-		textID.setBounds(206, 144-up, 144, 24);
-		labelPassword.setBounds(96, 240-up, 131, 30);
-		textPassword.setBounds(206, 243-up , 144, 24);
-		labelBalance.setBounds(81, 339-up, 131, 30);
-		textBalance.setBounds(206, 342-up, 144, 24);
+		labelID.setBounds(106, 180-up, 131, 30);
+		textID.setBounds(206, 184-up, 144, 24);
+		labelPassword.setBounds(110, 280-up, 131, 30);
+		textPassword.setBounds(206, 280-up , 144, 24);
+		labelBalance.setBounds(100, 380-up, 131, 30);
+		textBalance.setBounds(206, 380-up, 144, 24);
 
-		OK.setBounds(86, 533-up, 120, 40);
-		cancel.setBounds(230, 533-up, 120, 40);
+		OK.setBounds(86, 513-up, 120, 40);
+		cancel.setBounds(230, 513-up, 120, 40);
 		butOut.setBounds(52, 36, 120, 40);
 		butAdd.setBounds(114, 632-up, 120, 40);
 		butDel.setBounds(336, 632-up, 120, 40);
@@ -150,25 +150,12 @@ public class AccountManageUi extends JPanel{
 		this.add(userRole);
 		
 		String[] columnNames = { "账户ID", "密码", "账户余额"};
-		int[] list = { 40, 181, 14, 30, 20, 384, 126-up, 561, 465 };
+		int[] list = { 40, 181, 14, 30, 20, 384, 126-up, 560, 465 };
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
 		// *
 		add(table.drawTable(columnNames, list));
 		
-		JLabel label = new JLabel("*");
-		label.setBounds(75, 148-up, 21, 15);
-		add(label);
-		
-		JLabel label_1 = new JLabel("*");
-		label_1.setBounds(85, 245-up, 21, 15);
-		add(label_1);
-		
-		JLabel label_2 = new JLabel("*");
-		label_2.setBounds(73, 347-up, 21, 15);
-		add(label_2);
-		
-
 		 InformationFind findInfo=new InformationFind();
 		 ArrayList<AccountVO> accounts=findInfo.findAccount();
 		 for(int i=0;i<accounts.size();i++){

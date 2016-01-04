@@ -89,7 +89,7 @@ public class StatisticsReportUi extends JPanel {
 		title.setFont(font);
 		name.setBounds(800,25,183,28);
 		statue.setBounds(800,60,183,28);
-		but.setBounds(740,119-change,120,30);
+		but.setBounds(740,119-change,120,40);
 		labelDate1.setBounds(217,122-change,80,25);
 		labelDate2.setBounds(473,102,80,25);
 		textDate1=dc1.showDate;
@@ -118,7 +118,7 @@ public class StatisticsReportUi extends JPanel {
 		
 		
 		String[] columnNames1 = { "付款日期", "付款金额", "付款机构", "付款账户" };
-		int[] list1 = { 30, 148, 14, 30, 20, 202, 198-change, 611, 210 };
+		int[] list1 = { 30, 148, 14, 30, 20, 202, 198-change, 609, 210 };
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
 		// *
@@ -126,7 +126,7 @@ public class StatisticsReportUi extends JPanel {
 		add(table1.drawTable(columnNames1, list1));
 		
 		String[] columnNames2 = { "收款日期", "收款金额", "收款机构", "收款账户" };
-		int[] list2 = { 30, 148, 14, 30, 20, 202, 462-change-15, 611, 210};
+		int[] list2 = { 30, 148, 14, 30, 20, 202, 462-change-15, 609, 210};
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
 		// *
