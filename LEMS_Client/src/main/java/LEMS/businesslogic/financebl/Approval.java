@@ -1,5 +1,8 @@
 package LEMS.businesslogic.financebl;
 
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+
 import LEMS.businesslogic.utility.Approvalable;
 import LEMS.businesslogicservice.financeblservice.ApprovalService;
 import LEMS.po.financepo.DocumentState;
@@ -11,10 +14,14 @@ import LEMS.po.financepo.DocumentState;
  */
 public class Approval implements ApprovalService {
 
-	private Approvalable approvalable;
+	private Approvalable<?> approvalable;
 	
 	public Approval(String item) {
 		approvalable = Factory.factory.create(item);
+	}
+
+	public ArrayList<?> findAll() throws RemoteException {
+		return approvalable.findAll();
 	}
 	
 	public void accepted(String id) {

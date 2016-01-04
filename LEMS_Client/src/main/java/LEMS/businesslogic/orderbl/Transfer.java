@@ -26,7 +26,7 @@ import LEMS.vo.uservo.UserVO;
  * 
  * 中转任务
  */
-public class Transfer extends AddOrder implements TransferService, Approvalable {
+public class Transfer extends AddOrder implements TransferService, Approvalable<TransferNotePO> {
 
 	/**
 	 * 订单列表
@@ -87,6 +87,11 @@ public class Transfer extends AddOrder implements TransferService, Approvalable 
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public ArrayList<TransferNotePO> findAll() throws RemoteException {
+		return this.getDataService().findAll();
 	}
 	
 	private TransferDataService getDataService() throws RemoteException {

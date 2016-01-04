@@ -23,7 +23,7 @@ import LEMS.vo.uservo.UserVO;
  * 
  * 派件任务
  */
-public class Sending extends AddOrder implements SendingService, Approvalable {
+public class Sending extends AddOrder implements SendingService, Approvalable<DeliveryNotePO> {
 
 	/**
 	 * 订单列表
@@ -94,6 +94,12 @@ public class Sending extends AddOrder implements SendingService, Approvalable {
 		}
 	}
 
+	@Override
+	public ArrayList<DeliveryNotePO> findAll() throws RemoteException {
+		return this.getDataService().findAll();
+	}
+
+	
 	private SendingDataService getDataService() {
 		
 		SendingDataService sendingDataService = null;

@@ -108,9 +108,8 @@ public class Load extends AddOrder implements LoadService, Approvalable<LoadNote
 	}
 
 	@Override
-	public ArrayList<LoadNotePO> findAll() {
-		
-		return null;
+	public ArrayList<LoadNotePO> findAll() throws RemoteException {
+		return this.getDataService().findAll();
 	}
 	
 	private LoadDataService getDataService() {

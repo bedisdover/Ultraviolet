@@ -7,7 +7,6 @@ import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;

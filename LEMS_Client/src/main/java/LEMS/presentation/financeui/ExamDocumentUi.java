@@ -6,9 +6,11 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import LEMS.businesslogic.financebl.Approval;
@@ -170,7 +172,12 @@ public class ExamDocumentUi extends JPanel {
 	}
 	
 	private void findOperation() {
-		
+		try {
+			ArrayList<?> list = approval.findAll();
+			
+		} catch (RemoteException e) {
+			JOptionPane.showMessageDialog(mainFrame, "请检查网络连接！", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 	private void acceptOperation() {

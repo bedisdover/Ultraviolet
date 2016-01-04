@@ -23,7 +23,7 @@ import LEMS.vo.uservo.UserVO;
  * 
  * 车辆装车管理任务
  */
-public class VehicleLoad extends AddOrder implements VehicleLoadService, Approvalable {
+public class VehicleLoad extends AddOrder implements VehicleLoadService, Approvalable<VehicleLoadNotePO> {
 
 	/**
 	 * 运费（单价）
@@ -110,6 +110,11 @@ public class VehicleLoad extends AddOrder implements VehicleLoadService, Approva
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public ArrayList<VehicleLoadNotePO> findAll() throws RemoteException {
+		return this.getDataService().findAll();
 	}
 	
 	private VehicleLoadDataService getDataService() {

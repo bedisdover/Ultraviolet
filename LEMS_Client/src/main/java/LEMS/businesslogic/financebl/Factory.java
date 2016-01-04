@@ -32,8 +32,8 @@ public class Factory {
 	 * 收款单
 	 * @param index 选择的选项
 	 */
-	public Approvalable create(String item) {
-		Approvalable approvalable = null;
+	public Approvalable<?> create(String item) {
+		Approvalable<?> approvalable = null;
 		
 		switch (item) {
 		case "派件单":
