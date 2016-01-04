@@ -51,7 +51,6 @@ public class StoreCheckUi extends JPanel {
 	String timeToTransfer = "";
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);// 标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 18);// 其余字体格式
-	private Font fnt2 = new Font("宋体", Font.BOLD, 16);// 按钮字体格式
 
 	public StoreCheckUi(final MainFrame mainFrame,UserVO userVO) {
 		this.mainFrame = mainFrame;
@@ -92,11 +91,11 @@ public class StoreCheckUi extends JPanel {
 	 */
 	private void initComponents() {
 		title.setBounds(LOCATION_X, LOCATION_Y, 230, 39);
-		OK.setBounds(LOCATION_X - 50, LOCATION_Y + 120, 180, 60);
+		OK.setBounds(LOCATION_X - 110, LOCATION_Y + 140, 180, 60);
 		exit.setBounds(90, 60, 100, 40);
-		labelTime.setBounds(LOCATION_X - 70, LOCATION_Y + 70, 140, 40);
-		textTime.setBounds(LOCATION_X + 60, LOCATION_Y + 80, 100, 25);
-		excel.setBounds(LOCATION_X + 320, LOCATION_Y + 80, 120, 40);
+		labelTime.setBounds(LOCATION_X - 70, LOCATION_Y + 90, 140, 40);
+		textTime.setBounds(LOCATION_X + 60, LOCATION_Y + 100, 100, 25);
+		excel.setBounds(LOCATION_X + 35, LOCATION_Y + 140, 180, 60);
 
 		title.setFont(fnt1);
 		labelTime.setFont(fnt);
@@ -113,7 +112,7 @@ public class StoreCheckUi extends JPanel {
 		this.add(userRole);
 
 		String[] columnNames = { "快递单号", "入库日期", "目的地", "存储区域", "架号", "排号", "位号" };
-		int[] list = { 40, 118, 14, 30, 20, 85, 225, 843, 410 };
+		int[] list = { 40, 118, 14, 30, 20, 85, 250, 843, 410 };
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
 		// *

@@ -46,5 +46,25 @@ public class PayBillData extends UnicastRemoteObject implements PayBillDataServi
 		}
 		return pa;
 	}
+	
+	public void setPayBill(PayBillPO po) throws RemoteException{
+		Connect co=new Connect();
+		String sql="INSERT INTO payBill VALUES (?,?,?,?,?,?,?,?)";
+		PreparedStatement pstmt=co.getPreparedStatement(sql);
+		try {
+			pstmt.setString(1,po.getDate());
+			pstmt.setString(2,po.getId());
+			pstmt.setString(3,po.getInstitution());
+			pstmt.setString(4,po.getAmount()+"");
+			pstmt.setString(5,po.getPayer());
+			pstmt.setString(6,po.getAccount());
+			pstmt.setString(7,po.getItem());
+			pstmt.setString(8,po.getRemark());
+			pstmt.executeUpdate();
+			co.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }
