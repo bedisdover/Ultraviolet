@@ -170,7 +170,7 @@ public class CostUi extends JPanel {
 		button[0].addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (isComplete()) {
-					try {
+//					try {
 						String text2 = text[2].getText();
 						double t2 = Double.parseDouble(text2);
 						if (t2 >= 0) {
@@ -188,17 +188,17 @@ public class CostUi extends JPanel {
 							PayBillVO pay = new PayBillVO("",
 									text[0].getText(), "", t2,
 									text[3].getText(), text[0].getText(),
-									text[4].getText(), text[5].getText());
+									text[4].getText(), textArea.getText());
 							Cost cost = new Cost();
 							cost.addCost(pay);
 						} else {
 							JOptionPane.showMessageDialog(CostUi.this,
 									"请输入正确的付款金额");
 						}
-					} catch (Exception ee) {
-						JOptionPane
-								.showMessageDialog(CostUi.this, "请输入正确的付款金额");
-					}
+//					} catch (Exception ee) {
+//						JOptionPane
+//								.showMessageDialog(CostUi.this, "请输入正确的付款金额");
+//					}
 
 				} else {
 					JOptionPane.showMessageDialog(CostUi.this, "请将必填信息填写完整");

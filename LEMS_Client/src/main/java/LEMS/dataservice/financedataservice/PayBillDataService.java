@@ -8,4 +8,5 @@ import LEMS.po.financepo.PayBillPO;
 
 public interface PayBillDataService extends Remote{
 	public ArrayList<PayBillPO> getPayBill() throws RemoteException;
+	public void setPayBill(PayBillPO po) throws RemoteException;
 }
