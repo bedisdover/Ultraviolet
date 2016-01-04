@@ -13,8 +13,8 @@ public class Approval implements ApprovalService {
 
 	private Approvalable approvalable;
 	
-	public Approval(int index) {
-		approvalable = Factory.factory.create(index);
+	public Approval(String item) {
+		approvalable = Factory.factory.create(item);
 	}
 	
 	public void accepted(String id) {

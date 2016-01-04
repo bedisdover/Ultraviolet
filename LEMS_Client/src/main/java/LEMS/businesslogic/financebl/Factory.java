@@ -32,23 +32,23 @@ public class Factory {
 	 * 收款单
 	 * @param index 选择的选项
 	 */
-	public Approvalable create(int index) {
+	public Approvalable create(String item) {
 		Approvalable approvalable = null;
 		
-		switch (index) {
-		case 0:
+		switch (item) {
+		case "派件单":
 			approvalable = new Sending();
 			break;
-		case 1:
+		case "中转单":
 			approvalable = new Transfer();
 			break;
-		case 2:
+		case "装车单":
 			approvalable = new VehicleLoad();
 			break;
-		case 3:
+		case "装运单":
 			approvalable = new Load();
 			break;
-		case 4:
+		case "":
 			
 			break;
 		}

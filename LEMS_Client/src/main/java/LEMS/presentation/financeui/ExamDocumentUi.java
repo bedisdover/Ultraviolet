@@ -6,6 +6,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -37,10 +38,10 @@ public class ExamDocumentUi extends JPanel {
 	private JLabel date;
 	private JLabel name;
 	private JLabel statue;
-	private UltraButton but;
-	private UltraButton butOut;
-	private UltraButton pass;
-	private UltraButton noPass;
+	private UltraButton btnFind;
+	private UltraButton btnOut;
+	private UltraButton btnAccepted;
+	private UltraButton btnUnaccepted;
 	private UltraButton allPass;
 
 	private Table table;
@@ -72,13 +73,13 @@ public class ExamDocumentUi extends JPanel {
 		title.setFont(fnt1);
 		name = new JLabel("账号：  " + user.getId());
 		statue = new JLabel("身份： " + UserRole.transfer(user.getRole()));
-		but = new UltraButton("查找");
+		btnFind = new UltraButton("查找");
 		box = new UltraComboBox();
 		
 		font = new Font("Courier", Font.PLAIN, 26);
-		butOut = new UltraButton("返回");
-		pass = new UltraButton("通过");
-		noPass = new UltraButton("不通过");
+		btnOut = new UltraButton("返回");
+		btnAccepted = new UltraButton("通过");
+		btnUnaccepted = new UltraButton("不通过");
 		allPass = new UltraButton("全部通过");
 	}
 
@@ -89,7 +90,7 @@ public class ExamDocumentUi extends JPanel {
 		title.setFont(font);
 		name.setBounds(800,25, 389, 62);
 		statue.setBounds(800,60, 514, 62);
-		but.setBounds(588, 92, 120, 30);
+		btnFind.setBounds(588, 92, 120, 30);
 		box.setBounds(403, 97, 160, 25);
 		box.addItem("派件单");
 		box.addItem("中转单");
@@ -97,11 +98,11 @@ public class ExamDocumentUi extends JPanel {
 		box.addItem("装运单");
 		box.addItem("付款单");
 		box.addItem("收款单");
-		butOut.setBounds(52, 36, 120, 40);
+		btnOut.setBounds(52, 36, 120, 40);
 		int b = 120;// 整体左移量
 		int change = 30;// 整体上移量
-		pass.setBounds(292 - b, 642 - change, 109, 40);
-		noPass.setBounds(558 - b, 642 - change, 109, 40);
+		btnAccepted.setBounds(292 - b, 642 - change, 109, 40);
+		btnUnaccepted.setBounds(558 - b, 642 - change, 109, 40);
 		allPass.setBounds(823 - b, 642 - change, 153, 40);
 
 		//设置字体
@@ -111,11 +112,11 @@ public class ExamDocumentUi extends JPanel {
 		this.add(title);
 		this.add(name);
 		this.add(statue);
-		this.add(but);
+		this.add(btnFind);
 		this.add(box);
-		this.add(butOut);
-		this.add(pass);
-		this.add(noPass);
+		this.add(btnOut);
+		this.add(btnAccepted);
+		this.add(btnUnaccepted);
 		this.add(allPass);
 
 		String[] columnNames = { "序号","ID","日期","单据状态" };
@@ -128,33 +129,37 @@ public class ExamDocumentUi extends JPanel {
 	private void addListener() {
 		box.addItemListener(new DocumentListener(box));
 		
-		but.addMouseListener(new MouseAdapter() {
+		btnFind.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				System.out.println(1234);
+				findOperation();
 			}
 		});
 
-		butOut.addMouseListener(new MouseAdapter() {
+		btnOut.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				mainFrame.setContentPane(new LoginUi(mainFrame));
 			}
 		});
 		
-		pass.addMouseListener(new MouseAdapter() {
+		btnAccepted.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				
+				if (table.getSelectedRow() != -1) {
+					acceptOperation();
+				}
 			}
 		});
 		
-		noPass.addMouseListener(new MouseAdapter() {
+		btnUnaccepted.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-
+				if (table.getSelectedRow() != -1) {
+					unAcceptOperation();
+				}
 			}
 		});
 		
 		allPass.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-
+				allAcceptOperation();
 			}
 		});
 	}
@@ -162,6 +167,27 @@ public class ExamDocumentUi extends JPanel {
 	public void paintComponent(Graphics g) {
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
 		this.repaint();
+	}
+	
+	private void findOperation() {
+		
+	}
+	
+	private void acceptOperation() {
+		String id = table.getValueAt(table.getSelectedRow(), 1);
+		
+		approval.accepted(id);
+	}
+	
+	private void unAcceptOperation() {
+		ArrayList<String>values = table.getValueAt(table.getSelectedRow());
+		String id = values.get(0);
+		
+		approval.unaccepted(id);
+	}
+	
+	private void allAcceptOperation() {
+		
 	}
 	
 	class DocumentListener implements ItemListener {
@@ -175,7 +201,7 @@ public class ExamDocumentUi extends JPanel {
 		public void itemStateChanged(ItemEvent e) {
 			if(e.getStateChange() == ItemEvent.SELECTED) {
 	            if(e.getSource() == comboBox) {
-	            	approval = new Approval(comboBox.getSelectedIndex());
+	            	approval = new Approval(comboBox.getSelectedItem() + "");
 	            } 
 	        }
 		}

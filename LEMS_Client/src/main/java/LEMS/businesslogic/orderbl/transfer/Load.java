@@ -28,7 +28,7 @@ import LEMS.vo.uservo.UserVO;
  * 目的地中转中心业务员负责出库、装车，并在系统中录入装车单
  * 发往各个营业厅
  */
-public class Load extends AddOrder implements LoadService, Approvalable {
+public class Load extends AddOrder implements LoadService, Approvalable<LoadNotePO> {
 	/**
 	 * 订单列表
 	 */
@@ -105,6 +105,12 @@ public class Load extends AddOrder implements LoadService, Approvalable {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public ArrayList<LoadNotePO> findAll() {
+		
+		return null;
 	}
 	
 	private LoadDataService getDataService() {
