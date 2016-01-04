@@ -160,10 +160,11 @@ public class LoadUi extends JPanel {
 		OK.setBounds(100, 513, BOUND_X-10, BOUND_Y+10);
 		cancel.setBounds(250, 513, BOUND_X-10, BOUND_Y+10);
 		exit.setBounds(80, 50, 100, 40);
-		add.setBounds(370, 590, 120, 40);
-		delete.setBounds(520, 590, 120, 40);
-		update.setBounds(670, 590, 120, 40);
-		finish.setBounds(820, 590, 120, 40);
+		add.setBounds(150, 590, 120, 40);
+		delete.setBounds(350, 590, 120,40);
+		update.setBounds(550, 590, 120, 40);
+		finish.setBounds(750, 590, 120, 40);
+
 		
 		title.setFont(fnt1);
 		labelDate.setFont(fnt);
