@@ -344,6 +344,7 @@ public class LoadUi extends JPanel {
 			JOptionPane.showMessageDialog(mainFrame, "请检查网络连接！", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 		
+		table.clean();
 		this.empty();
 	}
 }

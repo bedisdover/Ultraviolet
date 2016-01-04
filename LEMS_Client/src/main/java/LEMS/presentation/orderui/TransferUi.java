@@ -364,6 +364,7 @@ public class TransferUi extends JPanel {
 			transfer.createTransferNote(TransportType.transfer(
 					(String) comboBoxFormat.getSelectedItem()) );
 			
+			table.clean();
 			this.empty();
 			this.setTestState(false);
 		} catch (RemoteException e) {

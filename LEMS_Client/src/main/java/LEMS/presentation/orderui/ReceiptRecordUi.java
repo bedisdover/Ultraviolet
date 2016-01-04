@@ -278,5 +278,7 @@ public class ReceiptRecordUi extends JPanel {
 		incomeBillVO.setAmount(Double.parseDouble(textNeeded.getText()));
 		
 		receiptRecord.createIncomeBill();
+		
+		table.clean();
 	}
 }

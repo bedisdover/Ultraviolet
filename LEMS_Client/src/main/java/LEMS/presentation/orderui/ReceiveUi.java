@@ -308,7 +308,8 @@ public class ReceiveUi extends JPanel {
 		
 		//生成到达单
 		receipt.createArrivalNote();
-		
+
+		table.clean();
 		this.setTextState(false);
 		this.empty();
 	}

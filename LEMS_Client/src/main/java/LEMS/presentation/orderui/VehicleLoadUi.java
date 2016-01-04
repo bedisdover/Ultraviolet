@@ -328,7 +328,7 @@ public class VehicleLoadUi extends JPanel {
 				textGoodsWeight.setText(Double.parseDouble(textGoodsWeight.getText()) + weight + "");
 			}
 			
-			String[] values = {number + "", id, name, weight + ""};
+			String[] values = {id, name, weight + ""};
 			table.setValueAt(table.numOfEmpty(), values);
 
 			textID.setText(null);
@@ -348,6 +348,7 @@ public class VehicleLoadUi extends JPanel {
 		
 		vehicleLoad.createVehicleLoadNote();
 		
+		table.clean();
 		this.empty();
 	}
 }

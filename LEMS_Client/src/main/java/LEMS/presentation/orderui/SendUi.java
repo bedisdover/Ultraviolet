@@ -264,5 +264,8 @@ public class SendUi extends JPanel {
 		deliveryVO.setDate(dc.getTime());
 		setTestState(true);
 		sending.createDeliveryNote();
+		
+		table.clean();
+		this.empty();
 	}
 }
