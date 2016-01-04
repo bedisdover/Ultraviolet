@@ -3,6 +3,7 @@ package LEMS.po.inquirepo;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import LEMS.po.financepo.DocumentPO;
 import LEMS.po.financepo.IncomeBillPO;
 import LEMS.po.financepo.PayBillPO;
 
@@ -11,7 +12,7 @@ import LEMS.po.financepo.PayBillPO;
  * 经营情况表持久化对象
  */
 @SuppressWarnings("serial")
-public class BusinessListPO implements Serializable{
+public class BusinessListPO extends DocumentPO implements Serializable{
 	
 	/**
 	 * 开始日期

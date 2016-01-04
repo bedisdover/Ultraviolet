@@ -3,6 +3,7 @@ package LEMS.po.orderpo;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import LEMS.po.financepo.DocumentPO;
 import LEMS.po.financepo.DocumentState;
 
 /**
@@ -15,7 +16,7 @@ import LEMS.po.financepo.DocumentState;
  * 		出发地、到达地（本地中转中心或者其它营业厅）、
  * 		监装员、押运员、所有订单条形码号、运费
  */
-public class VehicleLoadNotePO implements Serializable {
+public class VehicleLoadNotePO extends DocumentPO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	/**

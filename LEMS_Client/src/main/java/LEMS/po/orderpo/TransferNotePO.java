@@ -3,6 +3,7 @@ package LEMS.po.orderpo;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import LEMS.po.financepo.DocumentPO;
 import LEMS.po.financepo.DocumentState;
 
 /**
@@ -14,7 +15,7 @@ import LEMS.po.financepo.DocumentState;
  * 		中转单状态、日期、航班号、出发地、到达地、
  * 		货柜号、监装员、本次装箱所有托运单号、运费
  */
-public class TransferNotePO implements Serializable {
+public class TransferNotePO extends DocumentPO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**

@@ -3,6 +3,7 @@ package LEMS.po.orderpo;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import LEMS.po.financepo.DocumentPO;
 import LEMS.po.financepo.DocumentState;
 
 /**
@@ -15,7 +16,7 @@ import LEMS.po.financepo.DocumentState;
  * 		车辆代号、监装员、押运员、本次装箱所有订单条形码号）、
  * 		运费（运费根据出发地和目的地自动生成）
  */
-public class LoadNotePO implements Serializable {
+public class LoadNotePO extends DocumentPO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**

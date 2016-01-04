@@ -2,12 +2,14 @@ package LEMS.po.inquirepo;
 
 import java.io.Serializable;
 
+import LEMS.po.financepo.DocumentPO;
+
 /**
  * @author 章承尧
  * 成本收益表持久化对象
  */
 @SuppressWarnings("serial")
-public class CostBenefitListPO implements Serializable {
+public class CostBenefitListPO extends DocumentPO implements Serializable {
 	/**
 	 * 开始日期
 	 */
