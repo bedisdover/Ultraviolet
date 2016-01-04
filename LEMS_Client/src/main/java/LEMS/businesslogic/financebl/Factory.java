@@ -1,5 +1,6 @@
 package LEMS.businesslogic.financebl;
 
+import LEMS.businesslogic.orderbl.ReceiptRecord;
 import LEMS.businesslogic.orderbl.Sending;
 import LEMS.businesslogic.orderbl.Transfer;
 import LEMS.businesslogic.orderbl.VehicleLoad;
@@ -49,9 +50,11 @@ public class Factory {
 		case "装运单":
 			approvalable = new Load();
 			break;
-		case "":
+		case "付款单":
 			
 			break;
+		case "收款单":
+			approvalable = new ReceiptRecord();
 		}
 		
 		return approvalable;

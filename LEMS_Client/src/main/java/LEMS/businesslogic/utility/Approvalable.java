@@ -3,6 +3,7 @@ package LEMS.businesslogic.utility;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import LEMS.po.financepo.DocumentPO;
 import LEMS.po.financepo.DocumentState;
 
 /**
@@ -21,5 +22,8 @@ public interface Approvalable <T>{
 	 */
 	public void approval(String id, DocumentState state);
 	
-	public ArrayList<T> findAll() throws RemoteException; 
+	/**
+	 * 查询所有为审批的单据 
+	 */
+	public ArrayList<? extends DocumentPO> findAll() throws RemoteException; 
 }

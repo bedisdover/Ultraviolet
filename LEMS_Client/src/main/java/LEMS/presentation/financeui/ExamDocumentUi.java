@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import LEMS.businesslogic.financebl.Approval;
+import LEMS.po.financepo.DocumentPO;
 import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
@@ -64,7 +65,7 @@ public class ExamDocumentUi extends JPanel {
 		this.initComponent();
 		this.addListener();
 		
-		
+		approval = new Approval("派件单");
 	}
 
 	private void init() {
@@ -131,6 +132,7 @@ public class ExamDocumentUi extends JPanel {
 		
 		btnFind.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				table.clean();
 				findOperation();
 			}
 		});
@@ -171,7 +173,16 @@ public class ExamDocumentUi extends JPanel {
 	
 	private void findOperation() {
 		try {
-			ArrayList<?> list = approval.findAll();
+			ArrayList<DocumentPO> list = approval.findAll();
+			String[] values = new String[3];
+			
+			for (DocumentPO document : list) {
+				values[0] = document.getId();
+				values[1] = document.getDate();
+				values[2] = document.getState() + "";
+				
+				table.setValueAt(table.numOfEmpty(), values);
+			}
 			
 		} catch (RemoteException e) {
 			JOptionPane.showMessageDialog(mainFrame, "请检查网络连接！", "Error", JOptionPane.ERROR_MESSAGE);

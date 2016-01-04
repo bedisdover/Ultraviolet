@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import LEMS.businesslogic.utility.Approvalable;
 import LEMS.businesslogicservice.financeblservice.ApprovalService;
+import LEMS.po.financepo.DocumentPO;
 import LEMS.po.financepo.DocumentState;
 
 /**
@@ -20,8 +21,10 @@ public class Approval implements ApprovalService {
 		approvalable = Factory.factory.create(item);
 	}
 
-	public ArrayList<?> findAll() throws RemoteException {
-		return approvalable.findAll();
+	@SuppressWarnings("unchecked")
+	public ArrayList<DocumentPO> findAll() throws RemoteException {
+		System.out.println(approvalable.findAll());
+		return (ArrayList<DocumentPO>) approvalable.findAll();
 	}
 	
 	public void accepted(String id) {

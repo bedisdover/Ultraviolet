@@ -6,13 +6,16 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import LEMS.businesslogic.utility.Approvalable;
 import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.businesslogicservice.orderblservice.ReceiptRecordService;
 import LEMS.dataservice.factory.DatabaseFactory;
 import LEMS.dataservice.factory.OrderFactory;
 import LEMS.dataservice.orderdataservice.ReceiptRecordDataService;
+import LEMS.po.financepo.DocumentPO;
 import LEMS.po.financepo.DocumentState;
 import LEMS.po.orderpo.IncomePO;
+import LEMS.po.orderpo.LoadNotePO;
 import LEMS.po.orderpo.OrderPO;
 import LEMS.vo.ordervo.IncomeVO;
 import LEMS.vo.uservo.UserVO;
@@ -22,7 +25,7 @@ import LEMS.vo.uservo.UserVO;
  * 
  * 记录收款单任务
  */
-public class ReceiptRecord implements ReceiptRecordService {
+public class ReceiptRecord implements ReceiptRecordService, Approvalable<IncomePO> {
 
 	/**
 	 * 订单列表
@@ -32,6 +35,8 @@ public class ReceiptRecord implements ReceiptRecordService {
 	private IncomeVO incomeBillVO;
 	
 	private UserVO userVO;
+	
+	public ReceiptRecord() {}
 	
 	public ReceiptRecord(UserVO uservo, IncomeVO incomeBillVO) {
 		
@@ -74,6 +79,20 @@ public class ReceiptRecord implements ReceiptRecordService {
 		}
 		
 		return id;
+	}
+	
+	@Override
+	public void approval(String id, DocumentState state) {
+		try {
+			this.getDataService().find(id).setState(state);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public ArrayList<IncomePO> findAll() throws RemoteException {
+		return this.getDataService().findAll();
 	}
 	
 	private ReceiptRecordDataService getDataService() {
