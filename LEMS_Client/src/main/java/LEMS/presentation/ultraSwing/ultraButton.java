@@ -36,6 +36,8 @@ public class UltraButton extends JButton {
 		Image imagePass = Toolkit.getDefaultToolkit().getImage("source/pass.png");
 		Image imageNoPass = Toolkit.getDefaultToolkit().getImage("source/NoPass.png");
 		Image imageAllPass = Toolkit.getDefaultToolkit().getImage("source/AllPass.png");
+		Image imageLogin = Toolkit.getDefaultToolkit().getImage("source/login1.png");
+		Image imageInquireLogisticsInformation = Toolkit.getDefaultToolkit().getImage("source/inquireLogisticsInformation.png");
 		
 		ImageIcon iconExit = new ImageIcon(imageExit);
 		ImageIcon iconAdd = new ImageIcon(imageAdd);
@@ -55,6 +57,8 @@ public class UltraButton extends JButton {
 		ImageIcon iconPass = new ImageIcon(imagePass);
 		ImageIcon iconNoPass = new ImageIcon(imageNoPass);
 		ImageIcon iconAllPass = new ImageIcon(imageAllPass);
+		ImageIcon iconLogin = new ImageIcon(imageLogin);
+		ImageIcon iconInquireLogisticsInformation = new ImageIcon(imageInquireLogisticsInformation);
 		
 		if (text.equals("返回")) {
 			this.setIcon(iconExit);
@@ -100,12 +104,21 @@ public class UltraButton extends JButton {
 		}
 		if (text.equals("查看收款信息")) {
 			this.setIcon(iconInquireInformation);
-		}if (text.equals("通过")) {
+		}
+		if (text.equals("通过")) {
 			this.setIcon(iconPass);
-		}if (text.equals("不通过")) {
+		}
+		if (text.equals("不通过")) {
 			this.setIcon(iconNoPass);
-		}if (text.equals("全部通过")) {
+		}
+		if (text.equals("全部通过")) {
 			this.setIcon(iconAllPass);
+		}
+		if (text.equals("登录")) {
+			this.setIcon(iconLogin);
+		}
+		if (text.equals("查询物流信息")) {
+			this.setIcon(iconInquireLogisticsInformation);
 		}
 
 	}
