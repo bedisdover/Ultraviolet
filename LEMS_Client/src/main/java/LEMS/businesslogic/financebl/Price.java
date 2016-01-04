@@ -13,6 +13,7 @@ import LEMS.dataservice.financedataservice.PriceDataService;
 import LEMS.po.financepo.PricePO;
 import LEMS.po.orderpo.Express;
 import LEMS.po.orderpo.Packing;
+import LEMS.po.storepo.TransportType;
 
 /**
  * @author 宋益明
@@ -35,6 +36,10 @@ public class Price implements PriceService {
 	}
 
 	public double getPrice(Packing type) {
+		return pricePO.getPrice(type);
+	}
+	
+	public double getPrice(TransportType type) {
 		return pricePO.getPrice(type);
 	}
 

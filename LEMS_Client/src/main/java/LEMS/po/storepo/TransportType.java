@@ -1,6 +1,7 @@
 package LEMS.po.storepo;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 /**
  * @author 宋益明
@@ -15,6 +16,17 @@ public enum TransportType implements Serializable {
 	YetToKnow
 	;
 	
+	private static HashMap<TransportType, String> typeList;
+	
+	static {
+		typeList = new HashMap<>();
+		
+		typeList.put(TransportType.Airplane, "飞机");
+		typeList.put(TransportType.Railway, "火车");
+		typeList.put(TransportType.Landway, "汽车");
+		typeList.put(TransportType.YetToKnow, "");
+	}
+	
 	public static TransportType getType(String type) {
 		switch (type) {
 		case "飞机":
@@ -28,5 +40,9 @@ public enum TransportType implements Serializable {
 		}
 		
 		return YetToKnow;
+	}
+	
+	public static String Transfer(TransportType type) {
+		return typeList.get(type);
 	}
 }

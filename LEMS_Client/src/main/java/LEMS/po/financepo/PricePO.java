@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import LEMS.po.orderpo.Express;
 import LEMS.po.orderpo.Packing;
+import LEMS.po.storepo.TransportType;
 
 /**
  * @author 宋益明
@@ -43,6 +44,18 @@ public class PricePO implements Serializable {
 	
 	public double getPrice(Packing type) {
 		return packagePrice.get(type);
+	}
+	
+	public double getPrice(TransportType type) {
+		HashMap<String, Double> loadPrice = new HashMap<>();
+		
+		loadPrice.put("汽车", 2.0);
+		loadPrice.put("火车", 0.2);
+		loadPrice.put("飞机", 20.0);
+		
+		double price = loadPrice.get(TransportType.Transfer(type));	
+		
+		return price;
 	}
 
 	public void setExpressPrice(HashMap<Express, Double> expressPrice) {

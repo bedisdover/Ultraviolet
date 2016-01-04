@@ -16,6 +16,7 @@ import LEMS.businesslogic.orderbl.Distance;
 import LEMS.po.orderpo.City;
 import LEMS.po.orderpo.Express;
 import LEMS.po.orderpo.Packing;
+import LEMS.po.storepo.TransportType;
 import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
@@ -37,7 +38,7 @@ public class SettingPriceUi extends JPanel {
 
 	private MainFrame mainFrame;
 	private JLabel title = new JLabel("制定常量");
-	private Table table1;
+	private Table table;
 	private UltraButton butModify = new UltraButton("修改");
 
 	private UltraButton butOut = new UltraButton("返回");
@@ -47,21 +48,21 @@ public class SettingPriceUi extends JPanel {
 	private JLabel statue;
 	JLabel labelPrice = new JLabel("价格：");
 	JLabel labelDistance = new JLabel("距离：");
-	JLabel city1 = new JLabel("城市：");
-	JLabel city2 = new JLabel("城市：");
-	JLabel mid1 = new JLabel("至");
-	JLabel labelExpress = new JLabel("快递类型：");
-	JLabel labelPackage = new JLabel("包装类型：");
-	JLabel Transport = new JLabel("运输方式：");
+//	JLabel city1 = new JLabel("城市：");
+//	JLabel city2 = new JLabel("城市：");
+//	JLabel mid1 = new JLabel("至");
+//	JLabel labelExpress = new JLabel("快递类型：");
+//	JLabel labelPackage = new JLabel("包装类型：");
+//	JLabel Transport = new JLabel("运输方式：");
 
 	private UltraComboBox comboxPrice = new UltraComboBox();
 	private UltraComboBox comboxDistance = new UltraComboBox();
 	
-	UltraComboBox City1 = new UltraComboBox();
-	UltraComboBox City2 = new UltraComboBox();
-	UltraComboBox expressType = new UltraComboBox();
-	UltraComboBox packageType = new UltraComboBox();
-	UltraComboBox transportType = new UltraComboBox();
+//	UltraComboBox City1 = new UltraComboBox();
+//	UltraComboBox City2 = new UltraComboBox();
+//	UltraComboBox expressType = new UltraComboBox();
+//	UltraComboBox packageType = new UltraComboBox();
+//	UltraComboBox transportType = new UltraComboBox();
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public SettingPriceUi(final MainFrame mainFrame, UserVO uvo) {
@@ -80,53 +81,53 @@ public class SettingPriceUi extends JPanel {
 		labelDistance.setBounds(565, 150, 70, 30);
 		comboxPrice.setModel(new DefaultComboBoxModel(new String[] {"快递价格", "包装价格", "运输价格"}));
 		comboxPrice.setBounds(320, 150, 120, 30);
-		comboxDistance.setModel(new DefaultComboBoxModel(new String[] {"城市距离", "营业厅距离"}));
+		comboxDistance.setModel(new DefaultComboBoxModel(new String[] {"显示全部", "北京", "上海", "南京", "广州"}));
 		comboxDistance.setBounds(630, 150, 120, 30);
-		city1.setBounds(265, 220, 40, 30);
-		City1.setBounds(305, 220, 120, 30);
-		mid1.setBounds(485, 220, 20, 30);
-		city2.setBounds(550, 220, 80, 30);
-		City2.setBounds(590, 220, 120, 30);
-		labelExpress.setBounds(690, 220, 80, 30);
-		expressType.setBounds(750, 220, 120, 30);
-		labelPackage.setBounds(70, 220, 80, 30);
-		packageType.setBounds(135, 220, 120, 30);
-		Transport.setBounds(406, 220, 80, 30);
-		transportType.setBounds(465, 220, 120, 30);
+//		city1.setBounds(265, 220, 40, 30);
+//		City1.setBounds(305, 220, 120, 30);
+//		mid1.setBounds(485, 220, 20, 30);
+//		city2.setBounds(550, 220, 80, 30);
+//		City2.setBounds(590, 220, 120, 30);
+//		labelExpress.setBounds(690, 220, 80, 30);
+//		expressType.setBounds(750, 220, 120, 30);
+//		labelPackage.setBounds(70, 220, 80, 30);
+//		packageType.setBounds(135, 220, 120, 30);
+//		Transport.setBounds(406, 220, 80, 30);
+//		transportType.setBounds(465, 220, 120, 30);
 		name.setBounds(355, 75, 135, 28);
 		statue.setBounds(528, 75, 183, 28);
 
-		City1.addItem("北京");
-		City1.addItem("上海");
-		City1.addItem("广州");
-		City1.addItem("南京");
-		City2.addItem("北京");
-		City2.addItem("上海");
-		City2.addItem("广州");
-		City2.addItem("南京");
-		expressType.addItem("标准");
-		expressType.addItem("特快");
-		packageType.addItem("纸袋");
-		packageType.addItem("箱子");
-		packageType.addItem("其他");
-		transportType.addItem("火车");
-		transportType.addItem("汽车");
-		transportType.addItem("飞机");
-
+//		City1.addItem("北京");
+//		City1.addItem("上海");
+//		City1.addItem("广州");
+//		City1.addItem("南京");
+//		City2.addItem("北京");
+//		City2.addItem("上海");
+//		City2.addItem("广州");
+//		City2.addItem("南京");
+//		expressType.addItem("标准");
+//		expressType.addItem("特快");
+//		packageType.addItem("纸袋");
+//		packageType.addItem("箱子");
+//		packageType.addItem("其他");
+//		transportType.addItem("火车");
+//		transportType.addItem("汽车");
+//		transportType.addItem("飞机");
+//
 		this.add(title);
 		this.add(butOut);
 		this.add(butModify);
-		this.add(city1);
-		this.add(City1);
-		this.add(mid1);
-		this.add(city2);
-		this.add(City2);
-		this.add(labelExpress);
-		this.add(expressType);
-		this.add(labelPackage);
-		this.add(packageType);
-		this.add(Transport);
-		this.add(transportType);
+//		this.add(city1);
+//		this.add(City1);
+//		this.add(mid1);
+//		this.add(city2);
+//		this.add(City2);
+//		this.add(labelExpress);
+//		this.add(expressType);
+//		this.add(labelPackage);
+//		this.add(packageType);
+//		this.add(Transport);
+//		this.add(transportType);
 		this.add(labelPrice);
 		this.add(labelDistance);
 		this.add(comboxPrice);
@@ -145,10 +146,10 @@ public class SettingPriceUi extends JPanel {
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
 		// *
-		table1 = new Table();
-		add(table1.drawTable(columnNames1, list1));
+		table = new Table();
+		add(table.drawTable(columnNames1, list1));
 		// 将每一列的默认宽度设置为
-		table1.table.setRowHeight(40);
+		table.table.setRowHeight(40);
 
 	}
 
@@ -157,7 +158,7 @@ public class SettingPriceUi extends JPanel {
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getStateChange() == ItemEvent.SELECTED) {
 					//清空表格
-					table1.clean();
+					table.clean();
 					
 					if (e.getSource() == comboxPrice) {
 						showPrice();
@@ -170,7 +171,7 @@ public class SettingPriceUi extends JPanel {
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getStateChange() == ItemEvent.SELECTED) {
 					//清空表格
-					table1.clean();
+					table.clean();
 					
 					if (e.getSource() == comboxDistance) {
 						showDistance();
@@ -187,7 +188,7 @@ public class SettingPriceUi extends JPanel {
 
 		butModify.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				if (table1.getSelectedRow() != -1) {
+				if (table.getSelectedRow() != -1) {
 					modifyOperation();
 				}
 			}
@@ -204,39 +205,37 @@ public class SettingPriceUi extends JPanel {
 	 * 在界面中显示距离数据
 	 */
 	private void showDistance() {
-		if (comboxDistance.getSelectedItem() == "城市距离") {
-			this.showCityDistance();
+		if (comboxDistance.getSelectedItem() == "显示全部") {
+			this.showAllCity();
+		} else {
+			this.showCityDistance(comboxDistance.getSelectedItem() + "");
 		}
 	}
 	
-	private void showCityDistance() {
-		for (String city : City.cityList) {
-			this.showCityDistance(city);
+	private void showAllCity() {
+		Distance cityDistance = new Distance();
+		double distance = 0;
+		int line = 0;
+		String departure = "", destination = "";
+
+		table.clean();
+		
+		// 同一城市间距离
+		distance = cityDistance.getDistance(City.cityList.get(0), City.cityList.get(0));
+		table.setValueAt(line, 0, "城市各营业厅");
+		table.setValueAt(line, 1, distance + "  KM");
+
+		for (int i = 0; i < City.cityList.size(); i++) {
+			departure = City.cityList.get(i);
+			for (int j = i + 1; j < City.cityList.size(); j++) {
+				destination = City.cityList.get(j);
+				line = table.numOfEmpty();
+
+				distance = cityDistance.getDistance(departure, destination);
+				table.setValueAt(line, 0, departure + "---" + destination);
+				table.setValueAt(line, 1, distance + "  KM");
+			}
 		}
-//		
-//		Distance cityDistance = new Distance();
-//		double distance = 0;
-//		int line = 0;
-//		String departure = "", destination = "";
-//
-//		table1.clean();
-//		
-//		// 同一城市间距离
-//		distance = cityDistance.getDistance(City.cityList.get(0), City.cityList.get(0));
-//		table1.setValueAt(line, 0, "城市各营业厅");
-//		table1.setValueAt(line, 1, distance + "");
-//
-//		for (int i = 0; i < City.cityList.size(); i++) {
-//			departure = City.cityList.get(i);
-//			for (int j = i + 1; j < City.cityList.size(); j++) {
-//				destination = City.cityList.get(j);
-//				line = table1.numOfEmpty();
-//
-//				distance = cityDistance.getDistance(departure, destination);
-//				table1.setValueAt(line, 0, departure + "---" + destination);
-//				table1.setValueAt(line, 1, distance + "");
-//			}
-//		}
 	}
 	
 	/**
@@ -250,10 +249,10 @@ public class SettingPriceUi extends JPanel {
 			if (city.equals(destination)) {
 				continue;
 			}
-			line = table1.numOfEmpty();
+			line = table.numOfEmpty();
 			distance = new Distance().getDistance(city, destination);
-			table1.setValueAt(line, 0, city + " --- " + destination);
-			table1.setValueAt(line, 1, distance + "");
+			table.setValueAt(line, 0, city + " --- " + destination);
+			table.setValueAt(line, 1, distance + "  KM");
 		}
 	}
 
@@ -265,6 +264,8 @@ public class SettingPriceUi extends JPanel {
 			this.showExpressPrice();
 		} else if (comboxPrice.getSelectedItem() == "包装价格"){
 			this.showPackagePrice();
+		} else if (comboxPrice.getSelectedItem() == "运输价格") {
+			this.showLoadPrice();
 		}
 	}
 
@@ -273,9 +274,9 @@ public class SettingPriceUi extends JPanel {
 		Price price = new Price();
 		
 		for (Express e : Express.values()) {
-			line = table1.numOfEmpty();
-			table1.setValueAt(line, 0, Express.transfer(e));
-			table1.setValueAt(line, 1, price.getPrice(e) + "");
+			line = table.numOfEmpty();
+			table.setValueAt(line, 0, Express.transfer(e));
+			table.setValueAt(line, 1, price.getPrice(e) + " 元");
 		}
 	}
 	
@@ -284,9 +285,23 @@ public class SettingPriceUi extends JPanel {
 		Price price = new Price();
 		
 		for (Packing p : Packing.values()) {
-			line = table1.numOfEmpty();
-			table1.setValueAt(line, 0, Packing.transfer(p));
-			table1.setValueAt(line, 1, price.getPrice(p) + "");
+			line = table.numOfEmpty();
+			table.setValueAt(line, 0, Packing.transfer(p));
+			table.setValueAt(line, 1, price.getPrice(p) + " 元");
+		}
+	}
+	
+	private void showLoadPrice() {
+		int line = 0;
+		Price price = new Price();
+		
+		for (TransportType type	: TransportType.values()) {
+			if (type == TransportType.YetToKnow) {
+				continue;
+			}
+			line = table.numOfEmpty();
+			table.setValueAt(line, 0, TransportType.Transfer(type));
+			table.setValueAt(line, 1, price.getPrice(type) + " 元每公里每吨");
 		}
 	}
 
@@ -307,7 +322,7 @@ public class SettingPriceUi extends JPanel {
 	 * 修改距离
 	 */
 	private void modifyDistance() {
-
+		
 	}
 
 	/**
