@@ -68,7 +68,7 @@ public class ReceiptRecord implements ReceiptRecordService {
 	private String createID() {
 		String id = "";
 		try {
-			id = this.getDataService().createID(userVO.getInstitution().getLocation(), incomeBillVO.getDate());
+			id = this.getDataService().createID(userVO.getInstitution().getID(), incomeBillVO.getDate());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
