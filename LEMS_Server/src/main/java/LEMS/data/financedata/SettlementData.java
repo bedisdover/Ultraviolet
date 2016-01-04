@@ -35,7 +35,7 @@ public class SettlementData extends UnicastRemoteObject implements SettlementDat
 		
 		try {
 			while (result.next()) {
-				if (result.getString(3).equals(date) && result.getString(5).startsWith(institution)) {
+				if (result.getString(3).equals(date) && result.getString(1).startsWith(institution)) {
 					incomes.add(receiptRecord.find(result.getString(1)));
 				}
 			}
