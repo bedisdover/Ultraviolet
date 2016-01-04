@@ -1,10 +1,6 @@
 package LEMS.data.informationdata;
 
 import java.rmi.RemoteException;
-
-
-
-
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +13,6 @@ import LEMS.po.informationpo.AccountPO;
 import LEMS.po.informationpo.DriverPO;
 import LEMS.po.informationpo.Gender;
 import LEMS.po.informationpo.InstitutionPO;
-import LEMS.po.informationpo.StaffPO;
 import LEMS.po.informationpo.VehiclePO;
 import LEMS.po.userpo.UserPO;
 import LEMS.po.userpo.UserRole;

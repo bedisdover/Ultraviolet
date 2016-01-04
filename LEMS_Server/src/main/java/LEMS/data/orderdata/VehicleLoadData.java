@@ -11,7 +11,6 @@ import LEMS.data.Connect;
 import LEMS.data.TransferID;
 import LEMS.dataservice.orderdataservice.VehicleLoadDataService;
 import LEMS.po.financepo.DocumentState;
-import LEMS.po.orderpo.LoadNotePO;
 import LEMS.po.orderpo.OrderPO;
 import LEMS.po.orderpo.VehicleLoadNotePO;
 

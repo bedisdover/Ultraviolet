@@ -148,7 +148,7 @@ public class SettingPriceUi extends JPanel {
 
 	public void initComponents() {
 		String[] columnNames1 = { "项目", "数值" };
-		int[] list1 = { 120, 392, 20, 30, 20, 102, 280, 801, 360 };
+		int[] list1 = { 120, 392, 20, 30, 20, 102, 265, 801, 360 };
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
 		// *

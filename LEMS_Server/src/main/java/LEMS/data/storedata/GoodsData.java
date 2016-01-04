@@ -28,7 +28,7 @@ public class GoodsData extends UnicastRemoteObject implements GoodsDataService {
 	}
 
 	public GoodsPO find(String id) {
-		ArrayList<String> al = new ArrayList<String>();
+//		ArrayList<String> al = new ArrayList<String>();
 //		String sql = "SELECT id,inDate,outDate,destination,area,row,stand,position,transportType,transferNum,money FROM goods where id ='"
 //				+ id + "'";
 		String sql = "SELECT id,inDate,outDate,destination,area,row,stand,position,transportType,transferNum,money FROM goods where id = "
@@ -68,7 +68,7 @@ public class GoodsData extends UnicastRemoteObject implements GoodsDataService {
 				+ "transportType,transferNum,money FROM goods where(  inDate <'"+endTime + "' )" + 
 				"and (outDate > '" + startTime + "' )";
 		ResultSet result = connect.getResultSet(sql);
-		PreparedStatement pstmt = connect.getPreparedStatement(sql);
+//		PreparedStatement pstmt = connect.getPreparedStatement(sql);
 		
 		try {
 			while (result.next()) {
@@ -126,7 +126,7 @@ public class GoodsData extends UnicastRemoteObject implements GoodsDataService {
 		int judge = 0;
 		String idTarget = id;
 		String sql = "DELETE FROM goods WHERE id= '" + idTarget + "'";
-		ResultSet result = connect.getResultSet(sql);
+//		ResultSet result = connect.getResultSet(sql);
 		PreparedStatement pstmt = connect.getPreparedStatement(sql);
 		try {
 			judge = pstmt.executeUpdate(); // 返回int类型 0不成功 大于0成功

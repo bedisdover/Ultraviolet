@@ -5,6 +5,7 @@ import LEMS.businesslogic.orderbl.Transfer;
 import LEMS.businesslogic.orderbl.VehicleLoad;
 import LEMS.businesslogic.orderbl.transfer.Load;
 import LEMS.businesslogic.utility.Approvalable;
+import LEMS.po.financepo.DocumentPO;
 
 /**
  * @author 宋益明
@@ -32,8 +33,8 @@ public class Factory {
 	 * 收款单
 	 * @param index 选择的选项
 	 */
-	public Approvalable<?> create(String item) {
-		Approvalable<?> approvalable = null;
+	public Approvalable<? extends DocumentPO> create(String item) {
+		Approvalable<? extends DocumentPO> approvalable = null;
 		
 		switch (item) {
 		case "派件单":

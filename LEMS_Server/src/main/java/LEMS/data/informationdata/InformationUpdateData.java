@@ -2,12 +2,7 @@ package LEMS.data.informationdata;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
-import LEMS.data.Connect;
 import LEMS.dataservice.informationdataservice.InformationUpdateDataService;
 import LEMS.po.financepo.SalaryPO;
 import LEMS.po.informationpo.AccountPO;
@@ -15,7 +10,6 @@ import LEMS.po.informationpo.DriverPO;
 import LEMS.po.informationpo.InstitutionPO;
 import LEMS.po.informationpo.VehiclePO;
 import LEMS.po.userpo.UserPO;
-import LEMS.po.userpo.UserRole;
 
 /**
  * @author 苏琰梓

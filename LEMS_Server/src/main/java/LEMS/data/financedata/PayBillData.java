@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 import LEMS.data.Connect;
 import LEMS.dataservice.financedataservice.PayBillDataService;
-import LEMS.po.financepo.IncomeBillPO;
 import LEMS.po.financepo.PayBillPO;
 
 @SuppressWarnings("serial")
