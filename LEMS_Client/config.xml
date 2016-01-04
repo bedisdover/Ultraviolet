@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <System>
-	<Connect IP = "rmi://172.25.135.158:1099/data"/>
+	<Connect IP = "rmi://172.26.27.105:1099/data"/>
 </System>
