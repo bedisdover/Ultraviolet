@@ -34,7 +34,7 @@ public class SettlementData extends UnicastRemoteObject implements SettlementDat
 		ResultSet result = connect.getResultSet(sql);
 		
 		try {
-			while (result.next()) {System.out.println(result.getDouble(4));
+			while (result.next()) {
 				if (result.getString(3).equals(date) && result.getString(1).startsWith(institution)) {
 					incomes.add(receiptRecord.find(result.getString(1)));
 				}
