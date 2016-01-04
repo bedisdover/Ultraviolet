@@ -3,11 +3,13 @@ package LEMS.po.inquirepo;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import LEMS.po.financepo.DocumentPO;
+
 /**
  * @author 章承尧 物流信息持久化对象
  */
 @SuppressWarnings("serial")
-public class LogisticsInfoPO implements Serializable {
+public class LogisticsInfoPO extends DocumentPO implements Serializable {
 	/**
 	 * 订单编号
 	 */

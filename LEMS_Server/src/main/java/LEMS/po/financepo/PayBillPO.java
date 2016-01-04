@@ -8,7 +8,7 @@ import java.io.Serializable;
  *         付款单持久化对象
  */
 @SuppressWarnings("serial")
-public class PayBillPO implements Serializable {
+public class PayBillPO extends DocumentPO implements Serializable {
 	
 	/**
 	 * 付款日期

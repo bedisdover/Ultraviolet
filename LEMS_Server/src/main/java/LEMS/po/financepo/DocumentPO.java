@@ -38,5 +38,4 @@ public class DocumentPO implements Serializable {
 	public void setState(DocumentState state) {
 		this.state = state;
 	}
-
 }

@@ -7,7 +7,7 @@ import java.io.Serializable;
  * 
  * 成本收益表持久化对象
  */
-public class CostProfitPO implements Serializable {
+public class CostProfitPO extends DocumentPO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	/**

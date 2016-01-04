@@ -2,12 +2,14 @@ package LEMS.po.inquirepo;
 
 import java.io.Serializable;
 
+import LEMS.po.financepo.DocumentPO;
+
 /**
  * @author 章承尧
  * 日志持久化对象
  */
 @SuppressWarnings("serial")
-public class DiaryPO implements Serializable{
+public class DiaryPO extends DocumentPO implements Serializable{
 	/**
 	 * 日期
 	 */

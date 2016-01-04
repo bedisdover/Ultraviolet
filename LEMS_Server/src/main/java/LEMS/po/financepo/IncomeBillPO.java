@@ -8,7 +8,7 @@ import java.io.Serializable;
  * 收款单持久化对象（结算管理、成本管理）
  */
 @SuppressWarnings("serial")
-public class IncomeBillPO implements Serializable {
+public class IncomeBillPO extends DocumentPO implements Serializable {
 	
 	/**
 	 * 收款日期
