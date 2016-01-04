@@ -48,4 +48,10 @@ public class FinanceFactoryImpl extends UnicastRemoteObject implements FinanceFa
 		FinanceInsertDataService fids = new FinanceInsertData();
 		return fids;
 	}
+
+	@Override
+	public FinanceInsertDataService getInsertData() throws RemoteException {
+		FinanceInsertDataService fid=new FinanceInsertData();
+		return fid;
+	}
 }

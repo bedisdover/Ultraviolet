@@ -10,12 +10,12 @@ import LEMS.dataservice.financedataservice.FinanceInsertDataService;
 import LEMS.dataservice.informationdataservice.InformationInsertDataService;
 import LEMS.po.financepo.PayBillPO;
 
+@SuppressWarnings("serial")
 public class FinanceInsertData extends UnicastRemoteObject implements FinanceInsertDataService{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
 
 	public FinanceInsertData() throws RemoteException {
 		super();
