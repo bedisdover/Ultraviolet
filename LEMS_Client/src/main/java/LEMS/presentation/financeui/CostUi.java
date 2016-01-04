@@ -224,9 +224,9 @@ public class CostUi extends JPanel {
 				} else {
 					int i = table.numOfEmpty();
 					//从数据库中删除信息
-					Cost cost = new Cost();
-					System.out.println("生成删除的cost");
-					cost.deleteCost(table.getValueAt(currentLine, 0).trim());
+//					Cost cost = new Cost();
+//					System.out.println("生成删除的cost");
+//					cost.deleteCost(table.getValueAt(currentLine, 0).trim());
 					
 					for (int j = currentLine; j < i; j++) {
 						table.setValueAt(j, 0, table.getValueAt(j + 1, 0));
