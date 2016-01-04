@@ -1,9 +1,8 @@
 package LEMS.presentation;
 
+import LEMS.po.informationpo.InstitutionPO;
 import LEMS.po.userpo.UserRole;
-import LEMS.presentation.financeui.ExamDocumentUi;
-import LEMS.presentation.financeui.SettingPriceUi;
-import LEMS.presentation.orderui.ReceiptRecordUi;
+import LEMS.presentation.userui.OrderManageUi;
 import LEMS.vo.uservo.UserVO;
 
 public class mainSongYiming {
@@ -33,8 +32,8 @@ public class mainSongYiming {
 //		mainFrame.setContentPane(vehicleLoadUi);
 //		TransferUi transferUi = new TransferUi(mainFrame, null);
 //		mainFrame.setContentPane(transferUi);
-//		OrderManageUi orderManageUi = new OrderManageUi(mainFrame, new UserVO("c0210000000", "123456", UserRole.Courier, "米拉娜", new InstitutionPO("0210000", "上海市浦东新区23号")));
-//		mainFrame.setContentPane(orderManageUi);
+		OrderManageUi orderManageUi = new OrderManageUi(mainFrame, new UserVO("c0210000000", "123456", UserRole.Courier, "米拉娜", new InstitutionPO("0210000", "上海市浦东新区23号")));
+		mainFrame.setContentPane(orderManageUi);
 //		ExamDocumentUi examDocumentUi = new ExamDocumentUi(mainFrame, userVO);
 //		mainFrame.setContentPane(examDocumentUi);
 //		CourierUi courierUi = new CourierUi(mainFrame);
@@ -43,8 +42,8 @@ public class mainSongYiming {
 //		mainFrame.setContentPane(loadUi2);
 //		ReceiptRecordUi receiptRecordUi = new ReceiptRecordUi(mainFrame, userVO);
 //		mainFrame.setContentPane(receiptRecordUi);
-		SettingPriceUi settingPriceUi = new SettingPriceUi(mainFrame, userVO);
-		mainFrame.setContentPane(settingPriceUi);
+//		SettingPriceUi settingPriceUi = new SettingPriceUi(mainFrame, userVO);
+//		mainFrame.setContentPane(settingPriceUi);
 		mainFrame.setVisible(true);
 		
 //		AddOrder addOrder = new AddOrder();

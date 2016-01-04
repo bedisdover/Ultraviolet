@@ -317,10 +317,12 @@ public class OrderManageUi extends JPanel {
 		//判断手机号是否合法（全为7位或11位数字）
 		if (!legalPhone()) {
 			JOptionPane.showMessageDialog(mainFrame, "输入手机号无效!" + "\n或\n" +"手机号不存在！", "Error", JOptionPane.ERROR_MESSAGE);
+			return;
 		}
 		//判断输入是否合法
 		if (!isLegal()) {
 			JOptionPane.showMessageDialog(mainFrame, "请输入正确数值！", "Error", JOptionPane.ERROR_MESSAGE);
+			return;
 		}
 		String id = order.createID();
 		// 生成订单
