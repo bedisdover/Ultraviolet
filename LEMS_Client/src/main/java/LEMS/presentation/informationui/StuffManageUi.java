@@ -224,7 +224,11 @@ public class StuffManageUi extends JPanel  {
 			}
 		});
 		OK.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {												
+			public void mouseClicked(MouseEvent e) {
+				if(Double.parseDouble(textSalary.getText())<0){
+					JOptionPane.showMessageDialog(StuffManageUi.this, "请输入合理的薪水！");
+				}
+				else{					
 					int currentLine=table.table.getSelectedRow();
 					//在数据库中修改该人员薪水信息
 					SalaryVO svo = new SalaryVO(textID.getText(),textInstitution.getText(),textName.getText(),Double.parseDouble(textSalary.getText()));
@@ -239,6 +243,7 @@ public class StuffManageUi extends JPanel  {
 					empty();
 					// 使输入框不可编辑
 					setTestState(false);
+				}
 				
 			}
 		});
