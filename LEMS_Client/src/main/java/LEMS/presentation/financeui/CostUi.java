@@ -195,10 +195,6 @@ public class CostUi extends JPanel {
 							JOptionPane.showMessageDialog(CostUi.this,
 									"请输入正确的付款金额");
 						}
-//					} catch (Exception ee) {
-//						JOptionPane
-//								.showMessageDialog(CostUi.this, "请输入正确的付款金额");
-//					}
 
 				} else {
 					JOptionPane.showMessageDialog(CostUi.this, "请将必填信息填写完整");
@@ -231,6 +227,7 @@ public class CostUi extends JPanel {
 					int i = table.numOfEmpty();
 					//从数据库中删除信息
 					Cost cost = new Cost();
+					System.out.println("生成删除的cost");
 					cost.deleteCost(table.getValueAt(currentLine, 0).trim());
 					
 					for (int j = currentLine; j < i; j++) {

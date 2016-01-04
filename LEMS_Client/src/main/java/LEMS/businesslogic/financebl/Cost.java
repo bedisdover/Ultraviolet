@@ -57,8 +57,11 @@ public class Cost implements CostService {
 		try {
 			DatabaseFactory database = (DatabaseFactory) Naming.lookup(RMIConnect.RMI);
 			FinanceFactory fif = database.getFinanceFactory();
+			System.out.println(1);
 			FinanceDeleteDataService financeDelete = fif.getDeleteData();
+			System.out.println(2);
 			financeDelete.deleteCost(id);
+			System.out.println(3);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {

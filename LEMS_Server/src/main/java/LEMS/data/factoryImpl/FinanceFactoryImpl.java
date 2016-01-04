@@ -3,12 +3,14 @@ package LEMS.data.factoryImpl;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import LEMS.data.financedata.FinanceDeleteData;
 import LEMS.data.financedata.FinanceInsertData;
 import LEMS.data.financedata.IncomeBillData;
 import LEMS.data.financedata.PayBillData;
 import LEMS.data.financedata.PriceData;
 import LEMS.data.financedata.SettlementData;
 import LEMS.dataservice.factory.FinanceFactory;
+import LEMS.dataservice.financedataservice.FinanceDeleteDataService;
 import LEMS.dataservice.financedataservice.FinanceInsertDataService;
 import LEMS.dataservice.financedataservice.IncomeBillDataService;
 import LEMS.dataservice.financedataservice.PayBillDataService;
@@ -44,14 +46,15 @@ public class FinanceFactoryImpl extends UnicastRemoteObject implements FinanceFa
 		return new SettlementData();
 	}
 	
-	public FinanceInsertDataService getFinanceinsertDataService() throws RemoteException{
-		FinanceInsertDataService fids = new FinanceInsertData();
-		return fids;
-	}
 
-	@Override
 	public FinanceInsertDataService getInsertData() throws RemoteException {
 		FinanceInsertDataService fid=new FinanceInsertData();
 		return fid;
+	}
+
+	public FinanceDeleteDataService getDeleteData() throws RemoteException{
+		System.out.println("啊啊啊啊啊");
+		FinanceDeleteDataService fdd = new FinanceDeleteData();
+		return fdd;
 	}
 }
