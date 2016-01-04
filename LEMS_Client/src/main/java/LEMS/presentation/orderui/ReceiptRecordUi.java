@@ -103,8 +103,8 @@ public class ReceiptRecordUi extends JPanel {
 		finish=new UltraButton("完成");
 		labelDate=new JLabel("日期：");
 		labelStaff=new JLabel("揽件员：");
-		labelMoney = new JLabel("实收金额:");
-		labelneeded = new JLabel("应收金额:");
+		labelMoney = new JLabel("实收金额：");
+		labelneeded = new JLabel("应收金额：");
 		textStaff= new UltraTextField();
 		textMoney = new UltraTextField();
 		textNeeded = new UltraTextField();
@@ -272,7 +272,6 @@ public class ReceiptRecordUi extends JPanel {
 	}
 	
 	private void finishOperation() {
-		setTextState(false);
 		incomeBillVO.setDate(dc.getTime());
 		incomeBillVO.setCollector(textStaff.getText());
 		incomeBillVO.setAmount(Double.parseDouble(textNeeded.getText()));
@@ -280,5 +279,6 @@ public class ReceiptRecordUi extends JPanel {
 		receiptRecord.createIncomeBill();
 		
 		table.clean();
+		this.setTextState(false);
 	}
 }

@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import LEMS.businesslogic.financebl.Settlement;
 import LEMS.po.orderpo.IncomePO;
@@ -138,13 +137,15 @@ public class SettlementUi extends JPanel {
 		// “查看收款信息”按钮增加监听
 		but1.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				findOperation();
+				if (isLegal()) {
+					findOperation();
+				}
 			}
 		});
 		// “添加到收款单”按钮增加监听
 		but2.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				if (table.numOfEmpty() != 0) {
+				if (table.numOfEmpty() != -1) {
 					addOperation();
 				}
 			}
@@ -160,12 +161,12 @@ public class SettlementUi extends JPanel {
 	private void findOperation() {
 		ArrayList<IncomePO> incomes = settlement.getIncomeByDateAndIns(dc.getTime(), textField.getText());
 		
-		System.out.println(incomes);
 		if (incomes.isEmpty()) {
-			JOptionPane.showMessageDialog(mainFrame, "暂无收款信息！", "error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(mainFrame, "暂无收款信息！", "", JOptionPane.INFORMATION_MESSAGE);
+			return;
 		}
 		
-		String [] values = {};
+		String [] values = new String[4];
 		for (IncomePO incomePO : incomes) {
 			//TODO 添加非编号
 			values[0] = incomePO.getDate();
@@ -187,6 +188,15 @@ public class SettlementUi extends JPanel {
 		
 	}
 
+	private boolean isLegal() {
+		if (textField.getText().length() == 7 && textField.getText().matches("\\d+")) {
+			return true;
+		}
+		
+		JOptionPane.showMessageDialog(mainFrame, "营业厅编号输入错误！", "Error", JOptionPane.ERROR_MESSAGE);
+		return false;
+	}
+	
 	public void paintComponent(Graphics g) {
 		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
 		g.draw3DRect(50, 135, 255, 430, false); // 输入框外框

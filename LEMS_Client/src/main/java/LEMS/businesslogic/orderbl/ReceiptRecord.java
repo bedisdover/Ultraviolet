@@ -49,17 +49,17 @@ public class ReceiptRecord implements ReceiptRecordService {
 	}
 	
 	public void createIncomeBill() {
-		IncomePO incomeBillPO = new IncomePO();
+		IncomePO income = new IncomePO();
 		
-		incomeBillPO.setId(this.createID());
-		incomeBillPO.setState(DocumentState.waiting);
-		incomeBillPO.setDate(incomeBillVO.getDate());
-		incomeBillPO.setAmount(incomeBillVO.getAmount());
-		incomeBillPO.setCollector(incomeBillVO.getCollector());
-		incomeBillPO.setOrders(orders);
+		income.setId(this.createID());
+		income.setState(DocumentState.waiting);
+		income.setDate(incomeBillVO.getDate());
+		income.setAmount(incomeBillVO.getAmount());
+		income.setCollector(incomeBillVO.getCollector());
+		income.setOrders(orders);
 		
 		try {
-			this.getDataService().insert(incomeBillPO);
+			this.getDataService().insert(income);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
