@@ -47,12 +47,13 @@ public class FinancialStaffUi extends JPanel {
 	private void init(){
 		tabbedPane = new JTabbedPane();
 		ImageIcon image1=new ImageIcon("source\\tabbedpanel\\结算管理.png");
+		ImageIcon image2=new ImageIcon("source\\tabbedpanel\\成本管理.png");
 		ImageIcon image3=new ImageIcon("source\\tabbedpanel\\统计报表.png");
 		ImageIcon image4=new ImageIcon("source\\tabbedpanel\\查询日志.png");
 		ImageIcon image5=new ImageIcon("source\\tabbedpanel\\账户管理.png");
 		
 		tabbedPane.addTab(null,image1,settlementPanel,"结算管理界面");  
-        //tabbedPane.addTab(null,image2,costPanel,"成本管理界面");
+        tabbedPane.addTab(null,image2,costPanel,"成本管理界面");
         tabbedPane.addTab(null,image3,statisticsReportUi,"统计报表界面"); 
         tabbedPane.addTab(null,image4,diaryUi,"查询日志界面"); 
         tabbedPane.addTab(null,image5,accountPanel,"账户管理界面"); 
@@ -63,8 +64,4 @@ public class FinancialStaffUi extends JPanel {
 		this.add(tabbedPane);
 	}
 	
-//	public void paintComponent(Graphics g) {
-//		g.drawImage(MainFrame.background, 0, 0, this.getWidth(), this.getHeight(), null);
-//		this.repaint();
-//	}
 }

@@ -23,24 +23,16 @@ public class PayBillData extends UnicastRemoteObject implements PayBillDataServi
 	//从数据库中读出所有付款单
 	public ArrayList<PayBillPO> getPayBill() throws RemoteException {
 		ArrayList<PayBillPO> pa=new ArrayList<PayBillPO>();
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet result = null;
+		Connect co=new Connect();
 		String sql="SELECT * FROM paybill";
+		ResultSet result = co.getResultSet(sql);
 		try {
-			Class.forName(Connect.DBDRIVER);
-			conn = DriverManager.getConnection(Connect.DBURL, Connect.DBUSER, Connect.DBPASS);
-			pstmt = conn.prepareStatement(sql);
-			result = pstmt.executeQuery();
 			while (result.next()) {
 				pa.add(new PayBillPO(result.getString(1),result.getString(2),result.getString(3),result.getDouble(4),result.getString(5),result.getString(6),result.getString(7),result.getString(8)));
 			}
-			result.close();
-			pstmt.close();
-			conn.close();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
+			co.closeConnection();;
+
+		}  catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return pa;

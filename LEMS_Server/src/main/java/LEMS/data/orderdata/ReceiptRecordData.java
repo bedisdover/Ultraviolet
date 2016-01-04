@@ -51,7 +51,6 @@ public class ReceiptRecordData extends UnicastRemoteObject implements ReceiptRec
 		
 		try {
 			result.next();
-			
 			incomeBillPO.setId(result.getString(1));
 			incomeBillPO.setState(DocumentState.valueOf(result.getString(2)));
 			incomeBillPO.setDate(result.getString(3));

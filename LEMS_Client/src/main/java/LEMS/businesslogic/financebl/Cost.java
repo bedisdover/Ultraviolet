@@ -42,6 +42,7 @@ public class Cost implements CostService {
 			DatabaseFactory database = (DatabaseFactory) Naming
 					.lookup(RMIConnect.RMI);
 			FinanceFactory fif = database.getFinanceFactory();
+			
 			FinanceInsertDataService financeInsert = fif.getInsertData();
 			PayBillPO p = new PayBillPO(pay.getDate(), pay.getId(),
 					pay.getInstitution(), pay.getAmount(), pay.getPayer(),
