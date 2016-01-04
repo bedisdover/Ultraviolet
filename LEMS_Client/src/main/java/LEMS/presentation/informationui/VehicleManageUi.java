@@ -317,7 +317,8 @@ public class VehicleManageUi extends JPanel {
 					
 					// 清空输入框
 					empty();
-					picture=new JLabel();
+					image=new ImageIcon("source/init.jpg");
+					picture.setIcon(image);
 					// 使输入框不可编辑
 					setTestState(false);
 					isAdd=false;
@@ -336,6 +337,8 @@ public class VehicleManageUi extends JPanel {
 					
 					// 清空输入框
 					empty();
+					image=new ImageIcon("source/init.jpg");
+					picture.setIcon(image);
 					// 使输入框不可编辑
 					setTestState(false);
 					isUpdate=false;
