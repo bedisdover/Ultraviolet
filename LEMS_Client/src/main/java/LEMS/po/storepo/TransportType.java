@@ -27,7 +27,7 @@ public enum TransportType implements Serializable {
 		typeList.put(TransportType.YetToKnow, "");
 	}
 	
-	public static TransportType getType(String type) {
+	public static TransportType transfer(String type) {
 		switch (type) {
 		case "飞机":
 			return Airplane;

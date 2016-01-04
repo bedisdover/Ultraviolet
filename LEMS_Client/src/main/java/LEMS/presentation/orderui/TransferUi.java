@@ -361,7 +361,7 @@ public class TransferUi extends JPanel {
 		transferVO.setContainer(textContainer.getText());
 		
 		try {
-			transfer.createTransferNote(TransportType.getType(
+			transfer.createTransferNote(TransportType.transfer(
 					(String) comboBoxFormat.getSelectedItem()) );
 			
 			this.empty();

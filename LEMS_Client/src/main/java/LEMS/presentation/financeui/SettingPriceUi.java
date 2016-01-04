@@ -58,6 +58,12 @@ public class SettingPriceUi extends JPanel {
 	private UltraComboBox comboxPrice = new UltraComboBox();
 	private UltraComboBox comboxDistance = new UltraComboBox();
 	
+	/**
+	 * 标记当前状态 
+	 * 		价格/距离
+	 */
+	private boolean pricing = true;
+	
 //	UltraComboBox City1 = new UltraComboBox();
 //	UltraComboBox City2 = new UltraComboBox();
 //	UltraComboBox expressType = new UltraComboBox();
@@ -162,6 +168,7 @@ public class SettingPriceUi extends JPanel {
 					
 					if (e.getSource() == comboxPrice) {
 						showPrice();
+						pricing = true;
 					}
 				}
 			}
@@ -175,6 +182,7 @@ public class SettingPriceUi extends JPanel {
 					
 					if (e.getSource() == comboxDistance) {
 						showDistance();
+						pricing = false;
 					}
 				}
 			}
@@ -232,7 +240,7 @@ public class SettingPriceUi extends JPanel {
 				line = table.numOfEmpty();
 
 				distance = cityDistance.getDistance(departure, destination);
-				table.setValueAt(line, 0, departure + "---" + destination);
+				table.setValueAt(line, 0, departure + " --- " + destination);
 				table.setValueAt(line, 1, distance + "  KM");
 			}
 		}
@@ -309,26 +317,70 @@ public class SettingPriceUi extends JPanel {
 	 * 修改按钮按下的操作
 	 */
 	private void modifyOperation() {
-		if (comboxPrice.getSelectedIndex() == 0) {
-			// “制定价格”选项
-			this.modifyPrice();
-		} else {
-			// “制定距离”选项
-			this.modifyDistance();
+		String input = JOptionPane.showInputDialog(mainFrame, "输入", "请输入", JOptionPane.INFORMATION_MESSAGE);
+		double value = 0.0;
+		try {
+			value = Double.parseDouble(input);
+			
+			if (value <= 0.0) {
+				JOptionPane.showMessageDialog(mainFrame, "请输入正确数值！", "Error", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			
+			if (pricing) {
+				// “制定价格”选项
+				this.modifyPrice(value);
+			} else {
+				// “制定距离”选项
+				this.modifyDistance(value);
+			}
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(mainFrame, "请输入正确数值！", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
 	/**
 	 * 修改距离
 	 */
-	private void modifyDistance() {
+	private void modifyDistance(double value) {
+		String city = table.getValueAt(table.getSelectedRow(), 0);
 		
+		Distance distance = new Distance();
+		
+		if (city.startsWith("城市")) {
+			distance.setDistance("北京市", "北京市", value);
+			return;
+		} 
+		
+		String city1 = city.substring(0, 2);
+		String city2 = city.substring(city.length() - 2);
+		
+		distance.setDistance(city1, city2, value);
+		
+		table.setValueAt(table.getSelectedRow(), 1, value + "  KM");
 	}
 
 	/**
 	 * 修改价格
 	 */
-	private void modifyPrice() {
-		JOptionPane.showInputDialog(mainFrame, "shuru", "请输入价格", JOptionPane.INFORMATION_MESSAGE);
+	private void modifyPrice(double value) {
+		String item = table.getValueAt(table.getSelectedRow(), 0);
+		Price price = new Price();
+		
+		TransportType transport = TransportType.transfer(item);
+		if (transport != null) {
+			table.setValueAt(table.getSelectedRow(), 1, value + " 元每公里每吨");
+			return;
+		}
+		Express express = Express.transfer(item);
+		if (express != null) {
+			price.pricing(express, value);
+		}
+		Packing packing = Packing.transfer(item);
+		if (packing != null) {
+			price.pricing(packing, value);
+		}
+
+		table.setValueAt(table.getSelectedRow(), 1, value + " 元");
 	}
 }
