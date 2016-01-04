@@ -7,6 +7,7 @@ import org.dom4j.io.SAXReader;
 
 public class RMIConnect {
 	public static String RMI;
+	public static String FILE;
 	
 	static {
 		try {
@@ -17,8 +18,11 @@ public class RMIConnect {
 			//获取根目录
 			Element system = document.getRootElement();
 			Element connect = system.element("Connect");
+			Element file = system.element("File");
 
 			RMI = connect.attributeValue("IP");
+			FILE = file.attributeValue("name");
+			
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		}

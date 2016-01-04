@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import LEMS.businesslogic.storebl.StoreManagement;
+import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
@@ -195,7 +196,7 @@ public class StoreCheckUi extends JPanel {
 				ExportExcel operation = new ExportExcel();
 				String[] title = {"快递单号","入库日期","目的地","存储区域","架号","排号","位号","运费"};
 				
-				operation.exportExcel("d:/库存盘点.xls", "库存盘点", title, al);
+				operation.exportExcel(RMIConnect.FILE + "库存盘点.xls", "库存盘点", title, al);
 			}
 		});
 
