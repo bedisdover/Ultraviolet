@@ -8,7 +8,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -68,7 +67,6 @@ public class GenerateOutboundOrderUi extends JPanel {
 
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);// 标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);// 其余字体格式
-	private Font fnt2 = new Font("宋体", Font.BOLD, 16);// 按钮字体格式
 
 	/**
 	 * 判断是干什么的确定 1是新建 2是删除 3是修改 4是查找
@@ -130,6 +128,7 @@ public class GenerateOutboundOrderUi extends JPanel {
 	/**
 	 * 初始化各组件
 	 */
+	@SuppressWarnings({ "unchecked" })
 	private void initComponents() {
 
 		title.setBounds(420, 37, 230, 39);

@@ -148,6 +148,7 @@ public class StoreInquireUi extends JPanel {
 	/**
 	 * 初始化各组件
 	 */
+	@SuppressWarnings("unchecked")
 	private void initComponents() {
 
 		title.setBounds(440, 37, 230, 39);

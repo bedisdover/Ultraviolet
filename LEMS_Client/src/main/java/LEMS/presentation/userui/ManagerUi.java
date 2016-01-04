@@ -6,11 +6,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import LEMS.businesslogic.informationbl.InformationAdd;
 import LEMS.businesslogic.informationbl.InformationDelete;
@@ -120,6 +118,7 @@ public class ManagerUi extends JPanel {
 	/**
 	 * 初始化各组件
 	 */
+	@SuppressWarnings("unchecked")
 	private void initComponents() {
 
 		title.setBounds(449, 37, 148, 39);

@@ -47,7 +47,6 @@ public class FinancialStaffUi extends JPanel {
 	private void init(){
 		tabbedPane = new JTabbedPane();
 		ImageIcon image1=new ImageIcon("source\\tabbedpanel\\结算管理.png");
-		ImageIcon image2=new ImageIcon("source\\tabbedpanel\\成本管理.png");
 		ImageIcon image3=new ImageIcon("source\\tabbedpanel\\统计报表.png");
 		ImageIcon image4=new ImageIcon("source\\tabbedpanel\\查询日志.png");
 		ImageIcon image5=new ImageIcon("source\\tabbedpanel\\账户管理.png");

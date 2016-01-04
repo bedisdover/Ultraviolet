@@ -12,8 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import LEMS.businesslogic.storebl.StoreManagement;
-import LEMS.po.storepo.Area;
-import LEMS.po.storepo.Destination;
 import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
@@ -127,6 +125,7 @@ public class StoreCheckUi extends JPanel {
 	 * @param state
 	 *            输入框状态（是否可编辑）
 	 */
+	@SuppressWarnings("unused")
 	private void setTestState(boolean state) {
 		OK.setEnabled(state);
 	}
@@ -134,6 +133,7 @@ public class StoreCheckUi extends JPanel {
 	/**
 	 * 清空输入框
 	 */
+	@SuppressWarnings("unused")
 	private void empty() {
 		textTime.setText(null);
 	}
@@ -143,6 +143,7 @@ public class StoreCheckUi extends JPanel {
 	 */
 	private void addListener() {
 		excel.addMouseListener(new MouseAdapter() {
+			@SuppressWarnings("static-access")
 			public void mouseClicked(MouseEvent e) {
 				OK.setEnabled(true);
 				StoreManagement storeManagement = new StoreManagement();

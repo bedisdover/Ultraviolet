@@ -7,7 +7,6 @@ import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
@@ -132,6 +131,7 @@ public class ReceiveUi extends JPanel {
 	/**
 	 * 初始化各组件
 	 */
+	@SuppressWarnings("unchecked")
 	private void initComponents() {
 
 		title.setBounds(450, 27, 230, 39);
