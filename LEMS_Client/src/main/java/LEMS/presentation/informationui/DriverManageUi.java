@@ -223,7 +223,7 @@ public class DriverManageUi extends JPanel {
 		 table.setValueAt(i, 0, drivers.get(i).getId());
 		 table.setValueAt(i, 1, drivers.get(i).getName());
 		 table.setValueAt(i, 2, drivers.get(i).getDrivingPeriod());
-		 table.setValueAt(i, 3, drivers.get(i).getGender()+"");
+		 table.setValueAt(i, 3, Gender.toString(drivers.get(i).getGender()));
 		 table.setValueAt(i, 4, drivers.get(i).getIDcardNumber());
 		 table.setValueAt(i, 5, drivers.get(i).getPhoneNumber());
 		 }
@@ -325,7 +325,7 @@ public class DriverManageUi extends JPanel {
 		
 		inquire.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				String inputValue=JOptionPane.showInputDialog("请输入用户账号：");
+				String inputValue=JOptionPane.showInputDialog(DriverManageUi.this,"请输入用户账号：");
 				int i = table.numOfEmpty();
 				for(i=i-1;i>=0;i--){
 					if(table.table.getValueAt(i, 0).equals(inputValue)){
