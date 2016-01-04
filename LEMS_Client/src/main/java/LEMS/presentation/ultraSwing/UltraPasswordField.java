@@ -1,34 +1,22 @@
 package LEMS.presentation.ultraSwing;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class UltraTextField extends JTextField{
-	
+public class UltraPasswordField extends JPasswordField {
 	private static final long serialVersionUID = 1L;
 	private Shape shape;
-	 public UltraTextField() {
+	 public UltraPasswordField() {
+//	  super(size);
 	  setHorizontalAlignment(JTextField.CENTER);
 	  setOpaque(false);
-	  Font fnt = new Font("Courier", Font.PLAIN, 15);// 其余字体格式
-		 setFont(fnt);
 	 }
-	 public UltraTextField(String text) {
-		  super(text);
-		  setHorizontalAlignment(JTextField.CENTER);
-		  setOpaque(false);
-		  Font fnt = new Font("Courier", Font.PLAIN, 13);// 其余字体格式
-			 setFont(fnt);
-			 setText(text);
-		 }
 	 protected void paintComponent(Graphics g) {
-		
-	  // g.setColor(new Color(240,240,240));
-		 g.setColor(getBackground());
+	   g.setColor(new Color(240,240,240));
 	   g.fillRoundRect(0, 0, getWidth()-1, getHeight()-1, 15, 15);
 	   super.paintComponent(g);
 	 }
@@ -42,5 +30,6 @@ public class UltraTextField extends JTextField{
 	   }
 	   return shape.contains(x, y);
 	 }
+
 
 }

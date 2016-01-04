@@ -48,7 +48,6 @@ public class UltraScrollPane extends JScrollPane {
 			Graphics2D g2 = (Graphics2D) g;
 			int w = thumbBounds.width - 1;
 			int h = thumbBounds.height - 1;
-			Paint oldPaint = g2.getPaint();
 
 			// 消除锯齿状边缘
 			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);

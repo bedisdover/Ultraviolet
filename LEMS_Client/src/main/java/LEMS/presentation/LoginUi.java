@@ -1,13 +1,24 @@
 package LEMS.presentation;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-import javax.swing.*;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import LEMS.businesslogic.userbl.UserLogin;
-import LEMS.po.userpo.UserRole;
 import LEMS.presentation.inquireui.LogisticsInfoUi;
+import LEMS.presentation.ultraSwing.UltraButton;
+import LEMS.presentation.ultraSwing.UltraPasswordField;
+import LEMS.presentation.ultraSwing.UltraTextField;
 import LEMS.presentation.userui.BusinessClerkUi;
 import LEMS.presentation.userui.CourierUi;
 //import LEMS.presentation.userui.CourierUi;
@@ -26,13 +37,12 @@ public class LoginUi extends JPanel {
 	
 	MainFrame mainFrame;
 	Image im;
-	JButton but1 = new JButton("登  录");
-	JButton but2 = new JButton("查询物流信息");
-	JButton but3 = new JButton("关于我们");
+	UltraButton but1 = new UltraButton("登录");
+	UltraButton but2 = new UltraButton("查询物流信息");
 	JLabel labName = new JLabel("账号：");
 	JLabel labPassword = new JLabel("密码：");
-	JTextField textName = new JTextField();
-	JPasswordField textPassword = new JPasswordField();
+	UltraTextField textName = new UltraTextField();
+	UltraPasswordField textPassword = new UltraPasswordField();
 	JLabel Return = new JLabel(new ImageIcon("source/Close.png"));
 	JLabel account = new JLabel(new ImageIcon("source/account.png"));
 	JLabel password = new JLabel(new ImageIcon("source/password.png"));
@@ -42,19 +52,21 @@ public class LoginUi extends JPanel {
 		this.mainFrame = mainFrame;
 		this.setLayout(null);
 		mainFrame.setDragable(this);
-		labName.setBounds(313, 239, 193, 56);
-		labPassword.setBounds(313, 348, 193, 56);
+		labName.setBounds(415, 182, 193, 56);
+		labPassword.setBounds(415, 279, 193, 56);
 
-		Return.setBounds(920, 10, 100, 100);
+		Return.setBounds(960, 10, 30, 30);
 		
 		account.setBounds(400, 239, 40, 40);
 		password.setBounds(400, 348, 40, 200);
-		textName.setBounds(482, 239, 251, 56);
-		textPassword.setBounds(482, 348, 251, 56);
-
-		but1.setBounds(620, 443, 150, 45);
-		but2.setBounds(785, 563, 150, 45);
-		but3.setBounds(785, 643, 150, 45);
+		textName.setBounds(504, 185, 200, 50);
+		textPassword.setBounds(504, 282, 200, 50);
+	
+		textName.setBackground(new Color(240, 240, 240));
+		textPassword.setBackground(new Color(240,240,240));
+		
+		but1.setBounds(740, 165, 240, 100);
+		but2.setBounds(740, 260, 240, 100);
 
 		Font fnt = new Font("Serief", Font.BOLD, 24);
 		labName.setFont(fnt);
@@ -65,7 +77,6 @@ public class LoginUi extends JPanel {
 
 		this.add(but1);
 		this.add(but2);
-		this.add(but3);
 		this.add(labName);
 		this.add(labPassword);
 		this.add(textName);
@@ -144,12 +155,7 @@ public class LoginUi extends JPanel {
 				mainFrame.setVisible(true);
 			}
 		});
-		// 点击关于我们按钮
-		but3.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-
-			}
-		});
+		
 		Return.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				System.exit(1);
