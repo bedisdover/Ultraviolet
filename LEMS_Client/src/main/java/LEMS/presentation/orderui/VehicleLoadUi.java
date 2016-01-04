@@ -322,7 +322,11 @@ public class VehicleLoadUi extends JPanel {
 			double weight = vehicleLoad.getWeight(id);
 			
 			textGoodsNum.setText(++number + "");
-			textGoodsWeight.setText(Double.parseDouble(textGoodsWeight.getText()) + weight + "");
+			if (textGoodsWeight.getText().equals("")) {
+				textGoodsWeight.setText(weight + "");
+			} else {
+				textGoodsWeight.setText(Double.parseDouble(textGoodsWeight.getText()) + weight + "");
+			}
 			
 			String[] values = {number + "", id, name, weight + ""};
 			table.setValueAt(table.numOfEmpty(), values);
@@ -330,6 +334,8 @@ public class VehicleLoadUi extends JPanel {
 			textID.setText(null);
 		} catch (RemoteException e) {
 			JOptionPane.showMessageDialog(mainFrame, "请检查网络连接！", "Error", JOptionPane.ERROR_MESSAGE);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
 		}
 	}
 	
