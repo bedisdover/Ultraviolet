@@ -112,7 +112,7 @@ public class SettlementUi extends JPanel {
 		add(labelDate);
 
 		label = new JLabel("营业厅：");
-		label.setBounds(74, 260, 54, 25);
+		label.setBounds(74, 260, 65, 25);
 		label.setFont(fnt);
 		add(label);
 
@@ -122,7 +122,7 @@ public class SettlementUi extends JPanel {
 		textField.setColumns(10);
 		
 		labelTotal = new JLabel("总金额：");
-		labelTotal.setBounds(74, 340, 54, 15);
+		labelTotal.setBounds(74, 340, 65, 15);
 		labelTotal.setFont(fnt);
 		add(labelTotal);
 		
