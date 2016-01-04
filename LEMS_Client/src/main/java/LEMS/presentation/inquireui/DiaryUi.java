@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import LEMS.businesslogic.inquirebl.inquirediary.InquireDiary;
 import LEMS.po.userpo.UserRole;

@@ -48,12 +48,6 @@ public class SettingPriceUi extends JPanel {
 	private JLabel statue;
 	JLabel labelPrice = new JLabel("价格：");
 	JLabel labelDistance = new JLabel("距离：");
-//	JLabel city1 = new JLabel("城市：");
-//	JLabel city2 = new JLabel("城市：");
-//	JLabel mid1 = new JLabel("至");
-//	JLabel labelExpress = new JLabel("快递类型：");
-//	JLabel labelPackage = new JLabel("包装类型：");
-//	JLabel Transport = new JLabel("运输方式：");
 
 	private UltraComboBox comboxPrice = new UltraComboBox();
 	private UltraComboBox comboxDistance = new UltraComboBox();
@@ -64,11 +58,6 @@ public class SettingPriceUi extends JPanel {
 	 */
 	private boolean pricing = true;
 	
-//	UltraComboBox City1 = new UltraComboBox();
-//	UltraComboBox City2 = new UltraComboBox();
-//	UltraComboBox expressType = new UltraComboBox();
-//	UltraComboBox packageType = new UltraComboBox();
-//	UltraComboBox transportType = new UltraComboBox();
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public SettingPriceUi(final MainFrame mainFrame, UserVO uvo) {
@@ -89,51 +78,13 @@ public class SettingPriceUi extends JPanel {
 		comboxPrice.setBounds(320, 150, 120, 30);
 		comboxDistance.setModel(new DefaultComboBoxModel(new String[] {"显示全部", "北京", "上海", "南京", "广州"}));
 		comboxDistance.setBounds(630, 150, 120, 30);
-//		city1.setBounds(265, 220, 40, 30);
-//		City1.setBounds(305, 220, 120, 30);
-//		mid1.setBounds(485, 220, 20, 30);
-//		city2.setBounds(550, 220, 80, 30);
-//		City2.setBounds(590, 220, 120, 30);
-//		labelExpress.setBounds(690, 220, 80, 30);
-//		expressType.setBounds(750, 220, 120, 30);
-//		labelPackage.setBounds(70, 220, 80, 30);
-//		packageType.setBounds(135, 220, 120, 30);
-//		Transport.setBounds(406, 220, 80, 30);
-//		transportType.setBounds(465, 220, 120, 30);
+
 		name.setBounds(355, 75, 135, 28);
 		statue.setBounds(528, 75, 183, 28);
 
-//		City1.addItem("北京");
-//		City1.addItem("上海");
-//		City1.addItem("广州");
-//		City1.addItem("南京");
-//		City2.addItem("北京");
-//		City2.addItem("上海");
-//		City2.addItem("广州");
-//		City2.addItem("南京");
-//		expressType.addItem("标准");
-//		expressType.addItem("特快");
-//		packageType.addItem("纸袋");
-//		packageType.addItem("箱子");
-//		packageType.addItem("其他");
-//		transportType.addItem("火车");
-//		transportType.addItem("汽车");
-//		transportType.addItem("飞机");
-//
 		this.add(title);
 		this.add(butOut);
 		this.add(butModify);
-//		this.add(city1);
-//		this.add(City1);
-//		this.add(mid1);
-//		this.add(city2);
-//		this.add(City2);
-//		this.add(labelExpress);
-//		this.add(expressType);
-//		this.add(labelPackage);
-//		this.add(packageType);
-//		this.add(Transport);
-//		this.add(transportType);
 		this.add(labelPrice);
 		this.add(labelDistance);
 		this.add(comboxPrice);
@@ -151,12 +102,10 @@ public class SettingPriceUi extends JPanel {
 		int[] list1 = { 120, 392, 20, 30, 20, 102, 265, 801, 360 };
 		// list里面参数分别为需要的列数，每一列的宽度,设置第一行字体大小,设置第一行行宽,
 		// * 剩下行的行宽,表格setbounds（list[5],list[6], list[7], list[8]）
-		// *
 		table = new Table();
 		add(table.drawTable(columnNames1, list1));
 		// 将每一列的默认宽度设置为
 		table.table.setRowHeight(40);
-
 	}
 
 	private void addListener() {

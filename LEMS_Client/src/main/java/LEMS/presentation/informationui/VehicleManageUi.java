@@ -7,7 +7,6 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -88,6 +87,7 @@ public class VehicleManageUi extends JPanel {
 	/**
 	 * 初始化
 	 */
+	@SuppressWarnings("unchecked")
 	private void init() {
 		title = new JLabel("车辆信息管理");
 		exit = new UltraButton("返回");

@@ -6,10 +6,6 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
 import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.businesslogicservice.orderblservice.ReceiptService;
 import LEMS.dataservice.factory.DatabaseFactory;
@@ -18,9 +14,6 @@ import LEMS.dataservice.orderdataservice.ReceiptDataService;
 import LEMS.po.financepo.DocumentState;
 import LEMS.po.orderpo.ArrivalNotePO;
 import LEMS.po.orderpo.OrderPO;
-import LEMS.presentation.MainFrame;
-import LEMS.presentation.orderui.ReceiveUi;
-import LEMS.vo.inquirevo.LogisticsInfoVO;
 import LEMS.vo.ordervo.ArrivalVO;
 import LEMS.vo.uservo.UserVO;
 

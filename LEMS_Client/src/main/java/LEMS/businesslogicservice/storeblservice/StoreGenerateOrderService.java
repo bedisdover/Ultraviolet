@@ -2,8 +2,7 @@ package LEMS.businesslogicservice.storeblservice;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import LEMS.po.storepo.InboundOrderPO;
-import LEMS.po.storepo.OutboundOrderPO;
+
 import LEMS.vo.storevo.InboundOrderVO;
 import LEMS.vo.storevo.OutboundOrderVO;
 
@@ -24,7 +23,4 @@ public interface StoreGenerateOrderService extends Remote{
 	public int updateInboundOrderPO(InboundOrderVO inboundOrderVO)throws RemoteException;//修改入库单
 	
 	public int updateOutboundOrderPO(OutboundOrderVO outboundOrderVO)throws RemoteException;//修改出库单
-	
-
-
 }

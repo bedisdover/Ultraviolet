@@ -1,6 +1,5 @@
 package LEMS.po.informationpo;
 
-import java.awt.Image;
 import java.io.Serializable;
 
 /**

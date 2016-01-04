@@ -21,8 +21,6 @@ import LEMS.presentation.method.Table;
 import LEMS.presentation.ultraSwing.UltraButton;
 import LEMS.presentation.ultraSwing.UltraComboBox;
 import LEMS.vo.uservo.UserVO;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 /**
  * @author 苏琰梓 审批单据界面 2015年12月4日

@@ -32,7 +32,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.Popup;
 import javax.swing.PopupFactory;
 import javax.swing.SwingUtilities;
@@ -45,13 +44,17 @@ import LEMS.presentation.ultraSwing.UltraTextField;
  * public DateChooser(JPanel panel,int x,int y) panel为当前panel; (x,y)为组件嵌入位置
  */
 public class DateChooser extends JPanel {
+	private static final long serialVersionUID = 1L;
+	
 	private Date initDate;
 	private Calendar now = Calendar.getInstance();
 	private Calendar select;
 	private JPanel monthPanel;// 月历
 	private JP1 jp1;// 四块面板,组成
+	@SuppressWarnings("unused")
 	private JP2 jp2;
 	private JP3 jp3;
+	@SuppressWarnings("unused")
 	private JP4 jp4;
 	private Font font = new Font("宋体", Font.PLAIN, 12);
 	private final LabelManager lm = new LabelManager();
@@ -243,6 +246,8 @@ public class DateChooser extends JPanel {
 	}
 
 	private class JP1 extends JPanel {
+		private static final long serialVersionUID = 1L;
+		
 		JLabel left, right, center;
 
 		public JP1() {
@@ -314,6 +319,8 @@ public class DateChooser extends JPanel {
 	}
 
 	private class JP2 extends JPanel {
+		private static final long serialVersionUID = 1L;
+
 		public JP2() {
 			this.setPreferredSize(new Dimension(295, 20));
 		}
@@ -326,6 +333,8 @@ public class DateChooser extends JPanel {
 	}
 
 	private class JP3 extends JPanel {
+		private static final long serialVersionUID = 1L;
+
 		public JP3() {
 			super(new GridLayout(6, 7));
 			this.setPreferredSize(new Dimension(295, 100));
@@ -359,6 +368,7 @@ public class DateChooser extends JPanel {
 	}
 
 	private class MyLabel extends JLabel implements Comparator<MyLabel>, MouseListener, MouseMotionListener {
+		private static final long serialVersionUID = 1L;
 		private int year, month, day;
 		private boolean isSelected;
 
@@ -501,6 +511,7 @@ public class DateChooser extends JPanel {
 			list.clear();
 		}
 
+		@SuppressWarnings("unused")
 		public void setSelect(MyLabel my, boolean b) {
 			for (MyLabel m : list) {
 				if (m.equals(my)) {
@@ -551,6 +562,8 @@ public class DateChooser extends JPanel {
 	}
 
 	private class JP4 extends JPanel {
+		private static final long serialVersionUID = 1L;
+
 		public JP4() {
 			super(new BorderLayout());
 			this.setPreferredSize(new Dimension(295, 20));

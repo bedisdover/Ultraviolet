@@ -7,7 +7,6 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import LEMS.businesslogic.orderbl.AddOrder;
-import LEMS.businesslogic.orderbl.Order;
 import LEMS.businesslogic.utility.RMIConnect;
 /**
  * @author 周梦佳
@@ -15,9 +14,7 @@ import LEMS.businesslogic.utility.RMIConnect;
  */
 import LEMS.businesslogicservice.storeblservice.StoreGenerateOrderService;
 import LEMS.dataservice.factory.DatabaseFactory;
-import LEMS.dataservice.factory.OrderFactory;
 import LEMS.dataservice.factory.StoreFactory;
-import LEMS.dataservice.orderdataservice.OrderDataService;
 import LEMS.dataservice.storedataservice.GoodsDataService;
 import LEMS.po.orderpo.OrderPO;
 import LEMS.po.storepo.Area;
@@ -82,7 +79,6 @@ public class GenerateOrder implements StoreGenerateOrderService {
 		try {
 			String id = outboundOrderVO.getId();
 			String outDate = outboundOrderVO.getOutDate();
-			Destination des = outboundOrderVO.getDestination();
 			TransportType transportType = outboundOrderVO.getTransportType();
 			String transferNum= outboundOrderVO.getTransferNum();
 			GoodsPO goodsPO =getData().find(id);

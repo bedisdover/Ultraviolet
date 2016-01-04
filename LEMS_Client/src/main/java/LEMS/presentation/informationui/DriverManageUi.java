@@ -72,7 +72,6 @@ public class DriverManageUi extends JPanel {
 
 	private Font fnt1 = new Font("Courier", Font.BOLD, 26);// 标题字体格式
 	private Font fnt = new Font("Courier", Font.PLAIN, 15);// 其余字体格式
-	private Font fnt2 = new Font("宋体", Font.BOLD, 16);// 按钮字体格式
 	private UserVO uvo;
 	private boolean isAdd;
 	private boolean isUpdate;
@@ -137,6 +136,7 @@ public class DriverManageUi extends JPanel {
 	/**
 	 * 初始化各组件
 	 */
+	@SuppressWarnings("unchecked")
 	private void initComponents() {
 
 		title.setBounds(420, 27, 230, 39);
