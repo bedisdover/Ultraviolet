@@ -187,4 +187,11 @@ public class Table extends JTable {
 			rowData[i][0] = i + 1;
 		}
 	}
+	
+	/**
+	 * 清空表
+	 */
+	public void clean() {
+		
+	}
 }

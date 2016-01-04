@@ -2,6 +2,8 @@ package LEMS.po.orderpo;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Set;
+import java.util.Map.Entry;
 
 /**
  * @author 宋益明
@@ -29,5 +31,19 @@ public enum Packing implements Serializable {
 	 */
 	public static Packing transfer(String type) {
 		return typeList.get(type);
+	}
+	
+	/**
+	 * 将快递类型转换为对应的中文
+	 */	
+	public static String transfer(Packing type) {
+		Set<Entry<String, Packing>> temp = typeList.entrySet();
+		for (Entry<String, Packing> entry : temp) {
+			if (entry.getValue() == type) {
+				return entry.getKey();
+			}
+		}
+		
+		return null;
 	}
 }

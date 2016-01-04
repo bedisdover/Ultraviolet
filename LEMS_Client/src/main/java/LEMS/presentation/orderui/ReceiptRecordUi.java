@@ -259,6 +259,7 @@ public class ReceiptRecordUi extends JPanel {
 		
 		String[] values = new String[2]; 
 		for (OrderPO order : orders) {
+			System.out.println(order.getId());
 			values[0] = order.getId();
 			values[1] = order.getAmount() + "";
 			table.setValueAt(table.numOfEmpty(), values);
