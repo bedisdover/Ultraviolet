@@ -45,6 +45,8 @@ public class SendingData extends UnicastRemoteObject implements SendingDataServi
 		ResultSet result = connect.getResultSet(sql);
 		
 		try {
+			result.next();
+			
 			deliveryNotePO.setId(result.getString(1));
 			deliveryNotePO.setState(DocumentState.valueOf(result.getString(2)));
 			deliveryNotePO.setDate(result.getString(3));

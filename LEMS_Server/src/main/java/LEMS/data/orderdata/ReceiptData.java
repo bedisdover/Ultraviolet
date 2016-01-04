@@ -12,7 +12,6 @@ import LEMS.data.TransferID;
 import LEMS.dataservice.orderdataservice.ReceiptDataService;
 import LEMS.po.financepo.DocumentState;
 import LEMS.po.orderpo.ArrivalNotePO;
-import LEMS.po.orderpo.OrderPO;
 
 /**
  * @author 宋益明
@@ -143,34 +142,5 @@ public class ReceiptData extends UnicastRemoteObject implements ReceiptDataServi
 		String id = new CreateID().createID("arrivalnote", ID_LENGTH, institution + date);
 		
 		return id;
-	}
-	
-	public static void main(String[] args) {
-		ArrivalNotePO arrivalNotePO = new ArrivalNotePO();
-		//TODO 按照这个顺序建表就可以了
-		arrivalNotePO.setId("02501012015120800001");
-		arrivalNotePO.setState(DocumentState.waiting);
-		arrivalNotePO.setDate("20151208");
-		arrivalNotePO.setDeparture("南京市仙林大道");
-		ArrayList<OrderPO> o=new ArrayList<OrderPO>();
-		OrderPO opo=new OrderPO();
-		opo.setId("1234567890");
-		o.add(opo);
-		arrivalNotePO.setOrders(o);
-		arrivalNotePO.setInstitution("南京市仙林营业厅");
-		arrivalNotePO.setTransferNoteId("13241341531341");
-		
-		try {
-			ReceiptData receiptData = new ReceiptData();
-//			receiptData.insert(arrivalNotePO);
-			System.out.println(receiptData.createID("0250101", "20151208"));
-			System.out.println("done");
-			
-			ArrivalNotePO arrivalNotePO2 = receiptData.find("02501012015120800001");
-			System.out.println(arrivalNotePO2.getDeparture());
-			System.out.println(arrivalNotePO2.getInstitution());
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
 	}
 }

@@ -142,11 +142,4 @@ public class TransferData extends UnicastRemoteObject implements TransferDataSer
 		
 		return id;
 	}
-	
-	public static void main(String[] args) {
-		//中转单状态、日期、航班号、出发地、到达地、
-		//货柜号、监装员、本次装箱所有托运单号、运费
-		//TODO 待检验
-		 
-	}
 }

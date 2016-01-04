@@ -123,38 +123,4 @@ public class PriceData extends UnicastRemoteObject implements PriceDataService {
 
 		connect.closeConnection();
 	}
-	public static void main(String[] args) {
-		PriceData priceData=null;
-		
-		PricePO pricePO=new PricePO();
-		try {
-			priceData = new PriceData();
-			pricePO = priceData.getPrice();
-		} catch (RemoteException e1) {
-			e1.printStackTrace();
-		}
-		
-		try {
-			PricePO p=new PricePO();
-			p.pricing(Express.economy, 18.0);
-			p.pricing(Express.standard, 23.0);
-			p.pricing(Express.special, 25.0);
-			
-			p.pricing(Packing.Carton, 5.0);
-			p.pricing(Packing.Wooden, 10.0);
-			p.pricing(Packing.Bag, 1.0);
-			p.pricing(Packing.Other, 0.0);
-			priceData.pricing(p);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		System.out.println(pricePO.getPrice(Express.economy));
-		System.out.println(pricePO.getPrice(Express.standard));
-		System.out.println(pricePO.getPrice(Express.special));
-		
-		System.out.println(pricePO.getPrice(Packing.Bag));
-		System.out.println(pricePO.getPrice(Packing.Carton));
-		System.out.println(pricePO.getPrice(Packing.Wooden));
-		System.out.println(pricePO.getPrice(Packing.Other));
-	}
 }

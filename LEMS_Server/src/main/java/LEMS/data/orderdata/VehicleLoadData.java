@@ -139,32 +139,4 @@ public class VehicleLoadData extends UnicastRemoteObject implements VehicleLoadD
 		
 		return id;
 	}
-	
-	public static void main(String[] args) {
-		VehicleLoadNotePO po = new VehicleLoadNotePO();
-		po.setId("02502012015121300001");
-		po.setState(DocumentState.waiting);
-		po.setVehicle("025201001");
-		po.setDate("20151213");
-		po.setDeparture("南京市仙林大道");
-		po.setDestination("北京市海淀区");
-		po.setSuperVision("0250201143");
-		po.setSuperCargo("0250201154");
-		ArrayList<OrderPO> o=new ArrayList<OrderPO>();
-		OrderPO opo=new OrderPO();
-		opo.setId("1234567890");
-		o.add(opo);
-		po.setOrders(o);
-		po.setPassage(400);
-		
-		try {
-			VehicleLoadData data = new VehicleLoadData();
-			data.insert(po);
-			VehicleLoadNotePO vehicleLoadNotePO = data.find(po.getId());
-			System.out.println(vehicleLoadNotePO.getPassage());
-			System.out.println(vehicleLoadNotePO.getDeparture());
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-	}
 }

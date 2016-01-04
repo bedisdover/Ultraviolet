@@ -168,8 +168,7 @@ public class SettlementUi extends JPanel {
 		
 		String [] values = new String[4];
 		for (IncomePO incomePO : incomes) {
-			//TODO 添加非编号
-			values[0] = incomePO.getDate();
+			values[0] = dc.getTime();
 			values[1] = textField.getText();
 			values[2] = incomePO.getCollector();
 			values[3] = incomePO.getAmount() + "";
@@ -185,7 +184,9 @@ public class SettlementUi extends JPanel {
 	}
 
 	private void addOperation() {
-		
+		textField.setText(null);
+		textTotal.setText(null);
+		table.clean();
 	}
 
 	private boolean isLegal() {

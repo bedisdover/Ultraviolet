@@ -50,6 +50,8 @@ public class ReceiptRecordData extends UnicastRemoteObject implements ReceiptRec
 		ResultSet result = connect.getResultSet(sql);
 		
 		try {
+			result.next();
+			
 			incomeBillPO.setId(result.getString(1));
 			incomeBillPO.setState(DocumentState.valueOf(result.getString(2)));
 			incomeBillPO.setDate(result.getString(3));
