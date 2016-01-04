@@ -4,7 +4,7 @@ import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.util.Date;
 
-import LEMS.businesslogic.utility.DateFormate;
+import LEMS.businesslogic.utility.Formate;
 import LEMS.po.orderpo.OrderPO;
 
 /**
@@ -36,7 +36,7 @@ public class Deliver extends AddOrder {
 	private void setTime(String time) {
 		String orderTime = order.getTime();
 		try {
-			Date sendDate = DateFormate.DATE_FORMAT.parse(orderTime);
+			Date sendDate = Formate.DATE_FORMAT.parse(orderTime);
 			Date receiveDate = new Date();
 			long diff = receiveDate.getTime() - sendDate.getTime();
 			//天数

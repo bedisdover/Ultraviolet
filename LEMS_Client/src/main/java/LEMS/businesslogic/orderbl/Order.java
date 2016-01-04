@@ -8,7 +8,7 @@ import java.util.Date;
 
 import LEMS.businesslogic.financebl.Price;
 import LEMS.businesslogic.inquirebl.inquirelogisticsinfo.InquireLogisticsInfo;
-import LEMS.businesslogic.utility.DateFormate;
+import LEMS.businesslogic.utility.Formate;
 import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.businesslogicservice.orderblservice.OrderService;
 import LEMS.dataservice.factory.DatabaseFactory;
@@ -97,13 +97,21 @@ public class Order implements OrderService {
 		//获得单价
 		double temp = new Price().getPrice(order.getExpressType());
 		
-		return distance / 1000 * temp * order.getGoodsInfo().getWeight();
+		double money = distance / 1000 * temp * order.getGoodsInfo().getWeight(); 
+		
+		money = Double.parseDouble(Formate.DECIMAL_FORMAT.format(money));
+		
+		return money;
 	}
 
 	public double getTotal() {
-		order.setAmount(new Price().getPrice(order.getPackingType()) + getMoney()) ;
+		double total = new Price().getPrice(order.getPackingType()) + getMoney();
 		
-		return order.getAmount();
+		total = Double.parseDouble(Formate.DECIMAL_FORMAT.format(total));
+		
+		order.setAmount(total);
+		
+		return total;
 	}
 
 	public String getTime() {
@@ -137,7 +145,7 @@ public class Order implements OrderService {
 		orderPO.setExpressType(order.getExpressType());
 		orderPO.setPackageType(order.getPackingType());
 		orderPO.setAmount(this.getTotal());
-		orderPO.setTime(DateFormate.DATE_FORMAT.format(new Date()));
+		orderPO.setTime(Formate.DATE_FORMAT.format(new Date()));
 		orderPO.setReceiver("");
 		orderPO.setDeliver("");
 		orderPO.setCollector(user.getId());
