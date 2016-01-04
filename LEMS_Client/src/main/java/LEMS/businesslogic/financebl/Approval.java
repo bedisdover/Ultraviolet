@@ -23,7 +23,6 @@ public class Approval implements ApprovalService {
 
 	@SuppressWarnings("unchecked")
 	public ArrayList<DocumentPO> findAll() throws RemoteException {
-		System.out.println(approvalable.findAll());
 		return (ArrayList<DocumentPO>) approvalable.findAll();
 	}
 	

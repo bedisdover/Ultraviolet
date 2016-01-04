@@ -23,7 +23,6 @@ public class Deliver extends AddOrder {
 		this.setTime(time);
 		//更新订单信息
 		updateOrder(order);
-		System.out.println(order.getReceiver());
 	}
 	
 	private void setReceiver(String name) {

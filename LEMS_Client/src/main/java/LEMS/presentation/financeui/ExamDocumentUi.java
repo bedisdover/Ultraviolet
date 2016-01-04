@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 
 import LEMS.businesslogic.financebl.Approval;
 import LEMS.po.financepo.DocumentPO;
+import LEMS.po.financepo.DocumentState;
 import LEMS.po.userpo.UserRole;
 import LEMS.presentation.LoginUi;
 import LEMS.presentation.MainFrame;
@@ -121,10 +122,9 @@ public class ExamDocumentUi extends JPanel {
 		this.add(allPass);
 
 		String[] columnNames = { "序号","ID","日期","单据状态" };
-		int[] list = { 40, 103, 14, 30, 20, 290, 152, 430, 440 };
+		int[] list = { 40, 153, 14, 30, 20, 190, 152, 630, 440 };
 		table = new Table();
 		add(table.drawTable(columnNames, list));
-
 	}
 
 	private void addListener() {
@@ -146,7 +146,7 @@ public class ExamDocumentUi extends JPanel {
 		btnAccepted.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (table.getSelectedRow() != -1) {
-					acceptOperation();
+					acceptOperation(table.getSelectedRow());
 				}
 			}
 		});
@@ -179,7 +179,7 @@ public class ExamDocumentUi extends JPanel {
 			for (DocumentPO document : list) {
 				values[0] = document.getId();
 				values[1] = document.getDate();
-				values[2] = document.getState() + "";
+				values[2] = DocumentState.transfer(document.getState());
 				
 				table.setValueAt(table.numOfEmpty(), values);
 			}
@@ -189,10 +189,12 @@ public class ExamDocumentUi extends JPanel {
 		}
 	}
 	
-	private void acceptOperation() {
-		String id = table.getValueAt(table.getSelectedRow(), 1);
-		
+	private void acceptOperation(int line) {
+		String id = table.getValueAt(line, 1);
+
 		approval.accepted(id);
+		
+		table.setValueAt(line, 3, DocumentState.transfer(DocumentState.accepted));
 	}
 	
 	private void unAcceptOperation() {
@@ -200,10 +202,14 @@ public class ExamDocumentUi extends JPanel {
 		String id = values.get(0);
 		
 		approval.unaccepted(id);
+		
+		table.setValueAt(table.getSelectedRow(), 3, DocumentState.transfer(DocumentState.unaccepted));
 	}
 	
 	private void allAcceptOperation() {
-		
+		for (int i = 0; i < table.numOfEmpty(); i++) {
+			this.acceptOperation(i);
+		}
 	}
 	
 	class DocumentListener implements ItemListener {

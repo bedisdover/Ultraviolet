@@ -51,7 +51,7 @@ public class Factory {
 			approvalable = new Load();
 			break;
 		case "付款单":
-			
+			approvalable = new ReceiptRecord();
 			break;
 		case "收款单":
 			approvalable = new ReceiptRecord();
