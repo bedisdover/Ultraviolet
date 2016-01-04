@@ -42,6 +42,7 @@ public class OrderData extends UnicastRemoteObject implements OrderDataService {
 		OrderPO orderPO = new OrderPO();
 		try {
 			result.next();
+			orderPO.setId(id);
 			//设置寄件人信息
 			orderPO.setSenderName(result.getString(2));
 			orderPO.setSenderPhone(result.getString(3));
