@@ -121,13 +121,11 @@ public class CostUi extends JPanel {
 		button[1] = new UltraButton("取消");
 		button[1].setBounds(394 - b, 554 - change, 99, 42);
 		button[2] = new UltraButton("新增");
-		button[2].setBounds(292 - b, 642 - change, 109, 40);
+		button[2].setBounds(349 - b, 642 - change, 109, 40);
 		button[3] = new UltraButton("删除");
-		button[3].setBounds(558 - b, 642 - change, 109, 40);
-		button[4] = new UltraButton("生成");
-		button[4].setBounds(823 - b, 642 - change, 153, 40);
+		button[3].setBounds(778 - b, 642 - change, 109, 40);
 
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 4; i++) {
 			this.add(button[i]);
 		}
 		this.add(title);
@@ -236,13 +234,6 @@ public class CostUi extends JPanel {
 						table.setValueAt(j, 2, table.getValueAt(j + 1, 2));
 					}
 				}
-			}
-		});
-
-		// 生成成本收益表按钮增加监听
-		button[4].addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-
 			}
 		});
 
