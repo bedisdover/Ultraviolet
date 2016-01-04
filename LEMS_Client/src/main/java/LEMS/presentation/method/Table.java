@@ -192,6 +192,10 @@ public class Table extends JTable {
 	 * 清空表
 	 */
 	public void clean() {
-		
+		for (int i = 0; i < rowData.length; i++) {
+			for (int j = 0; j < rowData[0].length; j++) {
+				rowData[i][j] = null;
+			}
+		}
 	}
 }
