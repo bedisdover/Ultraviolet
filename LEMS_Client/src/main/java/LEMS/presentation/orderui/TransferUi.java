@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import LEMS.businesslogic.orderbl.Transfer;
+import LEMS.businesslogic.orderbl.transfer.Transfer;
 import LEMS.po.orderpo.City;
 import LEMS.po.storepo.TransportType;
 import LEMS.po.userpo.UserRole;

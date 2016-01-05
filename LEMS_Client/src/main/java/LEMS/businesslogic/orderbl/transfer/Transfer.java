@@ -1,4 +1,4 @@
-package LEMS.businesslogic.orderbl;
+package LEMS.businesslogic.orderbl.transfer;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -6,8 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import LEMS.businesslogic.orderbl.transfer.Factory;
-import LEMS.businesslogic.orderbl.transfer.Passage;
+import LEMS.businesslogic.orderbl.AddOrder;
 import LEMS.businesslogic.utility.Approvalable;
 import LEMS.businesslogic.utility.RMIConnect;
 import LEMS.businesslogicservice.orderblservice.TransferService;

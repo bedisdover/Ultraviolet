@@ -18,7 +18,6 @@ import java.util.Map.Entry;
 public class City implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	//TODO 存储到数据库
 	public static List<String> cityList = new ArrayList<String>();
 	
 	static {

@@ -1,10 +1,10 @@
 package LEMS.businesslogic.financebl;
 
+import LEMS.businesslogic.orderbl.Load;
 import LEMS.businesslogic.orderbl.ReceiptRecord;
 import LEMS.businesslogic.orderbl.Sending;
-import LEMS.businesslogic.orderbl.Transfer;
 import LEMS.businesslogic.orderbl.VehicleLoad;
-import LEMS.businesslogic.orderbl.transfer.Load;
+import LEMS.businesslogic.orderbl.transfer.Transfer;
 import LEMS.businesslogic.utility.Approvalable;
 import LEMS.po.financepo.DocumentPO;
 
