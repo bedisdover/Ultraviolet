@@ -1,0 +1,227 @@
+DROP TABLE user ;
+CREATE TABLE user(
+	id		VARCHAR(50) PRIMARY KEY NOT NULL,
+	password 	VARCHAR(50) NOT NULL,
+	role		VARCHAR(50) NOT NULL,
+	name		VARCHAR(50) NOT NULL,
+	institutionid	VARCHAR(50) NOT NULL,
+	institutionlocation	VARCHAR(50) NOT NULL
+);
+
+INSERT INTO user(id,password,role,name,institutionid,institutionlocation) VALUES ('m00001','123456',
+'Manager','章承尧','','');
+INSERT INTO user(id,password,role,name,institutionid,institutionlocation) VALUES ('0211000000','123456',
+'BusinessClerk','苏燕子','0211000','上海');
+
+
+DROP TABLE paybill;
+CREATE TABLE paybill(
+	date		VARCHAR(50)	NOT NULL,
+	id		VARCHAR(50)	NOT NULL,
+	institution	VARCHAR(50)	NOT NULL,
+	amount		DOUBLE		NOT NULL,
+	pay		VARCHAR(50)	NOT NULL,
+	account		VARCHAR(50)	NOT NULL,
+	item		VARCHAR(50)	NOT NULL,
+	remark		VARCHAR(50)	NOT NULL
+);
+
+
+
+DROP TABLE incomebill;
+CREATE TABLE incomebill(
+	date		VARCHAR(50)	NOT NULL,
+	institution	VARCHAR(50)	NOT NULL,
+	amount		DOUBLE		NOT NULL,
+	account		VARCHAR(50)	NOT NULL	
+);
+
+
+DROP TABLE diary;
+CREATE TABLE diary(
+	date		VARCHAR(50)	NOT NULL,
+	operation	VARCHAR(50)	NOT NULL
+);
+INSERT INTO diary(date,operation) VALUES ('2015-11-24','08:10 新建账户');
+INSERT INTO diary(date,operation) VALUES ('2015-11-24','10:27 新建付款单');
+INSERT INTO diary(date,operation) VALUES ('2015-11-24','13:33 新建收款单');
+INSERT INTO diary(date,operation) VALUES ('2015-11-24','20:10 审批通过单据');
+
+
+DROP TABLE price;
+CREATE TABLE price(
+	type		VARCHAR(50)	NOT NULL,
+	price		DOUBLE		NOT NULL
+);
+
+
+
+DROP TABLE logistics;
+CREATE TABLE logistics(
+	id		VARCHAR(50)	NOT NULL,
+	trace		VARCHAR(100)	NOT NULL,
+	location	VARCHAR(50)	NOT NULL
+);
+
+
+
+
+DROP TABLE institution;
+CREATE TABLE institution(
+	id		VARCHAR(50)	NOT NULL,
+	location	VARCHAR(50)	NOT NULL
+);
+
+
+DROP TABLE dingdan;
+CREATE TABLE dingdan(
+	id		VARCHAR(50)	NOT NULL,
+	senderName	VARCHAR(50)	NOT NULL,
+	senderPhone	VARCHAR(50)	NOT NULL,
+	senderAddress	VARCHAR(50)	NOT NULL,
+	receiverName	VARCHAR(50)	NOT NULL,
+	receiverPhone	VARCHAR(50)	NOT NULL,
+	receiverAddress	VARCHAR(50)	NOT NULL,
+	name		VARCHAR(50)	NOT NULL,
+	expressType	VARCHAR(50)	NOT NULL,
+	packageType	VARCHAR(50)	NOT NULL,
+	amount		DOUBLE		NOT NULL,
+	quantity	INT		NOT NULL,
+	weight		DOUBLE		NOT NULL,
+	volumn		DOUBLE		NOT NULL,
+	time		VARCHAR(50)	NOT NULL,
+	realreceiver	VARCHAR(50)	NOT NULL,
+	collecter	VARCHAR(50)	NOT NULL,
+	deliver		VARCHAR(50)	NOT NULL
+);
+
+DROP TABLE vehicle;
+CREATE TABLE vehicle(
+	id		VARCHAR(50)	NOT NULL,
+	plateNumber	VARCHAR(50)	NOT NULL,
+	workTime	VARCHAR(50)	NOT NULL,
+	image		VARCHAR(50)	NOT NULL
+);
+
+
+DROP TABLE account;
+CREATE TABLE account(
+	id		VARCHAR(50)	NOT NULL,
+	password	VARCHAR(50)	NOT NULL,
+	balance		DOUBLE		NOT NULL
+);
+
+
+DROP TABLE driver;
+CREATE TABLE driver(
+	id		VARCHAR(50)	NOT NULL,
+	name		VARCHAR(50)	NOT NULL,
+	birthday	VARCHAR(50)	NOT NULL,
+	idcard		VARCHAR(50)	NOT NULL,
+	phone		VARCHAR(50)	NOT NULL,
+	period		VARCHAR(50)	NOT NULL,
+	gender		VARCHAR(50)	NOT NULL
+);
+
+
+
+DROP TABLE distance;
+CREATE TABLE distance(
+	cities		VARCHAR(50)	NOT NULL,
+	value		DOUBLE		NOT NULL
+);
+
+DROP TABLE salary;
+CREATE TABLE salary(
+	id		VARCHAR(50)	NOT NULL,
+	institution	VARCHAR(50)	NOT NULL,
+	name		VARCHAR(50)	NOT NULL,
+	salary		DOUBLE		NOT NULL
+);
+
+
+DROP TABLE goods;
+CREATE TABLE goods(
+	id		VARCHAR(50)	NOT NULL,
+	inDate		VARCHAR(50)	NOT NULL,
+	outDate		VARCHAR(50)	NOT NULL,
+	destination	VARCHAR(50)	NOT NULL,
+	area		VARCHAR(50)	NOT NULL,
+	row		VARCHAR(50)	NOT NULL,
+	stand		VARCHAR(50)	NOT NULL,
+	position	VARCHAR(50)	NOT NULL,
+	transportType	VARCHAR(50)	NOT NULL,
+	transferNum	VARCHAR(50)	NOT NULL,
+	money		VARCHAR(50)	NOT NULL
+);
+
+DROP TABLE loadnote;
+CREATE TABLE loadnote(
+	id		VARCHAR(50)	NOT NULL,
+	state		VARCHAR(50)	NOT NULL,
+	date		VARCHAR(50)	NOT NULL,
+	vehicle		VARCHAR(50)	NOT NULL,
+	departure	VARCHAR(50)	NOT NULL,
+	destination	VARCHAR(50)	NOT NULL,
+	supervision	VARCHAR(50)	NOT NULL,
+	supercargo	VARCHAR(50)	NOT NULL,
+	orders		VARCHAR(50)	NOT NULL,
+	passage		DOUBLE		NOT NULL
+);
+
+DROP TABLE arrivalnote;
+CREATE TABLE arrivalnote(
+	id		VARCHAR(50)	NOT NULL,
+	state		VARCHAR(50)	NOT NULL,
+	date		VARCHAR(50)	NOT NULL,
+	departure	VARCHAR(50)	NOT NULL,
+	orders		VARCHAR(50)	NOT NULL,
+	institution	VARCHAR(50)	NOT NULL,
+	transfernoteid	VARCHAR(50)	NOT NULL
+);
+
+DROP TABLE vehicleloadnote;
+CREATE TABLE vehicleloadnote(
+	id		VARCHAR(50)	NOT NULL,
+	state		VARCHAR(50)	NOT NULL,
+	date		VARCHAR(50)	NOT NULL,
+	vehicle		VARCHAR(50)	NOT NULL,
+	departure	VARCHAR(50)	NOT NULL,
+	destination	VARCHAR(50)	NOT NULL,
+	supervision	VARCHAR(50)	NOT NULL,
+	supercargo	VARCHAR(50)	NOT NULL,
+	orders		VARCHAR(50)	NOT NULL,
+	passage		DOUBLE		NOT NULL
+);
+
+DROP TABLE deliverynote;
+CREATE TABLE deliverynote(
+	id		VARCHAR(50)	NOT NULL,
+	state		VARCHAR(50)	NOT NULL,
+	date		VARCHAR(50)	NOT NULL,
+	orders		VARCHAR(50)	NOT NULL
+);
+
+DROP TABLE transfernote;
+CREATE TABLE transfernote(
+	id		VARCHAR(50)	NOT NULL,
+	state		VARCHAR(50)	NOT NULL,
+	date		VARCHAR(50)	NOT NULL,
+	flight		VARCHAR(50)	NOT NULL,
+	departure	VARCHAR(50)	NOT NULL,
+	destination	VARCHAR(50)	NOT NULL,
+	container	VARCHAR(50)	NOT NULL,
+	superVision	VARCHAR(50)	NOT NULL,
+	orders		VARCHAR(50)	NOT NULL,
+	passage		DOUBLE		NOT NULL
+);
+
+DROP TABLE cash;
+CREATE TABLE cash(
+	id		VARCHAR(50)	NOT NULL,
+	state		VARCHAR(50)	NOT NULL,
+	date		VARCHAR(50)	NOT NULL,
+	amount		DOUBLE		NOT NULL,
+	collector	VARCHAR(50)	NOT NULL,
+	orders		VARCHAR(50)	NOT NULL
+);
